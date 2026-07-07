@@ -1,0 +1,804 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无尽道途 v2</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--surface:#14141f;--surface2:#1a1a28;--border:#2a2a3a;
+  --text:#c8c8d4;--text-dim:#6a6a7a;--gold:#f0c060;--gold-bright:#ffe08a;
+  --accent:#ff4060;--heal:#40f080;--crit-color:#ffcc00;
+  --q1:#9d9d9d;--q2:#4ae04a;--q3:#4a8af0;--q4:#c04af0;--q5:#f08030;
+  --q6:#e04040;--q7:#888888;--q8:#fafafa;--q9:#ffd700;--q10-start:#ff4060;--q10-end:#4a8af0;
+  --font:'Segoe UI',system-ui,-apple-system,sans-serif;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);min-height:100vh;overflow:hidden;user-select:none;-webkit-user-select:none}
+
+#app{width:100vw;height:100vh;display:flex;flex-direction:column;position:relative}
+
+#topbar{display:flex;align-items:center;justify-content:space-between;padding:6px 14px;background:var(--surface);border-bottom:1px solid var(--border);height:44px;flex-shrink:0;z-index:10}
+.top-stat{display:flex;align-items:center;gap:5px;font-size:12px}
+.top-stat .lbl{color:var(--text-dim);font-size:10px}
+.top-stat .val{font-weight:600;font-size:14px;color:var(--gold);font-variant-numeric:tabular-nums}
+.top-stat .val.pwr{color:var(--accent)}
+
+#main{flex:1;display:flex;overflow:hidden;position:relative}
+
+#equip-panel{width:260px;background:var(--surface);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0;z-index:5}
+#equip-panel h3{padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--text-dim);border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:1}
+.eq-slot{display:flex;align-items:center;padding:6px 12px;border-bottom:1px solid var(--border);gap:8px;min-height:42px;transition:background .15s}
+.eq-slot:hover{background:var(--surface2)}
+.eq-slot .sl-icon{width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:var(--surface2);border:1px solid var(--border)}
+.eq-slot .sl-info{flex:1;min-width:0}
+.eq-slot .sl-name{font-size:11px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.eq-slot .sl-affix{font-size:9px;color:var(--text-dim);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.eq-slot .sl-empty{color:var(--text-dim);font-size:10px}
+.eq-slot .sl-pwr{font-size:11px;font-weight:600;color:var(--gold);flex-shrink:0}
+.eq-slot.lowlight{opacity:.4}
+
+#center-area{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;min-width:0}
+
+#chest-display{position:relative;width:200px;height:200px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:filter .3s}
+#chest-display.ready{filter:drop-shadow(0 0 20px rgba(240,192,96,.5))}
+#chest-display.full{filter:drop-shadow(0 0 30px rgba(255,204,0,.8));animation:chestGlow 1.5s ease-in-out infinite}
+@keyframes chestGlow{0%,100%{filter:drop-shadow(0 0 20px rgba(255,204,0,.6))}50%{filter:drop-shadow(0 0 40px rgba(255,204,0,1))}}
+#chest-icon{font-size:80px;line-height:1;transition:transform .15s}
+#chest-icon:active{transform:scale(.9)}
+#chest-count{position:absolute;bottom:10px;right:20px;background:var(--accent);color:#fff;font-size:13px;font-weight:700;padding:2px 8px;border-radius:10px;min-width:28px;text-align:center}
+#chest-count.max{background:#f0c060;color:#1a1a28}
+#chest-progress{width:200px;height:4px;background:var(--surface2);border-radius:2px;margin-top:12px;overflow:hidden;z-index:2}
+#chest-progress .fill{height:100%;background:var(--gold);border-radius:2px;transition:width .3s;width:0}
+#chest-label{font-size:11px;color:var(--text-dim);margin-top:4px;z-index:2;text-align:center}
+
+#stage-bar{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;z-index:2}
+.stage-btn{padding:8px 24px;border-radius:8px;border:1px solid var(--gold);background:#2a2000;color:var(--gold);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;font-family:var(--font);letter-spacing:1px}
+.stage-btn:hover{background:#3a2e00;border-color:var(--gold-bright);color:var(--gold-bright)}
+.stage-info{font-size:11px;color:var(--text-dim);text-align:center}
+
+#right-panel{width:280px;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;z-index:5;overflow-y:auto}
+#right-panel h3{padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--text-dim);border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:1}
+.stat-row{display:flex;justify-content:space-between;padding:4px 14px;font-size:11px}
+.stat-row .sk{color:var(--text-dim)}
+.stat-row .sv{font-weight:500;color:var(--text)}
+.stat-row.total{border-top:1px solid var(--border);margin-top:6px;padding-top:8px}
+.stat-row.total .sv{color:var(--gold);font-size:13px;font-weight:700}
+
+.pwr-anim{animation:pwrBump .4s ease-out}
+@keyframes pwrBump{0%{transform:scale(1)}50%{transform:scale(1.3);color:var(--crit-color)}100%{transform:scale(1)}}
+
+#bottombar{display:flex;align-items:center;justify-content:center;gap:10px;padding:6px 14px;background:var(--surface);border-top:1px solid var(--border);height:40px;flex-shrink:0;z-index:10}
+.btn{padding:5px 14px;border-radius:5px;border:1px solid var(--border);background:var(--surface2);color:var(--text);font-size:11px;cursor:pointer;transition:all .15s;font-family:var(--font)}
+.btn:hover{border-color:#555;background:#222}
+.btn.accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.gold{background:#3a2800;border-color:var(--gold);color:var(--gold)}
+.btn.gold:hover{background:#4a3400}
+
+#fx-layer{position:absolute;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+
+.dmg-num{position:absolute;font-weight:700;pointer-events:none;animation:floatUp .8s ease-out forwards;white-space:nowrap;z-index:60}
+.dmg-num.normal{color:#fff;font-size:18px}
+.dmg-num.crit{color:var(--crit-color);font-size:34px;text-shadow:0 0 20px rgba(255,204,0,.6)}
+.dmg-num.kill{color:var(--accent);font-size:44px;text-shadow:0 0 30px rgba(255,64,96,.8)}
+@keyframes floatUp{0%{transform:translateY(0) scale(.5);opacity:1}30%{transform:translateY(-30px) scale(1.2);opacity:1}100%{transform:translateY(-100px) scale(.8);opacity:0}}
+
+.particle{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;z-index:59}
+
+.drop-beam{position:absolute;pointer-events:none;z-index:58;animation:beamDrop .6s ease-out forwards}
+@keyframes beamDrop{0%{transform:scaleY(0);opacity:0}40%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+.full-flash{position:fixed;inset:0;pointer-events:none;z-index:200;animation:flashBang .5s ease-out forwards}
+@keyframes flashBang{0%{background:var(--clr)}100%{background:transparent}}
+
+.shake{animation:shake .3s ease-out}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(2px)}}
+
+.chest-open{animation:chestPop .5s ease-out}
+@keyframes chestPop{0%{transform:scale(1)}30%{transform:scale(1.3)}60%{transform:scale(.9)}100%{transform:scale(1)}}
+
+.click-ripple{position:absolute;border:2px solid rgba(255,255,255,.6);border-radius:50%;pointer-events:none;animation:ripOut .5s ease-out forwards;z-index:65}
+@keyframes ripOut{0%{width:0;height:0;opacity:1}100%{width:160px;height:160px;opacity:0;margin-left:-80px;margin-top:-80px}}
+
+.gold-fly{position:absolute;pointer-events:none;z-index:61;font-weight:600;color:#f0c060;font-size:16px;animation:gf .9s ease-out forwards}
+@keyframes gf{0%{transform:translateY(0);opacity:1}100%{transform:translateY(-50px);opacity:0}}
+
+/* BATTLE OVERLAY */
+#battle-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+#battle-overlay.show{opacity:1;pointer-events:auto}
+
+.battle-scene{display:flex;align-items:center;justify-content:center;gap:80px;margin-bottom:20px}
+.battle-char{display:flex;flex-direction:column;align-items:center;gap:8px}
+.battle-char .icon{font-size:64px}
+.battle-char .name{font-size:13px;color:var(--text-dim)}
+.battle-char .hp-outer{width:140px;height:8px;background:var(--surface2);border-radius:4px;overflow:hidden}
+.battle-char .hp-inner{height:100%;border-radius:4px;transition:width .15s}
+.battle-char .hp-inner.plyr{background:var(--heal)}
+.battle-char .hp-inner.enemy{background:var(--accent)}
+
+#battle-stats-panel{display:none;flex-direction:column;align-items:center;gap:8px;margin-top:16px;padding:16px 24px;background:var(--surface);border:1px solid var(--border);border-radius:10px;max-width:340px}
+#battle-stats-panel.show{display:flex}
+#battle-stats-panel h3{font-size:14px;color:var(--gold);margin-bottom:4px}
+.bs-row{display:flex;justify-content:space-between;width:100%;font-size:11px;gap:20px}
+.bs-row .bsk{color:var(--text-dim)}
+.bs-row .bsv{color:var(--text);font-weight:500}
+
+.battle-result-txt{font-size:28px;font-weight:900;margin:12px 0 4px}
+.battle-result-txt.win{color:var(--gold)}
+.battle-result-txt.lose{color:var(--accent)}
+
+/* COMPARE OVERLAY */
+#compare-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+#compare-overlay.show{opacity:1;pointer-events:auto}
+#compare-panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;width:520px;max-width:95vw;max-height:90vh;overflow-y:auto}
+#compare-panel h2{text-align:center;font-size:15px;margin-bottom:12px;color:var(--gold)}
+.cmp-cols{display:flex;gap:12px}
+.cmp-col{flex:1;background:var(--surface2);border-radius:8px;padding:10px;border:1px solid var(--border)}
+.cmp-col h4{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.cmp-col .eq-name{font-size:13px;font-weight:600;margin-bottom:6px}
+.cmp-affix{display:flex;justify-content:space-between;font-size:10px;padding:2px 0}
+.cmp-affix .an{color:var(--text-dim)}
+.cmp-affix.better .av{color:#4ae04a}
+.cmp-affix.worse .av{color:#ff4060}
+.cmp-col .total-pwr{margin-top:6px;padding-top:6px;border-top:1px solid var(--border);text-align:center}
+.cmp-col .total-pwr .tp-val{font-size:13px;font-weight:700;color:var(--gold)}
+.cmp-col .total-pwr .tp-lbl{font-size:9px;color:var(--text-dim)}
+.cmp-actions{display:flex;gap:8px;margin-top:12px;justify-content:center}
+.cmp-actions .btn{padding:7px 20px;font-size:12px}
+
+/* TIER LABELS */
+.tier-badge{display:inline-block;padding:1px 5px;border-radius:3px;font-size:9px;font-weight:600;margin-left:4px;vertical-align:middle}
+
+/* PROGRESS TIMER */
+.timer-ring{position:absolute;width:210px;height:210px;border-radius:50%;pointer-events:none;z-index:1}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="topbar">
+    <div style="display:flex;gap:16px">
+      <div class="top-stat"><span class="lbl">宝箱</span><span class="val" id="top-chests">0</span><span class="lbl">/100</span></div>
+      <div class="top-stat"><span class="lbl">金币</span><span class="val" id="top-gold">0</span></div>
+      <div class="top-stat"><span class="lbl">装备等级</span><span class="val" id="top-elv">1</span></div>
+    </div>
+    <div class="top-stat"><span class="lbl">战力</span><span class="val pwr" id="top-pwr">0</span></div>
+    <div style="display:flex;gap:16px">
+      <div class="top-stat"><span class="lbl">当前关卡</span><span class="val" id="top-stage">1</span></div>
+      <div class="top-stat"><span class="lbl">最高关卡</span><span class="val" id="top-max-stage">1</span></div>
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="equip-panel"><h3>装备栏</h3><div id="eq-slots"></div></div>
+
+    <div id="center-area">
+      <div id="chest-display" onclick="onChestClick(event)">
+        <div class="timer-ring" id="timer-ring"></div>
+        <div id="chest-icon">📦</div>
+        <div id="chest-count">0</div>
+      </div>
+      <div id="chest-progress"><div class="fill" id="chest-progress-fill"></div></div>
+      <div id="chest-label">宝箱生产中...</div>
+
+      <div id="stage-bar">
+        <div class="stage-info">第 <b id="stage-num">1</b> 关</div>
+        <button class="stage-btn" id="stage-btn" onclick="startBattle()">挑战</button>
+        <div class="stage-info">推荐战力 <b id="stage-req">0</b></div>
+      </div>
+    </div>
+
+    <div id="right-panel">
+      <h3>属性总览</h3>
+      <div id="stat-summary"></div>
+    </div>
+
+    <div id="fx-layer"></div>
+  </div>
+
+  <div id="bottombar">
+    <button class="btn" id="btn-auto" onclick="toggleAutoOpen()">自动开箱: 开</button>
+    <button class="btn gold" id="btn-upgrade" onclick="upgradeEquipLevel()">升级装备 Lv.<span id="upgrade-cost-lv">1→2</span> (<span id="upgrade-cost-gold">100</span>G)</button>
+    <button class="btn" onclick="resetGame()" style="opacity:.3;font-size:9px">重置</button>
+  </div>
+
+  <div id="compare-overlay"><div id="compare-panel"></div></div>
+
+  <div id="battle-overlay">
+    <div class="battle-scene">
+      <div class="battle-char" id="bc-player">
+        <div class="icon">⚔️</div>
+        <div class="name">我方</div>
+        <div class="hp-outer"><div class="hp-inner plyr" id="bp-hp" style="width:100%"></div></div>
+      </div>
+      <div style="font-size:32px;color:var(--accent)">VS</div>
+      <div class="battle-char" id="bc-enemy">
+        <div class="icon" id="be-icon">👹</div>
+        <div class="name" id="be-name">关卡守卫</div>
+        <div class="hp-outer"><div class="hp-inner enemy" id="be-hp" style="width:100%"></div></div>
+      </div>
+    </div>
+    <div id="battle-stats-panel">
+      <div class="battle-result-txt" id="battle-result"></div>
+      <div id="battle-stats-content"></div>
+    </div>
+    <button class="btn accent" id="battle-close-btn" style="display:none;margin-top:12px" onclick="closeBattle()">返回</button>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG & CONSTANTS
+// ============================================================
+const SLOTS = ['weapon','hat','mask','earring','necklace','armor','pants','shoulder','knee','gloves','shoes','cloak','belt'];
+const SLOT_NAMES = {weapon:'武器',hat:'帽子',mask:'面具',earring:'耳环',necklace:'项链',armor:'衣服',pants:'裤子',shoulder:'护肩',knee:'护膝',gloves:'手套',shoes:'鞋子',cloak:'披风',belt:'腰带'};
+const SLOT_ICONS = {weapon:'⚔️',hat:'🎩',mask:'🎭',earring:'💎',necklace:'📿',armor:'🛡️',pants:'👖',shoulder:'🏋️',knee:'🦵',gloves:'🧤',shoes:'👢',cloak:'🧣',belt:'🎗️'};
+const SLOT_PRIMARY = {weapon:'attack',hat:'hp',mask:'critRate',earring:'healEffect',necklace:'dmgBonus',armor:'defense',pants:'hp',shoulder:'defense',knee:'dodge',gloves:'atkSpeed',shoes:'dodge',cloak:'dmgReduce',belt:'hp'};
+
+const QUALITIES = ['common','uncommon','rare','epic','legendary','immortal','radiant','perfect','divine','supreme'];
+const Q_NAMES = ['普通','常见','稀有','史诗','传说','不朽','闪曜','完美','传世','至尊'];
+const Q_COLORS = ['#9d9d9d','#4ae04a','#4a8af0','#c04af0','#f08030','#e04040','#888888','#fafafa','#ffd700',
+  'linear-gradient(135deg,#ff4060,#f08030,#ffd700,#4ae04a,#4a8af0,#c04af0)'];
+const Q_COLORS_SOLID = ['#9d9d9d','#4ae04a','#4a8af0','#c04af0','#f08030','#e04040','#888888','#fafafa','#ffd700','#ff4060'];
+const Q_WEIGHTS = [30,25,18,12,7,4,2,1.2,0.6,0.2];
+const Q_AFFIX_COUNT = [[1,1],[1,2],[2,2],[2,3],[3,3],[3,4],[4,4],[4,5],[5,5],[5,6]];
+const Q_AFFIX_MULT = [1.0,1.3,1.6,2.0,2.5,3.0,3.6,4.2,5.0,6.0];
+
+// All affix types
+const ALL_AFFIXES = [
+  'attack','hp','defense','armorPen','critRate','critResist','critDamage',
+  'hit','dodge','dmgBonus','dmgReduce',
+  'fireMastery','waterMastery','earthMastery','windMastery',
+  'fireResist','waterResist','earthResist','windResist',
+  'healEffect','counterRate','lifeSteal','tenacity','atkSpeed'
+];
+const AFFIX_NAMES = {
+  attack:'攻击',hp:'生命',defense:'防御',armorPen:'穿甲',critRate:'暴击率',critResist:'暴抗',critDamage:'暴伤',
+  hit:'命中',dodge:'闪避',dmgBonus:'伤害加成',dmgReduce:'伤害减免',
+  fireMastery:'火精通',waterMastery:'水精通',earthMastery:'土精通',windMastery:'风精通',
+  fireResist:'火抗',waterResist:'水抗',earthResist:'土抗',windResist:'风抗',
+  healEffect:'治疗',counterRate:'反击',lifeSteal:'吸血',tenacity:'韧性',atkSpeed:'攻速'
+};
+const AFFIX_IS_PCT = {
+  critRate:true,critResist:true,critDamage:true,hit:true,dodge:true,dmgBonus:true,dmgReduce:true,
+  fireMastery:true,waterMastery:true,earthMastery:true,windMastery:true,
+  fireResist:true,waterResist:true,earthResist:true,windResist:true,
+  healEffect:true,counterRate:true,lifeSteal:true
+};
+
+const CHEST_INTERVAL = 3000;   // produce 1 chest every 3s
+const AUTO_OPEN_INTERVAL = 5000;  // auto open every 5s
+const MAX_CHESTS = 100;
+
+// ============================================================
+// GAME STATE
+// ============================================================
+function createState(){
+  return {
+    chests:0,
+    chestTimer:0,
+    chestOpenTimer:0,
+    autoOpen:true,
+    comparing:false,
+    equipment:{},
+    equipped:{},
+    gold:0,
+    equipLevel:1,
+    stage:1,
+    maxStage:1,
+    totalOpened:0,
+    battle:{active:false,playerHp:0,playerMaxHp:0,enemyHp:0,enemyMaxHp:0,plyAtkTimer:0,enemyAtkTimer:0,
+      totalDmg:0,totalTaken:0,totalHeal:0,critCount:0,ccTime:0,duration:0,startTime:0,
+      plyCcTimer:0,enemyCcTimer:0},
+    lastSave:Date.now()
+  };
+}
+let G = createState();
+
+// ============================================================
+// SAVE / LOAD
+// ============================================================
+const SK = 'endless_path_v2';
+function save(){ G.lastSave=Date.now(); try{localStorage.setItem(SK,JSON.stringify(G))}catch(e){} }
+function load(){
+  try{
+    const r=localStorage.getItem(SK);if(!r)return false;
+    const s=JSON.parse(r);G={...createState(),...s};
+    G.equipment=G.equipment||{};G.equipped=G.equipped||{};
+    G.battle={...createState().battle,...(s.battle||{})};
+    return true;
+  }catch(e){return false}
+}
+function resetGame(){
+  if(!confirm('确定重置所有数据？'))return;
+  localStorage.removeItem(SK);G=createState();renderAll();save();
+}
+
+// ============================================================
+// EQUIPMENT GENERATION
+// ============================================================
+function rollQuality(){
+  const t=Q_WEIGHTS.reduce((a,b)=>a+b,0);let r=Math.random()*t;
+  for(let i=0;i<Q_WEIGHTS.length;i++){r-=Q_WEIGHTS[i];if(r<=0)return i}
+  return 0;
+}
+function genAffixValue(affixType,qualityIdx,isPrimary){
+  const qm=Q_AFFIX_MULT[qualityIdx];let base;
+  if(AFFIX_IS_PCT[affixType]){
+    base=(2+Math.random()*5)*qm*(isPrimary?2.8:1);
+    if(affixType==='critRate')base*=0.5;
+    if(affixType==='critDamage')base*=0.8;
+    if(affixType==='counterRate')base*=0.35;
+    if(affixType==='lifeSteal')base*=0.3;
+    if(affixType==='dmgBonus'||affixType==='dmgReduce')base*=0.4;
+    if(affixType==='hit'||affixType==='dodge')base*=0.45;
+  }else{
+    base=Math.floor((15+Math.random()*35)*qm*(isPrimary?2.8:1));
+    if(affixType==='hp')base*=3;
+    if(affixType==='atkSpeed')base=Math.max(0.3,(base*0.02));
+  }
+  if(affixType==='atkSpeed')return Math.max(0.1,+(base*(0.85+Math.random()*0.3)).toFixed(1));
+  return Math.max(1,Math.floor(base*(0.85+Math.random()*0.3)));
+}
+
+function genEquipment(slot){
+  const qi=rollQuality();
+  const primary=SLOT_PRIMARY[slot];
+  const [minA,maxA]=Q_AFFIX_COUNT[qi];
+  const affixCount=minA+Math.floor(Math.random()*(maxA-minA+1));
+
+  const affixes=[];
+  const used=new Set();
+  // always include primary
+  affixes.push({type:primary,value:genAffixValue(primary,qi,true)});
+  used.add(primary);
+  // random other affixes
+  const pool=ALL_AFFIXES.filter(a=>a!==primary);
+  for(let i=1;i<affixCount;i++){
+    if(pool.length===0)break;
+    const idx=Math.floor(Math.random()*pool.length);
+    const at=pool.splice(idx,1)[0];
+    affixes.push({type:at,value:genAffixValue(at,qi,false)});
+  }
+  // calc combat power
+  let cp=0;
+  for(const a of affixes){
+    if(AFFIX_IS_PCT[a.type])cp+=a.value*8;
+    else if(a.type==='atkSpeed')cp+=a.value*40;
+    else cp+=a.value*(a.type==='hp'?0.2:1);
+  }
+  cp=Math.floor(cp);
+
+  // name
+  const prefixes=['','精良','优质','稀有','传说','不朽','闪曜','完美','传世','至尊'];
+  const name=qi>0?prefixes[qi]+SLOT_NAMES[slot]:SLOT_NAMES[slot];
+
+  return {id:Date.now()+'_'+Math.random().toString(36).slice(2,8),slot,name,quality:qi,affixes,combatPower:cp};
+}
+
+// ============================================================
+// PLAYER STATS FROM EQUIPMENT
+// ============================================================
+function getPlayerStats(){
+  const s={};
+  for(const a of ALL_AFFIXES)s[a]=0;
+  for(const slot of SLOTS){
+    const eq=G.equipped[slot];if(!eq)continue;
+    for(const af of eq.affixes){s[af.type]=(s[af.type]||0)+af.value;}
+  }
+  // base
+  s.attack=(s.attack||0)+10*G.equipLevel;
+  s.hp=(s.hp||0)+100*G.equipLevel;
+  s.defense=(s.defense||0)+5*G.equipLevel;
+  return s;
+}
+function getTotalCombatPower(){
+  let cp=0;
+  for(const slot of SLOTS){
+    const eq=G.equipped[slot];if(!eq)continue;
+    cp+=eq.combatPower;
+  }
+  return cp;
+}
+
+// ============================================================
+// CHEST SYSTEM
+// ============================================================
+function onChestClick(e){
+  if(G.chests<=0||G.comparing)return;
+  openChest();
+  // ripple
+  const fx=document.getElementById('fx-layer');
+  const rp=document.createElement('div');rp.className='click-ripple';
+  rp.style.left=e.clientX+'px';rp.style.top=e.clientY+'px';
+  fx.appendChild(rp);setTimeout(()=>rp.remove(),500);
+}
+function openChest(){
+  if(G.chests<=0)return;
+  G.chests--;G.totalOpened++;
+  // chest pop animation
+  const ci=document.getElementById('chest-icon');
+  ci.classList.add('chest-open');setTimeout(()=>ci.classList.remove('chest-open'),500);
+
+  // pick random slot
+  const slot=SLOTS[Math.floor(Math.random()*SLOTS.length)];
+  const eq=genEquipment(slot);
+  const current=G.equipped[slot];
+  const cp=eq.combatPower;
+  const curCp=current?current.combatPower:0;
+
+  if(!current||cp>curCp){
+    // better! stop and show compare
+    G.comparing=true;
+    G.pendingEq=eq;
+    showCompare(eq,current,slot);
+    // beam + shake
+    spawnEquipBeam(slot,eq.quality);
+    spawnFullFlash(Q_COLORS_SOLID[eq.quality],eq.quality>=5);
+    triggerShake();
+  }else{
+    // worse, auto-sell
+    const goldEarn=Math.floor(eq.combatPower*0.5);
+    G.gold+=goldEarn;
+    const cr=document.getElementById('chest-display').getBoundingClientRect();
+    spawnGoldFly(cr.left+cr.width/2,cr.top,goldEarn);
+  }
+  renderAll();save();
+}
+function equipPending(){
+  if(!G.pendingEq)return;
+  const eq=G.pendingEq;const slot=eq.slot;
+  G.equipped[slot]=eq;
+  if(!G.equipment[slot])G.equipment[slot]=[];
+  // remove duplicate from same quality in history if any
+  G.pendingEq=null;G.comparing=false;
+  document.getElementById('compare-overlay').classList.remove('show');
+  renderAll();save();
+  // resume auto-open timer
+  G.chestOpenTimer=0;
+}
+function sellPending(){
+  if(!G.pendingEq)return;
+  const goldEarn=Math.floor(G.pendingEq.combatPower*0.5);
+  G.gold+=goldEarn;
+  G.pendingEq=null;G.comparing=false;
+  document.getElementById('compare-overlay').classList.remove('show');
+  renderAll();save();
+  G.chestOpenTimer=0;
+}
+function showCompare(newEq,current,slot){
+  const nm=newEq;const cm=current;
+  let h='<h2>'+SLOT_ICONS[slot]+' '+SLOT_NAMES[slot]+' · 新装备</h2><div class="cmp-cols">';
+  // current
+  h+='<div class="cmp-col"><h4>当前装备</h4>';
+  if(cm){
+    h+='<div class="eq-name" style="color:'+Q_COLORS_SOLID[cm.quality]+'">'+cm.name+' <span class="tier-badge" style="background:'+Q_COLORS_SOLID[cm.quality]+';color:#fff">'+Q_NAMES[cm.quality]+'</span></div>';
+    for(const a of cm.affixes){
+      const nv=nm.affixes.find(x=>x.type===a.type);const nval=nv?nv.value:0;
+      const cls=nval>a.value?'worse':(nval<a.value?'better':'');
+      h+='<div class="cmp-affix'+(cls?' '+cls:'')+'"><span class="an">'+AFFIX_NAMES[a.type]+'</span><span class="av">'+fmtAffix(a.type,a.value)+'</span></div>';
+    }
+    h+='<div class="total-pwr"><div class="tp-lbl">战力</div><div class="tp-val">'+fmtNum(cm.combatPower)+'</div></div>';
+  }else{h+='<div style="color:var(--text-dim);font-size:11px">空</div>'}
+  h+='</div>';
+  // new
+  const bc=nm.quality>=9?'2px solid '+Q_COLORS_SOLID[nm.quality]:'1px solid '+Q_COLORS_SOLID[nm.quality];
+  h+='<div class="cmp-col" style="border:'+bc+'"><h4>'+Q_NAMES[nm.quality]+'</h4>';
+  h+='<div class="eq-name" style="color:'+Q_COLORS_SOLID[nm.quality]+'">'+nm.name+' <span class="tier-badge" style="background:'+Q_COLORS_SOLID[nm.quality]+';color:#fff">'+Q_NAMES[nm.quality]+'</span></div>';
+  for(const a of nm.affixes){
+    const cv=cm?(cm.affixes.find(x=>x.type===a.type)||{}).value||0:0;
+    const cls=cv>0?(a.value>cv?'better':'worse'):'';
+    const arr=cv>0?(a.value>cv?' ▲':(a.value<cv?' ▼':'')):'';
+    h+='<div class="cmp-affix'+(cls?' '+cls:'')+'"><span class="an">'+AFFIX_NAMES[a.type]+'</span><span class="av">'+fmtAffix(a.type,a.value)+arr+'</span></div>';
+  }
+  h+='<div class="total-pwr"><div class="tp-lbl">战力</div><div class="tp-val" style="font-size:16px">'+fmtNum(nm.combatPower)+'</div></div>';
+  h+='</div></div>';
+  h+='<div class="cmp-actions"><button class="btn gold" onclick="equipPending()">装备</button><button class="btn" onclick="sellPending()">出售 (+'+Math.floor(nm.combatPower*0.5)+'G)</button></div>';
+  document.getElementById('compare-panel').innerHTML=h;
+  document.getElementById('compare-overlay').classList.add('show');
+}
+
+// ============================================================
+// UPGRADE
+// ============================================================
+function getUpgradeCost(){
+  return Math.floor(100*Math.pow(1.5,G.equipLevel-1));
+}
+function upgradeEquipLevel(){
+  const cost=getUpgradeCost();
+  if(G.gold<cost)return;
+  G.gold-=cost;G.equipLevel++;
+  renderAll();save();
+}
+function toggleAutoOpen(){
+  G.autoOpen=!G.autoOpen;document.getElementById('btn-auto').textContent='自动开箱: '+(G.autoOpen?'开':'关');
+  save();
+}
+
+// ============================================================
+// BATTLE SYSTEM
+// ============================================================
+function getStageEnemy(stage){
+  const baseHp=100*Math.pow(1.18,stage-1);
+  const baseAtk=15*Math.pow(1.14,stage-1);
+  const baseDef=5*Math.pow(1.10,stage-1);
+  return {hp:Math.floor(baseHp),maxHp:Math.floor(baseHp),atk:Math.floor(baseAtk),def:Math.floor(baseDef),
+    critRate:0.05+stage*0.002,critDmg:1.5+stage*0.01,atkSpeed:1.0+stage*0.01,
+    dodge:Math.min(0.3,stage*0.005),name:'关卡守卫 Lv.'+stage};
+}
+function getStageReqPower(stage){
+  return Math.floor(50*Math.pow(1.16,stage-1));
+}
+
+function startBattle(){
+  if(G.battle.active||G.comparing)return;
+  const stats=getPlayerStats();const enemy=getStageEnemy(G.stage);
+  G.battle={active:true,playerHp:stats.hp,playerMaxHp:stats.hp,enemyHp:enemy.maxHp,enemyMaxHp:enemy.maxHp,
+    plyAtkTimer:0,enemyAtkTimer:0,totalDmg:0,totalTaken:0,totalHeal:0,critCount:0,ccTime:0,
+    duration:0,startTime:Date.now(),plyCcTimer:0,enemyCcTimer:0,enemy:enemy,stats:stats};
+  document.getElementById('battle-overlay').classList.add('show');
+  document.getElementById('battle-stats-panel').classList.remove('show');
+  document.getElementById('battle-close-btn').style.display='none';
+  document.getElementById('bc-enemy').querySelector('.icon').textContent='👹';
+  document.getElementById('be-name').textContent=enemy.name;
+  updateBattleHp();renderAll();
+}
+
+function closeBattle(){
+  document.getElementById('battle-overlay').classList.remove('show');
+  G.battle.active=false;renderAll();save();
+}
+
+function updateBattleHp(){
+  const b=G.battle;if(!b.active)return;
+  document.getElementById('bp-hp').style.width=Math.max(0,(b.playerHp/b.playerMaxHp)*100)+'%';
+  document.getElementById('be-hp').style.width=Math.max(0,(b.enemyHp/b.enemyMaxHp)*100)+'%';
+}
+
+function calcPlayerDmg(stats){
+  let dmg=stats.attack||10;
+  dmg*=0.92+Math.random()*0.16;
+  const isCrit=Math.random()<(stats.critRate||0)/100;
+  if(isCrit){dmg*=1+(stats.critDamage||0)/100;G.battle.critCount++}
+  dmg*=1+(stats.dmgBonus||0)/100;
+  // armor pen
+  const pen=stats.armorPen||0;
+  const effDef=Math.max(0,(G.battle.enemy.def||0)-pen);
+  dmg=Math.max(1,Math.floor(dmg*(1-effDef/(effDef+200))));
+  // elements
+  const elDmg=(stats.fireMastery||0)+(stats.waterMastery||0)+(stats.earthMastery||0)+(stats.windMastery||0);
+  if(elDmg>0)dmg+=Math.floor(elDmg*0.3*(0.5+Math.random()));
+  return {dmg,isCrit};
+}
+
+function calcEnemyDmg(stats){
+  const e=G.battle.enemy;
+  let dmg=e.atk*(0.92+Math.random()*0.16);
+  const isEcrit=Math.random()<e.critRate-(stats.critResist||0)/100;
+  if(isEcrit)dmg*=e.critDmg;
+  // dodge
+  if(Math.random()<(stats.dodge||0)/100)return{dmg:0,dodged:true};
+  dmg*=1-(stats.dmgReduce||0)/100;
+  const effDef=stats.defense||0;
+  dmg=Math.max(1,Math.floor(dmg*(1-effDef/(effDef+200))));
+  const elResist=(stats.fireResist||0)+(stats.waterResist||0)+(stats.earthResist||0)+(stats.windResist||0);
+  if(elResist>0)dmg=Math.max(1,Math.floor(dmg*(1-elResist/500)));
+  return{dmg,dodged:false};
+}
+
+function endBattle(won){
+  G.battle.active=false;
+  const b=G.battle;b.duration=((Date.now()-b.startTime)/1000).toFixed(1);
+  if(won){
+    if(G.stage>=G.maxStage){G.maxStage=G.stage+1;}
+    G.stage++;
+    G.gold+=Math.floor(G.stage*10);
+  }
+  const sp=document.getElementById('battle-stats-panel');
+  sp.classList.add('show');
+  const rt=document.getElementById('battle-result');
+  rt.textContent=won?'胜利!':'失败';
+  rt.className='battle-result-txt '+(won?'win':'lose');
+  document.getElementById('battle-close-btn').style.display='block';
+  document.getElementById('battle-stats-content').innerHTML=
+    '<div class="bs-row"><span class="bsk">总伤害</span><span class="bsv">'+fmtNum(b.totalDmg)+'</span></div>'+
+    '<div class="bs-row"><span class="bsk">承受伤害</span><span class="bsv">'+fmtNum(b.totalTaken)+'</span></div>'+
+    '<div class="bs-row"><span class="bsk">治疗量</span><span class="bsv">'+fmtNum(b.totalHeal)+'</span></div>'+
+    '<div class="bs-row"><span class="bsk">暴击次数</span><span class="bsv">'+b.critCount+'</span></div>'+
+    '<div class="bs-row"><span class="bsk">控制时长</span><span class="bsv">'+(b.ccTime/1000).toFixed(1)+'s</span></div>'+
+    '<div class="bs-row"><span class="bsk">战斗时长</span><span class="bsv">'+b.duration+'s</span></div>';
+  renderAll();save();
+}
+
+// ============================================================
+// FX
+// ============================================================
+function spawnDmgNum(x,y,dmg,type){
+  const el=document.createElement('div');el.className='dmg-num '+type;
+  el.textContent=fmtNum(dmg);el.style.left=x+'px';el.style.top=y+'px';
+  document.getElementById('fx-layer').appendChild(el);setTimeout(()=>el.remove(),800);
+}
+function spawnGoldFly(x,y,amt){
+  const el=document.createElement('div');el.className='gold-fly';
+  el.textContent='+'+fmtNum(amt)+' G';el.style.left=x+'px';el.style.top=y+'px';
+  document.getElementById('fx-layer').appendChild(el);setTimeout(()=>el.remove(),900);
+}
+function spawnEquipBeam(slot,qi){
+  const slotsEl=document.getElementById('eq-slots');
+  const sel=slotsEl.querySelector('[data-slot="'+slot+'"]');
+  if(!sel)return;const r=sel.getBoundingClientRect();
+  const el=document.createElement('div');el.className='drop-beam';
+  el.style.left=(r.left+r.width/2-2)+'px';el.style.top='0px';el.style.width='4px';el.style.height=r.top+'px';
+  el.style.background='linear-gradient(to bottom,transparent,'+Q_COLORS_SOLID[qi]+')';
+  document.getElementById('fx-layer').appendChild(el);setTimeout(()=>el.remove(),700);
+}
+function spawnFullFlash(color,heavy){
+  const el=document.createElement('div');el.className='full-flash';
+  el.style.setProperty('--clr',heavy?(color+'66'):(color+'33'));
+  document.body.appendChild(el);setTimeout(()=>el.remove(),heavy?700:500);
+}
+function triggerShake(){
+  const el=document.getElementById('center-area');el.classList.add('shake');
+  setTimeout(()=>el.classList.remove('shake'),300);
+}
+function fmtNum(n){if(n>=1e12)return(n/1e12).toFixed(1)+'T';if(n>=1e9)return(n/1e9).toFixed(1)+'B';if(n>=1e6)return(n/1e6).toFixed(1)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'K';return Math.floor(n).toString();}
+function fmtAffix(type,val){if(type==='atkSpeed')return val.toFixed(1);if(AFFIX_IS_PCT[type])return val.toFixed(1)+'%';return fmtNum(val);}
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderAll(){
+  // top bar
+  document.getElementById('top-chests').textContent=G.chests;
+  document.getElementById('top-gold').textContent=fmtNum(G.gold);
+  document.getElementById('top-elv').textContent=G.equipLevel;
+  const cp=getTotalCombatPower();document.getElementById('top-pwr').textContent=fmtNum(cp);
+  document.getElementById('top-stage').textContent=G.stage;
+  document.getElementById('top-max-stage').textContent=G.maxStage;
+
+  // chest
+  const cc=document.getElementById('chest-count');cc.textContent=G.chests;
+  cc.className=G.chests>=MAX_CHESTS?'max':'';
+  const cd=document.getElementById('chest-display');
+  cd.className=G.chests>=MAX_CHESTS?'full':(G.chests>0?'ready':'');
+  document.getElementById('chest-label').textContent=G.comparing?'发现更好的装备！':(G.chests>=MAX_CHESTS?'宝箱已满！点击开启':(G.chests>0?'点击开箱！':'宝箱生产中...'));
+  // auto-open progress
+  const pct=Math.min(100,(G.chestOpenTimer/AUTO_OPEN_INTERVAL)*100);
+  document.getElementById('chest-progress-fill').style.width=pct+'%';
+
+  // equip slots
+  const se=document.getElementById('eq-slots');let sh='';
+  for(const slot of SLOTS){
+    const eq=G.equipped[slot];
+    if(eq){
+      const c=Q_COLORS_SOLID[eq.quality];
+      const afStr=eq.affixes.slice(0,3).map(a=>AFFIX_NAMES[a.type].charAt(0)+':'+fmtAffix(a.type,a.value)).join(' ');
+      sh+='<div class="eq-slot" data-slot="'+slot+'" style="border-left:3px solid '+c+'">';
+      sh+='<div class="sl-icon" style="border-color:'+c+'">'+SLOT_ICONS[slot]+'</div>';
+      sh+='<div class="sl-info"><div class="sl-name" style="color:'+c+'">'+eq.name;
+      sh+='<span class="tier-badge" style="background:'+c+';color:#fff">'+Q_NAMES[eq.quality]+'</span></div>';
+      sh+='<div class="sl-affix">'+afStr+'</div></div>';
+      sh+='<div class="sl-pwr">'+fmtNum(eq.combatPower)+'</div></div>';
+    }else{
+      sh+='<div class="eq-slot lowlight" data-slot="'+slot+'"><div class="sl-icon">'+SLOT_ICONS[slot]+'</div>';
+      sh+='<div class="sl-info"><span class="sl-empty">'+SLOT_NAMES[slot]+'</span></div>';
+      sh+='<div class="sl-pwr">-</div></div>';
+    }
+  }
+  se.innerHTML=sh;
+
+  // stat summary
+  const stats=getPlayerStats();
+  let summ='';
+  const keys=['attack','defense','hp','atkSpeed','critRate','critDamage','armorPen','dmgBonus','dmgReduce','hit','dodge','lifeSteal','counterRate','tenacity','healEffect','critResist'];
+  for(const k of keys)if(stats[k])summ+='<div class="stat-row"><span class="sk">'+AFFIX_NAMES[k]+'</span><span class="sv">'+fmtAffix(k,stats[k])+'</span></div>';
+  const elVals=['fireMastery','waterMastery','earthMastery','windMastery','fireResist','waterResist','earthResist','windResist'];
+  let hasEl=false;
+  for(const k of elVals)if(stats[k])hasEl=true;
+  if(hasEl){
+    summ+='<div class="stat-row" style="margin-top:4px"><span class="sk" style="color:var(--text-dim);font-size:10px">元素属性</span><span class="sv"></span></div>';
+    for(const k of elVals)if(stats[k])summ+='<div class="stat-row"><span class="sk">'+AFFIX_NAMES[k]+'</span><span class="sv">'+fmtAffix(k,stats[k])+'</span></div>';
+  }
+  summ+='<div class="stat-row total"><span class="sk">总战力</span><span class="sv" id="svg-pwr">'+fmtNum(cp)+'</span></div>';
+  document.getElementById('stat-summary').innerHTML=summ;
+
+  // stage
+  document.getElementById('stage-num').textContent=G.stage;
+  document.getElementById('stage-req').textContent=fmtNum(getStageReqPower(G.stage));
+  document.getElementById('stage-btn').textContent=G.battle.active?'战斗中...':'挑战';
+
+  // upgrade
+  document.getElementById('upgrade-cost-lv').textContent=G.equipLevel+'→'+(G.equipLevel+1);
+  document.getElementById('upgrade-cost-gold').textContent=fmtNum(getUpgradeCost());
+  document.getElementById('btn-upgrade').disabled=G.gold<getUpgradeCost();
+
+  // auto open
+  document.getElementById('btn-auto').textContent='自动开箱: '+(G.autoOpen?'开':'关');
+}
+
+// ============================================================
+// GAME LOOP
+// ============================================================
+let lastTick=0;
+function loop(ts){
+  if(!lastTick)lastTick=ts;
+  let dt=ts-lastTick;if(dt>300)dt=300;lastTick=ts;
+  // chest production
+  if(!G.comparing){
+    G.chestTimer+=dt;
+    while(G.chestTimer>=CHEST_INTERVAL&&G.chests<MAX_CHESTS){G.chestTimer-=CHEST_INTERVAL;G.chests++;}
+    // auto open
+    if(G.autoOpen&&G.chests>0){
+      G.chestOpenTimer+=dt;
+      if(G.chestOpenTimer>=AUTO_OPEN_INTERVAL){G.chestOpenTimer=0;openChest();}
+    }
+  }
+  // battle
+  if(G.battle.active){
+    const b=G.battle;const s=b.stats;const e=b.enemy;
+    // player attack
+    const pInterval=Math.max(60,Math.floor(1000/(1+(s.atkSpeed||0))));
+    b.plyAtkTimer+=dt;
+    while(b.plyAtkTimer>=pInterval&&b.enemyHp>0&&b.playerHp>0){
+      b.plyAtkTimer-=pInterval;
+      const {dmg,isCrit}=calcPlayerDmg(s);
+      b.enemyHp-=dmg;b.totalDmg+=dmg;
+      if(b.enemyHp<0)b.enemyHp=0;
+      const cr=document.getElementById('bc-enemy').getBoundingClientRect();
+      const cx=cr.left+cr.width/2+(Math.random()-.5)*60;
+      const cy=cr.top+40+(Math.random()-.5)*30;
+      if(b.enemyHp<=0)spawnDmgNum(cx,cy,dmg,'kill');
+      else if(isCrit)spawnDmgNum(cx,cy,dmg,'crit');
+      else spawnDmgNum(cx,cy,dmg,'normal');
+      // life steal & stun
+      if(s.lifeSteal){const heal=Math.floor(dmg*s.lifeSteal/100);b.playerHp=Math.min(b.playerMaxHp,b.playerHp+heal);b.totalHeal+=heal;}
+      // counter
+      if(!isCrit&&Math.random()<(s.counterRate||0)/100){b.enemyHp-=Math.floor(dmg*0.5);b.totalDmg+=Math.floor(dmg*0.5);}
+      // stun check
+      if(b.enemyCcTimer<=0&&Math.random()<0.08*(1+(s.tenacity||0)/200)){
+        b.enemyCcTimer=500;b.ccTime+=500;
+      }
+    }
+    // enemy CC timer
+    if(b.enemyCcTimer>0){b.enemyCcTimer-=dt;if(b.enemyCcTimer<0)b.enemyCcTimer=0;}
+    if(b.plyCcTimer>0){b.plyCcTimer-=dt;if(b.plyCcTimer<0)b.plyCcTimer=0;}
+    // enemy attack
+    const eInterval=Math.max(80,Math.floor(1000/e.atkSpeed));
+    b.enemyAtkTimer+=dt;
+    while(b.enemyAtkTimer>=eInterval&&b.enemyHp>0&&b.playerHp>0&&b.enemyCcTimer<=0){
+      b.enemyAtkTimer-=eInterval;
+      const {dmg,dodged}=calcEnemyDmg(s);
+      if(!dodged){b.playerHp-=dmg;b.totalTaken+=dmg;if(b.playerHp<0)b.playerHp=0;}
+      const cr=document.getElementById('bc-player').getBoundingClientRect();
+      if(!dodged)spawnDmgNum(cr.left+cr.width/2+(Math.random()-.5)*40,cr.top+30+(Math.random()-.5)*20,dmg,'normal');
+    }
+    // end check
+    updateBattleHp();
+    if(b.playerHp<=0){triggerShake();endBattle(false);}
+    else if(b.enemyHp<=0){triggerShake();endBattle(true);}
+    else if(Date.now()-b.startTime>60000){
+      // timeout: compare HP percentages
+      const pHpPct=b.playerHp/b.playerMaxHp;
+      const eHpPct=b.enemyHp/b.enemyMaxHp;
+      if(pHpPct>eHpPct)endBattle(true);
+      else endBattle(false);
+    }
+  }
+  // render
+  renderAll();
+  requestAnimationFrame(loop);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+load();
+if(!G.chests&&G.chests===undefined)G.chests=0;
+// ensure equipped structure
+for(const slot of SLOTS){if(!G.equipped[slot])G.equipped[slot]=null;}
+document.getElementById('btn-auto').textContent='自动开箱: '+(G.autoOpen?'开':'关');
+renderAll();
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

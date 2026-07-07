@@ -1,0 +1,681 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>挂机装备RPG v3</title>
+<style>
+:root{
+  --bg-dark:#0d1117;--bg-panel:#161b22;--bg-card:#21262d;--border:#30363d;
+  --text:#c9d1d9;--text-dim:#8b949e;--text-bright:#f0f6fc;--accent:#58a6ff;
+  --gold:#ffd700;--success:#3fb950;--danger:#f85149;--gem:#00e5ff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:var(--bg-dark);color:var(--text);display:flex;min-height:100vh}
+
+/* Debug Panel */
+.debug-panel{width:220px;min-width:220px;background:var(--bg-panel);border-right:1px solid var(--border);padding:12px;display:flex;flex-direction:column;gap:7px;overflow-y:auto;height:100vh;position:sticky;top:0}
+.debug-panel h3{color:var(--accent);font-size:13px;margin-bottom:2px}
+.debug-stat{font-size:11px;color:var(--text-dim);display:flex;justify-content:space-between;margin:1px 0}
+.debug-stat span:last-child{color:var(--text-bright);font-weight:bold}
+.debug-slider{margin:4px 0}
+.debug-slider label{font-size:10px;color:var(--text-dim);display:block;margin-bottom:1px}
+.debug-slider input[type=range]{width:100%}
+.debug-slider .val{font-size:10px;color:var(--accent);float:right}
+.btn-reset{width:100%;padding:7px;background:var(--danger);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px;font-weight:bold}
+.btn-reset:hover{opacity:.85}
+.log-area{flex:1;min-height:100px;background:var(--bg-dark);border:1px solid var(--border);border-radius:4px;padding:5px;font-size:10px;color:var(--text-dim);overflow-y:auto;font-family:'Consolas','Courier New',monospace;max-height:180px}
+.log-line{margin:1px 0}.log-warn{color:#d2991d}.log-good{color:var(--success)}
+
+/* Main */
+.main-area{flex:1;padding:14px 18px;overflow-y:auto;max-width:960px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.header h1{font-size:20px;color:var(--text-bright)}
+.hdr-right{display:flex;align-items:center;gap:16px;font-size:15px}
+.hdr-right .gold{color:var(--gold);font-weight:bold}
+.hdr-right .gem{color:var(--gem);font-weight:bold}
+
+/* Player Stats */
+.stats-panel{background:var(--bg-card);border:2px solid var(--accent);border-radius:8px;padding:10px 14px;margin-bottom:8px}
+.stats-panel h3{font-size:12px;color:var(--accent);margin-bottom:5px}
+.stats-row{display:flex;gap:16px;flex-wrap:wrap}
+.stat-i{font-size:12px;color:var(--text-dim)}.stat-i span{color:var(--text-bright);font-weight:bold}
+
+/* Equipment */
+.section-title{font-size:13px;color:var(--text-dim);margin:8px 0 5px;border-bottom:1px solid var(--border);padding-bottom:3px}
+.equip-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:6px}
+.equip-slot{background:var(--bg-card);border:2px solid var(--border);border-radius:6px;padding:5px;text-align:center;position:relative;min-height:82px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.equip-slot .lv-tag{position:absolute;top:2px;left:4px;font-size:10px;color:var(--text-dim);background:rgba(0,0,0,.6);padding:0 3px;border-radius:2px}
+.equip-slot .slot-emoji{font-size:15px}.equip-slot .slot-name{font-size:10px;color:var(--text-dim)}
+.equip-slot .slot-power{position:absolute;top:2px;right:4px;font-size:11px;font-weight:bold}
+.equip-slot .slot-base{font-size:9px;color:var(--text-dim);margin-top:1px}
+.equip-slot .slot-affixes{font-size:9px;color:var(--text-dim);line-height:1.3;max-height:28px;overflow:hidden}
+.equip-slot.empty{opacity:.45}.equip-slot.empty .slot-power{color:var(--text-dim);font-weight:normal;font-size:10px}
+.equip-slot .btn-up{font-size:9px;padding:2px 6px;margin-top:2px;background:var(--bg-dark);border:1px solid var(--border);color:var(--text);border-radius:3px;cursor:pointer}
+.equip-slot .btn-up:hover{background:var(--accent);color:#fff}.equip-slot .btn-up:disabled{opacity:.3;cursor:not-allowed}
+
+.q-1{border-color:#9e9e9e}.q-2{border-color:#4caf50}.q-3{border-color:#2196f3}.q-4{border-color:#9c27b0}
+.q-5{border-color:#ff9800}.q-6{border-color:#f44336}.q-7{border-color:#c0a060;box-shadow:0 0 6px rgba(192,160,96,.3)}
+.q-8{border-color:#e8e8e8;box-shadow:0 0 6px rgba(232,232,232,.3)}
+.q-9{border-color:#ffd700;box-shadow:0 0 10px rgba(255,215,0,.4)}
+.q-10{border:2px solid transparent;border-image:linear-gradient(90deg,#ff0000,#ff7700,#ffff00,#00ff00,#0077ff,#8b00ff)1;box-shadow:0 0 14px rgba(255,255,255,.25);background:#1a1a2e}
+
+/* Dynamic Area */
+.dynamic-area{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px;margin:8px 0;min-height:200px;position:relative}
+.dynamic-area .inner{display:flex;flex-direction:column;height:100%}
+
+/* Chest */
+.chest-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.chest-count{font-size:24px;font-weight:bold;color:var(--gold)}
+.chest-tier-tag{font-size:12px;padding:3px 8px;border-radius:3px;border:1px solid var(--border);display:flex;align-items:center;gap:4px}
+.chest-tier-tag .info-icon{cursor:help;font-size:13px;font-weight:bold;color:var(--accent);background:rgba(88,166,255,.2);border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center}
+.chest-bar{height:5px;background:var(--bg-dark);border-radius:3px;margin:4px 0;overflow:hidden}
+.chest-bar-fill{height:100%;background:var(--gold);border-radius:3px;transition:width .15s}
+.chest-bar-fill.paused{background:var(--text-dim)}
+.chest-rate{font-size:11px;color:var(--text-dim)}
+.chest-btns{display:flex;gap:10px;margin-top:10px;justify-content:center;flex-wrap:wrap}
+.btn-dyn{padding:10px 0;border:none;border-radius:6px;font-size:13px;font-weight:bold;cursor:pointer;transition:transform .1s;min-width:140px;text-align:center}
+.btn-dyn:hover{transform:scale(1.04)}.btn-dyn:active{transform:scale(.96)}.btn-dyn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-open{background:linear-gradient(135deg,var(--gold),#ffaa00);color:#1a1a1a}
+.btn-up-chest{background:linear-gradient(135deg,var(--gem),#00bcd4);color:#0a0a0a}
+.btn-combat{background:var(--accent);color:#fff}
+
+/* Tooltip */
+.tooltip-wrap{position:relative;display:inline-flex}
+.tooltip-box{display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--bg-dark);border:1px solid var(--accent);border-radius:6px;padding:10px 12px;font-size:11px;z-index:20;white-space:nowrap;min-width:220px;box-shadow:0 4px 16px rgba(0,0,0,.5);margin-bottom:6px}
+.tooltip-box::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--accent)}
+.tooltip-wrap:hover .tooltip-box{display:block}
+.tooltip-row{display:flex;justify-content:space-between;margin:2px 0;gap:12px}
+.tooltip-row .ql{color:var(--text-dim)}.tooltip-row .qr{font-weight:bold}
+.tt-section{margin-top:6px;padding-top:4px;border-top:1px solid var(--border);color:var(--text-dim);font-size:10px}
+
+/* Combat */
+.combat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.combat-top .stg-name{font-size:14px;font-weight:bold;color:var(--text-bright)}
+.btn-back{background:var(--bg-dark);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:4px;cursor:pointer;font-size:12px}
+.btn-back:hover{background:var(--border)}
+.stage-select{display:flex;gap:3px;margin:4px 0;flex-wrap:wrap}
+.stg-btn{padding:3px 8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text);border-radius:3px;cursor:pointer;font-size:10px}
+.stg-btn.cleared{border-color:var(--success);color:var(--success)}.stg-btn.current{border-color:var(--accent);color:var(--accent);font-weight:bold}
+.stg-btn:disabled{opacity:.4;cursor:not-allowed}.stg-btn.locked{opacity:.3}
+.combat-hp-row{display:flex;align-items:center;margin:2px 0;font-size:11px}
+.combat-hp-row .lbl{width:55px;text-align:right;margin-right:6px;color:var(--text-dim);flex-shrink:0}
+.combat-hp-row .bar-w{flex:1;height:14px;background:var(--bg-dark);border-radius:3px;overflow:hidden}
+.combat-hp-row .bar-f{height:100%;transition:width .2s;border-radius:3px}
+.combat-hp-row .bar-f.player{background:var(--accent)}.combat-hp-row .bar-f.enemy{background:var(--danger)}
+.combat-hp-row .hp-t{margin-left:6px;font-size:10px;color:var(--text-bright);width:65px}
+.combat-nums{position:relative;min-height:40px;margin:4px 0;overflow:hidden}
+.float-num{position:absolute;font-weight:bold;pointer-events:none;animation:nf .85s ease-out forwards}
+.float-num.dmg{color:#fff;font-size:13px}.float-num.crit{color:#ffcc00;font-size:19px;text-shadow:0 0 8px rgba(255,200,0,.6)}
+.float-num.heal{color:#3fb950;font-size:12px}.float-num.miss{color:#8b949e;font-size:11px}
+@keyframes nf{0%{opacity:1;transform:translateY(0) scale(1)}50%{opacity:1;transform:translateY(-18px) scale(1.12)}100%{opacity:0;transform:translateY(-40px) scale(.8)}}
+.combat-result{background:var(--bg-dark);border:1px solid var(--border);border-radius:6px;padding:8px;margin-top:4px}
+.combat-result h4{font-size:12px;margin-bottom:3px}.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;font-size:10px}
+.res-grid .ri{color:var(--text-dim)}.res-grid .ri b{color:var(--text-bright)}
+
+/* Choice */
+.choice-area h4{color:var(--gold);font-size:14px;margin-bottom:6px}
+.choice-area h4 .slot-label{color:var(--accent)}
+.choice-compare{display:flex;gap:10px;justify-content:center;align-items:center;margin:6px 0}
+.item-card{background:var(--bg-dark);border-radius:6px;padding:8px;min-width:150px;text-align:left;font-size:11px;position:relative}
+.item-card .card-lv{position:absolute;top:3px;left:5px;font-size:10px;color:var(--text-dim);background:rgba(0,0,0,.5);padding:0 3px;border-radius:2px}
+.item-card .card-title{font-weight:bold;margin-bottom:1px}
+.item-card .card-power{font-size:16px;font-weight:bold;margin:2px 0}
+.item-card .card-power.higher{color:var(--success)}.item-card .card-power.lower{color:var(--danger)}
+.item-card .card-detail{color:var(--text-dim);line-height:1.4}
+.choice-vs{font-size:16px;color:var(--text-dim)}
+.choice-btns{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.btn-eq{padding:8px 18px;background:var(--success);color:#fff;border:none;border-radius:4px;cursor:pointer;font-weight:bold}
+.btn-sl{padding:8px 18px;background:var(--bg-dark);color:var(--text);border:1px solid var(--border);border-radius:4px;cursor:pointer}
+
+/* Animations */
+.drop-anim{font-size:15px;font-weight:bold;padding:4px 12px;border-radius:5px;animation:df 1.3s ease-out forwards;position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);z-index:10}
+@keyframes df{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.3)}100%{opacity:0;transform:translate(-50%,-90%) scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-3px)}20%,40%,60%,80%{transform:translateX(3px)}}
+@keyframes bigShake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-7px)}20%,40%,60%,80%{transform:translateX(7px)}}
+.shake{animation:shake .25s ease}.big-shake{animation:bigShake .45s ease}
+.gem-pop{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:36px;z-index:100;pointer-events:none;animation:gp .8s ease-out forwards}
+@keyframes gp{0%{opacity:1;transform:translate(-50%,-50%) scale(0)}30%{opacity:1;transform:translate(-50%,-50%) scale(2)}100%{opacity:0;transform:translate(-50%,-60%) scale(1)}}
+</style>
+</head>
+<body>
+
+<div class="debug-panel" id="dp">
+  <h3>🔍 调试</h3><div id="ds"></div>
+  <h3>🎚️ 热调</h3>
+  <div class="debug-slider"><label>宝箱产出间隔 <span class="val" id="vCG">3.0s</span></label><input type="range" id="sCG" min="0.5" max="10" step="0.5" value="3"></div>
+  <div class="debug-slider"><label>自动开箱间隔 <span class="val" id="vAO">5.0s</span></label><input type="range" id="sAO" min="1" max="15" step="0.5" value="5"></div>
+  <div class="debug-slider"><label>掉落品质倍率 <span class="val" id="vDL">1.0x</span></label><input type="range" id="sDL" min="0.5" max="5" step="0.1" value="1"></div>
+  <div class="debug-slider"><label>敌人属性倍率 <span class="val" id="vEM">1.0x</span></label><input type="range" id="sEM" min="0.5" max="3" step="0.1" value="1"></div>
+  <div class="debug-slider"><label>玩家伤害倍率 <span class="val" id="vDM">1.0x</span></label><input type="range" id="sDM" min="0.5" max="3" step="0.1" value="1"></div>
+  <div class="debug-slider"><label>宝石掉落概率% <span class="val" id="vGC">5.0</span></label><input type="range" id="sGC" min="1" max="20" step="0.5" value="5"></div>
+  <div class="debug-slider"><label>宝石数量倍率 <span class="val" id="vGQ">1.0x</span></label><input type="range" id="sGQ" min="0.5" max="3" step="0.1" value="1"></div>
+  <button class="btn-reset" onclick="resetGame()">🔄 一键重置</button>
+  <h3>📋 日志</h3><div class="log-area" id="la"></div>
+</div>
+
+<div class="main-area" id="ma">
+  <div class="header">
+    <h1>⚔️ 挂机装备RPG</h1>
+    <div class="hdr-right"><span class="gold" id="hdrGold">💰 0</span><span class="gem" id="hdrGem">💎 0</span></div>
+  </div>
+
+  <div class="stats-panel"><h3>📊 玩家属性</h3><div class="stats-row" id="psr"></div></div>
+
+  <div class="section-title">🛡️ 装备 · 总战力：<span id="tpw" style="color:var(--accent)">0</span></div>
+  <div class="equip-grid" id="eg"></div>
+
+  <div class="dynamic-area" id="da">
+    <div id="cv" class="inner">
+      <div class="chest-top">
+        📦 宝箱：<span class="chest-count" id="cc">0</span>/<span id="cmx">100</span>
+        <span class="chest-tier-tag" id="ctt" style="color:#9e9e9e">
+          普通宝箱
+          <span class="tooltip-wrap"><span class="info-icon">i</span>
+            <div class="tooltip-box" id="ttip"></div>
+          </span>
+        </span>
+      </div>
+      <div class="chest-bar"><div class="chest-bar-fill" id="cfb" style="width:0%"></div></div>
+      <div class="chest-bar" style="height:3px"><div class="chest-bar-fill" id="ofb" style="width:0%;height:100%"></div></div>
+      <div class="chest-rate">自动产出：<span id="prt">3.0</span>s/个 | 自动开启：<span id="ort">5.0</span>s/个</div>
+      <div class="chest-btns">
+        <button class="btn-dyn btn-up-chest" id="bUC" onclick="upgradeChest()">⬆ 升级宝箱 💎<span id="ucc">10</span></button>
+        <button class="btn-dyn btn-open" id="bOC" onclick="manualOpen()">🎁 加速开箱</button>
+        <button class="btn-dyn btn-combat" id="bEC" onclick="enterCombat()">⚔️ 进入战斗</button>
+      </div>
+    </div>
+
+    <div id="bv" class="inner" style="display:none">
+      <div class="combat-top"><span class="stg-name" id="csn">第1关</span><button class="btn-back" onclick="exitCombat()">↩ 返回挂机</button></div>
+      <div class="stage-select" id="ss"></div>
+      <div class="combat-hp-row"><span class="lbl">🦸 我方</span><div class="bar-w"><div class="bar-f player" id="phb" style="width:100%"></div></div><span class="hp-t" id="pht">- / -</span></div>
+      <div class="combat-hp-row"><span class="lbl">👾 敌人</span><div class="bar-w"><div class="bar-f enemy" id="ehb" style="width:100%"></div></div><span class="hp-t" id="eht">- / -</span></div>
+      <div class="combat-nums" id="cn"></div>
+      <button class="btn-dyn btn-combat" id="bCh" onclick="startChallenge()">⚔️ 挑战</button>
+      <div class="combat-result" id="cr" style="display:none"><h4 id="crt"></h4><div class="res-grid" id="crg"></div></div>
+    </div>
+
+    <div class="choice-area" id="sv" style="display:none">
+      <h4>🎯 装备抉择 · <span class="slot-label" id="csl"></span></h4>
+      <div class="choice-compare" id="ccp"></div>
+      <div class="choice-btns" id="cbt"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// 1. CONFIG
+// ============================================================
+const C={
+  CHEST_GEN_BASE:3000,             // 宝箱基础产出间隔 ms
+  CHEST_OPEN_BASE:5000,            // 宝箱基础开启间隔 ms
+  CHEST_MAX_BASE:100,              // 宝箱基础上限
+  CHEST_TIER_BOOST:0.08,           // 每档宝箱产出/开启速度提升比例
+  CHEST_MAX_PER_TIER:15,           // 每档宝箱上限增加
+  DROP_LUCK:1.0,                   // 品质偏向倍率（热调）
+  ENEMY_MULT:1.0,                  // 敌人属性倍率（热调）
+  PLAYER_DMG_MULT:1.0,             // 玩家伤害倍率（热调）
+  GEM_DROP_CHANCE:0.05,            // 宝石掉落概率（热调）
+  GEM_QTY_MULT:1.0,                // 宝石数量倍率（热调 0.5-3.0）
+
+  SLOTS:['帽子','面具','耳环','项链','衣服','裤子','护肩','护膝','手套','鞋子','披风','腰带','武器'],
+  SEM:['🎩','🎭','💎','📿','👘','👖','🛡️','🦿','🧤','👟','🧣','🔗','⚔️'],
+  SA:[12,1,2,3,8],  // ATK slots
+  SD:[0,9,10,11],   // DEF slots
+  SH:[4,5,6,7],     // HP slots
+
+  QA:[
+    {id:0,n:'普通',c:'#9e9e9e',ma:1,pmin:10,pmax:28},
+    {id:1,n:'常见',c:'#4caf50',ma:2,pmin:28,pmax:65},
+    {id:2,n:'稀有',c:'#2196f3',ma:2,pmin:65,pmax:140},
+    {id:3,n:'史诗',c:'#9c27b0',ma:3,pmin:140,pmax:280},
+    {id:4,n:'传说',c:'#ff9800',ma:3,pmin:280,pmax:520},
+    {id:5,n:'不朽',c:'#f44336',ma:4,pmin:520,pmax:950},
+    {id:6,n:'闪曜',c:'#c0a060',ma:4,pmin:950,pmax:1650},
+    {id:7,n:'完美',c:'#e8e8e8',ma:5,pmin:1650,pmax:2700},
+    {id:8,n:'传世',c:'#ffd700',ma:5,pmin:2700,pmax:4200},
+    {id:9,n:'至尊',c:'rainbow',ma:6,pmin:4200,pmax:6800},
+  ],
+
+  // Affix pool with value ranges [min, max] for level 1 base
+  AP:[
+    {id:'atk',n:'攻击',t:'flat',r:1,min:3,max:40,w:2},
+    {id:'hp',n:'生命',t:'flat',r:1,min:15,max:150,w:.5},
+    {id:'def',n:'防御',t:'flat',r:1,min:2,max:20,w:1.5},
+    {id:'pen',n:'穿甲',t:'pct',r:1,min:1,max:8,w:8},
+    {id:'crR',n:'暴击率',t:'pct',r:1,min:1,max:5,w:10},
+    {id:'crD',n:'暴伤',t:'pct',r:1,min:5,max:25,w:3},
+    {id:'crS',n:'暴抗',t:'pct',r:1,min:1,max:5,w:4},
+    {id:'hit',n:'命中',t:'pct',r:1,min:1,max:5,w:8},
+    {id:'dod',n:'闪避',t:'pct',r:1,min:1,max:5,w:6},
+    {id:'db',n:'伤害加成',t:'pct',r:2,min:1,max:8,w:6},
+    {id:'dr',n:'伤害减免',t:'pct',r:2,min:1,max:6,w:6},
+    {id:'ls',n:'吸血',t:'pct',r:2,min:1,max:4,w:5},
+    {id:'spd',n:'攻速',t:'pct',r:2,min:2,max:15,w:3},
+    {id:'ten',n:'韧性',t:'pct',r:2,min:1,max:6,w:3},
+    {id:'hb',n:'治疗加成',t:'pct',r:2,min:3,max:15,w:4},
+    {id:'ctr',n:'反击',t:'pct',r:2,min:1,max:5,w:4},
+  ],
+  AW:{atk:2,hp:.5,def:1.5,pen:8,crR:10,crD:3,crS:4,hit:8,dod:6,db:6,dr:6,ls:5,spd:3,ten:3,hb:4,ctr:4},
+
+  BATK1:5,BATK_LV:3,  BDEF1:7,BDEF_LV:3,  BHP1:20,BHP_LV:10,
+
+  CUG:[0,10,25,60,150,350,800,1800,4000,9000],
+
+  // 20 stages: id,name,hp,atk,def,rec,goldReward,gemReward
+  ST:[
+    {id:1,n:'第1关·入门',hp:300,atk:10,def:3,rec:200,gr:50,gm:0},
+    {id:2,n:'第2关',hp:500,atk:16,def:4,rec:350,gr:80,gm:0},
+    {id:3,n:'第3关',hp:750,atk:24,def:6,rec:550,gr:120,gm:0},
+    {id:4,n:'第4关',hp:1100,atk:36,def:9,rec:850,gr:180,gm:1},
+    {id:5,n:'第5关',hp:1500,atk:52,def:13,rec:1300,gr:250,gm:1},
+    {id:6,n:'第6关',hp:2000,atk:72,def:18,rec:1900,gr:350,gm:1},
+    {id:7,n:'第7关',hp:2700,atk:95,def:24,rec:2700,gr:500,gm:2},
+    {id:8,n:'第8关',hp:3500,atk:125,def:31,rec:3700,gr:700,gm:2},
+    {id:9,n:'第9关',hp:4500,atk:160,def:39,rec:5000,gr:950,gm:2},
+    {id:10,n:'第10关·中坚',hp:5800,atk:200,def:48,rec:6500,gr:1300,gm:3},
+    {id:11,n:'第11关',hp:7400,atk:250,def:58,rec:8500,gr:1700,gm:3},
+    {id:12,n:'第12关',hp:9300,atk:305,def:70,rec:10800,gr:2200,gm:4},
+    {id:13,n:'第13关',hp:11500,atk:370,def:83,rec:13500,gr:2800,gm:4},
+    {id:14,n:'第14关',hp:14000,atk:440,def:98,rec:17000,gr:3500,gm:5},
+    {id:15,n:'第15关·激战',hp:17000,atk:520,def:115,rec:21000,gr:4500,gm:5},
+    {id:16,n:'第16关',hp:20500,atk:610,def:134,rec:26000,gr:5500,gm:6},
+    {id:17,n:'第17关',hp:25000,atk:710,def:155,rec:32000,gr:7000,gm:7},
+    {id:18,n:'第18关',hp:30000,atk:820,def:178,rec:39000,gr:8500,gm:8},
+    {id:19,n:'第19关',hp:36000,atk:950,def:203,rec:47000,gr:10000,gm:10},
+    {id:20,n:'第20关·终战',hp:43000,atk:1100,def:232,rec:57000,gr:15000,gm:15},
+  ],
+
+  TICK:300, SELL_BASE:50, EUP_BASE:50, EUP_GROW:1.5,
+  BASE_HIT:85, MAX_HIT:100, MAX_DODGE:80, MAX_CR:100, MAX_LS:50, MAX_DB:200, MAX_DR:75, MAX_PEN:100, MAX_SPD:200, MAX_CTR:50,
+};
+
+// Derived chest stats
+function chestGenMs(){return Math.floor(C.CHEST_GEN_BASE/(1+S.ct*C.CHEST_TIER_BOOST))}
+function chestOpenMs(){return Math.floor(C.CHEST_OPEN_BASE/(1+S.ct*C.CHEST_TIER_BOOST))}
+function chestMax(){return C.CHEST_MAX_BASE+S.ct*C.CHEST_MAX_PER_TIER}
+
+// ============================================================
+// 2. State
+// ============================================================
+const S={
+  ph:'idle', cs:0, gd:0, gm:0, ct:0,
+  eq:new Array(13).fill(null),
+  cSt:0, clr:[], cRun:false, cPH:0,cPM:0,cEH:0,cEM:0,
+  cS:{d:0,t:0,c:0,h:0,s:0,e:0}, cTid:null,
+  pnd:null,pSi:-1,
+  gT:null,oT:null,oProg:0,pT:null,
+};
+
+// ============================================================
+// 3. EventBus
+// ============================================================
+const EB=(()=>{const L={};return{on(e,f){(L[e]=L[e]||[]).push(f)},emit(e,d){(L[e]||[]).forEach(f=>f(d))}}})();
+
+// ============================================================
+// 4. Logic
+// ============================================================
+function lg(m,w){EB.emit('log',{l:'['+new Date().toLocaleTimeString()+'] '+m,w:!!w})}
+function cl(v,lo,hi){return Math.max(lo,Math.min(hi,v))}
+function D(id){return document.getElementById(id)}
+
+function slotType(i){if(C.SA.includes(i))return'atk';if(C.SD.includes(i))return'def';return'hp'}
+function baseStat(i,lv,q){let t=slotType(i),v=(t==='atk'?C.BATK1+(lv-1)*C.BATK_LV:t==='def'?C.BDEF1+(lv-1)*C.BDEF_LV:C.BHP1+(lv-1)*C.BHP_LV);return Math.floor(v*(1+q*0.25))}
+function baseStatPow(i,lv,q){let v=baseStat(i,lv,q);return slotType(i)==='atk'?v*2:slotType(i)==='def'?v*1.5:v*.5}
+function qRange(qi,lv){let q=C.QA[qi],m=1+(lv-1)*0.2;return{min:Math.floor(q.pmin*m),max:Math.floor(q.pmax*m)}}
+
+function chestPool(){
+  let t=S.ct,mn=Math.max(0,t-2),mx=Math.min(t+2,9);
+  while(mx-mn+1>5)mn++;while(mx-mn+1<3&&mn>0)mn--;while(mx-mn+1<3&&mx<9)mx++;
+  let p=[];for(let i=mn;i<=mx;i++)p.push(i);return p;
+}
+function chestProbDist(){
+  let pool=chestPool(),n=pool.length,lk=C.DROP_LUCK;
+  let w=pool.map((_,i)=>Math.pow(0.5+lk*0.1,i));
+  let sum=w.reduce((a,b)=>a+b,0);
+  return pool.map((q,i)=>({q,w:w[i]/sum}));
+}
+function rollChestQ(){
+  let dist=chestProbDist(),r=Math.random();
+  for(let d of dist){r-=d.w;if(r<=0)return d.q}
+  return dist[dist.length-1].q;
+}
+
+// Generate affixes with proper value ranges
+function genAffixes(qi,si,lv){
+  let q=C.QA[qi],maxN=q.ma,n=Math.max(1,Math.min(maxN,1+Math.floor(Math.random()*maxN)));
+  let pool=[...C.AP].filter(a=>a.r<=2);
+  for(let i=pool.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  let chosen=pool.slice(0,Math.min(n,pool.length));
+  let qm=q.pmin>100?1.3:q.pmin>500?1.6:q.pmin>1000?2.0:1.0;
+  let lvm=1+(lv-1)*0.15;
+  let affixes=[];
+  for(let a of chosen){
+    let rmin=a.min,rmax=a.max;
+    let val=rmin+Math.random()*(rmax-rmin);
+    val=Math.round(val*qm*lvm);
+    if(a.t==='pct')val=cl(val,Math.floor(a.min*qm*lvm*0.5),Math.ceil(a.max*qm*lvm*1.2));
+    else val=Math.max(1,val);
+    affixes.push({id:a.id,n:a.n,t:a.t,v:val});
+  }
+  return affixes;
+}
+
+function calcPower(eq){
+  let p=baseStatPow(eq.s,eq.lv,eq.q);
+  for(let a of eq.af){let w=C.AW[a.id]||1;p+=a.t==='pct'?a.v*w:a.v*w}
+  return Math.floor(cl(p,1,999999));
+}
+function sellP(eq){return Math.floor(C.SELL_BASE*(1+eq.q*0.8)*(1+eq.lv*0.15))}
+function slotCost(eq){return Math.floor(C.EUP_BASE*Math.pow(C.EUP_GROW,eq.lv-1))}
+
+function genEquip(si){
+  let qi=rollChestQ(),lv=S.eq[si]?S.eq[si].lv:1,af=genAffixes(qi,si,lv);
+  return{s:si,q:qi,lv:lv,af:af,p:calcPower({s:si,q:qi,lv:lv,af:af})};
+}
+
+function genChest(){if(S.cs<chestMax()){S.cs++;EB.emit('cu')}}
+function canOpen(){return S.cs>0&&S.ph==='idle'}
+function openChest(){
+  if(!canOpen())return;S.cs--;
+  let si=Math.floor(Math.random()*13);EB.emit('cu');
+  // Gem drop - scales with chest tier: base 1~3 × 2^tier × QTY_MULT
+  if(Math.random()<C.GEM_DROP_CHANCE){
+    let m=Math.pow(2,S.ct);
+    let gmin=Math.max(1,Math.round(m*C.GEM_QTY_MULT));
+    let gmax=Math.max(3,Math.round(3*m*C.GEM_QTY_MULT));
+    let gq=gmin+Math.floor(Math.random()*(gmax-gmin+1));
+    S.gm+=gq;EB.emit('gd',gq);
+  }
+  let eq=genEquip(si);receive(si,eq);
+}
+function manualOpen(){if(canOpen())openChest()}
+
+function receive(si,eq){
+  let cur=S.eq[si];
+  if(!cur){S.eq[si]=eq;lg(eTag(eq)+' '+C.SLOTS[si]+' 自动装备');EB.emit('ed',{si,eq});return}
+  if(eq.p<=cur.p){let sp=sellP(eq);S.gd+=sp;lg(eTag(eq)+' '+C.SLOTS[si]+'(≤现有)卖出+'+sp+'💰');EB.emit('ed',{si,eq:null,sl:true,gl:sp});return}
+  S.ph='choice';S.pnd=eq;S.pSi=si;EB.emit('cn',{si,cur,eq});EB.emit('phc');
+}
+function eTag(e){return'['+C.QA[e.q].n+'·战力'+e.p+']'}
+
+function chooseEquip(){
+  let old=S.eq[S.pSi],sg=old?sellP(old):0;S.gd+=sg;S.eq[S.pSi]=S.pnd;
+  lg('替换'+eTag(S.pnd)+' '+C.SLOTS[S.pSi]+' 旧卖出+'+sg+'💰');
+  EB.emit('ed',{si:S.pSi,eq:S.pnd,gl:sg});EB.emit('cd');
+  S.pnd=null;S.pSi=-1;S.ph='idle';EB.emit('phc');
+}
+function sellPending(){
+  let sp=sellP(S.pnd);S.gd+=sp;lg('放弃'+eTag(S.pnd)+'卖出+'+sp+'💰');
+  EB.emit('cd');S.pnd=null;S.pSi=-1;S.ph='idle';EB.emit('phc');
+}
+
+function upgradeSlot(si){
+  let e=S.eq[si];if(!e)return;let cost=slotCost(e);
+  if(S.gd<cost){lg('[提示]金币不足 需'+cost+' 当前'+S.gd,true);return}
+  S.gd-=cost;e.lv++;e.p=calcPower(e);
+  lg(C.SLOTS[si]+'升级至Lv.'+e.lv+'（-'+cost+'💰）');EB.emit('ec');
+}
+
+function upgradeChest(){
+  if(S.ct>=9){lg('宝箱已达最高',true);return}
+  let cost=C.CUG[S.ct+1];if(S.gm<cost){lg('[提示]宝石不足 需'+cost+' 当前'+S.gm,true);return}
+  S.gm-=cost;S.ct++;lg('宝箱→['+C.QA[S.ct].n+']! 上限'+chestMax()+' 产出'+chestGenMs()+'ms 开启'+chestOpenMs()+'ms');
+  restartGenTimer();restartOpenTimer();EB.emit('ctc');
+}
+
+// Combat
+function enterCombat(){if(S.ph!=='idle')return;S.ph='combat';EB.emit('phc');EB.emit('cEn')}
+function exitCombat(){if(S.cRun)return;S.ph='idle';EB.emit('phc');EB.emit('cEx')}
+
+function pStats(){
+  let atk=0,hp=500,def=0,pen=0,cr=0,cd=150,crs=0,hit=C.BASE_HIT,dod=0,db=0,dr=0,ls=0,spd=0,ten=0,hb=0,ctr=0;
+  for(let e of S.eq){
+    if(!e)continue;
+    let t=slotType(e.s);
+    if(t==='atk')atk+=baseStat(e.s,e.lv,e.q);else if(t==='def')def+=baseStat(e.s,e.lv,e.q);else hp+=baseStat(e.s,e.lv,e.q);
+    for(let a of e.af){
+      switch(a.id){
+        case'atk':atk+=a.v;break;case'hp':hp+=a.v;break;case'def':def+=a.v;break;
+        case'pen':pen+=a.v;break;case'crR':cr+=a.v;break;case'crD':cd=Math.max(cd,150+a.v);break;
+        case'crS':crs+=a.v;break;case'hit':hit+=a.v;break;case'dod':dod+=a.v;break;
+        case'db':db+=a.v;break;case'dr':dr+=a.v;break;case'ls':ls+=a.v;break;
+        case'spd':spd+=a.v;break;case'ten':ten+=a.v;break;case'hb':hb+=a.v;break;case'ctr':ctr+=a.v;break;
+      }
+    }
+  }
+  cr=cl(cr,0,C.MAX_CR);hit=cl(hit,0,C.MAX_HIT);dod=cl(dod,0,C.MAX_DODGE);
+  ls=cl(ls,0,C.MAX_LS);db=cl(db,0,C.MAX_DB);dr=cl(dr,0,C.MAX_DR);
+  pen=cl(pen,0,C.MAX_PEN);spd=cl(spd,0,C.MAX_SPD);ctr=cl(ctr,0,C.MAX_CTR);
+  return{atk,hp,def,pen,cr,cd,crs,hit,dod,db,dr,ls,spd,ten,hb,ctr};
+}
+function totalPow(){let p=0;for(let e of S.eq)if(e)p+=e.p;return p}
+
+function startChallenge(){
+  if(S.cRun||S.ph!=='combat')return;
+  let st=C.ST[S.cSt],ps=pStats(),em=C.ENEMY_MULT;
+  S.cRun=true;S.cPM=ps.hp;S.cPH=ps.hp;
+  S.cEM=Math.floor(st.hp*em);S.cEH=S.cEM;
+  S.cS={d:0,t:0,c:0,h:0,s:Date.now(),e:0};
+  EB.emit('cs');lg('⚔️ '+st.n);
+  tick(ps,st);
+}
+function tick(ps,st){
+  if(!S.cRun)return;let em=C.ENEMY_MULT,dm=C.PLAYER_DMG_MULT;
+  let ea=Math.floor(st.atk*em),ed=Math.floor(st.def*em);
+  let bd=Math.max(ps.atk*dm-ed*(1-ps.pen/100),1);
+  let crit=Math.random()*100<ps.cr;
+  let pd=Math.floor(crit?bd*(ps.cd/100):bd);
+  pd=Math.floor(pd*(1+ps.db/100));pd=Math.max(pd,1);
+  S.cEH-=pd;S.cS.d+=pd;if(crit){S.cS.c++;shake('normal')}
+  if(ps.ls>0){let h=Math.floor(pd*(ps.ls/100));S.cPH=Math.min(S.cPM,S.cPH+h);S.cS.h+=h;EB.emit('cf',{t:'+'+h,ty:'heal'})}
+  EB.emit('cf',{t:''+pd,ty:crit?'crit':'dmg'});
+  if(S.cEH<=0){S.cEH=0;endC(true,ps,st);return}
+  let dodged=Math.random()*100<ps.dod;
+  if(dodged){EB.emit('cf',{t:'MISS',ty:'miss'});
+    if(Math.random()*100<ps.ctr){let c2=Math.floor(Math.max(ps.atk*dm*.5-ed,1));S.cEH-=c2;S.cS.d+=c2;EB.emit('cf',{t:'反击'+c2,ty:'crit'})}
+  }else{let ed2=Math.max(ea-ps.def,1);ed2=Math.floor(ed2*(1-ps.dr/100));ed2=Math.max(ed2,1);S.cPH-=ed2;S.cS.t+=ed2;EB.emit('cf',{t:''+ed2,ty:'dmg',en:true})}
+  if(S.cPH<=0){S.cPH=0;endC(false,ps,st);return}
+  if(S.cEH<=0){S.cEH=0;endC(true,ps,st);return}
+  EB.emit('chp');
+  let tms=C.TICK*(100/(100+ps.spd));tms=cl(tms,100,600);
+  S.cTid=setTimeout(()=>tick(ps,st),tms);
+}
+function endC(win,ps,st){
+  S.cRun=false;S.cS.e=Date.now();if(S.cTid){clearTimeout(S.cTid);S.cTid=null}EB.emit('chp');
+  if(win){
+    if(!S.clr.includes(S.cSt)){S.clr.push(S.cSt);S.gd+=st.gr;S.gm+=st.gm;lg('✅ '+st.n+'! +'+st.gr+'💰 +'+st.gm+'💎')}
+    let d=((S.cS.e-S.cS.s)/1000).toFixed(1);lg(st.n+' 耗时'+d+'s');
+  }else{let d=((S.cS.e-S.cS.s)/1000).toFixed(1);lg('❌ '+st.n+' 失败 耗时'+d+'s',true)}
+  EB.emit('ce',{win});
+}
+function selectStage(i){if(S.cRun)return;if(i>0&&!S.clr.includes(i-1))return;S.cSt=i;EB.emit('sc')}
+
+// ============================================================
+// 5. Render
+// ============================================================
+function rGoldGem(){D('hdrGold').textContent='💰 '+S.gd;D('hdrGem').textContent='💎 '+S.gm}
+
+function rDebug(){
+  let h='',ps=pStats(),tp=totalPow();
+  h+=dd('阶段',S.ph)+dd('宝箱',S.cs+'/'+chestMax())+dd('金币',S.gd)+dd('宝石',S.gm);
+  h+=dd('宝箱品质',C.QA[S.ct].n)+dd('关卡',(S.cSt+1)+'/'+C.ST.length)+dd('总战力',tp);
+  h+=dd('攻击',Math.floor(ps.atk))+'<div class="debug-stat"><span>暴击率</span><span>'+ps.cr.toFixed(1)+'%</span></div>';
+  h+=dd('生命',Math.floor(ps.hp))+'<div class="debug-stat"><span>暴伤</span><span>'+ps.cd+'%</span></div>';
+  h+=dd('防御',Math.floor(ps.def))+'<div class="debug-stat"><span>命中</span><span>'+ps.hit.toFixed(1)+'%</span></div>';
+  h+=dd('闪避',ps.dod.toFixed(1)+'%');
+  D('ds').innerHTML=h;
+}
+function dd(k,v){return'<div class="debug-stat"><span>'+k+'</span><span>'+v+'</span></div>'}
+
+function rPStats(){
+  let ps=pStats(),h='';
+  let its=[['战力',totalPow(),'var(--accent)'],['攻击',Math.floor(ps.atk),'#ff6b6b'],['生命',Math.floor(ps.hp),'#6bff6b'],['防御',Math.floor(ps.def),'#6bc5ff'],['暴击率',ps.cr.toFixed(1)+'%',''],['暴伤',ps.cd+'%',''],['穿甲',ps.pen.toFixed(1)+'%',''],['命中',ps.hit.toFixed(1)+'%',''],['闪避',ps.dod.toFixed(1)+'%',''],['伤害加成',ps.db.toFixed(1)+'%',''],['伤害减免',ps.dr.toFixed(1)+'%',''],['吸血',ps.ls.toFixed(1)+'%',''],['攻速',ps.spd.toFixed(1)+'%',''],['反击',ps.ctr.toFixed(1)+'%',''],['韧性',ps.ten.toFixed(1)+'%','']];
+  for(let x of its)h+='<div class="stat-i">'+x[0]+': <span'+(x[2]?' style="color:'+x[2]+'"':'')+'>'+x[1]+'</span></div>';
+  D('psr').innerHTML=h;
+}
+
+function rEquip(){
+  let h='';
+  for(let i=0;i<13;i++){
+    let e=S.eq[i],sn=C.SLOTS[i],em=C.SEM[i];
+    if(e){
+      let qc=C.QA[e.q],lc='q-'+(e.q+1),bt=slotType(i),bv=baseStat(i,e.lv,e.q),bn=bt==='atk'?'攻击':bt==='def'?'防御':'生命';
+      let af=e.af.map(a=>a.n+'+'+(a.t==='pct'?a.v+'%':a.v)).join(' ');
+      let cost=slotCost(e);
+      h+='<div class="equip-slot '+lc+'"><div class="lv-tag">Lv'+e.lv+'</div><div class="slot-emoji">'+em+'</div><div class="slot-name">'+sn+'</div>';
+      h+='<div class="slot-power" style="color:'+qc.c+'">'+e.p+'</div><div class="slot-base">'+bn+'+'+bv+'</div>';
+      h+='<div class="slot-affixes">'+af+'</div>';
+      h+='<button class="btn-up" '+(S.gd<cost?'disabled':'')+' onclick="upgradeSlot('+i+')">⬆'+cost+'💰</button></div>';
+    }else{h+='<div class="equip-slot empty"><div class="slot-emoji">'+em+'</div><div class="slot-name">'+sn+'</div><div class="slot-power">空</div></div>'}
+  }
+  D('eg').innerHTML=h;D('tpw').textContent=totalPow();
+}
+
+function rTooltip(){
+  let dist=chestProbDist(),h='<div style="font-weight:bold;color:var(--accent);margin-bottom:3px">当前宝箱概率</div>';
+  for(let d of dist){let qc=C.QA[d.q];h+='<div class="tooltip-row"><span class="ql" style="color:'+qc.c+'">'+qc.n+'</span><span class="qr">'+(d.w*100).toFixed(1)+'%</span></div>'}
+  let m=Math.pow(2,S.ct),gm=Math.max(1,Math.round(m*C.GEM_QTY_MULT)),gM=Math.max(3,Math.round(3*m*C.GEM_QTY_MULT));
+  h+='<div class="tt-section">宝石掉落: '+(C.GEM_DROP_CHANCE*100).toFixed(1)+'% (数量 '+gm+'-'+gM+')</div>';
+  if(S.ct<9){
+    let oldCt=S.ct;S.ct++;let ndist=chestProbDist();S.ct=oldCt;
+    let cost=C.CUG[S.ct+1];
+    h+='<div class="tt-section" style="color:var(--gem)">下一级（💎'+cost+'）品质区间:</div>';
+    for(let d of ndist){let qc=C.QA[d.q];h+='<div class="tooltip-row"><span class="ql" style="color:'+qc.c+'">'+qc.n+'</span><span class="qr">'+(d.w*100).toFixed(1)+'%</span></div>'}
+    h+='<div class="tt-section">升级后: 上限'+(C.CHEST_MAX_BASE+(S.ct+1)*C.CHEST_MAX_PER_TIER)+' 产出'+Math.floor(C.CHEST_GEN_BASE/(1+(S.ct+1)*C.CHEST_TIER_BOOST))+'ms 开启'+Math.floor(C.CHEST_OPEN_BASE/(1+(S.ct+1)*C.CHEST_TIER_BOOST))+'ms</div>';
+  }
+  D('ttip').innerHTML=h;
+}
+
+function rChest(){
+  D('cc').textContent=S.cs;D('cmx').textContent=chestMax();
+  let qc=C.QA[S.ct];D('ctt').innerHTML=qc.n+'宝箱 <span class="tooltip-wrap"><span class="info-icon">i</span><div class="tooltip-box" id="ttip"></div></span>';
+  D('ctt').style.color=qc.c;
+  D('cfb').style.width=(S.cs/chestMax()*100)+'%';
+  let pct=S.oProg/chestOpenMs()*100;let bar=D('ofb');bar.style.width=pct+'%';bar.classList.toggle('paused',!canOpen());
+  D('prt').textContent=(chestGenMs()/1000).toFixed(1);
+  D('ort').textContent=(chestOpenMs()/1000).toFixed(1);
+  D('bOC').disabled=!canOpen();D('bEC').disabled=S.ph!=='idle';
+  if(S.ct<9){let cost=C.CUG[S.ct+1];D('ucc').textContent=cost;D('bUC').disabled=S.gm<cost;D('bUC').style.display=''}
+  else{D('bUC').style.display='none'}
+  rTooltip();
+}
+
+function rCombat(){
+  let st=C.ST[S.cSt];D('csn').textContent=st.n;
+  let ph=S.cPM?S.cPH/S.cPM*100:100,eh=S.cEM?S.cEH/S.cEM*100:100;
+  D('phb').style.width=ph+'%';D('pht').textContent=S.cPM?S.cPH+'/'+S.cPM:'- / -';
+  D('ehb').style.width=eh+'%';D('eht').textContent=S.cEM?S.cEH+'/'+S.cEM:'- / -';
+  D('bCh').disabled=S.cRun||S.ph!=='combat';
+  let sh='';
+  for(let i=0;i<C.ST.length;i++){
+    let s=C.ST[i],cls='stg-btn';
+    if(S.clr.includes(i))cls+=' cleared';if(i===S.cSt)cls+=' current';
+    let dis='';if(i>0&&!S.clr.includes(i-1)){dis='disabled';cls+=' locked'}
+    sh+='<button class="'+cls+'" '+dis+' onclick="selectStage('+i+')">'+(i+1)+'<br><small>'+s.rec+'</small></button>';
+  }
+  D('ss').innerHTML=sh;
+}
+
+function rChoice(){
+  let cur=S.eq[S.pSi],pnd=S.pnd;if(!cur||!pnd){D('sv').style.display='none';return}
+  D('csl').textContent=C.SEM[S.pSi]+' '+C.SLOTS[S.pSi];
+  let qc=C.QA;
+  function card(e,label,hi){
+    let q=qc[e.q],bt=slotType(S.pSi),bv=baseStat(S.pSi,e.lv,e.q),bn=bt==='atk'?'攻击':bt==='def'?'防御':'生命';
+    let af=e.af.map(a=>a.n+': +'+(a.t==='pct'?a.v+'%':a.v)).join('<br>');
+    return'<div class="item-card" style="border:2px solid '+q.c+'"><div class="card-lv">Lv'+e.lv+'</div><div class="card-title" style="color:'+q.c+'">'+label+' ['+q.n+']</div><div class="card-power '+(hi?'higher':'lower')+'">战力 '+e.p+'</div><div class="card-detail">基础：'+bn+'+'+bv+'<br>'+af+'</div></div>';
+  }
+  D('ccp').innerHTML=card(cur,'当前装备',false)+'<div class="choice-vs">VS</div>'+card(pnd,'新装备',true);
+  D('cbt').innerHTML='<button class="btn-eq" onclick="chooseEquip()">✅ 替换</button><button class="btn-sl" onclick="sellPending()">🗑️ 放弃 +'+sellP(pnd)+'💰</button>';
+}
+
+function rDynamic(){
+  D('cv').style.display='none';D('bv').style.display='none';D('sv').style.display='none';
+  if(S.ph==='combat')D('bv').style.display='flex';
+  else if(S.ph==='choice')D('sv').style.display='block';
+  else D('cv').style.display='flex';
+}
+
+function showDrop(msg,color){
+  let da=D('da'),d=document.createElement('div');d.className='drop-anim';d.style.color=color;d.style.background='rgba(0,0,0,.85)';d.style.border='2px solid '+color;d.textContent=msg;da.appendChild(d);setTimeout(()=>d.remove(),1300);
+}
+function showFloat(txt,ty,en){
+  let c=D('cn'),n=document.createElement('div');n.className='float-num '+ty;n.textContent=txt;n.style.left=(en?10+Math.random()*50:35+Math.random()*70)+'%';n.style.top='15px';c.appendChild(n);setTimeout(()=>n.remove(),850);
+}
+function showResult(win){
+  let ss=S.cS,dur=((ss.e-ss.s)/1000).toFixed(1),st=C.ST[S.cSt];
+  D('crt').textContent=win?'🏆 通关! +'+st.gr+'💰 +'+st.gm+'💎':'💀 失败';
+  D('crt').style.color=win?'var(--success)':'var(--danger)';
+  D('crg').innerHTML='<div class="ri">总伤害 <b>'+ss.d+'</b></div><div class="ri">受到伤害 <b>'+ss.t+'</b></div><div class="ri">暴击次数 <b>'+ss.c+'</b></div><div class="ri">治疗量 <b>'+ss.h+'</b></div><div class="ri">通关时长 <b>'+dur+'s</b></div><div class="ri">剩余HP <b>'+S.cPH+'/'+S.cPM+'</b></div>';
+  D('cr').style.display='block';
+}
+function shake(sz){
+  let m=D('ma');m.classList.remove('shake','big-shake');void m.offsetWidth;m.classList.add(sz==='big'?'big-shake':'shake');setTimeout(()=>m.classList.remove('shake','big-shake'),sz==='big'?450:250);
+}
+function gemFlash(){
+  let f=document.createElement('div');f.className='gem-pop';f.textContent='💎✨';D('ma').appendChild(f);setTimeout(()=>f.remove(),800);
+}
+
+function rAll(){rPStats();rEquip();rChest();rDebug();rDynamic();rGoldGem()}
+
+// ============================================================
+// 6. Events
+// ============================================================
+EB.on('log',d=>{let la=D('la'),dv=document.createElement('div');dv.className='log-line'+(d.w?' log-warn':'');dv.textContent=d.l;la.appendChild(dv);la.scrollTop=la.scrollHeight});
+EB.on('cu',()=>{rChest();rDebug()});
+EB.on('ed',d=>{rEquip();rPStats();rDebug();rGoldGem();if(d.eq&&!d.sl){let qc=C.QA[d.eq.q];showDrop(qc.n+'! '+C.SLOTS[d.si]+' +'+d.eq.p,qc.c);if(d.eq.q>=4)shake(d.eq.q>=7?'big':'normal')}});
+EB.on('ec',()=>{rEquip();rPStats();rDebug();rGoldGem()});
+EB.on('phc',()=>{rDynamic();rChest();rDebug();rGoldGem()});
+EB.on('cn',()=>{D('csl').textContent=C.SEM[S.pSi]+' '+C.SLOTS[S.pSi];rChoice();D('sv').style.display='block';rChest()});
+EB.on('cd',()=>{D('sv').style.display='none';rChest();rEquip();rPStats();rDebug();rGoldGem()});
+EB.on('gd',gc=>{lg('💎 宝石×'+gc+'!');gemFlash();shake('big');rDebug();rChest();rGoldGem()});
+EB.on('ctc',()=>{rChest();rDebug();rGoldGem()});
+EB.on('cEn',()=>{rDynamic();rCombat();D('cr').style.display='none';rChest()});
+EB.on('cEx',()=>{rDynamic();rChest();rDebug();rGoldGem()});
+EB.on('cs',()=>{D('cr').style.display='none';rCombat()});
+EB.on('cf',d=>{showFloat(d.t,d.ty,d.en)});
+EB.on('chp',()=>{rCombat()});
+EB.on('ce',d=>{showResult(d.win);rCombat();rDebug();rPStats();rGoldGem();if(d.win){shake('big');if(S.cSt<C.ST.length-1){S.cSt++;setTimeout(()=>rCombat(),400)}}});
+EB.on('sc',()=>{rCombat()});
+
+// Sliders
+function bindS(id,fn){D(id).addEventListener('input',function(){fn(parseFloat(this.value))})}
+bindS('sCG',v=>{C.CHEST_GEN_BASE=v*1000;D('vCG').textContent=v.toFixed(1)+'s';restartGenTimer();rChest()});
+bindS('sAO',v=>{C.CHEST_OPEN_BASE=v*1000;D('vAO').textContent=v.toFixed(1)+'s';restartOpenTimer();rChest()});
+bindS('sDL',v=>{C.DROP_LUCK=v;D('vDL').textContent=v.toFixed(1)+'x';rTooltip()});
+bindS('sEM',v=>{C.ENEMY_MULT=v;D('vEM').textContent=v.toFixed(1)+'x'});
+bindS('sDM',v=>{C.PLAYER_DMG_MULT=v;D('vDM').textContent=v.toFixed(1)+'x'});
+bindS('sGC',v=>{C.GEM_DROP_CHANCE=v/100;D('vGC').textContent=v.toFixed(1);rTooltip()});
+bindS('sGQ',v=>{C.GEM_QTY_MULT=v;D('vGQ').textContent=v.toFixed(1)+'x';rTooltip()});
+
+// ============================================================
+// 7. Timers
+// ============================================================
+function restartGenTimer(){if(S.gT)clearInterval(S.gT);S.gT=setInterval(()=>genChest(),chestGenMs())}
+function restartOpenTimer(){
+  if(S.oT)clearInterval(S.oT);S.oProg=0;
+  S.oT=setInterval(()=>{
+    if(canOpen()){S.oProg+=100;if(S.oProg>=chestOpenMs()){S.oProg=0;openChest()}}
+    rChest();
+  },100);
+}
+if(S.pT)clearInterval(S.pT);S.pT=setInterval(()=>{rChest()},200);
+
+// ============================================================
+// 8. Init / Reset
+// ============================================================
+function resetGame(){
+  if(S.gT)clearInterval(S.gT);if(S.oT)clearInterval(S.oT);if(S.cTid)clearTimeout(S.cTid);
+  S.ph='idle';S.cs=0;S.gd=0;S.gm=0;S.ct=0;S.eq=new Array(13).fill(null);
+  S.cSt=0;S.clr=[];S.cRun=false;S.cPH=0;S.cPM=0;S.cEH=0;S.cEM=0;
+  S.cS={d:0,t:0,c:0,h:0,s:0,e:0};S.pnd=null;S.pSi=-1;S.oProg=0;
+  D('la').innerHTML='';D('cr').style.display='none';D('cn').innerHTML='';
+  restartGenTimer();restartOpenTimer();rAll();lg('🔄 已重置');
+}
+function init(){rAll();restartGenTimer();restartOpenTimer();lg('🎮 v3 启动! (命中基础'+C.BASE_HIT+'%)');}
+init();
+</script>
+</body>
+</html>

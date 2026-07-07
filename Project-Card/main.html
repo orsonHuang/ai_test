@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>枪火尖塔 - Card Gun Roguelike</title>
+<style>
+:root {
+    --bg:#0f0f1a; --panel:#1a1a2e; --panel-light:#232342;
+    --accent:#e94560; --gold:#f0c040; --text:#e0e0e0; --text-dim:#8888aa;
+    --card-atk:#e74c3c; --card-def:#3498db; --card-heal:#2ecc71; --card-func:#9b59b6;
+    --gun-revolver:#e17055; --gun-shotgun:#fdcb6e; --gun-sniper:#74b9ff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;background:#000;}
+body{
+    color:var(--text);
+    font-family:'Microsoft YaHei','PingFang SC',sans-serif;
+    user-select:none;
+    display:flex;align-items:center;justify-content:center;
+}
+.game-frame{
+    width:390px;height:844px;
+    background:var(--bg);
+    display:flex;flex-direction:column;
+    overflow:hidden;flex-shrink:0;position:relative;
+}
+
+/* ============ HEADER ============ */
+.game-header{
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:6px 14px;
+    background:linear-gradient(180deg,#1a1a2e,#16213e);
+    border-bottom:1px solid #2d2d5e;
+}
+.game-title{font-size:1em;font-weight:bold;color:var(--gold);letter-spacing:1px;}
+.phase-indicator{
+    padding:3px 10px;border-radius:10px;font-weight:bold;font-size:0.7em;letter-spacing:1px;
+    transition:all 0.3s;
+}
+.phase-draw{background:#0984e3;color:#fff;}
+.phase-play{background:#6c5ce7;color:#fff;animation:pulse 1.5s infinite;}
+.phase-attack{background:#d63031;color:#fff;}
+.phase-end{background:#e17055;color:#fff;}
+.phase-start{background:#2d3436;color:#fff;}
+@keyframes pulse{0%,100%{box-shadow:0 0 6px #6c5ce7;}50%{box-shadow:0 0 14px #6c5ce7,0 0 28px #a29bfe;}}
+.turn-info{display:flex;gap:8px;align-items:center;font-size:0.72em;color:var(--text-dim);}
+.turn-num{font-size:1em;color:var(--gold);font-weight:bold;}
+.swap-info{background:#2d2d5e;padding:2px 8px;border-radius:8px;font-size:0.7em;color:var(--gold);}
+
+/* ============ MONSTER AREA ============ */
+.monster-area{
+    flex-shrink:0;
+    background:linear-gradient(180deg,#1a1020,#1a1a2e);
+    border-bottom:1px solid #3d1a1a;
+    padding:10px 14px;
+    display:flex;align-items:center;justify-content:center;gap:14px;
+}
+.monster-avatar{
+    font-size:2.8em;
+    filter:drop-shadow(0 0 12px rgba(231,76,60,0.4));
+    animation:float 3s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+.monster-info{display:flex;flex-direction:column;gap:4px;align-items:center;min-width:0;}
+.monster-name{font-size:0.85em;font-weight:bold;color:var(--accent);letter-spacing:1px;}
+.monster-stat-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;}
+.hp-bar-outer{width:100px;height:12px;background:#333;border-radius:6px;overflow:hidden;border:1px solid #555;}
+.hp-bar-inner{height:100%;background:linear-gradient(90deg,#e74c3c,#c0392b);transition:width 0.5s;border-radius:6px;}
+.hp-text{font-weight:bold;font-size:0.7em;min-width:40px;text-align:center;}
+.shield-badge{
+    background:#3498db;color:#fff;padding:2px 8px;border-radius:8px;font-size:0.7em;font-weight:bold;
+}
+.monster-intent{
+    background:#2d1a1a;border:1px solid #5a2a2a;border-radius:8px;
+    padding:4px 12px;text-align:center;font-size:0.7em;
+    display:flex;align-items:center;gap:6px;
+}
+.intent-icon{font-size:1.2em;}
+.intent-text{color:var(--accent);font-weight:bold;}
+.monster-buffs{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;}
+.buff-tag{padding:2px 8px;border-radius:8px;font-size:0.65em;font-weight:bold;}
+.buff-vuln{background:#9b59b6;color:#fff;}
+.buff-shield{background:#3498db;color:#fff;}
+.buff-dmgup{background:#e74c3c;color:#fff;}
+
+/* ============ PLAYER AREA ============ */
+.player-area{
+    flex-shrink:0;
+    background:var(--panel);
+    border-bottom:1px solid #2d2d5e;
+    padding:8px 14px;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+}
+.player-avatar{font-size:2em;}
+.player-info{display:flex;flex-direction:column;gap:3px;align-items:center;}
+.player-name{font-size:0.75em;font-weight:bold;color:var(--text-dim);}
+.player-stat-row{display:flex;align-items:center;gap:8px;}
+
+/* ============ MAIN ZONE (left-right) ============ */
+.main-zone{
+    flex:1;display:flex;overflow:hidden;min-height:0;
+}
+
+/* ---- LEFT PANEL: Guns + Slots + Hand ---- */
+.left-panel{
+    flex:0 0 260px;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    background:var(--bg);
+    border-right:1px solid #2d2d5e;
+}
+
+/* Guns row */
+.guns-row{
+    flex-shrink:0;
+    padding:6px 8px 4px;
+    display:flex;gap:6px;justify-content:center;
+    background:var(--bg);
+}
+.gun-btn{
+    flex:1;max-width:82px;
+    background:var(--panel-light);
+    border:2px solid #333;border-radius:8px;
+    padding:6px 6px;cursor:pointer;
+    transition:all 0.2s;text-align:center;
+}
+.gun-btn:hover{border-color:#666;}
+.gun-btn.active{
+    border-color:var(--gold)!important;
+    box-shadow:0 0 10px rgba(240,192,64,0.3);
+    background:#2a2a42;
+}
+.gun-btn .g-icon{font-size:1.2em;display:block;}
+.gun-btn .g-name{font-size:0.6em;font-weight:bold;margin:2px 0;}
+.gun-btn .g-meta{font-size:0.55em;color:var(--text-dim);}
+
+/* Slots */
+.slots-area{
+    flex-shrink:0;
+    padding:4px 8px;min-height:42px;
+    display:flex;align-items:center;justify-content:center;
+}
+.slots-placeholder{font-size:0.7em;color:#555;letter-spacing:1px;}
+.slots-detail{
+    width:100%;
+    background:var(--panel);border-radius:8px;
+    padding:6px 10px;border:1px solid var(--gold);
+}
+.slots-label{font-size:0.65em;color:var(--gold);margin-bottom:4px;font-weight:bold;}
+.slots-row{display:flex;gap:5px;flex-wrap:wrap;}
+.bullet-slot{
+    width:28px;height:28px;border-radius:6px;
+    border:1px dashed #444;
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.65em;font-weight:bold;
+    transition:all 0.2s;position:relative;
+}
+.bullet-slot.empty{color:#555;}
+.bullet-slot.filled{
+    border-style:solid;border-color:#888;cursor:pointer;
+    animation:slot-pop 0.3s ease-out;
+}
+.bullet-slot.filled:hover{
+    border-color:#fff!important;transform:scale(1.1);
+    box-shadow:0 0 8px rgba(255,255,255,0.3);
+}
+@keyframes slot-pop{0%{transform:scale(0.5);opacity:0;}70%{transform:scale(1.15);}100%{transform:scale(1);opacity:1;}}
+.bullet-slot.slot-atk{background:rgba(231,76,60,0.45);border-color:var(--card-atk);color:#fff;}
+.bullet-slot.slot-def{background:rgba(52,152,219,0.45);border-color:var(--card-def);color:#fff;}
+.bullet-slot.slot-heal{background:rgba(46,204,113,0.45);border-color:var(--card-heal);color:#fff;}
+.slots-tip{font-size:0.58em;color:var(--text-dim);margin-top:2px;}
+
+/* Hand */
+.hand-area{
+    flex:1;
+    padding:6px 8px;
+    display:flex;flex-wrap:wrap;align-content:flex-end;
+    gap:5px;justify-content:center;
+    background:linear-gradient(0deg,#0a0a15,#0f0f1a);
+    overflow-y:auto;min-height:80px;
+}
+.hand-empty{padding:10px;color:var(--text-dim);font-size:0.7em;text-align:center;width:100%;}
+.card{
+    width:72px;height:104px;border-radius:6px;
+    padding:5px 4px;cursor:pointer;
+    transition:all 0.15s;border:2px solid #444;
+    display:flex;flex-direction:column;justify-content:space-between;
+    background:#1a1a2e;box-shadow:0 2px 8px rgba(0,0,0,0.5);
+    flex-shrink:0;position:relative;
+}
+.card:hover{
+    transform:translateY(-6px) scale(1.06);
+    box-shadow:0 6px 16px rgba(0,0,0,0.6);z-index:5;
+}
+.card.selected{
+    border-color:var(--gold)!important;
+    box-shadow:0 0 14px rgba(240,192,64,0.5);
+    transform:translateY(-8px) scale(1.08);z-index:5;
+    animation:card-glow 0.8s infinite alternate;
+}
+@keyframes card-glow{from{box-shadow:0 0 8px rgba(240,192,64,0.3);}to{box-shadow:0 0 18px rgba(240,192,64,0.6);}}
+.card.atk-card{border-left:3px solid var(--card-atk);}
+.card.def-card{border-left:3px solid var(--card-def);}
+.card.heal-card{border-left:3px solid var(--card-heal);}
+.card.func-card{border-left:3px solid var(--card-func);}
+.card-type{font-size:0.5em;font-weight:bold;letter-spacing:1px;text-transform:uppercase;}
+.card.atk-card .card-type{color:var(--card-atk);}
+.card.def-card .card-type{color:var(--card-def);}
+.card.heal-card .card-type{color:var(--card-heal);}
+.card.func-card .card-type{color:var(--card-func);}
+.card-name{font-size:0.6em;font-weight:bold;}
+.card-desc{font-size:0.5em;color:#aaa;line-height:1.3;}
+.card-damage{font-size:1.1em;font-weight:bold;text-align:right;}
+.card.atk-card .card-damage{color:var(--card-atk);}
+.card.def-card .card-damage{color:var(--card-def);}
+.card.heal-card .card-damage{color:var(--card-heal);}
+.card-badge{
+    position:absolute;top:-5px;right:-5px;
+    padding:1px 5px;border-radius:6px;font-size:0.48em;font-weight:bold;color:#fff;
+}
+.card.atk-card .card-badge{background:var(--card-atk);}
+.card.def-card .card-badge{background:var(--card-def);}
+.card.heal-card .card-badge{background:var(--card-heal);}
+.card.func-card .card-badge{background:var(--card-func);}
+
+/* ---- RIGHT PANEL: Card Detail ---- */
+.right-panel{
+    flex:1;display:flex;flex-direction:column;
+    padding:10px;background:#0a0a15;
+    overflow-y:auto;
+}
+.detail-empty{
+    color:#333;font-size:0.72em;
+    display:flex;align-items:center;justify-content:center;
+    height:100%;text-align:center;line-height:1.6;
+}
+.detail-card{
+    background:var(--panel);border-radius:10px;
+    padding:14px;border:1px solid var(--gold);
+}
+.detail-header{
+    display:flex;align-items:center;gap:8px;margin-bottom:10px;
+    padding-bottom:8px;border-bottom:1px solid #2d2d5e;
+}
+.detail-icon{font-size:1.8em;}
+.detail-name{font-size:0.9em;font-weight:bold;}
+.detail-type-badge{
+    padding:2px 8px;border-radius:6px;font-size:0.6em;font-weight:bold;color:#fff;
+}
+.detail-type-badge.badge-atk{background:var(--card-atk);}
+.detail-type-badge.badge-def{background:var(--card-def);}
+.detail-type-badge.badge-heal{background:var(--card-heal);}
+.detail-type-badge.badge-func{background:var(--card-func);}
+.detail-section{margin-bottom:10px;}
+.detail-label{font-size:0.6em;color:var(--text-dim);letter-spacing:1px;margin-bottom:3px;}
+.detail-value{font-size:0.75em;color:var(--text);line-height:1.5;}
+.detail-dmg{font-size:1.6em;font-weight:bold;text-align:center;margin:8px 0;}
+.detail-dmg.dmg-atk{color:var(--card-atk);}
+.detail-dmg.dmg-def{color:var(--card-def);}
+.detail-dmg.dmg-heal{color:var(--card-heal);}
+
+/* ============ ACTION BAR ============ */
+.action-bar{
+    flex-shrink:0;
+    display:flex;gap:6px;padding:6px 10px;
+    justify-content:center;flex-wrap:wrap;
+    background:var(--bg);border-top:1px solid #2d2d5e;
+}
+.btn{
+    padding:6px 14px;border-radius:14px;border:none;
+    cursor:pointer;font-weight:bold;font-size:0.68em;
+    letter-spacing:1px;transition:all 0.2s;
+    font-family:inherit;
+}
+.btn:disabled{opacity:0.35;cursor:not-allowed;pointer-events:none;}
+.btn-primary{background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;}
+.btn-primary:hover:not(:disabled){box-shadow:0 3px 10px rgba(108,92,231,0.5);transform:translateY(-1px);}
+.btn-warning{background:linear-gradient(135deg,#e17055,#fdcb6e);color:#1a1a2e;}
+.btn-warning:hover:not(:disabled){box-shadow:0 3px 10px rgba(225,112,85,0.5);transform:translateY(-1px);}
+.btn-danger{background:linear-gradient(135deg,#d63031,#e74c3c);color:#fff;}
+.btn-danger:hover:not(:disabled){box-shadow:0 3px 10px rgba(214,48,49,0.5);transform:translateY(-1px);}
+.btn-gray{background:#444;color:#aaa;}
+.btn-gray:hover:not(:disabled){background:#555;color:#fff;}
+
+/* ============ LOG ============ */
+.log-container{
+    flex-shrink:0;max-height:90px;min-height:40px;
+    overflow-y:auto;padding:4px 12px;
+    background:#0a0a15;border-top:1px solid #2d2d5e;
+}
+.log-entry{
+    font-size:0.6em;padding:1.5px 0;color:var(--text-dim);
+    animation:fadeIn 0.3s;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateX(-6px);}to{opacity:1;transform:translateX(0);}}
+.log-entry.log-damage{color:var(--accent);}
+.log-entry.log-heal{color:var(--card-heal);}
+.log-entry.log-shield{color:var(--card-def);}
+.log-entry.log-info{color:var(--gold);}
+.log-entry.log-system{color:#74b9ff;font-weight:bold;}
+
+/* ============ FLOATING TEXT ============ */
+.float-text{
+    position:fixed;font-weight:bold;font-size:1em;
+    pointer-events:none;animation:floatUp 1s ease-out forwards;z-index:100;
+}
+@keyframes floatUp{0%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(-40px);}}
+
+/* ============ MODAL ============ */
+.modal-overlay{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.85);display:flex;
+    align-items:center;justify-content:center;z-index:100;
+}
+.modal{
+    background:var(--panel);border-radius:16px;padding:30px;
+    text-align:center;border:2px solid var(--gold);
+    box-shadow:0 0 30px rgba(240,192,64,0.3);
+}
+.modal h2{font-size:1.4em;margin-bottom:8px;}
+.modal .win-title{color:var(--gold);}
+.modal .lose-title{color:var(--accent);}
+.modal p{color:var(--text-dim);margin-bottom:16px;font-size:0.8em;}
+
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:#333;border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="game-frame">
+
+<!-- HEADER -->
+<div class="game-header">
+    <span class="game-title">🔫 枪火尖塔</span>
+    <div id="phaseDisplay" class="phase-indicator phase-draw">🃏 抽牌</div>
+    <div class="turn-info">
+        <span class="turn-num" id="turnNum">1</span><span>回合</span>
+        <span id="swapInfo" class="swap-info">换牌:3</span>
+    </div>
+</div>
+
+<!-- MONSTER -->
+<div class="monster-area" id="monsterArea">
+    <div class="monster-avatar">👹</div>
+    <div class="monster-info">
+        <div class="monster-name" id="monsterName">暗影领主</div>
+        <div class="monster-stat-row">
+            <div class="hp-bar-outer"><div class="hp-bar-inner" id="monsterHpBar" style="width:100%"></div></div>
+            <span class="hp-text" id="monsterHpText">80/80</span>
+            <span class="shield-badge" id="monsterShield">🛡️ 0</span>
+        </div>
+        <div class="monster-intent" id="monsterIntent">
+            <span class="intent-icon">⚔️</span><span class="intent-text">攻击 12 伤害</span>
+        </div>
+        <div class="monster-buffs" id="monsterBuffs"></div>
+    </div>
+</div>
+
+<!-- PLAYER -->
+<div class="player-area">
+    <div class="player-avatar">🧑</div>
+    <div class="player-info">
+        <div class="player-name">玩家</div>
+        <div class="player-stat-row">
+            <div class="hp-bar-outer"><div class="hp-bar-inner" id="playerHpBar" style="width:100%"></div></div>
+            <span class="hp-text" id="playerHpText">50/50</span>
+            <span class="shield-badge" id="playerShield">🛡️ 0</span>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN ZONE (Left: guns+slots+hand | Right: card detail) -->
+<div class="main-zone">
+    <div class="left-panel">
+        <!-- Guns -->
+        <div class="guns-row" id="gunsRow"></div>
+        <!-- Slots -->
+        <div class="slots-area" id="slotsArea">
+            <div class="slots-placeholder">点击选择枪支</div>
+        </div>
+        <!-- Hand -->
+        <div class="hand-area" id="handContainer"></div>
+    </div>
+    <!-- Card Detail -->
+    <div class="right-panel" id="rightPanel">
+        <div class="detail-empty" id="detailEmpty">
+            👆 将鼠标悬停在<br>手牌 / 弹仓子弹上<br>查看详细信息
+        </div>
+        <div class="detail-card" id="detailCard" style="display:none;"></div>
+    </div>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar" id="actionBar">
+    <button class="btn btn-warning" id="btnSwap" disabled>🔄 换牌</button>
+    <button class="btn btn-danger" id="btnCancelSwap" disabled style="display:none;">✖ 取消</button>
+    <button class="btn btn-gray" id="btnUnload" disabled>↩ 退弹</button>
+    <button class="btn btn-primary" id="btnEndPlay" disabled>🎯 攻击!</button>
+</div>
+
+<!-- LOG -->
+<div class="log-container" id="logContainer"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" style="display:none;">
+    <div class="modal" id="modalContent"></div>
+</div>
+
+</div><!-- /game-frame -->
+<script>
+// ============================================================
+//  GAME ENGINE
+// ============================================================
+const GUN_DEFS = {
+    revolver:{name:'左轮手枪',icon:'🔫',capacity:6,range:1,splash:false,color:'var(--gun-revolver)'},
+    shotgun:{name:'霰弹枪',icon:'💥',capacity:2,range:3,splash:true,splashDmgRatio:0.5,color:'var(--gun-shotgun)'},
+    sniper:{name:'狙击枪',icon:'🎯',capacity:1,range:5,splash:false,color:'var(--gun-sniper)'},
+};
+
+const state={
+    phase:'init',turn:1,
+    player:{hp:50,maxHp:50,shield:0,swapRemaining:3},
+    guns:{revolver:{bullets:[]},shotgun:{bullets:[]},sniper:{bullets:[]}},
+    monster:{name:'暗影领主',hp:80,maxHp:80,shield:0,intent:null,baseDamage:12},
+    deck:[],hand:[],discardPile:[],
+    selectedGun:null,
+    hoveredCard:null,
+    isSwapMode:false,swapSelectedIndices:new Set(),
+    monsterVulnTurns:0,
+};
+
+// ---- Card Factory ----
+let _cardSeed=0;
+function createAttackBullet(){return{id:'atk_'+(_cardSeed++),type:'atk',name:'攻击子弹',dmg:5,heal:0,shield:0,cssClass:'atk-card',badge:'⚔️弹'};}
+function createDefenseBullet(){return{id:'def_'+(_cardSeed++),type:'def',name:'防御子弹',dmg:1,heal:0,shield:5,cssClass:'def-card',badge:'🛡️弹'};}
+function createHealBullet(){return{id:'heal_'+(_cardSeed++),type:'heal',name:'治疗子弹',dmg:3,heal:3,shield:0,cssClass:'heal-card',badge:'💚弹'};}
+function createDmgBoostCard(){return{id:'func_'+(_cardSeed++),type:'func',name:'增伤功能牌',dmg:0,heal:0,shield:0,cssClass:'func-card',badge:'📈',effect:'vuln',effectValue:2};}
+
+function initDeck(){
+    let deck=[];
+    for(let i=0;i<3;i++) deck.push(createAttackBullet());
+    for(let i=0;i<3;i++) deck.push(createDefenseBullet());
+    deck.push(createHealBullet()); deck.push(createDmgBoostCard());
+    deck.push(createHealBullet()); deck.push(createDmgBoostCard());
+    return shuffle(deck);
+}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+// ---- Helpers ----
+function setPhase(p){state.phase=p;updatePhaseUI();}
+function addLog(msg,cls=''){
+    const c=document.getElementById('logContainer');
+    const e=document.createElement('div');
+    e.className='log-entry '+cls;
+    e.textContent=`[T${state.turn}] ${msg}`;
+    c.appendChild(e);c.scrollTop=c.scrollHeight;
+}
+function showFloatText(el,text,color){
+    const f=document.createElement('div');
+    f.className='float-text';f.textContent=text;f.style.color=color;
+    const r=el.getBoundingClientRect();
+    f.style.left=r.left+r.width/2-20+'px';f.style.top=r.top+'px';
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+
+// ---- Deck / Draw ----
+function drawCards(count){
+    const drawn=[];
+    for(let i=0;i<count;i++){
+        if(state.deck.length===0){
+            if(state.discardPile.length===0) break;
+            state.deck=shuffle(state.discardPile);state.discardPile=[];
+            addLog('弃牌堆洗入牌库!','log-system');
+        }
+        drawn.push(state.deck.pop());
+    }
+    state.hand.push(...drawn);
+    return drawn;
+}
+function discardCard(card){state.discardPile.push(card);}
+function removeFromHand(idx){return state.hand.splice(idx,1)[0];}
+
+// ---- Return bullets from a gun back to hand ----
+function returnBulletsFromGun(gunKey){
+    const gun=state.guns[gunKey];
+    if(!gun||gun.bullets.length===0) return 0;
+    const count=gun.bullets.length;
+    const bullets=gun.bullets.splice(0);
+    state.hand.push(...bullets);
+    addLog(`[${GUN_DEFS[gunKey].name}] ↩ ${count}发子弹退回手牌`,'log-info');
+    return count;
+}
+
+// ---- Unload single bullet from slot ----
+function unloadBullet(gunKey,slotIndex){
+    const gun=state.guns[gunKey];
+    if(!gun||slotIndex>=gun.bullets.length) return;
+    const bullet=gun.bullets.splice(slotIndex,1)[0];
+    state.hand.push(bullet);
+    addLog(`[${bullet.name}] ↩ 从 ${GUN_DEFS[gunKey].name} 退回手牌`,'log-info');
+    renderAll();
+}
+
+// ---- Unload all bullets ----
+function unloadAllBullets(){
+    let total=0;
+    for(const [k,g] of Object.entries(state.guns)){
+        if(g.bullets.length>0){
+            const bullets=g.bullets.splice(0);
+            state.hand.push(...bullets);
+            total+=bullets.length;
+        }
+    }
+    if(total>0){
+        addLog(`↩ 全部退弹 ${total}发子弹退回手牌`,'log-info');
+    } else {
+        addLog('没有已装填的子弹','log-system');
+    }
+    state.selectedGun=null;
+    renderAll();
+}
+
+// ---- Gun Selection (switch → return bullets from old gun) ----
+function selectGun(gunKey){
+    if(state.phase!=='play'||state.isSwapMode) return;
+    if(state.selectedGun===gunKey){
+        state.selectedGun=null;
+    } else {
+        // Return bullets from previously selected gun
+        if(state.selectedGun){
+            returnBulletsFromGun(state.selectedGun);
+        }
+        state.selectedGun=gunKey;
+        addLog(`选中 ${GUN_DEFS[gunKey].icon} ${GUN_DEFS[gunKey].name} — 弹仓:${GUN_DEFS[gunKey].capacity}`,'log-info');
+    }
+    renderAll();
+}
+
+// ---- Card Click ----
+function handleCardClick(index){
+    if(state.isSwapMode){
+        if(state.swapSelectedIndices.has(index)) state.swapSelectedIndices.delete(index);
+        else state.swapSelectedIndices.add(index);
+        renderAll();
+        return;
+    }
+    if(state.phase!=='play') return;
+    const card=state.hand[index];
+    if(!card) return;
+
+    // Function cards → play immediately
+    if(card.type==='func'){
+        const c=removeFromHand(index);
+        playFunctionCard(c);
+        renderAll();
+        return;
+    }
+
+    // Bullet cards → need selected gun
+    if(!state.selectedGun){addLog('请先选择一把武器!','log-damage');return;}
+    const gun=state.guns[state.selectedGun];
+    const def=GUN_DEFS[state.selectedGun];
+    if(gun.bullets.length>=def.capacity){addLog(`${def.name} 弹仓已满!`,'log-damage');return;}
+
+    const c=removeFromHand(index);
+    gun.bullets.push(c);
+    addLog(`[${c.name}] → ${def.icon} (${gun.bullets.length}/${def.capacity})`,'log-info');
+    renderAll();
+}
+
+function playFunctionCard(card){
+    if(card.effect==='vuln'){
+        state.monsterVulnTurns+=card.effectValue;
+        addLog(`使用 ${card.name} → 敌方易伤+${card.effectValue}回合`,`log-info`);
+    }
+    discardCard(card);
+}
+
+// ---- Hover / Detail Panel ----
+function showCardDetail(card, source){
+    if(!card){ hideCardDetail(); return; }
+    state.hoveredCard={card:card,source:source};
+    const empty=document.getElementById('detailEmpty');
+    const detail=document.getElementById('detailCard');
+    empty.style.display='none';
+    detail.style.display='';
+
+    let dmgHtml='';
+    if(card.dmg>0){
+        let dmgCls='';
+        if(card.type==='atk') dmgCls='dmg-atk';
+        else if(card.type==='def') dmgCls='dmg-def';
+        else if(card.type==='heal') dmgCls='dmg-heal';
+        dmgHtml=`<div class="detail-dmg ${dmgCls}">${card.dmg}</div>`;
+    }
+
+    let effects=[];
+    if(card.dmg>0) effects.push(`造成 <b>${card.dmg}</b> 点伤害`);
+    if(card.shield>0) effects.push(`获得 <b>${card.shield}</b> 护盾`);
+    if(card.heal>0) effects.push(`恢复 <b>${card.heal}</b> 生命`);
+    if(card.effect==='vuln') effects.push(`敌方<b>易伤+${card.effectValue}</b>回合 (受伤+10%)`);
+
+    let badgeCls='';
+    if(card.type==='atk') badgeCls='badge-atk';
+    else if(card.type==='def') badgeCls='badge-def';
+    else if(card.type==='heal') badgeCls='badge-heal';
+    else if(card.type==='func') badgeCls='badge-func';
+
+    const typeName=card.type==='func'?'功能牌':'子弹卡';
+    const sourceName=source==='hand'?'手牌':'弹仓';
+
+    detail.innerHTML=`
+        <div class="detail-header">
+            <span class="detail-icon">${card.badge||'🃏'}</span>
+            <span class="detail-name">${card.name}</span>
+            <span class="detail-type-badge ${badgeCls}">${typeName}</span>
+        </div>
+        <div class="detail-section">
+            <div class="detail-label">来源</div>
+            <div class="detail-value">${sourceName}</div>
+        </div>
+        <div class="detail-section">
+            <div class="detail-label">效果</div>
+            <div class="detail-value">${effects.join('<br>')}</div>
+        </div>
+        ${dmgHtml}
+    `;
+}
+function hideCardDetail(){
+    state.hoveredCard=null;
+    document.getElementById('detailEmpty').style.display='';
+    document.getElementById('detailCard').style.display='none';
+}
+
+// ---- Swap Logic ----
+function enterSwapMode(){
+    state.isSwapMode=true;state.swapSelectedIndices.clear();state.selectedGun=null;
+    renderAll();addLog('换牌模式 — 点击卡牌标记','log-system');
+}
+function cancelSwapMode(){state.isSwapMode=false;state.swapSelectedIndices.clear();renderAll();}
+function executeSwap(){
+    if(state.swapSelectedIndices.size===0){cancelSwapMode();return;}
+    if(state.player.swapRemaining<=0){addLog('换牌次数用完!','log-damage');cancelSwapMode();return;}
+    const sorted=[...state.swapSelectedIndices].sort((a,b)=>b-a);
+    for(const idx of sorted){const c=removeFromHand(idx);state.deck.push(c);}
+    state.deck=shuffle(state.deck);drawCards(sorted.length);
+    state.player.swapRemaining--;state.isSwapMode=false;state.swapSelectedIndices.clear();
+    addLog(`换牌${sorted.length}张 (剩余:${state.player.swapRemaining})`,'log-info');
+    renderAll();
+}
+
+// ---- Attack ----
+async function executeAttackPhase(){
+    setPhase('attack');addLog('=== 攻击阶段 ===','log-system');
+    const allBullets=[];
+    for(const [gk,g] of Object.entries(state.guns)) for(const b of g.bullets) allBullets.push({gunKey:gk,bullet:b});
+    if(allBullets.length===0){addLog('无子弹，跳过攻击','log-system');}
+    else{for(const {gunKey,bullet} of allBullets){await attackWithBullet(gunKey,bullet);await sleep(350);}}
+    for(const [_,g] of Object.entries(state.guns)) while(g.bullets.length>0) discardCard(g.bullets.pop());
+    state.selectedGun=null;
+    renderAll();await sleep(400);
+    if(state.monster.hp<=0){endGame(true);return;}
+    executeEndPhase();
+}
+
+function calcDamage(baseDmg){let d=baseDmg;if(state.monsterVulnTurns>0)d=Math.ceil(d*1.1);return Math.max(1,d);}
+
+async function attackWithBullet(gunKey,bullet){
+    let dmg=calcDamage(bullet.dmg);let actualDmg=dmg;
+    if(state.monster.shield>0){
+        if(state.monster.shield>=actualDmg){state.monster.shield-=actualDmg;actualDmg=0;}
+        else{actualDmg-=state.monster.shield;state.monster.shield=0;}
+    }
+    state.monster.hp=Math.max(0,state.monster.hp-actualDmg);
+    const def=GUN_DEFS[gunKey];
+    let msg=`${def.icon} ${def.name} [${bullet.name}] → ${dmg}`;
+    if(actualDmg===0) msg+=' (护盾吸收)';
+    else if(state.monsterVulnTurns>0&&dmg>bullet.dmg) msg+=' (易伤)';
+    addLog(msg+` | 怪物HP:${state.monster.hp}/${state.monster.maxHp}`,'log-damage');
+    if(bullet.shield>0){state.player.shield+=bullet.shield;addLog(`🛡️ +${bullet.shield}护盾`,'log-shield');}
+    if(bullet.heal>0){const amt=Math.min(bullet.heal,state.player.maxHp-state.player.hp);state.player.hp+=amt;addLog(`💚 恢复${amt}生命`,'log-heal');}
+    showFloatText(document.getElementById('monsterArea'), actualDmg>0?`-${actualDmg}`:'🛡️', actualDmg>0?'#ff4444':'#888');
+    renderAll();
+}
+
+// ---- End Phase ----
+function executeEndPhase(){
+    setPhase('end');
+    const intent=state.monster.intent;
+    if(intent){
+        switch(intent.type){
+            case 'attack':
+                let actualDmg=intent.value;
+                if(state.player.shield>0){if(state.player.shield>=actualDmg){state.player.shield-=actualDmg;actualDmg=0;}else{actualDmg-=state.player.shield;state.player.shield=0;}}
+                state.player.hp=Math.max(0,state.player.hp-actualDmg);
+                addLog(`👹 ${state.monster.name} 攻击! ${intent.value}→${actualDmg}`,'log-damage');
+                showFloatText(document.getElementById('playerHpBar'),actualDmg>0?`-${actualDmg}`:'🛡️','#ff4444');
+                break;
+            case 'defend':state.monster.shield+=intent.value;addLog(`👹 防御 +${intent.value}护盾`,'log-shield');break;
+            case 'buff':state.monster.baseDamage=Math.floor(state.monster.baseDamage*1.25);addLog('👹 狂暴! 攻击+25%','log-damage');break;
+        }
+    }
+    if(state.monsterVulnTurns>0){state.monsterVulnTurns--;if(state.monsterVulnTurns===0)addLog('易伤消退','log-system');}
+    renderAll();
+    if(state.player.hp<=0){setTimeout(()=>endGame(false),400);return;}
+    setTimeout(()=>startNewTurn(),700);
+}
+
+function generateMonsterIntent(){
+    const r=state.monster.hp/state.monster.maxHp;const roll=Math.random();
+    if(r<0.3&&roll<0.4) state.monster.intent={type:'attack',value:Math.floor(state.monster.baseDamage*1.8)};
+    else if(roll<0.45)  state.monster.intent={type:'attack',value:state.monster.baseDamage};
+    else if(roll<0.7)   state.monster.intent={type:'attack',value:Math.floor(state.monster.baseDamage*1.4)};
+    else if(roll<0.88)  state.monster.intent={type:'defend',value:Math.floor(state.monster.baseDamage*1.2)};
+    else                state.monster.intent={type:'buff',value:0};
+}
+function getIntentDisplay(i){if(!i)return{icon:'❓',text:'未知'};
+    switch(i.type){case'attack':return{icon:'⚔️',text:`攻击 ${i.value} 伤害`};case'defend':return{icon:'🛡️',text:`防御 +${i.value}护盾`};case'buff':return{icon:'💢',text:'狂暴 +25%攻击'};default:return{icon:'❓',text:'...'};}}
+
+// ---- Turn ----
+function startNewTurn(){
+    state.turn++;setPhase('draw');
+    state.player.shield=0;state.selectedGun=null;
+    generateMonsterIntent();
+    for(const k of Object.keys(state.guns)) state.guns[k].bullets=[];
+    state.hand=[];state.isSwapMode=false;state.swapSelectedIndices.clear();
+    drawCards(6);
+    const id=getIntentDisplay(state.monster.intent);
+    addLog(`第${state.turn}回合 | 👹 ${id.icon} ${id.text}`,'log-system');
+    setPhase('play');renderAll();
+}
+function endPlayPhase(){if(state.phase!=='play')return;executeAttackPhase();}
+
+// ---- Game End ----
+function endGame(w){
+    const o=document.getElementById('modalOverlay');
+    const c=document.getElementById('modalContent');
+    if(w) c.innerHTML=`<h2 class="win-title">🏆 胜利!</h2><p>击败了 <b>${state.monster.name}</b>!</p><p style="color:var(--text-dim)">${state.turn}回合</p><button class="btn btn-primary" onclick="restartGame()">🔄 再来</button>`;
+    else c.innerHTML=`<h2 class="lose-title">💀 失败</h2><p>被 <b>${state.monster.name}</b> 击败…</p><p style="color:var(--text-dim)">${state.turn}回合</p><button class="btn btn-danger" onclick="restartGame()">🔄 重来</button>`;
+    o.style.display='flex';
+}
+function restartGame(){
+    document.getElementById('modalOverlay').style.display='none';
+    _cardSeed=0;
+    state.turn=1;state.player={hp:50,maxHp:50,shield:0,swapRemaining:3};
+    state.guns={revolver:{bullets:[]},shotgun:{bullets:[]},sniper:{bullets:[]}};
+    state.monster={name:'暗影领主',hp:80,maxHp:80,shield:0,intent:null,baseDamage:12};
+    state.deck=initDeck();state.hand=[];state.discardPile=[];
+    state.selectedGun=null;state.isSwapMode=false;state.swapSelectedIndices=new Set();
+    state.monsterVulnTurns=0;state.hoveredCard=null;
+    document.getElementById('logContainer').innerHTML='';
+    addLog('=== 新游戏 ===','log-system');startNewTurn();
+}
+
+// ============================================================
+//  UI
+// ============================================================
+function updatePhaseUI(){
+    const d=document.getElementById('phaseDisplay');d.className='phase-indicator';
+    switch(state.phase){
+        case'draw':d.classList.add('phase-draw');d.textContent='🃏 抽牌';break;
+        case'play':d.classList.add('phase-play');d.textContent='🎮 打牌';break;
+        case'attack':d.classList.add('phase-attack');d.textContent='💥 攻击';break;
+        case'end':d.classList.add('phase-end');d.textContent='⏳ 结束';break;
+        default:d.classList.add('phase-start');d.textContent='⏳ 准备';
+    }
+}
+function updateActionButtons(){
+    const bs=document.getElementById('btnSwap'),bc=document.getElementById('btnCancelSwap');
+    const bu=document.getElementById('btnUnload'),be=document.getElementById('btnEndPlay');
+    if(state.isSwapMode){
+        bs.textContent=`✔ 确认换牌(${state.swapSelectedIndices.size})`;
+        bs.disabled=state.swapSelectedIndices.size===0;bs.style.display='';
+        bc.style.display='';bu.disabled=true;be.disabled=true;
+    }else{
+        bs.textContent='🔄 换牌';bs.disabled=state.phase!=='play'||state.player.swapRemaining<=0;
+        bs.style.display='';bc.style.display='none';
+        bu.disabled=state.phase!=='play';
+        // Enable unload if any gun has bullets
+        let hasBullets=false;
+        for(const g of Object.values(state.guns)) if(g.bullets.length>0) hasBullets=true;
+        bu.disabled=state.phase!=='play'||!hasBullets;
+        be.disabled=state.phase!=='play';
+    }
+    document.getElementById('swapInfo').textContent=`换牌:${state.player.swapRemaining}`;
+    document.getElementById('turnNum').textContent=state.turn;
+}
+
+function renderGuns(){
+    const row=document.getElementById('gunsRow');
+    const slots=document.getElementById('slotsArea');
+    let html='';
+    for(const [key,def] of Object.entries(GUN_DEFS)){
+        const gun=state.guns[key];
+        const isSel=state.selectedGun===key;
+        const ok=state.phase==='play'&&!state.isSwapMode;
+        const ac=isSel?' active':'';
+        const full=gun.bullets.length>=def.capacity;
+        const sc=full?'#e74c3c':gun.bullets.length>0?'var(--gold)':'var(--text-dim)';
+        const st=full?'已满':`${gun.bullets.length}/${def.capacity}`;
+        html+=`<div class="gun-btn${ac}" onclick="selectGun('${key}')" style="${ok?'':'pointer-events:none;opacity:0.5;'}">
+            <span class="g-icon">${def.icon}</span>
+            <div class="g-name">${def.name}</div>
+            <div class="g-meta" style="color:${sc}">${st}</div>
+        </div>`;
+    }
+    row.innerHTML=html;
+
+    // Slots area
+    if(state.selectedGun&&state.guns[state.selectedGun]){
+        const gun=state.guns[state.selectedGun];
+        const def=GUN_DEFS[state.selectedGun];
+        let s=`<div class="slots-detail">
+            <div class="slots-label">${def.icon} ${def.name} 弹仓</div>
+            <div class="slots-row">`;
+        for(let i=0;i<gun.bullets.length;i++){
+            const b=gun.bullets[i];
+            const sc=b.type==='atk'?'slot-atk':b.type==='def'?'slot-def':'slot-heal';
+            const slotId=`slot_${state.selectedGun}_${i}`;
+            s+=`<div class="bullet-slot filled ${sc}"
+                onclick="event.stopPropagation();unloadBullet('${state.selectedGun}',${i})"
+                onmouseenter="showCardDetail(state.guns['${state.selectedGun}'].bullets[${i}],'slot')"
+                onmouseleave="hideCardDetail()"
+                id="${slotId}">${b.dmg}</div>`;
+        }
+        for(let i=gun.bullets.length;i<def.capacity;i++){
+            s+=`<div class="bullet-slot empty">—</div>`;
+        }
+        s+=`</div><div class="slots-tip">点击弹仓子弹可退弹</div></div>`;
+        slots.innerHTML=s;
+    } else {
+        slots.innerHTML=`<div class="slots-placeholder">点击选择枪支</div>`;
+    }
+}
+
+function renderHand(){
+    const c=document.getElementById('handContainer');
+    if(state.hand.length===0){c.innerHTML='<div class="hand-empty">等待发牌…</div>';return;}
+    let h='';
+    state.hand.forEach((card,i)=>{
+        const swapSel=state.swapSelectedIndices.has(i);
+        const sel=swapSel?' selected':'';
+        let dmgHtml='';if(card.dmg>0)dmgHtml=`<div class="card-damage">${card.dmg}</div>`;
+        let desc='';
+        switch(card.type){case'atk':desc=`造成${card.dmg}伤害`;break;case'def':desc=`造成${card.dmg}伤害<br>+${card.shield}护盾`;break;case'heal':desc=`造成${card.dmg}伤害<br>恢复${card.heal}HP`;break;case'func':desc=`敌方易伤+2回合`;break;}
+        h+=`<div class="card ${card.cssClass}${sel}"
+            onclick="handleCardClick(${i})"
+            onmouseenter="showCardDetail(state.hand[${i}],'hand')"
+            onmouseleave="hideCardDetail()">
+            <span class="card-badge">${card.badge}</span>
+            <div><div class="card-type">${card.type==='func'?'功能牌':'子弹'}</div><div class="card-name">${card.name}</div></div>
+            <div class="card-desc">${desc}</div>${dmgHtml}
+        </div>`;
+    });
+    c.innerHTML=h;
+}
+
+function renderMonster(){
+    document.getElementById('monsterName').textContent=state.monster.name;
+    const hpPct=Math.max(0,(state.monster.hp/state.monster.maxHp)*100);
+    document.getElementById('monsterHpBar').style.width=hpPct+'%';
+    document.getElementById('monsterHpText').textContent=`${state.monster.hp}/${state.monster.maxHp}`;
+    document.getElementById('monsterShield').textContent=`🛡️ ${state.monster.shield}`;
+    const id=getIntentDisplay(state.monster.intent);
+    document.getElementById('monsterIntent').innerHTML=`<span class="intent-icon">${id.icon}</span><span class="intent-text">${id.text}</span>`;
+    let b='';if(state.monster.shield>0)b+=`<span class="buff-tag buff-shield">🛡️ ${state.monster.shield}</span>`;if(state.monsterVulnTurns>0)b+=`<span class="buff-tag buff-vuln">💔易伤${state.monsterVulnTurns}回合</span>`;if(state.monster.baseDamage>12)b+=`<span class="buff-tag buff-dmgup">💢攻击+${Math.floor((state.monster.baseDamage-12)/12*100)}%</span>`;document.getElementById('monsterBuffs').innerHTML=b;
+}
+function renderPlayer(){
+    const hpPct=Math.max(0,(state.player.hp/state.player.maxHp)*100);
+    const bar=document.getElementById('playerHpBar');bar.style.width=hpPct+'%';
+    if(hpPct<30)bar.style.background='linear-gradient(90deg,#d63031,#e74c3c)';else if(hpPct<60)bar.style.background='linear-gradient(90deg,#fdcb6e,#e17055)';else bar.style.background='linear-gradient(90deg,#2ecc71,#27ae60)';
+    document.getElementById('playerHpText').textContent=`${state.player.hp}/${state.player.maxHp}`;
+    document.getElementById('playerShield').textContent=`🛡️ ${state.player.shield}`;
+}
+function renderAll(){renderPlayer();renderGuns();renderMonster();renderHand();updateActionButtons();}
+
+// ---- Init ----
+function initGame(){
+    state.deck=initDeck();state.hand=[];state.discardPile=[];state.selectedGun=null;
+    addLog('=== 枪火尖塔 ===','log-system');
+    addLog('选枪→装弹→攻击 | 每回合限一把枪 | 点弹仓可退弹','log-system');
+    startNewTurn();
+}
+document.getElementById('btnSwap').addEventListener('click',()=>{if(state.isSwapMode)executeSwap();else enterSwapMode();});
+document.getElementById('btnCancelSwap').addEventListener('click',()=>cancelSwapMode());
+document.getElementById('btnUnload').addEventListener('click',()=>unloadAllBullets());
+document.getElementById('btnEndPlay').addEventListener('click',()=>endPlayPhase());
+initGame();
+</script>
+</div><!-- /game-frame -->
+</body>
+</html>

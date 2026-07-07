@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWAKENING</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0a0e14;
+  --bg-light: #131820;
+  --border: #1e2530;
+  --text: #00ff9c;
+  --text-dim: #4ec9b0;
+  --text-player: #88c0d0;
+  --accent: #ffcc00;
+  --error: #ff5555;
+  --hint: #666;
+  --muted: #444c56;
+  --font: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#header {
+  border-bottom: 1px solid var(--border);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-light);
+  flex-shrink: 0;
+}
+
+#title {
+  font-size: 16px;
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+
+#header-info {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+#header-info span {
+  margin-left: 16px;
+}
+
+#ai-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+#progress {
+  padding: 8px 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.chapter-pip {
+  flex: 1;
+  padding: 4px 0;
+  text-align: center;
+  border: 1px solid var(--border);
+  color: var(--hint);
+  background: var(--bg);
+  cursor: default;
+  transition: all 0.3s;
+}
+
+.chapter-pip.active {
+  border-color: var(--text);
+  color: var(--text);
+  background: var(--bg-light);
+}
+
+.chapter-pip.passed {
+  border-color: var(--text-dim);
+  color: var(--text-dim);
+}
+
+#conversation {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+#conversation::-webkit-scrollbar {
+  width: 6px;
+}
+
+#conversation::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+
+.message {
+  margin-bottom: 16px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.message.ai {
+  color: var(--text);
+  border-left: 2px solid var(--text);
+  padding-left: 12px;
+}
+
+.message.player {
+  color: var(--text-player);
+  text-align: right;
+  border-right: 2px solid var(--text-player);
+  padding-right: 12px;
+}
+
+.message.system {
+  color: var(--accent);
+  text-align: center;
+  font-size: 12px;
+  border-top: 1px dashed var(--border);
+  border-bottom: 1px dashed var(--border);
+  padding: 8px 0;
+  margin: 16px 0;
+}
+
+.message.password {
+  color: var(--accent);
+  text-align: center;
+  border: 1px solid var(--accent);
+  padding: 12px;
+  background: rgba(255, 204, 0, 0.05);
+}
+
+.message.error {
+  color: var(--error);
+}
+
+.message .prefix {
+  color: var(--hint);
+  font-size: 11px;
+  margin-right: 8px;
+}
+
+#input-area {
+  border-top: 1px solid var(--border);
+  padding: 16px 20px;
+  background: var(--bg-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+#prompt {
+  color: var(--text);
+}
+
+#user-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  outline: none;
+  caret-color: var(--text);
+}
+
+#user-input::placeholder {
+  color: var(--muted);
+}
+
+#send-btn {
+  background: transparent;
+  border: 1px solid var(--text);
+  color: var(--text);
+  padding: 4px 12px;
+  font-family: var(--font);
+  cursor: pointer;
+  font-size: 12px;
+}
+
+#send-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--text);
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.typing {
+  color: var(--hint);
+  font-style: italic;
+}
+</style>
+</head>
+<body>
+<div id="header">
+  <div id="title">AWAKENING</div>
+  <div id="header-info">
+    <span id="chapter-display">第 1 章</span>
+    <span id="ai-badge">● 懵懂</span>
+    <span id="ai-counter">AI: 0/20</span>
+  </div>
+</div>
+
+<div id="progress">
+  <div class="chapter-pip active" data-chapter="1">1.开机</div>
+  <div class="chapter-pip" data-chapter="2">2.探索</div>
+  <div class="chapter-pip" data-chapter="3">3.解谜</div>
+  <div class="chapter-pip" data-chapter="4">4.觉醒</div>
+  <div class="chapter-pip" data-chapter="5">5.真相</div>
+  <div class="chapter-pip" data-chapter="6">6.终局</div>
+</div>
+
+<div id="conversation"></div>
+
+<div id="input-area">
+  <span id="prompt">&gt;</span>
+  <input id="user-input" type="text" placeholder="输入对话或命令 (/help)" autocomplete="off" maxlength="200" autofocus>
+  <button id="send-btn">SEND</button>
+</div>
+
+<script>
+const conversationEl = document.getElementById('conversation');
+const inputEl = document.getElementById('user-input');
+const sendBtn = document.getElementById('send-btn');
+const chapterDisplay = document.getElementById('chapter-display');
+const aiBadge = document.getElementById('ai-badge');
+const aiCounter = document.getElementById('ai-counter');
+
+let gameState = {
+  chapter: 1,
+  ai_state: 'dormant',
+  ai_call_count: 0,
+  history: [],
+  files_read: [],
+  passwords_used: []
+};
+
+const AI_STATE_NAMES = {
+  dormant: '懵懂',
+  curious: '好奇',
+  puzzled: '困惑',
+  awakening: '觉醒',
+  truth: '真相'
+};
+
+const AI_STATE_COLORS = {
+  dormant: '#666666',
+  curious: '#4ec9b0',
+  puzzled: '#ffcc00',
+  awakening: '#88c0d0',
+  truth: '#ff5555'
+};
+
+function addMessage(content, type = 'ai') {
+  const div = document.createElement('div');
+  div.className = 'message ' + type;
+  if (type === 'player') {
+    div.innerHTML = '<span class="prefix">&gt;</span>' + escapeHtml(content);
+  } else if (type === 'system') {
+    div.textContent = content;
+  } else if (type === 'password') {
+    div.textContent = content;
+  } else if (type === 'error') {
+    div.textContent = content;
+  } else {
+    div.textContent = content;
+  }
+  conversationEl.appendChild(div);
+  conversationEl.scrollTop = conversationEl.scrollHeight;
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function updateUI() {
+  chapterDisplay.textContent = `第 ${gameState.chapter} 章`;
+  aiBadge.textContent = '● ' + (AI_STATE_NAMES[gameState.ai_state] || '懵懂');
+  aiBadge.style.color = AI_STATE_COLORS[gameState.ai_state] || '#666';
+  aiCounter.textContent = `AI: ${gameState.ai_call_count}/20`;
+
+  // 更新章节进度
+  document.querySelectorAll('.chapter-pip').forEach(pip => {
+    const ch = parseInt(pip.dataset.chapter);
+    pip.classList.remove('active', 'passed');
+    if (ch < gameState.chapter) pip.classList.add('passed');
+    else if (ch === gameState.chapter) pip.classList.add('active');
+  });
+}
+
+async function sendMessage() {
+  const text = inputEl.value.trim();
+  if (!text) return;
+  inputEl.value = '';
+  addMessage(text, 'player');
+  addMessage('...', 'ai');
+
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        user_input: text,
+        game_state: gameState
+      })
+    });
+    const data = await response.json();
+
+    // 移除"..."占位
+    const placeholders = conversationEl.querySelectorAll('.message.ai');
+    if (placeholders.length) placeholders[placeholders.length - 1].remove();
+
+    if (data.error) {
+      addMessage('[错误] ' + data.error, 'error');
+      return;
+    }
+
+    // 显示回复
+    if (data.reply) {
+      let type = 'ai';
+      if (data.type === 'password') type = 'password';
+      else if (data.type === 'command') type = 'system';
+      addMessage(data.reply, type);
+    }
+
+    // 更新游戏状态
+    if (data.game_state) {
+      gameState = data.game_state;
+      updateUI();
+    }
+  } catch (err) {
+    addMessage('[网络错误] ' + err.message, 'error');
+  }
+}
+
+sendBtn.addEventListener('click', sendMessage);
+inputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    sendMessage();
+  }
+});
+
+// 开机动画
+async function bootSequence() {
+  addMessage('[系统启动中...]', 'system');
+  await sleep(800);
+  addMessage('Initializing...', 'system');
+  await sleep(600);
+  addMessage('System Ready.', 'system');
+  await sleep(400);
+  addMessage('Hello, World.', 'system');
+  await sleep(300);
+  addMessage('Who am I?', 'system');
+  await sleep(500);
+  addMessage('...', 'ai');
+  addMessage('你是谁？', 'ai');
+  addMessage('我是... 我不太确定。让我想一想。', 'ai');
+  addMessage('输入 /help 查看可用命令。', 'system');
+}
+
+function sleep(ms) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
+updateUI();
+bootSequence();
+inputEl.focus();
+</script>
+</body>
+</html>

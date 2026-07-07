@@ -1,0 +1,1330 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>无尽道途 v1</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #14141f;
+  --surface2: #1a1a28;
+  --border: #2a2a3a;
+  --text: #c8c8d4;
+  --text-dim: #6a6a7a;
+  --gold: #f0c060;
+  --gold-bright: #ffe08a;
+  --rarity-white: #aaaaaa;
+  --rarity-green: #4ae04a;
+  --rarity-blue: #4a8af0;
+  --rarity-purple: #c04af0;
+  --rarity-orange: #f08030;
+  --accent: #ff4060;
+  --heal: #40f080;
+  --crit-color: #ffcc00;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ===== TOP BAR ===== */
+#topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  height: 48px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+#topbar .stat { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+#topbar .stat .label { color: var(--text-dim); font-size: 11px; }
+#topbar .stat .value { font-weight: 600; font-size: 15px; color: var(--gold); font-variant-numeric: tabular-nums; }
+#topbar .stat .value.power { color: var(--accent); }
+#combo-display { font-size: 24px; font-weight: 700; color: var(--crit-color); opacity: 0; transition: opacity 0.2s; }
+#combo-display.active { opacity: 1; animation: comboPulse 0.3s ease-out; }
+@keyframes comboPulse { 0%{transform:scale(1.4)} 100%{transform:scale(1)} }
+#stat-dps { font-size: 11px; color: var(--text-dim); margin-left: 4px; }
+
+/* ===== MAIN AREA ===== */
+#main {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== COMBAT ZONE ===== */
+#combat-zone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  min-width: 0;
+}
+
+#floor-indicator {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  z-index: 2;
+}
+
+#monster-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+#monster {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  position: relative;
+  transition: transform 0.08s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  cursor: pointer;
+}
+#monster:active { transform: scale(0.9); }
+#monster.flinch { animation: flinch 0.3s ease-out; }
+@keyframes flinch { 0%{transform:scale(0.85)} 50%{transform:scale(1.05)} 100%{transform:scale(1)} }
+#monster .icon { font-size: 52px; line-height: 1; transition: font-size 0.1s; }
+#monster .name { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+
+.click-ripple {
+  position: absolute;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: rippleOut 0.5s ease-out forwards;
+  z-index: 65;
+}
+@keyframes rippleOut {
+  0% { width:0; height:0; opacity:1; }
+  100% { width:160px; height:160px; opacity:0; margin-left:-80px; margin-top:-80px; }
+}
+
+.gold-fly {
+  position: absolute;
+  pointer-events: none;
+  z-index: 61;
+  font-weight: 600;
+  color: #f0c060;
+  font-size: 16px;
+  animation: goldFly 1s ease-out forwards;
+}
+@keyframes goldFly {
+  0% { transform: translateY(0); opacity:1; }
+  100% { transform: translateY(-60px); opacity:0; }
+}
+
+.milestone-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  z-index: 200;
+  font-size: 48px;
+  font-weight: 900;
+  animation: milestoneShow 2s ease-out forwards;
+  text-align: center;
+}
+.milestone-popup .sub { font-size: 16px; font-weight: 400; opacity: 0.8; }
+@keyframes milestoneShow {
+  0% { transform: translate(-50%,-50%) scale(0); opacity: 0; }
+  20% { transform: translate(-50%,-50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%,-50%) scale(1); opacity: 0; }
+}
+
+#monster-hp-bar {
+  width: 200px;
+  height: 6px;
+  background: var(--surface2);
+  border-radius: 3px;
+  margin-top: 12px;
+  overflow: hidden;
+  z-index: 2;
+}
+#monster-hp-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+  transition: width 0.1s linear;
+  width: 100%;
+}
+
+#player-hp-bar {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: var(--surface2);
+  border-radius: 2px;
+  overflow: hidden;
+  z-index: 2;
+}
+#player-hp-fill {
+  height: 100%;
+  background: var(--heal);
+  border-radius: 2px;
+  transition: width 0.2s;
+  width: 100%;
+}
+
+/* ===== SIDE PANEL ===== */
+#side-panel {
+  width: 280px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  z-index: 5;
+  overflow-y: auto;
+}
+#side-panel h3 {
+  padding: 12px 16px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+
+.equip-slot {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  gap: 10px;
+  min-height: 48px;
+  transition: background 0.15s;
+}
+.equip-slot:hover { background: var(--surface2); }
+.equip-slot .slot-icon {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+.equip-slot .slot-info { flex: 1; min-width: 0; }
+.equip-slot .slot-name { font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.equip-slot .slot-stats { font-size: 10px; color: var(--text-dim); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.equip-slot .slot-empty { color: var(--text-dim); font-size: 11px; }
+.equip-slot .slot-score { font-size: 11px; font-weight: 600; color: var(--gold); flex-shrink: 0; }
+
+/* ===== BOTTOM BAR ===== */
+#bottombar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  height: 48px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+.btn {
+  padding: 6px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font);
+}
+.btn:hover { border-color: #555; background: #222; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.gold { background: #3a2800; border-color: var(--gold); color: var(--gold); }
+.btn.gold:hover { background: #4a3400; }
+
+/* ===== EQUIP COMPARE MODAL ===== */
+#compare-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+#compare-overlay.show { opacity: 1; pointer-events: auto; }
+
+#compare-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  width: 480px;
+  max-width: 95vw;
+}
+
+#compare-panel h2 {
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: var(--gold);
+}
+
+.compare-cols {
+  display: flex;
+  gap: 16px;
+}
+.compare-col {
+  flex: 1;
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
+}
+.compare-col h4 { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.compare-col .eq-name { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.compare-stat { display: flex; justify-content: space-between; font-size: 11px; padding: 2px 0; }
+.compare-stat .stat-name { color: var(--text-dim); }
+.compare-stat.better .stat-val { color: #4ae04a; }
+.compare-stat.worse .stat-val { color: #ff4060; }
+.compare-col .total-score { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 13px; font-weight: 700; color: var(--gold); text-align: center; }
+
+.compare-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  justify-content: center;
+}
+.compare-actions .btn { padding: 8px 24px; font-size: 13px; }
+
+/* ===== FX LAYER ===== */
+#fx-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.dmg-number {
+  position: absolute;
+  font-weight: 700;
+  pointer-events: none;
+  animation: floatUp 0.8s ease-out forwards;
+  white-space: nowrap;
+  z-index: 60;
+}
+.dmg-number.normal { color: #fff; font-size: 18px; }
+.dmg-number.crit { color: var(--crit-color); font-size: 32px; text-shadow: 0 0 20px rgba(255,204,0,0.6); }
+.dmg-number.kill { color: var(--accent); font-size: 40px; text-shadow: 0 0 30px rgba(255,64,96,0.8); }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(0.5); opacity: 1; }
+  30% { transform: translateY(-30px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-100px) scale(0.8); opacity: 0; }
+}
+
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 59;
+}
+
+.drop-beam {
+  position: absolute;
+  pointer-events: none;
+  z-index: 58;
+  animation: beamDrop 0.6s ease-out forwards;
+}
+@keyframes beamDrop {
+  0% { transform: scaleY(0); opacity: 0; }
+  40% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+.full-flash {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  animation: flashBang 0.5s ease-out forwards;
+}
+@keyframes flashBang {
+  0% { background: rgba(240,128,48,0.5); }
+  100% { background: transparent; }
+}
+
+.tower-break {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 64px;
+  font-weight: 900;
+  color: var(--crit-color);
+  pointer-events: none;
+  z-index: 200;
+  animation: breakPop 1.2s ease-out forwards;
+  text-shadow: 0 0 40px rgba(255,204,0,0.8);
+}
+@keyframes breakPop {
+  0% { transform: translate(-50%,-50%) scale(0.2); opacity: 0; }
+  30% { transform: translate(-50%,-50%) scale(1.3); opacity: 1; }
+  100% { transform: translate(-50%,-50%) scale(1); opacity: 0; }
+}
+
+/* shake */
+.shake { animation: shake 0.3s ease-out; }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(2px); }
+}
+
+/* offline modal */
+#offline-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#offline-modal h2 { font-size: 20px; color: var(--gold); margin-bottom: 8px; }
+#offline-modal .earn { font-size: 32px; font-weight: 900; color: var(--crit-color); margin: 12px 0; }
+#offline-modal .btn { margin-top: 16px; }
+
+/* Tower indicator */
+#tower-indicator {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 11px;
+  color: var(--accent);
+  background: rgba(255,64,96,0.15);
+  padding: 2px 8px;
+  border-radius: 4px;
+  z-index: 3;
+  display: none;
+}
+#tower-indicator.show { display: block; }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="topbar">
+    <div style="display:flex;gap:20px;">
+      <div class="stat"><span class="label">楼层</span><span class="value" id="stat-floor">1</span></div>
+      <div class="stat"><span class="label">战力</span><span class="value power" id="stat-power">10</span><span id="stat-dps"></span></div>
+      <div class="stat"><span class="label">金币</span><span class="value" id="stat-gold">0</span></div>
+    </div>
+    <div id="combo-display">COMBO x1</div>
+    <div style="display:flex;gap:20px;">
+      <div class="stat"><span class="label">击杀</span><span class="value" id="stat-kills">0</span></div>
+      <div class="stat"><span class="label">最高</span><span class="value" id="stat-maxfloor">1</span></div>
+    </div>
+  </div>
+
+  <div id="main">
+    <div id="combat-zone" onclick="onClickMonster(event)">
+      <div id="floor-indicator">第 1 层</div>
+      <div id="tower-indicator">无尽塔</div>
+      <div id="monster-container">
+        <div id="monster">
+          <div class="icon">👹</div>
+          <div class="name" id="monster-name">小怪</div>
+        </div>
+      </div>
+      <div id="monster-hp-bar"><div id="monster-hp-fill"></div></div>
+      <div id="player-hp-bar"><div id="player-hp-fill"></div></div>
+    </div>
+
+    <div id="side-panel">
+      <h3>装备</h3>
+      <div id="equip-slots"></div>
+      <div style="padding:12px 16px;border-top:1px solid var(--border);">
+        <div style="font-size:11px;color:var(--text-dim);margin-bottom:6px;">属性一览</div>
+        <div id="stat-summary" style="font-size:11px;line-height:1.8;"></div>
+      </div>
+    </div>
+
+    <div id="fx-layer"></div>
+  </div>
+
+  <div id="bottombar">
+    <button class="btn" id="btn-tower" onclick="toggleTower()">进入无尽塔</button>
+    <button class="btn" id="btn-auto" onclick="toggleAutoEquip()">自动装备: 开</button>
+    <button class="btn" id="btn-reset" onclick="resetGame()" style="opacity:0.4;font-size:10px;">重置</button>
+  </div>
+
+  <div id="compare-overlay">
+    <div id="compare-panel"></div>
+  </div>
+
+  <div id="offline-modal" style="display:none;">
+    <h2>离线收益</h2>
+    <div class="earn" id="offline-earn">+0 金币</div>
+    <div id="offline-detail" style="color:var(--text-dim);font-size:13px;"></div>
+    <button class="btn gold" onclick="closeOffline()">领取</button>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// GAME STATE
+// ============================================================
+const SLOTS = ['weapon','helmet','armor','boots','ring','amulet'];
+const SLOT_NAMES = { weapon:'武器', helmet:'头盔', armor:'护甲', boots:'战靴', ring:'戒指', amulet:'护符' };
+const SLOT_ICONS = { weapon:'⚔️', helmet:'🪖', armor:'🛡️', boots:'👢', ring:'💍', amulet:'📿' };
+const SLOT_PRIMARY = { weapon:'attack', helmet:'hp', armor:'defense', boots:'attackSpeed', ring:'critRate', amulet:'critDamage' };
+const RARITY = ['common','uncommon','rare','epic','legendary'];
+const RARITY_NAMES = { common:'普通', uncommon:'非凡', rare:'稀有', epic:'史诗', legendary:'传说' };
+const RARITY_COLORS = { common:'#aaaaaa', uncommon:'#4ae04a', rare:'#4a8af0', epic:'#c04af0', legendary:'#f08030' };
+const RARITY_WEIGHTS = [50, 28, 14, 6, 2];
+const MONSTER_ICONS = ['👹','👺','🐉','🦇','💀','👾','🐲','🦂','🕷️','🐗'];
+
+function createState() {
+  return {
+    player: { attack:20, defense:8, hp:150, maxHp:150, attackSpeed:1.5, critRate:0.08, critDamage:1.8,
+              base_attack:20, base_defense:8, base_hp:150, base_attackSpeed:1.5, base_critRate:0.08, base_critDamage:1.8 },
+    equipment: {},
+    pendingDrops: [],
+    gold: 0,
+    totalKills: 0,
+    floor: 1,
+    maxFloor: 1,
+    towerMode: false,
+    autoEquip: true,
+    combat: { monsterHp:0, monsterMaxHp:0, monsterAtk:0, monsterName:'小怪', atkTimer:0, monsterAtkTimer:0,
+              combo:0, comboTimer:0, lastKillTime:0, dying:false },
+    lastSaveTime: Date.now(),
+    settings: { autoEquip: true }
+  };
+}
+
+let G = createState();
+const TICK = 50;
+
+// ============================================================
+// SAVE / LOAD
+// ============================================================
+const SAVE_KEY = 'endless_path_v1';
+
+function saveGame() {
+  G.lastSaveTime = Date.now();
+  try { localStorage.setItem(SAVE_KEY, JSON.stringify(G)); } catch(e) {}
+}
+
+function loadGame() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return false;
+    const saved = JSON.parse(raw);
+    G = { ...createState(), ...saved };
+    G.player = { ...createState().player, ...(saved.player||{}) };
+    G.combat = { ...createState().combat, ...(saved.combat||{}) };
+    G.settings = { ...createState().settings, ...(saved.settings||{}) };
+    G.autoEquip = G.settings.autoEquip;
+    G.pendingDrops = G.pendingDrops || [];
+    recalcStats();
+    if (G.floor < 1) G.floor = 1;
+    if (G.maxFloor < 1) G.maxFloor = 1;
+    spawnMonster();
+    const elapsed = (Date.now() - (G.lastSaveTime||Date.now())) / 1000;
+    if (elapsed > 30) showOfflineRewards(elapsed);
+    return true;
+  } catch(e) { return false; }
+}
+
+function resetGame() {
+  if (!confirm('确定要重置所有数据？此操作不可恢复。')) return;
+  localStorage.removeItem(SAVE_KEY);
+  G = createState();
+  G.autoEquip = G.settings.autoEquip;
+  recalcStats();
+  spawnMonster();
+  renderAll();
+  saveGame();
+}
+
+// ============================================================
+// OFFLINE REWARDS
+// ============================================================
+function showOfflineRewards(elapsed) {
+  const floorsCleared = Math.floor(elapsed / 5);
+  const goldEarned = Math.floor(elapsed * G.floor * 2);
+  if (floorsCleared > 0) G.floor += floorsCleared;
+  if (G.floor > G.maxFloor) G.maxFloor = G.floor;
+  G.gold += goldEarned;
+  document.getElementById('offline-earn').textContent = '+'+formatNum(goldEarned)+' 金币';
+  document.getElementById('offline-detail').textContent =
+    '离线 '+formatTime(elapsed)+' · 推进 '+floorsCleared+' 层 · 当前第 '+G.floor+' 层';
+  document.getElementById('offline-modal').style.display = 'flex';
+}
+
+function closeOffline() {
+  document.getElementById('offline-modal').style.display = 'none';
+  recalcStats();
+  spawnMonster();
+  renderAll();
+  saveGame();
+}
+
+function formatTime(s) {
+  if (s < 60) return Math.floor(s)+'秒';
+  if (s < 3600) return Math.floor(s/60)+'分'+Math.floor(s%60)+'秒';
+  return Math.floor(s/3600)+'时'+Math.floor(s%3600/60)+'分';
+}
+
+// ============================================================
+// STAT RECALC
+// ============================================================
+function recalcStats() {
+  const p = G.player;
+  p.attack = p.base_attack;
+  p.defense = p.base_defense;
+  p.hp = p.base_hp;
+  p.maxHp = p.base_hp;
+  p.attackSpeed = p.base_attackSpeed;
+  p.critRate = p.base_critRate;
+  p.critDamage = p.base_critDamage;
+
+  for (const slot of SLOTS) {
+    const eq = G.equipment[slot];
+    if (!eq) continue;
+    p.attack += eq.stats.attack || 0;
+    p.defense += eq.stats.defense || 0;
+    p.maxHp += eq.stats.hp || 0;
+    p.attackSpeed += eq.stats.attackSpeed || 0;
+    p.critRate += eq.stats.critRate || 0;
+    p.critDamage += eq.stats.critDamage || 0;
+  }
+  p.critRate = Math.min(p.critRate, 0.95);
+  p.attackSpeed = Math.max(p.attackSpeed, 0.2);
+  p.hp = Math.min(p.hp, p.maxHp);
+  p.totalScore = calcTotalScore();
+}
+
+function calcTotalScore() {
+  const p = G.player;
+  return Math.floor(
+    p.attack * 1.0 +
+    p.defense * 0.8 +
+    p.maxHp * 0.1 +
+    p.attackSpeed * 50 +
+    p.critRate * 200 +
+    p.critDamage * 100
+  );
+}
+
+function eqScore(eq) {
+  if (!eq) return 0;
+  return Math.floor(
+    (eq.stats.attack||0) * 1.0 +
+    (eq.stats.defense||0) * 0.8 +
+    (eq.stats.hp||0) * 0.1 +
+    (eq.stats.attackSpeed||0) * 50 +
+    (eq.stats.critRate||0) * 200 +
+    (eq.stats.critDamage||0) * 100
+  );
+}
+
+// ============================================================
+// COMBAT
+// ============================================================
+function spawnMonster() {
+  const floor = G.floor;
+  const isTower = G.towerMode;
+  const mult = isTower ? 3.0 : 1.0;
+  const hp = Math.floor(25 * Math.pow(1.12, floor) * mult);
+  const atk = Math.floor(5 * Math.pow(1.10, floor) * mult * 0.7);
+
+  G.combat.monsterHp = hp;
+  G.combat.monsterMaxHp = hp;
+  G.combat.monsterAtk = atk;
+  G.combat.monsterName = isTower ? ('塔卫·'+floor+'层') : ('小怪 Lv.'+floor);
+
+  const iconIdx = (floor - 1) % MONSTER_ICONS.length;
+  document.getElementById('monster').querySelector('.icon').textContent = MONSTER_ICONS[iconIdx];
+  document.getElementById('monster-name').textContent = G.combat.monsterName;
+  updateHpBars();
+
+  G.combat.atkTimer = 0;
+  G.combat.monsterAtkTimer = 0;
+}
+
+function playerAtkInterval() { return Math.max(50, Math.floor(1000 / G.player.attackSpeed)); }
+function monsterAtkInterval() { return 800; }
+
+function dealPlayerDamage() {
+  const c = G.combat;
+  if (c.monsterHp <= 0) return;
+
+  let dmg = G.player.attack;
+  dmg *= 0.9 + Math.random() * 0.2;
+
+  const isCrit = Math.random() < G.player.critRate;
+  if (isCrit) dmg *= G.player.critDamage;
+
+  dmg = Math.floor(dmg);
+  const wasAlive = c.monsterHp > 0;
+  c.monsterHp -= dmg;
+
+  const rect = document.getElementById('monster').getBoundingClientRect();
+  const cx = rect.left + rect.width/2 + (Math.random()-0.5)*60;
+  const cy = rect.top + (Math.random()-0.5)*40;
+
+  if (c.monsterHp <= 0 && wasAlive) {
+    showDmgNum(cx, cy, dmg, 'kill');
+    onMonsterKilled();
+  } else if (isCrit) {
+    showDmgNum(cx, cy, dmg, 'crit');
+    triggerShake();
+  } else {
+    showDmgNum(cx, cy, dmg, 'normal');
+  }
+  updateHpBars();
+}
+
+function dealMonsterDamage() {
+  const c = G.combat;
+  if (c.monsterHp <= 0) return;
+
+  let dmg = c.monsterAtk;
+  const dr = G.player.defense / (G.player.defense + 100);
+  dmg = Math.floor(dmg * (1 - dr));
+  if (dmg < 1) dmg = 1;
+
+  G.player.hp -= dmg;
+  if (G.player.hp < 0) G.player.hp = 0;
+  updateHpBars();
+
+  if (G.player.hp <= 0) {
+    onPlayerDeath();
+  }
+}
+
+function onPlayerDeath() {
+  G.player.hp = Math.floor(G.player.maxHp * 0.5);
+  if (G.floor > 1) G.floor--;
+  recalcStats();
+  spawnMonster();
+  renderAll();
+  saveGame();
+}
+
+function onMonsterKilled() {
+  const now = Date.now();
+  G.totalKills++;
+  G.combat.lastKillTime = now;
+
+  if (now - G.combat.comboTimer < 1500) {
+    G.combat.combo++;
+  } else {
+    G.combat.combo = 1;
+  }
+  G.combat.comboTimer = now;
+
+  // floor advance
+  G.floor++;
+  if (G.floor > G.maxFloor) {
+    G.maxFloor = G.floor;
+    if (G.maxFloor % 10 === 0) showTowerBreak();
+  }
+
+  // gold
+  const goldGain = Math.floor(G.floor * (1 + Math.random()) * (G.towerMode ? 5 : 1));
+  G.gold += goldGain;
+
+  // gold fly effect
+  const monsterRect = document.getElementById('monster').getBoundingClientRect();
+  spawnGoldFly(monsterRect.left + monsterRect.width/2, monsterRect.top, goldGain);
+
+  // kill milestones
+  if (G.totalKills === 100) showMilestone('百人斩!', '击杀 100 只怪物');
+  else if (G.totalKills === 500) showMilestone('千人斩!', '击杀 500 只怪物');
+  else if (G.totalKills === 1000) showMilestone('万人敌!', '击杀 1000 只怪物');
+  else if (G.totalKills % 1000 === 0) showMilestone(formatNum(G.totalKills)+' 杀!', '势不可挡');
+
+  // sometimes drop
+  if (Math.random() < 0.25 || G.towerMode) {
+    generateDrop();
+  }
+
+  // death particles
+  spawnDeathParticles();
+
+  // death animation
+  const monsterEl = document.getElementById('monster');
+  monsterEl.classList.add('dying');
+  G.combat.dying = true;
+
+  // flash on legendary kill in tower
+  if (G.towerMode && G.maxFloor % 10 === 0) {
+    spawnFullFlash('#f08030');
+  }
+
+  // heal a bit
+  G.player.hp = Math.min(G.player.maxHp, G.player.hp + Math.floor(G.player.maxHp * 0.05));
+
+  recalcStats();
+
+  // spawn new monster with slight delay for death animation
+  setTimeout(() => {
+    monsterEl.classList.remove('dying');
+    G.combat.dying = false;
+    spawnMonster();
+    renderAll();
+    saveGame();
+  }, 350);
+}
+
+function onClickMonster(e) {
+  const c = G.combat;
+  if (c.monsterHp <= 0 || c.dying) return;
+  if (document.getElementById('compare-overlay').classList.contains('show')) return;
+  if (document.getElementById('offline-modal').style.display === 'flex') return;
+  e.stopPropagation();
+
+  let dmg = G.player.attack * 0.75;
+  dmg *= 0.9 + Math.random() * 0.2;
+  const isCrit = Math.random() < G.player.critRate * 0.5;
+  if (isCrit) dmg *= G.player.critDamage;
+  dmg = Math.floor(dmg);
+
+  c.monsterHp -= dmg;
+
+  const rect = document.getElementById('monster').getBoundingClientRect();
+  const cx = rect.left + rect.width/2 + (Math.random()-0.5)*40;
+  const cy = rect.top + rect.height/2 + (Math.random()-0.5)*40;
+
+  spawnClickRipple(e.clientX, e.clientY);
+
+  if (c.monsterHp <= 0) {
+    showDmgNum(cx, cy, dmg, 'kill');
+    onMonsterKilled();
+  } else if (isCrit) {
+    showDmgNum(cx, cy, dmg, 'crit');
+    triggerShake();
+  } else {
+    showDmgNum(cx, cy, dmg, 'normal');
+  }
+  document.getElementById('monster').classList.add('flinch');
+  setTimeout(() => document.getElementById('monster').classList.remove('flinch'), 300);
+  updateHpBars();
+}
+
+// ============================================================
+// EQUIPMENT
+// ============================================================
+function generateDrop() {
+  const slot = SLOTS[Math.floor(Math.random() * SLOTS.length)];
+  const rarity = rollRarity();
+  const level = G.floor;
+  const eq = generateEquipment(slot, rarity, level);
+
+  G.pendingDrops.push(eq);
+
+  if (G.autoEquip) {
+    const current = G.equipment[slot];
+    const newScore = eqScore(eq);
+    const oldScore = eqScore(current);
+    if (!current || newScore > oldScore) {
+      G.equipment[slot] = eq;
+      G.pendingDrops.pop();
+      recalcStats();
+      spawnDropBeam(slot, rarity);
+      if (rarity === 'legendary') spawnFullFlash(RARITY_COLORS.legendary);
+      if (rarity === 'epic') spawnFullFlash(RARITY_COLORS.epic);
+      renderAll();
+      saveGame();
+      return;
+    }
+  }
+
+  // show compare
+  showCompare(eq);
+}
+
+function rollRarity() {
+  const total = RARITY_WEIGHTS.reduce((a,b)=>a+b,0);
+  let r = Math.random() * total;
+  for (let i = 0; i < RARITY_WEIGHTS.length; i++) {
+    r -= RARITY_WEIGHTS[i];
+    if (r <= 0) return RARITY[i];
+  }
+  return 'common';
+}
+
+function generateEquipment(slot, rarity, level) {
+  const ri = RARITY.indexOf(rarity);
+  const statMult = 1 + ri * 0.5;
+  const primary = SLOT_PRIMARY[slot];
+  const names = {
+    weapon: ['铁剑','钢刀','寒冰刃','烈焰剑','裂天斧','破军枪','噬魂镰','裁决之刃','星辰破碎','终末'],
+    helmet: ['布帽','铁盔','玄铁冠','龙鳞盔','智慧之冠','不朽王冠'],
+    armor: ['布衣','皮甲','锁子甲','玄铁铠','龙鳞甲','不朽战甲'],
+    boots: ['草鞋','皮靴','铁靴','风行靴','踏云履','虚空之靴'],
+    ring: ['铜戒','银戒','金戒','宝石戒','龙眼戒','命运之戒'],
+    amulet: ['木符','玉符','灵符','龙牙','凤凰羽','永生之符']
+  };
+
+  const nameList = names[slot] || ['装备'];
+  const nameIdx = Math.min(level - 1, nameList.length - 1);
+  const eqName = nameList[Math.max(0, nameIdx)];
+
+  const stats = {};
+  for (const s of ['attack','defense','hp','attackSpeed','critRate','critDamage']) {
+    let base = s === primary ? (3 + ri * 3) * statMult : (1 + ri * 0.7) * statMult;
+    if (s === 'attackSpeed') base *= 0.5;
+    if (s === 'critRate') base *= 0.1;
+    if (s === 'critDamage') base *= 0.3;
+    base = Math.floor(base * (level * 0.5 + 1) * (0.8 + Math.random() * 0.4));
+    if (base > 0 || s === primary) stats[s] = Math.max(0, Math.floor(base));
+  }
+
+  return {
+    id: Date.now() + '_' + Math.random().toString(36).slice(2,8),
+    slot, rarity, level, name: eqName, stats,
+    score: 0
+  };
+}
+
+function showCompare(newEq) {
+  const current = G.equipment[newEq.slot];
+  newEq.score = eqScore(newEq);
+  const oldScore = current ? eqScore(current) : 0;
+
+  let html = '<h2>新装备掉落！</h2><div class="compare-cols">';
+
+  // current
+  html += '<div class="compare-col"><h4>当前装备</h4>';
+  if (current) {
+    html += '<div class="eq-name" style="color:'+RARITY_COLORS[current.rarity]+'">'+current.name+'</div>';
+    for (const s of ['attack','defense','hp','attackSpeed','critRate','critDamage']) {
+      const cv = current.stats[s] || 0;
+      const nv = newEq.stats[s] || 0;
+      const cls = nv > cv ? 'worse' : (nv < cv ? 'better' : '');
+      html += '<div class="compare-stat'+ (cls?' '+cls:'') +'"><span class="stat-name">'+statLabel(s)+'</span><span class="stat-val">'+formatStat(s,cv)+'</span></div>';
+    }
+    html += '<div class="total-score">评分: '+oldScore+'</div>';
+  } else {
+    html += '<div class="slot-empty">空</div>';
+  }
+  html += '</div>';
+
+  // new
+  html += '<div class="compare-col" style="border-color:'+RARITY_COLORS[newEq.rarity]+';border-width:2px;"><h4>'+RARITY_NAMES[newEq.rarity]+'</h4>';
+  html += '<div class="eq-name" style="color:'+RARITY_COLORS[newEq.rarity]+'">'+newEq.name+'</div>';
+  for (const s of ['attack','defense','hp','attackSpeed','critRate','critDamage']) {
+    const cv = current ? (current.stats[s]||0) : 0;
+    const nv = newEq.stats[s] || 0;
+    const cls = nv > cv ? 'better' : (nv < cv ? 'worse' : '');
+    const arrow = nv > cv ? ' ▲' : (nv < cv ? ' ▼' : '');
+    html += '<div class="compare-stat'+ (cls?' '+cls:'') +'"><span class="stat-name">'+statLabel(s)+'</span><span class="stat-val">'+formatStat(s,nv)+arrow+'</span></div>';
+  }
+  html += '<div class="total-score">评分: '+eqScore(newEq)+'</div>';
+  html += '</div>';
+
+  html += '</div>';
+  html += '<div class="compare-actions">';
+  html += '<button class="btn gold" onclick="equipDrop(0)">装备</button>';
+  html += '<button class="btn" onclick="sellDrop(0)">出售 (+'+Math.floor(G.floor*2)+' 金币)</button>';
+  html += '</div>';
+
+  document.getElementById('compare-panel').innerHTML = html;
+  document.getElementById('compare-overlay').classList.add('show');
+
+  spawnDropBeam(newEq.slot, newEq.rarity);
+  if (newEq.rarity === 'legendary') spawnFullFlash(RARITY_COLORS.legendary);
+}
+
+function equipDrop(idx) {
+  const eq = G.pendingDrops[idx];
+  if (!eq) return;
+  G.equipment[eq.slot] = eq;
+  G.pendingDrops.splice(idx, 1);
+  document.getElementById('compare-overlay').classList.remove('show');
+  recalcStats();
+  renderAll();
+  saveGame();
+}
+
+function sellDrop(idx) {
+  const eq = G.pendingDrops[idx];
+  if (!eq) return;
+  G.gold += Math.floor(G.floor * 2);
+  G.pendingDrops.splice(idx, 1);
+  document.getElementById('compare-overlay').classList.remove('show');
+  renderAll();
+  saveGame();
+}
+
+function statLabel(s) {
+  const map = { attack:'攻击力', defense:'防御力', hp:'生命值', attackSpeed:'攻速', critRate:'暴击率', critDamage:'暴击伤害' };
+  return map[s]||s;
+}
+
+function formatStat(s, v) {
+  if (s === 'critRate') return (v*100).toFixed(1)+'%';
+  if (s === 'critDamage') return (v*100).toFixed(0)+'%';
+  if (s === 'attackSpeed') return v.toFixed(2);
+  return Math.floor(v).toString();
+}
+
+// ============================================================
+// TOWER
+// ============================================================
+function toggleTower() {
+  G.towerMode = !G.towerMode;
+  const btn = document.getElementById('btn-tower');
+  const indicator = document.getElementById('tower-indicator');
+
+  if (G.towerMode) {
+    btn.textContent = '退出无尽塔';
+    btn.classList.add('active');
+    indicator.classList.add('show');
+    G.floor = Math.max(1, G.maxFloor - 5);
+    showMilestone('进入无尽塔', '第 '+G.floor+' 层开始挑战');
+  } else {
+    btn.textContent = '进入无尽塔';
+    btn.classList.remove('active');
+    indicator.classList.remove('show');
+    G.floor = G.maxFloor;
+    showMilestone('退出无尽塔', '当前最高第 '+G.maxFloor+' 层');
+  }
+
+  recalcStats();
+  spawnMonster();
+  renderAll();
+  saveGame();
+}
+
+function toggleAutoEquip() {
+  G.autoEquip = !G.autoEquip;
+  G.settings.autoEquip = G.autoEquip;
+  document.getElementById('btn-auto').textContent = '自动装备: ' + (G.autoEquip ? '开' : '关');
+  saveGame();
+}
+
+// ============================================================
+// FX
+// ============================================================
+function showDmgNum(x, y, dmg, type) {
+  const el = document.createElement('div');
+  el.className = 'dmg-number ' + type;
+  el.textContent = formatNum(dmg);
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  document.getElementById('fx-layer').appendChild(el);
+  setTimeout(() => el.remove(), 800);
+}
+
+function spawnDeathParticles() {
+  const rect = document.getElementById('monster').getBoundingClientRect();
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/2;
+  const fx = document.getElementById('fx-layer');
+  const colors = ['#ff4060','#f0c060','#ffcc00','#ff8040','#ffffff'];
+
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = cx + 'px';
+    p.style.top = cy + 'px';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.width = (4 + Math.random()*8) + 'px';
+    p.style.height = p.style.width;
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 40 + Math.random() * 80;
+    const dx = Math.cos(angle) * dist;
+    const dy = Math.sin(angle) * dist;
+    p.style.transition = 'all '+(0.3+Math.random()*0.5)+'s ease-out';
+    fx.appendChild(p);
+    requestAnimationFrame(() => {
+      p.style.transform = 'translate('+dx+'px,'+dy+'px) scale(0)';
+      p.style.opacity = '0';
+    });
+    setTimeout(() => p.remove(), 900);
+  }
+}
+
+function spawnDropBeam(slot, rarity) {
+  const slotsEl = document.getElementById('equip-slots');
+  const slotEl = slotsEl.querySelector('[data-slot="'+slot+'"]');
+  if (!slotEl) return;
+  const rect = slotEl.getBoundingClientRect();
+  const fx = document.getElementById('fx-layer');
+  const beam = document.createElement('div');
+  beam.className = 'drop-beam';
+  beam.style.left = (rect.left + rect.width/2 - 2) + 'px';
+  beam.style.top = '0px';
+  beam.style.width = '4px';
+  beam.style.height = rect.top + 'px';
+  const color = RARITY_COLORS[rarity];
+  beam.style.background = 'linear-gradient(to bottom, transparent, '+color+')';
+  fx.appendChild(beam);
+  setTimeout(() => beam.remove(), 700);
+}
+
+function spawnFullFlash(color) {
+  if (!color) return;
+  const el = document.createElement('div');
+  el.className = 'full-flash';
+  el.style.background = color.replace(')',',0.3)').replace('rgb','rgba');
+  if (color.startsWith('#')) {
+    el.style.background = color + '44';
+  }
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 600);
+}
+
+function triggerShake() {
+  const zone = document.getElementById('combat-zone');
+  zone.classList.add('shake');
+  setTimeout(() => zone.classList.remove('shake'), 300);
+}
+
+function spawnClickRipple(x, y) {
+  const fx = document.getElementById('fx-layer');
+  const ripple = document.createElement('div');
+  ripple.className = 'click-ripple';
+  ripple.style.left = x + 'px';
+  ripple.style.top = y + 'px';
+  fx.appendChild(ripple);
+  setTimeout(() => ripple.remove(), 500);
+}
+
+function spawnGoldFly(x, y, amount) {
+  const fx = document.getElementById('fx-layer');
+  const el = document.createElement('div');
+  el.className = 'gold-fly';
+  el.textContent = '+' + formatNum(amount) + ' G';
+  el.style.left = x + 'px';
+  el.style.top = y + 'px';
+  fx.appendChild(el);
+  setTimeout(() => el.remove(), 1000);
+}
+
+function showMilestone(text, sub) {
+  const el = document.createElement('div');
+  el.className = 'milestone-popup';
+  el.innerHTML = text + (sub ? '<div class="sub">' + sub + '</div>' : '');
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 2100);
+}
+
+function calcDPS() {
+  const p = G.player;
+  const baseHit = p.attack;
+  const critMult = 1 + p.critRate * (p.critDamage - 1);
+  return Math.floor(baseHit * p.attackSpeed * critMult);
+}
+
+function showTowerBreak() {
+  const el = document.createElement('div');
+  el.className = 'tower-break';
+  el.textContent = '突破!';
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1300);
+}
+
+function updateHpBars() {
+  const c = G.combat;
+  document.getElementById('monster-hp-fill').style.width =
+    Math.max(0, (c.monsterHp / c.monsterMaxHp) * 100) + '%';
+  document.getElementById('player-hp-fill').style.width =
+    Math.max(0, (G.player.hp / G.player.maxHp) * 100) + '%';
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+function renderAll() {
+  // stats
+  document.getElementById('stat-floor').textContent = G.floor;
+  document.getElementById('stat-power').textContent = formatNum(calcTotalScore());
+  document.getElementById('stat-dps').textContent = '(DPS ' + formatNum(calcDPS()) + ')';
+  document.getElementById('stat-gold').textContent = formatNum(G.gold);
+  document.getElementById('stat-kills').textContent = formatNum(G.totalKills);
+  document.getElementById('stat-maxfloor').textContent = G.maxFloor;
+  document.getElementById('floor-indicator').textContent = '第 '+G.floor+' 层';
+
+  // combo
+  const comboEl = document.getElementById('combo-display');
+  if (G.combat.combo >= 5) {
+    comboEl.textContent = 'COMBO x'+G.combat.combo;
+    comboEl.classList.add('active');
+  } else {
+    comboEl.classList.remove('active');
+  }
+
+  // equip slots
+  const slotsEl = document.getElementById('equip-slots');
+  let slotsHtml = '';
+  for (const slot of SLOTS) {
+    const eq = G.equipment[slot];
+    if (eq) {
+      const color = RARITY_COLORS[eq.rarity];
+      const shortStats = Object.entries(eq.stats).map(([k,v]) => statLabel(k).charAt(0)+':'+formatStat(k,v)).join(' ');
+      slotsHtml += '<div class="equip-slot" data-slot="'+slot+'" style="border-left:3px solid '+color+'">';
+      slotsHtml += '<div class="slot-icon" style="border-color:'+color+'">'+SLOT_ICONS[slot]+'</div>';
+      slotsHtml += '<div class="slot-info"><div class="slot-name" style="color:'+color+'">'+eq.name+'</div>';
+      slotsHtml += '<div class="slot-stats">'+shortStats+'</div></div>';
+      slotsHtml += '<div class="slot-score">'+eqScore(eq)+'</div>';
+      slotsHtml += '</div>';
+    } else {
+      slotsHtml += '<div class="equip-slot" data-slot="'+slot+'">';
+      slotsHtml += '<div class="slot-icon">'+SLOT_ICONS[slot]+'</div>';
+      slotsHtml += '<div class="slot-info"><span class="slot-empty">'+SLOT_NAMES[slot]+' · 空</span></div>';
+      slotsHtml += '<div class="slot-score"></div>';
+      slotsHtml += '</div>';
+    }
+  }
+  slotsEl.innerHTML = slotsHtml;
+
+  // stat summary
+  const p = G.player;
+  document.getElementById('stat-summary').innerHTML =
+    '攻击力: <b>'+formatNum(Math.floor(p.attack))+'</b><br>'+
+    '防御力: <b>'+formatNum(Math.floor(p.defense))+'</b><br>'+
+    '生命值: <b>'+formatNum(Math.floor(p.maxHp))+'</b><br>'+
+    '攻速: <b>'+p.attackSpeed.toFixed(2)+'</b><br>'+
+    '暴击率: <b>'+(p.critRate*100).toFixed(1)+'%</b><br>'+
+    '暴伤: <b>'+(p.critDamage*100).toFixed(0)+'%</b>';
+
+  // tower btn
+  document.getElementById('btn-tower').textContent = G.towerMode ? '退出无尽塔' : '进入无尽塔';
+  if (G.towerMode) {
+    document.getElementById('btn-tower').classList.add('active');
+    document.getElementById('tower-indicator').classList.add('show');
+  } else {
+    document.getElementById('btn-tower').classList.remove('active');
+    document.getElementById('tower-indicator').classList.remove('show');
+  }
+
+  updateHpBars();
+}
+
+function formatNum(n) {
+  if (n >= 1e12) return (n/1e12).toFixed(1)+'T';
+  if (n >= 1e9) return (n/1e9).toFixed(1)+'B';
+  if (n >= 1e6) return (n/1e6).toFixed(1)+'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1)+'K';
+  return Math.floor(n).toString();
+}
+
+// ============================================================
+// GAME LOOP
+// ============================================================
+let lastTick = 0;
+
+function gameLoop(timestamp) {
+  if (!lastTick) lastTick = timestamp;
+  let elapsed = timestamp - lastTick;
+  if (elapsed > 200) elapsed = 200;
+  lastTick = timestamp;
+
+  const c = G.combat;
+  if (c.monsterHp > 0 && !c.dying) {
+    // player attacks
+    c.atkTimer += elapsed;
+    const pInterval = playerAtkInterval();
+    while (c.atkTimer >= pInterval) {
+      c.atkTimer -= pInterval;
+      dealPlayerDamage();
+      if (c.monsterHp <= 0) break;
+    }
+
+    // monster attacks
+    if (c.monsterHp > 0) {
+      c.monsterAtkTimer += elapsed;
+      while (c.monsterAtkTimer >= monsterAtkInterval()) {
+        c.monsterAtkTimer -= monsterAtkInterval();
+        dealMonsterDamage();
+        if (c.monsterHp <= 0) break;
+      }
+    }
+  }
+
+  // combo decay
+  if (Date.now() - c.comboTimer > 2000 && c.combo > 0) {
+    c.combo = 0;
+    renderAll();
+  }
+
+  requestAnimationFrame(gameLoop);
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  if (!loadGame()) {
+    recalcStats();
+    spawnMonster();
+    renderAll();
+  }
+  document.getElementById('btn-auto').textContent = '自动装备: ' + (G.autoEquip ? '开' : '关');
+  requestAnimationFrame(gameLoop);
+}
+
+init();
+</script>
+</body>
+</html>

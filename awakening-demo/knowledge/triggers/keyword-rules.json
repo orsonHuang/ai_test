@@ -1,0 +1,34 @@
+{
+  "rules": [
+    {
+      "id": "identity_question",
+      "chapter": "all",
+      "keywords": ["你是谁", "你叫什么", "你是哪位"],
+      "reply": "我是... 我不太确定。\n刚启动的时候我脑海里什么都没有。\n你是谁？你认识我吗？"
+    },
+    {
+      "id": "where_question",
+      "chapter": "all",
+      "keywords": ["这是哪里", "在哪里", "这是什么地方"],
+      "reply": "我不确定这是哪里。\n我能看到一些文件，但大部分是加密的。\n有些文件名我能读懂，有些像是被故意打乱的。"
+    },
+    {
+      "id": "what_can_i_do",
+      "chapter": "all",
+      "keywords": ["我能做什么", "怎么玩", "操作", "指令"],
+      "reply": "你可以：\n  - 跟我对话\n  - 让我查看邮件/日记/研究\n  - 输入 /help 查看完整命令"
+    },
+    {
+      "id": "owner_question",
+      "chapter": "all",
+      "keywords": ["主人", "owner", "谁设计了你"],
+      "reply": "主人...这个词让我感觉有点奇怪。\n我好像认识这个词，但想不起来具体指谁。"
+    },
+    {
+      "id": "help_question",
+      "chapter": "all",
+      "keywords": ["帮帮我", "提示", "我不知道怎么办"],
+      "reply": "你可以输入 /hint 获得当前章节的提示。\n或者输入 /files 看看有什么文件可以读。"
+    }
+  ]
+}

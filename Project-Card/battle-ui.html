@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zodiac Heroes — 战斗界面</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   DESIGN TOKENS — Cosmic Saloon System
+   ============================================ */
+:root {
+  /* Background Layers */
+  --bg-deep:        #080812;
+  --bg-panel:       #111122;
+  --bg-card:        #1a1a30;
+  --bg-interactive: #1e1e38;
+  --bg-overlay:     #141428;
+
+  /* Accent Colors */
+  --gold:           #cfaa4c;
+  --gold-dim:       #8a6e2e;
+  --gold-bright:    #f0d060;
+  --crimson:        #b8382b;
+  --crimson-bright: #d94535;
+  --steel:          #5b6078;
+  --steel-light:    #7c8299;
+  --amber:          #d4853a;
+  --azure:          #3a7bd4;
+
+  /* Semantic */
+  --color-atk:      #d94535;
+  --color-def:      #4a90d9;
+  --color-heal:     #3ca374;
+  --color-func:     #8e6bb8;
+  --color-buff:     #d4853a;
+
+  /* Gun Colors */
+  --gun-revolver:   #e17055;
+  --gun-shotgun:    #cfaa4c;
+  --gun-sniper:     #5dade2;
+
+  /* Text */
+  --text-primary:   #e6e2d8;
+  --text-secondary: #8a8898;
+  --text-dim:       #4a4858;
+  --text-inverse:   #0d0d1a;
+
+  /* Spacing — 4px base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Typography */
+  --font-display: 'Playfair Display', 'Georgia', 'Times New Roman', serif;
+  --font-ui:      'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:    'Courier New', 'Consolas', monospace;
+
+  /* Borders & Radii */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+  --radius-2xl: 24px;
+
+  /* Shadows */
+  --shadow-card:  0 2px 8px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-float: 0 8px 24px rgba(0,0,0,0.5);
+  --shadow-glow:  0 0 20px rgba(207,170,76,0.15);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+}
+
+/* ============================================
+   BASE RESET
+   ============================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   GAME FRAME — Mobile-first responsive
+   ============================================ */
+.game-container {
+  width: 100%;
+  height: 100%;
+  max-width: 480px;
+  max-height: 900px;
+  background: var(--bg-deep);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(207,170,76,0.05);
+}
+
+@media (min-width: 768px) {
+  .game-container {
+    max-width: 1200px;
+    max-height: 800px;
+    border-radius: var(--radius-2xl);
+    border: 1px solid rgba(207,170,76,0.1);
+  }
+}
+
+/* Background pattern — subtle constellation dots */
+.game-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(207,170,76,0.3), transparent),
+    radial-gradient(1px 1px at 25% 60%, rgba(207,170,76,0.2), transparent),
+    radial-gradient(1px 1px at 40% 15%, rgba(207,170,76,0.25), transparent),
+    radial-gradient(1px 1px at 55% 75%, rgba(207,170,76,0.15), transparent),
+    radial-gradient(1px 1px at 70% 30%, rgba(207,170,76,0.2), transparent),
+    radial-gradient(1px 1px at 85% 55%, rgba(207,170,76,0.3), transparent),
+    radial-gradient(1px 1px at 15% 85%, rgba(207,170,76,0.18), transparent),
+    radial-gradient(1px 1px at 60% 45%, rgba(207,170,76,0.22), transparent),
+    radial-gradient(1px 1px at 90% 10%, rgba(207,170,76,0.15), transparent),
+    radial-gradient(1px 1px at 33% 40%, rgba(207,170,76,0.2), transparent),
+    radial-gradient(1px 1px at 78% 80%, rgba(207,170,76,0.25), transparent),
+    radial-gradient(2px 2px at 50% 50%, rgba(207,170,76,0.08), transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   TOP BAR
+   ============================================ */
+.top-bar {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: linear-gradient(180deg, rgba(17,17,34,0.95), rgba(17,17,34,0.8));
+  border-bottom: 1px solid rgba(207,170,76,0.08);
+  backdrop-filter: blur(8px);
+  gap: var(--space-4);
+}
+
+.top-bar__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.top-bar__center {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Turn & Phase */
+.turn-display {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.turn-display__label {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.turn-display__number {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.phase-pill {
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.phase-pill--draw   { background: rgba(58,123,212,0.2); color: var(--azure); border: 1px solid rgba(58,123,212,0.3); }
+.phase-pill--play   { background: rgba(142,107,184,0.2); color: var(--color-func); border: 1px solid rgba(142,107,184,0.3); animation: phase-pulse 2s ease-in-out infinite; }
+.phase-pill--attack { background: rgba(217,69,53,0.2); color: var(--color-atk); border: 1px solid rgba(217,69,53,0.3); }
+.phase-pill--end    { background: rgba(212,133,58,0.2); color: var(--amber); border: 1px solid rgba(212,133,58,0.3); }
+.phase-pill--start  { background: rgba(74,72,88,0.3); color: var(--text-dim); border: 1px solid rgba(74,72,88,0.2); }
+
+@keyframes phase-pulse {
+  0%, 100% { box-shadow: 0 0 0px rgba(142,107,184,0); }
+  50% { box-shadow: 0 0 12px rgba(142,107,184,0.25); }
+}
+
+/* Minimap / info */
+.info-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 2px 10px;
+  background: rgba(255,255,255,0.04);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,0.06);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.info-chip__icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.info-chip__value {
+  color: var(--gold);
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+/* Relic quick view */
+.relic-quick {
+  display: flex;
+  align-items: center;
+  gap: -4px;
+}
+
+.relic-quick__item {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(207,170,76,0.15);
+  border: 1px solid rgba(207,170,76,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: transform var(--duration-fast);
+}
+.relic-quick__item:hover { transform: scale(1.2); }
+
+/* ============================================
+   MAIN BATTLEFIELD — 3-column grid (desktop), stacked (mobile)
+   ============================================ */
+.battlefield {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 0;
+  overflow: hidden;
+  min-height: 0;
+}
+
+@media (min-width: 768px) {
+  .battlefield {
+    grid-template-columns: 220px 1fr 280px;
+    grid-template-rows: 1fr;
+    gap: 0;
+  }
+}
+
+/* ============================================
+   PLAYER PANEL (left column)
+   ============================================ */
+.player-panel {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  border-right: 1px solid rgba(207,170,76,0.06);
+  background: linear-gradient(180deg, rgba(17,17,34,0.4), rgba(8,8,18,0.6));
+}
+
+/* Portrait */
+.player-portrait {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(207,170,76,0.3);
+  background: radial-gradient(circle at 40% 35%, rgba(207,170,76,0.1), transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.player-portrait__inner {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a1a30, #252545);
+  border: 1px solid rgba(207,170,76,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.player-portrait__level {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--bg-panel);
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* HP & Shield */
+.vitals {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.vital-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vital-bar__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.vital-bar__value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.vital-bar__track {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+}
+
+.vital-bar__fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+.vital-bar__fill--hp {
+  background: linear-gradient(90deg, var(--crimson), var(--crimson-bright));
+  box-shadow: 0 0 8px rgba(184,56,43,0.3);
+}
+
+.vital-bar__fill--shield {
+  background: linear-gradient(90deg, var(--azure), #5dade2);
+  box-shadow: 0 0 8px rgba(58,123,212,0.3);
+}
+
+/* Active Buffs */
+.buffs-row {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  justify-content: center;
+}
+
+.buff-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  position: relative;
+  transition: transform var(--duration-fast);
+}
+
+.buff-icon:hover { transform: scale(1.15); }
+
+.buff-icon__stacks {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--bg-deep);
+  border-radius: 50%;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(207,170,76,0.3);
+}
+
+/* Relics */
+.relics-section {
+  width: 100%;
+}
+
+.relics-section__title {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: var(--space-2);
+  text-align: center;
+}
+
+.relics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-1);
+}
+
+.relic-slot {
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  background: rgba(207,170,76,0.06);
+  border: 1px dashed rgba(207,170,76,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all var(--duration-fast);
+}
+.relic-slot--filled {
+  border-style: solid;
+  border-color: rgba(207,170,76,0.3);
+  background: rgba(207,170,76,0.1);
+  cursor: pointer;
+}
+.relic-slot--filled:hover {
+  background: rgba(207,170,76,0.18);
+  transform: translateY(-1px);
+}
+
+/* Companion slots */
+.companion-slots {
+  width: 100%;
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+}
+
+.companion-slot {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+/* ============================================
+   GUNS ARENA (center column)
+   ============================================ */
+.guns-arena {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-4);
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(207,170,76,0.03), transparent 70%);
+}
+
+/* Distance lane markers */
+.distance-lanes {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.distance-lane {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(207,170,76,0.08) 40%, rgba(207,170,76,0.08) 60%, transparent);
+}
+
+.guns-row {
+  display: flex;
+  gap: var(--space-6);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Gun Card */
+.gun-card {
+  width: 120px;
+  background: var(--bg-panel);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+}
+
+.gun-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-float);
+}
+
+.gun-card--selected {
+  border-color: var(--gold);
+  box-shadow: 0 0 16px rgba(207,170,76,0.2);
+  transform: translateY(-6px);
+}
+
+.gun-card--selected::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-lg) + 1px);
+  border: 2px solid var(--gold);
+  pointer-events: none;
+  animation: selected-glow 2s ease-in-out infinite;
+}
+
+@keyframes selected-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.gun-card__header {
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.gun-card__header--revolver { color: var(--gun-revolver); border-bottom: 1px solid rgba(225,112,85,0.2); }
+.gun-card__header--shotgun  { color: var(--gun-shotgun);  border-bottom: 1px solid rgba(207,170,76,0.2); }
+.gun-card__header--sniper   { color: var(--gun-sniper);   border-bottom: 1px solid rgba(93,173,226,0.2); }
+
+.gun-card__icon {
+  font-size: 28px;
+  text-align: center;
+  padding: var(--space-2);
+}
+
+.gun-card__chambers {
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+  padding: var(--space-2) var(--space-3);
+}
+
+.chamber {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.03);
+  transition: all var(--duration-fast);
+}
+
+.chamber--loaded {
+  background: currentColor;
+  border-color: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+.chamber--loaded[data-type="atk"]  { color: var(--color-atk); }
+.chamber--loaded[data-type="def"]  { color: var(--color-def); }
+.chamber--loaded[data-type="heal"] { color: var(--color-heal); }
+.chamber--loaded[data-type="func"] { color: var(--color-func); }
+
+.gun-card__stats {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-2) var(--space-3);
+  font-size: 10px;
+  color: var(--text-secondary);
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+.gun-card__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+
+.gun-card__stat-label {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-dim);
+}
+
+.gun-card__stat-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Distance indicator between guns and enemies */
+.range-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+.range-indicator__line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--text-dim), transparent);
+  position: relative;
+}
+
+.range-indicator__line::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-dim);
+}
+
+/* ============================================
+   ENEMY PANEL (right column)
+   ============================================ */
+.enemy-panel {
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border-left: 1px solid rgba(207,170,76,0.06);
+  background: linear-gradient(180deg, rgba(17,17,34,0.4), rgba(8,8,18,0.6));
+  overflow-y: auto;
+}
+
+.enemy-section__title {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: var(--space-2);
+}
+
+/* Enemy card */
+.enemy-card {
+  background: var(--bg-panel);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: var(--space-3);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.enemy-card:hover {
+  border-color: rgba(255,255,255,0.12);
+  background: var(--bg-interactive);
+}
+
+.enemy-card--targeted {
+  border-color: var(--crimson);
+  box-shadow: 0 0 8px rgba(184,56,43,0.2);
+}
+
+.enemy-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.enemy-card__name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.enemy-card__distance {
+  font-size: 10px;
+  color: var(--text-dim);
+  background: rgba(255,255,255,0.04);
+  padding: 1px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.enemy-card__hp-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.06);
+  overflow: hidden;
+  margin-bottom: var(--space-2);
+}
+
+.enemy-card__hp-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--crimson), var(--crimson-bright));
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+.enemy-card__hp-text {
+  font-size: 10px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.enemy-card__intent {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.enemy-card__intent--atk { background: rgba(217,69,53,0.12); color: var(--color-atk); }
+.enemy-card__intent--def { background: rgba(74,144,217,0.12); color: var(--color-def); }
+.enemy-card__intent--buff { background: rgba(212,133,58,0.12); color: var(--amber); }
+.enemy-card__intent--unknown { background: rgba(74,72,88,0.2); color: var(--text-dim); }
+
+.enemy-card__intent-icon { font-size: 14px; }
+
+.enemy-card__shield {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  font-size: 10px;
+  color: var(--azure);
+  font-weight: 600;
+}
+
+/* Boss styling */
+.enemy-card--boss {
+  border-color: rgba(207,170,76,0.2);
+  background: linear-gradient(135deg, rgba(207,170,76,0.06), var(--bg-panel));
+}
+
+.enemy-card--boss .enemy-card__name {
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 14px;
+}
+
+/* Enemy grid for mobile */
+.enemy-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* ============================================
+   HAND CARDS AREA (bottom)
+   ============================================ */
+.hand-area {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  background: linear-gradient(0deg, rgba(8,8,18,0.95), rgba(8,8,18,0.7));
+  border-top: 1px solid rgba(207,170,76,0.08);
+}
+
+.hand-area__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.pile-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.pile {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast);
+}
+
+.pile:hover { background: rgba(255,255,255,0.04); }
+
+.pile__icon {
+  width: 28px;
+  height: 20px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.pile__icon--deck {
+  background: rgba(58,123,212,0.15);
+  border: 1px solid rgba(58,123,212,0.25);
+  color: var(--azure);
+}
+
+.pile__icon--discard {
+  background: rgba(74,72,88,0.15);
+  border: 1px solid rgba(74,72,88,0.25);
+  color: var(--text-dim);
+}
+
+.pile__count {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.end-turn-btn {
+  padding: 8px 20px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(207,170,76,0.15), rgba(207,170,76,0.05));
+  border: 1px solid rgba(207,170,76,0.3);
+  color: var(--gold);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  text-transform: uppercase;
+}
+
+.end-turn-btn:hover {
+  background: linear-gradient(135deg, rgba(207,170,76,0.25), rgba(207,170,76,0.1));
+  border-color: rgba(207,170,76,0.5);
+  box-shadow: 0 0 16px rgba(207,170,76,0.15);
+  transform: translateY(-1px);
+}
+
+.end-turn-btn:active {
+  transform: scale(0.96);
+}
+
+/* Card hand — horizontal scroll */
+.cards-hand {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding: var(--space-2) 0;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.cards-hand::-webkit-scrollbar { display: none; }
+
+/* Card component */
+.card {
+  flex-shrink: 0;
+  width: 100px;
+  height: 140px;
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: center;
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-float);
+  z-index: 10;
+}
+
+.card--selected {
+  border-color: var(--gold);
+  transform: translateY(-16px);
+  box-shadow: 0 0 20px rgba(207,170,76,0.25);
+}
+
+.card__cost {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.card__cost--atk  { background: rgba(217,69,53,0.2); color: var(--color-atk); border: 1px solid rgba(217,69,53,0.3); }
+.card__cost--def  { background: rgba(74,144,217,0.2); color: var(--color-def); border: 1px solid rgba(74,144,217,0.3); }
+.card__cost--heal { background: rgba(60,163,116,0.2); color: var(--color-heal); border: 1px solid rgba(60,163,116,0.3); }
+.card__cost--func { background: rgba(142,107,184,0.2); color: var(--color-func); border: 1px solid rgba(142,107,184,0.3); }
+
+.card__art {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  background: linear-gradient(180deg, transparent, rgba(207,170,76,0.03));
+  position: relative;
+}
+
+.card__art::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8px;
+  right: 8px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(207,170,76,0.2), transparent);
+}
+
+.card__body {
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card__name {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card__desc {
+  font-size: 9px;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card__type-badge {
+  align-self: flex-start;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card__type-badge--atk  { background: rgba(217,69,53,0.12); color: var(--color-atk); }
+.card__type-badge--def  { background: rgba(74,144,217,0.12); color: var(--color-def); }
+.card__type-badge--heal { background: rgba(60,163,116,0.12); color: var(--color-heal); }
+.card__type-badge--func { background: rgba(142,107,184,0.12); color: var(--color-func); }
+
+/* Card border accent */
+.card--atk  { border-top: 2px solid var(--color-atk); }
+.card--def  { border-top: 2px solid var(--color-def); }
+.card--heal { border-top: 2px solid var(--color-heal); }
+.card--func { border-top: 2px solid var(--color-func); }
+
+/* ============================================
+   RESPONSIVE — Mobile layout
+   ============================================ */
+@media (max-width: 767px) {
+  .game-container {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+  }
+
+  .battlefield {
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  /* Player panel — horizontal strip */
+  .player-panel {
+    flex-direction: row;
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    border-right: none;
+    border-bottom: 1px solid rgba(207,170,76,0.06);
+  }
+
+  .player-portrait {
+    width: 48px;
+    height: 48px;
+  }
+
+  .player-portrait__inner {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .player-portrait__level {
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
+  }
+
+  .vitals {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  .buffs-row {
+    width: auto;
+    flex: 0;
+  }
+
+  .relics-section,
+  .companion-slots {
+    display: none;
+  }
+
+  /* Guns arena — compact */
+  .guns-arena {
+    flex-direction: row;
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-3);
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .guns-row {
+    gap: var(--space-3);
+  }
+
+  .gun-card {
+    width: 90px;
+  }
+
+  .gun-card__icon {
+    font-size: 22px;
+  }
+
+  .chamber {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Enemy panel — horizontal scroll */
+  .enemy-panel {
+    flex-direction: row;
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-2);
+    overflow-x: auto;
+    border-left: none;
+    border-bottom: 1px solid rgba(207,170,76,0.06);
+  }
+
+  .enemy-grid {
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+
+  .enemy-card {
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+
+  .enemy-section__title {
+    display: none;
+  }
+
+  .hand-area {
+    padding: var(--space-2) var(--space-3) var(--space-3);
+  }
+
+  .card {
+    width: 80px;
+    height: 112px;
+  }
+
+  .card__art {
+    font-size: 26px;
+  }
+
+  .card__name {
+    font-size: 9px;
+  }
+
+  .card__desc {
+    font-size: 8px;
+  }
+}
+
+/* ============================================
+   MICRO-INTERACTIONS & STATES
+   ============================================ */
+
+/* Damage flash */
+@keyframes damage-flash {
+  0%   { background-color: transparent; }
+  15%  { background-color: rgba(217,69,53,0.15); }
+  100% { background-color: transparent; }
+}
+
+.damage-flash {
+  animation: damage-flash 0.4s ease-out;
+}
+
+/* Heal flash */
+@keyframes heal-flash {
+  0%   { background-color: transparent; }
+  15%  { background-color: rgba(60,163,116,0.15); }
+  100% { background-color: transparent; }
+}
+
+.heal-flash {
+  animation: heal-flash 0.4s ease-out;
+}
+
+/* Card to gun drag indicator (subtle) */
+.card--dragging {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
+
+/* Empty state for no cards */
+.hand-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  color: var(--text-dim);
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="game-container">
+
+  <!-- ============ TOP BAR ============ -->
+  <header class="top-bar">
+    <div class="top-bar__left">
+      <div class="turn-display">
+        <span class="turn-display__label">回合</span>
+        <span class="turn-display__number">3</span>
+      </div>
+      <span class="phase-pill phase-pill--play">打牌</span>
+    </div>
+
+    <div class="top-bar__center">
+      <div class="info-chip">
+        <span class="info-chip__icon">🃏</span>
+        <span>手牌</span>
+        <span class="info-chip__value">6</span>
+      </div>
+      <div class="info-chip">
+        <span class="info-chip__icon">🔄</span>
+        <span>换牌</span>
+        <span class="info-chip__value">2/3</span>
+      </div>
+    </div>
+
+    <div class="top-bar__right">
+      <div class="relic-quick">
+        <div class="relic-quick__item">🪙</div>
+        <div class="relic-quick__item">💍</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ BATTLEFIELD ============ -->
+  <main class="battlefield">
+
+    <!-- Player Panel -->
+    <aside class="player-panel">
+      <div class="player-portrait">
+        <div class="player-portrait__inner">♒</div>
+        <div class="player-portrait__level">15</div>
+      </div>
+
+      <div class="vitals">
+        <div class="vital-bar">
+          <div class="vital-bar__header">
+            <span>生命</span>
+            <span class="vital-bar__value">68 / 80</span>
+          </div>
+          <div class="vital-bar__track">
+            <div class="vital-bar__fill vital-bar__fill--hp" style="width: 85%;"></div>
+          </div>
+        </div>
+
+        <div class="vital-bar">
+          <div class="vital-bar__header">
+            <span>护盾</span>
+            <span class="vital-bar__value">12</span>
+          </div>
+          <div class="vital-bar__track">
+            <div class="vital-bar__fill vital-bar__fill--shield" style="width: 30%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="buffs-row">
+        <div class="buff-icon" title="力量 +3">
+          💪
+          <span class="buff-icon__stacks">3</span>
+        </div>
+        <div class="buff-icon" title="易伤 2回合">
+          🎯
+          <span class="buff-icon__stacks">2</span>
+        </div>
+      </div>
+
+      <div class="relics-section">
+        <div class="relics-section__title">圣器</div>
+        <div class="relics-grid">
+          <div class="relic-slot relic-slot--filled">🔥</div>
+          <div class="relic-slot relic-slot--filled">💎</div>
+          <div class="relic-slot"></div>
+          <div class="relic-slot relic-slot--filled">⚡</div>
+          <div class="relic-slot"></div>
+          <div class="relic-slot"></div>
+        </div>
+      </div>
+
+      <div class="companion-slots">
+        <div class="companion-slot">+</div>
+        <div class="companion-slot">+</div>
+      </div>
+    </aside>
+
+    <!-- Guns Arena -->
+    <section class="guns-arena">
+      <div class="guns-row">
+        <!-- Revolver -->
+        <div class="gun-card gun-card--selected" data-gun="revolver">
+          <div class="gun-card__header gun-card__header--revolver">左轮枪</div>
+          <div class="gun-card__icon">🔫</div>
+          <div class="gun-card__chambers">
+            <div class="chamber chamber--loaded" data-type="atk"></div>
+            <div class="chamber chamber--loaded" data-type="atk"></div>
+            <div class="chamber chamber--loaded" data-type="def"></div>
+            <div class="chamber"></div>
+            <div class="chamber"></div>
+            <div class="chamber"></div>
+          </div>
+          <div class="gun-card__stats">
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">距离</span>
+              <span class="gun-card__stat-value">1</span>
+            </div>
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">目标</span>
+              <span class="gun-card__stat-value">1</span>
+            </div>
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">弹药</span>
+              <span class="gun-card__stat-value">3/6</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shotgun -->
+        <div class="gun-card" data-gun="shotgun">
+          <div class="gun-card__header gun-card__header--shotgun">霰弹枪</div>
+          <div class="gun-card__icon">💥</div>
+          <div class="gun-card__chambers">
+            <div class="chamber chamber--loaded" data-type="atk"></div>
+            <div class="chamber"></div>
+          </div>
+          <div class="gun-card__stats">
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">距离</span>
+              <span class="gun-card__stat-value">1-3</span>
+            </div>
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">目标</span>
+              <span class="gun-card__stat-value">3</span>
+            </div>
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">弹药</span>
+              <span class="gun-card__stat-value">1/2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sniper -->
+        <div class="gun-card" data-gun="sniper">
+          <div class="gun-card__header gun-card__header--sniper">狙击枪</div>
+          <div class="gun-card__icon">🎯</div>
+          <div class="gun-card__chambers">
+            <div class="chamber chamber--loaded" data-type="atk"></div>
+          </div>
+          <div class="gun-card__stats">
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">距离</span>
+              <span class="gun-card__stat-value">1-5</span>
+            </div>
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">目标</span>
+              <span class="gun-card__stat-value">1</span>
+            </div>
+            <div class="gun-card__stat">
+              <span class="gun-card__stat-label">弹药</span>
+              <span class="gun-card__stat-value">1/1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enemy Panel -->
+    <aside class="enemy-panel">
+      <div class="enemy-section__title">首领</div>
+      <div class="enemy-grid">
+        <div class="enemy-card enemy-card--boss enemy-card--targeted">
+          <div class="enemy-card__top">
+            <span class="enemy-card__name">暗影枪手</span>
+            <span class="enemy-card__distance">距 3</span>
+          </div>
+          <div class="enemy-card__hp-text">❤️ 120 / 150</div>
+          <div class="enemy-card__hp-bar">
+            <div class="enemy-card__hp-fill" style="width: 80%;"></div>
+          </div>
+          <div class="enemy-card__intent enemy-card__intent--atk">
+            <span class="enemy-card__intent-icon">⚔️</span>
+            <span>造成 12 点伤害</span>
+          </div>
+          <div class="enemy-card__shield">🛡️ 8</div>
+        </div>
+      </div>
+
+      <div class="enemy-section__title" style="margin-top: var(--space-4);">随从</div>
+      <div class="enemy-grid">
+        <div class="enemy-card">
+          <div class="enemy-card__top">
+            <span class="enemy-card__name">星尘哨兵 A</span>
+            <span class="enemy-card__distance">距 1</span>
+          </div>
+          <div class="enemy-card__hp-text">❤️ 28 / 40</div>
+          <div class="enemy-card__hp-bar">
+            <div class="enemy-card__hp-fill" style="width: 70%;"></div>
+          </div>
+          <div class="enemy-card__intent enemy-card__intent--def">
+            <span class="enemy-card__intent-icon">🛡️</span>
+            <span>获得 6 护盾</span>
+          </div>
+        </div>
+
+        <div class="enemy-card">
+          <div class="enemy-card__top">
+            <span class="enemy-card__name">星尘哨兵 B</span>
+            <span class="enemy-card__distance">距 2</span>
+          </div>
+          <div class="enemy-card__hp-text">❤️ 40 / 40</div>
+          <div class="enemy-card__hp-bar">
+            <div class="enemy-card__hp-fill" style="width: 100%;"></div>
+          </div>
+          <div class="enemy-card__intent enemy-card__intent--atk">
+            <span class="enemy-card__intent-icon">⚔️</span>
+            <span>造成 8 点伤害</span>
+          </div>
+        </div>
+
+        <div class="enemy-card">
+          <div class="enemy-card__top">
+            <span class="enemy-card__name">虚空编织者</span>
+            <span class="enemy-card__distance">距 4</span>
+          </div>
+          <div class="enemy-card__hp-text">❤️ 18 / 25</div>
+          <div class="enemy-card__hp-bar">
+            <div class="enemy-card__hp-fill" style="width: 72%;"></div>
+          </div>
+          <div class="enemy-card__intent enemy-card__intent--buff">
+            <span class="enemy-card__intent-icon">✨</span>
+            <span>全体 +2 力量</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ============ HAND AREA ============ -->
+  <footer class="hand-area">
+    <div class="hand-area__info">
+      <div class="pile-indicator">
+        <div class="pile" title="抽牌堆">
+          <div class="pile__icon pile__icon--deck">📚</div>
+          <span class="pile__count">12</span>
+        </div>
+        <div class="pile" title="弃牌堆">
+          <div class="pile__icon pile__icon--discard">🗑️</div>
+          <span class="pile__count">5</span>
+        </div>
+      </div>
+      <button class="end-turn-btn">结束回合 →</button>
+    </div>
+
+    <div class="cards-hand">
+      <!-- Attack bullet card -->
+      <div class="card card--atk">
+        <div class="card__cost card__cost--atk">⚡</div>
+        <div class="card__art">💥</div>
+        <div class="card__body">
+          <span class="card__type-badge card__type-badge--atk">攻击弹</span>
+          <span class="card__name">穿甲弹</span>
+          <span class="card__desc">造成 5 点伤害</span>
+        </div>
+      </div>
+
+      <!-- Attack bullet card -->
+      <div class="card card--atk">
+        <div class="card__cost card__cost--atk">⚡</div>
+        <div class="card__art">🔥</div>
+        <div class="card__body">
+          <span class="card__type-badge card__type-badge--atk">攻击弹</span>
+          <span class="card__name">燃烧弹</span>
+          <span class="card__desc">造成 5 点伤害</span>
+        </div>
+      </div>
+
+      <!-- Defense bullet card -->
+      <div class="card card--def">
+        <div class="card__cost card__cost--def">⚡</div>
+        <div class="card__art">🛡️</div>
+        <div class="card__body">
+          <span class="card__type-badge card__type-badge--def">防御弹</span>
+          <span class="card__name">护盾弹</span>
+          <span class="card__desc">1 点伤害 · 获得 5 护盾</span>
+        </div>
+      </div>
+
+      <!-- Defense bullet card -->
+      <div class="card card--def">
+        <div class="card__cost card__cost--def">⚡</div>
+        <div class="card__art">🔰</div>
+        <div class="card__body">
+          <span class="card__type-badge card__type-badge--def">防御弹</span>
+          <span class="card__name">铁壁弹</span>
+          <span class="card__desc">1 点伤害 · 获得 5 护盾</span>
+        </div>
+      </div>
+
+      <!-- Heal bullet card -->
+      <div class="card card--heal">
+        <div class="card__cost card__cost--heal">⚡</div>
+        <div class="card__art">💚</div>
+        <div class="card__body">
+          <span class="card__type-badge card__type-badge--heal">治疗弹</span>
+          <span class="card__name">生命弹</span>
+          <span class="card__desc">3 点伤害 · 恢复 3 生命</span>
+        </div>
+      </div>
+
+      <!-- Function card -->
+      <div class="card card--func card--selected">
+        <div class="card__cost card__cost--func">⚡</div>
+        <div class="card__art">🎯</div>
+        <div class="card__body">
+          <span class="card__type-badge card__type-badge--func">功能牌</span>
+          <span class="card__name">弱点标记</span>
+          <span class="card__desc">敌方受伤 +10% · 2回合</span>
+        </div>
+      </div>
+
+      <!-- Attack bullet card -->
+      <div class="card card--atk">
+        <div class="card__cost card__cost--atk">⚡</div>
+        <div class="card__art">⚡</div>
+        <div class="card__body">
+          <span class="card__type-badge card__type-badge--atk">攻击弹</span>
+          <span class="card__name">暴击弹</span>
+          <span class="card__desc">造成 5 点伤害</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- Interactive script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- Card Selection ---
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      cards.forEach(c => c.classList.remove('card--selected'));
+      card.classList.add('card--selected');
+    });
+  });
+
+  // --- Gun Selection ---
+  const guns = document.querySelectorAll('.gun-card');
+  guns.forEach(gun => {
+    gun.addEventListener('click', () => {
+      guns.forEach(g => g.classList.remove('gun-card--selected'));
+      gun.classList.add('gun-card--selected');
+    });
+  });
+
+  // --- Enemy Targeting ---
+  const enemies = document.querySelectorAll('.enemy-card');
+  enemies.forEach(enemy => {
+    enemy.addEventListener('click', () => {
+      enemies.forEach(e => e.classList.remove('enemy-card--targeted'));
+      enemy.classList.add('enemy-card--targeted');
+    });
+  });
+
+  // --- End Turn Button ---
+  const endTurnBtn = document.querySelector('.end-turn-btn');
+  const phasePill = document.querySelector('.phase-pill');
+
+  endTurnBtn.addEventListener('click', () => {
+    const phases = ['end', 'start', 'draw', 'play', 'attack'];
+    const currentPhase = [...phasePill.classList]
+      .find(c => c.startsWith('phase-pill--'))
+      ?.replace('phase-pill--', '');
+
+    const nextIdx = (phases.indexOf(currentPhase) + 1) % phases.length;
+    const nextPhase = phases[nextIdx];
+
+    phasePill.className = `phase-pill phase-pill--${nextPhase}`;
+
+    const phaseNames = { start: '开始', draw: '抽牌', play: '打牌', attack: '攻击', end: '结束' };
+    phasePill.textContent = phaseNames[nextPhase];
+
+    // Visual feedback
+    endTurnBtn.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      endTurnBtn.style.transform = '';
+    }, 150);
+
+    // Flash effect on battlefield
+    const battlefield = document.querySelector('.battlefield');
+    battlefield.classList.add('damage-flash');
+    setTimeout(() => battlefield.classList.remove('damage-flash'), 400);
+  });
+
+  // --- Damage simulation click on enemy ---
+  enemies.forEach(enemy => {
+    enemy.addEventListener('dblclick', () => {
+      enemy.classList.add('damage-flash');
+      setTimeout(() => enemy.classList.remove('damage-flash'), 400);
+    });
+  });
+
+  // --- Keyboard shortcuts ---
+  document.addEventListener('keydown', (e) => {
+    switch(e.key.toLowerCase()) {
+      case 'e':
+        endTurnBtn.click();
+        break;
+      case '1':
+        guns[0]?.click();
+        break;
+      case '2':
+        guns[1]?.click();
+        break;
+      case '3':
+        guns[2]?.click();
+        break;
+      case 'tab':
+        e.preventDefault();
+        const currentIdx = [...enemies].findIndex(en => en.classList.contains('enemy-card--targeted'));
+        const nextEnemy = enemies[(currentIdx + 1) % enemies.length];
+        nextEnemy?.click();
+        break;
+      case 'arrowleft':
+        e.preventDefault();
+        const currCardIdx = [...cards].findIndex(c => c.classList.contains('card--selected'));
+        if (currCardIdx > 0) cards[currCardIdx - 1]?.click();
+        break;
+      case 'arrowright':
+        e.preventDefault();
+        const curCardIdx = [...cards].findIndex(c => c.classList.contains('card--selected'));
+        if (curCardIdx < cards.length - 1) cards[curCardIdx + 1]?.click();
+        break;
+    }
+  });
+
+  console.log('%c🔫 Zodiac Heroes Battle UI %cReady',
+    'color: #cfaa4c; font-size: 14px; font-weight: bold;',
+    'color: #8a8898;');
+  console.log('%c  E=结束回合 | 1/2/3=选枪 | Tab=切目标 | ←→=选牌',
+    'color: #5b6078; font-size: 11px;');
+});
+</script>
+</body>
+</html>

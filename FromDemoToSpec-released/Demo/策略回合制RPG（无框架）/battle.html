@@ -1,0 +1,1264 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>水晶遗迹之战 — 回合制RPG战斗原型</title>
+<style>
+:root {
+  --bg: #1a1a2e;
+  --surface: #16213e;
+  --surface2: #0f3460;
+  --accent: #e94560;
+  --accent2: #533483;
+  --gold: #f5c842;
+  --green: #2ecc71;
+  --blue: #3498db;
+  --red: #e74c3c;
+  --text: #e0e0e0;
+  --text-dim: #8899aa;
+  --border: #2a3a5c;
+  --radius: 8px;
+  --font: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+  --font-mono: 'Cascadia Code', 'Consolas', 'Microsoft YaHei', monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh; padding: 16px;
+}
+
+#game {
+  width: 100%; max-width: 960px;
+  background: var(--surface);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 4px 40px rgba(0,0,0,0.4);
+}
+
+#header {
+  background: var(--surface2);
+  padding: 12px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+#header h1 { font-size: 18px; font-weight: 500; color: var(--gold); letter-spacing: 0.05em; }
+#header .round { font-size: 13px; color: var(--text-dim); }
+#header .round span { color: var(--gold); font-weight: 500; }
+
+/* Turn Order */
+#turn-order {
+  background: rgba(15,52,96,0.3);
+  padding: 8px 20px;
+  display: flex; align-items: center; gap: 6px;
+  overflow-x: auto; border-bottom: 1px solid var(--border);
+  min-height: 48px;
+}
+#turn-order .label { font-size: 11px; color: var(--text-dim); margin-right: 8px; white-space: nowrap; }
+#turn-order .slot {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 500; position: relative;
+  border: 2px solid transparent; transition: all 0.3s;
+  flex-shrink: 0;
+}
+#turn-order .slot.player { background: #1a3a5c; border-color: var(--blue); color: var(--blue); }
+#turn-order .slot.enemy { background: #3a1a2c; border-color: var(--red); color: var(--red); }
+#turn-order .slot.current { transform: scale(1.2); box-shadow: 0 0 16px currentColor; z-index: 2; }
+#turn-order .slot.done { opacity: 0.35; }
+#turn-order .arrow { color: var(--text-dim); font-size: 12px; flex-shrink: 0; }
+
+/* Battlefield */
+#battlefield {
+  display: flex; flex-direction: column; padding: 16px 20px; gap: 16px;
+}
+
+/* Enemies */
+#enemy-zone {
+  display: flex; gap: 16px; justify-content: center; min-height: 180px;
+  position: relative;
+}
+.enemy-card {
+  background: var(--surface2); border-radius: 12px; padding: 14px;
+  width: 200px; border: 1px solid var(--border);
+  transition: all 0.3s; position: relative; overflow: hidden;
+  cursor: default;
+}
+.enemy-card.targeting {
+  border-color: var(--gold); box-shadow: 0 0 20px rgba(245,200,66,0.2);
+  cursor: pointer;
+}
+.enemy-card.targeting:hover { box-shadow: 0 0 30px rgba(245,200,66,0.4); transform: translateY(-2px); }
+.enemy-card.broken { border-color: #888; opacity: 0.6; }
+.enemy-card.broken::after {
+  content: 'BREAK'; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotate(-15deg);
+  font-size: 28px; font-weight: 700; color: rgba(255,255,255,0.15);
+  pointer-events: none;
+}
+.enemy-card .e-name { font-size: 14px; font-weight: 500; margin-bottom: 8px; text-align: center; }
+.enemy-card .e-name.boss { color: var(--accent); }
+.enemy-card .e-hp-wrap { background: #111; border-radius: 4px; height: 8px; margin-bottom: 6px; overflow: hidden; }
+.enemy-card .e-hp-fill { height: 100%; background: var(--red); transition: width 0.5s ease; border-radius: 4px; }
+.enemy-card .e-stats { font-size: 11px; color: var(--text-dim); margin-bottom: 4px; }
+.enemy-card .e-shield { display: flex; gap: 3px; margin: 4px 0; }
+.enemy-card .e-shield .sh { width: 14px; height: 14px; border-radius: 3px; background: var(--blue); opacity: 0.7; transition: all 0.3s; }
+.enemy-card .e-weakness { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; }
+.enemy-card .weak-tag { 
+  font-size: 10px; padding: 1px 6px; border-radius: 3px;
+  background: rgba(255,255,255,0.1); color: var(--text-dim);
+}
+.enemy-card .weak-tag.revealed { background: var(--gold); color: #1a1a2e; font-weight: 500; }
+.enemy-card .e-intent { 
+  font-size: 10px; color: var(--accent); margin-top: 4px;
+  font-style: italic; text-align: center;
+}
+
+/* Party */
+#party-zone {
+  display: flex; gap: 12px; justify-content: center;
+  position: relative;
+}
+.char-card {
+  background: var(--surface2); border-radius: 12px; padding: 12px;
+  width: 200px; border: 2px solid var(--border);
+  transition: all 0.3s;
+}
+.char-card.active { border-color: var(--blue); box-shadow: 0 0 20px rgba(52,152,219,0.3); }
+.char-card.acted { opacity: 0.5; }
+.char-card .c-name { font-size: 13px; font-weight: 500; margin-bottom: 6px; text-align: center; }
+.char-card .c-hp, .char-card .c-sp { 
+  background: #111; border-radius: 3px; height: 6px; margin-bottom: 3px; overflow: hidden; 
+}
+.char-card .c-hp .fill { height: 100%; background: var(--green); transition: width 0.5s ease; border-radius: 3px; }
+.char-card .c-sp .fill { height: 100%; background: #9b59b6; transition: width 0.5s ease; border-radius: 3px; }
+.char-card .c-stats { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+.char-card .c-bp { 
+  display: flex; gap: 3px; margin-top: 4px; justify-content: center;
+}
+.char-card .bp-dot { 
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #555; transition: all 0.3s;
+}
+.char-card .bp-dot.filled { background: var(--gold); box-shadow: 0 0 6px rgba(245,200,66,0.5); }
+.char-card .c-buffs { display: flex; gap: 4px; margin-top: 4px; flex-wrap: wrap; justify-content: center; }
+.char-card .buff-tag { font-size: 9px; padding: 1px 5px; border-radius: 3px; }
+
+/* Command Panel */
+#command-panel {
+  background: var(--surface2); border-radius: 12px; padding: 14px 16px;
+  border: 1px solid var(--border);
+  min-height: 120px;
+}
+#command-panel .actor-info {
+  font-size: 14px; font-weight: 500; margin-bottom: 10px;
+  color: var(--blue); text-align: center;
+}
+#command-panel .actor-info .highlight { color: var(--gold); }
+#command-panel .action-row {
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+}
+#command-panel button {
+  padding: 10px 24px; border: 1px solid var(--border);
+  border-radius: 8px; background: var(--surface);
+  color: var(--text); font-size: 14px; cursor: pointer;
+  transition: all 0.2s; font-family: var(--font);
+  min-width: 80px;
+}
+#command-panel button:hover:not(:disabled) {
+  background: var(--surface2); border-color: var(--blue);
+  transform: translateY(-1px);
+}
+#command-panel button:disabled { opacity: 0.4; cursor: not-allowed; }
+#command-panel button.attack { border-color: var(--red); color: var(--red); }
+#command-panel button.skill { border-color: #9b59b6; color: #9b59b6; }
+#command-panel button.defend { border-color: var(--blue); color: var(--blue); }
+#command-panel button.boost-btn { border-color: var(--gold); color: var(--gold); }
+#command-panel button.boost-btn.boosted { background: var(--gold); color: #1a1a2e; font-weight: 500; }
+#command-panel button.item { border-color: var(--green); color: var(--green); }
+
+#skill-panel { margin-top: 10px; }
+#skill-panel .skill-list { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+#skill-panel button.skill-btn {
+  padding: 8px 14px; font-size: 12px; min-width: 110px;
+  border-color: #9b59b6; color: #c39bdb; text-align: left;
+}
+#skill-panel button.skill-btn .cost { font-size: 10px; color: var(--text-dim); }
+
+#target-hint {
+  text-align: center; font-size: 12px; color: var(--gold);
+  margin-top: 8px; font-style: italic;
+}
+
+/* Battle Log */
+#battle-log {
+  background: rgba(0,0,0,0.3); border-radius: 8px;
+  padding: 10px 16px; max-height: 160px; overflow-y: auto;
+  font-family: var(--font-mono); font-size: 12px;
+  border: 1px solid var(--border); margin: 0 20px 16px;
+}
+#battle-log .log-line { padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.03); animation: fadeIn 0.3s ease; }
+#battle-log .log-dmg { color: var(--red); }
+#battle-log .log-crit { color: var(--accent); font-weight: 500; }
+#battle-log .log-heal { color: var(--green); }
+#battle-log .log-break { color: var(--gold); }
+#battle-log .log-info { color: var(--blue); }
+#battle-log .log-buff { color: #9b59b6; }
+
+/* Result Overlay */
+#result-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7); display: flex;
+  align-items: center; justify-content: center; z-index: 100;
+  animation: fadeIn 0.5s ease;
+}
+#result-overlay.hidden { display: none; }
+#result-box {
+  background: var(--surface); border-radius: 16px;
+  padding: 40px 60px; text-align: center;
+  border: 2px solid var(--gold);
+  animation: scaleIn 0.4s ease;
+}
+#result-box h2 { font-size: 28px; margin-bottom: 16px; }
+#result-box .win { color: var(--gold); }
+#result-box .lose { color: var(--red); }
+#result-box .detail { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
+#result-box button {
+  padding: 12px 32px; border-radius: 8px; border: 2px solid var(--gold);
+  background: transparent; color: var(--gold); font-size: 16px;
+  cursor: pointer; transition: all 0.2s;
+}
+#result-box button:hover { background: var(--gold); color: #1a1a2e; }
+
+/* Animations */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes scaleIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+@keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 50% { transform: scale(1.2); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes floatUp { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-40px); opacity: 0; } }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 8px currentColor; } 50% { box-shadow: 0 0 24px currentColor; } }
+
+.damage-num {
+  position: absolute; font-weight: 700; font-size: 20px;
+  pointer-events: none; z-index: 10;
+  animation: floatUp 1s ease forwards;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.damage-num.normal { color: #fff; }
+.damage-num.crit { color: var(--accent); font-size: 26px; }
+.damage-num.break { color: var(--gold); font-size: 24px; }
+.damage-num.heal { color: var(--green); }
+.shake { animation: shake 0.4s ease; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div id="game">
+  <div id="header">
+    <h1>水晶遗迹之战</h1>
+    <div class="round">回合 <span id="round-num">1</span></div>
+  </div>
+
+  <div id="turn-order">
+    <span class="label">行动顺序</span>
+  </div>
+
+  <div id="battlefield">
+    <div id="enemy-zone"></div>
+    <div id="party-zone"></div>
+    <div id="command-panel">
+      <div class="actor-info">等待行动...</div>
+      <div class="action-row"></div>
+      <div id="skill-panel"></div>
+      <div id="target-hint"></div>
+    </div>
+  </div>
+
+  <div id="battle-log"></div>
+</div>
+
+<div id="result-overlay" class="hidden">
+  <div id="result-box"></div>
+</div>
+
+<script>
+// ==================== DATA ====================
+const ELEMENTS = {
+  sword: '剑', dagger: '匕首', staff: '杖', bow: '弓',
+  fire: '火', ice: '冰', lightning: '雷', wind: '风',
+  light: '光', dark: '暗'
+};
+
+const JOB_COLORS = {
+  warrior: '#e74c3c', scholar: '#9b59b6', thief: '#f39c12'
+};
+
+// ==================== GAME STATE ====================
+const GameState = {
+  round: 1,
+  phase: 'idle', // idle, player_turn, enemy_turn, executing, ended
+  turnQueue: [],
+  currentActorIdx: 0,
+  selectedBoost: 0,
+  selectedSkill: null,
+  targetingEnemy: false,
+  currentActor: null,
+  battleLog: [],
+};
+
+// ==================== ENTITY CLASSES ====================
+class Character {
+  constructor(id, name, job, stats, skills, weapon) {
+    this.id = id;
+    this.name = name;
+    this.job = job;
+    this.maxHp = stats.hp; this.hp = stats.hp;
+    this.maxSp = stats.sp; this.sp = stats.sp;
+    this.atk = stats.atk; this.def = stats.def;
+    this.spd = stats.spd;
+    this.skills = skills;
+    this.weapon = weapon; // base attack element
+    this.bp = 2; // start with 2 BP
+    this.maxBp = 5;
+    this.buffs = {}; // { defUp: 2, attackUp: 3 } - turns remaining
+    this.isDefending = false;
+    this.hasActed = false;
+    this.alive = true;
+  }
+
+  getElement() { return this.weapon; }
+
+  canBoost(level) { return this.bp >= level && level >= 0 && level <= 3; }
+
+  spendBp(level) { this.bp -= level; }
+
+  gainBp() { if (this.bp < this.maxBp) this.bp++; }
+
+  takeDamage(rawDmg) {
+    let def = this.def;
+    if (this.buffs.defUp) def = Math.floor(def * 1.5);
+    if (this.isDefending) def = Math.floor(def * 1.8);
+    const dmg = Math.max(1, rawDmg - Math.floor(def * 0.4));
+    this.hp = Math.max(0, this.hp - dmg);
+    if (this.hp <= 0) this.alive = false;
+    return dmg;
+  }
+
+  heal(amount) {
+    const actual = Math.min(amount, this.maxHp - this.hp);
+    this.hp += actual;
+    return actual;
+  }
+
+  recoverSp(amount) {
+    const actual = Math.min(amount, this.maxSp - this.sp);
+    this.sp += actual;
+    return actual;
+  }
+
+  getAtkMultiplier() {
+    let mult = 1;
+    if (this.buffs.atkUp) mult *= 1.4;
+    return mult;
+  }
+
+  tickBuffs() {
+    for (const key in this.buffs) {
+      this.buffs[key]--;
+      if (this.buffs[key] <= 0) delete this.buffs[key];
+    }
+    this.isDefending = false;
+  }
+
+  getWeaknessTags() {
+    const tags = [this.weapon];
+    if (this.job === 'scholar') tags.push('fire', 'ice', 'lightning');
+    return tags;
+  }
+}
+
+class Enemy {
+  constructor(id, name, isBoss, stats, weaknesses, skills) {
+    this.id = id;
+    this.name = name;
+    this.isBoss = isBoss;
+    this.maxHp = stats.hp; this.hp = stats.hp;
+    this.atk = stats.atk; this.def = stats.def;
+    this.spd = stats.spd;
+    this.maxShield = stats.shield; this.shield = stats.shield;
+    this.weaknesses = weaknesses; // all weaknesses
+    this.revealedWeakness = new Set(); // discovered by player
+    this.skills = skills;
+    this.isBroken = false;
+    this.breakTimer = 0; // turns remaining broken
+    this.buffs = {};
+    this.alive = true;
+    this.nextAction = null; // AI intent for next turn
+  }
+
+  takeDamage(rawDmg) {
+    let def = this.def;
+    if (this.buffs.defUp) def = Math.floor(def * 1.5);
+    const dmg = Math.max(1, rawDmg - Math.floor(def * 0.3));
+    this.hp = Math.max(0, this.hp - dmg);
+    if (this.hp <= 0) this.alive = false;
+    return dmg;
+  }
+
+  // Returns true if shield was reduced
+  hitShield(element, boostLevel) {
+    if (this.isBroken) return false;
+    if (this.weaknesses.includes(element)) {
+      this.revealedWeakness.add(element);
+      const reduction = 1 + boostLevel;
+      this.shield = Math.max(0, this.shield - reduction);
+      if (this.shield <= 0) {
+        this.isBroken = true;
+        this.breakTimer = 2;
+        this.shield = this.maxShield; // reset for next break cycle
+        return 'BREAK';
+      }
+      return true;
+    }
+    return false;
+  }
+
+  applyBreak() {
+    this.isBroken = true;
+    this.breakTimer = 2;
+    this.shield = this.maxShield; // reset for next break cycle
+  }
+
+  tickBreak() {
+    if (this.isBroken && this.breakTimer > 0) {
+      this.breakTimer--;
+      if (this.breakTimer <= 0) {
+        this.isBroken = false;
+      }
+    }
+  }
+
+  tickBuffs() {
+    for (const key in this.buffs) {
+      this.buffs[key]--;
+      if (this.buffs[key] <= 0) delete this.buffs[key];
+    }
+  }
+
+  getDamageMult() {
+    if (this.isBroken) return 1.5;
+    return 1.0;
+  }
+
+  decideAction(characters) {
+    const alive = characters.filter(c => c.alive);
+    if (alive.length === 0) return null;
+
+    // Boss has smarter AI
+    if (this.isBoss) {
+      const r = Math.random();
+      if (r < 0.35 && this.skills[2]) return this.skills[2]; // special 35%
+      if (r < 0.65 && this.skills[1]) return this.skills[1]; // aoe 30%
+      return this.skills[0]; // single target 35%
+    }
+
+    const r = Math.random();
+    if (r < 0.7) return this.skills[0]; // basic attack
+    return this.skills[1] || this.skills[0];
+  }
+}
+
+// ==================== SKILL DEFINITIONS ====================
+const SKILLS = {
+  // 剑士 skills
+  slash: { name: '横斩', desc: '剑属性单体攻击', cost: 5, element: 'sword', type: 'damage', power: 1.3, target: 'single' },
+  fullStrike: { name: '全力斩', desc: '剑属性强力一击', cost: 12, element: 'sword', type: 'damage', power: 2.2, target: 'single' },
+  taunt: { name: '挑衅', desc: '吸引火力,自身防御UP(3回合)', cost: 8, type: 'buff', buff: { defUp: 3, taunt: 3 }, target: 'self' },
+  armorBreak: { name: '破甲击', desc: '剑属性,额外削2层盾', cost: 10, element: 'sword', type: 'damage', power: 1.0, shieldBonus: 2, target: 'single' },
+
+  // 学者 skills
+  fireball: { name: '火焰术', desc: '火属性单体攻击', cost: 6, element: 'fire', type: 'damage', power: 1.2, target: 'single' },
+  iceBlast: { name: '冰霜术', desc: '冰属性单体攻击', cost: 6, element: 'ice', type: 'damage', power: 1.2, target: 'single' },
+  lightning: { name: '雷电术', desc: '雷属性单体攻击', cost: 6, element: 'lightning', type: 'damage', power: 1.2, target: 'single' },
+  elementStorm: { name: '元素风暴', desc: '全体随机属性攻击', cost: 18, type: 'damage', power: 0.9, target: 'all', randomElement: true },
+
+  // 盗贼 skills
+  shadowStrike: { name: '暗袭', desc: '匕属性,高暴击率', cost: 5, element: 'dagger', type: 'damage', power: 1.4, critChance: 0.3, target: 'single' },
+  steal: { name: '偷取', desc: '降低单体敌人攻击(3回合)', cost: 4, type: 'debuff', debuff: { atkDown: 3 }, target: 'single_enemy' },
+  shadowClone: { name: '影分身', desc: '自身攻击UP(3回合)', cost: 10, type: 'buff', buff: { atkUp: 3 }, target: 'self' },
+  smokeBomb: { name: '烟雾弹', desc: '全体敌人命中降低', cost: 8, type: 'damage', power: 0.5, target: 'all', debuff: { accDown: 2 } },
+};
+
+// ==================== CREATE ENTITIES ====================
+function createParty() {
+  return [
+    new Character('warrior', '奥伯里克', 'warrior',
+      { hp: 500, sp: 80, atk: 42, def: 28, spd: 60 },
+      [SKILLS.slash, SKILLS.fullStrike, SKILLS.taunt, SKILLS.armorBreak],
+      'sword'
+    ),
+    new Character('scholar', '塞拉斯', 'scholar',
+      { hp: 350, sp: 150, atk: 35, def: 18, spd: 70 },
+      [SKILLS.fireball, SKILLS.iceBlast, SKILLS.lightning, SKILLS.elementStorm],
+      'staff'
+    ),
+    new Character('thief', '泰里翁', 'thief',
+      { hp: 400, sp: 100, atk: 36, def: 22, spd: 90 },
+      [SKILLS.shadowStrike, SKILLS.steal, SKILLS.shadowClone, SKILLS.smokeBomb],
+      'dagger'
+    ),
+  ];
+}
+
+function createEnemies() {
+  return [
+    new Enemy('boss', '远古魔像', true,
+      { hp: 700, atk: 48, def: 22, spd: 40, shield: 5 },
+      ['sword', 'fire', 'lightning', 'dagger'],
+      [
+        { name: '重击', desc: '单体高伤害', type: 'damage', power: 1.3, target: 'single', element: null },
+        { name: '地震', desc: '全体中等伤害', type: 'damage', power: 0.7, target: 'all', element: null },
+        { name: '硬化', desc: '自身防御UP(2回合)', type: 'buff', buff: { defUp: 2 }, target: 'self' },
+      ]
+    ),
+    new Enemy('minion_a', '岩石傀儡', false,
+      { hp: 260, atk: 28, def: 24, spd: 35, shield: 2 },
+      ['fire', 'sword', 'ice'],
+      [
+        { name: '撞击', desc: '单体攻击', type: 'damage', power: 0.9, target: 'single', element: null },
+        { name: '碎石', desc: '单体攻击', type: 'damage', power: 0.9, target: 'single', element: null },
+      ]
+    ),
+    new Enemy('minion_b', '水晶魔灵', false,
+      { hp: 220, atk: 32, def: 14, spd: 75, shield: 3 },
+      ['lightning', 'dagger', 'ice'],
+      [
+        { name: '晶化射线', desc: '单体攻击', type: 'damage', power: 1.0, target: 'single', element: null },
+        { name: '治愈波动', desc: '回复Boss HP', type: 'heal_boss', power: 40, target: 'boss' },
+      ]
+    ),
+  ];
+}
+
+// ==================== GAME INSTANCE ====================
+let party = [];
+let enemies = [];
+let allActors = []; // combined for turn order
+
+function refreshActorList() {
+  allActors = [...party.filter(p => p.alive), ...enemies.filter(e => e.alive)];
+}
+
+// ==================== BATTLE LOG ====================
+function addLog(msg, cls = '') {
+  GameState.battleLog.push({ msg, cls });
+  if (GameState.battleLog.length > 50) GameState.battleLog.shift();
+  renderLog();
+}
+
+function renderLog() {
+  const el = document.getElementById('battle-log');
+  const recent = GameState.battleLog.slice(-8);
+  el.innerHTML = recent.map(l => `<div class="log-line ${l.cls}">${l.msg}</div>`).join('');
+  el.scrollTop = el.scrollHeight;
+}
+
+// ==================== DAMAGE NUMBERS ====================
+function showDamageNum(element, value, cls = 'normal') {
+  const num = document.createElement('div');
+  num.className = `damage-num ${cls}`;
+  num.textContent = (value >= 0 ? '-' : '+') + Math.abs(Math.floor(value));
+  if (value < 0) num.textContent = '+' + Math.floor(Math.abs(value));
+  else num.textContent = '-' + Math.floor(value);
+  num.style.left = (element.offsetLeft + element.offsetWidth / 2 - 20) + 'px';
+  num.style.top = (element.offsetTop + 10) + 'px';
+  element.parentElement.appendChild(num);
+  setTimeout(() => num.remove(), 1000);
+}
+
+// ==================== RENDER FUNCTIONS ====================
+function renderEnemies() {
+  const zone = document.getElementById('enemy-zone');
+  zone.innerHTML = enemies.map(e => {
+    if (!e.alive) return '';
+    const hpPct = Math.max(0, (e.hp / e.maxHp) * 100);
+    const bossClass = e.isBoss ? 'boss' : '';
+    const brokenClass = e.isBroken ? 'broken' : '';
+    const targetingClass = (GameState.targetingEnemy && GameState.currentActor && GameState.currentActor.alive) ? 'targeting' : '';
+    
+    let shieldHtml = '';
+    for (let i = 0; i < e.maxShield; i++) {
+      shieldHtml += `<div class="sh" style="opacity:${i < e.shield ? 0.9 : 0.15}"></div>`;
+    }
+
+    let weaknessHtml = '';
+    e.weaknesses.forEach(w => {
+      const revealed = e.revealedWeakness.has(w);
+      weaknessHtml += `<span class="weak-tag ${revealed ? 'revealed' : ''}">${revealed ? ELEMENTS[w] : '?'}</span>`;
+    });
+
+    let intentHtml = '';
+    if (e.nextAction) {
+      intentHtml = `<div class="e-intent">▶ ${e.nextAction.name}</div>`;
+    }
+
+    return `
+      <div class="enemy-card ${brokenClass} ${targetingClass}" id="enemy-${e.id}" data-id="${e.id}">
+        <div class="e-name ${bossClass}">${e.name}</div>
+        <div class="e-hp-wrap"><div class="e-hp-fill" style="width:${hpPct}%"></div></div>
+        <div class="e-stats">HP ${e.hp}/${e.maxHp}</div>
+        <div class="e-shield">${shieldHtml}</div>
+        <div class="e-weakness">${weaknessHtml}</div>
+        ${intentHtml}
+        ${e.isBroken ? '' : ''}
+      </div>
+    `;
+  }).join('');
+
+  if (GameState.targetingEnemy) {
+    zone.querySelectorAll('.enemy-card').forEach(card => {
+      card.classList.add('targeting');
+      card.onclick = () => {
+        const eid = card.dataset.id;
+        const enemy = enemies.find(e => e.id === eid && e.alive);
+        if (enemy) executePlayerAction(enemy);
+      };
+    });
+  }
+}
+
+function renderParty() {
+  const zone = document.getElementById('party-zone');
+  zone.innerHTML = party.map(c => {
+    if (!c.alive) return '';
+    const hpPct = (c.hp / c.maxHp) * 100;
+    const spPct = (c.sp / c.maxSp) * 100;
+    const isActive = GameState.currentActor === c;
+    const hasActed = c.hasActed;
+    
+    let bpDots = '';
+    for (let i = 0; i < c.maxBp; i++) {
+      bpDots += `<div class="bp-dot ${i < c.bp ? 'filled' : ''}"></div>`;
+    }
+
+    let buffsHtml = '';
+    for (const [k, v] of Object.entries(c.buffs)) {
+      if (v > 0) {
+        const names = { defUp: '🛡防御', atkUp: '⚔攻击', taunt: '🎯嘲讽', accDown: '👁命中↓', atkDown: '💪攻击↓' };
+        buffsHtml += `<span class="buff-tag" style="background:rgba(46,204,113,0.2);color:#2ecc71">${names[k] || k}(${v}t)</span>`;
+      }
+    }
+
+    return `
+      <div class="char-card ${isActive ? 'active' : ''} ${hasActed ? 'acted' : ''}" id="char-${c.id}">
+        <div class="c-name" style="color:${JOB_COLORS[c.job]}">${c.name}</div>
+        <div class="c-hp"><div class="fill" style="width:${hpPct}%"></div></div>
+        <div class="c-sp"><div class="fill" style="width:${spPct}%"></div></div>
+        <div class="c-stats">HP ${c.hp}/${c.maxHp} | SP ${c.sp}/${c.maxSp}</div>
+        <div class="c-bp">${bpDots}</div>
+        <div class="c-buffs">${buffsHtml}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderTurnOrder() {
+  const el = document.getElementById('turn-order');
+  const queue = GameState.turnQueue;
+  let html = '<span class="label">行动顺序</span>';
+  
+  queue.forEach((actor, i) => {
+    const isPlayer = actor instanceof Character;
+    const cls = isPlayer ? 'player' : 'enemy';
+    let stateCls = '';
+    if (i < GameState.currentActorIdx) stateCls = 'done';
+    else if (i === GameState.currentActorIdx && GameState.phase === 'executing') stateCls = 'current';
+    
+    const label = isPlayer ? actor.name.charAt(0) : actor.name.charAt(0);
+    html += `<div class="slot ${cls} ${stateCls}" title="${actor.name}">${label}</div>`;
+    if (i < queue.length - 1) {
+      html += '<span class="arrow">→</span>';
+    }
+  });
+  el.innerHTML = html;
+}
+
+function renderCommandPanel() {
+  const panel = document.getElementById('command-panel');
+  const actor = GameState.currentActor;
+  
+  if (!actor || !(actor instanceof Character) || !actor.alive || GameState.phase !== 'player_turn') {
+    panel.querySelector('.actor-info').textContent = '等待行动...';
+    panel.querySelector('.action-row').innerHTML = '';
+    document.getElementById('skill-panel').innerHTML = '';
+    document.getElementById('target-hint').textContent = '';
+    return;
+  }
+
+  panel.querySelector('.actor-info').innerHTML = 
+    `当前行动: <span style="color:${JOB_COLORS[actor.job]}">${actor.name}</span> | BP: <span class="highlight">${actor.bp}</span>`;
+
+  const boostLabel = GameState.selectedBoost > 0 ? `Boost x${GameState.selectedBoost}` : '增幅';
+  const row = panel.querySelector('.action-row');
+  row.innerHTML = `
+    <button class="boost-btn ${GameState.selectedBoost > 0 ? 'boosted' : ''}" 
+      onclick="handleBoost()" ${actor.bp <= 0 ? 'disabled' : ''}>${boostLabel}</button>
+    <button class="attack" onclick="handleAttack()">攻击</button>
+    <button class="skill" onclick="handleSkillSelect()">技能</button>
+    <button class="defend" onclick="handleDefend()">防御</button>
+  `;
+
+  if (GameState.selectedSkill) {
+    renderSkillPanel(actor);
+  } else {
+    document.getElementById('skill-panel').innerHTML = '';
+  }
+
+  document.getElementById('target-hint').textContent = GameState.targetingEnemy ? '点击目标敌人' : '';
+}
+
+function renderSkillPanel(actor) {
+  const panel = document.getElementById('skill-panel');
+  if (!GameState.selectedSkill) { panel.innerHTML = ''; return; }
+
+  const skills = actor instanceof Character ? actor.skills : [];
+  panel.innerHTML = `
+    <div class="skill-list">
+      ${skills.map((s, i) => {
+        const canUse = actor.sp >= s.cost;
+        return `<button class="skill-btn" ${!canUse ? 'disabled' : ''} 
+          onclick="handleSkillPick(${i})" style="${GameState.selectedSkill === i ? 'background:rgba(155,89,182,0.3)' : ''}">
+          ${s.name} <span class="cost">(${s.cost}SP)</span><br><small>${s.desc}</small>
+        </button>`;
+      }).join('')}
+      <button onclick="handleSkillCancel()" style="min-width:60px;font-size:12px">取消</button>
+    </div>
+  `;
+}
+
+function renderAll() {
+  renderEnemies();
+  renderParty();
+  renderTurnOrder();
+  renderCommandPanel();
+}
+
+// ==================== GAME FLOW ====================
+function startBattle() {
+  party = createParty();
+  enemies = createEnemies();
+  refreshActorList();
+  GameState.round = 1;
+  GameState.battleLog = [];
+  addLog('=== 水晶遗迹之战 开始！===', 'log-break');
+  addLog(`敌方: ${enemies.map(e => e.name).join('、')}`, 'log-info');
+  renderAll();
+  startRound();
+}
+
+function startRound() {
+  document.getElementById('round-num').textContent = GameState.round;
+  
+  // Reset acted flags
+  party.forEach(c => { c.hasActed = false; c.isDefending = false; });
+  enemies.forEach(e => { e.hasActed = false; });
+
+  // Tick break timers
+  enemies.forEach(e => e.tickBreak());
+  enemies.forEach(e => e.tickBuffs());
+  party.forEach(c => c.tickBuffs());
+
+  // Remove dead
+  enemies = enemies.filter(e => e.alive);
+  party = party.filter(c => c.alive);
+
+  // Calculate turn order (speed + small random)
+  refreshActorList();
+  const queue = allActors.map(a => ({
+    actor: a,
+    initiative: a.spd + Math.random() * 20
+  }));
+  queue.sort((a, b) => b.initiative - a.initiative);
+  GameState.turnQueue = queue.map(q => q.actor);
+  GameState.currentActorIdx = 0;
+  
+  addLog(`--- 第 ${GameState.round} 回合 ---`, 'log-info');
+  
+  // Decide enemy AI intents
+  enemies.forEach(e => {
+    e.nextAction = e.decideAction(party);
+  });
+
+  renderAll();
+  processNextTurn();
+}
+
+function processNextTurn() {
+  const queue = GameState.turnQueue;
+  
+  // Check win/lose
+  if (enemies.every(e => !e.alive)) {
+    endBattle(true);
+    return;
+  }
+  if (party.every(c => !c.alive)) {
+    endBattle(false);
+    return;
+  }
+
+  // Find next alive actor
+  while (GameState.currentActorIdx < queue.length) {
+    const actor = queue[GameState.currentActorIdx];
+    if (actor.alive && !actor.hasActed) {
+      GameState.currentActor = actor;
+      if (actor instanceof Character) {
+        // Player turn
+        GameState.phase = 'player_turn';
+        GameState.selectedBoost = 0;
+        GameState.selectedSkill = null;
+        GameState.targetingEnemy = false;
+        renderAll();
+        return;
+      } else {
+        // Enemy turn
+        GameState.phase = 'executing';
+        GameState.currentActor = actor;
+        executeEnemyAction(actor);
+        return;
+      }
+    }
+    GameState.currentActorIdx++;
+  }
+
+  // End of round
+  endRound();
+}
+
+function endRound() {
+  // Gain BP
+  party.forEach(c => { if (c.alive) c.gainBp(); });
+  GameState.round++;
+  startRound();
+}
+
+// ==================== PLAYER ACTIONS ====================
+function handleBoost() {
+  const actor = GameState.currentActor;
+  if (!actor || !(actor instanceof Character)) return;
+  const next = (GameState.selectedBoost + 1) % 4; // cycle 0,1,2,3
+  if (next > 0 && actor.bp < next) return; // can't boost more than BP
+  GameState.selectedBoost = next;
+  GameState.selectedSkill = null;
+  GameState.targetingEnemy = false;
+  renderAll();
+  playClickSound();
+}
+
+function handleAttack() {
+  const actor = GameState.currentActor;
+  if (!actor || !(actor instanceof Character)) return;
+  GameState.selectedSkill = null;
+  
+  // Need to target an enemy
+  GameState.targetingEnemy = true;
+  renderAll();
+  playClickSound();
+}
+
+function handleSkillSelect() {
+  const actor = GameState.currentActor;
+  if (!actor || !(actor instanceof Character)) return;
+  GameState.selectedSkill = 0; // default first skill
+  GameState.targetingEnemy = false;
+  renderAll();
+  playClickSound();
+}
+
+function handleSkillPick(index) {
+  const actor = GameState.currentActor;
+  if (!actor || !(actor instanceof Character)) return;
+  const skill = actor.skills[index];
+  if (actor.sp < skill.cost) return;
+  GameState.selectedSkill = index;
+  
+  // Self-target skills execute immediately
+  if (skill.target === 'self') {
+    GameState.targetingEnemy = false;
+    executePlayerActionSelf();
+    return;
+  }
+  
+  // Enemy debuff skills need target
+  if (skill.target === 'single_enemy') {
+    GameState.targetingEnemy = true;
+    renderAll();
+    playClickSound();
+    return;
+  }
+  
+  // Skills that target enemies need target selection
+  if (skill.target === 'single' || skill.target === 'all') {
+    GameState.targetingEnemy = true;
+  } else {
+    GameState.targetingEnemy = false;
+  }
+  renderAll();
+  playClickSound();
+}
+
+function handleSkillCancel() {
+  GameState.selectedSkill = null;
+  GameState.targetingEnemy = false;
+  renderAll();
+  playClickSound();
+}
+
+function handleDefend() {
+  const actor = GameState.currentActor;
+  if (!actor || !(actor instanceof Character)) return;
+  GameState.selectedSkill = null;
+  GameState.targetingEnemy = false;
+  
+  // Defend immediately (no target needed)
+  executeDefend(actor);
+  playClickSound();
+}
+
+function executeDefend(actor) {
+  actor.isDefending = true;
+  actor.spendBp(GameState.selectedBoost);
+  addLog(`${actor.name} 进入防御姿态`, 'log-info');
+  
+  // Boost + Defend = extra protection
+  if (GameState.selectedBoost > 0) {
+    if (!actor.buffs.defUp || actor.buffs.defUp < 2) actor.buffs.defUp = 2;
+    addLog(`${actor.name} 防御强化！防御力大幅上升`, 'log-buff');
+  }
+  
+  finishAction(actor);
+}
+
+function executePlayerActionSelf() {
+  const actor = GameState.currentActor;
+  if (!actor || !(actor instanceof Character)) return;
+
+  const boostLevel = GameState.selectedBoost;
+  actor.spendBp(boostLevel);
+
+  const skill = actor.skills[GameState.selectedSkill];
+  actor.sp -= skill.cost;
+  executeSkillOnTarget(actor, skill, actor, boostLevel);
+
+  GameState.selectedSkill = null;
+  GameState.selectedBoost = 0;
+  finishAction(actor);
+}
+
+function executePlayerAction(targetEnemy) {
+  const actor = GameState.currentActor;
+  if (!actor || !(actor instanceof Character)) return;
+
+  const boostLevel = GameState.selectedBoost;
+  actor.spendBp(boostLevel);
+  GameState.targetingEnemy = false;
+
+  if (GameState.selectedSkill !== null) {
+    // Execute skill
+    const skill = actor.skills[GameState.selectedSkill];
+    actor.sp -= skill.cost;
+    
+    const targets = skill.target === 'all' ? enemies.filter(e => e.alive) : [targetEnemy];
+    
+    targets.forEach(t => {
+      executeSkillOnTarget(actor, skill, t, boostLevel);
+    });
+
+    if (skill.target === 'self') {
+      executeSkillOnTarget(actor, skill, actor, boostLevel);
+    }
+  } else {
+    // Normal attack
+    const element = actor.getElement();
+    const baseDmg = actor.atk * actor.getAtkMultiplier() * (1 + boostLevel * 0.3);
+    const rawDmg = Math.floor(baseDmg);
+    const actualDmg = targetEnemy.takeDamage(rawDmg);
+    
+    addLog(`${actor.name} 攻击 ${targetEnemy.name}！`, 'log-info');
+    
+    const shieldResult = targetEnemy.hitShield(element, boostLevel);
+    if (shieldResult === 'BREAK') {
+      addLog(`${targetEnemy.name} 护盾击破！进入 Break 状态！`, 'log-break');
+      showDamageNum(document.getElementById(`enemy-${targetEnemy.id}`), actualDmg, 'break');
+    } else if (shieldResult) {
+      addLog(`${targetEnemy.name} 护盾 -${1 + boostLevel}！剩余 ${targetEnemy.shield}`, 'log-break');
+    }
+    
+    addLog(`造成 ${actualDmg} 点伤害`, 'log-dmg');
+    showDamageNum(document.getElementById(`enemy-${targetEnemy.id}`), actualDmg, boostLevel >= 2 ? 'crit' : 'normal');
+    
+    if (!targetEnemy.alive) {
+      addLog(`${targetEnemy.name} 被击败！`, 'log-break');
+    }
+  }
+
+  GameState.selectedSkill = null;
+  GameState.selectedBoost = 0;
+  finishAction(actor);
+}
+
+function executeSkillOnTarget(actor, skill, target, boostLevel) {
+  if (skill.type === 'damage') {
+    let element = skill.element;
+    if (skill.randomElement) {
+      const elements = ['fire', 'ice', 'lightning'];
+      element = elements[Math.floor(Math.random() * elements.length)];
+    }
+    
+    const atkMult = actor.getAtkMultiplier();
+    const powerMult = skill.power * (1 + boostLevel * 0.25);
+    let baseDmg = actor.atk * atkMult * powerMult;
+    
+    // Crit check
+    let isCrit = false;
+    if (skill.critChance && Math.random() < skill.critChance + boostLevel * 0.1) {
+      baseDmg *= 1.5;
+      isCrit = true;
+    }
+    
+    const breakMult = target.getDamageMult ? target.getDamageMult() : 1;
+    const rawDmg = Math.floor(baseDmg * breakMult);
+    
+    if (target instanceof Enemy) {
+      const actualDmg = target.takeDamage(rawDmg);
+      const elemLabel = skill.randomElement ? `[${ELEMENTS[element]}]` : '';
+      addLog(`${actor.name} ${elemLabel}${skill.name} → ${target.name}`, 'log-info');
+      
+      if (element && target instanceof Enemy) {
+        let shieldReduction = 1 + boostLevel + (skill.shieldBonus || 0);
+        // Apply shield reduction
+        if (target.weaknesses.includes(element)) {
+          target.revealedWeakness.add(element);
+          let actualReduction = 0;
+          for (let i = 0; i < shieldReduction && target.shield > 0 && !target.isBroken; i++) {
+            target.shield--;
+            actualReduction++;
+          }
+          if (target.shield <= 0 && !target.isBroken) {
+            target.isBroken = true;
+            target.breakTimer = 2;
+            target.shield = target.maxShield;
+            addLog(`${target.name} 弱点暴击！护盾击破 [BREAK]`, 'log-break');
+          } else {
+            addLog(`${target.name} 弱点命中！盾 -${actualReduction} | 剩余: ${target.shield}`, 'log-break');
+          }
+        } else {
+          addLog(`${ELEMENTS[element] || element}属性 → 非弱点`, 'log-info');
+        }
+      }
+      
+      addLog(`伤害 ${Math.floor(actualDmg)}${isCrit ? ' [暴击!]' : ''}${target.isBroken ? ' [破防+50%]' : ''}`, isCrit ? 'log-crit' : 'log-dmg');
+      showDamageNum(document.getElementById(`enemy-${target.id}`), actualDmg, isCrit ? 'crit' : target.isBroken ? 'break' : 'normal');
+      
+      // Apply debuff if skill has both damage + debuff
+      if (skill.debuff) {
+        Object.assign(target.buffs, skill.debuff);
+        addLog(`${target.name} 命中率降低 (${skill.debuff.accDown}回合)`, 'log-buff');
+      }
+      
+      if (!target.alive) {
+        addLog(`${target.name} 被击败！`, 'log-break');
+      }
+    } else {
+      // Target is character (unlikely for damage, but handle)
+      const dmg = target.takeDamage(rawDmg);
+      addLog(`${target.name} 受到 ${dmg} 点伤害`, 'log-dmg');
+    }
+  } else if (skill.type === 'buff') {
+    if (skill.buff) {
+      Object.assign(target.buffs, skill.buff);
+      addLog(`${actor.name} 使用 ${skill.name}`, 'log-info');
+      const buffNames = { defUp: '防御上升', atkUp: '攻击上升' };
+      for (const [k, v] of Object.entries(skill.buff)) {
+        addLog(`${target.name} ${buffNames[k] || k} (${v}回合)`, 'log-buff');
+      }
+    }
+  } else if (skill.type === 'debuff') {
+    if (skill.debuff) {
+      Object.assign(target.buffs, skill.debuff);
+      addLog(`${actor.name} 使用 ${skill.name} → ${target.name}`, 'log-info');
+      const debuffNames = { atkDown: '攻击下降', accDown: '命中下降' };
+      for (const [k, v] of Object.entries(skill.debuff)) {
+        addLog(`${target.name} ${debuffNames[k] || k} (${v}回合)`, 'log-buff');
+      }
+    }
+  }
+}
+
+// ==================== ENEMY AI ====================
+function executeEnemyAction(enemy) {
+  GameState.phase = 'executing';
+  const action = enemy.nextAction || enemy.skills[0];
+  
+  renderAll();
+  
+  setTimeout(() => {
+    if (!enemy.alive) {
+      finishAction(enemy);
+      return;
+    }
+
+    const aliveParty = party.filter(c => c.alive);
+    if (aliveParty.length === 0) {
+      finishAction(enemy);
+      return;
+    }
+
+    if (action.type === 'damage') {
+      // Apply enemy debuffs
+      let enemyAtk = enemy.atk;
+      if (enemy.buffs.atkDown) enemyAtk = Math.floor(enemyAtk * 0.6);
+      let hitChance = 1.0;
+      if (enemy.buffs.accDown) hitChance = 0.7;
+      
+      if (action.target === 'all') {
+        aliveParty.forEach(c => {
+          if (Math.random() > hitChance) {
+            addLog(`${enemy.name} 攻击未命中 ${c.name}`, 'log-info');
+            return;
+          }
+          const baseDmg = enemyAtk * action.power;
+          const dmg = c.takeDamage(Math.floor(baseDmg));
+          addLog(`${enemy.name} 使用 ${action.name} → ${c.name}`, 'log-info');
+          addLog(`${c.name} 受到 ${dmg} 点伤害`, 'log-dmg');
+          showDamageNum(document.getElementById(`char-${c.id}`), dmg, 'normal');
+          if (!c.alive) addLog(`${c.name} 倒下！`, 'log-break');
+        });
+      } else {
+        const target = aliveParty[Math.floor(Math.random() * aliveParty.length)];
+        // Check for taunt
+        const tauntTarget = aliveParty.find(c => c.buffs.taunt);
+        const actualTarget = tauntTarget || target;
+        
+        if (Math.random() > hitChance) {
+          addLog(`${enemy.name} 攻击未命中 ${actualTarget.name}`, 'log-info');
+          return;
+        }
+        const baseDmg = enemyAtk * action.power;
+        const dmg = actualTarget.takeDamage(Math.floor(baseDmg));
+        addLog(`${enemy.name} 使用 ${action.name} → ${actualTarget.name}`, 'log-info');
+        addLog(`${actualTarget.name} 受到 ${dmg} 点伤害`, 'log-dmg');
+        showDamageNum(document.getElementById(`char-${actualTarget.id}`), dmg, 'normal');
+        if (!actualTarget.alive) addLog(`${actualTarget.name} 倒下！`, 'log-break');
+      }
+    } else if (action.type === 'heal_boss') {
+      const boss = enemies.find(e => e.isBoss && e.alive);
+      if (boss) {
+        const heal = Math.floor(action.power + Math.random() * 20);
+        boss.hp = Math.min(boss.maxHp, boss.hp + heal);
+        addLog(`${enemy.name} 使用 ${action.name}`, 'log-info');
+        addLog(`${boss.name} 回复 ${heal} HP`, 'log-heal');
+        showDamageNum(document.getElementById(`enemy-${boss.id}`), -heal, 'heal');
+      }
+    } else if (action.type === 'buff') {
+      Object.assign(enemy.buffs, action.buff);
+      addLog(`${enemy.name} 使用 ${action.name}`, 'log-info');
+      addLog(`${enemy.name} 防御力上升`, 'log-buff');
+    }
+
+    renderAll();
+    
+    setTimeout(() => {
+      finishAction(enemy);
+    }, 600);
+  }, 400);
+}
+
+function finishAction(actor) {
+  actor.hasActed = true;
+  GameState.currentActorIdx++;
+  
+  // Remove dead entities and refresh
+  enemies = enemies.filter(e => e.alive);
+  party = party.filter(c => c.alive);
+  refreshActorList();
+  
+  renderAll();
+  
+  setTimeout(() => {
+    processNextTurn();
+  }, 300);
+}
+
+// ==================== BATTLE END ====================
+function endBattle(won) {
+  GameState.phase = 'ended';
+  const overlay = document.getElementById('result-overlay');
+  const box = document.getElementById('result-box');
+  
+  overlay.classList.remove('hidden');
+  box.innerHTML = `
+    <h2 class="${won ? 'win' : 'lose'}">${won ? '战斗胜利！' : '全军覆没...'}</h2>
+    <div class="detail">
+      共 ${GameState.round} 回合 | 
+      ${won ? `存活 ${party.filter(c=>c.alive).length} 人` : '请重新挑战'}
+    </div>
+    <button onclick="restartBattle()">重新战斗</button>
+  `;
+}
+
+function restartBattle() {
+  document.getElementById('result-overlay').classList.add('hidden');
+  GameState.phase = 'idle';
+  GameState.currentActor = null;
+  GameState.selectedBoost = 0;
+  GameState.selectedSkill = null;
+  GameState.targetingEnemy = false;
+  startBattle();
+}
+
+// ==================== AUDIO FEEDBACK (simple) ====================
+function playClickSound() {
+  // Minimal audio feedback via oscillator
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.value = 800;
+    osc.type = 'sine';
+    gain.gain.value = 0.05;
+    osc.start();
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+    osc.stop(ctx.currentTime + 0.08);
+  } catch(e) {}
+}
+
+// ==================== KEYBOARD SHORTCUTS ====================
+document.addEventListener('keydown', (e) => {
+  if (GameState.phase !== 'player_turn') return;
+  switch(e.key.toLowerCase()) {
+    case '1': handleAttack(); break;
+    case '2': handleSkillSelect(); break;
+    case '3': handleDefend(); break;
+    case 'b': handleBoost(); break;
+    case 'escape': handleSkillCancel(); break;
+  }
+});
+
+// ==================== INIT ====================
+startBattle();
+</script>
+</body>
+</html>

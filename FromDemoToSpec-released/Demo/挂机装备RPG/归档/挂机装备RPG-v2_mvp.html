@@ -1,0 +1,867 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>挂机装备RPG v2</title>
+<style>
+:root {
+  --bg-dark:#0d1117; --bg-panel:#161b22; --bg-card:#21262d; --border:#30363d;
+  --text:#c9d1d9; --text-dim:#8b949e; --text-bright:#f0f6fc; --accent:#58a6ff;
+  --gold:#ffd700; --success:#3fb950; --danger:#f85149; --warning:#d2991d;
+  --gem:#00e5ff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:var(--bg-dark);color:var(--text);overflow-x:hidden;display:flex;min-height:100vh}
+
+/* Debug Panel */
+.debug-panel{width:220px;min-width:220px;background:var(--bg-panel);border-right:1px solid var(--border);padding:12px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;height:100vh;position:sticky;top:0}
+.debug-panel h3{color:var(--accent);font-size:13px;margin-bottom:2px}
+.debug-stat{font-size:11px;color:var(--text-dim);display:flex;justify-content:space-between;margin:1px 0}
+.debug-stat span:last-child{color:var(--text-bright);font-weight:bold}
+.debug-slider{margin:5px 0}
+.debug-slider label{font-size:10px;color:var(--text-dim);display:block;margin-bottom:1px}
+.debug-slider input[type=range]{width:100%}
+.debug-slider .val{font-size:10px;color:var(--accent);float:right}
+.btn-reset{width:100%;padding:7px;background:var(--danger);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px;font-weight:bold}
+.btn-reset:hover{opacity:.85}
+.log-area{flex:1;min-height:100px;background:var(--bg-dark);border:1px solid var(--border);border-radius:4px;padding:5px;font-size:10px;color:var(--text-dim);overflow-y:auto;font-family:'Consolas','Courier New',monospace;max-height:180px}
+.log-area .log-line{margin:1px 0}
+.log-area .log-warn{color:var(--warning)}
+.log-area .log-good{color:var(--success)}
+
+/* Main */
+.main-area{flex:1;padding:14px 18px;overflow-y:auto;max-width:920px}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.header h1{font-size:20px;color:var(--text-bright)}
+.header-right{display:flex;align-items:center;gap:14px;font-size:14px}
+.gold-display{color:var(--gold);font-weight:bold}
+.gem-display{color:var(--gem);font-weight:bold}
+
+/* Player Stats Panel */
+.stats-panel{background:var(--bg-card);border:2px solid var(--accent);border-radius:8px;padding:10px 14px;margin-bottom:10px}
+.stats-panel h3{font-size:12px;color:var(--accent);margin-bottom:6px}
+.stats-grid-row{display:flex;gap:18px;flex-wrap:wrap}
+.stat-item{font-size:12px;color:var(--text-dim)}
+.stat-item span{color:var(--text-bright);font-weight:bold}
+.stat-item .val-atk{color:#ff6b6b}
+.stat-item .val-def{color:#6bc5ff}
+.stat-item .val-hp{color:#6bff6b}
+
+/* Equipment Section */
+.section-title{font-size:13px;color:var(--text-dim);margin:10px 0 6px;border-bottom:1px solid var(--border);padding-bottom:3px}
+.equip-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:8px}
+.equip-slot{background:var(--bg-card);border:2px solid var(--border);border-radius:6px;padding:5px;text-align:center;position:relative;min-height:82px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.equip-slot .lv-tag{position:absolute;top:2px;left:4px;font-size:10px;color:var(--text-dim);background:rgba(0,0,0,.6);padding:0 3px;border-radius:2px}
+.equip-slot .slot-emoji{font-size:16px;margin-bottom:1px}
+.equip-slot .slot-name{font-size:10px;color:var(--text-dim);margin-bottom:1px}
+.equip-slot .slot-power{font-size:12px;font-weight:bold;margin-top:2px}
+.equip-slot .slot-base{font-size:9px;color:var(--text-dim);margin-top:1px}
+.equip-slot .slot-affixes{font-size:9px;color:var(--text-dim);margin-top:1px;line-height:1.3;max-height:28px;overflow:hidden}
+.equip-slot.empty{opacity:.45}
+.equip-slot.empty .slot-power{color:var(--text-dim);font-weight:normal;font-size:10px}
+.equip-slot .btn-upgrade-slot{font-size:9px;padding:2px 6px;margin-top:2px;background:var(--bg-dark);border:1px solid var(--border);color:var(--text);border-radius:3px;cursor:pointer}
+.equip-slot .btn-upgrade-slot:hover{background:var(--accent);color:#fff}
+.equip-slot .btn-upgrade-slot:disabled{opacity:.3;cursor:not-allowed}
+
+/* Quality borders */
+.q-1{border-color:#9e9e9e}
+.q-2{border-color:#4caf50}
+.q-3{border-color:#2196f3}
+.q-4{border-color:#9c27b0}
+.q-5{border-color:#ff9800}
+.q-6{border-color:#f44336}
+.q-7{border-color:#c0a060;box-shadow:0 0 6px rgba(192,160,96,.3)}
+.q-8{border-color:#e8e8e8;box-shadow:0 0 6px rgba(232,232,232,.3)}
+.q-9{border-color:#ffd700;box-shadow:0 0 10px rgba(255,215,0,.4)}
+.q-10{border:2px solid transparent;border-image:linear-gradient(90deg,#ff0000,#ff7700,#ffff00,#00ff00,#0077ff,#8b00ff)1;box-shadow:0 0 14px rgba(255,255,255,.25);background:#1a1a2e}
+
+/* Chest / Combat / Choice Area - shared container */
+.dynamic-area{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:14px;margin:8px 0;min-height:120px}
+
+/* Chest */
+.chest-info{font-size:13px;margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.chest-info .count{font-size:26px;font-weight:bold;color:var(--gold)}
+.chest-tier{font-size:11px;padding:2px 8px;border-radius:3px;border:1px solid var(--border)}.chest-tier span{font-weight:bold}
+.chest-bar{height:5px;background:var(--bg-dark);border-radius:3px;margin:6px 0;overflow:hidden}
+.chest-bar-fill{height:100%;background:var(--gold);transition:width .15s;border-radius:3px}
+.chest-bar-fill.paused{background:var(--text-dim)}
+.chest-rate{font-size:11px;color:var(--text-dim)}
+.chest-btns{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center}
+.btn-chest{padding:10px 22px;border:none;border-radius:6px;font-size:14px;font-weight:bold;cursor:pointer;transition:transform .1s}
+.btn-chest:hover{transform:scale(1.04)}.btn-chest:active{transform:scale(.96)}
+.btn-chest:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-open{background:linear-gradient(135deg,var(--gold),#ffaa00);color:#1a1a1a}
+.btn-upgrade-chest{background:linear-gradient(135deg,var(--gem),#00bcd4);color:#0a0a0a;font-size:12px;padding:8px 14px}
+.btn-combat{background:var(--accent);color:#fff;font-size:13px;padding:8px 18px}
+
+/* Combat */
+.combat-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.combat-stage-name{font-size:14px;font-weight:bold;color:var(--text-bright)}
+.btn-back{background:var(--bg-dark);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:4px;cursor:pointer;font-size:12px}
+.btn-back:hover{background:var(--border)}
+.stage-select{display:flex;gap:4px;margin:6px 0;flex-wrap:wrap}
+.stage-btn{padding:4px 10px;border:1px solid var(--border);background:var(--bg-card);color:var(--text);border-radius:3px;cursor:pointer;font-size:11px}
+.stage-btn.cleared{border-color:var(--success);color:var(--success)}
+.stage-btn.current{border-color:var(--accent);color:var(--accent);font-weight:bold}
+.stage-btn:disabled{opacity:.4;cursor:not-allowed}
+.combat-hp-row{display:flex;align-items:center;margin:3px 0;font-size:11px}
+.combat-hp-row .label{width:55px;text-align:right;margin-right:6px;color:var(--text-dim);flex-shrink:0}
+.combat-hp-row .bar-wrap{flex:1;height:14px;background:var(--bg-dark);border-radius:3px;overflow:hidden}
+.combat-hp-row .bar-fill{height:100%;transition:width .2s;border-radius:3px}
+.combat-hp-row .bar-fill.player{background:var(--accent)}
+.combat-hp-row .bar-fill.enemy{background:var(--danger)}
+.combat-hp-row .hp-text{margin-left:6px;font-size:10px;color:var(--text-bright);width:65px}
+.combat-numbers{position:relative;min-height:50px;margin:6px 0;overflow:hidden}
+.float-num{position:absolute;font-weight:bold;pointer-events:none;animation:numFloat .9s ease-out forwards}
+.float-num.dmg{color:#fff;font-size:14px}
+.float-num.crit{color:#ffcc00;font-size:20px;text-shadow:0 0 8px rgba(255,200,0,.6)}
+.float-num.heal{color:#3fb950;font-size:13px}
+.float-num.miss{color:#8b949e;font-size:12px}
+@keyframes numFloat{0%{opacity:1;transform:translateY(0) scale(1)}50%{opacity:1;transform:translateY(-20px) scale(1.15)}100%{opacity:0;transform:translateY(-45px) scale(.8)}}
+.combat-result{background:var(--bg-dark);border:1px solid var(--border);border-radius:6px;padding:10px;margin-top:6px}
+.combat-result h4{font-size:13px;margin-bottom:4px}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;font-size:11px}
+.stats-grid .si{color:var(--text-dim)}.stats-grid .si b{color:var(--text-bright)}
+
+/* Choice */
+.choice-area h4{color:var(--gold);font-size:14px;margin-bottom:8px}
+.choice-compare{display:flex;gap:12px;justify-content:center;align-items:center;margin:8px 0}
+.item-card{background:var(--bg-dark);border-radius:6px;padding:10px;min-width:150px;text-align:left;font-size:11px;position:relative}
+.item-card .card-lv{position:absolute;top:4px;left:6px;font-size:10px;color:var(--text-dim);background:rgba(0,0,0,.5);padding:0 3px;border-radius:2px}
+.item-card .card-title{font-weight:bold;margin-bottom:2px}
+.item-card .card-power{font-size:17px;font-weight:bold;margin:3px 0}
+.item-card .card-power.higher{color:var(--success)}
+.item-card .card-power.lower{color:var(--danger)}
+.item-card .card-detail{color:var(--text-dim);line-height:1.4}
+.choice-vs{font-size:18px;color:var(--text-dim)}
+.choice-btns{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.btn-equip{padding:8px 18px;background:var(--success);color:#fff;border:none;border-radius:4px;cursor:pointer;font-weight:bold}
+.btn-sell{padding:8px 18px;background:var(--bg-dark);color:var(--text);border:1px solid var(--border);border-radius:4px;cursor:pointer}
+
+/* Drop animation */
+.drop-anim{font-size:16px;font-weight:bold;padding:5px 14px;border-radius:5px;display:inline-block;animation:dropFloat 1.4s ease-out forwards;position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);z-index:10}
+@keyframes dropFloat{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.3)}100%{opacity:0;transform:translate(-50%,-90%) scale(1)}}
+
+/* Shake */
+@keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-3px)}20%,40%,60%,80%{transform:translateX(3px)}}
+@keyframes bigShake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-7px)}20%,40%,60%,80%{transform:translateX(7px)}}
+.shake{animation:shake .25s ease}
+.big-shake{animation:bigShake .45s ease}
+
+/* Gem drop flash */
+.gem-flash{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:36px;z-index:100;pointer-events:none;animation:gemPop .8s ease-out forwards}
+@keyframes gemPop{0%{opacity:1;transform:translate(-50%,-50%) scale(0)}30%{opacity:1;transform:translate(-50%,-50%) scale(2)}100%{opacity:0;transform:translate(-50%,-60%) scale(1)}}
+</style>
+</head>
+<body>
+
+<!-- Debug Panel -->
+<div class="debug-panel" id="debugPanel">
+  <h3>🔍 调试面板</h3>
+  <div id="debugStats"></div>
+  <h3>🎚️ 热调</h3>
+  <div class="debug-slider"><label>宝箱产出间隔 <span class="val" id="vChestGen">3.0s</span></label><input type="range" id="sChestGen" min="0.5" max="10" step="0.5" value="3"></div>
+  <div class="debug-slider"><label>自动开箱间隔 <span class="val" id="vAutoOpen">5.0s</span></label><input type="range" id="sAutoOpen" min="1" max="15" step="0.5" value="5"></div>
+  <div class="debug-slider"><label>掉落品质倍率 <span class="val" id="vDropLuck">1.0x</span></label><input type="range" id="sDropLuck" min="0.5" max="5" step="0.1" value="1"></div>
+  <div class="debug-slider"><label>敌人属性倍率 <span class="val" id="vEnemyMult">1.0x</span></label><input type="range" id="sEnemyMult" min="0.5" max="3" step="0.1" value="1"></div>
+  <div class="debug-slider"><label>玩家伤害倍率 <span class="val" id="vDmgMult">1.0x</span></label><input type="range" id="sDmgMult" min="0.5" max="3" step="0.1" value="1"></div>
+  <button class="btn-reset" onclick="resetGame()">🔄 一键重置</button>
+  <h3>📋 日志</h3>
+  <div class="log-area" id="logArea"></div>
+</div>
+
+<!-- Main Area -->
+<div class="main-area" id="mainArea">
+  <div class="header">
+    <h1>⚔️ 挂机装备RPG</h1>
+    <div class="header-right">
+      <span class="gold-display">💰 <span id="goldDisp">0</span></span>
+      <span class="gem-display">💎 <span id="gemDisp">0</span></span>
+    </div>
+  </div>
+
+  <!-- 1. Player Stats Panel (top) -->
+  <div class="stats-panel" id="playerStatsPanel">
+    <h3>📊 玩家属性</h3>
+    <div class="stats-grid-row" id="playerStatsRow"></div>
+  </div>
+
+  <!-- 2. Equipment Slots -->
+  <div class="section-title">🛡️ 装备槽位 · 总战力：<span id="totalPower" style="color:var(--accent);">0</span></div>
+  <div class="equip-grid" id="equipGrid"></div>
+
+  <!-- 3. Dynamic Area (Chest / Choice / Combat) -->
+  <div class="dynamic-area" id="dynamicArea">
+    <!-- Chest View (default) -->
+    <div id="chestView">
+      <div class="chest-info">
+        📦 宝箱：<span class="count" id="chestCount">0</span>/<span id="chestMax">100</span>
+        <span class="chest-tier" id="chestTierTag" style="color:var(--text-dim)">品质：<span style="color:#9e9e9e">普通</span></span>
+      </div>
+      <div class="chest-bar"><div class="chest-bar-fill" id="chestFillBar" style="width:0%"></div></div>
+      <div class="chest-bar" style="height:3px"><div class="chest-bar-fill" id="openFillBar" style="width:0%;height:100%"></div></div>
+      <div class="chest-rate">自动产出：<span id="prodRateTxt">3.0</span>s/个 | 自动开启：<span id="openRateTxt">5.0</span>s/个</div>
+      <div class="chest-btns">
+        <button class="btn-chest btn-upgrade-chest" id="btnUpChest" onclick="upgradeChest()">⬆ 升级宝箱（💎<span id="upChestCost">10</span>）</button>
+        <button class="btn-chest btn-open" id="btnOpenChest" onclick="manualOpenChest()">🎁 点击加速开箱</button>
+        <button class="btn-chest btn-combat" id="btnEnterCombat" onclick="enterCombat()">⚔️ 进入战斗</button>
+      </div>
+    </div>
+
+    <!-- Combat View (hidden) -->
+    <div id="combatView" style="display:none">
+      <div class="combat-header">
+        <span class="combat-stage-name" id="combatStageName">第1关·试炼</span>
+        <button class="btn-back" onclick="exitCombat()">↩ 返回挂机</button>
+      </div>
+      <div class="stage-select" id="stageSelect"></div>
+      <div class="combat-hp-row"><span class="label">🦸 我方</span><div class="bar-wrap"><div class="bar-fill player" id="playerHpBar" style="width:100%"></div></div><span class="hp-text" id="playerHpText">-/ -</span></div>
+      <div class="combat-hp-row"><span class="label">👾 敌人</span><div class="bar-wrap"><div class="bar-fill enemy" id="enemyHpBar" style="width:100%"></div></div><span class="hp-text" id="enemyHpText">-/ -</span></div>
+      <div class="combat-numbers" id="combatNumbers"></div>
+      <button class="btn-chest btn-combat" id="btnChallenge" onclick="startChallenge()" style="margin-top:4px">⚔️ 挑战当前关卡</button>
+      <div class="combat-result" id="combatResult" style="display:none"><h4 id="resultTitle"></h4><div class="stats-grid" id="resultGrid"></div></div>
+    </div>
+
+    <!-- Choice View (hidden) -->
+    <div class="choice-area" id="choiceView" style="display:none">
+      <h4>🎯 装备抉择</h4>
+      <div class="choice-compare" id="choiceCompare"></div>
+      <div class="choice-btns" id="choiceBtns"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// 1. CONFIG
+// ============================================================
+const CONFIG = {
+  CHEST_GEN_MS: 3000,
+  CHEST_AUTO_OPEN_MS: 5000,
+  CHEST_MAX: 100,
+  DROP_LUCK: 1.0,
+  ENEMY_MULT: 1.0,
+  PLAYER_DMG_MULT: 1.0,
+
+  EQUIP_SLOTS: ['帽子','面具','耳环','项链','衣服','裤子','护肩','护膝','手套','鞋子','披风','腰带','武器'],
+  SLOT_EMOJI: ['🎩','🎭','💎','📿','👘','👖','🛡️','🦿','🧤','👟','🧣','🔗','⚔️'],
+  // Slot categories for base stat
+  SLOT_ATK: [12,1,2,3,8],    // 武器,面具,耳环,项链,手套
+  SLOT_DEF: [0,9,10,11],     // 帽子,鞋子,披风,腰带
+  SLOT_HP: [4,5,6,7],        // 衣服,裤子,护肩,护膝
+
+  QUALITIES: [
+    {id:0,name:'普通',color:'#9e9e9e',maxAffixes:1,pmin:5,pmax:15,colorName:'灰'},
+    {id:1,name:'常见',color:'#4caf50',maxAffixes:2,pmin:15,pmax:40,colorName:'绿'},
+    {id:2,name:'稀有',color:'#2196f3',maxAffixes:2,pmin:40,pmax:90,colorName:'蓝'},
+    {id:3,name:'史诗',color:'#9c27b0',maxAffixes:3,pmin:90,pmax:180,colorName:'紫'},
+    {id:4,name:'传说',color:'#ff9800',maxAffixes:3,pmin:180,pmax:350,colorName:'橙'},
+    {id:5,name:'不朽',color:'#f44336',maxAffixes:4,pmin:350,pmax:650,colorName:'红'},
+    {id:6,name:'闪曜',color:'#c0a060',maxAffixes:4,pmin:650,pmax:1100,colorName:'暗金'},
+    {id:7,name:'完美',color:'#e8e8e8',maxAffixes:5,pmin:1100,pmax:1800,colorName:'白'},
+    {id:8,name:'传世',color:'#ffd700',maxAffixes:5,pmin:1800,pmax:2800,colorName:'金'},
+    {id:9,name:'至尊',color:'rainbow',maxAffixes:6,pmin:2800,pmax:4500,colorName:'彩'},
+  ],
+
+  AFFIX_POOL: [
+    {id:'atk',name:'攻击',type:'flat',tier:1},
+    {id:'hp',name:'生命',type:'flat',tier:1},
+    {id:'def',name:'防御',type:'flat',tier:1},
+    {id:'pen',name:'穿甲',type:'pct',tier:1},
+    {id:'critR',name:'暴击率',type:'pct',tier:1},
+    {id:'critD',name:'暴击伤害',type:'pct',tier:1},
+    {id:'critRes',name:'暴击抵抗',type:'pct',tier:1},
+    {id:'hit',name:'命中',type:'pct',tier:1},
+    {id:'dodge',name:'闪避',type:'pct',tier:1},
+    {id:'dmg+',name:'伤害加成',type:'pct',tier:2},
+    {id:'dmg-',name:'伤害减免',type:'pct',tier:2},
+    {id:'steal',name:'吸血',type:'pct',tier:2},
+    {id:'spd',name:'攻速',type:'pct',tier:2},
+    {id:'ten',name:'韧性',type:'pct',tier:2},
+    {id:'heal+',name:'治疗加成',type:'pct',tier:2},
+    {id:'ctr',name:'反击',type:'pct',tier:2},
+  ],
+
+  AFFIX_WEIGHT: {atk:2,hp:.5,def:1.5,pen:8,critR:10,critD:3,critRes:4,hit:2,dodge:6,'dmg+':6,'dmg-':6,steal:5,spd:3,ten:3,'heal+':4,ctr:4},
+
+  // Base stat config per category
+  BASE_ATK_L1: 3, BASE_ATK_PER_LV: 2,
+  BASE_DEF_L1: 4, BASE_DEF_PER_LV: 3,
+  BASE_HP_L1: 12, BASE_HP_PER_LV: 8,
+
+  // Chest tiers: each tier can roll qualities [max(0,tier-2) ... min(tier+2,9)]
+  // Upgrade cost in gems
+  CHEST_UPGRADE_GEMS: [0,10,25,60,150,350,800,1800,4000,9000],
+
+  STAGES: [
+    {id:1,name:'第1关·试炼',hp:500,atk:20,def:5,rec:300},
+    {id:2,name:'第2关·挑战',hp:1500,atk:45,def:12,rec:800},
+    {id:3,name:'第3关·激战',hp:3500,atk:90,def:25,rec:2000},
+    {id:4,name:'第4关·死斗',hp:8000,atk:180,def:55,rec:5000},
+    {id:5,name:'第5关·终战',hp:18000,atk:350,def:120,rec:12000},
+  ],
+
+  COMBAT_TICK_MS: 300,
+  SELL_PRICE_BASE: 50,
+  EQUIP_UPGRADE_COST_BASE: 50,
+  EQUIP_UPGRADE_COST_GROWTH: 1.5,
+  GEM_DROP_CHANCE: 0.05,
+};
+
+// ============================================================
+// 2. State
+// ============================================================
+const state = {
+  phase: 'idle',        // idle | chest_blocked | combat | choice
+  chests: 0,
+  gold: 0,
+  gems: 0,
+  chestTier: 0,         // 0-9
+  // 13 slots, each: {quality,level,affixes,power}
+  equipment: new Array(13).fill(null),
+  // Combat
+  curStage: 0,
+  clearedStages: [],
+  combatRunning: false,
+  cPlayerHp:0, cPlayerMax:0, cEnemyHp:0, cEnemyMax:0,
+  cStats: {dmg:0,taken:0,crits:0,heal:0,start:0,end:0},
+  cTickId: null,
+  // Pending
+  pending: null,        // {slot,equip}
+  pendingSlot: -1,
+  // Timers
+  genTimer: null,
+  openTimer: null,
+  openProgress: 0,      // ms accumulated toward next auto-open
+  progressTimer: null,
+
+  // Derived / cached
+  _dirty: true,
+};
+
+// ============================================================
+// 3. EventBus
+// ============================================================
+const EB = (()=>{const L={};return{on(e,f){(L[e]=L[e]||[]).push(f)},off(e,f){L[e]=(L[e]||[]).filter(x=>x!==f)},emit(e,d){(L[e]||[]).forEach(f=>f(d))}}})();
+
+// ============================================================
+// 4. Logic Layer
+// ============================================================
+
+function log(msg,warn){const t=new Date().toLocaleTimeString();EB.emit('log',{line:'['+t+'] '+msg,warn:!!warn})}
+
+// --- Slot category helpers ---
+function getSlotBaseType(idx){
+  if(CONFIG.SLOT_ATK.includes(idx))return'atk';
+  if(CONFIG.SLOT_DEF.includes(idx))return'def';
+  return'hp';
+}
+function getBaseStat(slotIdx,level){
+  let t=getSlotBaseType(slotIdx);
+  if(t==='atk')return CONFIG.BASE_ATK_L1+(level-1)*CONFIG.BASE_ATK_PER_LV;
+  if(t==='def')return CONFIG.BASE_DEF_L1+(level-1)*CONFIG.BASE_DEF_PER_LV;
+  return CONFIG.BASE_HP_L1+(level-1)*CONFIG.BASE_HP_PER_LV;
+}
+function getBaseStatPower(slotIdx,level){
+  let v=getBaseStat(slotIdx,level),t=getSlotBaseType(slotIdx);
+  if(t==='atk')return v*CONFIG.AFFIX_WEIGHT.atk;
+  if(t==='def')return v*CONFIG.AFFIX_WEIGHT.def;
+  return v*CONFIG.AFFIX_WEIGHT.hp;
+}
+
+// --- Quality range for a given level ---
+function qualityPowerRange(qIdx,level){
+  let q=CONFIG.QUALITIES[qIdx];
+  let lvm=1+(level-1)*0.2;
+  return {min:Math.floor(q.pmin*lvm),max:Math.floor(q.pmax*lvm)};
+}
+
+// --- Chest quality pool ---
+function chestQualityPool(){
+  let t=state.chestTier;
+  let mn=Math.max(0,t-2),mx=Math.min(t+2,9);
+  // enforce 3-5 range
+  while(mx-mn+1>5){mn++}
+  while(mx-mn+1<3&&mn>0){mn--}
+  while(mx-mn+1<3&&mx<9){mx++}
+  let pool=[];
+  for(let i=mn;i<=mx;i++)pool.push(i);
+  return pool;
+}
+function rollChestQuality(){
+  let pool=chestQualityPool(),luck=CONFIG.DROP_LUCK;
+  // Descending probability: higher quality = lower chance
+  let n=pool.length,weights=[];
+  for(let i=0;i<n;i++){weights.push(Math.pow(0.5+luck*0.1,i))}
+  let sum=weights.reduce((a,b)=>a+b,0),r=Math.random()*sum;
+  for(let i=0;i<n;i++){r-=weights[i];if(r<=0)return pool[i]}
+  return pool[pool.length-1];
+}
+
+// --- Affix generation for target power ---
+function generateAffixes(qualityIdx,slotIdx,level){
+  let q=CONFIG.QUALITIES[qualityIdx];
+  let basePow=getBaseStatPower(slotIdx,level);
+  let range=qualityPowerRange(qualityIdx,level);
+  let targetP=Math.floor(range.min+Math.random()*(range.max-range.min));
+  let affixBudget=targetP-basePow;
+  if(affixBudget<0)affixBudget=1;
+
+  let maxN=q.maxAffixes;
+  let n=Math.max(1,Math.min(maxN,1+Math.floor(Math.random()*maxN)));
+  let pool=CONFIG.AFFIX_POOL.filter(a=>a.tier<=2).map(a=>({...a}));
+  // Shuffle and pick n
+  for(let i=pool.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  let chosen=pool.slice(0,n);
+
+  // Distribute budget among chosen affixes with randomness
+  let parts=chosen.map(()=>0.3+Math.random()*0.7);
+  let psum=parts.reduce((a,b)=>a+b,0);
+  let affixes=[];
+  for(let i=0;i<chosen.length;i++){
+    let a=chosen[i];
+    let share=affixBudget*(parts[i]/psum);
+    let rawVal;
+    if(a.type==='pct'){
+      if(a.id==='critD')rawVal=Math.round(share/3);
+      else if(a.id==='hit')rawVal=Math.round(share/1.5);
+      else rawVal=Math.round(share/5);
+    }else{
+      rawVal=Math.round(share/(CONFIG.AFFIX_WEIGHT[a.id]||1));
+    }
+    rawVal=Math.max(1,rawVal);
+    affixes.push({id:a.id,name:a.name,type:a.type,value:rawVal});
+  }
+  return affixes;
+}
+
+function calcEquipPower(equip){
+  let p=getBaseStatPower(equip.slot,equip.level);
+  for(let a of equip.affixes){
+    let w=CONFIG.AFFIX_WEIGHT[a.id]||1;
+    p+=a.type==='pct'?a.value*w:a.value*w;
+  }
+  return Math.floor(p);
+}
+
+function clamp(v,lo,hi){return Math.max(lo,Math.min(hi,v))}
+
+// --- Generate equipment ---
+function generateEquipment(slotIdx){
+  let qIdx=rollChestQuality();
+  let level=state.equipment[slotIdx]?state.equipment[slotIdx].level:1;
+  let affixes=generateAffixes(qIdx,slotIdx,level);
+  return{slot:slotIdx,quality:qIdx,level:level,affixes:affixes,power:calcEquipPower({slot:slotIdx,quality:qIdx,level:level,affixes:affixes})};
+}
+
+// --- Sell price ---
+function sellPrice(equip){return Math.floor(CONFIG.SELL_PRICE_BASE*(1+equip.quality*0.8)*(1+equip.level*0.15))}
+
+// --- Upgrade cost for individual slot ---
+function slotUpgradeCost(equip){return Math.floor(CONFIG.EQUIP_UPGRADE_COST_BASE*Math.pow(CONFIG.EQUIP_UPGRADE_COST_GROWTH,equip.level-1))}
+
+// --- Chest operations ---
+function genChest(){if(state.chests<CONFIG.CHEST_MAX){state.chests++;EB.emit('chest_changed')}}
+function canOpen(){return state.chests>0&&state.phase==='idle'}
+function openChest(){
+  if(!canOpen())return;
+  state.chests--;
+  let si=Math.floor(Math.random()*13);
+  EB.emit('chest_changed');
+  EB.emit('chest_opening',si);
+  // Gem drop check
+  if(Math.random()<CONFIG.GEM_DROP_CHANCE){
+    let gc=1+Math.floor(Math.random()*3);
+    state.gems+=gc;
+    EB.emit('gem_drop',gc);
+  }
+  let equip=generateEquipment(si);
+  receiveEquipment(si,equip);
+}
+function manualOpenChest(){if(canOpen())openChest()}
+
+// --- Equipment reception ---
+function receiveEquipment(si,equip){
+  let cur=state.equipment[si];
+  if(!cur){state.equipment[si]=equip;log(equipPowerTag(equip)+' '+CONFIG.EQUIP_SLOTS[si]+' 自动装备');EB.emit('equip_done',{si,equip});return}
+  if(equip.power<=cur.power){
+    let p=sellPrice(equip);state.gold+=p;
+    log(equipPowerTag(equip)+' '+CONFIG.EQUIP_SLOTS[si]+'(≤现有)卖出+'+p+'💰');
+    EB.emit('equip_done',{si,equip:null,sell:true,gold:p});return;
+  }
+  // Better - pause and ask
+  state.phase='choice';state.pending=equip;state.pendingSlot=si;
+  EB.emit('choice_needed',{si,cur,equip});EB.emit('phase_changed');
+}
+function chooseEquip(){
+  let old=state.equipment[state.pendingSlot],sellG=old?sellPrice(old):0;
+  state.gold+=sellG;state.equipment[state.pendingSlot]=state.pending;
+  log('替换'+equipPowerTag(state.pending)+' '+CONFIG.EQUIP_SLOTS[state.pendingSlot]+' 旧卖出+'+sellG+'💰');
+  EB.emit('equip_done',{si:state.pendingSlot,equip:state.pending,gold:sellG});EB.emit('choice_done');
+  state.pending=null;state.pendingSlot=-1;state.phase='idle';EB.emit('phase_changed');
+}
+function sellPending(){
+  let p=sellPrice(state.pending);state.gold+=p;
+  log('放弃'+equipPowerTag(state.pending)+'卖出+'+p+'💰');
+  EB.emit('choice_done');
+  state.pending=null;state.pendingSlot=-1;state.phase='idle';EB.emit('phase_changed');
+}
+
+function equipPowerTag(e){return'['+CONFIG.QUALITIES[e.quality].name+'·战力'+e.power+']'}
+
+// --- Slot upgrade ---
+function upgradeSlot(si){
+  let e=state.equipment[si];if(!e)return;
+  let cost=slotUpgradeCost(e);
+  if(state.gold<cost){log('[提示] 金币不足 需要'+cost+' 当前'+state.gold,true);return}
+  state.gold-=cost;e.level++;
+  // Recalc power with new level
+  e.power=calcEquipPower(e);
+  log(CONFIG.EQUIP_SLOTS[si]+'升级至Lv.'+e.level+'（-'+cost+'💰）');
+  EB.emit('equip_changed');
+}
+
+// --- Chest upgrade ---
+function upgradeChest(){
+  if(state.chestTier>=9){log('宝箱已达最高品质',true);return}
+  let cost=CONFIG.CHEST_UPGRADE_GEMS[state.chestTier+1];
+  if(state.gems<cost){log('[提示] 宝石不足 需要'+cost+' 当前'+state.gems,true);return}
+  state.gems-=cost;state.chestTier++;
+  log('宝箱品质提升至['+CONFIG.QUALITIES[state.chestTier].name+']!');
+  EB.emit('chest_tier_changed');
+}
+
+// --- Combat ---
+function enterCombat(){
+  if(state.phase!=='idle')return;
+  state.phase='combat';EB.emit('phase_changed');EB.emit('combat_enter');
+}
+function exitCombat(){
+  if(state.combatRunning)return;
+  state.phase='idle';EB.emit('phase_changed');EB.emit('combat_exit');
+}
+
+function calcPlayerStats(){
+  let atk=0,hp=500,def=0,pen=0,cr=0,cd=150,crr=0,hit=95,dodge=0,db=0,dr=0,ls=0,spd=0,ten=0,hb=0,ctr=0;
+  for(let e of state.equipment){
+    if(!e)continue;
+    let t=getSlotBaseType(e.slot);
+    if(t==='atk')atk+=getBaseStat(e.slot,e.level);
+    else if(t==='def')def+=getBaseStat(e.slot,e.level);
+    else hp+=getBaseStat(e.slot,e.level);
+    for(let a of e.affixes){
+      switch(a.id){
+        case'atk':atk+=a.value;break;case'hp':hp+=a.value;break;case'def':def+=a.value;break;
+        case'pen':pen+=a.value;break;case'critR':cr+=a.value;break;case'critD':cd=Math.max(cd,a.value);break;
+        case'critRes':crr+=a.value;break;case'hit':hit=Math.max(hit,a.value);break;case'dodge':dodge+=a.value;break;
+        case'dmg+':db+=a.value;break;case'dmg-':dr+=a.value;break;case'steal':ls+=a.value;break;
+        case'spd':spd+=a.value;break;case'ten':ten+=a.value;break;case'heal+':hb+=a.value;break;case'ctr':ctr+=a.value;break;
+      }
+    }
+  }
+  cr=clamp(cr,0,100);hit=clamp(hit,0,100);dodge=clamp(dodge,0,80);ls=clamp(ls,0,50);
+  db=clamp(db,0,200);dr=clamp(dr,0,75);pen=clamp(pen,0,100);spd=clamp(spd,0,200);ctr=clamp(ctr,0,50);
+  return{atk,hp,def,pen,cr,cd,crr,hit,dodge,db,dr,ls,spd,ten,hb,ctr};
+}
+function calcTotalPower(){
+  let p=0;for(let e of state.equipment)if(e)p+=e.power;return p;
+}
+
+function startChallenge(){
+  if(state.combatRunning||state.phase!=='combat')return;
+  let st=CONFIG.STAGES[state.curStage],stats=calcPlayerStats(),em=CONFIG.ENEMY_MULT;
+  state.combatRunning=true;
+  state.cPlayerMax=stats.hp;state.cPlayerHp=stats.hp;
+  state.cEnemyMax=Math.floor(st.hp*em);state.cEnemyHp=state.cEnemyMax;
+  state.cStats={dmg:0,taken:0,crits:0,heal:0,start:Date.now(),end:0};
+  EB.emit('combat_start');log('⚔️ 挑战'+st.name);
+  tick(stats,st);
+}
+function tick(stats,stage){
+  if(!state.combatRunning)return;
+  let em=CONFIG.ENEMY_MULT,dm=CONFIG.PLAYER_DMG_MULT;
+  let ea=Math.floor(stage.atk*em),ed=Math.floor(stage.def*em);
+  // Player
+  let bd=Math.max(stats.atk*dm-ed*(1-stats.pen/100),1);
+  let crit=Math.random()*100<stats.cr;
+  let pd=Math.floor(crit?bd*(stats.cd/100):bd);
+  pd=Math.floor(pd*(1+stats.db/100));pd=Math.max(pd,1);
+  state.cEnemyHp-=pd;state.cStats.dmg+=pd;if(crit)state.cStats.crits++;
+  if(stats.ls>0){let h=Math.floor(pd*(stats.ls/100));state.cPlayerHp=Math.min(state.cPlayerMax,state.cPlayerHp+h);state.cStats.heal+=h;EB.emit('c_float',{t:'+'+h,type:'heal'})}
+  EB.emit('c_float',{t:''+pd,type:crit?'crit':'dmg'});
+  if(state.cEnemyHp<=0){state.cEnemyHp=0;endCombat(true);return}
+  // Enemy
+  let dodged=Math.random()*100<stats.dodge;
+  if(dodged){EB.emit('c_float',{t:'MISS',type:'miss'});if(Math.random()*100<stats.ctr){let cd2=Math.floor(Math.max(stats.atk*dm*.5-ed,1));state.cEnemyHp-=cd2;state.cStats.dmg+=cd2;EB.emit('c_float',{t:'反击'+cd2,type:'crit'})}}
+  else{let ed2=Math.max(ea-stats.def,1);ed2=Math.floor(ed2*(1-stats.dr/100));ed2=Math.max(ed2,1);state.cPlayerHp-=ed2;state.cStats.taken+=ed2;EB.emit('c_float',{t:''+ed2,type:'dmg',enemy:true})}
+  if(state.cPlayerHp<=0){state.cPlayerHp=0;endCombat(false);return}
+  if(state.cEnemyHp<=0){state.cEnemyHp=0;endCombat(true);return}
+  EB.emit('c_hp');
+  let tms=CONFIG.COMBAT_TICK_MS*(100/(100+stats.spd));tms=clamp(tms,100,600);
+  state.cTickId=setTimeout(()=>tick(stats,stage),tms);
+}
+function endCombat(win){
+  state.combatRunning=false;state.cStats.end=Date.now();
+  if(state.cTickId){clearTimeout(state.cTickId);state.cTickId=null}
+  EB.emit('c_hp');
+  if(win){
+    if(!state.clearedStages.includes(state.curStage))state.clearedStages.push(state.curStage);
+    let d=((state.cStats.end-state.cStats.start)/1000).toFixed(1);
+    log('✅ 通关! '+CONFIG.STAGES[state.curStage].name+' 耗时'+d+'s');
+  }else{let d=((state.cStats.end-state.cStats.start)/1000).toFixed(1);log('❌ 失败 战力不足 (耗时'+d+'s)',true)}
+  EB.emit('combat_end',{win});
+}
+function selectStage(idx){
+  if(state.combatRunning)return;
+  if(idx>0&&!state.clearedStages.includes(idx-1))return;
+  state.curStage=idx;EB.emit('stage_changed');
+}
+
+// ============================================================
+// 5. Render Layer
+// ============================================================
+
+function rDebug(){
+  let h='',p=calcTotalPower(),s=calcPlayerStats();
+  h+=d('阶段',state.phase)+d('宝箱',state.chests+'/'+CONFIG.CHEST_MAX)+d('金币',state.gold)+d('宝石',state.gems);
+  h+=d('宝箱品质',CONFIG.QUALITIES[state.chestTier].name)+d('关卡',(state.curStage+1)+'/'+CONFIG.STAGES.length)+d('总战力',p);
+  h+=d('攻击',Math.floor(s.atk))+'<div class="debug-stat"><span>暴击率</span><span>'+s.cr.toFixed(1)+'%</span></div>';
+  h+=d('生命',Math.floor(s.hp))+'<div class="debug-stat"><span>暴伤</span><span>'+s.cd+'%</span></div>';
+  h+=d('防御',Math.floor(s.def))+'<div class="debug-stat"><span>闪避</span><span>'+s.dodge.toFixed(1)+'%</span></div>';
+  D('debugStats').innerHTML=h;
+}
+function d(k,v){return'<div class="debug-stat"><span>'+k+'</span><span>'+v+'</span></div>'}
+
+function rPlayerStats(){
+  let s=calcPlayerStats(),h='';
+  let items=[
+    ['战力',calcTotalPower(),'var(--accent)'],
+    ['攻击',Math.floor(s.atk),'#ff6b6b'],['生命',Math.floor(s.hp),'#6bff6b'],
+    ['防御',Math.floor(s.def),'#6bc5ff'],['暴击率',s.cr.toFixed(1)+'%',''],
+    ['暴伤',s.cd+'%',''],['穿甲',s.pen.toFixed(1)+'%',''],
+    ['命中',s.hit.toFixed(1)+'%',''],['闪避',s.dodge.toFixed(1)+'%',''],
+    ['伤害加成',s.db.toFixed(1)+'%',''],['伤害减免',s.dr.toFixed(1)+'%',''],
+    ['吸血',s.ls.toFixed(1)+'%',''],['攻速',s.spd.toFixed(1)+'%',''],
+    ['反击',s.ctr.toFixed(1)+'%',''],['韧性',s.ten.toFixed(1)+'%',''],
+  ];
+  for(let x of items){
+    h+='<div class="stat-item">'+x[0]+': <span'+(x[2]?' style="color:'+x[2]+'"':'')+'>'+x[1]+'</span></div>';
+  }
+  D('playerStatsRow').innerHTML=h;
+}
+
+function rEquipGrid(){
+  let h='';
+  for(let i=0;i<13;i++){
+    let e=state.equipment[i],sn=CONFIG.EQUIP_SLOTS[i],em=CONFIG.SLOT_EMOJI[i];
+    if(e){
+      let q=e.quality,lc='q-'+(q+1),qc=CONFIG.QUALITIES[q];
+      let bt=getSlotBaseType(i),bv=getBaseStat(i,e.level),bn=bt==='atk'?'攻击':bt==='def'?'防御':'生命';
+      let af=e.affixes.map(a=>a.name+'+'+(a.type==='pct'?a.value+'%':a.value)).join(' ');
+      let cost=slotUpgradeCost(e);
+      h+='<div class="equip-slot '+lc+'"><div class="lv-tag">Lv'+e.level+'</div>';
+      h+='<div class="slot-emoji">'+em+'</div><div class="slot-name">'+sn+'</div>';
+      h+='<div class="slot-power" style="color:'+qc.color+'">'+e.power+'</div>';
+      h+='<div class="slot-base">'+bn+'+'+bv+'</div>';
+      h+='<div class="slot-affixes">'+af+'</div>';
+      h+='<button class="btn-upgrade-slot" '+(state.gold<cost?'disabled':'')+' onclick="upgradeSlot('+i+')">⬆'+cost+'💰</button>';
+      h+='</div>';
+    }else{
+      h+='<div class="equip-slot empty"><div class="slot-emoji">'+em+'</div><div class="slot-name">'+sn+'</div><div class="slot-power">空</div></div>';
+    }
+  }
+  D('equipGrid').innerHTML=h;
+}
+
+function rChest(){
+  D('chestCount').textContent=state.chests;D('chestMax').textContent=CONFIG.CHEST_MAX;
+  let cq=CONFIG.QUALITIES[state.chestTier];
+  D('chestTierTag').innerHTML='品质：<span style="color:'+cq.color+'">'+cq.name+'</span>';
+  D('chestFillBar').style.width=(state.chests/CONFIG.CHEST_MAX*100)+'%';
+  let pct=state.openProgress/CONFIG.CHEST_AUTO_OPEN_MS*100;
+  let bar=D('openFillBar');bar.style.width=pct+'%';
+  bar.classList.toggle('paused',!canOpen());
+  D('prodRateTxt').textContent=(CONFIG.CHEST_GEN_MS/1000).toFixed(1);
+  D('openRateTxt').textContent=(CONFIG.CHEST_AUTO_OPEN_MS/1000).toFixed(1);
+  D('btnOpenChest').disabled=!canOpen();
+  D('btnEnterCombat').disabled=state.phase!=='idle';
+  // Chest upgrade btn
+  if(state.chestTier<9){
+    let cost=CONFIG.CHEST_UPGRADE_GEMS[state.chestTier+1];
+    D('upChestCost').textContent=cost;
+    D('btnUpChest').disabled=state.gems<cost;
+    D('btnUpChest').style.display='';
+  }else{D('btnUpChest').style.display='none'}
+}
+
+function rCombat(){
+  D('combatStageName').textContent=CONFIG.STAGES[state.curStage].name;
+  let ph=state.cPlayerMax?state.cPlayerHp/state.cPlayerMax*100:100;
+  let eh=state.cEnemyMax?state.cEnemyHp/state.cEnemyMax*100:100;
+  D('playerHpBar').style.width=ph+'%';D('playerHpText').textContent=(state.cPlayerMax?state.cPlayerHp+'/'+state.cPlayerMax:'- / -');
+  D('enemyHpBar').style.width=eh+'%';D('enemyHpText').textContent=(state.cEnemyMax?state.cEnemyHp+'/'+state.cEnemyMax:'- / -');
+  D('btnChallenge').disabled=state.combatRunning||state.phase!=='combat';
+  // Stage buttons
+  let sh='';
+  for(let i=0;i<CONFIG.STAGES.length;i++){
+    let st=CONFIG.STAGES[i],cls='stage-btn';
+    if(state.clearedStages.includes(i))cls+=' cleared';if(i===state.curStage)cls+=' current';
+    let dis=i>0&&!state.clearedStages.includes(i-1)?'disabled':'';
+    sh+='<button class="'+cls+'" '+dis+' onclick="selectStage('+i+')">'+st.name+'<br><small>推荐'+st.rec+'</small></button>';
+  }
+  D('stageSelect').innerHTML=sh;
+}
+
+function rChoice(){
+  let cur=state.equipment[state.pendingSlot],pnd=state.pending;
+  if(!cur||!pnd){D('choiceView').style.display='none';return}
+  let qc=CONFIG.QUALITIES,si=state.pendingSlot,sn=CONFIG.EQUIP_SLOTS[si];
+  function card(e,label,hi){
+    let q=qc[e.quality],bt=getSlotBaseType(si),bv=getBaseStat(si,e.level),bn=bt==='atk'?'攻击':bt==='def'?'防御':'生命';
+    let af=e.affixes.map(a=>a.name+': +'+(a.type==='pct'?a.value+'%':a.value)).join('<br>');
+    return'<div class="item-card" style="border:2px solid '+q.color+'"><div class="card-lv">Lv'+e.level+'</div>'+
+      '<div class="card-title" style="color:'+q.color+'">'+label+' ['+q.name+']</div>'+
+      '<div class="card-power '+(hi?'higher':'lower')+'">战力 '+e.power+'</div>'+
+      '<div class="card-detail">基础：'+bn+'+'+bv+'<br>'+af+'</div></div>';
+  }
+  D('choiceCompare').innerHTML=card(cur,'当前装备',false)+'<div class="choice-vs">VS</div>'+card(pnd,'新装备',true);
+  D('choiceBtns').innerHTML='<button class="btn-equip" onclick="chooseEquip()">✅ 替换（旧装备自动卖出）</button>'+
+    '<button class="btn-sell" onclick="sellPending()">🗑️ 放弃（卖出新装备 +'+sellPrice(pnd)+'💰）</button>';
+}
+
+function rDynamicView(){
+  let cv=D('chestView'),bv=D('combatView'),sv=D('choiceView');
+  cv.style.display='none';bv.style.display='none';sv.style.display='none';
+  if(state.phase==='combat')bv.style.display='block';
+  else if(state.phase==='choice')sv.style.display='block';
+  else cv.style.display='block';
+}
+
+function showDropAnim(msg,color){
+  let area=D('dynamicArea'),d=document.createElement('div');
+  d.className='drop-anim';d.style.color=color;d.style.background='rgba(0,0,0,.85)';d.style.border='2px solid '+color;
+  d.textContent=msg;area.appendChild(d);setTimeout(()=>d.remove(),1400);
+}
+
+function showFloat(txt,type,enemy){
+  let c=D('combatNumbers'),n=document.createElement('div');
+  n.className='float-num '+type;n.textContent=txt;
+  n.style.left=(enemy?15+Math.random()*60:35+Math.random()*80)+'%';n.style.top='20px';
+  c.appendChild(n);setTimeout(()=>n.remove(),900);
+}
+
+function showResult(win){
+  let s=state.cStats,dur=((s.end-s.start)/1000).toFixed(1);
+  D('resultTitle').textContent=win?'🏆 通关成功！':'💀 挑战失败';
+  D('resultTitle').style.color=win?'var(--success)':'var(--danger)';
+  D('resultGrid').innerHTML=
+    '<div class="si">总伤害 <b>'+s.dmg+'</b></div><div class="si">受到伤害 <b>'+s.taken+'</b></div>'+
+    '<div class="si">暴击次数 <b>'+s.crits+'</b></div><div class="si">治疗量 <b>'+s.heal+'</b></div>'+
+    '<div class="si">通关时长 <b>'+dur+'s</b></div><div class="si">剩余HP <b>'+state.cPlayerHp+'/'+state.cPlayerMax+'</b></div>';
+  D('combatResult').style.display='block';
+}
+
+function shake(sz){
+  let m=D('mainArea');m.classList.remove('shake','big-shake');void m.offsetWidth;
+  m.classList.add(sz==='big'?'big-shake':'shake');
+  setTimeout(()=>m.classList.remove('shake','big-shake'),sz==='big'?450:250);
+}
+function gemFlash(){
+  let f=document.createElement('div');f.className='gem-flash';f.textContent='💎✨';
+  D('mainArea').appendChild(f);setTimeout(()=>f.remove(),800);
+}
+
+function D(id){return document.getElementById(id)}
+
+// ============================================================
+// 6. Event Hooks
+// ============================================================
+EB.on('log',d=>{
+  let la=D('logArea'),dv=document.createElement('div');
+  dv.className='log-line'+(d.warn?' log-warn':'');dv.textContent=d.line;
+  la.appendChild(dv);la.scrollTop=la.scrollHeight;
+});
+EB.on('chest_changed',()=>{rChest();rDebug()});
+EB.on('equip_done',d=>{
+  rEquipGrid();rPlayerStats();rDebug();
+  if(d.equip&&!d.sell){
+    let q=CONFIG.QUALITIES[d.equip.quality];
+    showDropAnim(q.name+'! '+CONFIG.EQUIP_SLOTS[d.si]+' 战力+'+d.equip.power,q.color);
+    if(d.equip.quality>=4)shake(d.equip.quality>=7?'big':'normal');
+  }
+});
+EB.on('equip_changed',()=>{rEquipGrid();rPlayerStats();rDebug()});
+EB.on('phase_changed',()=>{rDynamicView();rChest();rDebug()});
+EB.on('choice_needed',()=>{rChoice();D('choiceView').style.display='block';rChest()});
+EB.on('choice_done',()=>{D('choiceView').style.display='none';rChest();rEquipGrid();rPlayerStats();rDebug()});
+EB.on('gem_drop',gc=>{log('💎 获得宝石 ×'+gc+'!');gemFlash();shake('big');rDebug();rChest()});
+EB.on('chest_tier_changed',()=>{rChest();rDebug()});
+EB.on('combat_enter',()=>{rDynamicView();rCombat();D('combatResult').style.display='none';rChest()});
+EB.on('combat_exit',()=>{rDynamicView();rChest();rDebug()});
+EB.on('combat_start',()=>{D('combatResult').style.display='none';rCombat()});
+EB.on('c_float',d=>{showFloat(d.t,d.type,d.enemy)});
+EB.on('c_hp',()=>{rCombat()});
+EB.on('combat_end',d=>{
+  showResult(d.win);rCombat();rDebug();rPlayerStats();
+  if(d.win){shake('big');if(state.curStage<4){state.curStage++;setTimeout(()=>rCombat(),400)}}
+});
+EB.on('stage_changed',()=>{rCombat()});
+EB.on('chest_opening',()=>{});
+
+// Sliders
+['sChestGen','sAutoOpen','sDropLuck','sEnemyMult','sDmgMult'].forEach(id=>{
+  D(id).addEventListener('input',function(){
+    let v=parseFloat(this.value);
+    if(id==='sChestGen'){CONFIG.CHEST_GEN_MS=v*1000;D('vChestGen').textContent=v.toFixed(1)+'s';restartGenTimer()}
+    if(id==='sAutoOpen'){CONFIG.CHEST_AUTO_OPEN_MS=v*1000;D('vAutoOpen').textContent=v.toFixed(1)+'s';restartOpenTimer()}
+    if(id==='sDropLuck'){CONFIG.DROP_LUCK=v;D('vDropLuck').textContent=v.toFixed(1)+'x'}
+    if(id==='sEnemyMult'){CONFIG.ENEMY_MULT=v;D('vEnemyMult').textContent=v.toFixed(1)+'x'}
+    if(id==='sDmgMult'){CONFIG.PLAYER_DMG_MULT=v;D('vDmgMult').textContent=v.toFixed(1)+'x'}
+  });
+});
+
+// ============================================================
+// 7. Timers
+// ============================================================
+function restartGenTimer(){if(state.genTimer)clearInterval(state.genTimer);state.genTimer=setInterval(()=>genChest(),CONFIG.CHEST_GEN_MS)}
+function restartOpenTimer(){
+  // Auto-open checks every 100ms, accumulates progress, fires open when threshold reached
+  if(state.openTimer)clearInterval(state.openTimer);state.openProgress=0;
+  state.openTimer=setInterval(()=>{
+    if(canOpen()){
+      state.openProgress+=100;
+      if(state.openProgress>=CONFIG.CHEST_AUTO_OPEN_MS){state.openProgress=0;openChest()}
+    }
+    // If can't open, progress stays frozen (progress bar will show paused)
+    rChest();
+  },100);
+}
+
+// Progress bar smooth update
+if(state.progressTimer)clearInterval(state.progressTimer);
+state.progressTimer=setInterval(()=>{rChest()},200);
+
+// ============================================================
+// 8. Init & Reset
+// ============================================================
+function resetGame(){
+  if(state.genTimer)clearInterval(state.genTimer);
+  if(state.openTimer)clearInterval(state.openTimer);
+  if(state.cTickId)clearTimeout(state.cTickId);
+  state.phase='idle';state.chests=0;state.gold=0;state.gems=0;state.chestTier=0;
+  state.equipment=new Array(13).fill(null);
+  state.curStage=0;state.clearedStages=[];state.combatRunning=false;
+  state.cPlayerHp=0;state.cPlayerMax=0;state.cEnemyHp=0;state.cEnemyMax=0;
+  state.cStats={dmg:0,taken:0,crits:0,heal:0,start:0,end:0};
+  state.pending=null;state.pendingSlot=-1;state.openProgress=0;
+  D('logArea').innerHTML='';D('combatResult').style.display='none';D('combatNumbers').innerHTML='';
+  restartGenTimer();restartOpenTimer();rAll();log('🔄 游戏已重置');
+}
+function rAll(){rPlayerStats();rEquipGrid();rChest();rDebug();rDynamicView();D('goldDisp').textContent=state.gold;D('gemDisp').textContent=state.gems;D('totalPower').textContent=calcTotalPower()}
+function init(){
+  rAll();restartGenTimer();restartOpenTimer();log('🎮 挂机装备RPG v2 启动!');
+}
+init();
+</script>
+</body>
+</html>

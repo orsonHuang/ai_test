@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 晨报 · 2026年6月25日 周四</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f6f7fb; --card:#ffffff; --ink:#0f172a; --sub:#64748b;
+  --line:#e6e8ef; --accent:#6366f1; --shadow:0 1px 3px rgba(15,23,42,.06),0 4px 16px rgba(15,23,42,.05);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* hero */
+.hero{
+  background:linear-gradient(135deg,#1e1b4b 0%,#4338ca 55%,#6d28d9 100%);
+  color:#fff;padding:34px 0 26px;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+  background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);
+}
+.hero-inner{position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;
+  background:rgba(255,255,255,.18);padding:4px 12px;border-radius:999px;margin-bottom:12px;
+  letter-spacing:.5px}
+.hero-tag .dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 8px #34d399}
+.hero h1{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.hero-date{font-size:15px;opacity:.92;margin-top:5px}
+.hero-win{font-size:12.5px;opacity:.78;margin-top:4px}
+.hero-total{
+  display:flex;align-items:baseline;gap:8px;margin-top:16px;
+}
+.hero-total .big{font-size:34px;font-weight:800;line-height:1}
+.hero-total .lbl{font-size:13px;opacity:.85}
+
+/* stats */
+.stats{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px;
+}
+.stat-chip{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);
+  border-radius:12px;padding:11px 12px;display:flex;align-items:center;gap:9px;
+  transition:background .2s,transform .2s;
+}
+.stat-chip:hover{background:rgba(255,255,255,.22);transform:translateY(-2px)}
+.stat-ico{font-size:18px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.18);border-radius:8px;flex-shrink:0}
+.stat-num{font-size:19px;font-weight:700;line-height:1.1}
+.stat-label{font-size:11px;opacity:.85;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* nav */
+.nav{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(15,23,42,.03);
+}
+.nav-inner{display:flex;gap:6px;overflow-x:auto;padding:10px 20px;max-width:1100px;margin:0 auto;
+  scrollbar-width:none}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-link{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  padding:7px 13px;border-radius:999px;font-size:13px;font-weight:500;color:var(--sub);
+  border:1px solid transparent;transition:all .18s;
+}
+.nav-link:hover{background:#f1f0fb;color:var(--ink);border-color:var(--line)}
+.nav-link.active{background:color-mix(in srgb,var(--c) 12%,transparent);color:var(--c);border-color:color-mix(in srgb,var(--c) 30%,transparent)}
+.nav-ico{font-size:14px}
+.nav-cnt{font-size:11px;background:#eef0f5;color:var(--sub);padding:1px 7px;border-radius:999px;font-weight:600}
+.nav-link.active .nav-cnt{background:var(--c);color:#fff}
+
+/* sections */
+.main{padding:24px 0 40px}
+.section{margin-bottom:30px;scroll-margin-top:64px}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:10px;
+  border-bottom:2px solid color-mix(in srgb,var(--c) 22%,transparent)}
+.sec-ico{font-size:20px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--c) 14%,#fff);border-radius:9px}
+.sec-title{font-size:18px;font-weight:700;color:var(--ink)}
+.sec-count{font-size:12px;color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);
+  padding:3px 10px;border-radius:999px;font-weight:600}
+.sec-top{margin-left:auto;font-size:13px;color:var(--sub);width:26px;height:26px;
+  display:flex;align-items:center;justify-content:center;border-radius:7px;border:1px solid var(--line);transition:all .15s}
+.sec-top:hover{color:var(--c);border-color:var(--c);background:#fff}
+
+/* card grid */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;
+  display:flex;flex-direction:column;position:relative;transition:transform .18s,box-shadow .18s,border-color .18s;
+  box-shadow:var(--shadow);
+}
+.card::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:3px;
+  background:var(--c);border-radius:0 3px 3px 0;opacity:.85}
+.card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(15,23,42,.1);border-color:color-mix(in srgb,var(--c) 40%,var(--line))}
+.card-top{display:flex;align-items:center;gap:8px;margin-bottom:9px}
+.card-num{
+  font-size:12px;font-weight:700;color:#fff;background:var(--c);
+  min-width:24px;height:24px;padding:0 6px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0
+}
+.card-src{
+  font-size:11px;color:var(--sub);background:#f4f5f9;padding:3px 9px;border-radius:999px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+}
+.card-title{font-size:14.5px;font-weight:600;line-height:1.45;margin-bottom:7px;color:var(--ink)}
+.card-summary{font-size:13px;color:var(--sub);line-height:1.6;flex:1;margin-bottom:11px}
+.card-link{
+  font-size:12.5px;font-weight:600;color:var(--c);display:inline-flex;align-items:center;gap:4px;
+  align-self:flex-start;padding:4px 0;transition:gap .15s;
+}
+.card-link:hover{gap:7px}
+.card-link .arrow{font-size:14px}
+
+/* footer */
+.footer{text-align:center;padding:28px 20px 36px;color:var(--sub);font-size:12.5px;border-top:1px solid var(--line);background:#fff}
+.footer .f-total{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:5px}
+.footer a{color:var(--accent)}
+
+/* responsive */
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:22px}
+  .hero-total .big{font-size:28px}
+  .card-grid{grid-template-columns:1fr}
+}
+@media (max-width:420px){
+  .stats{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div id="top"></div>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-tag"><span class="dot"></span> AI 晨报仪表盘 · 每日自动聚合</div>
+    <h1>AI HOT 日报</h1>
+    <div class="hero-date">2026年6月25日 周四 · 6月25日 上午 08:00 生成（北京时间）</div>
+    <div class="hero-win">数据窗口：6月24日 上午 08:00 — 6月25日 上午 08:00（北京时间，过去 24 小时）</div>
+    <div class="hero-total"><span class="big">21</span><span class="lbl">条精选动态 · 覆盖 5 大版块</span></div>
+    <div class="stats"><a class="stat-chip" href="#models" style="--c:#6366f1"><div class="stat-ico">🧠</div><div class="stat-meta"><div class="stat-num">4</div><div class="stat-label">模型发布/更新</div></div></a><a class="stat-chip" href="#products" style="--c:#0ea5e9"><div class="stat-ico">🚀</div><div class="stat-meta"><div class="stat-num">8</div><div class="stat-label">产品发布/更新</div></div></a><a class="stat-chip" href="#industry" style="--c:#f59e0b"><div class="stat-ico">📊</div><div class="stat-meta"><div class="stat-num">1</div><div class="stat-label">行业动态</div></div></a><a class="stat-chip" href="#papers" style="--c:#10b981"><div class="stat-ico">📄</div><div class="stat-meta"><div class="stat-num">2</div><div class="stat-label">论文研究</div></div></a><a class="stat-chip" href="#tips" style="--c:#ec4899"><div class="stat-ico">💡</div><div class="stat-meta"><div class="stat-num">6</div><div class="stat-label">技巧与观点</div></div></a></div>
+  </div>
+</header>
+
+<nav class="nav">
+  <div class="nav-inner"><a class="nav-link" href="#models" style="--c:#6366f1"><span class="nav-ico">🧠</span><span class="nav-txt">模型发布/更新</span><span class="nav-cnt">4</span></a><a class="nav-link" href="#products" style="--c:#0ea5e9"><span class="nav-ico">🚀</span><span class="nav-txt">产品发布/更新</span><span class="nav-cnt">8</span></a><a class="nav-link" href="#industry" style="--c:#f59e0b"><span class="nav-ico">📊</span><span class="nav-txt">行业动态</span><span class="nav-cnt">1</span></a><a class="nav-link" href="#papers" style="--c:#10b981"><span class="nav-ico">📄</span><span class="nav-txt">论文研究</span><span class="nav-cnt">2</span></a><a class="nav-link" href="#tips" style="--c:#ec4899"><span class="nav-ico">💡</span><span class="nav-txt">技巧与观点</span><span class="nav-cnt">6</span></a></div>
+</nav>
+
+<main class="main">
+  <div class="wrap">
+    <section class="section" id="models"><div class="sec-head" style="--c:#6366f1"><span class="sec-ico">🧠</span><h2 class="sec-title">模型发布/更新</h2><span class="sec-count">4 条</span><a class="sec-top" href="#top" title="回到顶部">↑</a></div><div class="card-grid"><article class="card" style="--c:#6366f1"><div class="card-top"><span class="card-num">1</span><span class="card-src" title="IT之家（RSS）">IT之家（RSS）</span></div><h3 class="card-title">OpenAI ChatGPT 语音最大规模升级：双向AI语音模型 Bidi 1 已上线测试</h3><p class="card-summary">6月23日，部分用户反馈 ChatGPT 网页版和 App 版上线了双向 AI 语音模型 Bidi 1，位于设置模型选择…</p><a class="card-link" href="https://www.ithome.com/0/967/852.htm" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#6366f1"><div class="card-top"><span class="card-num">2</span><span class="card-src" title="公众号：通义实验室（千问）">公众号：通义实验室（千问）</span></div><h3 class="card-title">Qwen-AgentWorld 开源：让 Agent 学会“先预测，再行动”</h3><p class="card-summary">通义千问推出首个原生语言世界模型 Qwen-AgentWorld，覆盖 MCP、Search、Terminal、SWE、…</p><a class="card-link" href="https://mp.weixin.qq.com/s/NV9WGpGsfFz35jww5agM9g" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#6366f1"><div class="card-top"><span class="card-num">3</span><span class="card-src" title="Hacker News 热门（buzzing.cc 中文翻译）">Hacker News 热门（buzzing.cc 中文翻译）</span></div><h3 class="card-title">Gemini 3.5 Flash 中的计算机使用</h3><p class="card-summary">Google 将计算机使用（Computer use）作为内置工具集成至 Gemini 3.5 Flash，使开发者能构…</p><a class="card-link" href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-computer-use-gemini-3-5-flash" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#6366f1"><div class="card-top"><span class="card-num">4</span><span class="card-src" title="X：OpenAI (@OpenAI)">X：OpenAI (@OpenAI)</span></div><h3 class="card-title">GPT-5.5 Instant 新版本，对话更有趣</h3><p class="card-summary">我们为你带来了新版 GPT-5.5 Instant，它现在聊起天来有趣多了。 我们最常用的模型现在能更好地理解问题背后的…</p><a class="card-link" href="https://x.com/OpenAI/status/2069843083701915755" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article></div></section><section class="section" id="products"><div class="sec-head" style="--c:#0ea5e9"><span class="sec-ico">🚀</span><h2 class="sec-title">产品发布/更新</h2><span class="sec-count">8 条</span><a class="sec-top" href="#top" title="回到顶部">↑</a></div><div class="card-grid"><article class="card" style="--c:#0ea5e9"><div class="card-top"><span class="card-num">5</span><span class="card-src" title="公众号：豆包（字节）">公众号：豆包（字节）</span></div><h3 class="card-title">今天，豆包正式推出专业版</h3><p class="card-summary">豆包专业版基于豆包2.1系列大模型上线，面向复杂办公与生产力场景。办公任务模式接入可执行Agent任务的豆包2.1模型，…</p><a class="card-link" href="https://mp.weixin.qq.com/s/Sb-NMXTrWFQES1EDO_Gr2g" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#0ea5e9"><div class="card-top"><span class="card-num">6</span><span class="card-src" title="The Decoder：AI News（RSS）">The Decoder：AI News（RSS）</span></div><h3 class="card-title">Figma在Config 2026押注人类判断，画布AI能力却来自第三方</h3><p class="card-summary">Figma在Config 2026将设计画布扩展至代码、动画、3D深度和着色器效果，并集成去年收购的Weave工作流系统…</p><a class="card-link" href="https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#0ea5e9"><div class="card-top"><span class="card-num">7</span><span class="card-src" title="公众号：火山引擎">公众号：火山引擎</span></div><h3 class="card-title">火山引擎推出Agent Ready基础设施，AgentKit与ArkClaw企业版升级</h3><p class="card-summary">火山引擎在FORCE大会推出面向企业智能应用的Agent Ready基础设施，构建AI云与Agent三层架构。Agent…</p><a class="card-link" href="https://mp.weixin.qq.com/s/83mrPAPgQRKhxLkoSvRgBQ" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#0ea5e9"><div class="card-top"><span class="card-num">8</span><span class="card-src" title="Cursor Blog">Cursor Blog</span></div><h3 class="card-title">Notion 使用 Cursor SDK 嵌入编码智能体</h3><p class="card-summary">Notion 通过 Cursor SDK 在数周内将编码智能体嵌入产品。用户可在文档中@Cursor、在讨论串中提及或向…</p><a class="card-link" href="https://cursor.com/blog/notion" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#0ea5e9"><div class="card-top"><span class="card-num">9</span><span class="card-src" title="X：Perplexity (@perplexity_ai)">X：Perplexity (@perplexity_ai)</span></div><h3 class="card-title">Perplexity推出Computer for Counsel</h3><p class="card-summary">推出 Computer for Counsel。 Computer 现在连接了律师日常使用的研究数据库、文档工具和案件管…</p><a class="card-link" href="https://x.com/perplexity_ai/status/2069866668671766804" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#0ea5e9"><div class="card-top"><span class="card-num">10</span><span class="card-src" title="Mistral AI：News（网页）">Mistral AI：News（网页）</span></div><h3 class="card-title">Mistral AI 为 Connectors 推出多项安全与可控新能力</h3><p class="card-summary">2026年6月24日，Mistral AI 发布 Connectors 多项新能力：Enriched admin con…</p><a class="card-link" href="https://mistral.ai/news/more-control-over-connectors" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#0ea5e9"><div class="card-top"><span class="card-num">11</span><span class="card-src" title="Hugging Face：Blog（RSS）">Hugging Face：Blog（RSS）</span></div><h3 class="card-title">FFASR 排行榜发布：真实远场条件下 ASR 评测</h3><p class="card-summary">Treble Technologies 与 Hugging Face 联合推出 FFASR（Far-Field ASR）…</p><a class="card-link" href="https://huggingface.co/blog/ffasr-leaderboard" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#0ea5e9"><div class="card-top"><span class="card-num">12</span><span class="card-src" title="OpenAI：官网动态（RSS · 排除企业/客户案例）">OpenAI：官网动态（RSS · 排除企业/客户案例）</span></div><h3 class="card-title">OpenAI 与 Broadcom 发布面向 LLM 推理的定制芯片 Jalapeño</h3><p class="card-summary">OpenAI 与 Broadcom 联合推出 Jalapeño，一款专为大语言模型（LLM）推理优化的定制 AI 芯片，…</p><a class="card-link" href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article></div></section><section class="section" id="industry"><div class="sec-head" style="--c:#f59e0b"><span class="sec-ico">📊</span><h2 class="sec-title">行业动态</h2><span class="sec-count">1 条</span><a class="sec-top" href="#top" title="回到顶部">↑</a></div><div class="card-grid"><article class="card" style="--c:#f59e0b"><div class="card-top"><span class="card-num">13</span><span class="card-src" title="Hacker News 热门（buzzing.cc 中文翻译）">Hacker News 热门（buzzing.cc 中文翻译）</span></div><h3 class="card-title">在与Anthropic的纠纷中，NSA失去了对Mythos的访问权限</h3><p class="card-summary">美国国家安全局（NSA）因与人工智能公司Anthropic的纠纷，失去了对Mythos系统的访问权限。</p><a class="card-link" href="https://www.nytimes.com/2026/06/23/us/politics/nsa-lost-access-anthropic-tool.html" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article></div></section><section class="section" id="papers"><div class="sec-head" style="--c:#10b981"><span class="sec-ico">📄</span><h2 class="sec-title">论文研究</h2><span class="sec-count">2 条</span><a class="sec-top" href="#top" title="回到顶部">↑</a></div><div class="card-grid"><article class="card" style="--c:#10b981"><div class="card-top"><span class="card-num">14</span><span class="card-src" title="MarkTechPost（RSS）">MarkTechPost（RSS）</span></div><h3 class="card-title">DFlash：块扩散草稿模型实现最高15倍吞吐量提升</h3><p class="card-summary">DFlash 由 UC San Diego 团队提出，是一种用于投机解码的轻量块扩散草稿模型。它一次前向推理生成整块 t…</p><a class="card-link" href="https://www.marktechpost.com/2026/06/24/dflash-speculative-decoding-drafts-whole-token-blocks-in-parallel-for-up-to-15x-higher-throughput-on-nvidia-blackwell" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#10b981"><div class="card-top"><span class="card-num">15</span><span class="card-src" title="Google Research：Blog（网页）">Google Research：Blog（网页）</span></div><h3 class="card-title">思考即回忆：推理如何解锁LLM中的参数化知识</h3><p class="card-summary">Google Research研究发现，推理（chain-of-thought）能帮助大语言模型（LLM）回忆简单事实，…</p><a class="card-link" href="https://research.google/blog/thinking-to-recall-how-reasoning-unlocks-parametric-knowledge-in-llms" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article></div></section><section class="section" id="tips"><div class="sec-head" style="--c:#ec4899"><span class="sec-ico">💡</span><h2 class="sec-title">技巧与观点</h2><span class="sec-count">6 条</span><a class="sec-top" href="#top" title="回到顶部">↑</a></div><div class="card-grid"><article class="card" style="--c:#ec4899"><div class="card-top"><span class="card-num">16</span><span class="card-src" title="Hacker News 热门（buzzing.cc 中文翻译）">Hacker News 热门（buzzing.cc 中文翻译）</span></div><h3 class="card-title">里德·霍夫曼称SpaceX“不是一家人工智能公司”，xAI则是“彻底的灾难”</h3><p class="card-summary">LinkedIn联合创始人、Anthropic和OpenAI投资者Reid Hoffman在播客中公开批评SpaceX和…</p><a class="card-link" href="https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#ec4899"><div class="card-top"><span class="card-num">17</span><span class="card-src" title="公众号：火山引擎">公众号：火山引擎</span></div><h3 class="card-title">字节跳动技术副总裁洪定坤：AI Coding 的实践与探索</h3><p class="card-summary">在火山引擎Force大会，字节跳动技术副总裁洪定坤分享AI Coding实践。过去一年，字节AI代码贡献率增长6倍，to…</p><a class="card-link" href="https://mp.weixin.qq.com/s/mdmaAyUIvxE8WT_GEbF2wQ" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#ec4899"><div class="card-top"><span class="card-num">18</span><span class="card-src" title="TechCrunch：AI（RSS）">TechCrunch：AI（RSS）</span></div><h3 class="card-title">AI被认为会取代工程岗位，但新数据显示工程是2025年最具韧性的岗位</h3><p class="card-summary">风投机构SignalFire追踪8000万家公司数百万员工数据发现，工程是2025年最具韧性的岗位。大型科技公司总招聘较…</p><a class="card-link" href="https://techcrunch.com/2026/06/24/ai-was-supposed-to-kill-engineering-jobs-but-new-data-suggests-theyre-the-most-resilient" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#ec4899"><div class="card-top"><span class="card-num">19</span><span class="card-src" title="OpenRouter：Announcements（RSS）">OpenRouter：Announcements（RSS）</span></div><h3 class="card-title">OpenRouter 零数据留存（ZDR）实践：97 款新模型，流量占比近半</h3><p class="card-summary">OpenRouter 的零数据留存（ZDR）保证用户提示词和模型响应不被存储，元数据一般安全。自 1 月以来新增 97…</p><a class="card-link" href="https://openrouter.ai/blog/insights/when-zero-means-zero" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#ec4899"><div class="card-top"><span class="card-num">20</span><span class="card-src" title="Hugging Face：Blog（RSS）">Hugging Face：Blog（RSS）</span></div><h3 class="card-title">NVIDIA NeMo AutoModel：一行代码加速Transformer MoE模型微调</h3><p class="card-summary">NVIDIA NeMo AutoModel 是基于 Transformers v5 的开源库，添加 Expert Par…</p><a class="card-link" href="https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article><article class="card" style="--c:#ec4899"><div class="card-top"><span class="card-num">21</span><span class="card-src" title="X：面壁智能 OpenBMB (@OpenBMB)">X：面壁智能 OpenBMB (@OpenBMB)</span></div><h3 class="card-title">MiniCPM-V 4.6 在 Apple Core AI 上高速运行</h3><p class="card-summary">🥳感谢分享，@MLBoy_DaisukeMajima 🚀 MiniCPM-V 4.6 在设备上以这样的速度运行，实在令人…</p><a class="card-link" href="https://x.com/OpenBMB/status/2069676334381728106" target="_blank" rel="noopener noreferrer">阅读原文 <span class="arrow">↗</span></a></article></div></section>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="f-total">本期共 21 条 · 5 个版块</div>
+  <div>数据源：AI HOT（aihot.virxact.com）· 生成于 6月25日 上午 08:00（北京时间）</div>
+  <div style="margin-top:4px">本仪表盘为公开资讯聚合，版权归原作者所有</div>
+</footer>
+
+<script>
+// active nav highlight on scroll
+(function(){
+  const links=document.querySelectorAll('.nav-link');
+  const secs=[];
+  links.forEach(l=>{const id=l.getAttribute('href').slice(1);const s=document.getElementById(id);if(s)secs.push({s,link:l})});
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        links.forEach(x=>x.classList.remove('active'));
+        const hit=secs.find(o=>o.s===e.target);
+        if(hit)hit.link.classList.add('active');
+      }
+    });
+  },{rootMargin:'-80px 0px -65% 0px',threshold:0});
+  secs.forEach(o=>obs.observe(o.s));
+  // default first active
+  if(links[0])links[0].classList.add('active');
+})();
+</script>
+</body>
+</html>

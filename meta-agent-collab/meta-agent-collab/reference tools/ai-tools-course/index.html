@@ -1,0 +1,2585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI工具全景教学</title>
+
+  <!-- Google Fonts: Bricolage Grotesque · DM Sans · JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root {
+      --color-accent:       #2A7B9B;
+      --color-accent-hover: #1F6280;
+      --color-accent-light: #E4F2F7;
+      --color-accent-muted: #5A9DB8;
+    }
+  </style>
+
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="nav-inner">
+      <span class="nav-title">AI工具全景教学</span>
+      <div class="nav-dots" id="nav-dots" role="tablist">
+        <button class="nav-dot" data-target="module-1" data-tooltip="欢迎：AI时代" role="tab" aria-label="Module 1: 欢迎"></button>
+        <button class="nav-dot" data-target="module-2" data-tooltip="Claude Code 入门" role="tab" aria-label="Module 2: Claude Code 入门"></button>
+        <button class="nav-dot" data-target="module-3" data-tooltip="Claude Code 进阶" role="tab" aria-label="Module 3: Claude Code 进阶"></button>
+        <button class="nav-dot" data-target="module-4" data-tooltip="AI美术全景" role="tab" aria-label="Module 4: AI美术全景"></button>
+        <button class="nav-dot" data-target="module-5" data-tooltip="AI游戏生产" role="tab" aria-label="Module 5: AI游戏生产"></button>
+        <button class="nav-dot" data-target="module-6" data-tooltip="实战与展望" role="tab" aria-label="Module 6: 实战与展望"></button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- modules/*.html content is assembled here by build.sh -->
+<section class="module" id="module-1" style="min-height: 100vh; min-height: 100dvh; background: var(--color-bg-warm)">
+  <div class="module-content">
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="module-header animate-in">
+      <span class="module-number">01</span>
+      <h1 class="module-title">AI时代的生产力革命</h1>
+      <p class="module-subtitle">为什么现在是掌握AI工具的最佳时机</p>
+    </header>
+
+    <div class="module-body">
+
+      <!-- ==================== SCREEN 1: 开场钩子 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">3个人干20个人的活</h2>
+        <p>你知道吗？一个3人小团队，用AI工具链可以完成过去20人团队的工作量。这不是科幻，这是2026年的现实。</p>
+
+        <div class="callout callout-accent">
+          <div class="callout-icon">&gt;</div>
+          <div class="callout-content">
+            <strong class="callout-title">蒸汽机时刻</strong>
+            <p>200年前，蒸汽机没有替代工匠，而是给工匠超能力。会用蒸汽机的工厂淘汰了不会用的，但最好的产品仍然出自懂技术的匠人之手。今天的AI工具，就是你的蒸汽机。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 2: 核心洞察 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">加速器，不是替代者</h2>
+        <p>AI的最佳定位不是"取代人"，而是"<span class="term" data-definition="AI增强（AI Augmentation）是指用AI工具放大人类的能力，而非取代人类。人负责创意决策和质量把关，AI负责重复劳动和初稿生成。">AI增强</span>"。AI + 人工混合模式，才是当前的最佳实践。</p>
+        <p>掌握AI工具 = 10倍生产力。不掌握 = 被掌握的人淘汰。</p>
+      </section>
+
+      <!-- ==================== SCREEN 3: 三大领域概览卡片 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">本课程的三大领域</h2>
+        <p>我们将深入三个AI正在颠覆的领域。每个领域都有成熟的工具链和惊人的效率提升。</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)">
+            <div class="pattern-icon" style="background: var(--color-actor-2)">&gt;_</div>
+            <h4 class="pattern-title">Claude Code</h4>
+            <p class="pattern-desc">终端型AI编程<span class="term" data-definition="Agent是一种能自主执行多步骤任务的AI系统。它不只是回答问题，而是能理解目标、制定计划、调用工具、完成复杂工作流。">Agent</span>，在<span class="term" data-definition="SWE-bench是一个标准化的软件工程能力测试集，用真实的GitHub issue来评估AI写代码的能力。分数越高，说明AI解决真实编程问题的能力越强。">SWE-bench</span>上达到72.7%的解题率。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-3)">
+            <div class="pattern-icon" style="background: var(--color-actor-3)">Art</div>
+            <h4 class="pattern-title">AI美术</h4>
+            <p class="pattern-desc">图像、视频、3D生成全覆盖。<span class="term" data-definition="ComfyUI是一个基于节点的AI图像生成工作流编辑器。用户通过连接不同功能的节点来构建复杂的图像生成管线，灵活度极高。">ComfyUI</span>生态、Midjourney、<span class="term" data-definition="FLUX是由Black Forest Labs开发的开源图像生成模型，以高质量和灵活性著称，是目前开源社区最活跃的生图模型之一。">FLUX</span>组成强大工具链。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-4)">
+            <div class="pattern-icon" style="background: var(--color-actor-4)">Game</div>
+            <h4 class="pattern-title">AI游戏生产</h4>
+            <p class="pattern-desc">从概念设计到建模、动画、配音、测试，全管线AI化。整条生产线都在被重塑。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 4: 震撼效率数据 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">数据不会说谎</h2>
+        <p>这不是理论推测，以下是2025-2026年真实的行业数据。</p>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">#</div>
+          <div class="callout-content">
+            <strong class="callout-title">震撼数据</strong>
+            <p>角色蒙皮：3.5天缩短到分钟级（腾讯VISVISE） | 2D原画：效率提升60-80%，三七互娱月产28万张 | 概念设计：成本降低10-15倍 | 代码编写：效率提升30-50% | 研发效率整体提升30%，人力成本下降40%（网易）</p>
+          </div>
+        </div>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-success)">
+            <h4 class="pattern-title">角色蒙皮</h4>
+            <p class="pattern-desc">3.5天 --> 分钟级</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-success)">
+            <h4 class="pattern-title">2D原画</h4>
+            <p class="pattern-desc">效率提升 60-80%</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-success)">
+            <h4 class="pattern-title">概念设计</h4>
+            <p class="pattern-desc">成本降低 10-15x</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-success)">
+            <h4 class="pattern-title">代码编写</h4>
+            <p class="pattern-desc">效率提升 30-50%</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 5: AI替代边界 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">AI的能力边界</h2>
+        <p>AI并非万能。有些工作已被大幅加速，有些仍然需要人类主导。理解这条边界，才能正确使用AI。</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)">
+            <div class="pattern-icon" style="background: var(--color-actor-2)">AI</div>
+            <h4 class="pattern-title">已被AI大幅加速</h4>
+            <p class="pattern-desc">概念设计、基础建模、<span class="term" data-definition="NPC是Non-Player Character（非玩家角色）的缩写，指游戏中由电脑控制的角色，比如商店老板、路人、敌人等。">NPC</span>配音、代码编写、本地化翻译</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-1)">
+            <div class="pattern-icon" style="background: var(--color-actor-1)">Pro</div>
+            <h4 class="pattern-title">仍需人工主导</h4>
+            <p class="pattern-desc">高精度角色建模、复杂角色动画、创意决策、主角配音</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 6: AI生产力革命时间线 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">AI生产力革命时间线</h2>
+        <p>从概念验证到全面渗透，只用了短短四年。点击"下一步"查看每个阶段。</p>
+
+        <div class="flow-animation" data-steps='[
+          {"highlight":"flow-actor-1","label":"2023: 概念验证阶段 -- ChatGPT引爆全球关注，团队开始试水AI辅助工作流"},
+          {"highlight":"flow-actor-2","label":"2024: 工具爆发 -- ComfyUI、Claude、Midjourney等工具生态快速成熟，效率提升变得可量化"},
+          {"highlight":"flow-actor-3","label":"2025: 管线成熟 -- AI深入生产管线各环节，从概念设计到测试全链路贯通，行业数据开始验证ROI"},
+          {"highlight":"flow-actor-4","label":"2026: 全面渗透 -- AI工具成为标配，不掌握AI工具的团队面临竞争力断崖"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-actor-1">
+              <div class="flow-actor-icon">23</div>
+              <span>概念验证</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-2">
+              <div class="flow-actor-icon">24</div>
+              <span>工具爆发</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-3">
+              <div class="flow-actor-icon">25</div>
+              <span>管线成熟</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-4">
+              <div class="flow-actor-icon">26</div>
+              <span>全面渗透</span>
+            </div>
+          </div>
+
+          <div class="flow-packet" id="flow-packet"></div>
+
+          <div class="flow-step-label" id="flow-label">点击"下一步"开始浏览时间线</div>
+
+          <div class="flow-controls">
+            <button class="btn flow-next-btn">下一步</button>
+            <button class="btn flow-reset-btn">重新开始</button>
+            <span class="flow-progress"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 7: 术语速查 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">关键术语速查</h2>
+        <p>本课程会频繁出现以下术语。现在不用记住，遇到时把鼠标悬停在带虚线的词上就能看到解释。</p>
+
+        <div class="badge-list">
+          <div class="badge-item">
+            <code class="badge-code">Agent</code>
+            <span class="badge-desc">能自主执行多步骤任务的AI系统，不只回答问题，还能制定计划、调用工具</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code">SWE-bench</code>
+            <span class="badge-desc">用真实GitHub issue评估AI编程能力的标准测试集</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code">ComfyUI</code>
+            <span class="badge-desc">基于节点的AI图像生成工作流编辑器，灵活度极高</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code"><span class="term" data-definition="ControlNet是一种给AI图像生成模型添加精确控制能力的技术。比如你可以用一张线稿或姿势图来控制生成结果的构图、人物姿态等，让AI生图从'随机'变成'可控'。">ControlNet</span></code>
+            <span class="badge-desc">给AI生图模型添加精确控制（线稿、姿势、构图）的技术</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code">FLUX</code>
+            <span class="badge-desc">Black Forest Labs开发的开源图像生成模型，社区活跃度极高</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code"><span class="term" data-definition="MCP（Model Context Protocol）是Anthropic提出的开放协议，让AI模型能安全地连接外部数据源和工具。你可以把它理解为AI的'USB接口'——标准化的方式让AI插上各种外部能力。">MCP</span></code>
+            <span class="badge-desc">Model Context Protocol，让AI安全连接外部工具和数据源的开放协议</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 8: 选择题 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">检验一下</h2>
+
+        <div class="quiz-container" id="quiz-module1">
+          <div class="quiz-question-block"
+               data-correct="option-b"
+               data-explanation-right="没错！AI最大的价值在于加速重复性工作，然后由人类进行创意决策和精修把关。这种混合模式才是当前行业的最佳实践。"
+               data-explanation-wrong="再想想 -- AI确实很强大，但目前它在创意决策、高精度角色建模等领域仍然需要人类主导。最佳模式是AI加速 + 人工精修的协作方式。">
+            <h3 class="quiz-question">AI在游戏生产中的最佳定位是什么？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>完全替代人工，全自动化生产</span>
+              </button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>作为加速器，配合人工精修</span>
+              </button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>仅用于概念设计阶段</span>
+              </button>
+              <button class="quiz-option" data-value="option-d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>仅用于测试和QA环节</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module1')">提交答案</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module1')">重新作答</button>
+        </div>
+      </section>
+
+      <!-- ==================== SCREEN 9: 下一步预告 ==================== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">接下来</h2>
+        <p>在下一模块，我们将深入第一个领域 -- <strong>Claude Code</strong>。你将亲手体验终端型AI Agent如何在真实项目中帮你写代码、调试、重构。</p>
+        <p>准备好了吗？让我们开始。</p>
+      </section>
+
+    </div>
+  </div>
+</section>
+<section class="module" id="module-2" style="background: var(--color-bg)">
+  <div class="module-content">
+
+    <!-- ========== MODULE HEADER ========== -->
+    <header class="module-header animate-in">
+      <span class="module-number">02</span>
+      <h1 class="module-title">Claude Code 入门</h1>
+      <p class="module-subtitle">认识你的AI编程搭档 -- 一个极其聪明的实习生</p>
+    </header>
+
+    <div class="module-body">
+
+      <!-- ========== SCREEN 1: Opening Hook ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">想象一下这个场景</h2>
+        <p>你打开<span class="term" data-definition="终端是你和计算机对话的文字界面。你输入命令，计算机执行并返回结果。可以理解为'用打字代替鼠标点击'来控制电脑。">终端</span>，用一句话描述你想要的功能，按下回车 -- <span class="term" data-definition="Claude Code是Anthropic公司推出的官方AI编程助手，运行在终端中，能自主读写文件、执行命令、搜索代码库。">Claude Code</span>帮你写好代码、创建文件、运行测试、甚至帮你提<span class="term" data-definition="PR是Pull Request的缩写，指在团队协作中，你把自己的代码改动'请求合并'到主代码库的操作。类似于把你写好的报告递给领导审批。">PR</span>。</p>
+        <p>这不是未来，这是现在就能做到的事。</p>
+
+        <div class="callout callout-accent">
+          <div class="callout-content">
+            <strong class="callout-title">核心认知</strong>
+            <p>Claude Code不是自动补全工具，它是一个有自主判断能力的<span class="term" data-definition="Agent是指具有自主行动能力的AI系统。它不只是被动回答问题，而是能主动规划步骤、使用工具、完成任务。就像一个能独立做事的实习生，而不是只会回答问题的客服。">AI Agent</span> -- 它能读文件、写代码、运行命令、搜索代码库，形成完整的工作闭环。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 2: Metaphor -- The Smart Intern ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">聪明的实习生</h2>
+        <p>Claude Code就像一个极其聪明的实习生。你告诉它做什么，它就去做。但和实习生一样，你需要学会"怎么下指令"。</p>
+
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="flow-step-num">1</div>
+            <p>给它清晰的上下文和目标</p>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-step-num">2</div>
+            <p>它一个人干十个人的活</p>
+          </div>
+        </div>
+
+        <div class="flow-steps" style="margin-top: var(--space-4);">
+          <div class="flow-step">
+            <div class="flow-step-num">1</div>
+            <p>指令含糊不清</p>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-step-num">2</div>
+            <p>反复修改，浪费时间</p>
+          </div>
+        </div>
+
+        <p style="margin-top: var(--space-6);">掌握Claude Code = 拥有一个24/7不休息、不抱怨、记忆力超强的编程搭档。</p>
+      </section>
+
+      <!-- ========== SCREEN 3: What Is Claude Code ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Claude Code 是什么</h2>
+        <p><span class="term" data-definition="Anthropic是一家AI安全公司，Claude系列模型的开发者。由前OpenAI研究人员创立。">Anthropic</span>官方出品的AI编程助手，架构上是一个<span class="term" data-definition="终端Agent指运行在命令行终端中、能自主执行操作的AI系统。它不需要图形界面，通过文字命令就能完成读文件、写代码、运行脚本等一系列工作。">终端Agent</span>。</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)">
+            <h4 class="pattern-title">终端Agent</h4>
+            <p class="pattern-desc">Claude Code的架构。运行在<span class="term" data-definition="CLI是Command Line Interface的缩写，即命令行界面。你通过输入文字命令来操作电脑，而不是点击图标。开发者日常使用的终端就是CLI。">CLI</span>中，能自主读写文件、执行命令、搜索代码。自主性最高。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-3)">
+            <h4 class="pattern-title">AI <span class="term" data-definition="IDE是Integrated Development Environment的缩写，即集成开发环境。程序员写代码的专用软件，比如VS Code、JetBrains系列。它把代码编辑、调试、运行等功能集成在一个界面里。">IDE</span></h4>
+            <p class="pattern-desc">Cursor的架构。把AI嵌入编辑器，协作式写代码。自主性中等。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-4)">
+            <h4 class="pattern-title">自动补全扩展</h4>
+            <p class="pattern-desc">Copilot的架构。作为插件嵌入多种IDE，逐行补全代码。自主性最低。</p>
+          </div>
+        </div>
+
+        <div class="callout callout-info" style="margin-top: var(--space-8);">
+          <div class="callout-content">
+            <strong class="callout-title">行业标杆</strong>
+            <p>Claude Code在<span class="term" data-definition="SWE-bench是一个评估AI编程能力的标准化测试基准。它用真实的GitHub issue来测试AI能否独立修复bug，得分越高说明编程能力越强。">SWE-bench</span>上得分80.8%，行业领先。这意味着它能独立解决大部分真实世界的编程问题。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 4: Available Platforms ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">在哪里使用 Claude Code</h2>
+        <p>Claude Code支持多种平台，选择最适合你的方式开始。</p>
+
+        <div class="badge-list">
+          <div class="badge-item">
+            <code class="badge-code">终端 CLI</code>
+            <span class="badge-desc">最原生的体验，直接在命令行中与Claude对话</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code">VS Code</code>
+            <span class="badge-desc">在编辑器内使用，适合习惯VS Code的开发者</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code">JetBrains</code>
+            <span class="badge-desc">支持IntelliJ、PyCharm等全系列<span class="term" data-definition="JetBrains是一家开发工具公司，出品IntelliJ IDEA、PyCharm、WebStorm等流行的IDE。很多企业级开发者使用他们的产品。">JetBrains</span>产品</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code">桌面应用</code>
+            <span class="badge-desc">独立运行的桌面客户端</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code">Web / iOS</code>
+            <span class="badge-desc">浏览器和手机端，随时随地使用</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 5: Model Cards ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">底层模型：三兄弟</h2>
+        <p>Claude Code背后有三个不同的<span class="term" data-definition="模型是AI系统的'大脑'。不同模型有不同的能力和速度。选择模型就像选择不同级别的员工 -- 资深的更聪明但更贵，初级的更快但能力有限。">模型</span>可选。根据任务复杂度选择合适的模型，既省钱又高效。</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-1)">
+            <h4 class="pattern-title">Opus 4.6</h4>
+            <p class="pattern-desc">最聪明。<span class="term" data-definition="Agent专精指模型在自主执行多步骤任务方面特别擅长。它能规划方案、使用工具、处理异常，而不只是回答单个问题。">Agent专精</span>，适合复杂的多步骤任务。</p>
+            <div style="margin-top: var(--space-3);">
+              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted);">
+                <span class="term" data-definition="API是Application Programming Interface的缩写。程序之间互相沟通的接口。当你通过Claude Code写代码时，它在背后通过API调用Claude的模型来获取回答。">API</span>定价: $5 / $25 per <span class="term" data-definition="MTok是Million Tokens的缩写，即百万个Token。Token是AI处理文本的基本单位，大约3/4个英文单词等于一个Token。中文大约1-2个字等于一个Token。">MTok</span>（输入/输出）
+              </span>
+            </div>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)">
+            <h4 class="pattern-title">Sonnet 4.6</h4>
+            <p class="pattern-desc">最平衡。速度与智能的完美折中，日常开发首选。</p>
+            <div style="margin-top: var(--space-3);">
+              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted);">
+                API定价: $3 / $15 per MTok（输入/输出）
+              </span>
+            </div>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-5)">
+            <h4 class="pattern-title">Haiku 4.5</h4>
+            <p class="pattern-desc">最快速。简单任务秒回，成本最低。</p>
+            <div style="margin-top: var(--space-3);">
+              <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-muted);">
+                API定价: $1 / $5 per MTok（输入/输出）
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 6: Subscription Plans ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">订阅计划</h2>
+        <p>选择适合你使用强度的方案。</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)">
+            <h4 class="pattern-title">Pro -- $20/月</h4>
+            <p class="pattern-desc">个人开发者的起点。包含基础用量，足够日常开发使用。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-4)">
+            <h4 class="pattern-title">Max 5x -- $100/月</h4>
+            <p class="pattern-desc">重度用户之选。5倍用量，适合全天候依赖AI编程的开发者。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-1)">
+            <h4 class="pattern-title">Max 20x -- $200/月</h4>
+            <p class="pattern-desc">团队/企业级。20倍用量，适合需要大量AI辅助的团队。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 7: Code <-> English Translation ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">代码 &harr; 白话翻译：基本交互</h2>
+        <p>来看一下在终端里和Claude Code对话是什么样的。</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">CODE</span>
+            <pre><code>
+<span class="code-line"><span class="code-function">claude</span> <span class="code-operator">-p</span> <span class="code-string">"创建一个React计数器组件"</span></span>
+            </code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">白话翻译</span>
+            <div class="translation-lines">
+              <p class="tl">调用Claude Code，用<span class="term" data-definition="-p是一个命令行参数（flag），代表prompt。加上-p后面跟你的指令，Claude会直接执行并返回结果，不会进入交互式对话模式。适合单次任务。">-p参数</span>直接下达指令："帮我创建一个React计数器组件"。一句话搞定，不用进入对话模式。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="translation-block animate-in" style="margin-top: var(--space-6);">
+          <div class="translation-code">
+            <span class="translation-label">CODE</span>
+            <pre><code>
+<span class="code-line"><span class="code-function">claude</span> <span class="code-operator">-p</span> <span class="code-string">"重构登录模块"</span> \</span>
+<span class="code-line">  <span class="code-operator">--output-format</span> <span class="code-value">json</span></span>
+            </code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">白话翻译</span>
+            <div class="translation-lines">
+              <p class="tl">让Claude重构登录模块，</p>
+              <p class="tl">并且把结果以<span class="term" data-definition="JSON是JavaScript Object Notation的缩写，一种数据格式。它用花括号和键值对来组织数据，比如 {&quot;name&quot;: &quot;Alice&quot;}。很多程序用JSON来交换数据，因为它既人类可读又机器可解析。">JSON</span>格式输出 -- 方便其他程序接收和处理结果。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="translation-block animate-in" style="margin-top: var(--space-6);">
+          <div class="translation-code">
+            <span class="translation-label">CODE</span>
+            <pre><code>
+<span class="code-line"><span class="code-function">claude</span> <span class="code-operator">-p</span> <span class="code-string">"添加单元测试"</span> \</span>
+<span class="code-line">  <span class="code-operator">--allowedTools</span> <span class="code-value">Read,Write,Bash</span></span>
+            </code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">白话翻译</span>
+            <div class="translation-lines">
+              <p class="tl">让Claude添加单元测试，</p>
+              <p class="tl">但限制它只能使用Read（读文件）、Write（写文件）、Bash（运行命令）这三个工具。相当于告诉实习生："你只能用这三样东西，别的别碰。"</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 8: Essential Commands Teaching ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">五个救命命令</h2>
+        <p>这五个斜杠命令是你每天都会用到的"生存工具包"。先记住它们，后面的进阶模块会深入讲解。</p>
+
+        <div class="step-cards stagger-children">
+          <div class="step-card animate-in">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h4 class="step-title">/init</h4>
+              <p>让Claude自动扫描你的项目，生成一份<span class="term" data-definition="CLAUDE.md是Claude Code的项目配置文件，告诉Claude你的项目用什么技术栈、有什么规则。相当于给实习生一份新人须知。">CLAUDE.md</span>配置文件。拿到新项目时第一件事就运行它。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h4 class="step-title">/compact</h4>
+              <p>压缩当前对话的<span class="term" data-definition="上下文是AI当前'记住'的所有对话和信息。上下文越多，AI处理越慢、越容易出错。/compact就是给AI的大脑'瘦身'，保留关键信息，删掉冗余。">上下文</span>，保留关键信息、释放空间。长对话中上下文达到60%时就该用它。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h4 class="step-title">/clear</h4>
+              <p>彻底清空当前会话，从零开始。开始新任务时用它，避免旧对话干扰新任务。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h4 class="step-title">/rewind</h4>
+              <p>回退到上一个检查点。Claude每次改代码前会自动存档，出了问题用/rewind"读档"回去。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h4 class="step-title">/cost</h4>
+              <p>查看当前会话消耗了多少<span class="term" data-definition="Token是AI处理文本的最小单位。大约3/4个英文单词或1-2个中文字等于1个Token。消耗的Token越多，费用越高。">Token</span>。帮你随时掌握"花了多少钱"，避免用量焦虑。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 9: Drag-and-Drop Commands ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">动手试试</h2>
+        <p>刚学了五个命令，现在测一下你记住了没。把命令拖到对应的功能描述上。</p>
+
+        <div class="dnd-container" id="dnd-commands">
+          <div class="dnd-chips">
+            <div class="dnd-chip" draggable="true" data-answer="cmd-init">/init</div>
+            <div class="dnd-chip" draggable="true" data-answer="cmd-compact">/compact</div>
+            <div class="dnd-chip" draggable="true" data-answer="cmd-clear">/clear</div>
+            <div class="dnd-chip" draggable="true" data-answer="cmd-rewind">/rewind</div>
+            <div class="dnd-chip" draggable="true" data-answer="cmd-cost">/cost</div>
+          </div>
+          <div class="dnd-zones">
+            <div class="dnd-zone" data-correct="cmd-init">
+              <p class="dnd-zone-label">自动生成<span class="term" data-definition="CLAUDE.md是Claude Code的项目配置文件。它告诉Claude关于你的项目的重要信息，比如代码风格、技术栈、特殊规则等。相当于给实习生一份'新人须知'手册。">CLAUDE.md</span>配置文件</p>
+              <div class="dnd-zone-target">拖到这里</div>
+            </div>
+            <div class="dnd-zone" data-correct="cmd-compact">
+              <p class="dnd-zone-label">压缩<span class="term" data-definition="上下文窗口是AI模型一次能'看到'和'记住'的信息量。就像人的工作记忆有限一样，AI的上下文窗口也有容量上限。压缩上下文就是精简已有信息，腾出空间处理新内容。">上下文</span>，释放空间</p>
+              <div class="dnd-zone-target">拖到这里</div>
+            </div>
+            <div class="dnd-zone" data-correct="cmd-clear">
+              <p class="dnd-zone-label">清空当前会话，从头开始</p>
+              <div class="dnd-zone-target">拖到这里</div>
+            </div>
+            <div class="dnd-zone" data-correct="cmd-rewind">
+              <p class="dnd-zone-label">回退到上一个检查点</p>
+              <div class="dnd-zone-target">拖到这里</div>
+            </div>
+            <div class="dnd-zone" data-correct="cmd-cost">
+              <p class="dnd-zone-label">查看当前会话的<span class="term" data-definition="Token消耗是指AI处理你的请求所消耗的计算资源量。每次对话都会消耗Token，消耗越多费用越高。/cost命令让你随时掌握'花了多少钱'。">Token消耗</span></p>
+              <div class="dnd-zone-target">拖到这里</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: var(--space-3); margin-top: var(--space-4);">
+            <button class="btn" onclick="checkDnD('dnd-commands')">检查答案</button>
+            <button class="btn" onclick="resetDnD('dnd-commands')">重置</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 10: Competitor Comparison ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Claude Code vs 竞品</h2>
+        <p>市面上有不少AI编程工具，Claude Code的独特之处在于它的高自主性和超大<span class="term" data-definition="上下文窗口是AI一次能处理的信息总量，用Token数量衡量。Claude Code支持100万Token的上下文窗口，意味着它能一次性'读懂'一个大型项目的大量代码。">上下文窗口</span>。</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)">
+            <h4 class="pattern-title">Claude Code</h4>
+            <p class="pattern-desc" style="font-size: var(--text-sm);">
+              <strong>架构：</strong>终端Agent<br>
+              <strong>月费：</strong>$20起<br>
+              <strong>上下文：</strong>100万<span class="term" data-definition="Token是AI处理文本的最小单位。可以粗略理解为：英文中1个Token约等于3/4个单词，中文中1个Token约等于1-2个汉字。">Tokens</span><br>
+              <strong>自主性：</strong>高 -- 能自主执行完整工作流
+            </p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-3)">
+            <h4 class="pattern-title">Cursor</h4>
+            <p class="pattern-desc" style="font-size: var(--text-sm);">
+              <strong>架构：</strong>AI IDE<br>
+              <strong>月费：</strong>$20<br>
+              <strong>上下文：</strong>较小<br>
+              <strong>自主性：</strong>中 -- 协作式，需要人工确认较多
+            </p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-4)">
+            <h4 class="pattern-title">Copilot</h4>
+            <p class="pattern-desc" style="font-size: var(--text-sm);">
+              <strong>架构：</strong>多IDE扩展<br>
+              <strong>月费：</strong>$10<br>
+              <strong>上下文：</strong>中等<br>
+              <strong>自主性：</strong>低 -- 主要做逐行补全
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 11: Quiz ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">检验一下</h2>
+        <p>两道题，看看你对Claude Code的理解到不到位。</p>
+
+        <div class="quiz-container" id="quiz-module2">
+
+          <!-- Question 1 -->
+          <div class="quiz-question-block"
+               data-correct="option-1c"
+               data-explanation-right="没错！Claude Code的核心就是一个运行在终端里的Agent。它不像Copilot那样只做补全，也不像Cursor那样是一个完整的IDE -- 它是一个能自主规划和执行任务的终端程序。这种架构让它拥有最高的自主性。"
+               data-explanation-wrong="再想想 -- Claude Code和传统的代码补全工具有什么根本区别？它能自己读文件、写代码、运行命令，这种能力更接近哪种架构？">
+            <h3 class="quiz-question">你的团队在评估AI编程工具。有人说"Claude Code就是另一个代码补全插件"。你会怎么纠正这个说法？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-1a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>"不对，它是一个自动补全工具，但比Copilot更强"</span>
+              </button>
+              <button class="quiz-option" data-value="option-1b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>"不对，它是一个AI IDE，类似Cursor"</span>
+              </button>
+              <button class="quiz-option" data-value="option-1c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>"不对，它是一个终端Agent，能自主执行完整的工作流"</span>
+              </button>
+              <button class="quiz-option" data-value="option-1d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>"不对，它是一个浏览器插件，像Chrome扩展一样工作"</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="quiz-question-block"
+               data-correct="option-2b"
+               data-explanation-right="对！/compact命令会压缩当前对话的上下文，在不丢失关键信息的前提下释放空间。当你和Claude Code对话很长、快接近上下文窗口上限时，这个命令特别有用。"
+               data-explanation-wrong="想想看 -- 你需要的是'释放空间'而不是'完全清除'。哪个命令是在保留核心信息的同时减少占用？">
+            <h3 class="quiz-question">你正在用Claude Code做一个复杂的重构任务，对话已经很长了，Claude开始提示上下文快满了。你想释放一些空间但不想丢失当前进度，应该用哪个命令？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-2a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>/clear -- 清空会话重新开始</span>
+              </button>
+              <button class="quiz-option" data-value="option-2b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>/compact -- 压缩上下文释放空间</span>
+              </button>
+              <button class="quiz-option" data-value="option-2c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>/rewind -- 回退到检查点</span>
+              </button>
+              <button class="quiz-option" data-value="option-2d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>/cost -- 查看Token消耗</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div style="display: flex; gap: var(--space-3); margin-top: var(--space-6);">
+            <button class="quiz-check-btn" onclick="checkQuiz('quiz-module2')">检查答案</button>
+            <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module2')">再试一次</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== SCREEN 12: What's Next ========== -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">下一步</h2>
+        <p>现在你已经了解了Claude Code的定位、模型选择和基础命令。在下一个模块中，我们将深入Claude Code的高级功能 --</p>
+
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="flow-step-num">1</div>
+            <p>CLAUDE.md 项目配置</p>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-step-num">2</div>
+            <p><span class="term" data-definition="Memory是Claude Code的记忆功能，让它能记住你的偏好、项目规则和之前的决策。就像实习生慢慢了解你的工作习惯一样。">Memory</span> 记忆系统</p>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-step-num">3</div>
+            <p><span class="term" data-definition="Hooks是在特定事件发生时自动触发的自定义脚本。比如你可以设置一个Hook，让Claude每次写完代码后自动运行测试。相当于给实习生设置了'做完A事之后自动做B事'的规则。">Hooks</span> 自动化</p>
+          </div>
+        </div>
+
+        <p style="margin-top: var(--space-6);">让你的AI实习生从"能干活"变成"默契搭档"。</p>
+      </section>
+
+    </div>
+  </div>
+</section>
+<section class="module" id="module-3" style="min-height: 100vh; min-height: 100dvh; background: var(--color-bg-warm)">
+  <div class="module-content">
+
+    <!-- ============================================ -->
+    <!-- HEADER                                       -->
+    <!-- ============================================ -->
+    <header class="module-header animate-in">
+      <span class="module-number">03</span>
+      <h1 class="module-title">Claude Code 进阶</h1>
+      <p class="module-subtitle">改装你的车 &mdash; 从"会用"到"精通"的分水岭</p>
+    </header>
+
+    <div class="module-body">
+
+      <!-- ============================================ -->
+      <!-- SCREEN 1 — Opening Hook: Boris的秘密          -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">100行的秘密武器</h2>
+
+        <p><span class="term" data-definition="Boris Cherny 是 Claude Code 的创造者，Anthropic 工程师。他以极高的个人产出著称，每周提交约100个PR。">Boris Cherny</span>（Claude Code 创造者）的 <span class="term" data-definition="CLAUDE.md 是放在项目根目录的特殊文件，Claude Code 每次启动时会自动读取。它相当于你给 Claude 写的'工作手册'，定义了项目规范、编码风格和工作流程。">CLAUDE.md</span> 只有100行，但他每周能产出100个 <span class="term" data-definition="PR（Pull Request）是代码审查请求。开发者写完代码后，提交PR让团队成员审核，通过后才合并到主代码库。相当于'请帮我检查一下这段改动'。">PR</span>。秘密不在于写更多代码，而在于教会 Claude "怎么帮你工作"。</p>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">&#128161;</div>
+          <div class="callout-content">
+            <strong class="callout-title">Boris 的100行哲学</strong>
+            <p>CLAUDE.md 不是越长越好。把它想象成给新同事的入职指南 &mdash; 只写最关键的规则，让 Claude 快速理解"这个项目怎么做事"。100行足以覆盖技术栈、编码风格、测试要求和常见陷阱。</p>
+          </div>
+        </div>
+
+        <p>如果说 Module 2 是"学会开车"，这个模块就是"改装你的车" &mdash; CLAUDE.md 是你的调校手册，<span class="term" data-definition="Hooks 是一种自动化机制，让你在特定事件发生时自动执行脚本。就像汽车的传感器：检测到碰撞前自动弹出安全气囊，不需要驾驶员手动操作。">Hooks</span> 是自动化传感器，<span class="term" data-definition="MCP（Model Context Protocol）是让 Claude 连接外部工具和服务的标准协议。就像汽车的OBD接口，让各种外部设备都能接入你的车。">MCP</span> 是连接外部设备的接口，多 <span class="term" data-definition="Agent 是能自主执行任务的AI实例。它不只是回答问题，还能主动规划、调用工具、执行代码。一个Agent就是一个能干活的'AI员工'。">Agent</span> 是组建车队。</p>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 2 — CLAUDE.md 最佳实践                 -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">CLAUDE.md：给Claude的工作手册</h2>
+
+        <p>一份好的 CLAUDE.md 遵循 WHAT-WHY-HOW 结构。把它想象成给新员工的三句话交底。</p>
+
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="flow-step-num">1</div>
+            <p><strong>WHAT</strong><br>技术栈是什么<br><em>TypeScript + React + PostgreSQL</em></p>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-step-num">2</div>
+            <p><strong>WHY</strong><br>项目要做什么<br><em>电商平台的后台管理系统</em></p>
+          </div>
+          <div class="flow-arrow">&rarr;</div>
+          <div class="flow-step">
+            <div class="flow-step-num">3</div>
+            <p><strong>HOW</strong><br>怎么工作<br><em>所有API用REST，测试覆盖率 &gt; 80%</em></p>
+          </div>
+        </div>
+
+        <p>黄金法则：每次 Claude 犯错，立即把纠正规则加入 CLAUDE.md。这样同一个错误永远不会出现第二次。</p>
+
+        <div class="callout callout-warning">
+          <div class="callout-icon">&#9888;</div>
+          <div class="callout-content">
+            <strong class="callout-title">遵循率 &ne; 100%</strong>
+            <p>CLAUDE.md 的遵循率约为 80% &mdash; Claude 大多数时候会遵守，但偶尔会"忘记"。如果某条规则必须100%执行（比如"绝对不能删除生产数据库"），请用 Hooks 而不是 CLAUDE.md。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 3 — CLAUDE.md 三层体系                  -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">三层 CLAUDE.md 体系</h2>
+
+        <p>CLAUDE.md 不只能放在项目根目录。它是一个三层体系，从最宽泛到最具体 &mdash; 就像公司的规章制度从总部到部门到岗位逐级细化。</p>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-1)">
+            <div class="pattern-icon" style="background: var(--color-actor-1)">&#127758;</div>
+            <h4 class="pattern-title">全局层</h4>
+            <p class="pattern-desc"><code>~/.claude/CLAUDE.md</code><br>你的个人偏好，适用于所有项目。比如"永远用中文回复"、"commit message 用英文"。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-2)">
+            <div class="pattern-icon" style="background: var(--color-actor-2)">&#128193;</div>
+            <h4 class="pattern-title">项目层</h4>
+            <p class="pattern-desc"><code>./CLAUDE.md</code><br>项目级规范。技术栈、架构决策、代码风格。团队共享。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-3)">
+            <div class="pattern-icon" style="background: var(--color-actor-3)">&#128196;</div>
+            <h4 class="pattern-title">模块层</h4>
+            <p class="pattern-desc"><code>./src/CLAUDE.md</code><br>子目录特有规则。比如"这个文件夹只放API路由"、"组件命名用PascalCase"。</p>
+          </div>
+        </div>
+
+        <p>Claude 会从全局到模块依次读取所有层级，后者覆盖前者。越具体的规则优先级越高。</p>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 4 — Group Chat: CLAUDE.md 对话          -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">CLAUDE.md 实战对话</h2>
+
+        <p>看看 CLAUDE.md 在实际工作中是怎么影响 Claude 行为的。</p>
+
+        <div class="chat-window" id="chat-module3">
+          <div class="chat-messages">
+            <div class="chat-message" data-msg="0" data-sender="developer" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-1)">D</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: var(--color-actor-1)">Developer</span>
+                <p>帮我重构这个函数，拆成更小的模块。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="1" data-sender="claude" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-2)">C</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: var(--color-actor-2)">Claude</span>
+                <p>收到。让我先检查一下项目规范...</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="2" data-sender="claudemd" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-3)">M</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: var(--color-actor-3)">CLAUDE.md</span>
+                <p>规则：必须用 TypeScript，所有函数必须写单元测试，使用 Vitest 框架。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="3" data-sender="claude" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-2)">C</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: var(--color-actor-2)">Claude</span>
+                <p>好的，我按项目规范来：用 TypeScript 重构，拆成3个纯函数，每个都附带 Vitest 测试用例。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="4" data-sender="developer" style="display:none">
+              <div class="chat-avatar" style="background: var(--color-actor-1)">D</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: var(--color-actor-1)">Developer</span>
+                <p>完美！不用我每次重复说明项目要求了。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-typing" style="display:none">
+            <div class="chat-avatar">?</div>
+            <div class="chat-typing-dots">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+            </div>
+          </div>
+
+          <div class="chat-controls">
+            <button class="btn chat-next-btn">下一条消息</button>
+            <button class="btn chat-all-btn">播放全部</button>
+            <button class="btn chat-reset-btn">重播</button>
+            <span class="chat-progress"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 5 — Memory 四层架构                     -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Memory 四层架构</h2>
+
+        <p>Claude Code 的记忆不是一块铁板，而是四个层次 &mdash; 就像人脑有长期记忆、短期记忆和感觉记忆一样。</p>
+
+        <div class="flow-animation" data-steps='[
+          {"highlight":"flow-actor-1","label":"CLAUDE.md：手动维护的项目规范，存在项目目录。相当于写在纸上的操作手册。"},
+          {"highlight":"flow-actor-1","label":"Claude 启动时首先读取 CLAUDE.md，加载所有项目规则。","packet":true,"from":"actor-1","to":"actor-2"},
+          {"highlight":"flow-actor-2","label":"Auto Memory：Claude 自动记录的经验，存在 ~/.claude/projects/。相当于工作日志。"},
+          {"highlight":"flow-actor-2","label":"结合手动规则和自动经验，构建上下文。","packet":true,"from":"actor-2","to":"actor-3"},
+          {"highlight":"flow-actor-3","label":"Session：当前对话的内容，存在内存中。相当于此刻正在讨论的话题。"},
+          {"highlight":"flow-actor-3","label":"对话中调用工具获取更多信息。","packet":true,"from":"actor-3","to":"actor-4"},
+          {"highlight":"flow-actor-4","label":"Tool Results：工具返回的结果，存在内存中。相当于刚刚查阅的参考资料。"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-actor-1">
+              <div class="flow-actor-icon">&#128214;</div>
+              <span>CLAUDE.md</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-2">
+              <div class="flow-actor-icon">&#129504;</div>
+              <span>Auto Memory</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-3">
+              <div class="flow-actor-icon">&#128172;</div>
+              <span>Session</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-4">
+              <div class="flow-actor-icon">&#128295;</div>
+              <span>Tool Results</span>
+            </div>
+          </div>
+
+          <div class="flow-packet" id="flow-packet"></div>
+
+          <div class="flow-step-label" id="flow-label">点击"下一步"查看 Memory 如何层层构建</div>
+
+          <div class="flow-controls">
+            <button class="btn flow-next-btn">下一步</button>
+            <button class="btn flow-reset-btn">重新开始</button>
+            <span class="flow-progress"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 6 — 思考模式控制                         -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">思考模式：给 Claude 的"思考预算"</h2>
+
+        <p>Claude 在回答前会"思考"。你可以通过特定<span class="term" data-definition="触发词是你在提示中加入的特定关键字，用来控制 Claude 的行为。不同的触发词会激活不同级别的内部推理深度。">触发词</span>控制思考深度 &mdash; 就像给引擎选择不同的档位。低档省油（省 <span class="term" data-definition="Token 是AI处理文本的基本单位。一个中文字大约是1-2个token，一个英文单词大约是1个token。Token越多，API费用越高，处理时间越长。">Token</span>），高档有力（更精确）。</p>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid #94e2d5">
+            <div class="pattern-icon" style="background: #94e2d5">1</div>
+            <h4 class="pattern-title">think</h4>
+            <p class="pattern-desc">基础思考。适合简单任务：改个变量名、写个注释。相当于城市道路的1档。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #74c7ec">
+            <div class="pattern-icon" style="background: #74c7ec">2</div>
+            <h4 class="pattern-title">think hard</h4>
+            <p class="pattern-desc">中度思考。适合中等复杂任务：重构函数、修复普通bug。相当于高速公路的3档。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #89b4fa">
+            <div class="pattern-icon" style="background: #89b4fa">3</div>
+            <h4 class="pattern-title">think harder</h4>
+            <p class="pattern-desc">深度思考。适合复杂问题：跨文件重构、性能优化。相当于赛道模式。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #b4befe">
+            <div class="pattern-icon" style="background: #b4befe">4</div>
+            <h4 class="pattern-title">ultrathink</h4>
+            <p class="pattern-desc">最高思考预算。适合架构设计、复杂算法。相当于全功率输出。慎用 &mdash; Token消耗巨大。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 7 — Hooks 系统                          -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Hooks：100% 执行率的自动化</h2>
+
+        <p>CLAUDE.md 是"建议"（80%遵循），Hooks 是"法律"（100%执行）。Hooks 就像汽车的安全系统 &mdash; 不管驾驶员怎么操作，安全气囊该弹就弹，<span class="term" data-definition="Linter 是代码质量检查工具，自动扫描代码中的格式错误、潜在bug和风格问题。就像文章的拼写检查器，但检查的是代码。">Linter</span> 该跑就跑。</p>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-1)">
+            <div class="pattern-icon" style="background: var(--color-actor-1)">&#128721;</div>
+            <h4 class="pattern-title">PreToolUse</h4>
+            <p class="pattern-desc">工具执行前拦截。比如在 Claude 编辑文件前，先检查是否触碰了受保护文件。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-2)">
+            <div class="pattern-icon" style="background: var(--color-actor-2)">&#9989;</div>
+            <h4 class="pattern-title">PostToolUse</h4>
+            <p class="pattern-desc">工具执行后验证。比如每次编辑代码后自动运行 Linter，确保代码质量。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-3)">
+            <div class="pattern-icon" style="background: var(--color-actor-3)">&#128276;</div>
+            <h4 class="pattern-title">Notification</h4>
+            <p class="pattern-desc">任务完成时通知。比如 Claude 完成编译后发送桌面通知，你不用一直盯着屏幕。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 8 — Hooks 代码翻译                      -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Hooks 配置：代码 vs 白话</h2>
+
+        <p>Hooks 的配置是 <span class="term" data-definition="JSON（JavaScript Object Notation）是一种轻量级数据格式，用花括号和键值对来组织信息。你可以把它想象成一份结构化的清单，电脑和人都能读懂。">JSON</span> 格式。下面是一个"保护文件不被修改"的 Hook 配置 &mdash; 看看代码说的是什么。</p>
+
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">CODE</span>
+            <pre><code><span class="code-line">{</span>
+<span class="code-line">  <span class="code-property">"hooks"</span>: {</span>
+<span class="code-line">    <span class="code-property">"PreToolUse"</span>: [{</span>
+<span class="code-line">      <span class="code-property">"matcher"</span>: <span class="code-string">"Edit"</span>,</span>
+<span class="code-line">      <span class="code-property">"command"</span>: <span class="code-string">"check-protected-files.sh"</span></span>
+<span class="code-line">    }]</span>
+<span class="code-line">  }</span>
+<span class="code-line">}</span></code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">白话翻译</span>
+            <div class="translation-lines">
+              <p class="tl">这是 Hooks 配置的开始</p>
+              <p class="tl">在"工具执行前"这个时机...</p>
+              <p class="tl">设置一个拦截规则：</p>
+              <p class="tl">如果 Claude 要用的工具是"编辑文件"...</p>
+              <p class="tl">就先运行这个保护检查脚本</p>
+              <p class="tl">（脚本会检查目标文件是否在保护名单中）</p>
+              <p class="tl">规则定义结束</p>
+              <p class="tl">配置结束</p>
+            </div>
+          </div>
+        </div>
+
+        <p>如果脚本返回错误，Claude 会被阻止执行编辑。这就是为什么 Hooks 的执行率是100% &mdash; 它不依赖 Claude 的"自觉"，而是系统级的强制拦截。</p>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 9 — MCP 服务器推荐                      -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">MCP：让 Claude 连接世界</h2>
+
+        <p>MCP 让 Claude 不再是孤岛。通过标准协议连接外部工具，就像给汽车加装各种专业配件 &mdash; 导航仪、行车记录仪、胎压监测器。</p>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid #f38ba8">
+            <div class="pattern-icon" style="background: #f38ba8">&#128025;</div>
+            <h4 class="pattern-title">GitHub</h4>
+            <p class="pattern-desc">直接在对话中管理<span class="term" data-definition="仓库（Repository）是存放项目所有代码和历史记录的地方。你可以把它想象成一个带版本追踪功能的项目文件夹。">仓库</span>、创建 PR、审查代码。Claude 变成你的代码审查助手。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #a6e3a1">
+            <div class="pattern-icon" style="background: #a6e3a1">&#127912;</div>
+            <h4 class="pattern-title">Playwright</h4>
+            <p class="pattern-desc">控制浏览器做自动化测试。Claude 可以打开网页、点击按钮、填写表单、截图验证。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #fab387">
+            <div class="pattern-icon" style="background: #fab387">&#128680;</div>
+            <h4 class="pattern-title">Sentry</h4>
+            <p class="pattern-desc">接入错误监控系统。Claude 可以查看线上报错、分析错误堆栈、直接修复 <span class="term" data-definition="Bug 是软件中的错误或缺陷，导致程序运行不符合预期。这个词来自早期计算机中真的有虫子导致故障的传说。">Bug</span>。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #cba6f7">
+            <div class="pattern-icon" style="background: #cba6f7">&#127912;</div>
+            <h4 class="pattern-title">Figma</h4>
+            <p class="pattern-desc">连接设计工具。Claude 可以读取设计稿，直接将设计转换为前端代码。从设计到代码一步到位。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 10 — 多Agent工作流                      -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">多 Agent 工作流：组建你的车队</h2>
+
+        <p>一个 Claude 是员工，多个 Claude 就是团队。多 Agent 工作流让你像项目经理一样调度多个 Claude 实例并行协作。</p>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-1)">
+            <div class="pattern-icon" style="background: var(--color-actor-1)">&#128101;</div>
+            <h4 class="pattern-title">Subagent</h4>
+            <p class="pattern-desc">主 Agent 派出的"侦察兵"。拥有独立<span class="term" data-definition="Context Window（上下文窗口）是AI一次能处理的最大文本量。就像工作台的面积 &mdash; 台面越大，能同时摊开的资料越多。超出窗口的内容AI就'看不见'了。">上下文</span>，执行完子任务后向主 Agent 汇报。主会话保持干净。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-2)">
+            <div class="pattern-icon" style="background: var(--color-actor-2)">&#128101;</div>
+            <h4 class="pattern-title">Agent Teams</h4>
+            <p class="pattern-desc">多个 Claude 实例同时运行，各自处理不同任务。一个写前端，一个写后端，一个写测试。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-3)">
+            <div class="pattern-icon" style="background: var(--color-actor-3)">&#127795;</div>
+            <h4 class="pattern-title">Worktree</h4>
+            <p class="pattern-desc">用 <code>--worktree</code> <span class="term" data-definition="Flag（标志）是命令行中的选项参数，通常以 -- 或 - 开头。它改变命令的行为方式，就像给指令加上附加条件。">标志</span>让每个 Agent 在隔离的代码副本中工作，互不干扰。就像每人一条独立车道。</p>
+          </div>
+        </div>
+
+        <div class="callout callout-accent">
+          <div class="callout-icon">&#128161;</div>
+          <div class="callout-content">
+            <strong class="callout-title">Boris 的车队战术</strong>
+            <p>Boris 同时运行 10-15 个 Claude 会话，每个处理一个独立任务。这就是他每周产出100个 PR 的秘密 &mdash; 不是一个人写得更快，而是同时有15个"助手"在并行工作。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 11 — 上下文管理策略                      -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">上下文管理：保持引擎高效</h2>
+
+        <p>Claude 的上下文窗口是有限的。就像汽车油箱 &mdash; 跑远了要加油，装多了要清理。掌握这四个命令，保持 Claude 始终在最佳状态。</p>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid #94e2d5">
+            <div class="pattern-icon" style="background: #94e2d5">&#128230;</div>
+            <h4 class="pattern-title">/compact</h4>
+            <p class="pattern-desc">上下文用了约60%时执行。压缩历史对话，保留关键信息，释放空间。相当于整理行李箱。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #74c7ec">
+            <div class="pattern-icon" style="background: #74c7ec">&#128260;</div>
+            <h4 class="pattern-title">/clear</h4>
+            <p class="pattern-desc">开始新任务时执行。彻底清空当前会话，重新开始。相当于换一辆新车。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #89b4fa">
+            <div class="pattern-icon" style="background: #89b4fa">&#128176;</div>
+            <h4 class="pattern-title">/cost</h4>
+            <p class="pattern-desc">随时监控当前会话的 Token 消耗和费用。知道你的"油表"指向哪里。</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #b4befe">
+            <div class="pattern-icon" style="background: #b4befe">&#128218;</div>
+            <h4 class="pattern-title">Skills</h4>
+            <p class="pattern-desc">用 <span class="term" data-definition="Skills 是 Claude Code 中可复用的指令集，存储在 .claude/skills/ 目录中。它比长 CLAUDE.md 更模块化 &mdash; 需要什么能力就加载什么技能。">Skills</span> 替代过长的 CLAUDE.md。按需加载能力，而不是一次性塞入全部规则。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 12 — Quiz                              -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">检验你的理解</h2>
+
+        <div class="quiz-container" id="quiz-module3">
+          <div class="quiz-question-block"
+               data-correct="option-1b"
+               data-explanation-right="没错。CLAUDE.md 的遵循率约为80%，Claude 大多数时候会遵守规则，但偶尔会'忘记'。这就是为什么关键规则需要用 Hooks（100%执行率）来保障。"
+               data-explanation-wrong="再想想 &mdash; CLAUDE.md 是'建议'而非'命令'。Claude 会尽力遵守，但不像 Hooks 那样有系统级强制力。回忆一下我们讨论的遵循率数字。">
+            <h3 class="quiz-question">你在 CLAUDE.md 中写了一条规则："所有函数必须写注释"。一个月后你发现有些函数没有注释。最可能的原因是什么？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-1a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>CLAUDE.md 文件损坏了，Claude 读不到规则</span>
+              </button>
+              <button class="quiz-option" data-value="option-1b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>CLAUDE.md 的遵循率约为80%，Claude 偶尔会遗漏规则</span>
+              </button>
+              <button class="quiz-option" data-value="option-1c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>CLAUDE.md 只在项目首次打开时读取一次</span>
+              </button>
+              <button class="quiz-option" data-value="option-1d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>需要付费升级 Pro 才能获得100%遵循率</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="option-2d"
+               data-explanation-right="对了！ultrathink 是最高级别的思考模式，分配最多的内部推理预算。它适合架构设计和复杂算法等需要深度思考的场景 &mdash; 但 Token 消耗也最大，所以不要每个问题都用。"
+               data-explanation-wrong="不太对。思考模式从低到高是 think &rarr; think hard &rarr; think harder &rarr; ultrathink。你需要选那个给 Claude 最多'思考时间'的触发词。就像档位 &mdash; 最高档才有最大功率。">
+            <h3 class="quiz-question">你正在让 Claude 设计一个全新微服务的整体架构。为了获得最深思熟虑的方案，你应该在提示中使用哪个触发词？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-2a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>think</span>
+              </button>
+              <button class="quiz-option" data-value="option-2b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>think hard</span>
+              </button>
+              <button class="quiz-option" data-value="option-2c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>think harder</span>
+              </button>
+              <button class="quiz-option" data-value="option-2d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>ultrathink</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module3')">检查答案</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module3')">重新作答</button>
+        </div>
+      </section>
+
+    </div><!-- end module-body -->
+  </div><!-- end module-content -->
+</section><section class="module" id="module-4" style="min-height: 100vh; min-height: 100dvh; background: var(--color-bg-warm)">
+  <div class="module-content">
+
+    <!-- ══════════════════════════════════════════════════════════
+         HEADER
+         ══════════════════════════════════════════════════════════ -->
+    <header class="module-header animate-in">
+      <span class="module-number">04</span>
+      <h1 class="module-title">AI美术全景</h1>
+      <p class="module-subtitle">从概念到成品 -- 装满画笔的工具箱</p>
+    </header>
+
+    <div class="module-body">
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 1 -- 开场钩子与核心隐喻
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">一个角色，半天搞定</h2>
+
+        <p>一个游戏角色从概念到三视图，传统流程需要美术师一周。用AI工具链？半天。而且你可以同时生成20个风格完全不同的方案让策划挑选。</p>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">&#x1f3a8;</div>
+          <div class="callout-content">
+            <strong class="callout-title">核心隐喻：装满画笔的工具箱</strong>
+            <p>AI美术工具就像一个装满画笔的工具箱 ——
+              <span class="term" data-definition="Midjourney 是一款通过文字描述生成高质量图片的 AI 工具，以艺术风格强、出图快著称，通过 Discord 使用。">Midjourney</span> 是那支随手一画就很美的彩笔，
+              <span class="term" data-definition="ComfyUI 是一个基于节点的 Stable Diffusion 图形界面，用户通过连接各种功能节点来构建图像生成工作流，控制力极强但学习曲线较陡。">ComfyUI</span> 是精密的空气笔（需要学习但控制力极强），
+              <span class="term" data-definition="ControlNet 是 Stable Diffusion 的一个扩展模型，能让你通过边缘图、深度图、姿态图等条件来精确控制生成图片的构图和结构。">ControlNet</span> 是各种尺规和模板，
+              <span class="term" data-definition="LoRA（Low-Rank Adaptation）是一种轻量级模型微调技术。你可以用少量图片训练一个小型附加模型，让 AI 学会生成特定的角色、风格或物体。">LoRA</span> 是你自己调配的颜料。</p>
+          </div>
+        </div>
+
+        <div class="callout callout-accent">
+          <div class="callout-icon">&#x2728;</div>
+          <div class="callout-content">
+            <strong class="callout-title">关键洞察</strong>
+            <p>AI美术不是"一键出图"，而是一条可控的生产管线 —— 从概念探索到精确控制到批量生产，每个环节有最适合的工具。即使你不是美术，理解AI美术管线也能让你更好地和美术团队协作，甚至自己搞定概念设计。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 2 -- 工具选型决策树
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">选对画笔：工具选型决策树</h2>
+
+        <p>不同场景需要不同的工具。问自己一个问题，就能找到答案。</p>
+
+        <div class="flow-steps" style="flex-wrap: wrap; justify-content: center;">
+          <div class="flow-step" style="border-top: 3px solid var(--color-accent); min-width: 180px;">
+            <div class="flow-step-num" style="background: var(--color-accent);">?</div>
+            <p><strong>你的需求是什么？</strong></p>
+          </div>
+        </div>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid #06b6d4;">
+            <div class="pattern-icon" style="background: #06b6d4;">&#x26A1;</div>
+            <h4 class="pattern-title">快速出概念</h4>
+            <p class="pattern-desc">
+              <span class="term" data-definition="Midjourney 是一款通过文字描述生成高质量图片的 AI 工具，以艺术风格强、出图快著称。">Midjourney</span> /
+              <span class="term" data-definition="GPT-4o 是 OpenAI 的多模态大模型，能理解和生成文字、图片、音频，其图片生成能力可用于快速概念探索。">GPT-4o</span>
+            </p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">输入一句话，几秒出图，适合头脑风暴</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #8b5cf6;">
+            <div class="pattern-icon" style="background: #8b5cf6;">&#x2699;</div>
+            <h4 class="pattern-title">精确可控管线</h4>
+            <p class="pattern-desc">
+              <span class="term" data-definition="ComfyUI 是一个基于节点的 Stable Diffusion 图形界面，通过连接功能节点构建工作流。">ComfyUI</span> +
+              <span class="term" data-definition="SDXL（Stable Diffusion XL）是 Stability AI 发布的高质量开源图像生成模型，支持 1024x1024 分辨率，是目前开源生态的主力模型之一。">SDXL</span> /
+              <span class="term" data-definition="FLUX 是 Black Forest Labs 推出的新一代开源图像生成模型，在文字渲染和细节控制方面表现优异，被视为 SDXL 的有力竞争者。">FLUX</span>
+            </p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">节点式工作流，每一步都可精确调参</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #10b981;">
+            <div class="pattern-icon" style="background: #10b981;">&#x2714;</div>
+            <h4 class="pattern-title">商用零风险</h4>
+            <p class="pattern-desc">
+              <span class="term" data-definition="Adobe Firefly 是 Adobe 推出的 AI 图像生成工具，只使用有授权的训练数据，生成的图片可安全用于商业用途，不存在版权风险。">Adobe Firefly</span>
+            </p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">训练数据全部有授权，商用无版权纠纷</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #f59e0b;">
+            <div class="pattern-icon" style="background: #f59e0b;">&#x4E2D;</div>
+            <h4 class="pattern-title">中文生态</h4>
+            <p class="pattern-desc">
+              <span class="term" data-definition="LiblibAI 是国内领先的 AI 绘画模型分享平台，提供大量中文社区训练的 LoRA、Checkpoint 模型，并集成了在线生图功能。">LiblibAI</span> + ComfyUI
+            </p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">中文模型、中文社区、本土化资源丰富</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #ec4899;">
+            <div class="pattern-icon" style="background: #ec4899;">&#x2601;</div>
+            <h4 class="pattern-title">零硬件</h4>
+            <p class="pattern-desc">
+              <span class="term" data-definition="RunningHub 是一个云端 ComfyUI 平台，无需本地 GPU，在浏览器中即可运行完整的 ComfyUI 工作流，适合没有高性能显卡的用户。">RunningHub</span> 云端
+            </p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">浏览器直接跑 ComfyUI，无需显卡</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 3 -- ControlNet 六种类型卡片
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">尺规与模板：ControlNet 六种控制类型</h2>
+
+        <p>ControlNet 让你用不同的"参考图"来精确控制 AI 生成的构图。每种类型就像不同的绘画辅助工具。</p>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid #ef4444;">
+            <div class="pattern-icon" style="background: #ef4444;">&#x2702;</div>
+            <h4 class="pattern-title">边缘检测</h4>
+            <p class="pattern-desc"><strong>模型：</strong>
+              <span class="term" data-definition="Canny 是一种经典的边缘检测算法，ControlNet 用它提取图片的轮廓线条，让 AI 按照原图的边缘形状来生成新图。">Canny</span>、
+              <span class="term" data-definition="Lineart 是 ControlNet 的线稿提取模型，能从照片或绘画中提取干净的线稿，特别适合从草图生成精图。">Lineart</span>
+            </p>
+            <p class="pattern-desc">保持原图轮廓 —— 像描着轮廓线涂色</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #3b82f6;">
+            <div class="pattern-icon" style="background: #3b82f6;">&#x25A8;</div>
+            <h4 class="pattern-title">深度检测</h4>
+            <p class="pattern-desc"><strong>模型：</strong>Depth</p>
+            <p class="pattern-desc">保持空间纵深 —— 近大远小的关系不变</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #8b5cf6;">
+            <div class="pattern-icon" style="background: #8b5cf6;">&#x1F9CD;</div>
+            <h4 class="pattern-title">姿态检测</h4>
+            <p class="pattern-desc"><strong>模型：</strong>
+              <span class="term" data-definition="OpenPose 是一种人体姿态估计算法，能识别图片中人体的关节点位置。ControlNet 用它来控制生成图中人物的姿势和动作。">OpenPose</span>
+            </p>
+            <p class="pattern-desc">控制人体姿势 —— 像给木偶摆造型</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #10b981;">
+            <div class="pattern-icon" style="background: #10b981;">&#x25A3;</div>
+            <h4 class="pattern-title">语义分割</h4>
+            <p class="pattern-desc"><strong>模型：</strong>
+              <span class="term" data-definition="Segmentation（语义分割）将图片按区域分成'天空'、'地面'、'人物'等类别。ControlNet 用它来控制画面各区域分别生成什么内容。">Segmentation</span>
+            </p>
+            <p class="pattern-desc">区域级控制 —— 指定"这里是天空，那里是建筑"</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #f59e0b;">
+            <div class="pattern-icon" style="background: #f59e0b;">&#x25A6;</div>
+            <h4 class="pattern-title">瓦片超分</h4>
+            <p class="pattern-desc"><strong>模型：</strong>Tile</p>
+            <p class="pattern-desc">分块增强细节 —— 把模糊图片变高清</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #ec4899;">
+            <div class="pattern-icon" style="background: #ec4899;">&#x270E;</div>
+            <h4 class="pattern-title">涂鸦转精图</h4>
+            <p class="pattern-desc"><strong>模型：</strong>Scribble</p>
+            <p class="pattern-desc">草图变精稿 —— 随手涂几笔 AI 帮你画完</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 4 -- 角色一致性五方案
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">同一张脸：角色一致性五方案</h2>
+
+        <p>让 AI 在不同图片里画出"同一个角色"是最大挑战之一。五种方案各有取舍 —— 一致性越高通常需要越多准备时间。</p>
+
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid #06b6d4;">
+            <div class="pattern-icon" style="background: #06b6d4;">&#x2605;</div>
+            <h4 class="pattern-title">角色 LoRA 训练</h4>
+            <p class="pattern-desc">一致性：&#x2605;&#x2605;&#x2605;&#x2605;&#x2605; &nbsp;|&nbsp; 速度：慢</p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">用角色图片训练专属 LoRA，最可靠但需要几小时训练时间</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #8b5cf6;">
+            <div class="pattern-icon" style="background: #8b5cf6;">&#x2605;</div>
+            <h4 class="pattern-title">
+              <span class="term" data-definition="InstantID 是一种零样本人脸保持技术，只需一张参考照片就能让 AI 在生成图中保持同一个人的面部特征，无需训练。">InstantID</span>
+            </h4>
+            <p class="pattern-desc">一致性：&#x2605;&#x2605;&#x2605;&#x2605; &nbsp;|&nbsp; 速度：即时</p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">一张参考照即可，即时使用，面部保持力强</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #10b981;">
+            <div class="pattern-icon" style="background: #10b981;">&#x2605;</div>
+            <h4 class="pattern-title">
+              <span class="term" data-definition="PuLID 是一种基于 ID 嵌入的人脸保持技术，可与 Style LoRA 配合使用，在保持面部一致性的同时自由切换画风。">PuLID</span> + Style LoRA
+            </h4>
+            <p class="pattern-desc">一致性：&#x2605;&#x2605;&#x2605;&#x2605; &nbsp;|&nbsp; 速度：即时</p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">面部 + 风格双控，适合需要统一画风的项目</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #f59e0b;">
+            <div class="pattern-icon" style="background: #f59e0b;">&#x2605;</div>
+            <h4 class="pattern-title">Reference-Only</h4>
+            <p class="pattern-desc">一致性：&#x2605;&#x2605;&#x2605; &nbsp;|&nbsp; 速度：即时</p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">传入参考图让 AI 模仿，简单但一致性有限</p>
+          </div>
+          <div class="pattern-card" style="border-top: 3px solid #ec4899;">
+            <div class="pattern-icon" style="background: #ec4899;">&#x2605;</div>
+            <h4 class="pattern-title">
+              <span class="term" data-definition="StoryDiffusion 是一种专门为连续叙事场景设计的 AI 图像生成方法，能在多张图中维持角色外貌和服饰的一致性。">StoryDiffusion</span>
+            </h4>
+            <p class="pattern-desc">一致性：&#x2605;&#x2605;&#x2605; &nbsp;|&nbsp; 速度：中</p>
+            <p class="pattern-desc" style="font-size: var(--text-xs); color: var(--color-text-muted);">多图叙事专用，适合漫画、故事板等连续场景</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 5 -- 商业五阶段管线（核心流程图）
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">从概念到成品：商业五阶段管线</h2>
+
+        <p>AI美术的商业落地不是一步到位 —— 它是一条五阶段管线，每个环节有最适合的工具组合。这是本模块的核心流程。</p>
+
+        <!-- 商业管线 Flow Diagram -->
+        <div class="flow-animation" data-steps='[
+          {"highlight":"flow-actor-1","label":"阶段一：概念探索 — 用 Midjourney 或 GPT-4o 快速生成大量风格变体，让策划从 20+ 方案中挑选方向"},
+          {"highlight":"flow-actor-1","label":"工具：Midjourney / GPT-4o 文生图，重点是速度和多样性","packet":true,"from":"actor-1","to":"actor-2"},
+          {"highlight":"flow-actor-2","label":"阶段二：细化设计 — 选定方向后，用 ControlNet 精确控制构图、姿态、空间关系"},
+          {"highlight":"flow-actor-2","label":"工具：ComfyUI + ControlNet（Canny/Depth/OpenPose）","packet":true,"from":"actor-2","to":"actor-3"},
+          {"highlight":"flow-actor-3","label":"阶段三：一致性锁定 — 训练角色 LoRA 或使用 IP-Adapter 确保同一角色多图一致"},
+          {"highlight":"flow-actor-3","label":"工具：角色 LoRA / IP-Adapter / InstantID","packet":true,"from":"actor-3","to":"actor-4"},
+          {"highlight":"flow-actor-4","label":"阶段四：精修打磨 — AI 产出的 80% 交给人工精修最后 20%，修瑕疵、调细节"},
+          {"highlight":"flow-actor-4","label":"工具：Photoshop + 人工美术师经验","packet":true,"from":"actor-4","to":"actor-5"},
+          {"highlight":"flow-actor-5","label":"阶段五：资产输出 — AI 超分辨率放大，按规格导出交付资产"},
+          {"highlight":"flow-actor-5","label":"工具：Tile ControlNet 超分 / Topaz AI，输出 PBR 贴图等最终资产"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-actor-1" style="border-color: var(--color-accent);">
+              <div class="flow-actor-icon" style="background: #06b6d4;">&#x1F4A1;</div>
+              <span>概念探索</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-2" style="border-color: var(--color-accent);">
+              <div class="flow-actor-icon" style="background: #8b5cf6;">&#x1F3AF;</div>
+              <span>细化设计</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-3" style="border-color: var(--color-accent);">
+              <div class="flow-actor-icon" style="background: #10b981;">&#x1F512;</div>
+              <span>一致性锁定</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-4" style="border-color: var(--color-accent);">
+              <div class="flow-actor-icon" style="background: #f59e0b;">&#x270F;</div>
+              <span>精修打磨</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-5" style="border-color: var(--color-accent);">
+              <div class="flow-actor-icon" style="background: #ec4899;">&#x1F4E6;</div>
+              <span>资产输出</span>
+            </div>
+          </div>
+
+          <div class="flow-packet" id="flow-packet"></div>
+
+          <div class="flow-step-label" id="flow-label">点击"下一步"开始浏览五阶段管线</div>
+
+          <div class="flow-controls">
+            <button class="btn flow-next-btn">下一步</button>
+            <button class="btn flow-all-btn">播放全部</button>
+            <button class="btn flow-reset-btn">重新开始</button>
+            <span class="flow-progress"></span>
+          </div>
+        </div>
+
+        <!-- 管线静态流程图（备用视觉参考） -->
+        <div class="flow-steps" style="flex-wrap: wrap; justify-content: center; margin-top: var(--space-6);">
+          <div class="flow-step" style="border-top: 3px solid #06b6d4;">
+            <div class="flow-step-num" style="background: #06b6d4;">1</div>
+            <p><strong>概念探索</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">文生图变体</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #8b5cf6;">
+            <div class="flow-step-num" style="background: #8b5cf6;">2</div>
+            <p><strong>细化设计</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">ControlNet 精控</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #10b981;">
+            <div class="flow-step-num" style="background: #10b981;">3</div>
+            <p><strong>一致性锁定</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">LoRA /
+              <span class="term" data-definition="IP-Adapter 是一种图像提示适配器，能让你用一张参考图来引导 AI 生成风格或内容相似的新图，无需文字描述。">IP-Adapter</span></p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #f59e0b;">
+            <div class="flow-step-num" style="background: #f59e0b;">4</div>
+            <p><strong>精修打磨</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">Photoshop 人工</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #ec4899;">
+            <div class="flow-step-num" style="background: #ec4899;">5</div>
+            <p><strong>资产输出</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">AI超分交付</p>
+          </div>
+        </div>
+
+        <!-- 效率数据 -->
+        <div class="badge-list" style="margin-top: var(--space-6);">
+          <div class="badge-item">
+            <code class="badge-code" style="background: #06b6d4; color: white;">3-5x</code>
+            <span class="badge-desc">概念阶段效率提升 —— 传统一周的概念探索压缩到一天</span>
+          </div>
+          <div class="badge-item">
+            <code class="badge-code" style="background: #10b981; color: white;">30-50%</code>
+            <span class="badge-desc">整体美术产能提升 —— 但最后的精修仍需要人类美术师把关</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 6 -- 游戏角色设计管线（7步）
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">实战案例：游戏角色设计管线</h2>
+
+        <p>把五阶段管线套到实际的游戏角色设计流程上，一共七步。</p>
+
+        <div class="flow-steps" style="flex-wrap: wrap; justify-content: center;">
+          <div class="flow-step" style="border-top: 3px solid #06b6d4;">
+            <div class="flow-step-num" style="background: #06b6d4;">1</div>
+            <p><strong>策划文档</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">角色设定、世界观</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #3b82f6;">
+            <div class="flow-step-num" style="background: #3b82f6;">2</div>
+            <p><strong>快速探索</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">Midjourney 多方案</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #8b5cf6;">
+            <div class="flow-step-num" style="background: #8b5cf6;">3</div>
+            <p><strong>三视图</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">ControlNet 精控</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #10b981;">
+            <div class="flow-step-num" style="background: #10b981;">4</div>
+            <p><strong>角色 LoRA</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">训练专属模型</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #f59e0b;">
+            <div class="flow-step-num" style="background: #f59e0b;">5</div>
+            <p><strong>表情表</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">LoRA + 表情提示</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #ec4899;">
+            <div class="flow-step-num" style="background: #ec4899;">6</div>
+            <p><strong>动作姿态</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">OpenPose 控制</p>
+          </div>
+          <div class="flow-arrow">&#x2192;</div>
+          <div class="flow-step" style="border-top: 3px solid #6366f1;">
+            <div class="flow-step-num" style="background: #6366f1;">7</div>
+            <p><strong>多角度渲染</strong></p>
+            <p style="font-size: var(--text-xs); color: var(--color-text-muted);">最终资产输出</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 7 -- 拖拽匹配 — 工具 → 场景
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">动手试试：把工具拖到正确的场景</h2>
+
+        <p>学了这么多工具，现在测试一下你的判断力。把每个工具拖放到它最擅长的场景。</p>
+
+        <div class="dnd-container" id="dnd-art-tools">
+          <div class="dnd-chips">
+            <div class="dnd-chip" draggable="true" data-answer="midjourney">Midjourney</div>
+            <div class="dnd-chip" draggable="true" data-answer="comfyui">ComfyUI</div>
+            <div class="dnd-chip" draggable="true" data-answer="firefly">Adobe Firefly</div>
+            <div class="dnd-chip" draggable="true" data-answer="runninghub">RunningHub</div>
+            <div class="dnd-chip" draggable="true" data-answer="liblib">LiblibAI</div>
+          </div>
+          <div class="dnd-zones">
+            <div class="dnd-zone" data-correct="midjourney">
+              <p class="dnd-zone-label">策划说"先出 20 个概念图，明天开会选方向"</p>
+              <div class="dnd-zone-target">拖放到这里</div>
+            </div>
+            <div class="dnd-zone" data-correct="comfyui">
+              <p class="dnd-zone-label">需要搭建可复用的 ControlNet + LoRA 自动化工作流</p>
+              <div class="dnd-zone-target">拖放到这里</div>
+            </div>
+            <div class="dnd-zone" data-correct="firefly">
+              <p class="dnd-zone-label">客户合同要求所有素材必须无版权争议</p>
+              <div class="dnd-zone-target">拖放到这里</div>
+            </div>
+            <div class="dnd-zone" data-correct="runninghub">
+              <p class="dnd-zone-label">团队里有人没有独立显卡，但也需要跑 ComfyUI</p>
+              <div class="dnd-zone-target">拖放到这里</div>
+            </div>
+            <div class="dnd-zone" data-correct="liblib">
+              <p class="dnd-zone-label">项目需要大量中文社区训练的二次元风格 LoRA</p>
+              <div class="dnd-zone-target">拖放到这里</div>
+            </div>
+          </div>
+          <button class="btn" onclick="checkDnD('dnd-art-tools')">检查匹配</button>
+          <button class="btn" onclick="resetDnD('dnd-art-tools')">重新开始</button>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 8 -- ComfyUI 工作流 JSON 代码翻译
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">读懂节点：ComfyUI 工作流 JSON 翻译</h2>
+
+        <p>ComfyUI 的工作流本质上是一个
+          <span class="term" data-definition="JSON（JavaScript Object Notation）是一种轻量级的数据交换格式，用花括号和键值对来组织数据，人类可读，机器可解析。">JSON</span>
+          文件 —— 每个节点是一个功能单元，节点之间通过连线传递数据。看懂这段 JSON，你就理解了 ComfyUI 的核心概念。</p>
+
+        <div class="translation-block">
+          <div class="translation-code">
+            <span class="translation-label">COMFYUI JSON</span>
+            <pre><code>
+<span class="code-line">{</span>
+<span class="code-line">  <span class="code-string">"3"</span>: {</span>
+<span class="code-line">    <span class="code-property">"class_type"</span>: <span class="code-string">"KSampler"</span>,</span>
+<span class="code-line">    <span class="code-property">"inputs"</span>: {</span>
+<span class="code-line">      <span class="code-property">"seed"</span>: <span class="code-number">42</span>,</span>
+<span class="code-line">      <span class="code-property">"steps"</span>: <span class="code-number">20</span>,</span>
+<span class="code-line">      <span class="code-property">"cfg"</span>: <span class="code-number">7</span>,</span>
+<span class="code-line">      <span class="code-property">"sampler_name"</span>: <span class="code-string">"euler"</span></span>
+<span class="code-line">    }</span>
+<span class="code-line">  }</span>
+<span class="code-line">}</span>
+            </code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">&#x7528;&#x4EBA;&#x8BDD;&#x8BF4;</span>
+            <div class="translation-lines">
+              <p class="tl">这段定义了工作流中的 3 号节点</p>
+              <p class="tl">它的类型是 <span class="term" data-definition="KSampler 是 ComfyUI 中最核心的节点，负责执行实际的图像生成（采样）过程。它接收模型、提示词等输入，输出生成的潜空间图像。">KSampler</span> —— 负责实际的图像生成（采样）过程</p>
+              <p class="tl">下面是它的输入参数：</p>
+              <p class="tl"><strong>seed: 42</strong> —— 随机种子，固定为 42 可以保证每次生成同样的图。换个数字就会得到完全不同的画面</p>
+              <p class="tl"><strong>steps: 20</strong> —— 生成要跑 20 步。步数越多细节越丰富，但耗时也越长。20 步是常用的平衡值</p>
+              <p class="tl"><strong>cfg: 7</strong> ——
+                <span class="term" data-definition="CFG（Classifier-Free Guidance）引导强度，控制 AI 对提示词的遵循程度。数值越高越忠实于提示词，但太高会导致画面过饱和。通常 5-8 是舒适区。">引导强度</span>设为 7，意味着 AI 会比较忠实地遵循你的提示词</p>
+              <p class="tl"><strong>sampler_name: "euler"</strong> —— 使用 Euler 采样算法。不同算法生成速度和质感略有差异，Euler 是最基础稳定的选择</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 9 -- 硬件参考 + 测验 + 结尾
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">硬件门槛：你需要什么显卡？</h2>
+
+        <p>本地跑 AI 绘图对显卡有要求，核心指标是
+          <span class="term" data-definition="VRAM（Video Random Access Memory）即显存，是显卡上的专用内存。AI 图像生成需要将模型加载到显存中运行，显存越大能跑的模型越大、分辨率越高。">VRAM</span>（显存）大小。显存不够？用云端方案。</p>
+
+        <div class="badge-list">
+          <div class="badge-item" style="border-left: 3px solid #f59e0b;">
+            <code class="badge-code" style="background: #f59e0b; color: white;">入门级</code>
+            <span class="badge-desc"><strong>RTX 4060 Ti</strong> — 16GB VRAM。能跑 SDXL 和基础 ComfyUI 工作流，够用于学习和小项目</span>
+          </div>
+          <div class="badge-item" style="border-left: 3px solid #06b6d4;">
+            <code class="badge-code" style="background: #06b6d4; color: white;">专业级</code>
+            <span class="badge-desc"><strong>RTX 4090</strong> — 24GB VRAM。跑 FLUX、复杂 ControlNet 组合、LoRA 训练都游刃有余</span>
+          </div>
+          <div class="badge-item" style="border-left: 3px solid #10b981;">
+            <code class="badge-code" style="background: #10b981; color: white;">零硬件</code>
+            <span class="badge-desc"><strong>RunningHub / Colab</strong> — 云端 GPU，按用量付费。适合没有独立显卡或想先体验再决定是否购买的用户</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 10 -- 测验
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">检验理解</h2>
+
+        <div class="quiz-container" id="quiz-module4">
+
+          <!-- Question 1 -->
+          <div class="quiz-question-block"
+               data-correct="option-b"
+               data-explanation-right="没错！角色 LoRA 训练虽然耗时最长，但它把角色特征直接刻入模型权重，所以在所有方案中一致性最高、最可靠。当项目需要大量同一角色的不同姿态和场景时，前期投入训练时间是值得的。"
+               data-explanation-wrong="再想想 —— InstantID 和 PuLID 虽然即时可用，但它们本质上是'参考'而非'记忆'。Reference-Only 更是仅靠图像相似度匹配。只有哪种方案把角色特征直接写入了模型？">
+            <h3 class="quiz-question">你的项目需要同一个游戏角色在 50+ 张图中保持高度一致的外貌。最可靠的方案是？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>InstantID —— 只需一张参考照片，即时使用</span>
+              </button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>角色 LoRA 训练 —— 用角色图片训练专属模型</span>
+              </button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>Reference-Only —— 传入参考图让 AI 模仿</span>
+              </button>
+              <button class="quiz-option" data-value="option-d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>在提示词里详细描述角色外貌特征</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="quiz-question-block"
+               data-correct="option-c"
+               data-explanation-right="正确！Adobe Firefly 的训练数据全部来自 Adobe Stock 的授权内容和公共领域作品，是目前唯一明确承诺商用零版权风险的主流 AI 绘图工具。其他工具的训练数据来源存在争议。"
+               data-explanation-wrong="注意 —— 这道题的关键词是'零版权风险'。Midjourney、Stable Diffusion、FLUX 的训练数据都包含互联网爬取的图片，存在版权争议。哪个工具明确只用授权数据训练？">
+            <h3 class="quiz-question">客户合同中写明"所有交付素材必须确保无版权争议"。你应该选择哪个工具作为主力？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>Midjourney —— 出图质量最高</span>
+              </button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>Stable Diffusion —— 开源可自部署</span>
+              </button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>Adobe Firefly —— 训练数据全部有授权</span>
+              </button>
+              <button class="quiz-option" data-value="option-d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>FLUX —— 新一代开源模型</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module4')">检查答案</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module4')">重新作答</button>
+        </div>
+
+        <!-- MODULE CLOSER -->
+        <div class="callout callout-info" style="margin-top: var(--space-8);">
+          <div class="callout-icon">&#x2192;</div>
+          <div class="callout-content">
+            <strong class="callout-title">下一站</strong>
+            <p>掌握了 AI 美术管线后，下一模块我们将把它放进更大的图景 —— Module 5 "AI游戏生产" 将展示美术管线如何与策划、程序、音频协同，组成完整的游戏生产工作流。</p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /module-body -->
+  </div><!-- /module-content -->
+</section>
+<section class="module" id="module-5" style="min-height: 100vh; min-height: 100dvh; background: var(--color-bg)">
+  <div class="module-content">
+
+    <!-- ══════════════════════════════════════════════════════════
+         HEADER
+         ══════════════════════════════════════════════════════════ -->
+    <header class="module-header animate-in">
+      <span class="module-number">05</span>
+      <h1 class="module-title">AI游戏生产 -- 重塑开发管线</h1>
+      <p class="module-subtitle">从手工造车到数控机床 -- 当AI渗透游戏开发的每一个环节</p>
+    </header>
+
+    <div class="module-body">
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 1 -- 开场钩子：数控机床隐喻
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">手工造车 vs. 数控机床</h2>
+
+        <p>腾讯的<span class="term" data-definition="VISVISE是腾讯自研的AI蒙皮工具，能将角色蒙皮流程从3.5天缩短到几分钟，已应用于90多款游戏。蒙皮是把3D角色的'皮肤'绑定到骨骼上，让角色能动起来。">VISVISE</span>工具把角色蒙皮从3.5天缩短到几分钟，已经用在了90多款游戏上。三七互娱每月用AI生成28万张原画。这些数字背后，是一整条AI驱动的游戏生产管线。</p>
+
+        <p>传统游戏开发像<strong>手工造车</strong> -- 每个零件都得一个个加工。AI加持的游戏开发像引入了<strong>数控机床</strong> -- 重复性工序交给机器，工匠专注在需要创意判断的环节。最终产品的品质取决于工匠的眼光，但产量提升了好几倍。</p>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">&#128161;</div>
+          <div class="callout-content">
+            <strong class="callout-title">关键洞察</strong>
+            <p>AI在游戏生产中的渗透是"按环节"的 -- 概念设计几乎全面AI化，<span class="term" data-definition="3D模型生成是将二维概念图转化为三维立体模型的过程。目前AI在这个环节的质量仍达不到3A游戏的要求，是整条管线中的最大瓶颈。">3D生成</span>仍是瓶颈，代码辅助采纳率最高，而创意决策仍然是人类的领地。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 2 -- 各环节AI渗透率
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">AI渗透率：哪些环节先倒下？</h2>
+
+        <p>不是所有环节都被AI改造得一样深。理解每个阶段的AI渗透程度，才能做出正确的工具选择和团队规划。</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid #2dd4bf">
+            <div class="pattern-icon" style="background: #2dd4bf">&#127912;</div>
+            <h4 class="pattern-title">概念阶段</h4>
+            <p class="pattern-desc">渗透率：<strong>高</strong>。<span class="term" data-definition="Flux和SDXL是两种主流的AI图像生成模型。Flux以高质量文字渲染著称，SDXL（Stable Diffusion XL）是开源社区最广泛使用的图像生成模型。">Flux/SDXL</span>等工具让概念图产出提速5-10倍，三七互娱月产28万张。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #14b8a6">
+            <div class="pattern-icon" style="background: #14b8a6">&#128736;</div>
+            <h4 class="pattern-title">预生产</h4>
+            <p class="pattern-desc">渗透率：<strong>中高</strong>。风格探索、原型验证用AI快速迭代，但世界观和核心玩法仍需人类决策。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #0d9488">
+            <div class="pattern-icon" style="background: #0d9488">&#9881;</div>
+            <h4 class="pattern-title">生产阶段</h4>
+            <p class="pattern-desc">渗透率：<strong>中</strong>。<span class="term" data-definition="PBR（Physically Based Rendering，基于物理的渲染）是一种让材质在不同光照下都看起来真实的渲染技术。AI可以自动生成PBR贴图，但高品质3D模型仍需手动调整。">PBR</span>贴图AI可生成，但3D建模仍是最大瓶颈，需大量手动<span class="term" data-definition="Retopo（重拓扑）是将AI生成的高面数3D模型重新制作为低面数版本的过程。就像把一团黏土（高精度模型）重新捏成更精简的形状，让游戏引擎跑得动。">Retopo</span>。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #0f766e">
+            <div class="pattern-icon" style="background: #0f766e">&#128270;</div>
+            <h4 class="pattern-title">测试阶段</h4>
+            <p class="pattern-desc">渗透率：<strong>低-中</strong>。AI辅助自动化测试在进步，但游戏体验测试仍高度依赖人工判断。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #115e59">
+            <div class="pattern-icon" style="background: #115e59">&#128200;</div>
+            <h4 class="pattern-title">运营阶段</h4>
+            <p class="pattern-desc">渗透率：<strong>中</strong>。AI用于玩家行为分析、动态定价、智能客服，但核心运营策略仍是人定的。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 3 -- 角色管线4步卡片
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">角色管线：从概念到动画的4步数控流水线</h2>
+
+        <p>一个游戏角色从脑海中的想法到屏幕上能跑能跳，要经过四道工序。AI在每一步都介入了，但介入深度不同。</p>
+
+        <div class="step-cards stagger-children">
+          <div class="step-card animate-in" style="border-left: 3px solid #2dd4bf">
+            <div class="step-num" style="background: #2dd4bf">1</div>
+            <div class="step-body">
+              <strong>概念设计 -- Flux / SDXL</strong>
+              <p>AI根据文字描述批量生成角色概念图。过去一个角色概念需要美术画1-2天，现在几分钟就能出几十张方案。<strong>提效 5-10 倍</strong>。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in" style="border-left: 3px solid #14b8a6">
+            <div class="step-num" style="background: #14b8a6">2</div>
+            <div class="step-body">
+              <strong>AI辅助3D -- <span class="term" data-definition="Meshy是一款AI 3D模型生成工具，可以从文字或图片快速生成3D模型。但生成的模型通常面数过高、拓扑混乱，需要手动Retopo后才能用于游戏。">Meshy</span> + 手动Retopo</strong>
+              <p>AI从概念图生成粗略3D模型，但拓扑和<span class="term" data-definition="LOD（Level of Detail，细节层次）是游戏优化技术：远处的物体用低精度模型，近处用高精度模型。就像远处的山只需要一个轮廓，走近才需要看清每棵树。">LOD</span>仍需手工调整。这一步是整条管线的最大瓶颈。<strong>提效 2-3 倍</strong>。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in" style="border-left: 3px solid #0d9488">
+            <div class="step-num" style="background: #0d9488">3</div>
+            <div class="step-body">
+              <strong>AI<span class="term" data-definition="蒙皮（Skinning）是把3D角色的外表面（网格）绑定到内部骨骼的过程。绑定好之后，骨骼一动，角色的皮肤就会跟着变形。就像给木偶穿上一层弹性布料。">蒙皮</span> -- VISVISE类工具</strong>
+              <p>腾讯VISVISE能自动完成角色蒙皮绑定，原来需要3.5天的工作量缩短到分钟级，已在90+款游戏中使用。<strong>提效 8 倍</strong>。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in" style="border-left: 3px solid #0f766e">
+            <div class="step-num" style="background: #0f766e">4</div>
+            <div class="step-body">
+              <strong>AI动画 -- <span class="term" data-definition="Cascadeur是一款AI辅助动画软件，能根据物理规则自动补全角色动作。Move.ai则通过普通摄像头捕捉真人动作，替代传统昂贵的动作捕捉设备。">Cascadeur</span> + Move.ai</strong>
+              <p>AI根据物理规则自动补全动作关键帧，普通摄像头<span class="term" data-definition="Motion Capture（动作捕捉）是用传感器或摄像头记录真人动作，然后映射到3D角色身上的技术。传统方案需要专业演播室和穿戴设备，AI方案只需普通摄像头。">动作捕捉</span>替代专业设备。<strong>提效 3-5 倍</strong>。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 4 -- AI音频三件套 + AI代码三件套
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">声音与代码：AI的另外两条战线</h2>
+
+        <p>美术管线之外，AI在音频和代码两个领域的渗透同样迅猛。</p>
+
+        <h3 style="color: #14b8a6; margin-top: var(--space-6);">AI音频三件套</h3>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid #2dd4bf">
+            <div class="pattern-icon" style="background: #2dd4bf">&#127908;</div>
+            <h4 class="pattern-title">ElevenLabs</h4>
+            <p class="pattern-desc">高保真AI配音。<span class="term" data-definition="NPC（Non-Player Character，非玩家角色）是游戏中由电脑控制的角色，比如村庄里的商人、路边的守卫。AI配音让每个NPC都能有独特的声音，成本降低80%。">NPC</span>语音成本降低80%，支持多语言、多情绪、角色一致性。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #14b8a6">
+            <div class="pattern-icon" style="background: #14b8a6">&#127925;</div>
+            <h4 class="pattern-title">Soundraw</h4>
+            <p class="pattern-desc">AI生成商业授权<span class="term" data-definition="BGM（Background Music，背景音乐）是游戏中持续播放的环境音乐。不同场景（战斗、探索、剧情）需要不同风格的BGM来营造氛围。">BGM</span>。指定风格、节奏、时长，AI按需生成，不用担心版权纠纷。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #0d9488">
+            <div class="pattern-icon" style="background: #0d9488">&#128172;</div>
+            <h4 class="pattern-title">Inworld AI</h4>
+            <p class="pattern-desc">AI NPC对话引擎。NPC不再只会重复预设台词，而是能根据上下文实时生成合理回应。</p>
+          </div>
+        </div>
+
+        <h3 style="color: #14b8a6; margin-top: var(--space-8);">AI代码辅助三件套</h3>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid #2dd4bf">
+            <div class="pattern-icon" style="background: #2dd4bf">&#128187;</div>
+            <h4 class="pattern-title">Copilot</h4>
+            <p class="pattern-desc">代码自动补全。在你写代码时实时预测下一行，像一个时刻在旁边递工具的助手。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #14b8a6">
+            <div class="pattern-icon" style="background: #14b8a6">&#128421;</div>
+            <h4 class="pattern-title"><span class="term" data-definition="Claude Code是Anthropic开发的终端AI编程Agent。与Copilot的逐行补全不同，它能理解整个项目结构，执行跨文件重构、自动化测试等复杂任务。">Claude Code</span></h4>
+            <p class="pattern-desc">终端<span class="term" data-definition="Agent（智能代理）是能自主执行多步任务的AI程序。与普通AI助手的一问一答不同，Agent能自己拆解任务、调用工具、检查结果，直到完成目标。">Agent</span>。理解整个项目结构，能执行跨文件重构和自动化任务，不只是补全单行代码。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #0d9488">
+            <div class="pattern-icon" style="background: #0d9488">&#9997;</div>
+            <h4 class="pattern-title"><span class="term" data-definition="Cursor是一款集成AI功能的代码编辑器（IDE）。它把AI能力直接嵌入编辑器界面，开发者可以用自然语言描述需求，AI直接在编辑器中修改代码。">Cursor</span></h4>
+            <p class="pattern-desc">AI <span class="term" data-definition="IDE（Integrated Development Environment，集成开发环境）是程序员写代码的专用软件，集成了代码编辑、调试、运行等功能。就像作家的书房，把笔、字典、台灯都放在同一张桌子上。">IDE</span>。把AI能力直接嵌入编辑器，用自然语言描述需求就能修改代码。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 5 -- 引擎AI集成
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">游戏引擎：AI的主战场</h2>
+
+        <p>两大主流引擎都在快速集成AI能力，让开发者不用离开引擎就能调用AI。</p>
+
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid #2dd4bf">
+            <div class="pattern-icon" style="background: #2dd4bf">U</div>
+            <h4 class="pattern-title">Unity AI 6.2</h4>
+            <p class="pattern-desc">第三方模型聚合平台，支持在编辑器内直接调用AI模型。<span class="term" data-definition="Sentis是Unity的端侧AI推理引擎，能让AI模型直接在玩家设备上运行，无需联网。这意味着AI NPC的反应速度更快，也保护了玩家隐私。">Sentis</span>运行时推理让AI在玩家设备上本地运行。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #14b8a6">
+            <div class="pattern-icon" style="background: #14b8a6">U</div>
+            <h4 class="pattern-title">UE 5.7</h4>
+            <p class="pattern-desc">内置AI助手和<span class="term" data-definition="PCG（Procedural Content Generation，程序化内容生成）是用算法自动创建游戏内容（地形、植被、建筑等）的技术。AI增强的PCG能根据设计意图自动填充整个游戏世界。">PCG</span>框架，<span class="term" data-definition="MetaHuman是Epic Games的高保真数字人生成工具。结合AI后，可以从照片或描述快速生成电影级别的数字角色，大幅降低了制作写实角色的门槛。">MetaHuman</span>结合AI快速生成写实角色。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 6 -- 群聊动画：大厂AI采纳会议（亮点）
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">大厂AI采纳会议</h2>
+
+        <p>各大游戏公司怎么用AI？让我们"旁听"一场虚拟会议，听听来自不同公司的一线声音。</p>
+
+        <div class="chat-window" id="chat-module5">
+          <div class="chat-messages">
+            <div class="chat-message" data-msg="0" data-sender="tencent-pm" style="display:none">
+              <div class="chat-avatar" style="background: #2dd4bf">腾</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: #2dd4bf">腾讯 PM</span>
+                <p>VISVISE让角色蒙皮从3.5天降到分钟级，已经在90多款游戏里跑起来了。美术组的工作模式彻底变了 -- 他们现在主要做审核和微调，不再从零开始绑骨骼。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="1" data-sender="netease-art" style="display:none">
+              <div class="chat-avatar" style="background: #14b8a6">网</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: #14b8a6">网易美术总监</span>
+                <p>我们伏羲Lab让研发效率提升了30%，成本降了40%。最关键的不是省钱，是迭代速度 -- 以前一个方案改三版要两周，现在两天就能看到十个方向。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="2" data-sender="ubisoft-writer" style="display:none">
+              <div class="chat-avatar" style="background: #0d9488">育</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: #0d9488">育碧编剧</span>
+                <p><span class="term" data-definition="Ghostwriter是育碧开发的AI写作工具，专门用于生成NPC的闲聊台词（bark）。编剧设定角色性格和场景，AI批量生成候选台词，编剧只需从中挑选和修改。">Ghostwriter</span>帮我写了几千条NPC闲聊台词，我只需要审核和调整语气。以前最痛苦的就是给几百个路人NPC写不重复的闲聊 -- 现在AI出初稿，我来把关品质。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="3" data-sender="indie-dev" style="display:none">
+              <div class="chat-avatar" style="background: #0f766e">独</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: #0f766e">独立开发者</span>
+                <p>我们3个人的团队用AI工具链做出了20人才能做的活。Midjourney出概念图，Meshy做3D，ElevenLabs配音，Claude Code写逻辑 -- 当然每一步都要人来把关，但产能翻了好几倍。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="4" data-sender="tencent-pm" style="display:none">
+              <div class="chat-avatar" style="background: #2dd4bf">腾</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: #2dd4bf">腾讯 PM</span>
+                <p>说到底，AI改变的是"产能"而不是"品质标准"。用了AI之后我们对品质的要求反而更高了 -- 因为省下来的时间可以花在打磨细节上。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="5" data-sender="netease-art" style="display:none">
+              <div class="chat-avatar" style="background: #14b8a6">网</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: #14b8a6">网易美术总监</span>
+                <p>完全同意。而且<span class="term" data-definition="NVIDIA ACE（Avatar Cloud Engine）是英伟达推出的AI NPC全栈方案，包括语音识别、自然语言理解、语音合成和面部动画生成。让NPC能听懂玩家说话并做出自然反应。">NVIDIA ACE</span>这样的全栈NPC方案出来之后，AI NPC不再只是噱头了 -- 它真的能听懂玩家说话并做出合理反应。</p>
+              </div>
+            </div>
+            <div class="chat-message" data-msg="6" data-sender="indie-dev" style="display:none">
+              <div class="chat-avatar" style="background: #0f766e">独</div>
+              <div class="chat-bubble">
+                <span class="chat-sender" style="color: #0f766e">独立开发者</span>
+                <p>不过大家别忘了法律风险。纯AI生成的内容在很多司法管辖区不受版权保护，一定要确保每个环节都有人类创意决策的记录。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chat-typing" style="display:none">
+            <div class="chat-avatar">?</div>
+            <div class="chat-typing-dots">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+            </div>
+          </div>
+
+          <div class="chat-controls">
+            <button class="btn chat-next-btn">下一条消息</button>
+            <button class="btn chat-all-btn">播放全部</button>
+            <button class="btn chat-reset-btn">重播</button>
+            <span class="chat-progress"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 7 -- 独立开发者工具链（数据流动画）
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">AI游戏生产管线全景</h2>
+
+        <p>从概念到上线，一款游戏要走过9个环节。点击"下一步"，看AI工具如何渗透每一步。</p>
+
+        <div class="flow-animation animate-in" data-steps='[
+          {"highlight":"flow-m5-actor-1","label":"概念阶段：用 Midjourney / Flux 生成角色和场景概念图。提效 5-10 倍"},
+          {"highlight":"flow-m5-actor-2","label":"2D美术：Stable Diffusion + Photoshop 生成和精修贴图、UI素材","packet":true,"from":"m5-actor-1","to":"m5-actor-2"},
+          {"highlight":"flow-m5-actor-3","label":"3D建模：Meshy 快速出模，Blender 手动 Retopo 修正拓扑。当前最大瓶颈","packet":true,"from":"m5-actor-2","to":"m5-actor-3"},
+          {"highlight":"flow-m5-actor-4","label":"动画：Cascadeur AI 补帧 + Move.ai 摄像头动捕，替代专业动捕设备","packet":true,"from":"m5-actor-3","to":"m5-actor-4"},
+          {"highlight":"flow-m5-actor-5","label":"音乐：Soundraw 按风格、节奏、时长自动生成商业授权 BGM","packet":true,"from":"m5-actor-4","to":"m5-actor-5"},
+          {"highlight":"flow-m5-actor-6","label":"配音：ElevenLabs 高保真 AI 配音，NPC 语音成本降低 80%","packet":true,"from":"m5-actor-5","to":"m5-actor-6"},
+          {"highlight":"flow-m5-actor-7","label":"代码：Claude Code / Cursor / Copilot 辅助编程，代码辅助采纳率是所有环节中最高的","packet":true,"from":"m5-actor-6","to":"m5-actor-7"},
+          {"highlight":"flow-m5-actor-8","label":"测试：AI 辅助自动化测试和 Bug 检测，但体验测试仍依赖人工","packet":true,"from":"m5-actor-7","to":"m5-actor-8"},
+          {"highlight":"flow-m5-actor-9","label":"本地化：GPT 等大语言模型批量翻译，人工审校确保文化适配","packet":true,"from":"m5-actor-8","to":"m5-actor-9"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-m5-actor-1">
+              <div class="flow-actor-icon" style="background: #2dd4bf">&#127912;</div>
+              <span>概念</span>
+            </div>
+            <div class="flow-actor" id="flow-m5-actor-2">
+              <div class="flow-actor-icon" style="background: #26a69a">&#128396;</div>
+              <span>2D</span>
+            </div>
+            <div class="flow-actor" id="flow-m5-actor-3">
+              <div class="flow-actor-icon" style="background: #14b8a6">&#128230;</div>
+              <span>3D</span>
+            </div>
+            <div class="flow-actor" id="flow-m5-actor-4">
+              <div class="flow-actor-icon" style="background: #0d9488">&#127939;</div>
+              <span>动画</span>
+            </div>
+            <div class="flow-actor" id="flow-m5-actor-5">
+              <div class="flow-actor-icon" style="background: #0f766e">&#127925;</div>
+              <span>音乐</span>
+            </div>
+            <div class="flow-actor" id="flow-m5-actor-6">
+              <div class="flow-actor-icon" style="background: #115e59">&#127908;</div>
+              <span>配音</span>
+            </div>
+            <div class="flow-actor" id="flow-m5-actor-7">
+              <div class="flow-actor-icon" style="background: #134e4a">&#128187;</div>
+              <span>代码</span>
+            </div>
+            <div class="flow-actor" id="flow-m5-actor-8">
+              <div class="flow-actor-icon" style="background: #1a3a3a">&#128270;</div>
+              <span>测试</span>
+            </div>
+            <div class="flow-actor" id="flow-m5-actor-9">
+              <div class="flow-actor-icon" style="background: #1e3a3a">&#127760;</div>
+              <span>本地化</span>
+            </div>
+          </div>
+
+          <div class="flow-packet" id="flow-m5-packet"></div>
+
+          <div class="flow-step-label" id="flow-m5-label">点击"下一步"开始游览管线</div>
+
+          <div class="flow-controls">
+            <button class="btn flow-next-btn">下一步</button>
+            <button class="btn flow-reset-btn">重新开始</button>
+            <span class="flow-progress"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 8 -- 独立开发者工具链总览
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">独立开发者的AI武器库</h2>
+
+        <p>3个人的团队如何用AI工具链做出20人才能做的活？这是一条经过验证的独立开发者全流程工具链。</p>
+
+        <div class="flow-steps stagger-children">
+          <div class="flow-step animate-in">
+            <div class="flow-step-num" style="background: #2dd4bf">1</div>
+            <p>概念<br><strong>Midjourney</strong></p>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step animate-in">
+            <div class="flow-step-num" style="background: #26a69a">2</div>
+            <p>2D<br><strong>SD+PS</strong></p>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step animate-in">
+            <div class="flow-step-num" style="background: #14b8a6">3</div>
+            <p>3D<br><strong>Meshy+<span class="term" data-definition="Blender是一款免费开源的3D建模软件，功能堪比商业软件。独立开发者常用它做Retopo（修正AI生成模型的拓扑）、UV展开和最终渲染。">Blender</span></strong></p>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step animate-in">
+            <div class="flow-step-num" style="background: #0d9488">4</div>
+            <p>动画<br><strong>Cascadeur</strong></p>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step animate-in">
+            <div class="flow-step-num" style="background: #0f766e">5</div>
+            <p>音乐<br><strong>Soundraw</strong></p>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step animate-in">
+            <div class="flow-step-num" style="background: #115e59">6</div>
+            <p>配音<br><strong>ElevenLabs</strong></p>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step animate-in">
+            <div class="flow-step-num" style="background: #134e4a">7</div>
+            <p>代码<br><strong>Claude Code</strong></p>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step animate-in">
+            <div class="flow-step-num" style="background: #1a3a3a">8</div>
+            <p>本地化<br><strong>GPT</strong></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 9 -- 法律风险 Callout
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">不可忽视的法律风险</h2>
+
+        <p>AI工具提升了产能，但也带来了新的法律灰区。在把AI融入生产管线之前，必须了解这些风险。</p>
+
+        <div class="callout callout-warning">
+          <div class="callout-icon">&#9888;</div>
+          <div class="callout-content">
+            <strong class="callout-title">版权风险警告</strong>
+            <p>在多数司法管辖区，纯AI生成的作品<strong>不受版权保护</strong>。美国版权局已明确表示，缺乏人类创作者的作品不具备版权资格。这意味着：如果你的游戏资产完全由AI生成，竞争对手可以合法地复制它们。</p>
+          </div>
+        </div>
+
+        <div class="callout callout-info">
+          <div class="callout-icon">&#128161;</div>
+          <div class="callout-content">
+            <strong class="callout-title">实操建议</strong>
+            <p>在每个AI辅助环节保留<strong>人类创意决策</strong>的记录：概念阶段的选择判断、3D阶段的手动修改、动画阶段的关键帧调整。只要能证明人类在创作过程中做出了实质性的创意贡献，作品就有更强的版权主张基础。AI是工具，人是创作者 -- 这条线一定要守住。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════════════════════════════════════════════
+           SCREEN 10 -- 测验
+           ════════════════════════════════════════════════════════ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">检验理解</h2>
+
+        <p>回顾一下你对AI游戏生产管线的理解。</p>
+
+        <div class="quiz-container" id="quiz-module5">
+          <div class="quiz-question-block"
+               data-correct="option-b"
+               data-explanation-right="没错。代码辅助工具（Copilot、Claude Code、Cursor等）的采纳率在所有游戏开发环节中最高，因为代码补全的反馈循环最短 -- 写了就能看到对不对，不需要像美术那样经过漫长的渲染和审核流程。"
+               data-explanation-wrong="再想想。虽然AI在美术领域很活跃（月产28万张概念图），但'采纳率'指的是开发者日常工作中实际使用AI的比例。哪个环节的开发者几乎每天都在用AI工具？">
+            <h3 class="quiz-question">你的团队正在评估AI工具的投入优先级。根据行业数据，AI在游戏生产中采纳率最高的领域是哪个？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>A. 美术 -- 因为AI图像生成最成熟</span>
+              </button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>B. 代码辅助 -- 因为反馈循环最短</span>
+              </button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>C. 配音 -- 因为AI语音质量已经很高</span>
+              </button>
+              <button class="quiz-option" data-value="option-d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>D. 测试 -- 因为自动化测试最容易量化</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <div class="quiz-question-block"
+               data-correct="option-b"
+               data-explanation-right="正确。虽然AI能从概念图快速生成粗略3D模型，但拓扑混乱、面数过高的问题仍需大量手动Retopo。3D模型生成是2026年AI游戏生产管线中公认的最大瓶颈。"
+               data-explanation-wrong="不是这个。概念设计已经高度AI化（渗透率最高），配音有ElevenLabs等成熟方案，代码辅助采纳率最高。想想哪个环节AI生成的结果最需要人工返工？">
+            <h3 class="quiz-question">你负责组建一个小型游戏团队，需要判断哪个岗位最不能被AI替代。以下哪个是2026年AI游戏生产的最大瓶颈？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>A. 概念设计 -- 风格把控需要人类审美</span>
+              </button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>B. 3D模型生成 -- AI产出的模型仍需大量手动修正</span>
+              </button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>C. 配音 -- 玩家能分辨AI声音</span>
+              </button>
+              <button class="quiz-option" data-value="option-d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>D. 代码编写 -- 游戏逻辑太复杂AI写不了</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module5')">检查答案</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module5')">再试一次</button>
+        </div>
+      </section>
+
+    </div><!-- /module-body -->
+  </div><!-- /module-content -->
+</section><!-- ============================================================
+     MODULE 6 — 实战与展望
+     ============================================================ -->
+<section class="module" id="module-6" style="background: var(--color-bg)">
+  <div class="module-content">
+
+    <!-- ============================================ -->
+    <!-- HEADER                                       -->
+    <!-- ============================================ -->
+    <header class="module-header animate-in">
+      <span class="module-number">06</span>
+      <h1 class="module-title">实战与展望</h1>
+      <p class="module-subtitle">从"知道工具"到"组好乐队"&mdash;&mdash;你的AI工具栈与未来路线图</p>
+    </header>
+
+    <div class="module-body">
+
+      <!-- ============================================ -->
+      <!-- OPENING HOOK                                 -->
+      <!-- ============================================ -->
+      <div class="callout callout-accent animate-in">
+        <div class="callout-icon">&#127929;</div>
+        <div class="callout-content">
+          <strong class="callout-title">组乐队，不是买乐器</strong>
+          <p>你现在掌握了<span class="term" data-definition="Claude Code是Anthropic推出的命令行AI编程助手，能直接在终端中理解代码库、执行命令、编写和修改代码，是开发者的AI结对编程伙伴。">Claude Code</span>、AI美术、AI游戏生产三个领域的顶流工具。但真正的高手不是拥有最多乐器的人&mdash;&mdash;而是用最少的乐器，合奏出最动听的音乐。</p>
+        </div>
+      </div>
+
+      <p class="animate-in">工具选择的核心原则：<strong>用最少的工具覆盖最多的需求</strong>。避免"<span class="term" data-definition="工具焦虑症是指面对大量AI工具时产生的选择困难和FOMO（害怕错过）心理，表现为不断尝试新工具却没有深入掌握任何一个。治疗方法：选定工具栈，深耕三个月。">工具焦虑症</span>"&mdash;&mdash;选定你的乐队成员，然后深耕排练。</p>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 1 — 个人/团队工具栈（Layer Toggle）   -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">我的AI工具栈</h2>
+
+        <p>一个人和一个团队需要的工具组合完全不同。切换下面的标签，看看适合你的方案。</p>
+
+        <div class="layer-demo animate-in">
+          <div class="layer-tabs">
+            <button class="layer-tab active" onclick="showLayer('layer-solo', this)">个人开发者</button>
+            <button class="layer-tab" onclick="showLayer('layer-team', this)">团队 (5-10人)</button>
+          </div>
+          <div class="layer-viewport">
+
+            <!-- 个人版 -->
+            <div class="layer" id="layer-solo" style="display:block">
+              <div class="pattern-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4);">
+                <div class="pattern-card" style="border-top: 3px solid var(--color-accent)">
+                  <div class="pattern-icon" style="background: var(--color-accent)">&#128187;</div>
+                  <h4 class="pattern-title">编程助手</h4>
+                  <p class="pattern-desc"><strong>Claude Code Pro</strong> &mdash; $20/月。你的全能结对程序员，从写代码到<span class="term" data-definition="代码审查（Code Review）是检查代码质量、逻辑正确性和风格一致性的过程。Claude Code可以自动审查代码并给出修改建议。">代码审查</span>一站搞定。</p>
+                </div>
+                <div class="pattern-card" style="border-top: 3px solid #7C3AED">
+                  <div class="pattern-icon" style="background: #7C3AED">&#127912;</div>
+                  <h4 class="pattern-title">概念设计</h4>
+                  <p class="pattern-desc"><strong><span class="term" data-definition="Midjourney是一款通过文字描述生成高质量图片的AI工具，擅长艺术风格和概念设计，通过Discord或网页端使用。">Midjourney</span> Standard</strong> &mdash; $30/月。快速出概念图、<span class="term" data-definition="情绪板（Mood Board）是设计师用来收集和展示项目视觉方向的拼贴板，包含颜色、字体、图片风格等参考元素，用于统一团队对视觉风格的认知。">情绪板</span>、角色草案。</p>
+                </div>
+                <div class="pattern-card" style="border-top: 3px solid #059669">
+                  <div class="pattern-icon" style="background: #059669">&#127922;</div>
+                  <h4 class="pattern-title">精确出图</h4>
+                  <p class="pattern-desc"><strong><span class="term" data-definition="ComfyUI是一个基于节点的开源AI图像生成工具，用户通过连接不同功能节点（如模型加载、采样、后处理）来构建自定义的图像生成流程，支持本地运行，完全免费。">ComfyUI</span></strong> (本地免费) &mdash; $0。节点式工作流，精确控制每个生成细节。</p>
+                </div>
+                <div class="pattern-card" style="border-top: 3px solid #DC2626">
+                  <div class="pattern-icon" style="background: #DC2626">&#127909;</div>
+                  <h4 class="pattern-title">视频剪辑</h4>
+                  <p class="pattern-desc"><strong><span class="term" data-definition="可灵AI是快手推出的AI视频生成工具，支持文生视频和图生视频，擅长生成动态流畅的短视频片段，适合国内开发者使用。">可灵AI</span></strong> &mdash; &#165;30/月。国产视频生成，理解中文语境，出片速度快。</p>
+                </div>
+                <div class="pattern-card" style="border-top: 3px solid #D97706">
+                  <div class="pattern-icon" style="background: #D97706">&#127908;</div>
+                  <h4 class="pattern-title">配音</h4>
+                  <p class="pattern-desc"><strong><span class="term" data-definition="ElevenLabs是一个AI语音合成平台，能克隆真人声音或使用预设声音，生成自然流畅的多语言语音，广泛用于配音、有声书和游戏角色语音。">ElevenLabs</span> Starter</strong> &mdash; $5/月。自然语音合成，多语言支持。</p>
+                </div>
+              </div>
+              <div class="callout callout-info animate-in" style="margin-top: var(--space-6)">
+                <div class="callout-icon">&#128176;</div>
+                <div class="callout-content">
+                  <strong class="callout-title">月度总成本：约 $55</strong>
+                  <p>不到一杯日均咖啡的价格，你就拥有了一个覆盖编程、美术、视频、配音的完整AI生产线。</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 团队版 -->
+            <div class="layer" id="layer-team" style="display:none">
+              <div class="pattern-cards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-4);">
+                <div class="pattern-card" style="border-top: 3px solid var(--color-accent)">
+                  <div class="pattern-icon" style="background: var(--color-accent)">&#128187;</div>
+                  <h4 class="pattern-title">编程</h4>
+                  <p class="pattern-desc"><strong>Claude Code + <span class="term" data-definition="Cursor是一款集成了AI能力的代码编辑器，基于VS Code构建，支持AI代码补全、对话式编程和代码库级别的上下文理解。与Claude Code互补，一个擅长终端操作，一个擅长编辑器内交互。">Cursor</span></strong> &mdash; Claude做架构和重构，Cursor做日常编辑补全。两把刷子，分工明确。</p>
+                </div>
+                <div class="pattern-card" style="border-top: 3px solid #7C3AED">
+                  <div class="pattern-icon" style="background: #7C3AED">&#127912;</div>
+                  <h4 class="pattern-title">美术管线</h4>
+                  <p class="pattern-desc"><strong>ComfyUI <span class="term" data-definition="API集群是将多台服务器组成的服务组，通过统一的API接口对外提供服务。ComfyUI API集群可以让团队成员同时提交图像生成任务，自动分配到不同服务器并行处理。">API集群</span> + <span class="term" data-definition="RunningHub是一个在线的ComfyUI工作流托管和协作平台，团队成员可以共享和复用ComfyUI工作流，无需每人本地配置环境。">RunningHub</span></strong> &mdash; 统一工作流，批量出图，团队共享<span class="term" data-definition="工作流（Workflow）是一组按顺序执行的自动化步骤。在ComfyUI中，工作流由节点和连线组成，定义了从输入提示词到输出图片的完整生成流程。">工作流</span>模板。</p>
+                </div>
+                <div class="pattern-card" style="border-top: 3px solid #D97706">
+                  <div class="pattern-icon" style="background: #D97706">&#127908;</div>
+                  <h4 class="pattern-title">音频</h4>
+                  <p class="pattern-desc"><strong>ElevenLabs + <span class="term" data-definition="Soundraw是一个AI音乐生成平台，用户通过选择风格、节奏、情绪等参数生成原创音乐，生成的音乐有明确的商业授权，可安全用于商业项目。">Soundraw</span></strong> &mdash; 配音+配乐双线并行，全部有<span class="term" data-definition="商业授权是指内容创作者或平台明确授权用户将生成内容用于商业用途（如售卖、广告、游戏内使用）的法律许可。没有商业授权的AI生成内容用于商业场景可能面临法律风险。">商业授权</span>。</p>
+                </div>
+                <div class="pattern-card" style="border-top: 3px solid #059669">
+                  <div class="pattern-icon" style="background: #059669">&#128203;</div>
+                  <h4 class="pattern-title">项目管理</h4>
+                  <p class="pattern-desc"><strong>Claude Code + <span class="term" data-definition="MCP（Model Context Protocol）是Anthropic推出的开放协议，让AI模型能连接外部工具和数据源。通过MCP，Claude Code可以直接操作GitHub、Jira等平台，实现AI驱动的项目管理。">MCP</span>(GitHub/Jira)</strong> &mdash; AI自动读写<span class="term" data-definition="Issue是项目管理中的任务单元，记录一个待解决的问题、需求或任务。在GitHub中，Issue用于跟踪Bug修复、功能开发和讨论。">issue</span>、生成<span class="term" data-definition="PR（Pull Request）是代码协作中的合并请求。开发者完成代码修改后，提交PR请求团队审查，审查通过后合并到主代码库。">PR</span>摘要、追踪进度。</p>
+                </div>
+              </div>
+              <div class="callout callout-info animate-in" style="margin-top: var(--space-6)">
+                <div class="callout-icon">&#128101;</div>
+                <div class="callout-content">
+                  <strong class="callout-title">团队核心原则</strong>
+                  <p>统一工具栈 &gt; 个人偏好。团队中每个人用不同的AI工具会造成协作摩擦&mdash;&mdash;选定一套，写进团队手册，所有人照着练。</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <p class="layer-description" id="layer-desc"></p>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 2 — Claude Code 每日工作流            -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Claude Code 每日工作流</h2>
+
+        <p>把这6步变成肌肉记忆，你的Claude Code使用效率会翻倍。每一步都有它存在的理由&mdash;&mdash;跳过任何一步，迟早会踩坑。</p>
+
+        <div class="step-cards animate-in stagger-children">
+          <div class="step-card animate-in">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <strong>/init &mdash; 生成 CLAUDE.md</strong>
+              <p>新项目第一件事：让Claude Code扫描代码库，自动生成项目说明文件。这是你和AI之间的&ldquo;项目手册&rdquo;，后续所有对话都基于它理解上下文。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <strong>犯错即记录 &mdash; 更新 <span class="term" data-definition="CLAUDE.md是Claude Code的项目级配置文件，存放在项目根目录。它记录项目的技术栈、架构决策、编码规范和已知陷阱，Claude Code每次启动时都会读取它来理解项目背景。">CLAUDE.md</span></strong>
+              <p>Claude犯了错？别只是修复&mdash;&mdash;把教训写进CLAUDE.md。下次它就不会再犯同样的错。这是你训练专属AI助手的过程。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <strong>复杂任务先说"规划，不要写代码"</strong>
+              <p>面对大任务，先让Claude出方案而不是直接动手。加上 <span class="term" data-definition="ultrathink是Claude Code的深度思考模式关键词。在提示词中加入ultrathink，Claude会花更多时间分析问题、考虑边界情况，然后给出更周全的方案。适合架构设计、复杂Bug排查等场景。">ultrathink</span> 关键词触发深度思考。先看路线图，再动工。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <strong>60% 即 <span class="term" data-definition="compact是Claude Code的上下文压缩命令。当对话上下文占用达到一定比例时，运行compact会让Claude总结当前对话要点并释放上下文空间，避免因上下文溢出导致AI&ldquo;失忆&rdquo;或产生幻觉。">compact</span></strong>
+              <p>上下文使用量到60%就该压缩了。等到80%再compact，Claude已经开始&ldquo;犯迷糊&rdquo;了。像定期清理桌面一样，保持工作台整洁。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <strong>大任务拆小会话 + 频繁 <span class="term" data-definition="git commit是版本控制系统Git中的提交操作，将当前代码修改保存为一个版本快照。频繁commit意味着每完成一个小功能就保存一次，方便回退和追踪变更历史。">git commit</span></strong>
+              <p>一个会话只做一件事。完成一步就commit一次。这样即使AI出错，你也能快速回滚到上一个正确状态。</p>
+            </div>
+          </div>
+          <div class="step-card animate-in">
+            <div class="step-num">6</div>
+            <div class="step-body">
+              <strong>/clear &mdash; 开启新任务</strong>
+              <p>任务完成后用 /clear 清空上下文，干干净净地开始下一个任务。不要在同一个会话里塞太多不相关的事&mdash;&mdash;那会让AI越来越混乱。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 3 — 避坑指南                          -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">避坑指南</h2>
+
+        <p>这些坑，前人替你踩过了。记住它们，能省你几周的弯路。</p>
+
+        <div class="pattern-cards animate-in stagger-children" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-4);">
+          <div class="pattern-card animate-in" style="border-top: 3px solid #DC2626">
+            <div class="pattern-icon" style="background: #DC2626">&#9888;&#65039;</div>
+            <h4 class="pattern-title">用量焦虑</h4>
+            <p class="pattern-desc">不要和Claude&ldquo;聊天&rdquo;&mdash;&mdash;直接给任务。闲聊烧<span class="term" data-definition="Token是AI模型处理文本的基本单位。一个中文字大约是1-2个token，一个英文单词大约是1-3个token。AI服务通常按token数量计费，上下文窗口也用token数量衡量。">token</span>不产出。把Claude当高级员工，不是聊天伙伴。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #D97706">
+            <div class="pattern-icon" style="background: #D97706">&#128163;</div>
+            <h4 class="pattern-title">上下文溢出</h4>
+            <p class="pattern-desc">定期compact，不要在一个会话里做太多事。上下文满了AI就开始&ldquo;<span class="term" data-definition="幻觉（Hallucination）是AI模型生成看似合理但实际上不正确的内容的现象。当上下文过长或信息矛盾时，幻觉更容易出现。">幻觉</span>&rdquo;&mdash;&mdash;自信地给你错误答案。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #7C3AED">
+            <div class="pattern-icon" style="background: #7C3AED">&#169;</div>
+            <h4 class="pattern-title">AI美术版权</h4>
+            <p class="pattern-desc">商用场景用 <span class="term" data-definition="Adobe Firefly是Adobe推出的AI图像生成工具，仅使用Adobe Stock中有授权的素材进行训练，生成的图像有明确的商业使用授权，法律风险极低。">Adobe Firefly</span> 或有明确授权的模型。Midjourney/SD生成的图在版权灰色地带，<strong>商用需谨慎</strong>。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid #059669">
+            <div class="pattern-icon" style="background: #059669">&#127925;</div>
+            <h4 class="pattern-title">AI音乐版权</h4>
+            <p class="pattern-desc">只用Soundraw、<span class="term" data-definition="AIVA是一个AI音乐作曲平台，用户可以选择风格和参数生成原创音乐。付费订阅后，生成的音乐拥有完整的商业使用权。">AIVA</span>等有明确商业授权的平台。&ldquo;免费AI生成&rdquo;不等于&ldquo;免费商用&rdquo;。</p>
+          </div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-accent)">
+            <div class="pattern-icon" style="background: var(--color-accent)">&#9649;</div>
+            <h4 class="pattern-title">3D生成质量</h4>
+            <p class="pattern-desc">AI出初形 + 手动<span class="term" data-definition="Retopo（Retopology）是3D建模中的重新拓扑操作，将AI生成的高面数、拓扑混乱的3D模型重新构建为干净、低面数的可用模型。目前AI生成的3D模型几乎都需要手动Retopo后才能用于游戏。">Retopo</span>，别指望AI直接输出可用的游戏模型。把AI当草图工具，不是成品工厂。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 4 — 2026 趋势路线图（Flow Diagram）  -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">2026 趋势路线图</h2>
+
+        <p>AI工具领域正在加速演进。以下六个趋势将在2026年深刻影响每一个创作者和开发者。</p>
+
+        <div class="flow-animation animate-in" data-steps='[
+          {"highlight":"flow-actor-1","label":"Claude Code Agent Teams 成熟 \u2014 多个AI角色协作完成复杂项目，团队协作全面AI化"},
+          {"highlight":"flow-actor-2","label":"FLUX生态 + AI视频生成爆发 \u2014 开源图像模型崛起，视频生成从\u300c能用\u300d进入\u300c好用\u300d阶段"},
+          {"highlight":"flow-actor-3","label":"Steam 1/3 游戏有AI披露 \u2014 AI辅助开发成为行业常态，透明度要求日益增加"},
+          {"highlight":"flow-actor-4","label":"版权判例落地 \u2014 2026年Andersen案判决将为AI生成内容的版权边界画出第一条明确的线"},
+          {"highlight":"flow-actor-5","label":"中国市场 \u2014 AI成为中腰部公司的生存门票，不用AI的团队将在效率竞争中被淘汰"},
+          {"highlight":"flow-actor-6","label":"整体趋势 \u2014 AI是加速器，但人类创意、审美和判断力不可替代"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-actor-1">
+              <div class="flow-actor-icon">&#129302;</div>
+              <span>Agent Teams</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-2">
+              <div class="flow-actor-icon">&#127912;</div>
+              <span>AI美术</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-3">
+              <div class="flow-actor-icon">&#127918;</div>
+              <span>游戏行业</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-4">
+              <div class="flow-actor-icon">&#9878;&#65039;</div>
+              <span>法律</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-5">
+              <div class="flow-actor-icon">&#127464;&#127475;</div>
+              <span>中国市场</span>
+            </div>
+            <div class="flow-actor" id="flow-actor-6">
+              <div class="flow-actor-icon">&#127793;</div>
+              <span>整体</span>
+            </div>
+          </div>
+
+          <div class="flow-packet" id="flow-packet"></div>
+
+          <div class="flow-step-label" id="flow-label">点击"下一步"，逐个探索2026年的六大趋势</div>
+
+          <div class="flow-controls">
+            <button class="btn flow-next-btn">下一步</button>
+            <button class="btn flow-reset-btn">重新开始</button>
+            <span class="flow-progress"></span>
+          </div>
+        </div>
+
+        <div class="callout callout-accent animate-in" style="margin-top: var(--space-8)">
+          <div class="callout-icon">&#128161;</div>
+          <div class="callout-content">
+            <strong class="callout-title">关键洞察</strong>
+            <p>AI工具在变，但核心规律不变：<strong>工具放大能力，不替代能力</strong>。投资你自己的审美、判断力和领域专业知识&mdash;&mdash;这些是AI无法生成的。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- SCREEN 5 — 课程总结测试                      -->
+      <!-- ============================================ -->
+      <section class="screen animate-in">
+        <h2 class="screen-heading">课程总结测试</h2>
+
+        <p>两道题，检验你在整个课程中学到的核心判断力。</p>
+
+        <div class="quiz-container animate-in" id="quiz-module6">
+
+          <!-- 第1题 -->
+          <div class="quiz-question-block"
+               data-correct="option-b"
+               data-explanation-right="没错。Adobe Firefly 使用有授权的训练数据，商用零版权风险；ComfyUI的节点式工作流能精确控制构图、风格和细节。这个组合兼顾了法律安全和创作精度。"
+               data-explanation-wrong="再想想。关键要同时满足两个条件：商用版权安全 + 精确控制画面。Midjourney虽然出图漂亮但版权存疑；SD/FLUX的训练数据来源也不够干净；GPT-4o + Canva的控制精度有限。">
+            <h3 class="quiz-question">你的客户需要一批商用插画，要求零版权风险且画面构图可精确控制。最佳工具组合是？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>Midjourney + Photoshop</span>
+              </button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>ComfyUI + Adobe Firefly</span>
+              </button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>Stable Diffusion + FLUX</span>
+              </button>
+              <button class="quiz-option" data-value="option-d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>GPT-4o + Canva</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <!-- 第2题 -->
+          <div class="quiz-question-block"
+               data-correct="option-b"
+               data-explanation-right="对的。60%是黄金分界线。此时Claude还能正常工作，compact后可以释放大量空间继续高质量输出。等到80%以上，AI的输出质量已经开始下降了。"
+               data-explanation-wrong="不太对。30%太早了，会打断正常工作节奏；80%和95%太晚了，此时AI已经因为上下文过长而开始产生幻觉或遗忘早期信息。最佳时机是60%&mdash;&mdash;在性能下降之前主动压缩。">
+            <h3 class="quiz-question">你正在用Claude Code做一个复杂的重构任务。上下文使用量达到多少时应该运行 compact？</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>30%</span>
+              </button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>60%</span>
+              </button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>80%</span>
+              </button>
+              <button class="quiz-option" data-value="option-d" onclick="selectOption(this)">
+                <div class="quiz-option-radio"></div>
+                <span>95%</span>
+              </button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module6')">检查答案</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module6')">重新作答</button>
+        </div>
+      </section>
+
+      <!-- ============================================ -->
+      <!-- GRADUATION CALLOUT                           -->
+      <!-- ============================================ -->
+      <div class="callout callout-accent animate-in" style="margin-top: var(--space-12); padding: var(--space-8); border-left-width: 5px;">
+        <div class="callout-icon" style="font-size: 2rem;">&#127891;</div>
+        <div class="callout-content">
+          <strong class="callout-title" style="font-size: var(--text-lg);">课程毕业寄语</strong>
+          <p style="margin-top: var(--space-3); line-height: 1.8;">你走完了从"AI是什么"到"怎么用AI做项目"的完整旅程。六个模块、数十种工具、无数个最佳实践&mdash;&mdash;但最重要的一句话是：<strong>知道不等于会用，会用不等于能产出。</strong></p>
+          <p style="line-height: 1.8;">今天就打开终端，跑一次 <code>/init</code>。用ComfyUI出一张图。用可灵AI生成一段10秒的视频。<strong>动手的那一刻，才是真正毕业的时刻。</strong></p>
+          <p style="line-height: 1.8;">AI工具会继续进化，但你在这门课中建立的判断框架&mdash;&mdash;选最少的工具、做最深的练习、尊重版权、保持人类创意的主导权&mdash;&mdash;这些原则不会过时。</p>
+          <p style="line-height: 1.8; margin-top: var(--space-4);"><strong>去组你的乐队吧。舞台已经搭好，观众在等你。</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+  </main>
+
+</body>
+</html>

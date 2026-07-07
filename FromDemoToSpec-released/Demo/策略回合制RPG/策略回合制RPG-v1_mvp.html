@@ -1,0 +1,1554 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>策略回合制RPG v1</title>
+<style>
+:root {
+  --bg: #f5f0e8;
+  --panel-bg: #2c2c3a;
+  --panel-text: #e0e0e0;
+  --accent: #c9a94e;
+  --player-color: #4a90d9;
+  --enemy-color: #d94a4a;
+  --hp-bar: #4caf50;
+  --hp-mid: #ff9800;
+  --hp-low: #f44336;
+  --sp-bar: #2196f3;
+  --bp-glow: #ffd700;
+  --break-color: #ff6b9d;
+  --defend-color: #81c784;
+  --btn-primary: #4a90d9;
+  --btn-danger: #d94a4a;
+  --btn-bp: #e6a817;
+  --text-dark: #1a1a2e;
+  --text-light: #e0e0e0;
+  --card-bg: #ffffff;
+  --border: #d0d0d0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ========== DEBUG PANEL (LEFT) ========== */
+.debug-panel {
+  width: 200px;
+  min-width: 200px;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  overflow-y: auto;
+  z-index: 10;
+}
+.debug-panel h3 {
+  font-size: 14px;
+  color: var(--accent);
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+.debug-panel .stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px 0;
+}
+.debug-panel .stat-label { color: #999; }
+.debug-panel .stat-value { color: #fff; font-weight: bold; }
+.debug-panel button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+}
+.btn-reset { background: var(--btn-danger); color: #fff; }
+.btn-reset:hover { background: #c0392b; }
+
+.debug-log {
+  flex: 1;
+  overflow-y: auto;
+  font-size: 10px;
+  color: #aaa;
+  max-height: 200px;
+  border-top: 1px solid #444;
+  padding-top: 4px;
+  margin-top: 4px;
+}
+.debug-log div { padding: 1px 0; }
+
+/* ========== MAIN AREA ========== */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  gap: 10px;
+  overflow: hidden;
+}
+
+/* ========== ACTION BAR (TOP) ========== */
+.action-bar {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #fff;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  overflow-x: auto;
+  min-height: 56px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.action-bar .actor-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+.action-bar .actor-chip.player { background: #e3f0fb; color: var(--player-color); }
+.action-bar .actor-chip.enemy { background: #fde8e8; color: var(--enemy-color); }
+.action-bar .actor-chip.current {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(201,169,78,0.5);
+  transform: scale(1.08);
+}
+.action-bar .actor-chip .spd-badge {
+  font-size: 10px;
+  color: #888;
+  background: #f0f0f0;
+  border-radius: 10px;
+  padding: 1px 6px;
+}
+.action-bar .arrow { color: #ccc; font-size: 18px; }
+
+/* ========== BATTLEFIELD (CENTER) ========== */
+.battlefield {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  position: relative;
+  min-height: 300px;
+}
+
+.enemy-zone, .party-zone {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+
+.fx-zone {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Unit Cards */
+.unit-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.unit-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+.unit-card.selectable { border-color: var(--accent); box-shadow: 0 0 12px rgba(201,169,78,0.5); }
+.unit-card.targetable { border-color: var(--btn-danger); animation: pulse-target 0.8s infinite; }
+.unit-card.dead { opacity: 0.4; pointer-events: none; }
+.unit-card.broken { border-color: var(--break-color); animation: shake 0.5s; }
+
+@keyframes pulse-target {
+  0%, 100% { box-shadow: 0 0 8px rgba(217,74,74,0.4); }
+  50% { box-shadow: 0 0 20px rgba(217,74,74,0.8); }
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.unit-card .unit-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+.unit-card.player-card .unit-name { color: var(--player-color); }
+.unit-card.enemy-card .unit-name { color: var(--enemy-color); }
+
+.unit-card .hp-container, .unit-card .sp-container {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin: 3px 0;
+  overflow: hidden;
+}
+.unit-card .hp-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s;
+}
+.unit-card .sp-fill {
+  height: 100%;
+  background: var(--sp-bar);
+  border-radius: 4px;
+  transition: width 0.4s;
+}
+.unit-card .stat-text {
+  font-size: 10px;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+.unit-card .bp-dots {
+  display: flex;
+  gap: 3px;
+  margin-top: 4px;
+}
+.unit-card .bp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: all 0.3s;
+}
+.unit-card .bp-dot.filled {
+  background: var(--bp-glow);
+  box-shadow: 0 0 6px rgba(255,215,0,0.6);
+}
+
+.unit-card .shield-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #fff;
+  border: 2px solid #4fc3f7;
+  color: #0277bd;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+.unit-card .break-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--break-color);
+  color: #fff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  animation: pulse-break 0.6s infinite;
+}
+@keyframes pulse-break {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.unit-card .weakness-tags {
+  display: flex;
+  gap: 3px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+.unit-card .weakness-tag {
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  background: #e8f5e9;
+  color: #388e3c;
+}
+
+.unit-card .status-icons {
+  display: flex;
+  gap: 4px;
+  margin-top: 4px;
+}
+.unit-card .status-icon {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+.unit-card .status-icon.buff { background: #fff3e0; color: #e65100; }
+.unit-card .status-icon.guard { background: #e8f5e9; color: #2e7d32; }
+.unit-card .status-icon.charge { background: #fce4ec; color: #c62828; }
+
+/* Floating damage numbers */
+.floating-num {
+  position: absolute;
+  font-size: 28px;
+  font-weight: bold;
+  pointer-events: none;
+  animation: float-up 1.2s ease-out forwards;
+  z-index: 100;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.floating-num.damage { color: #e74c3c; }
+.floating-num.heal { color: #2ecc71; }
+.floating-num.break-hit { color: #ff6b9d; font-size: 22px; }
+
+@keyframes float-up {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  50% { opacity: 1; transform: translateY(-30px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-60px) scale(0.8); }
+}
+
+/* Wave / Victory / Defeat overlay */
+.overlay {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  font-weight: bold;
+  pointer-events: none;
+  animation: overlay-pop 1.5s ease-out forwards;
+  z-index: 200;
+}
+.overlay.wave { color: var(--accent); }
+.overlay.victory { color: #2ecc71; }
+.overlay.defeat { color: #e74c3c; }
+
+@keyframes overlay-pop {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  30% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+}
+
+/* ========== COMMAND PANEL (BOTTOM) ========== */
+.command-panel {
+  background: #fff;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 120px;
+}
+
+.command-panel .actor-info {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 4px;
+}
+.command-panel .actor-info.player-turn { color: var(--player-color); }
+
+.command-panel .btn-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.command-panel button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+.command-panel button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+.command-panel button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-attack { background: #e3f2fd; color: #1565c0; border-color: #90caf9; }
+.btn-skill { background: #f3e5f5; color: #7b1fa2; border-color: #ce93d8; }
+.btn-defend { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+.btn-back { background: #f5f5f5; color: #616161; border-color: #bdbdbd; }
+.btn-start { background: var(--accent); color: #fff; font-size: 18px; padding: 14px 40px; }
+
+.bp-selector {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+.bp-selector button {
+  background: #fff8e1;
+  color: #e65100;
+  border-color: #ffcc80;
+  font-size: 13px;
+  padding: 8px 14px;
+}
+.bp-selector button.active-bp {
+  background: var(--bp-glow);
+  border-color: #e6a817;
+  color: #5d4037;
+}
+
+/* ========== TUNING PANEL (RIGHT) ========== */
+.tuning-panel {
+  width: 200px;
+  min-width: 200px;
+  background: var(--panel-bg);
+  color: var(--panel-text);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  overflow-y: auto;
+  z-index: 10;
+}
+.tuning-panel h3 {
+  font-size: 14px;
+  color: var(--accent);
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+.tuning-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #ccc;
+}
+.tuning-panel input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+.tuning-panel .param-val {
+  color: var(--accent);
+  font-weight: bold;
+  align-self: flex-end;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== DEBUG PANEL (LEFT) ========== -->
+<div class="debug-panel" id="debugPanel">
+  <h3>🔍 调试面板</h3>
+  <button class="btn-reset" onclick="resetGame()">🔄 一键重置</button>
+  <div class="stat-row"><span class="stat-label">阶段</span><span class="stat-value" id="dbPhase">idle</span></div>
+  <div class="stat-row"><span class="stat-label">波次</span><span class="stat-value" id="dbWave">1/3</span></div>
+  <div class="stat-row"><span class="stat-label">当前行动者</span><span class="stat-value" id="dbActor">-</span></div>
+  <div class="stat-row"><span class="stat-label">回合计数</span><span class="stat-value" id="dbTurn">0</span></div>
+  <div class="stat-row"><span class="stat-label">存活单位</span><span class="stat-value" id="dbAlive">0</span></div>
+  <div class="stat-row"><span class="stat-label">剑士 HP</span><span class="stat-value" id="dbSwordHP">-</span></div>
+  <div class="stat-row"><span class="stat-label">学者 HP</span><span class="stat-value" id="dbSchHP">-</span></div>
+  <div class="stat-row"><span class="stat-label">神官 HP</span><span class="stat-value" id="dbClerHP">-</span></div>
+  <div class="stat-row"><span class="stat-label">舞娘 HP</span><span class="stat-value" id="dbDancHP">-</span></div>
+  <div class="stat-row"><span class="stat-label">伤害倍率</span><span class="stat-value" id="dbDmgMult">1.0</span></div>
+  <div class="debug-log" id="debugLog"></div>
+</div>
+
+<!-- ========== MAIN AREA ========== -->
+<div class="main-area" id="mainArea">
+  <!-- Action Bar -->
+  <div class="action-bar" id="actionBar"></div>
+
+  <!-- Battlefield -->
+  <div class="battlefield">
+    <div class="enemy-zone" id="enemyZone"></div>
+    <div class="fx-zone" id="fxZone"></div>
+    <div class="party-zone" id="partyZone"></div>
+  </div>
+
+  <!-- Command Panel -->
+  <div class="command-panel" id="commandPanel">
+    <div class="actor-info" id="actorInfo">⚔️ 策略回合制RPG — 参照歧路旅人</div>
+    <div class="btn-row" id="actionBtns">
+      <button class="btn-start" onclick="startBattle()">⚔️ 开始战斗</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== TUNING PANEL (RIGHT) ========== -->
+<div class="tuning-panel" id="tuningPanel">
+  <h3>🎚️ 参数热调</h3>
+  <label>伤害倍率 <span class="param-val" id="valDmgMult">1.0</span>
+    <input type="range" min="0.5" max="3.0" step="0.1" value="1.0" oninput="tuneParam('DAMAGE_MULT', this.value)" />
+  </label>
+  <label>敌人HP倍率 <span class="param-val" id="valEnemyHp">1.0</span>
+    <input type="range" min="0.5" max="3.0" step="0.1" value="1.0" oninput="tuneParam('ENEMY_HP_MULT', this.value)" />
+  </label>
+  <label>BP增长 <span class="param-val" id="valBpRate">1</span>
+    <input type="range" min="1" max="3" step="1" value="1" oninput="tuneParam('BP_RATE', this.value)" />
+  </label>
+  <label>盾值倍率 <span class="param-val" id="valShield">1.0</span>
+    <input type="range" min="0.5" max="2.0" step="0.1" value="1.0" oninput="tuneParam('SHIELD_MULT', this.value)" />
+  </label>
+  <label>SP回复 <span class="param-val" id="valSpRegen">5</span>
+    <input type="range" min="0" max="20" step="1" value="5" oninput="tuneParam('SP_REGEN', this.value)" />
+  </label>
+  <label>破防增伤倍率 <span class="param-val" id="valBreak">1.5</span>
+    <input type="range" min="1.0" max="3.0" step="0.1" value="1.5" oninput="tuneParam('BREAK_DMG_BONUS', this.value)" />
+  </label>
+</div>
+
+<script>
+// ========================================================================
+// 1. CONFIG
+// ========================================================================
+const CONFIG = {
+  DAMAGE_MULT: 1.0,
+  ENEMY_HP_MULT: 1.0,
+  BP_RATE: 1,
+  SHIELD_MULT: 1.0,
+  SP_REGEN: 5,
+  BREAK_DMG_BONUS: 1.5,
+  BP_MAX: 5,
+  DEF_FACTOR: 0.3,
+  GUARD_REDUCTION: 0.5,
+  ENEMY_AI_DELAY: 800,
+  ANIM_DELAY: 500,
+  WAVE_TRANS_DELAY: 1500
+};
+
+// ========================================================================
+// 2. SKILL & CHARACTER DEFINITIONS
+// ========================================================================
+const PARTY_TEMPLATES = [
+  {
+    id: 'swordsman', name: '剑士', job: '战士',
+    hp: 800, sp: 60, atk: 120, def: 80, spd: 70,
+    atkType: '斩',
+    skills: [
+      { name: '横斩', type: '斩', target: 'all_enemies', multiplier: 0.7, spCost: 12, bpCost: 0, desc: '斩属性全体攻击' },
+      { name: '蓄力斩', type: '斩', target: 'single', multiplier: 2.5, spCost: 18, bpCost: 2, desc: '斩属性单体高伤·固定耗2BP' }
+    ]
+  },
+  {
+    id: 'scholar', name: '学者', job: '法师',
+    hp: 500, sp: 150, atk: 140, def: 40, spd: 60,
+    atkType: '打',
+    skills: [
+      { name: '火球术', type: '火', target: 'single', multiplier: 1.8, spCost: 10, bpCost: 0, desc: '火属性单体攻击' },
+      { name: '冰霜风暴', type: '冰', target: 'all_enemies', multiplier: 1.2, spCost: 22, bpCost: 0, desc: '冰属性全体攻击' }
+    ]
+  },
+  {
+    id: 'cleric', name: '神官', job: '治疗',
+    hp: 650, sp: 120, atk: 80, def: 60, spd: 80,
+    atkType: '打',
+    skills: [
+      { name: '治愈术', type: 'heal', target: 'ally_single', multiplier: 0.8, spCost: 8, bpCost: 0, desc: '回复单体HP·恢复量=ATK×0.8' },
+      { name: '圣光', type: '光', target: 'single', multiplier: 1.6, spCost: 14, bpCost: 0, desc: '光属性单体+自回20%伤害' }
+    ]
+  },
+  {
+    id: 'dancer', name: '舞娘', job: '辅助',
+    hp: 550, sp: 100, atk: 100, def: 50, spd: 110,
+    atkType: '突',
+    skills: [
+      { name: '月光之舞', type: 'buff', target: 'all_allies', multiplier: 0, spCost: 15, bpCost: 0, desc: '全体ATK↑30%·持续2回合' },
+      { name: '暗影步', type: '突', target: 'single', multiplier: 1.4, spCost: 10, bpCost: 0, desc: '突属性单体+拉队友行动条前移2位' }
+    ]
+  }
+];
+
+const ENEMY_TEMPLATES = {
+  wolf: { id: 'wolf', name: '狼', hp: 300, atk: 60, def: 30, spd: 50, weaknesses: ['斩'], shield: 2, aiType: 'basic' },
+  mage: { id: 'mage', name: '暗法师', hp: 400, atk: 80, def: 40, spd: 70, weaknesses: ['突','光'], shield: 3, aiType: 'buffer' },
+  elite: { id: 'elite', name: '精英魔将', hp: 900, atk: 120, def: 70, spd: 40, weaknesses: ['打','冰'], shield: 4, aiType: 'charger' }
+};
+
+const WAVE_DEFS = [
+  [ENEMY_TEMPLATES.wolf, ENEMY_TEMPLATES.wolf, ENEMY_TEMPLATES.mage],
+  [ENEMY_TEMPLATES.wolf, ENEMY_TEMPLATES.mage, ENEMY_TEMPLATES.wolf, ENEMY_TEMPLATES.elite],
+  [ENEMY_TEMPLATES.wolf, ENEMY_TEMPLATES.mage, ENEMY_TEMPLATES.mage, ENEMY_TEMPLATES.elite]
+];
+
+// ========================================================================
+// 3. STATE
+// ========================================================================
+const state = {
+  phase: 'idle',
+  currentWave: 1,
+  totalWaves: WAVE_DEFS.length,
+  party: [],
+  enemies: [],
+  actionQueue: [],
+  currentActor: null,
+  turnCount: 0,
+  selectedSkill: null,
+  bpToSpend: 0,
+  commandStep: 'action', // action | bp_select | target_select
+  log: []
+};
+
+// ========================================================================
+// 4. EVENTBUS
+// ========================================================================
+const EventBus = (() => {
+  const _listeners = {};
+  return {
+    on(event, fn)  { (_listeners[event] = _listeners[event] || []).push(fn); },
+    off(event, fn) { _listeners[event] = (_listeners[event] || []).filter(f => f !== fn); },
+    emit(event, data) { (_listeners[event] || []).forEach(fn => fn(data)); },
+  };
+})();
+
+// ========================================================================
+// 5. UTILITY
+// ========================================================================
+window.logEvent = function(msg) {
+  const ts = new Date().toLocaleTimeString();
+  const line = `[${ts}] ${msg}`;
+  console.log(line);
+  state.log.push(line);
+  if (state.log.length > 50) state.log.shift();
+  EventBus.emit('log_entry', line);
+};
+
+// ========================================================================
+// 6. LOGIC LAYER (No DOM access)
+// ========================================================================
+
+function cloneChar(tmpl) {
+  return {
+    id: tmpl.id, name: tmpl.name, job: tmpl.job,
+    hp: tmpl.hp, maxHp: tmpl.hp,
+    sp: tmpl.sp, maxSp: tmpl.sp,
+    atk: tmpl.atk, def: tmpl.def,
+    spd: tmpl.spd, baseSpd: tmpl.spd,
+    atkType: tmpl.atkType,
+    skills: tmpl.skills.map(s => ({...s})),
+    bp: 0,
+    buffs: [],
+    isGuarding: false,
+    isDead: false
+  };
+}
+
+function cloneEnemy(tmpl) {
+  return {
+    id: tmpl.id, name: tmpl.name,
+    hp: Math.floor(tmpl.hp * CONFIG.ENEMY_HP_MULT), maxHp: Math.floor(tmpl.hp * CONFIG.ENEMY_HP_MULT),
+    atk: tmpl.atk, def: tmpl.def,
+    spd: tmpl.spd,
+    weaknesses: [...tmpl.weaknesses],
+    shield: Math.round(tmpl.shield * CONFIG.SHIELD_MULT), maxShield: Math.round(tmpl.shield * CONFIG.SHIELD_MULT),
+    isBroken: false, brokenTurns: 0,
+    aiType: tmpl.aiType,
+    chargeCountdown: 0,
+    buffs: [],
+    isDead: false
+  };
+}
+
+function initParty() {
+  state.party = PARTY_TEMPLATES.map(t => cloneChar(t));
+}
+
+function spawnWave(waveNum) {
+  if (waveNum > WAVE_DEFS.length) return;
+  const defs = WAVE_DEFS[waveNum - 1];
+  state.enemies = defs.map(d => cloneEnemy(d));
+  state.currentWave = waveNum;
+}
+
+function buildActionQueue() {
+  const units = [];
+  state.party.forEach((c, i) => {
+    if (!c.isDead) units.push({ type: 'party', index: i, spd: c.spd, name: c.name });
+  });
+  state.enemies.forEach((e, i) => {
+    if (!e.isDead) units.push({ type: 'enemy', index: i, spd: e.spd, name: e.name });
+  });
+  units.sort((a, b) => b.spd - a.spd);
+  state.actionQueue = units;
+}
+
+function getNextActor() {
+  if (state.actionQueue.length === 0) return null;
+  const actor = state.actionQueue.shift();
+  // Reinsert at end for continuous cycling
+  const unit = actor.type === 'party' ? state.party[actor.index] : state.enemies[actor.index];
+  if (unit && !unit.isDead) {
+    state.actionQueue.push({ type: actor.type, index: actor.index, spd: actor.spd, name: actor.name });
+  }
+  return actor;
+}
+
+function getUnit(actor) {
+  if (!actor) return null;
+  return actor.type === 'party' ? state.party[actor.index] : state.enemies[actor.index];
+}
+
+function onTurnStart(actor) {
+  const unit = getUnit(actor);
+  if (!unit || unit.isDead) return;
+  // BP recovery
+  if (actor.type === 'party') {
+    unit.bp = Math.min(unit.bp + CONFIG.BP_RATE, CONFIG.BP_MAX);
+    // SP recovery
+    unit.sp = Math.min(unit.sp + CONFIG.SP_REGEN, unit.maxSp);
+    // Tick buffs
+    unit.buffs = unit.buffs.filter(b => { b.turns--; return b.turns > 0; });
+    // Reset guard
+    unit.isGuarding = false;
+  }
+  // Enemy broken state check
+  if (actor.type === 'enemy') {
+    if (unit.isBroken) {
+      unit.brokenTurns--;
+      if (unit.brokenTurns <= 0) {
+        unit.isBroken = false;
+        unit.shield = unit.maxShield;
+        unit.chargeCountdown = 0;
+        logEvent(`${unit.name} 破防恢复，盾值重置为 ${unit.maxShield}`);
+      }
+    }
+    // Tick enemy buffs
+    unit.buffs = unit.buffs.filter(b => { b.turns--; return b.turns > 0; });
+  }
+}
+
+function calcDamage(attacker, defender, skillMultiplier, bpMultiplier, atkType) {
+  const rawAtk = getEffectiveAtk(attacker);
+  const rawDef = getEffectiveDef(defender);
+  const isBroken = defender.isBroken || false;
+  const breakBonus = isBroken ? CONFIG.BREAK_DMG_BONUS : 1.0;
+  const guardReduction = defender.isGuarding ? CONFIG.GUARD_REDUCTION : 1.0;
+  const base = rawAtk * skillMultiplier * bpMultiplier * breakBonus - rawDef * CONFIG.DEF_FACTOR;
+  const dmg = Math.max(1, Math.floor(base)) * CONFIG.DAMAGE_MULT;
+  return Math.floor(dmg);
+}
+
+function getEffectiveAtk(unit) {
+  let atk = unit.atk;
+  unit.buffs.forEach(b => {
+    if (b.type === 'atk_up') atk = Math.floor(atk * (1 + b.value));
+  });
+  return atk;
+}
+
+function getEffectiveDef(unit) {
+  let def = unit.def;
+  unit.buffs.forEach(b => {
+    if (b.type === 'def_up') def = Math.floor(def * (1 + b.value));
+  });
+  return def;
+}
+
+function applyDamage(defender, damage) {
+  defender.hp = Math.max(0, defender.hp - damage);
+  if (defender.hp <= 0) {
+    defender.isDead = true;
+    logEvent(`${defender.name} 被击败！`);
+    EventBus.emit('unit_died', { unit: defender });
+  }
+}
+
+function applyHeal(healer, target, multiplier) {
+  const healAmt = Math.floor(getEffectiveAtk(healer) * multiplier);
+  target.hp = Math.min(target.maxHp, target.hp + healAmt);
+  logEvent(`${healer.name} 治疗 ${target.name} +${healAmt} HP`);
+  return healAmt;
+}
+
+function checkShieldHit(defender, atkType) {
+  if (defender.isBroken) return;
+  if (!defender.weaknesses) return;
+  if (defender.weaknesses.includes(atkType)) {
+    defender.shield = Math.max(0, defender.shield - 1);
+    logEvent(`${atkType}命中${defender.name}弱点！盾值 → ${defender.shield}`);
+    if (defender.shield === 0) {
+      defender.isBroken = true;
+      defender.brokenTurns = 1;
+      defender.chargeCountdown = 0;
+      logEvent(`💥 ${defender.name} 破防！`);
+      EventBus.emit('enemy_broken', { enemy: defender });
+    }
+    return true;
+  }
+  return false;
+}
+
+function applyBuff(unit, type, value, turns) {
+  // Remove existing buff of same type
+  unit.buffs = unit.buffs.filter(b => b.type !== type);
+  unit.buffs.push({ type, value, turns });
+  logEvent(`${unit.name} 获得 ${type} 增益 +${Math.floor(value*100)}% · ${turns}回合`);
+}
+
+// ========================================================================
+// 7. PLAYER ACTIONS
+// ========================================================================
+
+function executePlayerAction(actor, skill, bpSpent, targetActor) {
+  const caster = getUnit(actor);
+  const target = getUnit(targetActor);
+  if (!caster || !target || caster.isDead) return false;
+
+  let bpMultiplier = 1.0;
+  if (skill) {
+    // Skill
+    if (caster.sp < skill.spCost) {
+      logEvent(`[错误] SP不足！需要${skill.spCost}，当前${caster.sp}`);
+      return false;
+    }
+    if (bpSpent > caster.bp) {
+      logEvent(`[错误] BP不足！需要${bpSpent}，当前${caster.bp}`);
+      return false;
+    }
+    caster.sp -= skill.spCost;
+    caster.bp -= bpSpent;
+    // BP multiplier for skills
+    bpMultiplier = 1.0 + bpSpent * 0.5;
+
+    if (skill.type === 'heal') {
+      const healAmt = applyHeal(caster, target, skill.multiplier);
+      EventBus.emit('action_executed', { caster, targets: [target], skill, damage: 0, heal: healAmt, isHeal: true });
+    } else if (skill.type === 'buff') {
+      applyBuff(target, 'atk_up', 0.3, 2);
+      // Apply to all allies
+      if (skill.target === 'all_allies') {
+        state.party.forEach(p => {
+          if (!p.isDead && p !== target) applyBuff(p, 'atk_up', 0.3, 2);
+        });
+      }
+      EventBus.emit('action_executed', { caster, targets: [target], skill, damage: 0, heal: 0, isBuff: true });
+    } else {
+      // Damage skill
+      const dmg = calcDamage(caster, target, skill.multiplier, bpMultiplier, skill.type);
+      applyDamage(target, dmg);
+      checkShieldHit(target, skill.type);
+      EventBus.emit('action_executed', { caster, targets: [target], skill, damage: dmg, heal: 0 });
+      // Special: 圣光 self-heal
+      if (skill.name === '圣光') {
+        const selfHeal = Math.floor(dmg * 0.2);
+        caster.hp = Math.min(caster.maxHp, caster.hp + selfHeal);
+        logEvent(`${caster.name} 圣光自回 +${selfHeal} HP`);
+      }
+      // Special: 暗影步 拉队友
+      if (skill.name === '暗影步') {
+        pullAllyForward(actor);
+      }
+    }
+  } else {
+    // Normal attack
+    caster.bp -= bpSpent;
+    const hits = 1 + bpSpent;
+    for (let i = 0; i < hits; i++) {
+      if (target.isDead) break;
+      const dmg = calcDamage(caster, target, 1.0, 1.0, caster.atkType);
+      applyDamage(target, dmg);
+      checkShieldHit(target, caster.atkType);
+      EventBus.emit('action_executed', { caster, targets: [target], skill: null, damage: dmg, heal: 0, hitIndex: i, totalHits: hits });
+    }
+  }
+  return true;
+}
+
+function pullAllyForward(actor) {
+  // Find an alive ally in the queue and move them forward 2 positions
+  const idx = state.actionQueue.findIndex(a => a.type === 'party' && a.index !== actor.index && !state.party[a.index].isDead);
+  if (idx >= 0) {
+    const ally = state.actionQueue.splice(idx, 1)[0];
+    const newPos = Math.max(0, idx - 2);
+    state.actionQueue.splice(newPos, 0, ally);
+    logEvent(`${getUnit(actor).name} 的暗影步将 ${ally.name} 行动条前移！`);
+  }
+}
+
+// ========================================================================
+// 8. ENEMY AI
+// ========================================================================
+
+function executeEnemyAction(actor) {
+  const enemy = getUnit(actor);
+  if (!enemy || enemy.isDead) return;
+
+  // If broken, skip
+  if (enemy.isBroken) {
+    logEvent(`${enemy.name} 处于破防状态，跳过回合`);
+    return;
+  }
+
+  let target = null;
+  let skill = null;
+
+  // Charger AI
+  if (enemy.aiType === 'charger') {
+    if (enemy.chargeCountdown > 0) {
+      enemy.chargeCountdown--;
+      if (enemy.chargeCountdown === 0) {
+        // Release charge attack
+        target = findTargetByLowestHP();
+        if (target) {
+          const dmg = calcDamage(enemy, target, 2.0, 1.0, '物理');
+          applyDamage(target, dmg);
+          EventBus.emit('action_executed', { caster: enemy, targets: [target], skill: { name: '蓄力重击', type: '物理' }, damage: dmg, heal: 0 });
+          logEvent(`⚡ ${enemy.name} 释放蓄力重击！`);
+        }
+        enemy.chargeCountdown = -1;
+        return;
+      }
+      logEvent(`${enemy.name} 蓄力中... 还剩 ${enemy.chargeCountdown} 回合`);
+      return;
+    }
+    if (enemy.chargeCountdown === 0) {
+      // Start charging
+      enemy.chargeCountdown = 3;
+      applyBuff(enemy, 'def_up', 0.3, 2);
+      logEvent(`${enemy.name} 开始蓄力！（3回合后释放）`);
+      return;
+    }
+  }
+
+  // Buffer AI (mage)
+  if (enemy.aiType === 'buffer' || enemy.aiType === 'charger') {
+    const hasDefBuff = enemy.buffs.some(b => b.type === 'def_up');
+    if (!hasDefBuff && enemy.aiType === 'buffer') {
+      applyBuff(enemy, 'def_up', 0.3, 3);
+      logEvent(`${enemy.name} 给自己施加防御增益`);
+      return;
+    }
+  }
+
+  // Attack: prioritize threat (can hit weaknesses), then lowest HP
+  target = findTargetByThreat(enemy) || findTargetByLowestHP();
+  if (target) {
+    const dmg = calcDamage(enemy, target, 1.0, 1.0, '物理');
+    applyDamage(target, dmg);
+    EventBus.emit('action_executed', { caster: enemy, targets: [target], skill: null, damage: dmg, heal: 0 });
+  }
+}
+
+function findTargetByThreat(enemy) {
+  // Find party members whose weaknesses the enemy can "threaten" — but enemies use physical.
+  // In this simplified model, enemies don't have typed attacks except physical.
+  // Instead, prioritize party members with lowest HP since that's the fallback.
+  return null;
+}
+
+function findTargetByLowestHP() {
+  const alive = state.party.filter(p => !p.isDead);
+  if (alive.length === 0) return null;
+  return alive.reduce((a, b) => a.hp < b.hp ? a : b);
+}
+
+// ========================================================================
+// 9. TURN MANAGEMENT
+// ========================================================================
+
+function checkBattleEnd() {
+  const allEnemiesDead = state.enemies.every(e => e.isDead);
+  const allPartyDead = state.party.every(p => p.isDead);
+
+  if (allPartyDead) {
+    state.phase = 'defeat';
+    EventBus.emit('battle_end', { result: 'defeat' });
+    logEvent('💀 队伍全灭！战斗失败');
+    return true;
+  }
+  if (allEnemiesDead) {
+    if (state.currentWave >= state.totalWaves) {
+      state.phase = 'victory';
+      EventBus.emit('battle_end', { result: 'victory' });
+      logEvent('🏆 全部3波敌人消灭！胜利！');
+      return true;
+    }
+    state.phase = 'wave_clear';
+    EventBus.emit('wave_cleared', { wave: state.currentWave });
+    logEvent(`✅ 第 ${state.currentWave} 波完成！`);
+    return true;
+  }
+  return false;
+}
+
+function nextTurn() {
+  if (checkBattleEnd()) return;
+
+  // Filter dead from queue
+  state.actionQueue = state.actionQueue.filter(a => {
+    const u = a.type === 'party' ? state.party[a.index] : state.enemies[a.index];
+    return u && !u.isDead;
+  });
+
+  const actor = getNextActor();
+  if (!actor) {
+    // Build new queue if emptied
+    buildActionQueue();
+    const next = getNextActor();
+    if (!next) { checkBattleEnd(); return; }
+    startActorTurn(next);
+    return;
+  }
+  startActorTurn(actor);
+}
+
+function startActorTurn(actor) {
+  state.currentActor = actor;
+  state.turnCount++;
+  state.commandStep = 'action';
+  state.selectedSkill = null;
+  state.bpToSpend = 0;
+  onTurnStart(actor);
+  const unit = getUnit(actor);
+  if (!unit || unit.isDead) { nextTurn(); return; }
+
+  if (actor.type === 'party') {
+    state.phase = 'player_turn';
+    logEvent(`🟢 ${unit.name} 的回合（BP:${unit.bp} SP:${unit.sp}）`);
+    EventBus.emit('player_turn_start', { actor, unit });
+  } else {
+    state.phase = 'enemy_turn';
+    logEvent(`🔴 ${unit.name} 行动中...`);
+    EventBus.emit('enemy_turn_start', { actor, unit });
+    // Auto-execute after delay
+    setTimeout(() => {
+      executeEnemyAction(actor);
+      setTimeout(() => {
+        state.currentActor = null;
+        nextTurn();
+      }, CONFIG.ANIM_DELAY);
+    }, CONFIG.ENEMY_AI_DELAY);
+  }
+}
+
+function processPlayerAction(skill, bpSpent, targetActor) {
+  const actor = state.currentActor;
+  if (!actor || actor.type !== 'party') return;
+
+  const ok = executePlayerAction(actor, skill, bpSpent, targetActor);
+  if (!ok) return;
+
+  state.currentActor = null;
+  state.commandStep = 'action';
+  state.selectedSkill = null;
+  state.bpToSpend = 0;
+
+  setTimeout(() => {
+    nextTurn();
+  }, CONFIG.ANIM_DELAY);
+}
+
+function playerDefend() {
+  const unit = getUnit(state.currentActor);
+  if (!unit) return;
+  unit.isGuarding = true;
+  logEvent(`${unit.name} 进入防御姿态（受伤-50%）`);
+  state.currentActor = null;
+  state.commandStep = 'action';
+  setTimeout(() => nextTurn(), CONFIG.ANIM_DELAY);
+}
+
+// ========================================================================
+// 10. BATTLE FLOW
+// ========================================================================
+
+function startBattle() {
+  if (state.phase !== 'idle') return;
+  initParty();
+  state.currentWave = 1;
+  state.turnCount = 0;
+  state.log = [];
+  logEvent('⚔️ 战斗开始！');
+  EventBus.emit('battle_started', {});
+  showWaveIntro();
+}
+
+function showWaveIntro() {
+  state.phase = 'wave_intro';
+  spawnWave(state.currentWave);
+  EventBus.emit('wave_intro', { wave: state.currentWave });
+  logEvent(`🌊 第 ${state.currentWave} 波敌人出现！`);
+
+  setTimeout(() => {
+    buildActionQueue();
+    nextTurn();
+  }, CONFIG.WAVE_TRANS_DELAY);
+}
+
+function continueAfterWave() {
+  state.currentWave++;
+  if (state.currentWave > state.totalWaves) {
+    state.phase = 'victory';
+    EventBus.emit('battle_end', { result: 'victory' });
+    return;
+  }
+  showWaveIntro();
+}
+
+function resetGame() {
+  state.phase = 'idle';
+  state.currentWave = 1;
+  state.party = [];
+  state.enemies = [];
+  state.actionQueue = [];
+  state.currentActor = null;
+  state.turnCount = 0;
+  state.selectedSkill = null;
+  state.bpToSpend = 0;
+  state.commandStep = 'action';
+  state.log = [];
+  logEvent('🔄 游戏已重置');
+  EventBus.emit('game_reset', {});
+}
+
+// ========================================================================
+// 11. DEBUG & TUNING
+// ========================================================================
+
+function tuneParam(param, value) {
+  const v = parseFloat(value);
+  CONFIG[param] = v;
+  logEvent(`🎚️ ${param} → ${v}`);
+  EventBus.emit('config_changed', { param, value: v });
+}
+
+// ========================================================================
+// 12. RENDER LAYER (DOM only)
+// ========================================================================
+
+const $ = (id) => document.getElementById(id);
+
+function renderAll() {
+  renderActionBar();
+  renderEnemyZone();
+  renderPartyZone();
+  renderCommandPanel();
+  renderDebugPanel();
+  renderTuningPanel();
+}
+
+function renderActionBar() {
+  const el = $('actionBar');
+  if (state.phase === 'idle' || state.phase === 'victory' || state.phase === 'defeat' || state.phase === 'wave_intro' || state.phase === 'wave_clear') {
+    if (state.actionQueue.length === 0) {
+      el.innerHTML = '<span style="color:#999;font-size:13px;">等待战斗开始...</span>';
+      return;
+    }
+  }
+
+  let html = '';
+  state.actionQueue.forEach((a, i) => {
+    const unit = a.type === 'party' ? state.party[a.index] : state.enemies[a.index];
+    if (!unit || unit.isDead) return;
+    const isCurrent = state.currentActor && state.currentActor.type === a.type && state.currentActor.index === a.index;
+    const cls = (a.type === 'party' ? 'player' : 'enemy') + (isCurrent ? ' current' : '');
+    html += `<div class="actor-chip ${cls}">
+      <span>${unit.name}</span>
+      <span class="spd-badge">SPD ${unit.spd}</span>
+    </div>`;
+    if (i < state.actionQueue.length - 1) html += '<span class="arrow">→</span>';
+  });
+  el.innerHTML = html || '<span style="color:#999;">-</span>';
+}
+
+function renderUnitCard(unit, side, index) {
+  const hpPct = unit.hp / unit.maxHp * 100;
+  const hpColor = hpPct > 60 ? 'var(--hp-bar)' : (hpPct > 30 ? 'var(--hp-mid)' : 'var(--hp-low)');
+  const spPct = unit.sp / unit.maxSp * 100;
+
+  let extraClasses = side + '-card';
+  if (unit.isDead) extraClasses += ' dead';
+  if (unit.isBroken) extraClasses += ' broken';
+
+  // Targetability
+  if (state.phase === 'player_turn' && state.commandStep === 'target_select') {
+    if (side === 'enemy') {
+      const skill = state.selectedSkill;
+      if (skill && (skill.target === 'single' || skill.target === 'all_enemies')) extraClasses += ' targetable';
+      if (!skill && state.commandStep === 'target_select') extraClasses += ' targetable'; // normal attack
+    }
+    if (side === 'player') {
+      const skill = state.selectedSkill;
+      if (skill && (skill.target === 'ally_single' || skill.target === 'all_allies')) extraClasses += ' targetable';
+    }
+  }
+
+  let html = `<div class="unit-card ${extraClasses}" data-side="${side}" data-index="${index}">`;
+
+  // Break badge
+  if (unit.isBroken) html += `<div class="break-badge">BREAK!</div>`;
+  // Shield badge (enemy only)
+  if (side === 'enemy' && unit.shield !== undefined && !unit.isBroken) {
+    html += `<div class="shield-badge">${unit.shield}</div>`;
+  }
+
+  html += `<div class="unit-name">${unit.name}${unit.job ? ' · ' + unit.job : ''}</div>`;
+
+  // HP bar
+  html += `<div class="hp-container"><div class="hp-fill" style="width:${hpPct}%;background:${hpColor};"></div></div>`;
+  html += `<div class="stat-text"><span>HP</span><span>${unit.hp}/${unit.maxHp}</span></div>`;
+
+  // SP bar (party only)
+  if (side === 'player') {
+    html += `<div class="sp-container"><div class="sp-fill" style="width:${spPct}%;"></div></div>`;
+    html += `<div class="stat-text"><span>SP</span><span>${unit.sp}/${unit.maxSp}</span></div>`;
+  }
+
+  // BP dots (party only)
+  if (side === 'player') {
+    html += '<div class="bp-dots">';
+    for (let i = 0; i < CONFIG.BP_MAX; i++) {
+      html += `<div class="bp-dot${i < unit.bp ? ' filled' : ''}"></div>`;
+    }
+    html += '</div>';
+  }
+
+  // Weakness tags (enemy only)
+  if (side === 'enemy' && unit.weaknesses) {
+    html += '<div class="weakness-tags">弱点：';
+    unit.weaknesses.forEach(w => { html += `<span class="weakness-tag">${w}</span>`; });
+    html += '</div>';
+  }
+
+  // Status icons
+  html += '<div class="status-icons">';
+  if (unit.isGuarding) html += '<span class="status-icon guard">🛡️ 防御</span>';
+  unit.buffs.forEach(b => {
+    const label = b.type === 'atk_up' ? `⚔️ ATK↑${Math.floor(b.value*100)}%` :
+                  b.type === 'def_up' ? `🛡️ DEF↑${Math.floor(b.value*100)}%` : b.type;
+    html += `<span class="status-icon buff">${label}(${b.turns})</span>`;
+  });
+  if (unit.chargeCountdown > 0) html += `<span class="status-icon charge">⚡蓄力${unit.chargeCountdown}</span>`;
+  html += '</div>';
+
+  html += '</div>';
+  return html;
+}
+
+function renderEnemyZone() {
+  const el = $('enemyZone');
+  el.innerHTML = state.enemies.map((e, i) => renderUnitCard(e, 'enemy', i)).join('');
+  bindUnitClicks('enemy');
+}
+
+function renderPartyZone() {
+  const el = $('partyZone');
+  el.innerHTML = state.party.map((c, i) => renderUnitCard(c, 'player', i)).join('');
+  bindUnitClicks('player');
+}
+
+function bindUnitClicks(side) {
+  const cards = document.querySelectorAll(`.unit-card.${side}-card`);
+  cards.forEach(card => {
+    card.onclick = function() {
+      if (state.phase !== 'player_turn') return;
+      const idx = parseInt(card.dataset.index);
+
+      // Target selection for skills
+      if (state.commandStep === 'target_select') {
+        const skill = state.selectedSkill;
+        if (skill) {
+          if (skill.target === 'all_enemies' && side === 'enemy') {
+            // Execute on all enemies
+            const targetActor = { type: 'enemy', index: 0 };
+            processPlayerAction(skill, state.bpToSpend, targetActor);
+            return;
+          }
+          if (skill.target === 'single' && side === 'enemy') {
+            processPlayerAction(skill, state.bpToSpend, { type: 'enemy', index: idx });
+            return;
+          }
+          if (skill.target === 'ally_single' && side === 'player') {
+            processPlayerAction(skill, state.bpToSpend, { type: 'party', index: idx });
+            return;
+          }
+          if (skill.target === 'all_allies' && side === 'player') {
+            processPlayerAction(skill, state.bpToSpend, { type: 'party', index: 0 });
+            return;
+          }
+        } else {
+          // Normal attack target
+          if (side === 'enemy') {
+            processPlayerAction(null, state.bpToSpend, { type: 'enemy', index: idx });
+          }
+        }
+      }
+    };
+  });
+}
+
+function renderCommandPanel() {
+  const infoEl = $('actorInfo');
+  const btnsEl = $('actionBtns');
+
+  if (state.phase === 'idle') {
+    infoEl.textContent = '⚔️ 策略回合制RPG — 参照歧路旅人';
+    infoEl.className = 'actor-info';
+    btnsEl.innerHTML = '<button class="btn-start" onclick="startBattle()">⚔️ 开始战斗</button>';
+    return;
+  }
+
+  if (state.phase === 'victory') {
+    infoEl.textContent = '🏆 胜利！全部波次通关！';
+    infoEl.className = 'actor-info';
+    btnsEl.innerHTML = '<button class="btn-start" onclick="resetGame()">🔄 重新挑战</button>';
+    return;
+  }
+
+  if (state.phase === 'defeat') {
+    infoEl.textContent = '💀 战斗失败...';
+    infoEl.className = 'actor-info';
+    btnsEl.innerHTML = '<button class="btn-start" onclick="resetGame()">🔄 重新挑战</button>';
+    return;
+  }
+
+  if (state.phase === 'wave_intro' || state.phase === 'wave_clear') {
+    infoEl.textContent = state.phase === 'wave_intro' ? `🌊 第 ${state.currentWave} 波` : '✅ 波次完成！';
+    infoEl.className = 'actor-info';
+    btnsEl.innerHTML = '<span style="color:#999;">准备中...</span>';
+    return;
+  }
+
+  if (state.phase !== 'player_turn' || !state.currentActor) {
+    infoEl.textContent = '敌方行动中...';
+    infoEl.className = 'actor-info';
+    btnsEl.innerHTML = '<span style="color:#999;">等待...</span>';
+    return;
+  }
+
+  const unit = getUnit(state.currentActor);
+  if (!unit) return;
+
+  infoEl.textContent = `${unit.name} 的回合 · BP:${unit.bp} · SP:${unit.sp}/${unit.maxSp}`;
+  infoEl.className = 'actor-info player-turn';
+
+  let btnsHtml = '';
+
+  if (state.commandStep === 'action') {
+    btnsHtml += `<button class="btn-attack" onclick="onSelectAction('attack')">⚔️ 攻击</button>`;
+    btnsHtml += `<button class="btn-skill" onclick="onSelectAction('skill')">✨ 技能</button>`;
+    btnsHtml += `<button class="btn-defend" onclick="playerDefend()">🛡️ 防御</button>`;
+  }
+
+  if (state.commandStep === 'skill_select') {
+    unit.skills.forEach((s, i) => {
+      const canUse = unit.sp >= s.spCost && unit.bp >= s.bpCost;
+      const disabled = canUse ? '' : 'disabled';
+      const hint = s.bpCost > 0 ? ` [需${s.bpCost}BP]` : '';
+      btnsHtml += `<button class="btn-skill" ${disabled} onclick="onSelectSkill(${i})">${s.name} (${s.spCost}SP${hint})</button>`;
+    });
+    btnsHtml += `<button class="btn-back" onclick="onBack()">↩ 返回</button>`;
+  }
+
+  if (state.commandStep === 'bp_select') {
+    const maxBp = unit.bp;
+    const minBp = state.selectedSkill ? state.selectedSkill.bpCost : 0;
+    btnsHtml += '<div class="bp-selector">';
+    for (let b = minBp; b <= maxBp; b++) {
+      const label = b === 0 ? '不增幅' : `${b} BP`;
+      const active = state.bpToSpend === b ? ' active-bp' : '';
+      btnsHtml += `<button class="${active}" onclick="onSelectBP(${b})">${label}</button>`;
+    }
+    btnsHtml += '</div>';
+    btnsHtml += `<button class="btn-back" onclick="onBack()" style="margin-top:8px;">↩ 返回</button>`;
+  }
+
+  if (state.commandStep === 'target_select') {
+    const hint = state.selectedSkill ? `选择 ${state.selectedSkill.name} 的目标` : '选择攻击目标';
+    btnsHtml += `<span style="color:#666;font-size:13px;">🎯 ${hint}（点击目标）</span>`;
+    btnsHtml += `<button class="btn-back" onclick="onBack()">↩ 返回</button>`;
+  }
+
+  btnsEl.innerHTML = btnsHtml;
+}
+
+// Command handlers
+function onSelectAction(action) {
+  if (action === 'attack') {
+    state.selectedSkill = null;
+    state.commandStep = 'bp_select';
+    state.bpToSpend = 0;
+  } else if (action === 'skill') {
+    state.commandStep = 'skill_select';
+  }
+  renderAll();
+}
+
+function onSelectSkill(idx) {
+  const unit = getUnit(state.currentActor);
+  if (!unit) return;
+  const skill = unit.skills[idx];
+  if (unit.sp < skill.spCost || unit.bp < skill.bpCost) return;
+  state.selectedSkill = skill;
+  state.commandStep = 'bp_select';
+  // For skills with fixed bpCost, auto-set
+  if (skill.bpCost > 0) {
+    state.bpToSpend = skill.bpCost;
+    state.commandStep = 'target_select';
+  }
+  renderAll();
+}
+
+function onSelectBP(bp) {
+  state.bpToSpend = bp;
+  state.commandStep = 'target_select';
+  renderAll();
+}
+
+function onBack() {
+  if (state.commandStep === 'target_select') {
+    state.commandStep = state.selectedSkill ? 'bp_select' : 'bp_select';
+    // Actually for fixed BP skills, go back to skill_select
+    if (state.selectedSkill && state.selectedSkill.bpCost > 0) {
+      state.commandStep = 'skill_select';
+      state.selectedSkill = null;
+    }
+    if (!state.selectedSkill) {
+      state.commandStep = 'action';
+    }
+  } else if (state.commandStep === 'bp_select') {
+    if (state.selectedSkill) {
+      state.commandStep = 'skill_select';
+      state.selectedSkill = null;
+    } else {
+      state.commandStep = 'action';
+    }
+  } else if (state.commandStep === 'skill_select') {
+    state.commandStep = 'action';
+  }
+  renderAll();
+}
+
+function renderDebugPanel() {
+  $('dbPhase').textContent = state.phase;
+  $('dbWave').textContent = `${state.currentWave}/${state.totalWaves}`;
+  const actor = state.currentActor;
+  $('dbActor').textContent = actor ? getUnit(actor)?.name || '-' : '-';
+  $('dbTurn').textContent = state.turnCount;
+  const aliveParty = state.party.filter(p => !p.isDead).length;
+  const aliveEnemy = state.enemies.filter(e => !e.isDead).length;
+  $('dbAlive').textContent = `${aliveParty}P+${aliveEnemy}E`;
+  $('dbSwordHP').textContent = state.party[0] ? `${state.party[0].hp}/${state.party[0].maxHp}` : '-';
+  $('dbSchHP').textContent = state.party[1] ? `${state.party[1].hp}/${state.party[1].maxHp}` : '-';
+  $('dbClerHP').textContent = state.party[2] ? `${state.party[2].hp}/${state.party[2].maxHp}` : '-';
+  $('dbDancHP').textContent = state.party[3] ? `${state.party[3].hp}/${state.party[3].maxHp}` : '-';
+  $('dbDmgMult').textContent = CONFIG.DAMAGE_MULT.toFixed(1);
+}
+
+function renderTuningPanel() {
+  $('valDmgMult').textContent = CONFIG.DAMAGE_MULT.toFixed(1);
+  $('valEnemyHp').textContent = CONFIG.ENEMY_HP_MULT.toFixed(1);
+  $('valBpRate').textContent = CONFIG.BP_RATE;
+  $('valShield').textContent = CONFIG.SHIELD_MULT.toFixed(1);
+  $('valSpRegen').textContent = CONFIG.SP_REGEN;
+  $('valBreak').textContent = CONFIG.BREAK_DMG_BONUS.toFixed(1);
+}
+
+// ========================================================================
+// 13. FX RENDERER
+// ========================================================================
+
+function showFloatingNumber(text, cls) {
+  const el = document.createElement('div');
+  el.className = `floating-num ${cls}`;
+  el.textContent = text;
+  el.style.left = (40 + Math.random() * 60) + '%';
+  el.style.top = (30 + Math.random() * 30) + '%';
+  $('fxZone').appendChild(el);
+  setTimeout(() => el.remove(), 1300);
+}
+
+function showOverlay(text, cls) {
+  const el = document.createElement('div');
+  el.className = `overlay ${cls}`;
+  el.textContent = text;
+  $('fxZone').appendChild(el);
+  setTimeout(() => el.remove(), 1600);
+}
+
+// ========================================================================
+// 14. EVENT LISTENERS
+// ========================================================================
+
+EventBus.on('action_executed', (data) => {
+  if (data.damage > 0) {
+    data.targets.forEach(t => {
+      if (!t.isDead) showFloatingNumber(`-${data.damage}`, 'damage');
+      else showFloatingNumber(`💀`, 'damage');
+    });
+  }
+  if (data.heal > 0) showFloatingNumber(`+${data.heal}`, 'heal');
+  renderAll();
+});
+
+EventBus.on('enemy_broken', (data) => {
+  showFloatingNumber('BREAK!', 'break-hit');
+  showOverlay('💥 BREAK!', 'wave');
+});
+
+EventBus.on('wave_cleared', (data) => {
+  showOverlay(`Wave ${data.wave} Clear!`, 'wave');
+  setTimeout(() => continueAfterWave(), 1500);
+});
+
+EventBus.on('battle_end', (data) => {
+  if (data.result === 'victory') showOverlay('🏆 VICTORY!', 'victory');
+  else showOverlay('💀 DEFEAT', 'defeat');
+  renderAll();
+});
+
+EventBus.on('battle_started', renderAll);
+EventBus.on('wave_intro', renderAll);
+EventBus.on('player_turn_start', renderAll);
+EventBus.on('enemy_turn_start', renderAll);
+EventBus.on('game_reset', renderAll);
+EventBus.on('unit_died', renderAll);
+
+EventBus.on('log_entry', (line) => {
+  const logEl = $('debugLog');
+  const div = document.createElement('div');
+  div.textContent = line;
+  logEl.appendChild(div);
+  logEl.scrollTop = logEl.scrollHeight;
+});
+
+EventBus.on('config_changed', (data) => {
+  renderTuningPanel();
+  renderAll();
+});
+
+EventBus.on('player_turn_start', renderAll);
+EventBus.on('enemy_turn_start', renderAll);
+
+// ========================================================================
+// 15. INITIALIZATION
+// ========================================================================
+
+function init() {
+  initParty();
+  resetGame();
+  renderAll();
+  logEvent('🚀 策略回合制RPG 原型就绪');
+}
+
+init();
+</script>
+
+</body>
+</html>

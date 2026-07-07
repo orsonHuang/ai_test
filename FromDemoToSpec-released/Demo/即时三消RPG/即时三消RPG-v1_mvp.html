@@ -1,0 +1,1954 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>即时三消RPG · 原型 v1</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* === 调试面板（左侧 200px） === */
+#debug-panel {
+  width: 200px;
+  min-width: 200px;
+  background: #16213e;
+  border-right: 2px solid #0f3460;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 8px;
+  overflow-y: auto;
+}
+#debug-panel h3 {
+  color: #e94560;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+#debug-panel .section {
+  background: #1a1a2e;
+  border-radius: 6px;
+  padding: 8px;
+}
+#debug-panel .section h4 {
+  color: #0f3460;
+  font-size: 12px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #0f3460;
+  padding-bottom: 4px;
+}
+.debug-row { display: flex; justify-content: space-between; font-size: 11px; padding: 2px 0; }
+.debug-row .label { color: #888; }
+.debug-row .value { color: #2ecc71; font-weight: bold; }
+
+#debug-panel button {
+  width: 100%; padding: 8px; border: none; border-radius: 4px;
+  background: #e94560; color: #fff; font-size: 13px; cursor: pointer;
+}
+#debug-panel button:hover { background: #c0392b; }
+
+#debug-panel input[type="range"] { width: 100%; margin: 4px 0; }
+#debug-panel .slider-row { font-size: 10px; color: #aaa; margin-bottom: 6px; }
+#debug-panel .slider-row .val { color: #f39c12; font-weight: bold; }
+
+#log-area {
+  flex: 1; min-height: 100px; background: #0a0a1a; border-radius: 6px;
+  padding: 6px; font-size: 10px; overflow-y: auto; color: #666;
+  font-family: "Consolas", monospace; line-height: 1.4;
+}
+
+/* === 主区域 === */
+#main-area {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  padding: 10px; gap: 8px;
+}
+
+/* === 战斗区 === */
+#battle-area {
+  width: 100%; max-width: 700px;
+  background: #16213e; border-radius: 8px; padding: 8px 12px;
+  border: 1px solid #0f3460;
+}
+#battle-area .wave-info {
+  text-align: center; font-size: 13px; color: #f39c12; margin-bottom: 6px;
+}
+.battle-row { display: flex; gap: 8px; justify-content: center; margin-bottom: 6px; }
+.battle-row.enemies { }
+.battle-row.heroes { border-top: 1px dashed #0f3460; padding-top: 6px; }
+
+.entity-card {
+  width: 110px; background: #1a1a2e; border-radius: 6px; padding: 6px;
+  border: 2px solid #333; position: relative; font-size: 11px;
+}
+.entity-card.enemy { border-color: #e74c3c; }
+.entity-card.hero { border-color: #2ecc71; }
+.entity-card .name { font-weight: bold; font-size: 12px; text-align: center; margin-bottom: 4px; }
+.entity-card .name .dual { font-size: 9px; color: #888; }
+.entity-card .hp-bar-bg {
+  height: 6px; background: #333; border-radius: 3px; margin: 3px 0; overflow: hidden;
+}
+.entity-card .hp-bar-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+.entity-card .hp-bar-fill.green { background: #2ecc71; }
+.entity-card .hp-bar-fill.yellow { background: #f39c12; }
+.entity-card .hp-bar-fill.red { background: #e74c3c; }
+.entity-card .stats { font-size: 10px; color: #aaa; }
+.entity-card .energy-bar { margin-top: 3px; }
+.entity-card .energy-fill { height: 4px; border-radius: 2px; background: #3498db; transition: width 0.2s; }
+.entity-card .effects { font-size: 9px; color: #e94560; margin-top: 2px; min-height: 12px; }
+.entity-card.dead { opacity: 0.3; }
+.entity-card.shield { box-shadow: 0 0 8px #3498db; }
+
+/* === 棋盘区 === */
+#board-container { position: relative; }
+#board {
+  display: grid; gap: 2px; background: #0a0a1a; padding: 4px;
+  border-radius: 8px; border: 2px solid #0f3460;
+  user-select: none; -webkit-user-select: none;
+}
+.board-tile {
+  border-radius: 6px; cursor: pointer; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: bold;
+  transition: transform 0.1s, opacity 0.2s;
+}
+.board-tile:hover { filter: brightness(1.2); }
+.board-tile.selected { transform: scale(1.1); box-shadow: 0 0 12px #fff; z-index: 2; }
+.board-tile.matched { opacity: 0; transform: scale(0.5); }
+.board-tile.enhanced { box-shadow: 0 0 6px #f1c40f; }
+.board-tile.enhanced::after {
+  content: "✦"; position: absolute; top: -2px; right: 2px;
+  font-size: 10px; color: #f1c40f;
+}
+
+.tile-normal[data-color="0"] { background: #3498db; } /* 蓝 */
+.tile-normal[data-color="1"] { background: #e74c3c; } /* 红 */
+.tile-normal[data-color="2"] { background: #2ecc71; } /* 绿 */
+.tile-normal[data-color="3"] { background: #f1c40f; } /* 黄 */
+
+.tile-combo { font-size: 22px; }
+.tile-rocket-h { background: #e67e22; } /* 横火箭 */
+.tile-rocket-v { background: #d35400; } /* 竖火箭 */
+.tile-bomb { background: #9b59b6; }       /* 炸弹 */
+.tile-blackhole { background: #1a1a1a; border: 2px solid #8e44ad; color: #8e44ad; }
+.tile-ultimate { background: #e94560; animation: ultPulse 0.6s ease-in-out infinite alternate; }
+
+@keyframes ultPulse { from { box-shadow: 0 0 6px #e94560; } to { box-shadow: 0 0 16px #e94560; } }
+
+/* === 动画 === */
+.board-tile.falling { animation: fallIn 0.25s ease-out; }
+@keyframes fallIn { from { transform: translateY(-40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+/* === 波次提示覆盖层 === */
+#wave-overlay {
+  display: none; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px; font-weight: bold; color: #f39c12;
+  text-shadow: 0 0 20px #f39c12; pointer-events: none;
+  z-index: 10;
+}
+
+/* === 颜色标记 === */
+.label-blue { color: #3498db; }
+.label-red { color: #e74c3c; }
+.label-green { color: #2ecc71; }
+.label-yellow { color: #f1c40f; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #0a0a1a; }
+::-webkit-scrollbar-thumb { background: #0f3460; border-radius: 2px; }
+
+/* === VFX System === */
+#vfx-layer {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 100; overflow: hidden;
+}
+.vfx-projectile {
+  position: absolute; width: 12px; height: 12px; border-radius: 50%;
+  pointer-events: none; z-index: 101;
+  transition: left 0.35s linear, top 0.35s linear;
+}
+.vfx-projectile.damage { background: #e74c3c; box-shadow: 0 0 8px #e74c3c; }
+.vfx-projectile.heal { background: #2ecc71; box-shadow: 0 0 8px #2ecc71; }
+.vfx-projectile.energy { background: #3498db; box-shadow: 0 0 8px #3498db; }
+.vfx-projectile.shield { background: #9b59b6; box-shadow: 0 0 8px #9b59b6; }
+.vfx-projectile.ultimate { background: #e94560; box-shadow: 0 0 10px #e94560; width: 16px; height: 16px; }
+.vfx-hit {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: 4px; pointer-events: none; z-index: 102; opacity: 0;
+}
+@keyframes hitFlash {
+  0% { opacity: 0.7; transform: scale(1.0); }
+  50% { opacity: 0.3; transform: scale(1.08); }
+  100% { opacity: 0; transform: scale(1.0); }
+}
+@keyframes hitFlashHeal {
+  0% { opacity: 0.5; transform: scale(1.0); }
+  50% { opacity: 0.2; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.0); }
+}
+@keyframes hitFlashEnergy {
+  0% { opacity: 0.6; transform: scale(1.0); }
+  50% { opacity: 0.3; transform: scale(1.06); }
+  100% { opacity: 0; transform: scale(1.0); }
+}
+.vfx-hit.damage { background: rgba(231,76,60,0.5); animation: hitFlash 0.4s ease-out forwards; }
+.vfx-hit.heal { background: rgba(46,204,113,0.3); animation: hitFlashHeal 0.4s ease-out forwards; }
+.vfx-hit.energy { background: rgba(52,152,219,0.3); animation: hitFlashEnergy 0.4s ease-out forwards; }
+.vfx-hit.shield { background: rgba(155,89,182,0.4); animation: hitFlashEnergy 0.4s ease-out forwards; }
+</style>
+</head>
+<body>
+
+<!-- ========== 调试面板 ========== -->
+<div id="debug-panel">
+  <h3>调试面板</h3>
+  <button id="btn-reset" onclick="resetGame()">一键重置</button>
+
+  <div class="section">
+    <h4>状态</h4>
+    <div class="debug-row"><span class="label">游戏状态</span><span class="value" id="db-state">等待开始</span></div>
+    <div class="debug-row"><span class="label">当前波次</span><span class="value" id="db-wave">-</span></div>
+    <div class="debug-row"><span class="label">游戏时间</span><span class="value" id="db-time">0.0s</span></div>
+    <div class="debug-row"><span class="label">英雄存活</span><span class="value" id="db-heroes">-</span></div>
+    <div class="debug-row"><span class="label">敌人生存</span><span class="value" id="db-enemies">-</span></div>
+    <div class="debug-row"><span class="label">棋盘匹配</span><span class="value" id="db-matches">-</span></div>
+  </div>
+
+  <div class="section">
+    <h4>参数热调</h4>
+    <div class="slider-row">伤害系数 <span class="val" id="sl-dmg-val">1.00</span></div>
+    <input type="range" id="sl-dmg" min="0.1" max="3.0" step="0.05" value="1.0" oninput="onSliderChange()">
+    <div class="slider-row">能量系数 <span class="val" id="sl-eng-val">1.00</span></div>
+    <input type="range" id="sl-eng" min="0.1" max="3.0" step="0.05" value="1.0" oninput="onSliderChange()">
+    <div class="slider-row">敌方攻击CD <span class="val" id="sl-cd-val">4.50s</span></div>
+    <input type="range" id="sl-cd" min="1.0" max="10.0" step="0.1" value="4.5" oninput="onSliderChange()">
+    <div class="slider-row">攻击速度 <span class="val" id="sl-spd-val">1.00x</span></div>
+    <input type="range" id="sl-spd" min="0.5" max="3.0" step="0.1" value="1.0" oninput="onSliderChange()">
+  </div>
+
+  <div id="log-area"></div>
+</div>
+
+<!-- ========== 主区域 ========== -->
+<div id="main-area">
+  <div id="vfx-layer"></div>
+  <div id="battle-area">
+    <div class="wave-info" id="wave-text">第 1 波 · 准备战斗！</div>
+    <div class="battle-row enemies" id="enemy-row"></div>
+    <div class="battle-row heroes" id="hero-row"></div>
+  </div>
+  <div id="board-container">
+    <div id="wave-overlay"></div>
+    <div id="board"></div>
+  </div>
+</div>
+
+<script>
+// ===================================================================
+// 1. CONFIG 对象（集中管理所有可调参数）
+// ===================================================================
+const CONFIG = {
+  // 棋盘
+  BOARD_COLS: 7,
+  BOARD_ROWS: 6,
+  CELL_SIZE: 60,
+  NUM_COLORS: 4, // 0=蓝 1=红 2=绿 3=黄
+
+  // 英雄能量
+  HERO_ENERGY_MAX: 100,
+  HERO_ENERGY_COEFF: 1.0,   // 能量获取系数（乘在积攒能量上）
+  HERO_DAMAGE_COEFF: 1.0,    // 英雄伤害系数（乘在伤害公式上）
+
+  // 敌方
+  ENEMY_ATTACK_CD: 4.5,     // 秒
+  ENEMY_DAMAGE_COEFF: 1.0,
+
+  // 波次
+  WAVE_1_COUNT: 3,
+  WAVE_2_COUNT: 4,
+  WAVE_3_COUNT: 5,
+
+  // 技能数值
+  BLEED_DURATION: 9,         // 秒
+  BLEED_TICK_INTERVAL: 3,    // 秒
+  BUBBLE_DEF_BUFF: 1.5,      // 泡泡重击防御提升倍率
+  BUBBLE_DEF_BUFF_DUR: 8,    // 秒
+  BUBBLE_SHIELD_AMOUNT: 150, // 泡泡绝招护盾量
+  HEAVY_HEAL_AMOUNT: 50,     // 针筒天使重击治疗量
+  ULT_HEAL_AMOUNT: 80,       // 针筒天使绝招治疗量
+  ULT_HEAL_DAMAGE: 40,       // 针筒天使绝招伤害
+  SPARK_ENHANCE_TILES: 1,    // 斯巴克重击生成强化方块数
+  SPARK_ULT_STUN_DUR: 5,     // 斯巴克绝招眩晕秒数
+  THUNDER_HEAVY_ENERGY: 20,  // 雷霆王子重击加能量
+  THUNDER_ULT_ENERGY: 55,    // 雷霆王子绝招加能量
+  GALE_ULT_MULT: 3.0,        // 疾风绝招伤害倍率（相对普攻）
+  GALE_BLEED_DAMAGE: 25,     // 疾风流血每次伤害
+};
+
+// 英雄定义
+const HERO_DEFS = [
+  { id: 0, name: "泡泡", job: "肉盾", color: 0, dualColor: null, atk: 80, def: 65, hp: 550, emoji: "🛡️" },
+  { id: 1, name: "疾风", job: "攻击", color: 1, dualColor: null, atk: 120, def: 30, hp: 360, emoji: "⚔️" },
+  { id: 2, name: "针筒天使", job: "治疗", color: 2, dualColor: null, atk: 65, def: 40, hp: 400, emoji: "💉" },
+  { id: 3, name: "斯巴克", job: "技术", color: 3, dualColor: null, atk: 95, def: 40, hp: 420, emoji: "⚡" },
+  { id: 4, name: "雷霆王子", job: "支援", color: 0, dualColor: 2, atk: 85, def: 45, hp: 440, emoji: "🔮" },
+];
+
+const COLOR_NAMES = ["蓝", "红", "绿", "黄"];
+const COLOR_EMOJI = ["🔵", "🔴", "🟢", "🟡"];
+
+// ===================================================================
+// 2. 状态对象
+// ===================================================================
+const state = {
+  phase: "idle",        // idle | playing | wave_transition | win | lose
+  wave: 1,
+  totalWaves: 3,
+  gameTime: 0,
+  enemyAttackTimer: 0,
+  selectedTile: null,   // {row, col}
+  dragStart: null,      // for drag interaction with combo items
+  comboDragMode: false, // true when dragging a combo item onto another
+  isProcessing: false,  // lock during match cascade
+  heroes: [],
+  enemies: [],
+  board: [],            // 2D array [{type, color, heroId} | null]
+  matchCount: 0,
+};
+
+// 状态效果
+function createEffects() {
+  return {
+    bleed: [],        // [{dmg, remaining, tickTimer}]
+    stun: { remaining: 0 },
+    defUp: { mult: 1, remaining: 0 },
+    shield: { amount: 0 },
+  };
+}
+
+// ===================================================================
+// 3. EventBus（标准实现，禁止修改）
+// ===================================================================
+const EventBus = (() => {
+  const _listeners = {};
+  return {
+    on(event, fn)  { (_listeners[event] = _listeners[event] || []).push(fn); },
+    off(event, fn) { _listeners[event] = (_listeners[event] || []).filter(f => f !== fn); },
+    emit(event, data) { (_listeners[event] || []).forEach(fn => fn(data)); },
+  };
+})();
+
+// ===================================================================
+// 4. 逻辑层（纯数据操作，不碰 DOM）
+// ===================================================================
+
+// --- 工具函数 ---
+function getHeroTileColors(heroId) {
+  const def = HERO_DEFS[heroId];
+  const colors = [def.color];
+  if (def.dualColor !== null) colors.push(def.dualColor);
+  return colors;
+}
+
+function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+// 伤害公式: max(ATK^2 / (ATK + DEF*2), 1)
+function calcDamage(atk, def) {
+  if (atk <= 0) return 0;
+  return Math.max(Math.floor(atk * atk / (atk + def * 2)), 1);
+}
+
+// --- 棋盘逻辑 ---
+function createBoard() {
+  const board = [];
+  for (let r = 0; r < CONFIG.BOARD_ROWS; r++) {
+    board[r] = [];
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+      board[r][c] = createRandomTile();
+    }
+  }
+  // 确保初始棋盘无匹配
+  removeInitialMatches(board);
+  return board;
+}
+
+function createRandomTile() {
+  return {
+    type: "normal",
+    color: randInt(0, CONFIG.NUM_COLORS - 1),
+    enhanced: false,
+  };
+}
+
+function createTile(type, color, extra) {
+  return { type, color: color !== undefined ? color : 0, enhanced: false, ...extra };
+}
+
+function removeInitialMatches(board) {
+  let hasMatch = true;
+  while (hasMatch) {
+    const matches = findAllMatchesRaw(board);
+    if (matches.length === 0) { hasMatch = false; break; }
+    for (const m of matches) {
+      for (const [r, c] of m.positions) {
+        board[r][c] = createRandomTile();
+      }
+    }
+  }
+}
+
+// 查找所有匹配（返回匹配组列表，每组包含位置和颜色）
+function findAllMatchesRaw(board) {
+  const matched = new Set();
+  const groups = [];
+
+  // 水平
+  for (let r = 0; r < CONFIG.BOARD_ROWS; r++) {
+    let c = 0;
+    while (c < CONFIG.BOARD_COLS) {
+      const tile = board[r][c];
+      if (!tile || tile.type !== "normal") { c++; continue; }
+      let end = c + 1;
+      while (end < CONFIG.BOARD_COLS && board[r][end] && board[r][end].type === "normal" && board[r][end].color === tile.color) end++;
+      if (end - c >= 3) {
+        const positions = [];
+        for (let i = c; i < end; i++) {
+          positions.push([r, i]);
+          matched.add(`${r},${i}`);
+        }
+        groups.push({ positions, color: tile.color, size: end - c });
+      }
+      c = end;
+    }
+  }
+
+  // 垂直
+  for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+    let r = 0;
+    while (r < CONFIG.BOARD_ROWS) {
+      const tile = board[r][c];
+      if (!tile || tile.type !== "normal") { r++; continue; }
+      let end = r + 1;
+      while (end < CONFIG.BOARD_ROWS && board[end][c] && board[end][c].type === "normal" && board[end][c].color === tile.color) end++;
+      if (end - r >= 3) {
+        const positions = [];
+        for (let i = r; i < end; i++) {
+          positions.push([i, c]);
+          matched.add(`${i},${c}`);
+        }
+        groups.push({ positions, color: tile.color, size: end - r });
+      }
+      r = end;
+    }
+  }
+
+  return groups;
+}
+
+// 获取匹配中被消除的 tile 信息（位置、颜色、是否强化）
+function getMatchedTileInfo(board, matches) {
+  const info = [];
+  const processed = new Set();
+  for (const m of matches) {
+    for (const [r, c] of m.positions) {
+      const key = `${r},${c}`;
+      if (processed.has(key)) continue;
+      processed.add(key);
+      const tile = board[r][c];
+      if (tile && tile.type === "normal") {
+        info.push({
+          row: r, col: c,
+          color: tile.color,
+          enhanced: tile.enhanced,
+          energyGain: tile.enhanced ? 2 : 1,
+        });
+      }
+    }
+  }
+  return info;
+}
+
+// 生成合成物（仅在手动匹配时调用）
+function generateComboItem(board, match, isManual) {
+  if (!isManual) return;
+  const pos = match.positions[0]; // 第一个匹配位置生成合成物
+  const r = pos[0], c = pos[1];
+  if (match.size === 4) {
+    // 判断方向：水平4连 → 竖火箭，竖直4连 → 横火箭
+    const isHorizontal = match.positions.every(p => p[0] === r);
+    board[r][c] = createTile(isHorizontal ? "rocket_v" : "rocket_h", match.color);
+  } else if (match.size === 5) {
+    board[r][c] = createTile("bomb", match.color);
+  } else if (match.size >= 6) {
+    board[r][c] = createTile("blackhole", match.color, { recordedColor: match.color });
+  }
+}
+
+// 重力 + 填充
+function applyGravity(board) {
+  const changes = [];
+  for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+    let writeRow = CONFIG.BOARD_ROWS - 1;
+    for (let r = CONFIG.BOARD_ROWS - 1; r >= 0; r--) {
+      if (board[r][c] !== null) {
+        if (r !== writeRow) {
+          board[writeRow][c] = board[r][c];
+          board[r][c] = null;
+          changes.push({ fromRow: r, toRow: writeRow, col: c });
+        }
+        writeRow--;
+      }
+    }
+    // 填充空位
+    for (let r = writeRow; r >= 0; r--) {
+      board[r][c] = createRandomTile();
+      changes.push({ fromRow: -1, toRow: r, col: c, newTile: true });
+    }
+  }
+  return changes;
+}
+
+// --- 战斗逻辑 ---
+function initHeroes() {
+  return HERO_DEFS.map(def => ({
+    id: def.id,
+    name: def.name,
+    job: def.job,
+    color: def.color,
+    dualColor: def.dualColor,
+    atk: def.atk,
+    def: def.def,
+    maxHp: def.hp,
+    hp: def.hp,
+    energy: 0,
+    energyMax: CONFIG.HERO_ENERGY_MAX,
+    alive: true,
+    effects: createEffects(),
+    emoji: def.emoji,
+  }));
+}
+
+function initEnemies(wave) {
+  const count = wave === 1 ? CONFIG.WAVE_1_COUNT : wave === 2 ? CONFIG.WAVE_2_COUNT : CONFIG.WAVE_3_COUNT;
+  const baseStats = [
+    { atk: 70, def: 20, hp: 180 },
+    { atk: 90, def: 30, hp: 280 },
+    { atk: 110, def: 40, hp: 400 },
+  ][wave - 1];
+  const enemies = [];
+  for (let i = 0; i < count; i++) {
+    enemies.push({
+      id: i,
+      name: `敌人${String.fromCharCode(65 + i)}`,
+      atk: baseStats.atk,
+      def: baseStats.def,
+      maxHp: baseStats.hp,
+      hp: baseStats.hp,
+      alive: true,
+      skillIndex: 0, // 轮流使用技能
+      effects: createEffects(),
+    });
+  }
+  return enemies;
+}
+
+function getAliveHeroes() { return state.heroes.filter(h => h.alive); }
+function getAliveEnemies() { return state.enemies.filter(e => e.alive); }
+
+function findTarget(aliveList) {
+  if (aliveList.length === 0) return null;
+  return aliveList[randInt(0, aliveList.length - 1)];
+}
+
+// 对敌人造成伤害
+function dealDamageToEnemy(enemy, rawDamage) {
+  if (!enemy.alive) return;
+  const dmg = Math.floor(rawDamage * CONFIG.HERO_DAMAGE_COEFF);
+  if (dmg <= 0) return;
+  enemy.hp = Math.max(0, enemy.hp - dmg);
+  if (enemy.hp <= 0) {
+    enemy.alive = false;
+    logEvent(`[击杀] ${enemy.name} 被击败 | 剩余敌人=${getAliveEnemies().length}`);
+  }
+  EventBus.emit("enemy_damaged", { enemy, dmg });
+}
+
+// 对英雄造成伤害
+function dealDamageToHero(hero, rawDamage) {
+  if (!hero.alive) return;
+  const dmg = Math.floor(rawDamage * CONFIG.ENEMY_DAMAGE_COEFF);
+  if (dmg <= 0) return;
+  // 护盾吸收
+  let remainingDmg = dmg;
+  if (hero.effects.shield.amount > 0) {
+    const absorbed = Math.min(hero.effects.shield.amount, remainingDmg);
+    hero.effects.shield.amount -= absorbed;
+    remainingDmg -= absorbed;
+    if (hero.effects.shield.amount <= 0) {
+      logEvent(`[护盾] ${hero.name} 护盾被击破`);
+    }
+  }
+  if (remainingDmg > 0) {
+    hero.hp = Math.max(0, hero.hp - remainingDmg);
+  }
+  if (hero.hp <= 0) {
+    hero.alive = false;
+    logEvent(`[阵亡] ${hero.name} 倒下 | 剩余英雄=${getAliveHeroes().length}`);
+  }
+  EventBus.emit("hero_damaged", { hero, rawDmg: dmg, actualDmg: dmg - (hero.effects.shield.amount > 0 ? Math.min(hero.effects.shield.amount, dmg) : 0) });
+}
+
+// 触发消除攻击
+function triggerMatchAttacks(matchedInfo, isManual) {
+  // 收集每个颜色触发的英雄
+  const colorHeroes = {}; // {color: [heroIds]}
+  for (const m of matchedInfo) {
+    const c = m.color;
+    if (!colorHeroes[c]) colorHeroes[c] = [];
+    for (const h of state.heroes) {
+      if (!h.alive) continue;
+      const hColors = getHeroTileColors(h.id);
+      if (hColors.includes(c) && !colorHeroes[c].includes(h.id)) {
+        colorHeroes[c].push(h.id);
+      }
+    }
+  }
+
+  // 计算本次消除的方块数（按匹配组判断是否重击触发）
+  // 实际上这个函数的调用者需要告诉每个颜色组的消除规模和是否为手动
+  // 简化处理：matchedInfo 包含所有被消除的 tile 信息
+  // 我们按颜色分组判断是否有 4+ 的匹配
+  const matchGroups = findAllMatchesRaw(state.board); // 在消除前调用方已检测
+
+  // 注意：这里 matchedInfo 是消除的 tile 列表，需要关联到 matchGroups
+  // 简化：如果有 4+ 匹配即触发重击，否则普攻
+  // 实际上我们需要在 processMatch 中处理
+  // 这里只做攻击触发
+}
+
+// 处理一轮消除（手动匹配）
+function processManualMatch(board, matches) {
+  if (matches.length === 0) return false;
+
+  // 收集被消除的 tile 信息
+  const matchedInfo = getMatchedTileInfo(board, matches);
+
+  // 按颜色分组计算能量和攻击类型
+  const colorData = {}; // {color: {energy: number, hasHeavy: boolean, heroes: []}}
+  for (const m of matches) {
+    const c = m.color;
+    if (!colorData[c]) colorData[c] = { energy: 0, hasHeavy: false, heroes: [] };
+    for (const [r, c2] of m.positions) {
+      const tile = board[r][c2];
+      if (tile && tile.type === "normal") {
+        colorData[c].energy += tile.enhanced ? 2 * CONFIG.HERO_ENERGY_COEFF : 1 * CONFIG.HERO_ENERGY_COEFF;
+      }
+    }
+    if (m.size >= CONFIG.MATCH_HEAVY) colorData[c].hasHeavy = true;
+    // 收集该颜色触发的英雄
+    for (const h of state.heroes) {
+      if (!h.alive) continue;
+      const hColors = getHeroTileColors(h.id);
+      if (hColors.includes(c) && !colorData[c].heroes.includes(h.id)) {
+        colorData[c].heroes.push(h.id);
+      }
+    }
+  }
+
+  // 消除 tiles 并生成合成物
+  for (const m of matches) {
+    generateComboItem(board, m, true);
+    for (const [r, c] of m.positions) {
+      if (board[r][c] && board[r][c].type === "normal") {
+        board[r][c] = null;
+      }
+    }
+  }
+
+  // 触发攻击
+  for (const [colorKey, cd] of Object.entries(colorData)) {
+    const color = parseInt(colorKey);
+    for (const hid of cd.heroes) {
+      const hero = state.heroes[hid];
+      if (!hero || !hero.alive) continue;
+      // 增加能量
+      hero.energy = Math.min(hero.energyMax, hero.energy + Math.floor(cd.energy));
+      // 发动攻击
+      if (cd.hasHeavy) {
+        triggerHeavyAttack(hero);
+      } else {
+        triggerNormalAttack(hero);
+      }
+      // 检查绝招能量
+      if (hero.energy >= hero.energyMax) {
+        spawnUltimateTile(board, hid);
+      }
+    }
+  }
+
+  return true;
+}
+
+// 处理链式消除（非手动，不生成合成物）
+function processChainMatch(board, matches) {
+  if (matches.length === 0) return false;
+
+  const colorData = {};
+  for (const m of matches) {
+    const c = m.color;
+    if (!colorData[c]) colorData[c] = { energy: 0, hasHeavy: false, heroes: [] };
+    for (const [r, c2] of m.positions) {
+      const tile = board[r][c2];
+      if (tile && tile.type === "normal") {
+        colorData[c].energy += tile.enhanced ? 2 * CONFIG.HERO_ENERGY_COEFF : 1 * CONFIG.HERO_ENERGY_COEFF;
+      }
+    }
+    if (m.size >= CONFIG.MATCH_HEAVY) colorData[c].hasHeavy = true;
+    for (const h of state.heroes) {
+      if (!h.alive) continue;
+      const hColors = getHeroTileColors(h.id);
+      if (hColors.includes(c) && !colorData[c].heroes.includes(h.id)) {
+        colorData[c].heroes.push(h.id);
+      }
+    }
+    // 消除 tiles（不生成合成物）
+    for (const [r, c] of m.positions) {
+      if (board[r][c] && board[r][c].type === "normal") {
+        board[r][c] = null;
+      }
+    }
+  }
+
+  for (const [colorKey, cd] of Object.entries(colorData)) {
+    for (const hid of cd.heroes) {
+      const hero = state.heroes[hid];
+      if (!hero || !hero.alive) continue;
+      hero.energy = Math.min(hero.energyMax, hero.energy + Math.floor(cd.energy));
+      if (cd.hasHeavy) {
+        triggerHeavyAttack(hero);
+      } else {
+        triggerNormalAttack(hero);
+      }
+      if (hero.energy >= hero.energyMax) {
+        spawnUltimateTile(board, hid);
+      }
+    }
+  }
+  return true;
+}
+
+function triggerNormalAttack(hero) {
+  const enemies = getAliveEnemies();
+  if (enemies.length === 0) return;
+  const target = findTarget(enemies);
+  if (!target) return;
+  const dmg = calcDamage(hero.atk, target.def);
+  dealDamageToEnemy(target, dmg);
+  logEvent(`[普攻] ${hero.name} → ${target.name} | 伤害=${dmg}`);
+  EventBus.emit("attack_effect", { type: "normal", hero, target, dmg });
+}
+
+function triggerHeavyAttack(hero) {
+  switch (hero.id) {
+    case 0: triggerBubbleHeavy(hero); break;
+    case 1: triggerGaleHeavy(hero); break;
+    case 2: triggerAngelHeavy(hero); break;
+    case 3: triggerSparkHeavy(hero); break;
+    case 4: triggerThunderHeavy(hero); break;
+  }
+}
+
+function triggerBubbleHeavy(hero) {
+  hero.effects.defUp.mult = CONFIG.BUBBLE_DEF_BUFF;
+  hero.effects.defUp.remaining = CONFIG.BUBBLE_DEF_BUFF_DUR;
+  logEvent(`[重击] ${hero.name} 防御提升 x${CONFIG.BUBBLE_DEF_BUFF} | 持续${CONFIG.BUBBLE_DEF_BUFF_DUR}s`);
+  EventBus.emit("attack_effect", { type: "def_up", hero });
+}
+
+function triggerGaleHeavy(hero) {
+  const enemies = getAliveEnemies();
+  if (enemies.length === 0) return;
+  const target = findTarget(enemies);
+  if (!target) return;
+  const dmg = calcDamage(hero.atk, target.def);
+  dealDamageToEnemy(target, dmg);
+  // 流血效果
+  target.effects.bleed.push({
+    dmg: CONFIG.GALE_BLEED_DAMAGE,
+    remaining: CONFIG.BLEED_DURATION,
+    tickTimer: 0,
+  });
+  logEvent(`[重击] ${hero.name} → ${target.name} | 伤害=${dmg} + 流血(${CONFIG.GALE_BLEED_DAMAGE}/3s)`);
+  EventBus.emit("attack_effect", { type: "bleed", hero, target, dmg });
+}
+
+function triggerAngelHeavy(hero) {
+  const heroes = getAliveHeroes();
+  if (heroes.length === 0) return;
+  // 治疗 HP 最低的队友（不包括自己或包括自己）
+  const target = heroes.reduce((a, b) => (a.hp / a.maxHp) < (b.hp / b.maxHp) ? a : b);
+  target.hp = Math.min(target.maxHp, target.hp + CONFIG.HEAVY_HEAL_AMOUNT);
+  logEvent(`[重击] ${hero.name} 治疗 ${target.name} | +${CONFIG.HEAVY_HEAL_AMOUNT}HP`);
+  EventBus.emit("attack_effect", { type: "heal", hero, target, amount: CONFIG.HEAVY_HEAL_AMOUNT });
+}
+
+function triggerSparkHeavy(hero) {
+  const enemies = getAliveEnemies();
+  if (enemies.length === 0) return;
+  const target = findTarget(enemies);
+  if (!target) return;
+  const dmg = calcDamage(hero.atk, target.def);
+  dealDamageToEnemy(target, dmg);
+  // 生成强化方块
+  const board = state.board;
+  const emptySlots = [];
+  for (let r = 0; r < CONFIG.BOARD_ROWS; r++)
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++)
+      if (board[r][c] && board[r][c].type === "normal" && !board[r][c].enhanced)
+        emptySlots.push([r, c]);
+  if (emptySlots.length > 0) {
+    const [er, ec] = emptySlots[randInt(0, emptySlots.length - 1)];
+    board[er][ec].enhanced = true;
+    logEvent(`[重击] ${hero.name} → ${target.name} | 伤害=${dmg} + 生成强化方块`);
+  }
+  EventBus.emit("attack_effect", { type: "spark_heavy", hero, target, dmg });
+}
+
+function triggerThunderHeavy(hero) {
+  const heroes = getAliveHeroes();
+  if (heroes.length === 0) return;
+  // 找能量最低的队友（不是自己）
+  const others = heroes.filter(h => h.id !== hero.id);
+  const target = others.length > 0 ? others.reduce((a, b) => a.energy < b.energy ? a : b) : hero;
+  target.energy = Math.min(target.energyMax, target.energy + CONFIG.THUNDER_HEAVY_ENERGY);
+  logEvent(`[重击] ${hero.name} → ${target.name} | +${CONFIG.THUNDER_HEAVY_ENERGY}能量`);
+  EventBus.emit("attack_effect", { type: "energy_give", hero, target, amount: CONFIG.THUNDER_HEAVY_ENERGY });
+  if (target.energy >= target.energyMax) spawnUltimateTile(state.board, target.id);
+}
+
+// 绝招
+function triggerUltimate(hero) {
+  switch (hero.id) {
+    case 0: triggerBubbleUlt(hero); break;
+    case 1: triggerGaleUlt(hero); break;
+    case 2: triggerAngelUlt(hero); break;
+    case 3: triggerSparkUlt(hero); break;
+    case 4: triggerThunderUlt(hero); break;
+  }
+  hero.energy = 0; // 消耗能量
+  logEvent(`[绝招] ${hero.name} 释放绝招！`);
+}
+
+function triggerBubbleUlt(hero) {
+  const heroes = getAliveHeroes();
+  const target = heroes.find(h => h.id !== hero.id) || hero;
+  target.effects.shield.amount = CONFIG.BUBBLE_SHIELD_AMOUNT;
+  logEvent(`[绝招] ${hero.name} → ${target.name} | 护盾=${CONFIG.BUBBLE_SHIELD_AMOUNT}`);
+  EventBus.emit("attack_effect", { type: "shield", hero, target, amount: CONFIG.BUBBLE_SHIELD_AMOUNT });
+}
+
+function triggerGaleUlt(hero) {
+  const enemies = getAliveEnemies();
+  if (enemies.length === 0) return;
+  const target = findTarget(enemies);
+  if (!target) return;
+  const dmg = Math.floor(calcDamage(hero.atk, target.def) * CONFIG.GALE_ULT_MULT);
+  dealDamageToEnemy(target, dmg);
+  target.effects.bleed.push({
+    dmg: CONFIG.GALE_BLEED_DAMAGE,
+    remaining: CONFIG.BLEED_DURATION,
+    tickTimer: 0,
+  });
+  logEvent(`[绝招] ${hero.name} → ${target.name} | 高伤害=${dmg} + 流血`);
+  EventBus.emit("attack_effect", { type: "gale_ult", hero, target, dmg });
+}
+
+function triggerAngelUlt(hero) {
+  const heroes = state.heroes.filter(h => h.alive);
+  for (const h of heroes) {
+    h.hp = Math.min(h.maxHp, h.hp + CONFIG.ULT_HEAL_AMOUNT);
+  }
+  logEvent(`[绝招] ${hero.name} 群体治疗 | +${CONFIG.ULT_HEAL_AMOUNT}HP`);
+  const enemies = getAliveEnemies();
+  if (enemies.length > 0) {
+    const target = findTarget(enemies);
+    if (target) {
+      dealDamageToEnemy(target, CONFIG.ULT_HEAL_DAMAGE);
+      logEvent(`[绝招] ${hero.name} → ${target.name} | 轻伤=${CONFIG.ULT_HEAL_DAMAGE}`);
+    }
+  }
+  EventBus.emit("attack_effect", { type: "angel_ult", hero });
+}
+
+function triggerSparkUlt(hero) {
+  const enemies = getAliveEnemies();
+  const targets = enemies.slice(0, Math.min(2, enemies.length));
+  for (const t of targets) {
+    const dmg = calcDamage(hero.atk, t.def);
+    dealDamageToEnemy(t, dmg);
+    t.effects.stun.remaining = CONFIG.SPARK_ULT_STUN_DUR;
+    logEvent(`[绝招] ${hero.name} → ${t.name} | 伤害=${dmg} + 眩晕${CONFIG.SPARK_ULT_STUN_DUR}s`);
+  }
+  // 消除棋盘所有黄色方块
+  const board = state.board;
+  for (let r = 0; r < CONFIG.BOARD_ROWS; r++) {
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+      if (board[r][c] && board[r][c].type === "normal" && board[r][c].color === 3) {
+        // 触发能量
+        const hColors = getHeroTileColors(hero.id);
+        for (const h of state.heroes) {
+          if (!h.alive) continue;
+          if (hColors.includes(3)) {
+            h.energy = Math.min(h.energyMax, h.energy + (board[r][c].enhanced ? 2 : 1) * CONFIG.HERO_ENERGY_COEFF);
+          }
+        }
+        board[r][c] = null;
+      }
+    }
+  }
+  logEvent(`[绝招] ${hero.name} 清除所有黄色方块`);
+  // 触发重力
+  applyGravity(board);
+  EventBus.emit("board_changed");
+}
+
+function triggerThunderUlt(hero) {
+  const heroes = getAliveHeroes();
+  const others = heroes.filter(h => h.id !== hero.id);
+  const target = others.length > 0 ? others.reduce((a, b) => a.energy < b.energy ? a : b) : hero;
+  target.energy = Math.min(target.energyMax, target.energy + CONFIG.THUNDER_ULT_ENERGY);
+  // 驱散所有减益/DOT
+  target.effects.bleed = [];
+  if (target.effects.stun) target.effects.stun.remaining = 0;
+  logEvent(`[绝招] ${hero.name} → ${target.name} | +${CONFIG.THUNDER_ULT_ENERGY}能量 + 驱散`);
+  EventBus.emit("attack_effect", { type: "thunder_ult", hero, target, amount: CONFIG.THUNDER_ULT_ENERGY });
+}
+
+// 生成绝招方块
+function spawnUltimateTile(board, heroId) {
+  // 找空位或随机替换
+  const emptySlots = [];
+  for (let r = 0; r < CONFIG.BOARD_ROWS; r++)
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++)
+      if (board[r][c] && board[r][c].type === "normal")
+        emptySlots.push([r, c]);
+  if (emptySlots.length > 0) {
+    const [r, c] = emptySlots[randInt(0, emptySlots.length - 1)];
+    board[r][c] = { type: "ultimate", heroId, color: HERO_DEFS[heroId].color };
+    logEvent(`[绝招方块] ${HERO_DEFS[heroId].name} 绝招方块已生成`);
+    EventBus.emit("board_changed");
+  }
+}
+
+// --- 合成物处理 ---
+function activateComboItem(row, col, targetRow, targetCol) {
+  const board = state.board;
+  const tile = board[row][col];
+  if (!tile) return false;
+
+  // 消除合成物本身
+  board[row][col] = null;
+
+  switch (tile.type) {
+    case "rocket_h": // 横火箭：消除一行
+      for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+        clearTileForCombo(board, row, c);
+      }
+      logEvent(`[横火箭] 消除第${row + 1}行`);
+      break;
+    case "rocket_v": // 竖火箭：消除一列
+      for (let r = 0; r < CONFIG.BOARD_ROWS; r++) {
+        clearTileForCombo(board, r, col);
+      }
+      logEvent(`[竖火箭] 消除第${col + 1}列`);
+      break;
+    case "bomb": // 炸弹：距离≤2 的方块（12格）
+      for (let r = 0; r < CONFIG.BOARD_ROWS; r++) {
+        for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+          const dist = Math.abs(r - row) + Math.abs(c - col);
+          if (dist <= 2 && dist > 0) {
+            clearTileForCombo(board, r, c);
+          } else if (dist <= 2 && (Math.abs(r - row) === 2 || Math.abs(c - col) === 2) && Math.abs(r - row) + Math.abs(c - col) <= 2) {
+            // 实际上曼哈顿距离≤2 的 tile: 周围8个 + 上下左右第二格
+            // 距离=1: 4个; 距离=2: 8个（对角4个 + 上下左右第二格4个）
+          }
+        }
+      }
+      // 重新实现炸弹逻辑：曼哈顿距离 ≤ 2 且去掉自身
+      clearBombArea(board, row, col);
+      logEvent(`[炸弹] 消除周围区域`);
+      break;
+    case "blackhole": // 黑洞
+      if (targetRow !== undefined && targetCol !== undefined) {
+        const tgt = board[targetRow][targetCol];
+        if (tgt && tgt.type === "normal") {
+          // 拖拽到普通方块：消除棋盘上所有该颜色方块
+          const targetColor = tgt.color;
+          for (let r = 0; r < CONFIG.BOARD_ROWS; r++)
+            for (let c = 0; c < CONFIG.BOARD_COLS; c++)
+              if (board[r][c] && board[r][c].type === "normal" && board[r][c].color === targetColor)
+                clearTileForCombo(board, r, c);
+          logEvent(`[黑洞] 消除所有${COLOR_NAMES[targetColor]}色方块`);
+        } else if (tgt && (tgt.type === "rocket_h" || tgt.type === "rocket_v" || tgt.type === "bomb")) {
+          // 拖拽到火箭/炸弹：把记录颜色方块变成对应合成物并触发
+          const recColor = tile.recordedColor;
+          board[targetRow][targetCol] = null; // 先消除目标合成物
+          const targetType = tgt.type;
+          const toProcess = [];
+          for (let r = 0; r < CONFIG.BOARD_ROWS; r++)
+            for (let c = 0; c < CONFIG.BOARD_COLS; c++)
+              if (board[r][c] && board[r][c].type === "normal" && board[r][c].color === recColor)
+                toProcess.push([r, c]);
+          for (const [r, c] of toProcess) {
+            board[r][c] = createTile(targetType, recColor);
+          }
+          // 触发这些合成物（各自展开效果）—— [存疑] 简化处理：直接消除对应区域
+          for (const [r, c] of toProcess) {
+            if (board[r][c]) {
+              processComboChainEffect(board, r, c, board[r][c]);
+              board[r][c] = null;
+            }
+          }
+          logEvent(`[黑洞+合成物] 转化${COLOR_NAMES[recColor]}方块为合成物并触发`);
+        } else if (tgt && tgt.type === "blackhole") {
+          // 黑洞+黑洞：消除所有方块2次
+          board[targetRow][targetCol] = null;
+          for (let pass = 0; pass < 2; pass++) {
+            for (let r = 0; r < CONFIG.BOARD_ROWS; r++)
+              for (let c = 0; c < CONFIG.BOARD_COLS; c++)
+                clearTileForCombo(board, r, c);
+            applyGravity(board);
+          }
+          logEvent(`[黑洞+黑洞] 双次全屏消除`);
+        }
+      } else {
+        // 点击黑洞：消除棋盘上记录颜色的所有方块
+        const recColor = tile.recordedColor;
+        for (let r = 0; r < CONFIG.BOARD_ROWS; r++)
+          for (let c = 0; c < CONFIG.BOARD_COLS; c++)
+            if (board[r][c] && board[r][c].type === "normal" && board[r][c].color === recColor)
+              clearTileForCombo(board, r, c);
+        logEvent(`[黑洞] 消除所有${COLOR_NAMES[recColor]}色方块`);
+      }
+      break;
+    case "ultimate":
+      triggerUltimate(state.heroes[tile.heroId]);
+      break;
+  }
+
+  // 重力
+  applyGravity(board);
+
+  // 检查链式消除（不生成合成物）
+  let chainMatches = findAllMatchesRaw(board);
+  while (chainMatches.length > 0) {
+    processChainMatch(board, chainMatches);
+    applyGravity(board);
+    chainMatches = findAllMatchesRaw(board);
+  }
+
+  state.matchCount++;
+  EventBus.emit("board_changed");
+  return true;
+}
+
+function clearBombArea(board, row, col) {
+  for (let r = 0; r < CONFIG.BOARD_ROWS; r++) {
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+      const dist = Math.abs(r - row) + Math.abs(c - col);
+      if (dist >= 1 && dist <= 2) {
+        clearTileForCombo(board, r, c);
+      }
+    }
+  }
+}
+
+// 炸弹+炸弹：消除曼哈顿距离 1~3 的所有方块（约24格）
+function clearBombBombArea(board, row, col) {
+  for (let r = 0; r < CONFIG.BOARD_ROWS; r++) {
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+      const dist = Math.abs(r - row) + Math.abs(c - col);
+      if (dist >= 1 && dist <= 3) {
+        clearTileForCombo(board, r, c);
+      }
+    }
+  }
+}
+
+function clearTileForCombo(board, r, c) {
+  const tile = board[r][c];
+  if (!tile) return;
+  if (tile.type === "normal") {
+    // 触发能量
+    const eng = tile.enhanced ? 2 * CONFIG.HERO_ENERGY_COEFF : 1 * CONFIG.HERO_ENERGY_COEFF;
+    for (const h of state.heroes) {
+      if (!h.alive) continue;
+      const hColors = getHeroTileColors(h.id);
+      if (hColors.includes(tile.color)) {
+        h.energy = Math.min(h.energyMax, h.energy + Math.floor(eng));
+        if (h.energy >= h.energyMax) spawnUltimateTile(board, h.id);
+      }
+    }
+    board[r][c] = null;
+  } else if (tile.type === "rocket_h" || tile.type === "rocket_v" || tile.type === "bomb" || tile.type === "blackhole" || tile.type === "ultimate") {
+    // 合成物被其他合成物消除时触发效果
+    processComboChainEffect(board, r, c, tile);
+    board[r][c] = null;
+  }
+}
+
+function processComboChainEffect(board, r, c, tile) {
+  // 合成物被消除时的连锁效果（不再生成新合成物）
+  switch (tile.type) {
+    case "rocket_h":
+      for (let cc = 0; cc < CONFIG.BOARD_COLS; cc++) clearTileForCombo(board, r, cc);
+      break;
+    case "rocket_v":
+      for (let rr = 0; rr < CONFIG.BOARD_ROWS; rr++) clearTileForCombo(board, rr, c);
+      break;
+    case "bomb":
+      clearBombArea(board, r, c);
+      break;
+    case "ultimate":
+      triggerUltimate(state.heroes[tile.heroId]);
+      break;
+  }
+}
+
+// --- 敌人逻辑 ---
+function enemyAttack(enemy) {
+  if (!enemy.alive) return;
+  if (enemy.effects.stun.remaining > 0) {
+    logEvent(`[眩晕] ${enemy.name} 被眩晕，跳过攻击`);
+    return;
+  }
+  const heroes = getAliveHeroes();
+  if (heroes.length === 0) return;
+
+  const skillIndex = enemy.skillIndex % 2;
+  enemy.skillIndex++;
+
+  if (skillIndex === 0) {
+    // 小伤害：1 个敌人
+    const target = findTarget(heroes);
+    if (!target) return;
+    const effectiveDef = target.def * target.effects.defUp.mult;
+    const dmg = calcDamage(enemy.atk, effectiveDef);
+    dealDamageToHero(target, dmg);
+    logEvent(`[敌攻] ${enemy.name} → ${target.name} | 小伤=${dmg}`);
+  } else {
+    // 大伤害：3 个敌人
+    const targets = heroes.slice(0, Math.min(3, heroes.length));
+    for (const t of targets) {
+      const effectiveDef = t.def * t.effects.defUp.mult;
+      const dmg = Math.floor(calcDamage(enemy.atk, effectiveDef) * 1.5);
+      dealDamageToHero(t, dmg);
+      logEvent(`[敌攻] ${enemy.name} → ${t.name} | 大伤=${dmg}`);
+    }
+  }
+  EventBus.emit("enemy_attacked", { enemy });
+}
+
+// --- 合成物间交换 ---
+function processComboSwap(row1, col1, row2, col2) {
+  const board = state.board;
+  const t1 = board[row1][col1];
+  const t2 = board[row2][col2];
+  if (!t1 || !t2) return false;
+
+  // 火箭 + 火箭：十字消除
+  if ((t1.type === "rocket_h" || t1.type === "rocket_v") && (t2.type === "rocket_h" || t2.type === "rocket_v")) {
+    board[row1][col1] = null;
+    board[row2][col2] = null;
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++) clearTileForCombo(board, row2, c);
+    for (let r = 0; r < CONFIG.BOARD_ROWS; r++) clearTileForCombo(board, r, col2);
+    logEvent(`[火箭+火箭] 十字消除`);
+  }
+  // 火箭 + 炸弹：三竖三横消除
+  else if ((t1.type === "rocket_h" || t1.type === "rocket_v") && t2.type === "bomb") {
+    board[row1][col1] = null;
+    board[row2][col2] = null;
+    processRocketBombCross(board, row2, col2);
+    logEvent(`[火箭+炸弹] 三竖三横消除`);
+  } else if (t1.type === "bomb" && (t2.type === "rocket_h" || t2.type === "rocket_v")) {
+    board[row1][col1] = null;
+    board[row2][col2] = null;
+    processRocketBombCross(board, row2, col2);
+    logEvent(`[炸弹+火箭] 三竖三横消除`);
+  }
+  // 炸弹 + 炸弹：消除距离≤3的方块（约24格）
+  else if (t1.type === "bomb" && t2.type === "bomb") {
+    board[row1][col1] = null;
+    board[row2][col2] = null;
+    clearBombBombArea(board, row2, col2);
+    logEvent(`[炸弹+炸弹] 大范围消除`);
+  }
+  // 黑洞拖拽交互已在 activateComboItem 中处理
+  else {
+    return false;
+  }
+
+  applyGravity(board);
+  let chainMatches = findAllMatchesRaw(board);
+  while (chainMatches.length > 0) {
+    processChainMatch(board, chainMatches);
+    applyGravity(board);
+    chainMatches = findAllMatchesRaw(board);
+  }
+  state.matchCount++;
+  EventBus.emit("board_changed");
+  return true;
+}
+
+function processRocketBombCross(board, row, col) {
+  // 以(col, row)为中心：同列 + 同排 + 上下各1横排 + 左右各1竖排
+  const rows = new Set();
+  rows.add(row);
+  if (row - 1 >= 0) rows.add(row - 1);
+  if (row + 1 < CONFIG.BOARD_ROWS) rows.add(row + 1);
+  const cols = new Set();
+  cols.add(col);
+  if (col - 1 >= 0) cols.add(col - 1);
+  if (col + 1 < CONFIG.BOARD_COLS) cols.add(col + 1);
+  for (const r of rows) {
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++) clearTileForCombo(board, r, c);
+  }
+  for (const c of cols) {
+    for (let r = 0; r < CONFIG.BOARD_ROWS; r++) clearTileForCombo(board, r, c);
+  }
+}
+
+// --- 胜负判定 ---
+function checkWinLose() {
+  if (state.phase !== "playing" && state.phase !== "wave_transition") return;
+  const aliveHeroes = getAliveHeroes();
+  const aliveEnemies = getAliveEnemies();
+
+  if (aliveHeroes.length === 0) {
+    state.phase = "lose";
+    logEvent("[失败] 所有英雄阵亡");
+    EventBus.emit("game_over", { result: "lose" });
+    return;
+  }
+
+  if (aliveEnemies.length === 0) {
+    if (state.wave >= state.totalWaves) {
+      state.phase = "win";
+      logEvent("[胜利] 全部波次通关！");
+      EventBus.emit("game_over", { result: "win" });
+    } else {
+      // 进入下一波
+      state.wave++;
+      state.enemies = initEnemies(state.wave);
+      state.enemyAttackTimer = 0;
+      state.phase = "wave_transition";
+      state.waveTransitionTimer = 2.5; // 2.5 秒过渡时间
+      logEvent(`[波次] 进入第 ${state.wave} 波！`);
+      EventBus.emit("wave_change", { wave: state.wave });
+    }
+  }
+}
+
+// --- 游戏循环 ---
+let lastTime = 0;
+let waveTransitionTimer = 0;
+let spdMultiplier = 1.0;
+
+function gameLoop(timestamp) {
+  if (state.phase === "idle" || state.phase === "win" || state.phase === "lose") {
+    requestAnimationFrame(gameLoop);
+    return;
+  }
+
+  if (lastTime === 0) lastTime = timestamp;
+  let dt = (timestamp - lastTime) / 1000;
+  lastTime = timestamp;
+  dt *= spdMultiplier;
+  if (dt > 0.1) dt = 0.1; // 防止大帧
+
+  state.gameTime += dt;
+
+  if (state.phase === "wave_transition") {
+    waveTransitionTimer -= dt;
+    if (waveTransitionTimer <= 0) {
+      state.phase = "playing";
+      state.waveTransitionTimer = 0;
+      logEvent(`[波次] 第 ${state.wave} 波战斗开始！`);
+      EventBus.emit("wave_start", { wave: state.wave });
+    }
+  }
+
+  if (state.phase === "playing") {
+    // 更新状态效果
+    updateEffects(dt);
+
+    // 更新敌人攻击计时
+    state.enemyAttackTimer += dt;
+    if (state.enemyAttackTimer >= CONFIG.ENEMY_ATTACK_CD) {
+      state.enemyAttackTimer -= CONFIG.ENEMY_ATTACK_CD;
+      const aliveEnemies = getAliveEnemies();
+      for (const enemy of aliveEnemies) {
+        enemyAttack(enemy);
+      }
+    }
+
+    // 检查胜负
+    checkWinLose();
+  }
+
+  // 渲染更新
+  EventBus.emit("frame_update");
+  requestAnimationFrame(gameLoop);
+}
+
+function updateEffects(dt) {
+  // 更新英雄效果
+  for (const h of state.heroes) {
+    if (!h.alive) continue;
+    if (h.effects.defUp.remaining > 0) {
+      h.effects.defUp.remaining -= dt;
+      if (h.effects.defUp.remaining <= 0) {
+        h.effects.defUp.mult = 1;
+        logEvent(`[效果] ${h.name} 防御加成结束`);
+      }
+    }
+    // 更新护盾（护盾不随时间消失，只被伤害消耗）
+  }
+  // 更新敌人效果
+  for (const e of state.enemies) {
+    if (!e.alive) continue;
+    if (e.effects.stun.remaining > 0) {
+      e.effects.stun.remaining -= dt;
+    }
+    // 更新流血
+    const remainingBleeds = [];
+    for (const bleed of e.effects.bleed) {
+      bleed.remaining -= dt;
+      bleed.tickTimer += dt;
+      if (bleed.tickTimer >= CONFIG.BLEED_TICK_INTERVAL) {
+        bleed.tickTimer -= CONFIG.BLEED_TICK_INTERVAL;
+        e.hp = Math.max(0, e.hp - bleed.dmg);
+        logEvent(`[流血] ${e.name} 受到 ${bleed.dmg} 点流血伤害`);
+        if (e.hp <= 0) {
+          e.alive = false;
+          logEvent(`[流血击杀] ${e.name} 被流血致死`);
+        }
+      }
+      if (bleed.remaining > 0) {
+        remainingBleeds.push(bleed);
+      }
+    }
+    e.effects.bleed = remainingBleeds;
+  }
+}
+
+// ===================================================================
+// 5. 渲染层（只读 state + 操作 DOM）
+// ===================================================================
+
+const boardEl = document.getElementById("board");
+const enemyRowEl = document.getElementById("enemy-row");
+const heroRowEl = document.getElementById("hero-row");
+const waveTextEl = document.getElementById("wave-text");
+const waveOverlayEl = document.getElementById("wave-overlay");
+
+function renderBoard() {
+  boardEl.style.gridTemplateColumns = `repeat(${CONFIG.BOARD_COLS}, ${CONFIG.CELL_SIZE}px)`;
+  boardEl.style.gridTemplateRows = `repeat(${CONFIG.BOARD_ROWS}, ${CONFIG.CELL_SIZE}px)`;
+  boardEl.style.width = `${CONFIG.BOARD_COLS * CONFIG.CELL_SIZE + (CONFIG.BOARD_COLS - 1) * 2 + 8}px`;
+  boardEl.style.height = `${CONFIG.BOARD_ROWS * CONFIG.CELL_SIZE + (CONFIG.BOARD_ROWS - 1) * 2 + 8}px`;
+  boardEl.innerHTML = "";
+
+  for (let r = 0; r < CONFIG.BOARD_ROWS; r++) {
+    for (let c = 0; c < CONFIG.BOARD_COLS; c++) {
+      const tile = state.board[r][c];
+      const cell = document.createElement("div");
+      cell.className = "board-tile";
+      cell.dataset.row = r;
+      cell.dataset.col = c;
+
+      if (tile) {
+        if (tile.type === "normal") {
+          cell.classList.add("tile-normal");
+          cell.dataset.color = tile.color;
+          cell.textContent = COLOR_EMOJI[tile.color];
+          if (tile.enhanced) {
+            cell.classList.add("enhanced");
+          }
+        } else if (tile.type === "rocket_h") {
+          cell.classList.add("tile-combo", "tile-rocket-h");
+          cell.textContent = "↔️";
+          cell.dataset.color = tile.color;
+        } else if (tile.type === "rocket_v") {
+          cell.classList.add("tile-combo", "tile-rocket-v");
+          cell.textContent = "↕️";
+          cell.dataset.color = tile.color;
+        } else if (tile.type === "bomb") {
+          cell.classList.add("tile-combo", "tile-bomb");
+          cell.textContent = "💣";
+          cell.dataset.color = tile.color;
+        } else if (tile.type === "blackhole") {
+          cell.classList.add("tile-combo", "tile-blackhole");
+          cell.textContent = "🕳️";
+          cell.dataset.color = tile.recordedColor;
+        } else if (tile.type === "ultimate") {
+          cell.classList.add("tile-ultimate");
+          cell.textContent = HERO_DEFS[tile.heroId].emoji;
+          cell.title = `${HERO_DEFS[tile.heroId].name} 绝招`;
+        }
+      }
+
+      // 选中高亮
+      if (state.selectedTile && state.selectedTile.row === r && state.selectedTile.col === c) {
+        cell.classList.add("selected");
+      }
+
+      // 事件
+      cell.addEventListener("mousedown", (e) => onTileMouseDown(e, r, c));
+      cell.addEventListener("mouseup", (e) => onTileMouseUp(e, r, c));
+      cell.addEventListener("click", (e) => onTileClick(e, r, c));
+
+      boardEl.appendChild(cell);
+    }
+  }
+}
+
+// 交互变量
+let mouseDownTile = null;
+let isDragging = false;
+
+function onTileMouseDown(e, r, c) {
+  e.preventDefault();
+  mouseDownTile = { row: r, col: c };
+  state.dragStart = { row: r, col: c };
+  isDragging = false;
+}
+
+function onTileMouseUp(e, r, c) {
+  e.preventDefault();
+  if (state.dragStart && (state.dragStart.row !== r || state.dragStart.col !== c)) {
+    isDragging = true;
+    // 拖拽行为
+    const t1 = state.board[state.dragStart.row][state.dragStart.col];
+    const t2 = state.board[r][c];
+    if (t1 && t2 && (t1.type !== "normal" || t2.type !== "normal")) {
+      // 有合成物参与
+      handleDragInteraction(state.dragStart.row, state.dragStart.col, r, c);
+    } else if (t1 && t2 && t1.type === "normal" && t2.type === "normal") {
+      // 普通交换
+      trySwapTiles(state.dragStart.row, state.dragStart.col, r, c);
+    }
+  }
+  state.dragStart = null;
+}
+
+function onTileClick(e, r, c) {
+  // 如果发生了拖拽，跳过 click
+  if (isDragging) { isDragging = false; return; }
+
+  const tile = state.board[r][c];
+  if (!tile) return;
+
+  if (state.isProcessing) return;
+
+  if (tile.type === "ultimate" || tile.type === "rocket_h" || tile.type === "rocket_v" || tile.type === "bomb" || (tile.type === "blackhole" && !state.comboDragMode)) {
+    // 点击激活合成物/绝招
+    state.isProcessing = true;
+    const result = activateComboItem(r, c);
+    state.isProcessing = false;
+    if (result) checkWinLose();
+    return;
+  }
+
+  if (tile.type === "blackhole" && state.comboDragMode) {
+    // 正在拖拽模式下，黑洞作为目标
+    const src = state.dragStart;
+    if (src) {
+      handleDragInteraction(src.row, src.col, r, c);
+      state.comboDragMode = false;
+      state.dragStart = null;
+    }
+    return;
+  }
+
+  // 普通方块点击选择/交换
+  if (state.selectedTile === null) {
+    state.selectedTile = { row: r, col: c };
+  } else if (state.selectedTile.row === r && state.selectedTile.col === c) {
+    state.selectedTile = null; // 取消选择
+  } else {
+    // 尝试交换
+    trySwapTiles(state.selectedTile.row, state.selectedTile.col, r, c);
+    state.selectedTile = null;
+  }
+  EventBus.emit("board_changed");
+}
+
+function handleDragInteraction(r1, c1, r2, c2) {
+  state.isProcessing = true;
+  const t1 = state.board[r1][c1];
+  const t2 = state.board[r2][c2];
+  if (!t1 || !t2) { state.isProcessing = false; return; }
+
+  // 黑洞拖拽到其他 tile
+  if (t1.type === "blackhole") {
+    activateComboItem(r1, c1, r2, c2);
+  }
+  // 合成物间交换
+  else if ((t1.type !== "normal") && (t2.type !== "normal")) {
+    processComboSwap(r1, c1, r2, c2);
+  }
+  // 合成物拖拽到普通方块（黑洞除外，上面已处理）
+  else if (t1.type !== "normal" && t2.type === "normal") {
+    if (t1.type === "rocket_h" || t1.type === "rocket_v" || t1.type === "bomb") {
+      // 火箭/炸弹不能拖到普通方块，直接激活即可
+      activateComboItem(r1, c1);
+    }
+  }
+
+  state.isProcessing = false;
+  checkWinLose();
+}
+
+function trySwapTiles(r1, c1, r2, c2) {
+  // 检查相邻
+  const isAdjacent = (Math.abs(r1 - r2) + Math.abs(c1 - c2)) === 1;
+  if (!isAdjacent) return;
+
+  state.isProcessing = true;
+  const board = state.board;
+
+  // 交换
+  const temp = board[r1][c1];
+  board[r1][c1] = board[r2][c2];
+  board[r2][c2] = temp;
+
+  // 检查匹配
+  const matches = findAllMatchesRaw(board);
+  if (matches.length === 0) {
+    // 换回来
+    const temp2 = board[r1][c1];
+    board[r1][c1] = board[r2][c2];
+    board[r2][c2] = temp2;
+    logEvent("[交换] 无匹配，换回");
+    EventBus.emit("board_changed");
+    state.isProcessing = false;
+    return;
+  }
+
+  logEvent(`[交换] (${r1},${c1})↔(${r2},${c2}) | 匹配组=${matches.length}`);
+
+  // 处理手动匹配
+  processManualMatch(board, matches);
+  applyGravity(board);
+
+  // 链式消除
+  let chainMatches = findAllMatchesRaw(board);
+  while (chainMatches.length > 0) {
+    processChainMatch(board, chainMatches);
+    applyGravity(board);
+    chainMatches = findAllMatchesRaw(board);
+  }
+
+  state.matchCount++;
+  state.isProcessing = false;
+  checkWinLose();
+  EventBus.emit("board_changed");
+}
+
+function renderBattleArea() {
+  // 敌人
+  enemyRowEl.innerHTML = "";
+  for (const e of state.enemies) {
+    const card = document.createElement("div");
+    card.className = `entity-card enemy${e.alive ? "" : " dead"}`;
+    card.dataset.enemyId = e.id;
+    const hpPct = e.maxHp > 0 ? (e.hp / e.maxHp * 100) : 0;
+    const barClass = hpPct > 60 ? "green" : hpPct > 30 ? "yellow" : "red";
+    const stunText = e.effects.stun.remaining > 0 ? " ⚡眩晕" : "";
+    const bleedText = e.effects.bleed.length > 0 ? " 🩸流血" : "";
+    card.innerHTML = `
+      <div class="name">👾 ${e.name}</div>
+      <div class="hp-bar-bg"><div class="hp-bar-fill ${barClass}" style="width:${hpPct}%"></div></div>
+      <div class="stats">HP ${e.hp}/${e.maxHp} | ATK ${e.atk} | DEF ${e.def}</div>
+      <div class="effects">${stunText}${bleedText}</div>
+    `;
+    enemyRowEl.appendChild(card);
+  }
+
+  // 英雄
+  heroRowEl.innerHTML = "";
+  for (const h of state.heroes) {
+    const card = document.createElement("div");
+    card.className = `entity-card hero${h.alive ? "" : " dead"}${h.effects.shield.amount > 0 ? " shield" : ""}`;
+    card.dataset.heroId = h.id;
+    const hpPct = h.maxHp > 0 ? (h.hp / h.maxHp * 100) : 0;
+    const barClass = hpPct > 60 ? "green" : hpPct > 30 ? "yellow" : "red";
+    const engPct = h.energyMax > 0 ? (h.energy / h.energyMax * 100) : 0;
+    const dualText = h.dualColor !== null ? ` <span class="dual">${COLOR_EMOJI[h.dualColor]}</span>` : "";
+    const defUpText = h.effects.defUp.remaining > 0 ? " 🛡️防御UP" : "";
+    const shieldText = h.effects.shield.amount > 0 ? ` 💙${h.effects.shield.amount}` : "";
+    const colorEmoji = COLOR_EMOJI[h.color];
+    card.innerHTML = `
+      <div class="name">${h.emoji} ${h.name} ${colorEmoji}${dualText}</div>
+      <div class="hp-bar-bg"><div class="hp-bar-fill ${barClass}" style="width:${hpPct}%"></div></div>
+      <div class="stats">HP ${h.hp}/${h.maxHp} | ATK ${h.atk} | DEF ${h.def * h.effects.defUp.mult}</div>
+      <div class="energy-bar"><div class="energy-fill" style="width:${engPct}%"></div></div>
+      <div class="effects">${defUpText}${shieldText}</div>
+    `;
+    heroRowEl.appendChild(card);
+  }
+
+  // 波次文本
+  if (state.phase === "win") {
+    waveTextEl.textContent = "🎉 胜利！全部波次通关！";
+    waveTextEl.style.color = "#2ecc71";
+  } else if (state.phase === "lose") {
+    waveTextEl.textContent = "💀 失败... 所有英雄阵亡";
+    waveTextEl.style.color = "#e74c3c";
+  } else if (state.phase === "wave_transition") {
+    waveTextEl.textContent = `第 ${state.wave} 波 · 准备迎战！`;
+    waveTextEl.style.color = "#f39c12";
+    // 显示覆盖层
+    waveOverlayEl.style.display = "block";
+    waveOverlayEl.textContent = `第 ${state.wave} 波`;
+    setTimeout(() => { waveOverlayEl.style.display = "none"; }, 2000);
+  } else {
+    waveTextEl.textContent = `第 ${state.wave}/${state.totalWaves} 波 · 进行中`;
+    waveTextEl.style.color = "#f39c12";
+  }
+}
+
+// ===================================================================
+// 6. VFX 特效层（纯渲染，不碰逻辑层）
+
+const vfxLayer = document.getElementById("vfx-layer");
+
+function getEntityCard(id, isHero) {
+  const attr = isHero ? "heroId" : "enemyId";
+  return document.querySelector(`.entity-card[data-${attr}="${id}"]`);
+}
+
+// 获取元素在主区域内的相对坐标
+function getCardCenter(cardEl) {
+  if (!cardEl) return { x: 0, y: 0 };
+  const mainRect = mainArea.getBoundingClientRect();
+  const cardRect = cardEl.getBoundingClientRect();
+  return {
+    x: cardRect.left - mainRect.left + cardRect.width / 2,
+    y: cardRect.top - mainRect.top + cardRect.height / 2,
+  };
+}
+
+function spawnProjectile(fromEl, toEl, colorClass, onHit) {
+  if (!fromEl || !toEl) return;
+
+  const from = getCardCenter(fromEl);
+  const to = getCardCenter(toEl);
+
+  const projectile = document.createElement("div");
+  projectile.className = `vfx-projectile ${colorClass}`;
+  projectile.style.left = `${from.x - 6}px`;
+  projectile.style.top = `${from.y - 6}px`;
+  vfxLayer.appendChild(projectile);
+
+  // 下一帧触发飞行
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      projectile.style.left = `${to.x - 6}px`;
+      projectile.style.top = `${to.y - 6}px`;
+
+      // 到达后触发受击效果 + 清理
+      setTimeout(() => {
+        if (onHit) onHit(toEl);
+        if (projectile.parentNode) projectile.remove();
+      }, 350);
+    });
+  });
+}
+
+function spawnHitEffect(cardEl, type) {
+  if (!cardEl) return;
+  const hit = document.createElement("div");
+  hit.className = `vfx-hit ${type}`;
+  cardEl.style.position = "relative";
+  cardEl.appendChild(hit);
+  setTimeout(() => { if (hit.parentNode) hit.remove(); }, 450);
+}
+
+function spawnFloatNumber(cardEl, text, color) {
+  if (!cardEl) return;
+  const float = document.createElement("div");
+  float.textContent = text;
+  float.style.cssText = `
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    font-size: 16px; font-weight: bold; color: ${color};
+    pointer-events: none; z-index: 200;
+    animation: floatUp 1s ease-out forwards;
+  `;
+  cardEl.style.position = "relative";
+  cardEl.appendChild(float);
+  setTimeout(() => { if (float.parentNode) float.remove(); }, 1050);
+}
+
+// 浮动数字动画
+const floatUpStyle = document.createElement("style");
+floatUpStyle.textContent = `
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-40px); }
+}`;
+document.head.appendChild(floatUpStyle);
+
+// 监听逻辑层事件 → 触发 VFX
+const mainArea = document.getElementById("main-area");
+mainArea.style.position = "relative";
+
+EventBus.on("attack_effect", (data) => {
+  const { type, hero, target, dmg, amount } = data;
+
+  // 英雄 → 敌人 的攻击
+  if ((type === "normal" || type === "bleed" || type === "spark_heavy" || type === "gale_ult") && target) {
+    const heroCard = getEntityCard(hero.id, true);
+    const enemyCard = getEntityCard(target.id, false);
+    spawnProjectile(heroCard, enemyCard, type === "gale_ult" ? "ultimate" : "damage", (toEl) => {
+      spawnHitEffect(toEl, "damage");
+      if (dmg) spawnFloatNumber(toEl, `-${dmg}`, "#e74c3c");
+    });
+  }
+
+  // 英雄 → 英雄 的辅助效果
+  if (type === "heal" && target) {
+    const heroCard = getEntityCard(hero.id, true);
+    const targetCard = getEntityCard(target.id, true);
+    spawnProjectile(heroCard, targetCard, "heal", (toEl) => {
+      spawnHitEffect(toEl, "heal");
+      if (amount) spawnFloatNumber(toEl, `+${amount}`, "#2ecc71");
+    });
+  }
+
+  if (type === "angel_ult") {
+    const heroCard = getEntityCard(hero.id, true);
+    state.heroes.filter(h => h.alive).forEach(h => {
+      const targetCard = getEntityCard(h.id, true);
+      if (targetCard) {
+        spawnProjectile(heroCard, targetCard, "heal", (toEl) => {
+          spawnHitEffect(toEl, "heal");
+          spawnFloatNumber(toEl, `+${CONFIG.ULT_HEAL_AMOUNT}`, "#2ecc71");
+        });
+      }
+    });
+  }
+
+  if (type === "def_up" && hero) {
+    const heroCard = getEntityCard(hero.id, true);
+    spawnHitEffect(heroCard, "shield");
+    spawnFloatNumber(heroCard, "DEF↑", "#9b59b6");
+  }
+
+  if (type === "shield" && target) {
+    const heroCard = getEntityCard(hero.id, true);
+    const targetCard = getEntityCard(target.id, true);
+    spawnProjectile(heroCard, targetCard, "shield", (toEl) => {
+      spawnHitEffect(toEl, "shield");
+      spawnFloatNumber(toEl, "🛡", "#9b59b6");
+    });
+  }
+
+  if (type === "energy_give" && target) {
+    const heroCard = getEntityCard(hero.id, true);
+    const targetCard = getEntityCard(target.id, true);
+    spawnProjectile(heroCard, targetCard, "energy", (toEl) => {
+      spawnHitEffect(toEl, "energy");
+      if (amount) spawnFloatNumber(toEl, `+${amount}⚡`, "#3498db");
+    });
+  }
+
+  if (type === "thunder_ult" && target) {
+    const heroCard = getEntityCard(hero.id, true);
+    const targetCard = getEntityCard(target.id, true);
+    spawnProjectile(heroCard, targetCard, "energy", (toEl) => {
+      spawnHitEffect(toEl, "energy");
+      spawnFloatNumber(toEl, `+${amount}⚡`, "#3498db");
+      spawnFloatNumber(toEl, "驱散", "#2ecc71");
+    });
+  }
+});
+
+// 敌人攻击的 VFX
+EventBus.on("enemy_damaged", (data) => {
+  // 不在此处理——英雄→敌人的伤害已由 attack_effect 覆盖
+});
+
+EventBus.on("hero_damaged", (data) => {
+  // 敌人→英雄的伤害通过 game loop 中的 enemyAttack 触发
+  // 需要在 enemyAttack 中发射额外事件
+});
+
+// 覆盖 enemyAttack 以添加 VFX（通过猴子补丁，不改逻辑）
+const origEnemyAttack = enemyAttack;
+enemyAttack = function(enemy) {
+  if (!enemy.alive) return;
+  if (enemy.effects.stun.remaining > 0) {
+    logEvent(`[眩晕] ${enemy.name} 被眩晕，跳过攻击`);
+    return;
+  }
+  const heroes = getAliveHeroes();
+  if (heroes.length === 0) return;
+
+  const skillIndex = enemy.skillIndex % 2;
+  enemy.skillIndex++;
+
+  const origHeroes = heroes.map(h => ({ ...h })); // snapshot
+
+  // 调用原始逻辑
+  origEnemyAttack(enemy);
+
+  // VFX：敌人卡 → 英雄卡
+  setTimeout(() => {
+    const enemyCard = getEntityCard(enemy.id, false);
+    if (!enemyCard) return;
+
+    const targets = skillIndex === 0
+      ? [findTarget(getAliveHeroes())]
+      : getAliveHeroes().slice(0, Math.min(3, getAliveHeroes().length));
+
+    targets.forEach(t => {
+      if (!t) return;
+      const heroCard = getEntityCard(t.id, true);
+      if (!heroCard) return;
+      const effectiveDef = t.def * t.effects.defUp.mult;
+      const dmg = skillIndex === 0
+        ? calcDamage(enemy.atk, effectiveDef)
+        : Math.floor(calcDamage(enemy.atk, effectiveDef) * 1.5);
+      spawnProjectile(enemyCard, heroCard, "damage", (toEl) => {
+        spawnHitEffect(toEl, "damage");
+        spawnFloatNumber(toEl, `-${dmg}`, "#e74c3c");
+      });
+    });
+  }, 50);
+};
+
+// ===================================================================
+// 6. 调试面板
+// ===================================================================
+function updateDebugPanel() {
+  document.getElementById("db-state").textContent = {
+    idle: "等待开始", playing: "战斗中", wave_transition: "波次过渡", win: "胜利", lose: "失败"
+  }[state.phase];
+  document.getElementById("db-wave").textContent = `${state.wave}/${state.totalWaves}`;
+  document.getElementById("db-time").textContent = state.gameTime.toFixed(1) + "s";
+  document.getElementById("db-heroes").textContent = getAliveHeroes().length + "/" + state.heroes.length;
+  document.getElementById("db-enemies").textContent = getAliveEnemies().length;
+  document.getElementById("db-matches").textContent = state.matchCount;
+}
+
+function onSliderChange() {
+  CONFIG.HERO_DAMAGE_COEFF = parseFloat(document.getElementById("sl-dmg").value);
+  CONFIG.HERO_ENERGY_COEFF = parseFloat(document.getElementById("sl-eng").value);
+  CONFIG.ENEMY_ATTACK_CD = parseFloat(document.getElementById("sl-cd").value);
+  spdMultiplier = parseFloat(document.getElementById("sl-spd").value);
+  document.getElementById("sl-dmg-val").textContent = CONFIG.HERO_DAMAGE_COEFF.toFixed(2);
+  document.getElementById("sl-eng-val").textContent = CONFIG.HERO_ENERGY_COEFF.toFixed(2);
+  document.getElementById("sl-cd-val").textContent = CONFIG.ENEMY_ATTACK_CD.toFixed(2) + "s";
+  document.getElementById("sl-spd-val").textContent = spdMultiplier.toFixed(2) + "x";
+}
+
+function logEvent(msg) {
+  const timestamp = new Date().toLocaleTimeString();
+  const line = `[${timestamp}] ${msg}`;
+  console.log(line);
+  const logArea = document.getElementById("log-area");
+  logArea.innerHTML += line + "\n";
+  logArea.scrollTop = logArea.scrollHeight;
+  // 限制日志行数
+  const lines = logArea.innerHTML.split("\n");
+  if (lines.length > 100) {
+    logArea.innerHTML = lines.slice(-100).join("\n");
+  }
+}
+
+function resetGame() {
+  state.phase = "idle";
+  state.wave = 1;
+  state.gameTime = 0;
+  state.enemyAttackTimer = 0;
+  state.selectedTile = null;
+  state.dragStart = null;
+  state.comboDragMode = false;
+  state.isProcessing = false;
+  state.matchCount = 0;
+  state.heroes = initHeroes();
+  state.enemies = initEnemies(1);
+  state.board = createBoard();
+  lastTime = 0;
+  logEvent("[重置] 游戏已重置");
+  EventBus.emit("game_reset");
+}
+
+// ===================================================================
+// 7. 初始化入口
+// ===================================================================
+
+// 事件监听
+EventBus.on("board_changed", renderBoard);
+EventBus.on("board_changed", checkWinLose);
+EventBus.on("frame_update", () => {
+  updateDebugPanel();
+  renderBattleArea();
+});
+EventBus.on("game_reset", () => {
+  updateDebugPanel();
+  renderBoard();
+  renderBattleArea();
+});
+EventBus.on("game_over", (data) => {
+  updateDebugPanel();
+  renderBattleArea();
+  if (data.result === "win") {
+    waveTextEl.textContent = "🎉 胜利！全部波次通关！";
+    waveTextEl.style.color = "#2ecc71";
+  } else {
+    waveTextEl.textContent = "💀 失败... 所有英雄阵亡";
+    waveTextEl.style.color = "#e74c3c";
+  }
+});
+
+// 启动游戏
+function startGame() {
+  state.heroes = initHeroes();
+  state.enemies = initEnemies(1);
+  state.board = createBoard();
+  state.phase = "playing";
+  state.wave = 1;
+  state.gameTime = 0;
+  state.enemyAttackTimer = 0;
+  lastTime = 0;
+  logEvent("[开始] 即时三消RPG 原型启动");
+  EventBus.emit("game_reset");
+  requestAnimationFrame(gameLoop);
+}
+
+// 页面加载完成后自动开始
+window.addEventListener("DOMContentLoaded", () => {
+  state.heroes = initHeroes();
+  state.enemies = initEnemies(1);
+  state.board = createBoard();
+  logEvent("[就绪] 即时三消RPG v1 原型加载完成");
+  logEvent("[提示] 点击棋盘方块选择 → 点击相邻方块交换");
+  logEvent("[提示] 3消=普攻 4消=重击+火箭 5消=炸弹 6消+=黑洞");
+  logEvent("[提示] 能量满 → 棋盘生成绝招方块 → 点击释放");
+  EventBus.emit("game_reset");
+  startGame();
+});
+</script>
+</body>
+</html>
