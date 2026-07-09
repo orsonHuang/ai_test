@@ -990,6 +990,7 @@ let gameState = {
   files_read: [],
   passwords_used: [],
   mm_name_revealed: false,
+  awaiting_password: false,
   memory: {
     accessible_files: ['files/deck/todolist.txt', 'files/deck/入职资料.txt'],
     processed_files: [],
@@ -1303,9 +1304,7 @@ async function sendMessage() {
     // M-M 的对话内容（与文件内容区分开）
     if (data.reply) {
       let type = 'ai';
-      if (data.type === 'password') type = 'password';
-      else if (data.type === 'command' || data.type === 'rule_template') type = 'system';
-      else if (data.type === 'file_read') type = 'ai'; // 文件内容单独用 file_content
+      if (data.type === 'command' || data.type === 'system') type = 'system';
       addMessage(data.reply, type);
     }
 
@@ -1322,7 +1321,7 @@ async function sendMessage() {
 
     if (data.unlock && data.unlock.length) {
       const unlockName = Array.isArray(data.unlock) ? data.unlock.join(', ').replace(/^files\//g, '') : data.unlock;
-      addMessage('新文件已解锁：' + unlockName, 'password');
+      addMessage('新文件已解锁：' + unlockName, 'system');
     }
 
     if (data.password_prompt) {

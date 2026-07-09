@@ -53,6 +53,29 @@ def _check_password(user_input: str):  # -> dict or None
     return None
 
 
+def _is_password_attempt(user_input: str) -> bool:
+    """
+    判断玩家输入是否像一次密码尝试。
+    规则：无空格、长度>=6，且满足以下任一条件：
+      - 全为数字
+      - 全为字母（大小写一致）
+      - 包含至少两类字符（小写/大写/数字/符号）
+    """
+    text = user_input.strip()
+    if not text or ' ' in text or len(text) < 6:
+        return False
+    if text.isdigit():
+        return True
+    if text.isalpha() and (text.islower() or text.isupper()):
+        return True
+    has_lower = any(c.islower() for c in text)
+    has_upper = any(c.isupper() for c in text)
+    has_digit = any(c.isdigit() for c in text)
+    has_symbol = any(not c.isalnum() for c in text)
+    classes = sum([has_lower, has_upper, has_digit, has_symbol])
+    return classes >= 2
+
+
 # ============ Memory 序列化辅助 ============
 def _get_memory(game_state: dict) -> Memory:
     """从 game_state 中恢复 Memory 对象"""
@@ -171,11 +194,11 @@ def handle_list_command(sub_dir, game_state: dict) -> dict:
     sub = sub_dir or "files"
     files = list_files(sub)
     if not files:
-        return {"reply": f"{sub}/ 目录下没有文件", "type": "command"}
+        return {"reply": f"{sub}/ 目录下没有文件", "type": "ai"}
     return {
         "reply": f"我能看到的文件有这些：",
         "file_list": [f"{sub}/{f}" for f in files],
-        "type": "command",
+        "type": "ai",
     }
 
 
@@ -268,6 +291,7 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
     # 没有指定目标 → 反问
     if not target:
         if chapter == 1:
+            game_state["awaiting_password"] = True
             return {
                 "reply": (
                     "我扫描了电脑，在 D 盘发现了一个工作日记文件夹。\n\n"
@@ -296,18 +320,19 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
                 "reply": f"你想让我扫描哪里？\n\n比如你可以说：\n  · 扫描 工作日记 文件夹\n  · 扫描 私人文件夹\n  · 扫描 公司服务器\n  · 扫描 新建文件夹",
                 "type": "ai",
             }
-        return {"reply": f"用法：/scan [目标]，例如 /scan 工作日记", "type": "command"}
+        return {"reply": f"用法：/scan [目标]，例如 /scan 工作日记", "type": "ai"}
 
     # 检查目标是否存在
     target_config = SCAN_TARGETS.get(target)
     if not target_config:
         return {
             "reply": f"我不知道你说的'{target}'在哪里。\n试试：扫描 工作日记、扫描 私人文件夹、扫描 公司服务器。",
-            "type": "command",
+            "type": "ai",
         }
 
     # ch1：任何明确扫描目标都导向 D 盘工作日记密码
     if chapter == 1:
+        game_state["awaiting_password"] = True
         return {
             "reply": (
                 "我找到了 D 盘的工作日记文件夹。\n\n"
@@ -322,13 +347,14 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
     if chapter < target_config.get("chapter_min", 1):
         return {
             "reply": "那个位置我还没有权限访问。先把能打开的文件夹都看看？",
-            "type": "command",
+            "type": "ai",
         }
 
     # 检查是否需要密码
     if target_config.get("need_password") and chapter < {
         "private": 3, "recordings": 4, "final": 6, "work-diary": 2,
     }.get(target, 99):
+        game_state["awaiting_password"] = True
         return {"reply": target_config["need_password"], "type": "ai", "password_prompt": True}
 
     # 检查是否已经全部解锁
@@ -743,6 +769,9 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
         new_state = pwd_result["config"].get("next_state")
         unlock_list = pwd_result["config"].get("unlocks", [])
 
+        # 密码已识别，清除等待状态
+        game_state["awaiting_password"] = False
+
         if new_chapter:
             game_state["chapter"] = new_chapter
         if new_state:
@@ -768,10 +797,23 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
                 f"新文件：{', '.join(file_names)}\n\n"
                 f"要我打开哪一个？"
             ),
-            "type": "password",
+            "type": "ai",
             "unlock": unlock_list,
             "memory_updated": True,
         }
+
+    # 正在等待密码输入，但本次没有匹配到任何密码：
+    # 若输入看起来像密码尝试 → 系统提示密码错误；否则取消等待，继续走正常流程
+    if game_state.get("awaiting_password"):
+        if _is_password_attempt(user_input):
+            game_state["awaiting_password"] = False
+            return {
+                "reply": "……密码不对。请再试一次。",
+                "type": "system",
+            }
+        else:
+            game_state["awaiting_password"] = False
+            # 继续走下方 Q&A / 意图 / 模板等流程
 
     # 3. 本地 Q&A 库匹配（RAG 轻量版：基础问题/超纲问题直接回答，节省 AI 调用）
     chapter = game_state.get("chapter", 1)
@@ -823,12 +865,20 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
                 "type": "ai",
             }
 
-    # 7. 缓存命中
+    # 7. 其他路径都不命中，但输入看起来像密码尝试 → 系统提示密码错误
+    if _is_password_attempt(user_input):
+        game_state["awaiting_password"] = False
+        return {
+            "reply": "……密码不对。请再试一次。",
+            "type": "system",
+        }
+
+    # 8. 缓存命中
     cached = cache_manager.get(user_input, chapter)
     if cached:
         return {"reply": cached, "type": "cache"}
 
-    # 8. 超纲拦截：常见外部世界问题直接拒绝，避免浪费 AI 额度
+    # 9. 超纲拦截：常见外部世界问题直接拒绝，避免浪费 AI 额度
     lowered = user_input.lower()
     out_of_scope_keywords = [
         "天气", "新闻", "股票", "基金", "特朗普", "拜登", "普京", "泽连斯基",
@@ -934,5 +984,6 @@ def new_game_state() -> dict:
         "files_read": [],
         "passwords_used": [],
         "mm_name_revealed": False,
+        "awaiting_password": False,
         "memory": memory.to_dict(),
     }

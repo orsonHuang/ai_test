@@ -4,6 +4,26 @@
 
 ---
 
+## 2026-07-09 · 消息类型严格校准：AI 对话 vs 系统提醒
+
+**背景：**
+M-M 台词（关键词模板、扫描回复等）被错误渲染为系统提示，破坏沉浸感。
+
+**后端：**
+- `engine/hybrid_reply.py` — 扫描/文件列表/密码正确等 M-M 口吻回复统一为 `type: ai`
+- `engine/hybrid_reply.py` — 新增 `awaiting_password` 状态与密码尝试识别，错误密码返回 `type: system`
+- `app.py` — API 响应增加 `password_prompt` 字段
+
+**前端：**
+- `index.html` — 消息类型映射：仅 `command`/`system` 走系统提示，其余默认 AI 对话
+- `index.html` — 解锁进度通知改为 `system` 类型
+- `index.html` — 初始 `gameState` 加入 `awaiting_password`
+
+**验证：**
+- "你是AI吗" → `ai`｜错误密码 → `system`｜正确密码 → `ai` + 系统解锁通知
+
+---
+
 ## 2026-07-09 · 前端交互优化：AI建议 / 头像切换 / 密码弹窗 / 动画入场
 
 **新增：**

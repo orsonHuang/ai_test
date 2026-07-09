@@ -224,30 +224,50 @@ hybrid_reply.generate_reply()
 
 ---
 
-## 2026-07-09 · 前端交互优化：AI建议 / 头像切换 / 密码弹窗 / 动画入场
+## 2026-07-09 · 消息类型严格校准：AI 对话 vs 系统提醒
 
 ### 背景
-用户体验测试发现多处前端交互问题：缺乏操作引导、头像固定为AI、默认文件树错误、密码输入不直观、系统提示破坏沉浸感、输入栏突兀出现。
+用户测试发现：M-M 的台词（如关键词模板回复）被渲染成系统提示（黄色居中文字），破坏角色沉浸感。需要严格区分：
+- M-M 的回复 → AI 对话气泡
+- 密码错误 / 解锁进度 → 系统提醒
+- 其他系统命令输出 → 系统提示
 
-### 改动清单
+### 后端改动
 
-| 序号 | 改动 | 文件 |
-|------|------|------|
-| 1 | **AI 建议提示栏** — 输入框上方新增 `#input-hint`，根据章节+已读文件动态推荐下一步操作（如"先打开 todolist.txt"、"试试输入 20240306"） | `index.html` |
-| 2 | **M-M 头像切换** — 阅读 `入职资料.txt` 或进入 `curious` 状态后，`mm_name_revealed` 置 true，AI 头像自动改为 M-M | `index.html`、`hybrid_reply.py` |
-| 3 | **默认文件系统修正** — 初始 `accessible_files` 从 `files/todolist.txt` 改为 `files/deck/todolist.txt` + `files/deck/入职资料.txt`，侧边栏正确显示 deck 文件夹 | `index.html` |
-| 4 | **"找文件"→密码弹窗** — Chapter 1 输入"找文件""找到D盘工作日记"等口语，M-M 以 AI 口吻回复 + 触发 `password_prompt`，前端弹出密码输入框 | `hybrid_reply.py`、`index.html` |
-| 5 | **系统提示→AI对话** — 关键词模板命中（`type: "rule_template"`）和扫描操作回复统一改为 `type: "ai"`，不再渲染成系统提示 | `hybrid_reply.py` |
-| 6 | **输入面板上升动画** — `#input-hint` + `#input-area` 包入 `#input-panel`，开场阶段 opacity:0 + 禁用交互，开场白结束后从底部淡入升起（0.5s ease） | `index.html` |
+| 文件 | 改动 |
+|------|------|
+| `engine/hybrid_reply.py` | 扫描相关 M-M 口吻回复（目标不存在/权限不足/文件列表/用法提示）全部改为 `type: "ai"` |
+| `engine/hybrid_reply.py` | 密码正确后的 M-M 台词改为 `type: "ai"`，解锁文件列表由前端单独渲染为系统提示 |
+| `engine/hybrid_reply.py` | 新增 `awaiting_password` 状态：扫描提示密码时置 true，正确识别后清除 |
+| `engine/hybrid_reply.py` | 新增 `_is_password_attempt` 密码尝试识别，错误密码返回 `type: "system"` |
+| `app.py` | API 响应增加 `password_prompt` 字段，前端弹窗依赖 |
 
-### 设计原则
-- AI 对话口吻始终成：M-M 说人话，不是系统输出
-- 新玩家无需猜测操作：动态建议引导每个阶段该做什么
-- 视觉节奏：系统启动→AI开场白→输入面板优雅入场
-- 密码输入体验：M-M 指出"有密码"→弹窗输入→填回输入框发送，流程连贯
+### 前端改动
+
+| 文件 | 改动 |
+|------|------|
+| `index.html` | 消息类型映射简化：仅 `command`/`system` 走系统提示，其余默认 AI 对话 |
+| `index.html` | 解锁进度通知 `新文件已解锁：...` 改为 `system` 类型 |
+| `index.html` | 初始 `gameState` 加入 `awaiting_password: false` |
+
+### 验证结果
+- ✅ "你是AI吗" → `type: ai`（AI 气泡）
+- ✅ "找文件" → `type: ai` + `password_prompt: true` + `awaiting_password: true`
+- ✅ 错误密码 → `type: system`（系统提示）
+- ✅ 正确密码 → `type: ai` + `unlock`（AI 气泡 + 系统解锁通知）
+- ✅ "/files" → `type: ai`（AI 气泡）
+- ✅ 非密码输入在密码等待状态下取消等待并继续正常流程
 
 ### 当前状态
-- ✅ 所有改动已在本地验证通过
-- ✅ 密码弹窗 + AI建议 + 头像切换联动正确
-- ✅ 输入面板启动动画正常（位置不动、仅淡入上升）
+- AI 对话与系统提示边界清晰，符合用户要求
+- 密码弹窗可通过 `password_prompt` 正确触发
+- 等待提交 Git
+
+### 改动文件
+- `engine/hybrid_reply.py`
+- `engine/rule_engine.py`（未改动，审计后无问题）
+- `app.py`
+- `index.html`
+- `CHANGELOG.md`
+- `GDD/08-iteration-log.md`
 
