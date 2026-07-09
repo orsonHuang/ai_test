@@ -18,11 +18,13 @@ awakening-demo/
 ├── setup.sh                          # 一键部署脚本
 ├── engine/                           # 核心引擎
 │   ├── __init__.py
-│   ├── hybrid_reply.py               # 混合模式核心
+│   ├── hybrid_reply.py               # 混合模式核心（RAG 调度器）
+│   ├── memory.py                     # AI-NPC 记忆系统
+│   ├── knowledge_search.py           # 知识库检索（RAG）
 │   ├── rule_engine.py                # 规则匹配
 │   ├── cache_manager.py              # 缓存管理
-│   ├── ai_fallback.py                # AI兜底（百炼API）
-│   ├── character_state.py            # AI人格状态机
+│   ├── ai_fallback.py                # AI 兜底（DeepSeek API）
+│   ├── character_state.py            # AI 人格状态机
 │   └── file_reader.py                # 知识库读取
 ├── knowledge/                        # 知识库（你主导）
 │   ├── files/                        # 虚拟文件
@@ -63,8 +65,11 @@ awakening-demo/
 # 1. 安装依赖
 pip install -r requirements.txt
 
-# 2. 设置API Key（可选，没设置也能跑规则模式）
-export DASHSCOPE_API_KEY="sk-sp-xxx"
+# 2. 设置 DeepSeek API Key（可选，没设置也能跑规则模式）
+# Windows PowerShell:
+$env:DEEPSEEK_API_KEY="sk-your-key-here"
+# Linux/Mac:
+export DEEPSEEK_API_KEY="sk-your-key-here"
 
 # 3. 启动
 python app.py
@@ -72,6 +77,9 @@ python app.py
 # 4. 浏览器打开
 # http://localhost:8080
 ```
+
+> 获取 API Key: [DeepSeek 开放平台](https://platform.deepseek.com/) → API Keys
+> 定价极低，一局游戏约 ¥0.02
 
 ### 服务器部署
 
@@ -87,17 +95,15 @@ bash setup.sh
 ## 当前阶段任务
 
 ### 你需要做的（按优先级）
-- [ ] **第一步**：填充 `GDD/03-story.md` - 决定核心秘密、电脑主人身份、AI名字
-- [ ] **第二步**：填充 `GDD/04-characters.md` - 玩家身份、详细角色卡
-- [ ] **第三步**：根据剧情，撰写 `knowledge/files/` 下的具体文件内容
-- [ ] **第四步**：调整 `knowledge/triggers/passwords.json` 设置真实密码
-- [ ] **第五步**：更新 `engine/ai_fallback.py` 中的角色卡prompt
+- [x] **第一步**：填充 GDD - 核心秘密、角色、流程（已完成 ✅）
+- [ ] **第二步**：撰写 `knowledge/files/` 下的知识库文件（todolist / 29天日记 / 录音 / 证据）
+- [ ] **第三步**：调整 `keyword-rules.json` 扩展关键词模板
+- [ ] **第四步**：设置真实密码到 `passwords.json`
 
 ### AI会做的（等你的内容就位后）
-- [ ] 优化 `engine/ai_fallback.py` 的角色卡
-- [ ] 撰写更多关键词模板到 `keyword-rules.json`
+- [ ] 优化 `engine/ai_fallback.py` 的角色卡 prompt
+- [ ] 完善 UI 动效
 - [ ] 增加单元测试
-- [ ] 完善UI动效
 
 ## 设计亮点
 

@@ -55,6 +55,8 @@ def chat():
             "chapter": game_state.get("chapter", 1),
             "unlock": result.get("unlock"),
             "file": result.get("file"),
+            "file_content": result.get("file_content"),
+            "file_list": result.get("file_list"),
         }
     )
 
@@ -114,6 +116,6 @@ if __name__ == "__main__":
     debug = os.environ.get("DEBUG", "0") == "1"
     print(f"=== Awakening Demo 启动 ===")
     print(f"端口: {port}")
-    print(f"AI配置: {'已配置' if __import__('engine.ai_fallback', fromlist=['is_configured']).is_configured() else '未配置'}")
+    print(f"AI配置: {'已配置' if __import__('engine.ai_fallback', fromlist=['is_configured']).is_configured() else '未配置（设置 DEEPSEEK_API_KEY）'}")
     print(f"浏览器打开: http://localhost:{port}")
     app.run(host="0.0.0.0", port=port, debug=debug)

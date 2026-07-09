@@ -78,6 +78,45 @@
 
 ---
 
+---
+
+## 2026-07-08 - P0 核心剧情决策完成 + GDD 文档填充
+
+**完成内容：**
+- ✅ P0 全部9项核心决策确定（故事方向、主人身份、AI名字、玩家身份、角色设定、密码系统、叙事结构）
+- ✅ GDD/01-concept.md — 核心Hook更新为外星人悬疑
+- ✅ GDD/02-gameplay.md — 文件解锁机制适配5层系统
+- ✅ GDD/03-story.md — 完整重写（29天日记设计+6章节+对话样本+4结局）
+- ✅ GDD/04-characters.md — 完整重写（M-M 5阶段人格+4个北斗七星角色+玩家角色）
+- ✅ GDD/05-flow.md — 完整重写（每分钟事件表+状态切换条件+情绪曲线）
+- ✅ knowledge/characters/awakening-ai.md — 角色卡更新为M-M
+- ✅ knowledge/triggers/passwords.json — 更新为3层密码系统结构
+
+**当前状态：**
+- 阶段3内容创作 — P0决策完成，GDD文档全部填充完毕
+- 下一批工作：撰写知识库文件（29天日记、入职资料、录音转写、证据包）
+
+---
+
+## 2026-07-08 - RAG 架构改造：AI-NPC 知识库智能回答
+
+**完成内容：**
+- ✅ 新建 `engine/memory.py` — M-M 记忆系统（可访问文件/已读/事实/观察/发现/理解摘要）
+- ✅ 新建 `engine/knowledge_search.py` — 知识库检索（分块+Jaccard相似度+Top-K）
+- ✅ 重写 `engine/ai_fallback.py` — RAG Prompt 三层注入（角色卡+记忆+检索知识）
+- ✅ 重写 `engine/hybrid_reply.py` — 整合 Memory 生命周期（文件读→记忆，密码→解锁，AI回复→迭代）
+- ✅ 改造 `engine/file_reader.py` — 新增 `resolve_file_path` + `get_file_summary`
+- ✅ 修复 Python 3.9 兼容性（cache_manager.py / rule_engine.py / ai_fallback.py）
+- ✅ 更新 `AGENT.md` — 新架构文档
+- ✅ 全部模块导入和基础调用验证通过
+
+**新架构数据流：**
+```
+对话 → hybrid_reply → AI-RAG → 角色卡 + 记忆 + 知识检索 → AI模型 → 迭代记忆 → 反馈
+```
+
+---
+
 ## 关键文件清单
 
 ### 设计文档（GDD/）

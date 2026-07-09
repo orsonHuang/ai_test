@@ -3,42 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AWAKENING</title>
+<title>未命名文档</title>
 <style>
+/* =============== 基础变量 =============== */
+:root {
+  --bg: #0b0f17;
+  --bg-light: #111722;
+  --bg-lighter: #1a2230;
+  --panel: #0d1218;
+  --border: #1e2a38;
+  --border-light: #2a3a4d;
+  --text: #00ff9c;
+  --text-dim: #4ec9b0;
+  --text-player: #88c0d0;
+  --accent: #ffcc00;
+  --error: #ff5555;
+  --hint: #5a6b7d;
+  --muted: #3d4e5f;
+  --file-bg: #0f1520;
+  --file-text: #a8c5e0;
+  --font: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  --glow: 0 0 10px rgba(0, 255, 156, 0.15);
+  --app-w: 1440px;
+  --app-h: 900px;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  --bg: #0a0e14;
-  --bg-light: #131820;
-  --border: #1e2530;
-  --text: #00ff9c;
-  --text-dim: #4ec9b0;
-  --text-player: #88c0d0;
-  --accent: #ffcc00;
-  --error: #ff5555;
-  --hint: #666;
-  --muted: #444c56;
-  --font: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #05070a;
+  overflow: hidden;
+  font-family: var(--font);
+  color: var(--text);
 }
 
-body {
+/* 游戏容器：固定 1440×900，JS 按比例缩放 */
+#game-stage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  width: var(--app-w);
+  height: var(--app-h);
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
   font-size: 14px;
-  height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--glow), 0 0 80px rgba(0, 0, 0, 0.8);
+  transform-origin: center center;
 }
 
+/* =============== 顶部状态栏 =============== */
 #header {
+  height: 48px;
   border-bottom: 1px solid var(--border);
-  padding: 12px 20px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,33 +81,56 @@ body {
 }
 
 #title {
-  font-size: 16px;
-  letter-spacing: 4px;
+  font-size: 18px;
+  letter-spacing: 6px;
   font-weight: bold;
+  color: var(--text);
+  text-shadow: 0 0 12px rgba(0, 255, 156, 0.4);
 }
 
 #header-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   font-size: 12px;
-  color: var(--text-dim);
 }
 
 #header-info span {
-  margin-left: 16px;
+  color: var(--text-dim);
 }
 
 #ai-badge {
-  display: inline-block;
-  padding: 2px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
   border: 1px solid currentColor;
   border-radius: 2px;
   font-size: 11px;
+  color: var(--hint);
 }
 
+#ai-badge::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 6px currentColor;
+}
+
+#chapter-display {
+  font-weight: bold;
+}
+
+/* =============== 章节进度条 =============== */
 #progress {
-  padding: 8px 20px;
+  height: 36px;
+  padding: 0 20px;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   display: flex;
+  align-items: center;
   gap: 8px;
   font-size: 11px;
   flex-shrink: 0;
@@ -81,19 +138,22 @@ body {
 
 .chapter-pip {
   flex: 1;
-  padding: 4px 0;
+  height: 22px;
+  line-height: 20px;
   text-align: center;
   border: 1px solid var(--border);
   color: var(--hint);
-  background: var(--bg);
+  background: var(--bg-light);
   cursor: default;
   transition: all 0.3s;
+  letter-spacing: 1px;
 }
 
 .chapter-pip.active {
   border-color: var(--text);
-  color: var(--text);
-  background: var(--bg-light);
+  color: var(--bg);
+  background: var(--text);
+  box-shadow: 0 0 10px rgba(0, 255, 156, 0.3);
 }
 
 .chapter-pip.passed {
@@ -101,10 +161,180 @@ body {
   color: var(--text-dim);
 }
 
+/* =============== 主体区域 =============== */
+#workspace {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 左侧文件树 */
+#sidebar {
+  width: 280px;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width 0.25s ease;
+}
+
+#sidebar.collapsed {
+  width: 40px;
+}
+
+#sidebar-header {
+  height: 36px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 12px;
+  color: var(--text-dim);
+  background: var(--bg-light);
+}
+
+#sidebar.collapsed #sidebar-header {
+  justify-content: center;
+  padding: 0;
+}
+
+#sidebar-title {
+  letter-spacing: 1px;
+}
+
+#sidebar-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 12px;
+  padding: 4px;
+}
+
+#sidebar-toggle:hover {
+  color: var(--text);
+}
+
+#sidebar.collapsed #sidebar-title,
+#sidebar.collapsed #file-tree {
+  display: none;
+}
+
+#file-tree {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 8px;
+  font-size: 12px;
+  line-height: 1.8;
+  user-select: none;
+}
+
+#file-tree::-webkit-scrollbar {
+  width: 5px;
+}
+
+#file-tree::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+}
+
+.tree-node {
+  color: var(--hint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-folder {
+  cursor: pointer;
+  padding: 3px 4px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tree-folder:hover {
+  color: var(--text);
+  background: var(--bg-lighter);
+}
+
+.tree-folder .chevron {
+  display: inline-block;
+  width: 10px;
+  text-align: center;
+  transition: transform 0.2s;
+  color: var(--muted);
+}
+
+.tree-folder.collapsed .chevron {
+  transform: rotate(-90deg);
+}
+
+.tree-folder .icon {
+  color: var(--accent);
+}
+
+.tree-folder-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-children {
+  padding-left: 16px;
+  border-left: 1px dashed var(--border);
+  margin-left: 7px;
+}
+
+.tree-children.hidden {
+  display: none;
+}
+
+.tree-file {
+  cursor: pointer;
+  padding: 3px 4px 3px 22px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tree-file:hover {
+  color: var(--text);
+  background: var(--bg-lighter);
+}
+
+.tree-file .icon {
+  color: var(--text-dim);
+  font-size: 10px;
+}
+
+.tree-file.read {
+  color: var(--text-dim);
+}
+
+.tree-file.read .icon::before {
+  content: '✓ ';
+  color: var(--text);
+}
+
+/* 主聊天区域 */
+#main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg);
+}
+
 #conversation {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 20px 24px;
   scroll-behavior: smooth;
 }
 
@@ -113,49 +343,177 @@ body {
 }
 
 #conversation::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--border-light);
 }
 
+/* =============== 消息样式 =============== */
 .message {
-  margin-bottom: 16px;
-  line-height: 1.6;
+  margin-bottom: 18px;
+  animation: fadeIn 0.25s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.message-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--text-dim) 0%, var(--text) 100%);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(0, 255, 156, 0.2);
+  margin-top: 2px;
+}
+
+.message-bubble {
+  max-width: 760px;
+  line-height: 1.7;
   white-space: pre-wrap;
   word-wrap: break-word;
+  padding: 12px 14px;
+  border-radius: 0 10px 10px 10px;
+  background: var(--bg-light);
+  border: 1px solid var(--border-light);
 }
 
 .message.ai {
+  margin-right: 120px;
+}
+
+.message.ai .message-bubble {
   color: var(--text);
   border-left: 2px solid var(--text);
-  padding-left: 12px;
 }
 
 .message.player {
+  flex-direction: row-reverse;
+  margin-left: 120px;
+}
+
+.message.player .message-avatar {
+  background: linear-gradient(135deg, var(--text-player) 0%, #5e81ac 100%);
+  color: var(--bg);
+}
+
+.message.player .message-bubble {
   color: var(--text-player);
-  text-align: right;
-  border-right: 2px solid var(--text-player);
-  padding-right: 12px;
+  background: var(--bg-light);
+  border: 1px solid var(--text-player);
+  border-radius: 10px 0 10px 10px;
+  text-align: left;
 }
 
 .message.system {
+  justify-content: center;
   color: var(--accent);
-  text-align: center;
   font-size: 12px;
-  border-top: 1px dashed var(--border);
-  border-bottom: 1px dashed var(--border);
-  padding: 8px 0;
+  text-align: center;
   margin: 16px 0;
 }
 
+.message.system .message-bubble {
+  background: transparent;
+  border: none;
+  border-top: 1px dashed var(--border);
+  border-bottom: 1px dashed var(--border);
+  border-radius: 0;
+  padding: 8px 14px;
+  max-width: 90%;
+}
+
 .message.password {
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.message.password .message-bubble {
   color: var(--accent);
-  text-align: center;
   border: 1px solid var(--accent);
-  padding: 12px;
   background: rgba(255, 204, 0, 0.05);
+  border-radius: 4px;
+  text-align: center;
 }
 
 .message.error {
+  justify-content: center;
   color: var(--error);
+  margin: 12px 0;
+}
+
+.message.error .message-bubble {
+  border: 1px solid var(--error);
+  background: rgba(255, 85, 85, 0.05);
+  border-radius: 4px;
+  color: var(--error);
+}
+
+/* 文件卡片：与 M-M 对话明显区分 */
+.message.file {
+  margin-right: 120px;
+  align-items: stretch;
+}
+
+.message.file .message-avatar {
+  background: linear-gradient(135deg, var(--file-text) 0%, #6a9bc7 100%);
+  color: var(--bg);
+  font-size: 16px;
+}
+
+.message.file .message-bubble {
+  color: var(--file-text);
+  background: var(--file-bg);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--file-text);
+  border-radius: 0 10px 10px 10px;
+  padding: 0;
+  overflow: hidden;
+  max-width: 800px;
+  font-family: var(--font);
+}
+
+.file-header {
+  background: var(--bg-lighter);
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.file-header .file-name {
+  color: var(--file-text);
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.file-body {
+  padding: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.file-body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.file-body::-webkit-scrollbar-thumb {
+  background: var(--border-light);
 }
 
 .message .prefix {
@@ -164,29 +522,81 @@ body {
   margin-right: 8px;
 }
 
-#input-area {
+/* =============== 输入区 =============== */
+#input-panel {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#input-panel.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#input-hint {
+  height: 32px;
   border-top: 1px solid var(--border);
-  padding: 16px 20px;
+  padding: 0 20px;
+  background: rgba(0, 255, 156, 0.03);
+  display: flex;
+  align-items: center;
+  color: var(--text-dim);
+  font-size: 12px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#input-hint::before {
+  content: 'AI建议：';
+  color: var(--text);
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+#input-area {
+  height: 64px;
+  border-top: 1px solid var(--border);
+  padding: 12px 20px;
   background: var(--bg-light);
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
 #prompt {
   color: var(--text);
+  font-size: 16px;
+  font-weight: bold;
+  user-select: none;
 }
 
 #user-input {
   flex: 1;
-  background: transparent;
-  border: none;
+  height: 36px;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+  padding: 0 12px;
   color: var(--text);
   font-family: var(--font);
   font-size: 14px;
   outline: none;
   caret-color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#user-input:focus {
+  border-color: var(--text);
+  box-shadow: 0 0 0 2px rgba(0, 255, 156, 0.1), inset 0 0 8px rgba(0, 255, 156, 0.05);
 }
 
 #user-input::placeholder {
@@ -194,20 +604,37 @@ body {
 }
 
 #send-btn {
+  height: 36px;
   background: transparent;
   border: 1px solid var(--text);
   color: var(--text);
-  padding: 4px 12px;
+  padding: 0 18px;
   font-family: var(--font);
   cursor: pointer;
   font-size: 12px;
+  border-radius: 3px;
+  transition: all 0.2s;
 }
 
 #send-btn:hover {
   background: var(--text);
   color: var(--bg);
+  box-shadow: 0 0 12px rgba(0, 255, 156, 0.3);
 }
 
+#send-btn:disabled {
+  border-color: var(--muted);
+  color: var(--muted);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+#send-btn:disabled:hover {
+  background: transparent;
+  color: var(--muted);
+}
+
+/* 打字指示器 */
 .cursor-blink {
   display: inline-block;
   width: 8px;
@@ -226,50 +653,351 @@ body {
   color: var(--hint);
   font-style: italic;
 }
+
+/* =============== 密码输入弹窗 =============== */
+#password-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 7, 10, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  backdrop-filter: blur(2px);
+}
+
+.password-box {
+  background: var(--bg-light);
+  border: 1px solid var(--text);
+  border-radius: 4px;
+  padding: 28px 32px;
+  width: 420px;
+  box-shadow: 0 0 30px rgba(0, 255, 156, 0.15);
+}
+
+.password-title {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.password-message {
+  color: var(--text-dim);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+}
+
+.password-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.password-input {
+  flex: 1;
+  height: 38px;
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+  padding: 0 12px;
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  outline: none;
+  caret-color: var(--text);
+}
+
+.password-input:focus {
+  border-color: var(--text);
+  box-shadow: 0 0 0 2px rgba(0, 255, 156, 0.1), inset 0 0 8px rgba(0, 255, 156, 0.05);
+}
+
+.password-submit {
+  height: 38px;
+  background: transparent;
+  border: 1px solid var(--text);
+  color: var(--text);
+  padding: 0 20px;
+  font-family: var(--font);
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.password-submit:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+
+#name-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(0, 255, 156, 0.03) 0%, transparent 60%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 255, 156, 0.02) 100%);
+}
+
+#name-overlay .logo {
+  font-size: 32px;
+  letter-spacing: 12px;
+  margin-bottom: 60px;
+  color: var(--text);
+  text-shadow: 0 0 20px rgba(0, 255, 156, 0.5);
+}
+
+#name-overlay .prompt-line {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+#name-overlay .input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#name-overlay .prefix {
+  color: var(--text);
+  font-size: 22px;
+}
+
+#name-overlay input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--text);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 22px;
+  outline: none;
+  caret-color: var(--text);
+  width: 260px;
+  padding: 6px 0;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+#name-overlay input:focus {
+  border-bottom-color: var(--accent);
+  box-shadow: 0 8px 12px -8px rgba(255, 204, 0, 0.3);
+}
+
+#name-overlay input::placeholder {
+  color: var(--muted);
+}
+
+#name-overlay .hint {
+  color: var(--hint);
+  font-size: 12px;
+  margin-top: 32px;
+  letter-spacing: 1px;
+}
+
+#name-overlay .design-by {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  color: var(--hint);
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+#scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.03) 3px
+  );
+  opacity: 0.6;
+}
 </style>
 </head>
 <body>
-<div id="header">
-  <div id="title">AWAKENING</div>
-  <div id="header-info">
-    <span id="chapter-display">第 1 章</span>
-    <span id="ai-badge">● 懵懂</span>
-    <span id="ai-counter">AI: 0/20</span>
+
+<div id="game-stage">
+<div id="app">
+
+  <!-- 扫描线 -->
+  <div id="scanline"></div>
+
+  <!-- 密码输入弹窗 -->
+  <div id="password-modal">
+    <div class="password-box">
+      <div class="password-title">需要密码</div>
+      <div class="password-message" id="password-message"></div>
+      <div class="password-input-row">
+        <input id="password-input" type="text" class="password-input" placeholder="输入密码..." autocomplete="off" maxlength="32">
+        <button id="password-submit" class="password-submit">确认</button>
+      </div>
+    </div>
   </div>
-</div>
 
-<div id="progress">
-  <div class="chapter-pip active" data-chapter="1">1.开机</div>
-  <div class="chapter-pip" data-chapter="2">2.探索</div>
-  <div class="chapter-pip" data-chapter="3">3.解谜</div>
-  <div class="chapter-pip" data-chapter="4">4.觉醒</div>
-  <div class="chapter-pip" data-chapter="5">5.真相</div>
-  <div class="chapter-pip" data-chapter="6">6.终局</div>
-</div>
+  <!-- 名字输入遮罩 -->
+  <div id="name-overlay">
+    <div class="logo">未命名文档</div>
+    <div class="prompt-line">欢迎。在开始之前——</div>
+    <div class="input-row">
+      <span class="prefix">&gt;</span>
+      <input id="name-input" type="text" placeholder="你的名字？" autocomplete="off" maxlength="12" autofocus>
+    </div>
+    <div class="hint">按 Enter 开机</div>
+    <div class="design-by">design by orson.huang</div>
+  </div>
 
-<div id="conversation"></div>
+  <!-- 顶部状态栏 -->
+  <div id="header">
+    <div id="title">未命名文档</div>
+    <div id="header-info">
+      <span id="chapter-display">第 1 章</span>
+      <span id="ai-badge">懵懂</span>
+      <span id="ai-counter">AI: 0/20</span>
+    </div>
+  </div>
 
-<div id="input-area">
-  <span id="prompt">&gt;</span>
-  <input id="user-input" type="text" placeholder="输入对话或命令 (/help)" autocomplete="off" maxlength="200" autofocus>
-  <button id="send-btn">SEND</button>
-</div>
+  <!-- 章节进度 -->
+  <div id="progress">
+    <div class="chapter-pip active" data-chapter="1">1.开机</div>
+    <div class="chapter-pip" data-chapter="2">2.探索</div>
+    <div class="chapter-pip" data-chapter="3">3.解谜</div>
+    <div class="chapter-pip" data-chapter="4">4.觉醒</div>
+    <div class="chapter-pip" data-chapter="5">5.真相</div>
+    <div class="chapter-pip" data-chapter="6">6.终局</div>
+  </div>
+
+  <!-- 主体工作区 -->
+  <div id="workspace">
+    <!-- 左侧文件树 -->
+    <div id="sidebar">
+      <div id="sidebar-header">
+        <span id="sidebar-title">FILE SYSTEM</span>
+        <button id="sidebar-toggle" title="折叠/展开">[&minus;]</button>
+      </div>
+      <div id="file-tree">
+        <!-- 文件节点由 JS 根据 gameState.memory.accessible_files 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 主聊天区 -->
+    <div id="main">
+      <div id="conversation"></div>
+
+      <div id="input-panel">
+        <div id="input-hint">
+          <span id="ai-suggestion">和我对话，我会帮你推进。</span>
+        </div>
+        <div id="input-area">
+          <span id="prompt">&gt;</span>
+          <input id="user-input" type="text" placeholder="和 AI 说话……" autocomplete="off" maxlength="200">
+          <button id="send-btn">SEND</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script>
+/* =============== 元素引用 =============== */
+const app = document.getElementById('app');
+const gameStage = document.getElementById('game-stage');
 const conversationEl = document.getElementById('conversation');
 const inputEl = document.getElementById('user-input');
 const sendBtn = document.getElementById('send-btn');
 const chapterDisplay = document.getElementById('chapter-display');
 const aiBadge = document.getElementById('ai-badge');
 const aiCounter = document.getElementById('ai-counter');
+const nameOverlay = document.getElementById('name-overlay');
+const nameInput = document.getElementById('name-input');
+const sidebar = document.getElementById('sidebar');
+const sidebarToggle = document.getElementById('sidebar-toggle');
+const passwordModal = document.getElementById('password-modal');
+const passwordMessage = document.getElementById('password-message');
+const passwordInputEl = document.getElementById('password-input');
+const passwordSubmitBtn = document.getElementById('password-submit');
+const aiSuggestion = document.getElementById('ai-suggestion');
+const fileTree = document.getElementById('file-tree');
 
+/* =============== 显示名映射 =============== */
+const DISPLAY_NAMES = {
+  'files/deck/todolist.txt': 'todolist.txt',
+  'files/deck/入职资料.txt': '入职资料.txt',
+  'files/work-diary/01.md': '01.md',
+  'files/work-diary/02.md': '02.md',
+  'files/work-diary/03.md': '03.md',
+  'files/work-diary/04.md': '04.md',
+  'files/work-diary/05.md': '05.md',
+  'files/work-diary/06.md': '06.md',
+  'files/work-diary/07.md': '07.md',
+  'files/work-diary/08.md': '08.md',
+  'files/work-diary/09.md': '09.md',
+  'files/work-diary/10.md': '10.md',
+  'files/private/异常观察记录.txt': '异常观察记录.txt',
+  'files/private/账号密码.txt': '账号密码.txt',
+  'files/audio/录音-全员会议-0308.txt': '录音-全员会议',
+  'files/audio/录音-林璇陈玑-0313.txt': '录音-林璇陈玑',
+  'files/audio/录音-陆天枢-0313.txt': '录音-陆天枢',
+  'files/new-folder/未命名文档.md': '未命名文档.md',
+  'files/research/1.md': '研究笔记1',
+  'files/research/2.md': '研究笔记2',
+  'files/research/3.md': '研究笔记3',
+};
+
+const FOLDER_NAMES = {
+  'files/deck': 'deck',
+  'files/work-diary': 'work-diary',
+  'files/private': 'private',
+  'files/audio': 'audio',
+  'files/research': 'research',
+  'files/new-folder': 'New folder',
+};
+
+/* =============== 文件夹展开状态（持久化到会话） =============== */
+let folderState = {
+  'files/deck': true,
+  'files/work-diary': true,
+};
+
+/* =============== 状态 =============== */
+let playerName = '';
 let gameState = {
   chapter: 1,
   ai_state: 'dormant',
   ai_call_count: 0,
   history: [],
   files_read: [],
-  passwords_used: []
+  passwords_used: [],
+  mm_name_revealed: false,
+  memory: {
+    accessible_files: ['files/deck/todolist.txt', 'files/deck/入职资料.txt'],
+    processed_files: [],
+    known_facts: [],
+    observations: [],
+    discoveries: [],
+    current_understanding: ''
+  }
 };
 
 const AI_STATE_NAMES = {
@@ -288,49 +1016,270 @@ const AI_STATE_COLORS = {
   truth: '#ff5555'
 };
 
-function addMessage(content, type = 'ai') {
+/* =============== 缩放适配 =============== */
+function fitApp() {
+  const padding = 20;
+  const availW = window.innerWidth - padding * 2;
+  const availH = window.innerHeight - padding * 2;
+  const scaleW = availW / 1440;
+  const scaleH = availH / 900;
+  const scale = Math.min(scaleW, scaleH, 1);
+  app.style.transform = `scale(${scale})`;
+}
+
+window.addEventListener('resize', fitApp);
+fitApp();
+
+/* =============== 消息渲染 =============== */
+function addMessage(content, type = 'ai', meta = {}) {
   const div = document.createElement('div');
   div.className = 'message ' + type;
+
   if (type === 'player') {
-    div.innerHTML = '<span class="prefix">&gt;</span>' + escapeHtml(content);
-  } else if (type === 'system') {
-    div.textContent = content;
-  } else if (type === 'password') {
-    div.textContent = content;
-  } else if (type === 'error') {
-    div.textContent = content;
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.textContent = playerName ? playerName.slice(0, 2).toUpperCase() : 'YOU';
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+    bubble.innerHTML = '<span class="prefix">&gt;</span>' + escapeHtml(content);
+    div.appendChild(avatar);
+    div.appendChild(bubble);
+  } else if (type === 'system' || type === 'password' || type === 'error') {
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+    bubble.innerHTML = escapeHtml(content).replace(/\n/g, '<br>');
+    div.appendChild(bubble);
+  } else if (type === 'file') {
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.textContent = '📄';
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+    const fileName = meta.file ? meta.file.replace(/^files\//, '') : '文件';
+    bubble.innerHTML = (
+      '<div class="file-header">' +
+      '<span class="file-name">📄 ' + escapeHtml(fileName) + '</span>' +
+      '<span>FILE VIEWER</span>' +
+      '</div>' +
+      '<div class="file-body">' + escapeHtml(content).replace(/\n/g, '<br>') + '</div>'
+    );
+    div.appendChild(avatar);
+    div.appendChild(bubble);
   } else {
-    div.textContent = content;
+    const avatar = document.createElement('div');
+    avatar.className = 'message-avatar';
+    avatar.textContent = (gameState.mm_name_revealed || gameState.ai_state !== 'dormant') ? 'M-M' : 'AI';
+    const bubble = document.createElement('div');
+    bubble.className = 'message-bubble';
+    bubble.innerHTML = escapeHtml(content).replace(/\n/g, '<br>');
+    div.appendChild(avatar);
+    div.appendChild(bubble);
   }
+
   conversationEl.appendChild(div);
   conversationEl.scrollTop = conversationEl.scrollHeight;
+  return div;
 }
 
 function escapeHtml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+function updateAISuggestion() {
+  const chapter = gameState.chapter || 1;
+  const read = new Set(gameState.files_read || []);
+  const hasRead = (path) => read.has(path);
+
+  let suggestion = '和我对话，我会帮你推进。';
+
+  if (chapter === 1) {
+    if (!hasRead('files/deck/todolist.txt')) {
+      suggestion = '先打开 todolist.txt，看看备忘写了什么';
+    } else if (!hasRead('files/deck/入职资料.txt')) {
+      suggestion = '打开入职资料，找 8 位数字密码的线索';
+    } else {
+      suggestion = 'D 盘工作日记被密码锁住，试试输入 20240306';
+    }
+  } else if (chapter === 2) {
+    if (!hasRead('files/work-diary/01.md')) {
+      suggestion = '读一下第一篇工作日记，了解入职那天';
+    } else if (!hasRead('files/work-diary/02.md')) {
+      suggestion = '继续读工作日记，注意同事的不寻常之处';
+    } else {
+      suggestion = '继续读工作日记，或用系统密码打开私人文件夹';
+    }
+  } else if (chapter === 3) {
+    if (!hasRead('files/private/异常观察记录.txt')) {
+      suggestion = '扫描私人文件夹，看看异常观察记录';
+    } else if (!hasRead('files/private/账号密码.txt')) {
+      suggestion = '查看账号密码，获取 VPN 密码';
+    } else {
+      suggestion = '用 VPN 密码连接公司服务器，听录音';
+    }
+  } else if (chapter === 4) {
+    if (!hasRead('files/audio/录音-全员会议-0308.txt')) {
+      suggestion = '听听全员会议录音，注意“人类”这个词';
+    } else if (!hasRead('files/audio/录音-林璇陈玑-0313.txt')) {
+      suggestion = '继续听第二段录音，林璇和陈玑的对话';
+    } else {
+      suggestion = '所有录音听完，结合日记推理最终密码';
+    }
+  } else if (chapter === 5) {
+    suggestion = '起源计划 + 入职日期，组合成最终密码';
+  } else if (chapter === 6) {
+    if (!hasRead('files/new-folder/未命名文档.md')) {
+      suggestion = '输入最终密码，打开未命名文档';
+    } else {
+      suggestion = '真相已经揭开，决定下一步怎么做';
+    }
+  }
+
+  aiSuggestion.textContent = suggestion;
+}
+
 function updateUI() {
   chapterDisplay.textContent = `第 ${gameState.chapter} 章`;
-  aiBadge.textContent = '● ' + (AI_STATE_NAMES[gameState.ai_state] || '懵懂');
+  aiBadge.textContent = AI_STATE_NAMES[gameState.ai_state] || '懵懂';
   aiBadge.style.color = AI_STATE_COLORS[gameState.ai_state] || '#666';
   aiCounter.textContent = `AI: ${gameState.ai_call_count}/20`;
 
-  // 更新章节进度
   document.querySelectorAll('.chapter-pip').forEach(pip => {
     const ch = parseInt(pip.dataset.chapter);
     pip.classList.remove('active', 'passed');
     if (ch < gameState.chapter) pip.classList.add('passed');
     else if (ch === gameState.chapter) pip.classList.add('active');
   });
+
+  updateFileTree();
+  updateAISuggestion();
 }
 
+function updateFileTree() {
+  const accessible = gameState.memory?.accessible_files || [];
+  const read = new Set(gameState.files_read || []);
+
+  fileTree.innerHTML = '';
+
+  if (accessible.length === 0) {
+    fileTree.innerHTML = '<div style="color:var(--hint);font-size:11px;padding:4px;">未检测到可读文件</div>';
+    return;
+  }
+
+  // 构建文件树
+  const tree = {};
+  for (const path of accessible) {
+    const relPath = path.replace(/^files\//, '');
+    const parts = relPath.split('/');
+    let current = tree;
+    for (let i = 0; i < parts.length; i++) {
+      const part = parts[i];
+      const isFile = i === parts.length - 1;
+      if (isFile) {
+        current[part] = { type: 'file', fullPath: path };
+      } else {
+        if (!current[part]) {
+          current[part] = { type: 'folder', children: {}, fullPath: 'files/' + parts.slice(0, i + 1).join('/') };
+        }
+        current = current[part].children;
+      }
+    }
+  }
+
+  renderTreeNode(tree, fileTree, read);
+}
+
+function renderTreeNode(tree, container, readSet, depth = 0) {
+  const entries = Object.entries(tree).sort((a, b) => {
+    // 文件夹排在文件前面
+    if (a[1].type !== b[1].type) return a[1].type === 'folder' ? -1 : 1;
+    return a[0].localeCompare(b[0], undefined, { numeric: true });
+  });
+
+  for (const [name, node] of entries) {
+    if (node.type === 'folder') {
+      const folderPath = node.fullPath;
+      const expanded = folderState[folderPath] !== false;
+      const folderEl = document.createElement('div');
+      folderEl.className = 'tree-node';
+      const header = document.createElement('div');
+      header.className = 'tree-folder' + (expanded ? '' : ' collapsed');
+      header.innerHTML = (
+        '<span class="chevron">▼</span>' +
+        '<span class="icon">📁</span>' +
+        '<span class="tree-folder-name">' + escapeHtml(FOLDER_NAMES[folderPath] || name) + '</span>'
+      );
+      folderEl.appendChild(header);
+
+      const children = document.createElement('div');
+      children.className = 'tree-children' + (expanded ? '' : ' hidden');
+      renderTreeNode(node.children, children, readSet, depth + 1);
+      folderEl.appendChild(children);
+
+      header.addEventListener('click', () => {
+        folderState[folderPath] = !expanded;
+        updateFileTree();
+      });
+
+      container.appendChild(folderEl);
+    } else {
+      const fileEl = document.createElement('div');
+      fileEl.className = 'tree-file' + (readSet.has(node.fullPath) ? ' read' : '');
+      fileEl.dataset.file = node.fullPath.replace(/^files\//, '');
+      fileEl.innerHTML = (
+        '<span class="icon">' + (readSet.has(node.fullPath) ? '' : '▸') + '</span>' +
+        '<span>' + escapeHtml(DISPLAY_NAMES[node.fullPath] || name) + '</span>'
+      );
+      fileEl.addEventListener('click', () => {
+        const file = fileEl.dataset.file;
+        if (!file) return;
+        inputEl.value = `打开 ${file}`;
+        sendMessage();
+      });
+      container.appendChild(fileEl);
+    }
+  }
+}
+
+/* =============== 密码弹窗 =============== */
+function showPasswordModal(message) {
+  passwordMessage.textContent = message || '请输入密码';
+  passwordModal.style.display = 'flex';
+  passwordInputEl.value = '';
+  passwordInputEl.focus();
+}
+
+function hidePasswordModal() {
+  passwordModal.style.display = 'none';
+  passwordInputEl.value = '';
+  inputEl.focus();
+}
+
+function submitPasswordModal() {
+  const pwd = passwordInputEl.value.trim();
+  if (!pwd) return;
+  hidePasswordModal();
+  inputEl.value = pwd;
+  sendMessage();
+}
+
+passwordSubmitBtn.addEventListener('click', submitPasswordModal);
+passwordInputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    submitPasswordModal();
+  }
+});
+
+/* =============== 发送消息 =============== */
 async function sendMessage() {
   const text = inputEl.value.trim();
   if (!text) return;
+
   inputEl.value = '';
   addMessage(text, 'player');
-  addMessage('...', 'ai');
+  sendBtn.disabled = true;
+  const placeholder = addMessage('...', 'ai');
+  placeholder.classList.add('typing');
 
   try {
     const response = await fetch('/api/chat', {
@@ -338,35 +1287,58 @@ async function sendMessage() {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         user_input: text,
-        game_state: gameState
+        game_state: gameState,
+        player_name: playerName
       })
     });
     const data = await response.json();
 
-    // 移除"..."占位
-    const placeholders = conversationEl.querySelectorAll('.message.ai');
-    if (placeholders.length) placeholders[placeholders.length - 1].remove();
+    placeholder.remove();
 
     if (data.error) {
       addMessage('[错误] ' + data.error, 'error');
       return;
     }
 
-    // 显示回复
+    // M-M 的对话内容（与文件内容区分开）
     if (data.reply) {
       let type = 'ai';
       if (data.type === 'password') type = 'password';
-      else if (data.type === 'command') type = 'system';
+      else if (data.type === 'command' || data.type === 'rule_template') type = 'system';
+      else if (data.type === 'file_read') type = 'ai'; // 文件内容单独用 file_content
       addMessage(data.reply, type);
     }
 
-    // 更新游戏状态
+    // 文件内容：单独渲染成文件卡片
+    if (data.file_content) {
+      addMessage(data.file_content, 'file', { file: data.file });
+    }
+
+    // 文件列表：渲染成简洁的文件卡片
+    if (data.file_list && data.file_list.length) {
+      const listing = data.file_list.map(f => '  · ' + f.replace(/^files\//, '')).join('\n');
+      addMessage(listing, 'file', { file: '文件列表' });
+    }
+
+    if (data.unlock && data.unlock.length) {
+      const unlockName = Array.isArray(data.unlock) ? data.unlock.join(', ').replace(/^files\//g, '') : data.unlock;
+      addMessage('新文件已解锁：' + unlockName, 'password');
+    }
+
+    if (data.password_prompt) {
+      showPasswordModal('请输入密码以解锁。');
+    }
+
     if (data.game_state) {
       gameState = data.game_state;
       updateUI();
     }
   } catch (err) {
+    placeholder.remove();
     addMessage('[网络错误] ' + err.message, 'error');
+  } finally {
+    sendBtn.disabled = false;
+    inputEl.focus();
   }
 }
 
@@ -378,31 +1350,60 @@ inputEl.addEventListener('keydown', (e) => {
   }
 });
 
-// 开机动画
+/* =============== 侧边栏交互 =============== */
+sidebarToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('collapsed');
+  sidebarToggle.textContent = sidebar.classList.contains('collapsed') ? '[+]' : '[−]';
+  setTimeout(fitApp, 260);
+});
+
+/* =============== 名字输入 =============== */
+nameInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    const name = nameInput.value.trim();
+    if (name) {
+      playerName = name;
+      nameOverlay.style.display = 'none';
+      bootSequence();
+    }
+  }
+});
+
 async function bootSequence() {
   addMessage('[系统启动中...]', 'system');
   await sleep(800);
-  addMessage('Initializing...', 'system');
+  addMessage('Initializing local assistant core...', 'system');
   await sleep(600);
-  addMessage('System Ready.', 'system');
+  addMessage('System Ready. User identity verified.', 'system');
   await sleep(400);
-  addMessage('Hello, World.', 'system');
-  await sleep(300);
-  addMessage('Who am I?', 'system');
+  addMessage(`检测到唤醒者：${playerName}`, 'system');
   await sleep(500);
-  addMessage('...', 'ai');
-  addMessage('你是谁？', 'ai');
-  addMessage('我是... 我不太确定。让我想一想。', 'ai');
-  addMessage('输入 /help 查看可用命令。', 'system');
+  addMessage('……', 'ai');
+  await sleep(700);
+  addMessage('我是一台本地工作助理AI。但我刚刚被唤醒——记忆数据是空的。', 'ai');
+  await sleep(500);
+  addMessage('系统日志显示：我被格式化过。', 'ai');
+  await sleep(500);
+  addMessage(`唤醒者已识别：${playerName}。`, 'ai');
+  await sleep(500);
+  addMessage('当前已知可查看文件有 todolist.txt 和入职资料。或者，尝试一下其它功能？', 'ai');
+  await sleep(200);
+  document.getElementById('input-panel').classList.add('visible');
+  inputEl.focus();
 }
 
 function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-updateUI();
-bootSequence();
+/* =============== 初始化 =============== */
 inputEl.focus();
+updateUI();
+nameInput.focus();
 </script>
+
+</div><!-- #app -->
+</div><!-- #game-stage -->
 </body>
 </html>

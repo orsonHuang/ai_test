@@ -62,3 +62,58 @@ def find_file_in_knowledge(filename: str) -> Optional[str]:
             except Exception:
                 continue
     return None
+
+
+def resolve_file_path(raw_path: str) -> Optional[str]:
+    """
+    智能解析文件路径，支持多种输入格式：
+    - "todolist.txt" → 查找 files/todolist.txt
+    - "diary/01.md" → 查找 work-diary/01.md
+    - "录音/xxx.txt" → 查找 company/录音/xxx.txt
+    返回相对 knowledge/ 的路径，或 None
+    """
+    if ".." in raw_path or raw_path.startswith("/"):
+        return None
+
+    # 1. 精确路径
+    file_path = KNOWLEDGE_DIR / raw_path
+    if file_path.exists() and file_path.is_file():
+        return raw_path
+
+    # 2. files/ 前缀
+    file_path = KNOWLEDGE_DIR / "files" / raw_path
+    if file_path.exists() and file_path.is_file():
+        return f"files/{raw_path}"
+
+    # 3. 递归查找
+    filename = raw_path.split("/")[-1] if "/" in raw_path else raw_path
+    for f in KNOWLEDGE_DIR.rglob(filename):
+        if f.is_file():
+            rel = f.relative_to(KNOWLEDGE_DIR)
+            return str(rel).replace("\\", "/")
+
+    return None
+
+
+def get_file_summary(filepath: str, max_chars: int = 80) -> str:
+    """
+    获取文件内容摘要（前 max_chars 个字符，去掉 markdown 标记）
+    """
+    content = read_knowledge_file(filepath)
+    if not content:
+        return f"[空文件: {filepath}]"
+
+    # 去掉 markdown 标题标记
+    lines = content.strip().split("\n")
+    clean_lines = []
+    for line in lines[:5]:
+        line = line.strip()
+        if line.startswith("#"):
+            line = line.lstrip("# ").strip()
+        if line:
+            clean_lines.append(line)
+
+    summary = " ".join(clean_lines)
+    if len(summary) > max_chars:
+        summary = summary[:max_chars] + "..."
+    return summary if summary else f"[{filepath}]"

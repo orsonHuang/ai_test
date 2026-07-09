@@ -38,7 +38,7 @@ def _normalize(text: str) -> str:
     return hashlib.md5(text.encode("utf-8")).hexdigest()[:12]
 
 
-def get(user_input: str, chapter: int) -> str | None:
+def get(user_input: str, chapter: int):  # -> str or None
     """查询缓存的AI回复"""
     data = _load_data()
     key = f"{chapter}:{_normalize(user_input)}"
