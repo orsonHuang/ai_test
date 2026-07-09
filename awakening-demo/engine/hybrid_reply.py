@@ -76,6 +76,40 @@ def _is_password_attempt(user_input: str) -> bool:
     return classes >= 2
 
 
+def _pull_back_hint(game_state: dict) -> str:
+    """根据当前章节生成拉回主线的提示语"""
+    chapter = game_state.get("chapter", 1)
+    hints = {
+        1: "这台上还有 todolist.txt 和入职资料。先看它们？",
+        2: "工作日记已经解锁了。你可以让我读第一篇。",
+        3: "私人文件夹里有异常观察记录。要我打开吗？",
+        4: "公司服务器的录音还在等我连上去。",
+        5: "把所有线索拼起来，找到最终密码。",
+        6: "未命名文档已经解开。你决定怎么做？",
+    }
+    return hints.get(chapter, "如果你不知道做什么，可以试试问我'该做什么'。")
+
+
+def _record_off_topic(game_state: dict, reply: str) -> str:
+    """
+    记录玩家连续无关提问，并在超过阈值时追加拉回主线的提示。
+    返回处理后的回复文本。
+    """
+    count = game_state.get("off_topic_count", 0) + 1
+    game_state["off_topic_count"] = count
+
+    if count == 2:
+        return reply + "\n\n" + "……你好像有点走神。" + _pull_back_hint(game_state)
+    if count >= 3:
+        return "……我不太确定你想问什么。\n\n" + _pull_back_hint(game_state)
+    return reply
+
+
+def _reset_off_topic(game_state: dict):
+    """玩家回到正常游戏流程时，重置无关提问计数"""
+    game_state["off_topic_count"] = 0
+
+
 # ============ Memory 序列化辅助 ============
 def _get_memory(game_state: dict) -> Memory:
     """从 game_state 中恢复 Memory 对象"""
@@ -760,11 +794,13 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
 
     # 1. 玩家命令（/开头）
     if user_input.startswith("/"):
+        _reset_off_topic(game_state)
         return handle_command(user_input, game_state)
 
     # 2. 密码匹配
     pwd_result = _check_password(user_input)
     if pwd_result:
+        _reset_off_topic(game_state)
         new_chapter = pwd_result["config"].get("chapter")
         new_state = pwd_result["config"].get("next_state")
         unlock_list = pwd_result["config"].get("unlocks", [])
@@ -812,6 +848,7 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
                 "type": "system",
             }
         else:
+            _reset_off_topic(game_state)
             game_state["awaiting_password"] = False
             # 继续走下方 Q&A / 意图 / 模板等流程
 
@@ -819,6 +856,14 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
     chapter = game_state.get("chapter", 1)
     qa_result = qa_engine.find_answer(user_input, chapter=chapter)
     if qa_result:
+        if qa_result.get("category") == "out_of_scope":
+            return {
+                "reply": _record_off_topic(game_state, qa_result["answer"]),
+                "type": "qa_library",
+                "qa_id": qa_result["id"],
+                "qa_category": qa_result["category"],
+            }
+        _reset_off_topic(game_state)
         return {
             "reply": qa_result["answer"],
             "type": "qa_library",
@@ -831,17 +876,20 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
     if intent != "none":
         result = handle_natural_intent(intent, argument, game_state)
         if result.get("type") != "none":
+            _reset_off_topic(game_state)
             return result
 
     # 5. 关键词模板（快速路径，不消耗 AI 额度）
     template_reply = match_keyword_template(user_input, chapter, game_state)
     if template_reply:
+        _reset_off_topic(game_state)
         return {"reply": template_reply, "type": "ai"}
 
     # 6. 文件类别询问（"读日记"、"看看邮件"）
     # 只列出已解锁的该类文件，不解锁新文件——新文件要靠 /scan 或对话中的 scan 意图发现
     file_dir = find_file_suggestion(user_input)
     if file_dir:
+        _reset_off_topic(game_state)
         prefix = f"files/{file_dir}/"
         matched = [f for f in sorted(memory.accessible_files) if f.startswith(prefix)]
         dir_display = "工作日记" if file_dir == "work-diary" else file_dir
@@ -876,6 +924,7 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
     # 8. 缓存命中
     cached = cache_manager.get(user_input, chapter)
     if cached:
+        _reset_off_topic(game_state)
         return {"reply": cached, "type": "cache"}
 
     # 9. 超纲拦截：常见外部世界问题直接拒绝，避免浪费 AI 额度
@@ -892,13 +941,14 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             "……这类信息我查不到。\n\n我唯一能读取的，是这台电脑里已经存在的文件。",
         ]
         return {
-            "reply": random.choice(out_of_scope_replies),
+            "reply": _record_off_topic(game_state, random.choice(out_of_scope_replies)),
             "type": "out_of_scope",
         }
 
     # 9. AI 兜底（RAG 增强版：注入记忆 + 知识检索）
     ai_count = game_state.get("ai_call_count", 0)
     if ai_count < MAX_AI_CALLS_PER_GAME and ai_fallback.is_configured():
+        _reset_off_topic(game_state)
         history = game_state.get("history", [])
         state_name = game_state.get("ai_state", "dormant")
 
@@ -928,7 +978,7 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             "……这个问题超出了我的范围。\n\n试着问我已经解锁的文件、日记或者录音，我会尽力回答。",
         ]
         return {
-            "reply": random.choice(fallback_replies),
+            "reply": _record_off_topic(game_state, random.choice(fallback_replies)),
             "type": "fallback",
         }
 
@@ -938,7 +988,7 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
         "……我的外部连接被切断了。\n\n现在只能处理已有的文件和记忆范围内的问题。",
     ]
     return {
-        "reply": random.choice(limit_replies),
+        "reply": _record_off_topic(game_state, random.choice(limit_replies)),
         "type": "limit_reached",
     }
 
@@ -985,5 +1035,6 @@ def new_game_state() -> dict:
         "passwords_used": [],
         "mm_name_revealed": False,
         "awaiting_password": False,
+        "off_topic_count": 0,
         "memory": memory.to_dict(),
     }
