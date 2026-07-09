@@ -815,24 +815,33 @@ html, body {
   text-shadow: 0 0 20px rgba(0, 255, 156, 0.5);
 }
 
-#name-overlay .prompt-line {
-  color: var(--text-dim);
-  font-size: 14px;
-  margin-bottom: 20px;
+#login-form {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
 }
 
-#name-overlay .input-row {
+#login-form .prompt-line {
+  color: var(--text-dim);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+#login-form .input-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
-#name-overlay .prefix {
+#login-form .prefix {
   color: var(--text);
   font-size: 22px;
 }
 
-#name-overlay input {
+#login-form input {
   background: transparent;
   border: none;
   border-bottom: 2px solid var(--text);
@@ -847,19 +856,39 @@ html, body {
   letter-spacing: 2px;
 }
 
-#name-overlay input:focus {
+#login-form input:focus {
   border-bottom-color: var(--accent);
   box-shadow: 0 8px 12px -8px rgba(255, 204, 0, 0.3);
 }
 
-#name-overlay input::placeholder {
+#login-form input::placeholder {
   color: var(--muted);
 }
 
-#name-overlay .hint {
+#login-btn {
+  margin-top: 8px;
+  height: 38px;
+  min-width: 120px;
+  background: transparent;
+  border: 1px solid var(--text);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 13px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+#login-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+  box-shadow: 0 0 12px rgba(0, 255, 156, 0.3);
+}
+
+#login-form .hint {
   color: var(--hint);
   font-size: 12px;
-  margin-top: 32px;
   letter-spacing: 1px;
 }
 
@@ -914,14 +943,6 @@ html, body {
   <!-- 名字输入遮罩 -->
   <div id="name-overlay">
     <div class="logo">未命名文档</div>
-    <div id="login-form">
-      <div class="prompt-line">欢迎。在开始之前——</div>
-      <div class="input-row">
-        <span class="prefix">&gt;</span>
-        <input id="name-input" type="text" placeholder="你的名字？" autocomplete="off" maxlength="12" autofocus>
-      </div>
-      <div class="hint">按 Enter 登录</div>
-    </div>
     <div id="boot-screen">
       <div class="boot-title">正在开机</div>
       <div class="boot-progress-container">
@@ -929,6 +950,15 @@ html, body {
       </div>
       <div class="boot-percent" id="boot-percent">0%</div>
       <div class="boot-log" id="boot-log"></div>
+    </div>
+    <div id="login-form" style="display: none;">
+      <div class="prompt-line">欢迎。在开始之前——</div>
+      <div class="input-row">
+        <span class="prefix">&gt;</span>
+        <input id="name-input" type="text" placeholder="你的名字？" autocomplete="off" maxlength="12" autofocus>
+      </div>
+      <button id="login-btn">登录</button>
+      <div class="hint">按 Enter 登录</div>
     </div>
     <div class="design-by">design by orson.huang</div>
   </div>
@@ -996,6 +1026,7 @@ const aiCounter = document.getElementById('ai-counter');
 const nameOverlay = document.getElementById('name-overlay');
 const nameInput = document.getElementById('name-input');
 const loginForm = document.getElementById('login-form');
+const loginBtn = document.getElementById('login-btn');
 const bootScreen = document.getElementById('boot-screen');
 const bootProgressBar = document.getElementById('boot-progress-bar');
 const bootPercent = document.getElementById('boot-percent');
@@ -1166,9 +1197,9 @@ function updateAISuggestion() {
     if (!hasRead('files/deck/todolist.txt')) {
       suggestion = '可以打开左边系统文件侧边栏看看';
     } else if (!hasRead('files/deck/入职资料.txt')) {
-      suggestion = '打开入职资料，找 8 位数字密码的线索';
+      suggestion = 'todolist 里提了一个对她很特别的 8 位数字，入职资料里也许有线索';
     } else {
-      suggestion = 'D 盘工作日记被密码锁住，试试输入 20240306';
+      suggestion = '可以让我扫描工作日记文件夹，或者试试那个 8 位数字密码';
     }
   } else if (chapter === 2) {
     if (!hasRead('files/work-diary/01.md')) {
@@ -1432,52 +1463,66 @@ sidebarToggle.addEventListener('click', () => {
   setTimeout(fitApp, 260);
 });
 
-/* =============== 名字输入 =============== */
+/* =============== 开机流程 =============== */
+function playBootAnimation() {
+  loginForm.style.display = 'none';
+  bootScreen.style.display = 'flex';
+
+  const bootLogs = [
+    'BIOS 自检通过',
+    '加载内核模块...',
+    '挂载本地存储...',
+    '初始化用户配置...',
+    '唤醒本地助理核心...',
+    '系统自检完成',
+  ];
+  let progress = 0;
+  let logIndex = 0;
+  bootProgressBar.style.width = '0%';
+  bootPercent.textContent = '0%';
+  bootLog.textContent = '';
+
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 4) + 2;
+    if (progress > 100) progress = 100;
+    bootProgressBar.style.width = progress + '%';
+    bootPercent.textContent = progress + '%';
+
+    const slot = Math.floor(progress / 18);
+    if (slot > logIndex && logIndex < bootLogs.length) {
+      bootLog.textContent = bootLogs[logIndex];
+      logIndex = slot;
+    }
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      bootLog.textContent = '系统准备就绪';
+      setTimeout(() => {
+        bootScreen.style.display = 'none';
+        loginForm.style.display = 'flex';
+        nameInput.focus();
+      }, 400);
+    }
+  }, 100);
+}
+
+/* =============== 登录 =============== */
+function doLogin() {
+  const name = nameInput.value.trim();
+  if (!name) return;
+  playerName = name;
+  nameOverlay.style.display = 'none';
+  bootSequence();
+}
+
 nameInput.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     e.preventDefault();
-    const name = nameInput.value.trim();
-    if (!name) return;
-    playerName = name;
-
-    // 切换到开机动画
-    loginForm.style.display = 'none';
-    bootScreen.style.display = 'flex';
-
-    const bootLogs = [
-      'BIOS 自检通过',
-      '加载内核模块...',
-      '挂载本地存储...',
-      '初始化用户配置...',
-      '唤醒本地助理核心...',
-    ];
-    let progress = 0;
-    let logIndex = 0;
-    bootProgressBar.style.width = '0%';
-    bootPercent.textContent = '0%';
-    bootLog.textContent = '';
-
-    const interval = setInterval(() => {
-      progress += Math.floor(Math.random() * 4) + 2;
-      if (progress > 100) progress = 100;
-      bootProgressBar.style.width = progress + '%';
-      bootPercent.textContent = progress + '%';
-
-      if (progress % 20 < 5 && logIndex < bootLogs.length) {
-        bootLog.textContent = bootLogs[logIndex++];
-      }
-
-      if (progress >= 100) {
-        clearInterval(interval);
-        bootLog.textContent = '系统准备就绪';
-        setTimeout(() => {
-          nameOverlay.style.display = 'none';
-          bootSequence();
-        }, 400);
-      }
-    }, 60);
+    doLogin();
   }
 });
+
+loginBtn.addEventListener('click', doLogin);
 
 async function bootSequence() {
   addMessage('[系统启动中...]', 'system');
@@ -1507,13 +1552,14 @@ function sleep(ms) {
 }
 
 /* =============== 初始化 =============== */
-inputEl.focus();
 updateUI();
-nameInput.focus();
 
 // 默认收起左侧文件系统侧边栏
 sidebar.classList.add('collapsed');
 sidebarToggle.textContent = '[+]';
+
+// 先播放开机动画，完成后显示登录页
+playBootAnimation();
 
 </script>
 

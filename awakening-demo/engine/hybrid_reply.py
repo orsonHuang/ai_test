@@ -328,9 +328,8 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
             game_state["awaiting_password"] = True
             return {
                 "reply": (
-                    "我扫描了电脑，在 D 盘发现了一个工作日记文件夹。\n\n"
-                    "它被密码保护着。8位数字，一个重要的日子。\n"
-                    "入职资料里应该有线索。"
+                    "找到了。D 盘有一个「工作日记」文件夹，但被加密了。\n\n"
+                    "需要 8 位数字才能打开。"
                 ),
                 "type": "ai",
                 "password_prompt": True,
@@ -369,9 +368,8 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
         game_state["awaiting_password"] = True
         return {
             "reply": (
-                "我找到了 D 盘的工作日记文件夹。\n\n"
-                "但它被密码保护着。8位数字，一个重要的日子。\n"
-                "入职资料里应该有线索。"
+                "找到了。D 盘有一个「工作日记」文件夹，但被加密了。\n\n"
+                "需要 8 位数字才能打开。"
             ),
             "type": "ai",
             "password_prompt": True,
@@ -758,7 +756,7 @@ def handle_command(user_input: str, game_state: dict) -> dict:
     if cmd == "/hint":
         chapter = game_state.get("chapter", 1)
         hints = {
-            1: "桌面上有 todolist.txt 和入职资料。todolist 提到 D 盘需要 8 位密码——看完入职资料找出密码，输入就能解锁工作日记。",
+            1: "todolist 里说她用了一个对她很特别的 8 位数字当密码。入职资料里也许能找到这个数。",
             2: "试试读一下工作日记，D1 里有关于入职的信息。输入 /files 看看有什么。",
             3: "注意到日记里带 * 标记的日子了吗？那些是重要的。私人文件夹里有异常观察记录，还可以扫描研究笔记看看她更深入的分析。",
             4: "VPN密码在账号密码文件里。输入密码连接公司服务器，听听她录下了什么。",
@@ -826,13 +824,15 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             game_state["document_read"] = True
 
         file_names = [f.replace("files/", "") for f in unlock_list]
-        return {
-            "reply": (
-                f"……密码有效。\n\n"
-                f"{pwd_result['config'].get('hint', '权限已解锁')}\n\n"
-                f"新文件：{', '.join(file_names)}\n\n"
+        hint = pwd_result["config"].get("hint", "权限已解锁")
+        reply = f"……密码有效。\n\n{hint}"
+        if "要我打开" not in hint and "新文件" not in hint:
+            reply += (
+                f"\n\n新文件：{', '.join(file_names)}\n\n"
                 f"要我打开哪一个？"
-            ),
+            )
+        return {
+            "reply": reply,
             "type": "ai",
             "unlock": unlock_list,
             "memory_updated": True,
