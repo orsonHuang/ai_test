@@ -8,6 +8,7 @@ import random
 from pathlib import Path
 
 from engine import ai_fallback, cache_manager, character_state, qa_engine
+from engine import clue_manager, fuzzy_matcher
 from engine.rule_engine import match_keyword_template, find_file_suggestion, find_file_commentary
 from engine.file_reader import (
     read_knowledge_file,
@@ -168,6 +169,13 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
             summary += f" ...（共{len(lines)}行）"
 
     memory.process_file(search_path, summary)
+
+    # ---- 提取线索到记忆 ----
+    chapter = game_state.get("chapter", 1)
+    clues = clue_manager.get_clues_for_file(search_path, chapter)
+    if clues:
+        memory.add_clues(clues)
+
     _save_memory(game_state, memory)
 
     # 记录已读
@@ -185,7 +193,6 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
     file_read_counts[search_path] = read_count + 1
 
     # ---- M-M 文件阅读插嘴 ----
-    chapter = game_state.get("chapter", 1)
     commentary = find_file_commentary(search_path, chapter, files_read[:-1])  # 排除当前文件
 
     display_name = search_path.replace("files/", "")
@@ -464,6 +471,12 @@ def _extract_filename(user_input: str, accessible_files: set) -> str:
     """
     lowered = user_input.lower()
 
+    # 去掉读取动词，避免"打开 入职自立"这类输入影响模糊匹配
+    cleaned = lowered
+    for kw in INTENT_KEYWORDS.get("read", []):
+        cleaned = cleaned.replace(kw.lower(), "")
+    cleaned = cleaned.strip() or lowered
+
     alias_map = {}
     for full_path in accessible_files:
         aliases = set()
@@ -525,8 +538,14 @@ def _extract_filename(user_input: str, accessible_files: set) -> str:
 
     # 按长度降序匹配，优先匹配长别名，避免"D1"误匹配到"D10"
     for alias in sorted(alias_map.keys(), key=len, reverse=True):
-        if alias in lowered:
+        if alias in cleaned:
             return alias_map[alias]
+
+    # 模糊匹配兜底：处理"入职自立"这类 typo
+    if accessible_files:
+        corrected, score = fuzzy_matcher.correct_filename(cleaned, accessible_files)
+        if corrected:
+            return corrected
 
     return None
 

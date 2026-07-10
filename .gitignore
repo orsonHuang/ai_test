@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Runtime cache
+awakening-demo/cache/
+
+# Temporary extraction files
+.tmp_*
+
+# macOS / Windows
+.DS_Store
+Thumbs.db

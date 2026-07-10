@@ -791,6 +791,72 @@ html, body {
   color: var(--bg);
 }
 
+/* =============== 文件查看弹窗 =============== */
+#file-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 7, 10, 0.85);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 201;
+  backdrop-filter: blur(2px);
+}
+
+.file-modal-box {
+  background: var(--bg-light);
+  border: 1px solid var(--text);
+  border-radius: 4px;
+  width: 720px;
+  max-width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 30px rgba(0, 255, 156, 0.15);
+}
+
+.file-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-lighter);
+}
+
+.file-modal-title {
+  color: var(--file-text);
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.file-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.file-modal-close:hover {
+  color: var(--text);
+}
+
+.file-modal-body {
+  flex: 1;
+  padding: 18px 22px;
+  overflow-y: auto;
+  color: var(--file-text);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-family: var(--font);
+}
 
 #name-overlay {
   position: absolute;
@@ -940,6 +1006,17 @@ html, body {
     </div>
   </div>
 
+  <!-- 文件查看弹窗 -->
+  <div id="file-modal">
+    <div class="file-modal-box">
+      <div class="file-modal-header">
+        <span class="file-modal-title" id="file-modal-title">FILE VIEWER</span>
+        <button id="file-modal-close" class="file-modal-close">×</button>
+      </div>
+      <div class="file-modal-body" id="file-modal-body"></div>
+    </div>
+  </div>
+
   <!-- 名字输入遮罩 -->
   <div id="name-overlay">
     <div class="logo">未命名文档</div>
@@ -1039,6 +1116,13 @@ const passwordInputEl = document.getElementById('password-input');
 const passwordSubmitBtn = document.getElementById('password-submit');
 const aiSuggestion = document.getElementById('ai-suggestion');
 const fileTree = document.getElementById('file-tree');
+const fileModal = document.getElementById('file-modal');
+const fileModalTitle = document.getElementById('file-modal-title');
+const fileModalBody = document.getElementById('file-modal-body');
+const fileModalClose = document.getElementById('file-modal-close');
+
+/* 文件点击是否触发弹窗 */
+let openFileInModal = false;
 
 /* =============== 显示名映射 =============== */
 const DISPLAY_NAMES = {
@@ -1340,6 +1424,7 @@ function renderTreeNode(tree, container, readSet, depth = 0) {
       fileEl.addEventListener('click', () => {
         const file = fileEl.dataset.file;
         if (!file) return;
+        openFileInModal = true;
         inputEl.value = `打开 ${file}`;
         sendMessage();
       });
@@ -1375,6 +1460,27 @@ passwordInputEl.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     e.preventDefault();
     submitPasswordModal();
+  }
+});
+
+/* =============== 文件查看弹窗 =============== */
+function showFileModal(title, content) {
+  fileModalTitle.textContent = '📄 ' + (title || '文件');
+  fileModalBody.innerHTML = escapeHtml(content).replace(/\n/g, '<br>');
+  fileModal.style.display = 'flex';
+}
+
+function hideFileModal() {
+  fileModal.style.display = 'none';
+}
+
+fileModalClose.addEventListener('click', hideFileModal);
+fileModal.addEventListener('click', (e) => {
+  if (e.target === fileModal) hideFileModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && fileModal.style.display === 'flex') {
+    hideFileModal();
   }
 });
 
@@ -1420,6 +1526,11 @@ async function sendMessage() {
       addMessage(data.file_content, 'file', { file: data.file });
     }
 
+    // 文件弹窗：侧边栏点击文件时额外弹出
+    if (openFileInModal && data.file_content) {
+      showFileModal(data.file, data.file_content);
+    }
+
     // 文件列表：渲染成简洁的文件卡片
     if (data.file_list && data.file_list.length) {
       const listing = data.file_list.map(f => '  · ' + f.replace(/^files\//, '')).join('\n');
@@ -1445,6 +1556,7 @@ async function sendMessage() {
   } finally {
     sendBtn.disabled = false;
     inputEl.focus();
+    openFileInModal = false;
   }
 }
 

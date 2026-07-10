@@ -30,6 +30,9 @@ class Memory:
     # 当前理解摘要（短文本，每次重大更新后重写）
     current_understanding: str = ""
 
+    # 已收集的线索（从 clues.json 中提取）
+    clues: list = field(default_factory=list)
+
     def to_dict(self) -> dict:
         """序列化为可 JSON 传输的字典"""
         return {
@@ -39,6 +42,7 @@ class Memory:
             "observations": self.observations[-10:],
             "discoveries": self.discoveries,
             "current_understanding": self.current_understanding,
+            "clues": self.clues[-50:],
         }
 
     @classmethod
@@ -51,6 +55,7 @@ class Memory:
             observations=data.get("observations", []),
             discoveries=data.get("discoveries", []),
             current_understanding=data.get("current_understanding", ""),
+            clues=data.get("clues", []),
         )
 
     # ============ 解锁操作 ============
@@ -98,6 +103,24 @@ class Memory:
     def update_understanding(self, summary: str):
         """更新 M-M 对当前局势的理解"""
         self.current_understanding = summary
+
+    def add_clue(self, clue: dict):
+        """添加一条线索，避免重复"""
+        if not clue or not isinstance(clue, dict):
+            return
+        key = (clue.get("source"), clue.get("text"))
+        existing = {(c.get("source"), c.get("text")) for c in self.clues}
+        if key not in existing:
+            self.clues.append(clue)
+
+    def add_clues(self, clues: list):
+        """批量添加线索"""
+        for clue in clues:
+            self.add_clue(clue)
+
+    def get_clues(self) -> list:
+        """获取已收集线索"""
+        return self.clues
 
     # ============ 查询操作 ============
 
@@ -150,6 +173,11 @@ class Memory:
         # 5. 当前理解
         if self.current_understanding:
             parts.append(f"【你对当前局势的理解】\n{self.current_understanding}")
+
+        # 6. 已收集线索
+        if self.clues:
+            clues_text = "\n".join(f"  · [{c.get('category', '线索')}] {c.get('text', '')}" for c in self.clues[-10:])
+            parts.append(f"【你已收集的线索】\n{clues_text}")
 
         if not parts:
             return "你目前对这台电脑里的内容几乎一无所知。"
