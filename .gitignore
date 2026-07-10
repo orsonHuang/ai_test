@@ -6,6 +6,9 @@ __pycache__/
 # Runtime cache
 awakening-demo/cache/
 
+# Runtime logs
+*.log
+
 # Temporary extraction files
 .tmp_*
 

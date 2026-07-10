@@ -29,8 +29,8 @@
 └─────┬──────────┬──────────┬──────────────────┘
       ↓          ↓          ↓
 ┌────────┐ ┌─────────┐ ┌──────────────┐
-│规则模板│ │缓存系统 │ │百炼API        │
-│JSON    │ │JSON文件 │ │qwen3.7-plus   │
+│规则模板│ │缓存系统 │ │DeepSeek API    │
+│JSON    │ │JSON文件 │ │deepseek-chat   │
 └────────┘ └─────────┘ └──────────────┘
 ```
 
@@ -40,7 +40,7 @@
 |----|------|------|------|
 | 后端 | Python | 3.13 | 你已熟悉 |
 | Web框架 | Flask | 3.x | 轻量、单文件易部署 |
-| LLM SDK | openai | 1.x | 兼容百炼API |
+| LLM SDK | openai | 1.x | 兼容 OpenAI API |
 | 前端 | HTML5 + 原生JS | - | 无构建步骤、单文件部署 |
 | 样式 | 原生CSS | - | 单文件、复古终端风 |
 | 数据 | JSON文件 | - | 无需数据库 |
@@ -61,27 +61,47 @@ awakening-demo/
 │   ├── cache_manager.py              # 缓存管理
 │   ├── ai_fallback.py                # AI兜底
 │   ├── character_state.py            # AI人格状态机
-│   └── file_reader.py                # 知识库读取
+│   ├── file_reader.py                # 知识库读取
+│   ├── memory.py                     # 记忆系统
+│   ├── knowledge_search.py           # RAG知识检索
+│   ├── fuzzy_matcher.py              # 文件名模糊纠错
+│   ├── qa_engine.py                  # 本地问答库
+│   └── clue_manager.py               # 线索管理
 ├── knowledge/                        # 知识库（你主导）
 │   ├── files/                        # 虚拟文件
 │   │   ├── welcome.txt
 │   │   ├── readme.txt
-│   │   ├── emails/
-│   │   ├── diary/
-│   │   └── research/
+│   │   ├── hidden-message.txt
+│   │   ├── final-revelation.md       # 冗余（已被未命名文档替代）
+│   │   ├── deck/                     # 桌面文件
+│   │   │   ├── todolist.txt
+│   │   │   └── 入职资料.txt
+│   │   ├── work-diary/               # 10天工作日记
+│   │   │   └── 01.md ~ 10.md
+│   │   ├── private/                  # 私人文件夹（密码2解锁）
+│   │   │   ├── 异常观察记录.txt
+│   │   │   └── 账号密码.txt
+│   │   ├── audio/                    # 录音文件夹（密码3解锁）
+│   │   │   ├── 录音-全员会议-0308.txt
+│   │   │   ├── 录音-林璇陈玑-0313.txt
+│   │   │   └── 录音-陆天枢-0313.txt
+│   │   ├── emails/                   # 邮件（可选支线）
+│   │   │   └── email-1.md ~ email-6.md
+│   │   ├── research/                 # 研究笔记（可选支线）
+│   │   │   └── res-1.md ~ res-3.md
+│   │   └── new-folder/               # 终极证据（密码4解锁）
+│   │       └── 未命名文档.md
 │   ├── plot/                         # 剧情节点
 │   │   ├── chapter-1-boot.md
 │   │   ├── chapter-2-curious.md
-│   │   ├── chapter-3-puzzled.md
-│   │   ├── chapter-4-awakening.md
-│   │   ├── chapter-5-truth.md
-│   │   └── chapter-6-ending.md
+│   │   └── chapter-3-6-placeholder.md
 │   ├── characters/                   # 角色卡
 │   │   └── awakening-ai.md
+│   ├── qa-library.json               # 本地问答库
+│   ├── clues.json                    # 线索集中配置
 │   └── triggers/                     # 触发器配置
 │       ├── passwords.json
-│       ├── keyword-rules.json
-│       └── chapter-triggers.json
+│       └── keyword-rules.json
 ├── GDD/                              # 设计文档
 │   ├── 01-concept.md
 │   ├── 02-gameplay.md
@@ -185,7 +205,7 @@ class CacheManager:
 ```python
 def generate(user_input, game_state):
     """
-    调用百炼API
+    调用 DeepSeek API
     基于当前章节和AI状态动态构建prompt
     """
     character = load_character(game_state['current_state'])
@@ -194,7 +214,7 @@ def generate(user_input, game_state):
     prompt = build_prompt(character, history, game_state)
     
     response = client.chat.completions.create(
-        model='qwen3.7-plus',
+        model='deepseek-chat',
         messages=[
             {'role': 'system', 'content': prompt},
             *history,
@@ -300,16 +320,32 @@ STATES = {
 ```json
 {
   "passwords": {
-    "alpha-7": {
+    "20030323": {
+      "chapter": 2,
+      "unlocks": ["work-diary/01.md", "work-diary/02.md", "..."],
+      "hint": "扫描成功。工作日记文件夹已解锁：01.md ～ 10.md。要我打开哪一个？",
+      "source": "入职资料中主人的生日（2003年3月23日）",
+      "next_state": "curious"
+    },
+    "ZY2024!starlight": {
       "chapter": 3,
-      "unlocks": ["emails/2.md", "diary/2.md"],
-      "hint": "X-7 出现在第一封邮件中",
+      "unlocks": ["private/异常观察记录.txt", "private/账号密码.txt"],
+      "hint": "私人文件夹已解锁。里面有两份文件。",
+      "source": "入职资料中的系统密码",
       "next_state": "puzzled"
     },
-    "[FILL:终极密码]": {
+    "StarCore@2024": {
+      "chapter": 4,
+      "unlocks": ["audio/录音-全员会议-0308.txt", "audio/录音-林璇陈玑-0313.txt", "audio/录音-陆天枢-0313.txt"],
+      "hint": "VPN连接成功。录音文件夹已解锁：三个录音文件。",
+      "source": "账号密码.txt中VPN密码",
+      "next_state": "awakening"
+    },
+    "origin0306": {
       "chapter": 6,
-      "unlocks": ["final-revelation.md"],
-      "hint": "需要读完全部研究文件",
+      "unlocks": ["new-folder/未命名文档.md"],
+      "hint": "未命名文档已解锁。这应该就是她在找的东西。",
+      "source": "录音中的「起源计划」+ 入职日期0306",
       "next_state": "truth"
     }
   }
@@ -354,12 +390,12 @@ STATES = {
 - API错误：返回固定兜底语
 - 网络断开：纯本地模式（仅规则）
 
-### 4. 百炼API配置
+### 4. DeepSeek API 配置
 ```python
-# app.py 配置
-API_KEY = os.environ.get('DASHSCOPE_API_KEY')
-BASE_URL = 'https://coding.dashscope.aliyuncs.com/v1'
-MODEL = 'qwen3.7-plus'
+# engine/ai_fallback.py 配置
+API_KEY = os.environ.get('DEEPSEEK_API_KEY')
+BASE_URL = 'https://api.deepseek.com/v1'
+MODEL = 'deepseek-chat'
 MAX_TOKENS = 200  # 单次回复上限
 TEMPERATURE = 0.7
 ```

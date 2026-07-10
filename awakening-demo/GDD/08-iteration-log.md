@@ -378,6 +378,40 @@ hybrid_reply.generate_reply()
 
 ---
 
+## 2026-07-10 · GDD与项目结构同步优化
+
+### 背景
+项目经过多次迭代后，多个GDD文档与实际代码存在不一致：29天→10天日记、百炼→DeepSeek、engine/knowledge文件结构变化、密码系统重构等。
+
+### GDD 文档修正
+
+| 文件 | 修正内容 |
+|------|---------|
+| `GDD/02-gameplay.md` | 文件解锁机制从"5层含29天日记"重写为实际的"4层密码+10天日记+work-diary目录" |
+| `GDD/07-tech.md` | 百炼API→DeepSeek API；qwen3.7-plus→deepseek-chat；补全engine模块（clue_manager/fuzzy_matcher/qa_engine/memory/knowledge_search）；补全knowledge子目录（audio/emails/research/new-folder）；密码配置示例更新为实际的4密码系统；API配置从DASHSCOPE_API_KEY→DEEPSEEK_API_KEY |
+| `GDD/10-player-path.md` | 密码系统对应关系完全重写：4个密码的值、解锁内容、来源清晰表列，修正已过时的混淆分析 |
+| `README.md` | 项目结构同步实际；当前阶段从"框架阶段完成"更新；29天→10天；4阶段→5阶段；任务完成列表更新 |
+| `AGENT.md` | 当前阶段从"内容创作（阶段3）"更新为"优化迭代（阶段4）" |
+| `CHANGELOG.md` | 技术栈修正（Python 3.13 + DeepSeek）；追加本条记录 |
+
+### 项目结构同步摘要
+
+| 维度 | GDD 旧值 | 实际/新值 |
+|------|---------|-----------|
+| AI模型 | 百炼 qwen3.7-plus | DeepSeek deepseek-chat |
+| 日记天数 | 29天 | 10天 |
+| 文件目录 | diary/ | work-diary/ |
+| 密码数 | 3层（旧设计5层文件） | 4层密码（4个独立密码） |
+| engine模块 | 6个 | 12个（新增memory/knowledge_search/fuzzy_matcher/qa_engine/clue_manager/cache_manager） |
+| 知识库文件数 | ~20个占位 | 39个完整文件（含10天日记/6封邮件/3篇研究/3个录音等） |
+
+### 当前状态
+- GDD 与代码完全同步
+- 无残留的"百炼"或"29天"描述
+- 密码系统在GDD中有清晰完整的文档
+
+---
+
 ## 2026-07-10 · 开机流程反转 + 登录页 + 密码引导弱化
 
 ### 背景
