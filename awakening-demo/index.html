@@ -1337,8 +1337,7 @@ function escapeHtml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
-let lastSuggestion = '';
-let lastSuggestionCommand = '';
+let lastSuggestions = [];
 
 function updateAISuggestion() {
   const chapter = gameState.chapter || 1;
@@ -1346,68 +1345,86 @@ function updateAISuggestion() {
   const hasRead = (path) => read.has(path);
 
   let suggestion = '和我对话，我会帮你推进。';
-  let command = '';
+  let suggestions = [];
 
-  if (chapter === 1) {
+  // 如果后端带回了建议，优先使用
+  if (gameState.last_suggestions && gameState.last_suggestions.length > 0) {
+    suggestions = gameState.last_suggestions;
+    suggestion = suggestions[0].text;
+  } else if (chapter === 1) {
     if (!hasRead('files/deck/todolist.txt')) {
       suggestion = '可以打开桌面上的 todolist.txt 看看';
-      command = '打开 todolist.txt';
+      suggestions = [{text: suggestion, command: '打开 todolist.txt'}];
     } else if (!hasRead('files/deck/入职资料.txt')) {
       suggestion = 'todolist 里提了一个对她很特别的 8 位数字，入职资料里也许有线索';
-      command = '打开 入职资料.txt';
+      suggestions = [{text: suggestion, command: '打开 入职资料.txt'}];
     } else {
       suggestion = '可以让我扫描工作日记文件夹，或者试试那个 8 位数字密码';
-      command = '获取 工作日记 20240306';
+      suggestions = [
+        {text: '扫描工作日记文件夹', command: '扫描 工作日记'},
+        {text: '用 8 位数字密码解锁工作日记', command: '获取 工作日记 20030323'},
+      ];
     }
   } else if (chapter === 2) {
     if (!hasRead('files/work-diary/01.md')) {
       suggestion = '读一下第一篇工作日记，了解入职那天';
-      command = '打开 第一篇工作日记';
+      suggestions = [{text: suggestion, command: '打开 第一篇工作日记'}];
     } else if (!hasRead('files/work-diary/02.md')) {
       suggestion = '继续读工作日记，注意同事的不寻常之处';
-      command = '打开 第二篇工作日记';
+      suggestions = [{text: suggestion, command: '打开 第二篇工作日记'}];
     } else {
       suggestion = '继续读工作日记，或用系统密码打开私人文件夹';
-      command = '获取 私人文件夹 ZY2024!starlight';
+      suggestions = [
+        {text: '继续读工作日记', command: '打开 工作日记'},
+        {text: '用系统密码打开私人文件夹', command: '获取 私人文件夹 ZY2024!starlight'},
+      ];
     }
   } else if (chapter === 3) {
     if (!hasRead('files/private/异常观察记录.txt')) {
       suggestion = '扫描私人文件夹，看看异常观察记录';
-      command = '打开 异常观察记录.txt';
+      suggestions = [{text: suggestion, command: '打开 异常观察记录.txt'}];
     } else if (!hasRead('files/private/账号密码.txt')) {
       suggestion = '查看账号密码，获取 VPN 密码';
-      command = '打开 账号密码.txt';
+      suggestions = [{text: suggestion, command: '打开 账号密码.txt'}];
     } else {
       suggestion = '用 VPN 密码连接公司服务器，听录音';
-      command = '获取 公司服务器 StarCore@2024';
+      suggestions = [
+        {text: '连接公司服务器听录音', command: '获取 公司服务器 StarCore@2024'},
+        {text: '扫描研究笔记', command: '扫描 研究笔记'},
+      ];
     }
   } else if (chapter === 4) {
     if (!hasRead('files/audio/录音-全员会议-0308.txt')) {
       suggestion = '听听全员会议录音，注意“人类”这个词';
-      command = '打开 录音-全员会议';
+      suggestions = [{text: suggestion, command: '打开 录音-全员会议'}];
     } else if (!hasRead('files/audio/录音-林璇陈玑-0313.txt')) {
       suggestion = '继续听第二段录音，林璇和陈玑的对话';
-      command = '打开 录音-林璇陈玑';
+      suggestions = [{text: suggestion, command: '打开 录音-林璇陈玑'}];
     } else {
       suggestion = '所有录音听完，结合日记推理最终密码';
-      command = '获取 未命名文档 origin0306';
+      suggestions = [
+        {text: '打开未命名文档', command: '打开 未命名文档.md'},
+        {text: '输入最终密码', command: '获取 未命名文档 origin0306'},
+      ];
     }
   } else if (chapter === 5) {
     suggestion = '起源计划 + 入职日期，组合成最终密码';
-    command = '获取 未命名文档 origin0306';
+    suggestions = [
+      {text: '输入最终密码', command: '获取 未命名文档 origin0306'},
+    ];
   } else if (chapter === 6) {
     if (!hasRead('files/new-folder/未命名文档.md')) {
       suggestion = '输入最终密码，打开未命名文档';
-      command = '获取 未命名文档 origin0306';
+      suggestions = [{text: suggestion, command: '获取 未命名文档 origin0306'}];
     } else {
       suggestion = '真相已经揭开，决定下一步怎么做';
-      command = '';
+      suggestions = [];
     }
   }
 
   aiSuggestion.textContent = suggestion;
-  lastSuggestion = suggestion;
-  lastSuggestionCommand = command || suggestion;
+  lastSuggestions = suggestions;
+  gameState.last_suggestions = suggestions;
 }
 
 function updateUI() {
@@ -1586,19 +1603,24 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* =============== 发送消息 =============== */
-const CONFIRM_WORDS_FRONTEND = new Set(['好', '好的', '可以', '行', '嗯', '是的', '没错', '就这么办', '听你的', '好呀', '好吧', 'ok', 'yes']);
+const CONFIRM_WORDS_FRONTEND = new Set(['好', '好的', '可以', '行', '嗯', '是的', '没错', '就这么办', '听你的', '好呀', '好吧', 'ok', 'yes', '打开', '执行', '试试', '试一下', '试一试']);
 
 async function sendMessage() {
   let text = inputEl.value.trim();
   if (!text) return;
 
   // 玩家说"好"等确认词 → 执行上一条 M-M 建议
-  if (CONFIRM_WORDS_FRONTEND.has(text.toLowerCase()) && lastSuggestionCommand) {
-    text = lastSuggestionCommand;
+  if (CONFIRM_WORDS_FRONTEND.has(text.toLowerCase()) && lastSuggestions.length > 0) {
+    if (lastSuggestions.length === 1) {
+      text = lastSuggestions[0].command;
+    } else {
+      // 多条建议时交给后端追问
+      text = '好';
+    }
   }
 
-  // 把当前建议存入 game_state，方便后端 confirm 意图也能使用
-  gameState.last_suggestion = lastSuggestionCommand;
+  // 把当前建议存入 game_state，方便后端 confirm/choose 意图使用
+  gameState.last_suggestions = lastSuggestions;
 
   inputEl.value = '';
   addMessage(text, 'player');
@@ -1688,6 +1710,8 @@ btnClues.addEventListener('click', () => {
 btnFiles.addEventListener('click', () => {
   sidebar.classList.remove('collapsed');
   sidebarToggle.textContent = '[−]';
+  inputEl.value = '/files detailed';
+  sendMessage();
   setTimeout(fitApp, 260);
 });
 

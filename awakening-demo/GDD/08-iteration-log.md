@@ -328,6 +328,56 @@ hybrid_reply.generate_reply()
 
 ---
 
+## 2026-07-10 · 建议执行、文件状态、生日密码调整
+
+### 背景
+用户提出 6 项优化：AI 建议识别与执行、查看文件状态分类、张知予生日密码、获取命令空目标提示、密码分析引导、协助分析。
+
+### 后端改动（engine/hybrid_reply.py）
+
+| 文件 | 改动 |
+|------|------|
+| `engine/hybrid_reply.py` | 扩展确认词，支持单条执行、多条追问、选择执行；新增建议提取与选择解析 |
+| `engine/hybrid_reply.py` | 新增 `password_hint` / `analyze` 意图，引导密码分析与综合推理 |
+| `engine/hybrid_reply.py` | 单独输入“获取/解锁”时提示当前未解锁目标 |
+| `engine/hybrid_reply.py` | `/files detailed` 返回三类文件状态：已解锁、已读、发现未解锁 |
+| `engine/hybrid_reply.py` | 新增 `_build_default_suggestions`，根据章节生成默认建议 |
+| `knowledge/triggers/passwords.json` | 第一个密码从 `20240306` 改为生日 `20030323` |
+| `knowledge/files/deck/入职资料.txt` | 补充生日 2003年3月23日，并更新密码提示 |
+| `knowledge/characters/awakening-ai.md` | 补充生日信息 |
+| `engine/ai_fallback.py` | 角色卡重要流程改为从生日推理 8 位数字 |
+
+### 前端改动（index.html）
+
+| 功能 | 改动 |
+|------|------|
+| 建议系统 | 改为列表结构，支持多选与执行命令映射 |
+| 查看文件按钮 | 请求 `/files detailed` 并展开侧边栏 |
+| 确认词 | 同步扩展为好、可以、打开、执行、试试等 |
+
+### 验证结果
+- ✅ 编译通过
+- ✅ 生日密码 `20030323` 解锁工作日记
+- ✅ 确认词/多选/选择执行流程正常
+- ✅ 密码分析与协助分析正确响应
+- ✅ `/files detailed` 返回三类文件清单
+
+### 当前状态
+- 等待用户测试反馈
+- 等待提交 Git
+
+### 改动文件
+- `index.html`
+- `engine/hybrid_reply.py`
+- `engine/ai_fallback.py`
+- `knowledge/triggers/passwords.json`
+- `knowledge/files/deck/入职资料.txt`
+- `knowledge/characters/awakening-ai.md`
+- `CHANGELOG.md`
+- `GDD/08-iteration-log.md`（本文件）
+
+---
+
 ## 2026-07-10 · 开机流程反转 + 登录页 + 密码引导弱化
 
 ### 背景
