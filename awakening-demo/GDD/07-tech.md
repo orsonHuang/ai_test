@@ -400,6 +400,137 @@ MAX_TOKENS = 200  # 单次回复上限
 TEMPERATURE = 0.7
 ```
 
+## generate_reply 核心处理流程
+
+`engine/hybrid_reply.py` 的 `generate_reply()` 是整个对话系统的调度中心，按优先级从高到低走 12 条路径：
+
+```
+玩家输入
+  │
+  ├─[1] / 命令路由
+  │     /help /status /files /scan /read /hint /reset /memory /chapter
+  │     → handle_command() 直接处理返回
+  │
+  ├─[2] 密码匹配
+  │     _check_password() — 识别嵌入在自然语言中的密码
+  │     → 解锁文件、推进章节、更新记忆，type=ai
+  │
+  ├─[3] 密码等待状态
+  │     awaiting_password=True 时：
+  │     ├─ _is_password_attempt() → 比对失败，给错误提示+线索
+  │     └─ 不像密码 → 取消等待，继续后续流程
+  │
+  ├─[4] 自然语言意图识别（核心体验：用对话代替命令行）
+  │     detect_intent() → 12 种意图：
+  │     ├─ scan/scan_ask → 扫描文件夹 / 无目标反问
+  │     ├─ get          → 解锁加密文件夹（支持带密码直接解锁）
+  │     ├─ read         → 读文件（别名解析 + fuzzy_matcher 模糊纠错）
+  │     ├─ files        → 列出可访问文件
+  │     ├─ status       → 章节/AI状态/文件/调用统计
+  │     ├─ memory       → M-M 记忆内容
+  │     ├─ clue         → 已收集线索（clue_manager.format_clues）
+  │     ├─ hint         → 按章节提供下一步提示
+  │     ├─ password_hint → 密码分析引导（不给明文密码）
+  │     ├─ analyze      → 综合推理（密码+线索+下一步，_build_analysis_reply）
+  │     ├─ confirm      → 确认词（好/可以/试试）执行上一条建议
+  │     ├─ choose       → 多选建议中解析玩家选择（_parse_choice）
+  │     └─ help/reset   → 帮助/重置
+  │     → 执行后 _save_suggestions() 更新前端建议栏
+  │
+  ├─[5] 本地 Q&A 库 (qa_engine + qa-library.json)
+  │     Jaccard 相似度匹配常见问题
+  │     ├─ 游戏内问题 → 直接回答（零成本）
+  │     └─ out_of_scope → _record_off_topic() 计数，超 3 次拉回主线
+  │
+  ├─[6] 关键词模板 (rule_engine + keyword-rules.json)
+  │     60+ 条规则按 5 阶段分组，支持 requires_document_read 过滤
+  │     → M-M 口吻直接返回（零成本）
+  │
+  ├─[7] 文件类别询问 (find_file_suggestion)
+  │     "读日记""看邮件"等 → 列出该类已解锁文件
+  │
+  ├─[8] 密码尝试拦截
+  │     _is_password_attempt() 但未匹配已知密码 → 错误提示
+  │
+  ├─[9] 缓存命中 (cache_manager)
+  │     MD5 hash 前 12 位 + 章节 → 返回缓存（零成本）
+  │
+  ├─[10] 超纲拦截
+  │      天气/新闻/股票/明星等外部话题 → M-M 拒绝
+  │      → _record_off_topic() 计入计数
+  │
+  ├─[11] AI-RAG 兜底 ★ 核心
+  │      ai_fallback.generate() 调用 DeepSeek API
+  │      【三层 Prompt 注入】:
+  │        Layer 1: CHARACTER_CARD — M-M 5阶段人设+说话风格
+  │        Layer 2: memory.build_context_string() — 已读/已知/线索
+  │        Layer 3: knowledge_search.build_knowledge_context() — RAG 检索
+  │      → 结果写入缓存 → _maybe_update_memory_from_reply() 迭代记忆
+  │      → 单局上限 20 次 AI 调用
+  │
+  └─[12] 超限/未配置兜底
+        ├─ API 未配置 → M-M 口吻道歉
+        └─ 调用超 20 次 → "运算能力到极限了"
+```
+
+### 关键设计决策
+
+| 维度 | 设计 |
+|------|------|
+| **成本控制** | 路径 1-10 全部走规则/缓存，零 AI 成本；仅路径 11 调 API |
+| **单局 AI 上限** | 20 次 (MAX_AI_CALLS_PER_GAME) |
+| **建议系统** | 每条回复后 `_save_suggestions()` → 从回复文本或默认规则提取可执行建议 → 前端显示快捷按钮 |
+| **确认执行** | 玩家说"好""可以""试试"等 → 自动执行上一条建议命令，多条则追问选择 |
+| **记忆闭环** | 读文件 → `memory.process_file()` + `clue_manager` 提取线索 → `_save_memory()` 持久化 |
+| **模糊纠错** | `fuzzy_matcher.correct_filename()` — 处理拼写错误（"入职自立"→"入职资料"） |
+| **off_topic 拉回** | 连续 3 次无关输入 → 强制返回当前章节主线提示 |
+| **文件别名** | `_extract_filename()` 支持"第一篇/D1/日记一/todolist/全员会议"等多种叫法 |
+| **密码容错** | 支持整句匹配或嵌入自然语言（"我输入密码 ZY2024!starlight"） |
+
+### 模块调用图
+
+```
+generate_reply()
+  ├─ handle_command()           → / 命令
+  ├─ _check_password()          → passwords.json
+  ├─ _is_password_attempt()     → 密码识别
+  ├─ detect_intent()            → 意图识别
+  │   ├─ _extract_scan_target() → SCAN_TARGETS
+  │   ├─ _extract_filename()    → alias_map + fuzzy_matcher
+  │   └─ _parse_choice()        → CN_NUMBERS 多选解析
+  ├─ handle_natural_intent()
+  │   ├─ handle_scan_command()   → 扫描流程 + _prompt_password_for_target
+  │   ├─ handle_get_command()    → _try_unlock_with_password
+  │   ├─ handle_file_command()   → 读取 + clue_manager.get_clues_for_file
+  │   ├─ _build_password_hint()  → 密码分析引导
+  │   └─ _build_analysis_reply() → 综合推理
+  ├─ qa_engine.find_answer()    → qa-library.json
+  ├─ rule_engine.match_keyword_template() → keyword-rules.json
+  ├─ find_file_suggestion()     → 文件类别匹配
+  ├─ cache_manager.get()        → 缓存查询
+  ├─ ai_fallback.generate()     → DeepSeek API + RAG
+  │   ├─ memory.build_context_string()
+  │   └─ knowledge_search.build_knowledge_context()
+  └─ _save_suggestions()        → 建议栏 + pending_choices
+      └─ _build_default_suggestions() → 章节默认建议
+```
+
+### 回复类型 (type)
+
+| type | 含义 | 前端渲染 |
+|------|------|----------|
+| `ai` | M-M 对话回复 | AI 气泡 |
+| `ai_rag` | AI-RAG 生成回复 | AI 气泡 |
+| `qa_library` | 本地 Q&A 库命中 | AI 气泡 |
+| `rule_template` | 关键词模板命中 | AI 气泡 |
+| `cache` | 缓存命中 | AI 气泡 |
+| `command` | 系统命令输出 | 系统提示（黄色居中） |
+| `system` | 系统提醒（密码错误等） | 系统提示 |
+| `file_read` | 文件读取（附 file_content） | AI 气泡 + 文件内容弹窗 |
+| `file_listing` | 文件列表 | AI 气泡 + 文件列表渲染 |
+| `choose_prompt` | 多选追问 | AI 气泡 + 保留 pending_choices |
+| `fallback` / `limit_reached` / `out_of_scope` | 超限/拒绝 | AI 气泡 |
+
 ## 部署方案
 
 ### 服务器要求

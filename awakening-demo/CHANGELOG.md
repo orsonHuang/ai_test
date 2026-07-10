@@ -4,6 +4,22 @@
 
 ---
 
+## 2026-07-11 · generate_reply 引擎流程文档化
+
+**GDD/07-tech.md：**
+- 新增「generate_reply 核心处理流程」章节
+- 12 条路径优先级完整流程图（/命令→密码→意图→Q&A→模板→文件类别→缓存→超纲→AI-RAG→兜底）
+- 12 种自然语言意图说明（scan/get/read/files/hint/analyze/confirm/choose 等）
+- AI-RAG 三层 Prompt 注入架构（角色卡+记忆+知识检索）
+- 模块调用图 + 回复类型映射表
+
+**改动文件：**
+- `GDD/07-tech.md` — 新增引擎流程章节
+- `GDD/08-iteration-log.md` — 追加记录
+- `CHANGELOG.md` — 本条目
+
+---
+
 ## 2026-07-10 · GDD 与项目结构同步优化
 
 **背景：**
