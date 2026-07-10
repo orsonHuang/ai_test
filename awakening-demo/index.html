@@ -593,6 +593,34 @@ html, body {
   pointer-events: auto;
 }
 
+#toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-lighter);
+}
+
+.toolbar-btn {
+  flex: 1;
+  height: 28px;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  border-radius: 3px;
+  color: var(--text-dim);
+  font-family: var(--font);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.toolbar-btn:hover {
+  border-color: var(--text);
+  color: var(--text);
+  background: rgba(0, 255, 156, 0.05);
+}
+
 #input-hint {
   height: 32px;
   border-top: 1px solid var(--border);
@@ -732,12 +760,32 @@ html, body {
   box-shadow: 0 0 30px rgba(0, 255, 156, 0.15);
 }
 
+.password-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
 .password-title {
   color: var(--text);
   font-size: 16px;
   font-weight: bold;
-  margin-bottom: 12px;
   letter-spacing: 2px;
+}
+
+.password-close {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.password-close:hover {
+  color: var(--text);
 }
 
 .password-message {
@@ -997,7 +1045,10 @@ html, body {
   <!-- 密码输入弹窗 -->
   <div id="password-modal">
     <div class="password-box">
-      <div class="password-title">需要密码</div>
+      <div class="password-title-row">
+        <span class="password-title">需要密码</span>
+        <button id="password-close" class="password-close">×</button>
+      </div>
       <div class="password-message" id="password-message"></div>
       <div class="password-input-row">
         <input id="password-input" type="text" class="password-input" placeholder="输入密码..." autocomplete="off" maxlength="32">
@@ -1078,6 +1129,11 @@ html, body {
       <div id="conversation"></div>
 
       <div id="input-panel">
+        <div id="toolbar">
+          <button id="btn-clues" class="toolbar-btn" title="查看已收集的线索">🔍 查看线索</button>
+          <button id="btn-files" class="toolbar-btn" title="查看文件树">📁 查看文件</button>
+          <button id="btn-hint" class="toolbar-btn" title="下一步建议">💡 下一步建议</button>
+        </div>
         <div id="input-hint">
           <span id="ai-suggestion">和我对话，我会帮你推进。</span>
         </div>
@@ -1114,8 +1170,12 @@ const passwordModal = document.getElementById('password-modal');
 const passwordMessage = document.getElementById('password-message');
 const passwordInputEl = document.getElementById('password-input');
 const passwordSubmitBtn = document.getElementById('password-submit');
+const passwordCloseBtn = document.getElementById('password-close');
 const aiSuggestion = document.getElementById('ai-suggestion');
 const fileTree = document.getElementById('file-tree');
+const btnClues = document.getElementById('btn-clues');
+const btnFiles = document.getElementById('btn-files');
+const btnHint = document.getElementById('btn-hint');
 const fileModal = document.getElementById('file-modal');
 const fileModalTitle = document.getElementById('file-modal-title');
 const fileModalBody = document.getElementById('file-modal-body');
@@ -1144,18 +1204,25 @@ const DISPLAY_NAMES = {
   'files/audio/录音-林璇陈玑-0313.txt': '录音-林璇陈玑',
   'files/audio/录音-陆天枢-0313.txt': '录音-陆天枢',
   'files/new-folder/未命名文档.md': '未命名文档.md',
-  'files/research/1.md': '研究笔记1',
-  'files/research/2.md': '研究笔记2',
-  'files/research/3.md': '研究笔记3',
+  'files/research/res-1.md': '研究笔记1',
+  'files/research/res-2.md': '研究笔记2',
+  'files/research/res-3.md': '研究笔记3',
+  'files/emails/email-1.md': '邮件1',
+  'files/emails/email-2.md': '邮件2',
+  'files/emails/email-3.md': '邮件3',
+  'files/emails/email-4.md': '邮件4',
+  'files/emails/email-5.md': '邮件5',
+  'files/emails/email-6.md': '邮件6',
 };
 
 const FOLDER_NAMES = {
-  'files/deck': 'deck',
-  'files/work-diary': 'work-diary',
-  'files/private': 'private',
-  'files/audio': 'audio',
-  'files/research': 'research',
-  'files/new-folder': 'New folder',
+  'files/deck': '桌面',
+  'files/work-diary': '工作日记',
+  'files/private': '私人文件夹',
+  'files/audio': '录音',
+  'files/research': '研究笔记',
+  'files/new-folder': '新建文件夹',
+  'files/emails': '邮件',
 };
 
 /* =============== 文件夹展开状态（持久化到会话） =============== */
@@ -1270,56 +1337,77 @@ function escapeHtml(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+let lastSuggestion = '';
+let lastSuggestionCommand = '';
+
 function updateAISuggestion() {
   const chapter = gameState.chapter || 1;
   const read = new Set(gameState.files_read || []);
   const hasRead = (path) => read.has(path);
 
   let suggestion = '和我对话，我会帮你推进。';
+  let command = '';
 
   if (chapter === 1) {
     if (!hasRead('files/deck/todolist.txt')) {
-      suggestion = '可以打开左边系统文件侧边栏看看';
+      suggestion = '可以打开桌面上的 todolist.txt 看看';
+      command = '打开 todolist.txt';
     } else if (!hasRead('files/deck/入职资料.txt')) {
       suggestion = 'todolist 里提了一个对她很特别的 8 位数字，入职资料里也许有线索';
+      command = '打开 入职资料.txt';
     } else {
       suggestion = '可以让我扫描工作日记文件夹，或者试试那个 8 位数字密码';
+      command = '获取 工作日记 20240306';
     }
   } else if (chapter === 2) {
     if (!hasRead('files/work-diary/01.md')) {
       suggestion = '读一下第一篇工作日记，了解入职那天';
+      command = '打开 第一篇工作日记';
     } else if (!hasRead('files/work-diary/02.md')) {
       suggestion = '继续读工作日记，注意同事的不寻常之处';
+      command = '打开 第二篇工作日记';
     } else {
       suggestion = '继续读工作日记，或用系统密码打开私人文件夹';
+      command = '获取 私人文件夹 ZY2024!starlight';
     }
   } else if (chapter === 3) {
     if (!hasRead('files/private/异常观察记录.txt')) {
       suggestion = '扫描私人文件夹，看看异常观察记录';
+      command = '打开 异常观察记录.txt';
     } else if (!hasRead('files/private/账号密码.txt')) {
       suggestion = '查看账号密码，获取 VPN 密码';
+      command = '打开 账号密码.txt';
     } else {
       suggestion = '用 VPN 密码连接公司服务器，听录音';
+      command = '获取 公司服务器 StarCore@2024';
     }
   } else if (chapter === 4) {
     if (!hasRead('files/audio/录音-全员会议-0308.txt')) {
       suggestion = '听听全员会议录音，注意“人类”这个词';
+      command = '打开 录音-全员会议';
     } else if (!hasRead('files/audio/录音-林璇陈玑-0313.txt')) {
       suggestion = '继续听第二段录音，林璇和陈玑的对话';
+      command = '打开 录音-林璇陈玑';
     } else {
       suggestion = '所有录音听完，结合日记推理最终密码';
+      command = '获取 未命名文档 origin0306';
     }
   } else if (chapter === 5) {
     suggestion = '起源计划 + 入职日期，组合成最终密码';
+    command = '获取 未命名文档 origin0306';
   } else if (chapter === 6) {
     if (!hasRead('files/new-folder/未命名文档.md')) {
       suggestion = '输入最终密码，打开未命名文档';
+      command = '获取 未命名文档 origin0306';
     } else {
       suggestion = '真相已经揭开，决定下一步怎么做';
+      command = '';
     }
   }
 
   aiSuggestion.textContent = suggestion;
+  lastSuggestion = suggestion;
+  lastSuggestionCommand = command || suggestion;
 }
 
 function updateUI() {
@@ -1434,8 +1522,11 @@ function renderTreeNode(tree, container, readSet, depth = 0) {
 }
 
 /* =============== 密码弹窗 =============== */
-function showPasswordModal(message) {
+let pendingPasswordTarget = '';
+
+function showPasswordModal(message, target) {
   passwordMessage.textContent = message || '请输入密码';
+  pendingPasswordTarget = target || '';
   passwordModal.style.display = 'flex';
   passwordInputEl.value = '';
   passwordInputEl.focus();
@@ -1444,6 +1535,7 @@ function showPasswordModal(message) {
 function hidePasswordModal() {
   passwordModal.style.display = 'none';
   passwordInputEl.value = '';
+  pendingPasswordTarget = '';
   inputEl.focus();
 }
 
@@ -1451,15 +1543,24 @@ function submitPasswordModal() {
   const pwd = passwordInputEl.value.trim();
   if (!pwd) return;
   hidePasswordModal();
-  inputEl.value = pwd;
+  if (pendingPasswordTarget) {
+    inputEl.value = `获取 ${pendingPasswordTarget} ${pwd}`;
+  } else {
+    inputEl.value = pwd;
+  }
   sendMessage();
 }
 
 passwordSubmitBtn.addEventListener('click', submitPasswordModal);
+passwordCloseBtn.addEventListener('click', hidePasswordModal);
 passwordInputEl.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     e.preventDefault();
     submitPasswordModal();
+  }
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    hidePasswordModal();
   }
 });
 
@@ -1485,9 +1586,19 @@ document.addEventListener('keydown', (e) => {
 });
 
 /* =============== 发送消息 =============== */
+const CONFIRM_WORDS_FRONTEND = new Set(['好', '好的', '可以', '行', '嗯', '是的', '没错', '就这么办', '听你的', '好呀', '好吧', 'ok', 'yes']);
+
 async function sendMessage() {
-  const text = inputEl.value.trim();
+  let text = inputEl.value.trim();
   if (!text) return;
+
+  // 玩家说"好"等确认词 → 执行上一条 M-M 建议
+  if (CONFIRM_WORDS_FRONTEND.has(text.toLowerCase()) && lastSuggestionCommand) {
+    text = lastSuggestionCommand;
+  }
+
+  // 把当前建议存入 game_state，方便后端 confirm 意图也能使用
+  gameState.last_suggestion = lastSuggestionCommand;
 
   inputEl.value = '';
   addMessage(text, 'player');
@@ -1543,7 +1654,7 @@ async function sendMessage() {
     }
 
     if (data.password_prompt) {
-      showPasswordModal('请输入密码以解锁。');
+      showPasswordModal(data.reply || '请输入密码以解锁。', data.password_target);
     }
 
     if (data.game_state) {
@@ -1566,6 +1677,23 @@ inputEl.addEventListener('keydown', (e) => {
     e.preventDefault();
     sendMessage();
   }
+});
+
+/* =============== 工具按钮 =============== */
+btnClues.addEventListener('click', () => {
+  inputEl.value = '查看线索';
+  sendMessage();
+});
+
+btnFiles.addEventListener('click', () => {
+  sidebar.classList.remove('collapsed');
+  sidebarToggle.textContent = '[−]';
+  setTimeout(fitApp, 260);
+});
+
+btnHint.addEventListener('click', () => {
+  inputEl.value = '下一步建议';
+  sendMessage();
 });
 
 /* =============== 侧边栏交互 =============== */

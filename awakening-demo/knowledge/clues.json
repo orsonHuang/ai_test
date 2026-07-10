@@ -133,35 +133,35 @@
     },
     {
       "id": "clue-017",
-      "source_file": "files/emails/email-02.md",
+      "source_file": "files/emails/email-2.md",
       "category": "异常线索",
       "content": "陈玑邀请张知予一起吃午饭——但他从不进食",
       "chapter_min": 3
     },
     {
       "id": "clue-018",
-      "source_file": "files/emails/email-03.md",
+      "source_file": "files/emails/email-3.md",
       "category": "紧迫感",
       "content": "林璇在 3/14 上午发邮件「看到速回」——张知予缺席周会",
       "chapter_min": 4
     },
     {
       "id": "clue-019",
-      "source_file": "files/emails/email-04.md",
+      "source_file": "files/emails/email-4.md",
       "category": "紧迫感",
       "content": "林璇下午再次催促：「boss问你去哪了，这不是开玩笑的时候」",
       "chapter_min": 4
     },
     {
       "id": "clue-020",
-      "source_file": "files/emails/email-05.md",
+      "source_file": "files/emails/email-5.md",
       "category": "关键信息",
       "content": "张知予的最后一条消息：「不用找了。你永远找不到我的。」",
       "chapter_min": 4
     },
     {
       "id": "clue-020b",
-      "source_file": "files/emails/email-06.md",
+      "source_file": "files/emails/email-6.md",
       "category": "确认消失",
       "content": "IT部系统通知：zhangzhiyu 账号最后活动时间为 3/14 17:23，此后无任何登录活动。无人回复停用确认。",
       "chapter_min": 4

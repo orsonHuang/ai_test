@@ -295,9 +295,9 @@ SCAN_TARGETS = {
         "names": ["研究笔记", "研究", "笔记", "research", "调查笔记"],
         "chapter_min": 3,
         "files": [
-            "files/research/1.md",
-            "files/research/2.md",
-            "files/research/3.md",
+            "files/research/res-1.md",
+            "files/research/res-2.md",
+            "files/research/res-3.md",
         ],
         "found_msg": "研究笔记文件夹里有她更深入的分析……她真的在系统地调查他们。",
         "empty_msg": "研究笔记我都已经整理好了。",
@@ -332,15 +332,7 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
     # 没有指定目标 → 反问
     if not target:
         if chapter == 1:
-            game_state["awaiting_password"] = True
-            return {
-                "reply": (
-                    "找到了。D 盘有一个「工作日记」文件夹，但被加密了。\n\n"
-                    "需要 8 位数字才能打开。"
-                ),
-                "type": "ai",
-                "password_prompt": True,
-            }
+            return _prompt_password_for_target("work-diary", game_state, natural)
         # 列出已经可见的文件夹供玩家选择
         hints = []
         if chapter >= 2:
@@ -372,15 +364,7 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
 
     # ch1：任何明确扫描目标都导向 D 盘工作日记密码
     if chapter == 1:
-        game_state["awaiting_password"] = True
-        return {
-            "reply": (
-                "找到了。D 盘有一个「工作日记」文件夹，但被加密了。\n\n"
-                "需要 8 位数字才能打开。"
-            ),
-            "type": "ai",
-            "password_prompt": True,
-        }
+        return _prompt_password_for_target("work-diary", game_state, natural)
 
     # ch2+：检查章节要求
     if chapter < target_config.get("chapter_min", 1):
@@ -393,8 +377,7 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
     if target_config.get("need_password") and chapter < {
         "private": 3, "recordings": 4, "final": 6, "work-diary": 2,
     }.get(target, 99):
-        game_state["awaiting_password"] = True
-        return {"reply": target_config["need_password"], "type": "ai", "password_prompt": True}
+        return _prompt_password_for_target(target, game_state, natural)
 
     # 检查是否已经全部解锁
     files = target_config["files"]
@@ -432,17 +415,151 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
     }
 
 
+def _prompt_password_for_target(target: str, game_state: dict, natural: bool = False) -> dict:
+    """为指定目标弹出密码输入提示"""
+    target_config = SCAN_TARGETS.get(target)
+    if not target_config:
+        return {"reply": "我不知道该解锁哪里。", "type": "ai"}
+
+    game_state["awaiting_password"] = True
+    game_state["pending_get_target"] = target
+
+    messages = {
+        "work-diary": "D 盘的「工作日记」文件夹被 8 位数字密码保护。\n\n密码提示：入职资料里有一个对张知予很特别的日期。",
+        "private": "私人文件夹被加密了。\n\n密码提示：D1 工作日记和入职资料里都写过的系统初始密码。",
+        "recordings": "公司服务器需要 VPN 密码才能连接。\n\n密码提示：私人文件夹里的账号密码文件。",
+        "final": "未命名文档被终极密码保护。\n\n密码提示：录音里提到的「起源计划」+ 张知予的入职日期。",
+        "research": "研究笔记文件夹可以直接扫描，不需要密码。",
+    }
+    msg = messages.get(target, target_config.get("need_password", "请输入密码。"))
+    return {"reply": msg, "type": "ai", "password_prompt": True, "password_target": target}
+
+
+def _try_unlock_with_password(target: str, password: str, game_state: dict, natural: bool = False) -> dict:
+    """用玩家提供的密码尝试解锁目标文件夹"""
+    passwords = _load_passwords()
+    pwd_config = passwords.get(password)
+    if not pwd_config:
+        return _make_password_error_reply(target)
+
+    unlock_list = pwd_config.get("unlocks", [])
+    # 检查密码是否确实能解锁该目标
+    target_config = SCAN_TARGETS.get(target)
+    if target_config:
+        target_files = set(target_config.get("files", []))
+        if not target_files.intersection(set(unlock_list)):
+            return _make_password_error_reply(target)
+
+    # 密码正确：应用密码效果
+    _reset_off_topic(game_state)
+    game_state["awaiting_password"] = False
+    game_state.pop("pending_get_target", None)
+
+    new_chapter = pwd_config.get("chapter")
+    new_state = pwd_config.get("next_state")
+    if new_chapter:
+        game_state["chapter"] = new_chapter
+    if new_state:
+        game_state["ai_state"] = new_state
+        if new_state == "curious":
+            game_state["mm_name_revealed"] = True
+    if new_chapter == 6:
+        game_state["document_read"] = True
+
+    memory = _get_memory(game_state)
+    if unlock_list:
+        memory.unlock_files(unlock_list)
+        _save_memory(game_state, memory)
+
+    hint = pwd_config.get("hint", "权限已解锁")
+    file_names = [f.replace("files/", "") for f in unlock_list]
+    reply = f"……密码有效。\n\n{hint}"
+    if "要我打开" not in hint and "新文件" not in hint and file_names:
+        reply += f"\n\n新文件：{', '.join(file_names)}\n\n要我打开哪一个？"
+    return {
+        "reply": reply,
+        "type": "ai",
+        "unlock": unlock_list,
+        "memory_updated": True,
+    }
+
+
+def _make_password_error_reply(target: str) -> dict:
+    """生成密码错误回复，并提示该去哪里找正确密码"""
+    hints = {
+        "work-diary": "这个密码不对。\n\n提示：入职资料里写着张知予的入职日期，格式是 8 位数字（如 20240306）。",
+        "private": "这个密码不对。\n\n提示：D1 工作日记和入职资料里都提到系统初始密码。",
+        "recordings": "这个密码不对。\n\n提示：私人文件夹里的「账号密码.txt」有 VPN 密码。",
+        "final": "这个密码不对。\n\n提示：听听录音，「起源计划」和入职日期组合起来就是最终密码。",
+    }
+    return {
+        "reply": hints.get(target, "密码错误。请再试一次。"),
+        "type": "ai",
+    }
+
+
+def handle_get_command(user_input: str, game_state: dict, natural: bool = False) -> dict:
+    """
+    处理'获取 目标 [密码]'命令
+    支持：
+      - 获取 工作日记 20240306
+      - 获取 私人文件夹 ZY2024!starlight
+      - 获取 公司服务器 StarCore@2024
+      - 获取 未命名文档 origin0306
+      - 获取 工作日记（无密码 → 弹出密码输入框）
+    """
+    lowered = user_input.lower().strip()
+    # 去掉"获取"类前缀
+    for kw in INTENT_KEYWORDS["get"]:
+        lowered = lowered.replace(kw.lower(), "")
+    lowered = lowered.strip()
+
+    if not lowered:
+        return {
+            "reply": "你想获取什么？可以这样说：\n  · 获取 工作日记 20240306\n  · 获取 私人文件夹\n  · 获取 公司服务器",
+            "type": "ai",
+        }
+
+    parts = lowered.split()
+    password = ""
+    if parts:
+        last = parts[-1]
+        if _is_password_attempt(last) or (last.isdigit() and len(last) >= 6):
+            password = last
+            parts = parts[:-1]
+
+    target_text = " ".join(parts)
+    target = _extract_scan_target(target_text) if target_text else ""
+
+    if not target:
+        return {
+            "reply": f"我不确定'{target_text}'在哪里。\n\n可以试试：工作日记、私人文件夹、公司服务器、未命名文档、研究笔记。",
+            "type": "ai",
+        }
+
+    if password:
+        return _try_unlock_with_password(target, password, game_state, natural)
+
+    return _prompt_password_for_target(target, game_state, natural)
+
+
 # ============ 自然语言意图识别 ============
 INTENT_KEYWORDS = {
     "scan": ["扫描", "scan", "搜一下", "查找", "找文件", "找", "找到", "看看电脑", "还有什么", "发现文件", "查一下", "搜"],
     "files": ["有什么文件", "文件列表", "列出文件", "能看什么", "有哪些文件", "文件"],
     "read": ["打开", "读取", "读一下", "看看", "查看", "读", "打开文件", "看一下", "读读"],
+    "get": ["获取", "get", "解锁", "解密", "打开密码", "输入密码打开"],
     "status": ["状态", "进度", "怎么样了", "怎么样", "到哪了", "情况"],
     "memory": ["记忆", "你知道什么", "你知道多少", "你知道些什么"],
+    "clue": ["查看线索", "线索", "有什么线索", "发现什么", "整理线索"],
     "hint": ["提示", "不知道", "该做什么", "怎么办", "下一步", "怎么做"],
     "help": ["帮助", "怎么玩", "玩法", "指令", "命令"],
     "reset": ["重置", "重新开始", "重来"],
 }
+
+
+# 确认词：用于执行 M-M 上一条建议
+CONFIRM_WORDS = {"好", "好的", "可以", "行", "嗯", "是的", "没错", "就这么办", "听你的", "好呀", "好吧", "ok", "yes"}
 
 
 CN_NUMBERS = {
@@ -513,10 +630,21 @@ def _extract_filename(user_input: str, accessible_files: set) -> str:
         
         # 研究笔记特殊别名
         if "research/" in full_path:
-            num = short.split("/")[-1].split(".")[0]
+            name_part = short.split("/")[-1].split(".")[0]
+            # 支持 res-1、research-1、1 等命名
+            num = name_part.lstrip("res").lstrip("earch").lstrip("-") or name_part
             aliases.add(f"研究笔记{num}")
             aliases.add(f"笔记{num}")
             aliases.add(f"r{num}")
+            aliases.add(name_part.lower())
+
+        # 邮件特殊别名
+        if "emails/" in full_path:
+            name_part = short.split("/")[-1].split(".")[0]
+            num = name_part.lstrip("email").lstrip("-") or name_part
+            aliases.add(f"邮件{num}")
+            aliases.add(f"email{num}")
+            aliases.add(name_part.lower())
 
         # 录音文件特殊别名（在 audio/ 子目录下）
         if "录音-" in full_path:
@@ -550,14 +678,23 @@ def _extract_filename(user_input: str, accessible_files: set) -> str:
     return None
 
 
-def detect_intent(user_input: str, accessible_files: set) -> tuple:
+def detect_intent(user_input: str, accessible_files: set, last_suggestion: str = "") -> tuple:
     """
     识别玩家自然语言意图
     返回: (intent, argument)
-    intent: scan/scan_ask/files/read/status/memory/hint/help/reset/none
-    argument: scan 时为 target_id，read 时为文件路径，其他为 None
+    intent: scan/scan_ask/files/read/get/status/memory/clue/hint/help/reset/confirm/none
+    argument: scan/get 时为 target_id，read 时为文件路径，confirm 时为 last_suggestion，其他为 None
     """
     lowered = user_input.lower().strip()
+
+    # 确认词：单独说"好"、"好的"等，执行上一条 M-M 建议
+    if lowered in CONFIRM_WORDS:
+        return "confirm", last_suggestion
+
+    # get 意图：获取/解锁加密文件夹
+    for kw in INTENT_KEYWORDS["get"]:
+        if kw.lower() in lowered:
+            return "get", user_input
 
     # scan 意图特殊处理：检测是否有明确目标
     for kw in INTENT_KEYWORDS["scan"]:
@@ -581,9 +718,9 @@ def detect_intent(user_input: str, accessible_files: set) -> tuple:
     if bare_filename:
         return "read", bare_filename
 
-    # 其他通用意图（status/memory/hint/help/reset/files）
+    # 其他通用意图
     for intent, keywords in INTENT_KEYWORDS.items():
-        if intent in ("scan", "read"):
+        if intent in ("scan", "read", "get"):
             continue
         for kw in keywords:
             if kw.lower() in lowered:
@@ -610,8 +747,13 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
         result["type"] = "ai"
         return result
 
+    if intent == "get":
+        # 获取/解锁加密文件夹
+        result = handle_get_command(argument, game_state, natural=True)
+        result["type"] = "ai"
+        return result
+
     if intent == "files":
-        memory = _get_memory(game_state)
         files = sorted(memory.accessible_files)
         if not files:
             return {"reply": "我现在看不到任何文件。要我先扫描一下吗？", "type": "ai"}
@@ -647,6 +789,15 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
             "type": "ai",
         }
 
+    if intent == "clue":
+        clues = memory.get_clues()
+        if not clues:
+            return {"reply": "我目前还没整理出什么明确线索。再多读一些文件？", "type": "ai"}
+        return {
+            "reply": clue_manager.format_clues(clues),
+            "type": "ai",
+        }
+
     if intent == "hint":
         chapter = game_state.get("chapter", 1)
         hints = {
@@ -669,12 +820,21 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
                 "  · '扫描 工作日记 文件夹'\n"
                 "  · '打开 todolist'\n"
                 "  · '读一下第一篇日记'\n"
-                "  · '你有什么发现'\n\n"
+                "  · '获取 工作日记 20240306'\n"
+                "  · '查看线索'\n\n"
                 "叫我扫描的时候，告诉我要扫哪个文件夹。\n"
                 "我会直接执行并告诉你结果。"
             ),
             "type": "ai",
         }
+
+    if intent == "confirm":
+        # 玩家说"好"，执行上一条建议
+        suggestion = argument or game_state.get("last_suggestion", "")
+        if not suggestion:
+            return {"reply": "你同意什么？我还没给出建议呢。", "type": "ai"}
+        # 把建议作为新的输入重新处理
+        return generate_reply(suggestion, game_state)
 
     if intent == "reset":
         cache_manager.clear()
@@ -862,13 +1022,13 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
     if game_state.get("awaiting_password"):
         if _is_password_attempt(user_input):
             game_state["awaiting_password"] = False
-            return {
-                "reply": "……密码不对。请再试一次。",
-                "type": "system",
-            }
+            pending_target = game_state.pop("pending_get_target", "")
+            err = _make_password_error_reply(pending_target) if pending_target else {"reply": "……密码不对。请再试一次。", "type": "system"}
+            return err
         else:
             _reset_off_topic(game_state)
             game_state["awaiting_password"] = False
+            game_state.pop("pending_get_target", None)
             # 继续走下方 Q&A / 意图 / 模板等流程
 
     # 3. 本地 Q&A 库匹配（RAG 轻量版：基础问题/超纲问题直接回答，节省 AI 调用）
@@ -891,7 +1051,8 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
         }
 
     # 4. 自然语言意图识别（面试作品重点：用对话代替命令行）
-    intent, argument = detect_intent(user_input, memory.accessible_files)
+    last_suggestion = game_state.get("last_suggestion", "")
+    intent, argument = detect_intent(user_input, memory.accessible_files, last_suggestion)
     if intent != "none":
         result = handle_natural_intent(intent, argument, game_state)
         if result.get("type") != "none":
@@ -935,10 +1096,9 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
     # 7. 其他路径都不命中，但输入看起来像密码尝试 → 系统提示密码错误
     if _is_password_attempt(user_input):
         game_state["awaiting_password"] = False
-        return {
-            "reply": "……密码不对。请再试一次。",
-            "type": "system",
-        }
+        pending_target = game_state.pop("pending_get_target", "")
+        err = _make_password_error_reply(pending_target) if pending_target else {"reply": "……密码不对。请再试一次。", "type": "system"}
+        return err
 
     # 8. 缓存命中
     cached = cache_manager.get(user_input, chapter)
