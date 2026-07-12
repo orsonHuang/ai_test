@@ -35,6 +35,7 @@ def _category_priority(category: str) -> int:
         "basic_identity": 1,
         "basic_gameplay": 2,
         "basic_story": 3,
+        "folder_help": 2,
         "opinion": 4,
     }
     return priorities.get(category, 5)

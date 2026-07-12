@@ -220,7 +220,7 @@ M-M 能读取的内容严格受限于 **玩家已解锁的文件** 和 **M-M 当
 **可读取文件范围**：
 - 全阶段全部文件（假设已解锁）
 - `files/new-folder/未命名文档.md`
-- `files/emails/1.md` ~ `5.md`（可选）
+- `files/emails/email-2.md`, `email-5.md`（可选）
 - `files/research/1.md` ~ `3.md`（可选）
 
 **关键转折**：

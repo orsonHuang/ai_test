@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "description": "文件夹发现配置表。当玩家读取包含线索的 source_file 后，对应的 target 文件夹才会被发现。",
+  "discoveries": [
+    {
+      "id": "discover-work-diary",
+      "source_file": "files/deck/todolist.txt",
+      "target_id": "work-diary",
+      "hint": "D 盘有一个「工作日记」文件夹",
+      "unlock_password": "20030323"
+    },
+    {
+      "id": "discover-private",
+      "source_file": "files/work-diary/01.md",
+      "target_id": "private",
+      "hint": "电脑上还有一个加密的私人文件夹",
+      "unlock_password": "ZY2024!starlight"
+    },
+    {
+      "id": "discover-recordings",
+      "source_file": "files/private/账号密码.txt",
+      "target_id": "recordings",
+      "hint": "可以通过 VPN 连接公司服务器，获取录音",
+      "unlock_password": "StarCore@2024"
+    },
+    {
+      "id": "discover-research",
+      "source_file": "files/work-diary/03.md",
+      "target_id": "research",
+      "hint": "D 盘还有一个研究笔记文件夹",
+      "unlock_password": ""
+    },
+    {
+      "id": "discover-final",
+      "source_file": "files/audio/录音-陆天枢-0313.txt",
+      "target_id": "final",
+      "hint": "新建文件夹里有一个未命名文档，藏着最终答案",
+      "unlock_password": "origin0306"
+    }
+  ]
+}

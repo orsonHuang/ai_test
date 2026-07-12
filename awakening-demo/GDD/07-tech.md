@@ -61,6 +61,7 @@ awakening-demo/
 │   ├── hybrid_reply.py               # 混合模式核心（14条优先级路径）
 │   ├── response_library.py           # 预烘焙响应库智能匹配引擎 ★ 新核心
 │   ├── learning_store.py             # API 学习闭环（未命中→入库）★ 新
+│   ├── folder_discovery.py           # 文件夹线索发现（读文件→发现目标）★ 新
 │   ├── rule_engine.py                # 规则匹配（关键词模板已移除）
 │   ├── cache_manager.py              # 缓存管理
 │   ├── ai_fallback.py                # AI兜底
@@ -499,6 +500,10 @@ TEMPERATURE = 0.7
 | **单局 AI 上限** | 20 次 (MAX_AI_CALLS_PER_GAME) |
 | **响应库** | 预烘焙 75 条目/157 变体，运行时零成本智能匹配 ★ 核心 |
 | **学习闭环** | 路径 13 API 回复 → learning_store 入库 → 下次路径 10 命中 |
+| **目标发现** | 读取含线索的文件后，自动发现对应文件夹；未发现的目标不能扫描/获取 |
+| **主线建议** | 根据章节、已读文件、已发现目标动态生成下一步建议 |
+| **执行建议** | 点击「执行建议」直接把建议作为输入发送，无需手动输入 |
+| **密码脱敏** | 前端展示「获取 工作日记 密码」，命令不泄露明文 |
 | **建议系统** | 每条回复后 `_save_suggestions()` → 从回复文本或默认规则提取可执行建议 → 前端显示快捷按钮 |
 | **确认执行** | 玩家说"好""可以""试试"等 → 自动执行上一条建议命令，多条则追问选择 |
 | **记忆闭环** | 读文件 → `memory.process_file()` + `clue_manager` 提取线索 → `_save_memory()` 持久化 |
@@ -512,29 +517,29 @@ TEMPERATURE = 0.7
 ```
 generate_reply()
   ├─ handle_command()           → / 命令
-  ├─ _check_password()          → passwords.json
+  ├─ _check_password()          → passwords.json（仅裸密码，不含获取/解锁关键词）
   ├─ _is_password_attempt()     → 密码识别
-  ├─ detect_intent()            → 意图识别
-  │   ├─ _extract_scan_target() → SCAN_TARGETS
+  ├─ detect_intent()            → 意图识别（新增 folder_help）
+  │   ├─ _extract_scan_target() → SCAN_TARGETS + target_id
   │   ├─ _extract_filename()    → alias_map + fuzzy_matcher
   │   └─ _parse_choice()        → CN_NUMBERS 多选解析
   ├─ handle_natural_intent()
-  │   ├─ handle_scan_command()   → 扫描流程 + _prompt_password_for_target
-  │   ├─ handle_get_command()    → _try_unlock_with_password
-  │   ├─ handle_file_command()   → 读取 + clue_manager.get_clues_for_file
+  │   ├─ handle_scan_command()   → 扫描流程（需目标已发现）+ _prompt_password_for_target
+  │   ├─ handle_get_command()    → 获取 文件夹 密码 格式解析
+  │   ├─ handle_file_command()   → 读取 + clue_manager.get_clues_for_file + folder_discovery.discover_targets
   │   ├─ _build_password_hint()  → 密码分析引导
   │   └─ _build_analysis_reply() → 综合推理
-  ├─ qa_engine.find_answer()    → qa-library.json
-  ├─ response_library.find_best_match() → response-library.json ★ 新核心
-  ├─ learning_store.find_match() → learning-store.json ★ 新
+  ├─ qa_engine.find_answer()    → qa-library.json（新增 folder_help）
+  ├─ response_library.find_best_match() → response-library.json
+  ├─ learning_store.find_match() → learning-store.json
   ├─ find_file_suggestion()     → 文件类别匹配
   ├─ cache_manager.get()        → 缓存查询
   ├─ ai_fallback.generate()     → DeepSeek API + RAG（降级路径）
   │   ├─ memory.build_context_string()
   │   ├─ knowledge_search.build_knowledge_context()
-  │   └─ learning_store.append() → 学习闭环 ★ 新
+  │   └─ learning_store.append() → 学习闭环
   └─ _save_suggestions()        → 建议栏 + pending_choices
-      └─ _build_default_suggestions() → 章节默认建议
+      └─ _build_default_suggestions() → 章节/已读/发现目标 主线建议
 ```
 
 ### 回复类型 (type)
@@ -554,6 +559,31 @@ generate_reply()
 | `file_listing` | 文件列表 | AI 气泡 + 文件列表渲染 |
 | `choose_prompt` | 多选追问 | AI 气泡 + 保留 pending_choices |
 | `fallback` / `limit_reached` / `out_of_scope` | 超限/拒绝 | AI 气泡 |
+
+## 目标发现与建议栏
+
+### 文件夹线索发现
+- 配置：`knowledge/folder-discoveries.json`
+- 触发：`handle_file_command()` 读取文件后调用 `folder_discovery.discover_targets()`
+- 效果：
+  - 已发现目标才能被扫描/获取
+  - 未被发现的目标访问会提示「先读文件找线索」
+- 示例：读 `todolist.txt` 后自动发现「工作日记」
+
+### 主线建议生成
+- `_build_default_suggestions()` 综合：当前章节、已读文件、已发现目标
+- 建议文本呈现为「主线任务」，如「获取 工作日记 密码」
+- 前端「执行建议」按钮直接把建议作为输入发送
+
+### 密码脱敏
+- 展示文本：`获取 工作日记 密码`
+- 命令：可保留 `获取 工作日记 密码`（弹出密码输入框），或后端内部使用具体密码
+- 前端正则 `maskPasswordText()` 自动替换明文数字/混合密码
+
+### 前端建议栏
+- 旧顶部工具栏隐藏，按钮合并到 AI 建议栏右侧
+- 右侧按钮：🔍 线索 / 📁 文件 / ▶ 执行建议
+- 文本区域保持左对齐，按钮右置顶
 
 ## 部署方案
 

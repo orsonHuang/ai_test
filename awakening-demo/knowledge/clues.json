@@ -23,7 +23,7 @@
       "id": "clue-001",
       "source_file": "files/deck/todolist.txt",
       "category": "文件线索",
-      "content": "桌面上有一个独立游戏项目暂定名为《未命名文档》",
+      "content": "有一个工作日记文件夹",
       "chapter_min": 1
     },
     {
@@ -139,31 +139,10 @@
       "chapter_min": 3
     },
     {
-      "id": "clue-018",
-      "source_file": "files/emails/email-3.md",
-      "category": "紧迫感",
-      "content": "林璇在 3/14 上午发邮件「看到速回」——张知予缺席周会",
-      "chapter_min": 4
-    },
-    {
-      "id": "clue-019",
-      "source_file": "files/emails/email-4.md",
-      "category": "紧迫感",
-      "content": "林璇下午再次催促：「boss问你去哪了，这不是开玩笑的时候」",
-      "chapter_min": 4
-    },
-    {
       "id": "clue-020",
       "source_file": "files/emails/email-5.md",
       "category": "关键信息",
       "content": "张知予的最后一条消息：「不用找了。你永远找不到我的。」",
-      "chapter_min": 4
-    },
-    {
-      "id": "clue-020b",
-      "source_file": "files/emails/email-6.md",
-      "category": "确认消失",
-      "content": "IT部系统通知：zhangzhiyu 账号最后活动时间为 3/14 17:23，此后无任何登录活动。无人回复停用确认。",
       "chapter_min": 4
     },
     {

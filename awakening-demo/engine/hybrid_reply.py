@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 
 from engine import ai_fallback, cache_manager, character_state, qa_engine
-from engine import clue_manager, fuzzy_matcher, response_library, learning_store
+from engine import clue_manager, fuzzy_matcher, response_library, learning_store, folder_discovery
 from engine.rule_engine import find_file_suggestion, find_file_commentary
 
 from engine.file_reader import (
@@ -220,8 +220,26 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
         reply_text = random.choice(opening_lines)
     else:
         reply_text = f"── {search_path} ──"
-    if commentary:
-        reply_text += f"\n\n{commentary}"
+    # ---- 文件读取后触发文件夹发现 ----
+    before_targets = set(game_state.get("discovered_targets", []))
+    folder_discovery.discover_targets(game_state)
+    after_targets = set(game_state.get("discovered_targets", []))
+    new_targets = after_targets - before_targets
+
+    # 如果有新发现的文件夹，M-M 会提示
+    discovery_note = ""
+    if new_targets:
+        notes = []
+        for target_id in sorted(new_targets):
+            hint = folder_discovery.get_discovery_hint(target_id)
+            if hint:
+                notes.append(f"  · {hint}")
+        if notes:
+            discovery_note = "\n\n我注意到一件事：\n" + "\n".join(notes)
+            if commentary:
+                commentary += discovery_note
+            else:
+                reply_text += discovery_note
 
     return {
         "reply": reply_text,
@@ -312,12 +330,15 @@ def _extract_scan_target(user_input: str) -> str:
     """从玩家输入中提取扫描目标，返回 target_id 或空字符串"""
     lowered = user_input.lower().strip()
     for target_id, config in SCAN_TARGETS.items():
+        # 直接匹配 target_id（用于密码弹窗返回的 target_id）
+        if target_id.lower() in lowered:
+            return target_id
         for name in config["names"]:
-            # 去掉可能的前缀词（扫描、搜、找），检查剩余部分
-            # 直接检测是否包含目标名称
             if name in lowered:
                 return target_id
     return ""
+
+
 
 
 def handle_scan_command(game_state: dict, natural: bool = False, target: str = "") -> dict:
@@ -350,8 +371,22 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
 
         hint_str = "、".join(hints) if hints else "当前可访问的位置"
         if natural:
+            # 只列出已经发现的目标
+            discovered = folder_discovery.get_discovered_targets(game_state)
+            hints = []
+            names_map = {
+                "work-diary": "工作日记 文件夹",
+                "private": "私人文件夹",
+                "recordings": "公司服务器/录音",
+                "research": "研究笔记",
+                "final": "新建文件夹",
+            }
+            for target_id in discovered:
+                if target_id in names_map:
+                    hints.append(names_map[target_id])
+            hint_str = "、".join(hints) if hints else "当前还没有发现可扫描的位置"
             return {
-                "reply": f"你想让我扫描哪里？\n\n比如你可以说：\n  · 扫描 工作日记 文件夹\n  · 扫描 私人文件夹\n  · 扫描 公司服务器\n  · 扫描 新建文件夹",
+                "reply": f"你想让我扫描哪里？\n\n目前发现的有：{hint_str}。\n\n可以这样说：\n  · 扫描 工作日记 文件夹\n  · 扫描 私人文件夹",
                 "type": "ai",
             }
         return {"reply": f"用法：/scan [目标]，例如 /scan 工作日记", "type": "ai"}
@@ -364,12 +399,28 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
             "type": "ai",
         }
 
+    # 检查目标是否已经被发现（玩家需要读过含线索的文件）
+    if not folder_discovery.is_target_discovered(game_state, target):
+        display_name = target_config.get("names", [target])[0]
+        return {
+            "reply": (
+                f"我还没发现「{display_name}」在哪。\n"
+                "\n"
+                "先读读已经解锁的文件吧，线索藏在里面。"
+            ),
+            "type": "ai",
+        }
+
     # ch1：任何明确扫描目标都导向 D 盘工作日记密码
     if chapter == 1:
         return _prompt_password_for_target("work-diary", game_state, natural)
 
     # ch2+：检查章节要求
     if chapter < target_config.get("chapter_min", 1):
+        return {
+            "reply": "那个位置我还没有权限访问。先把能打开的文件夹都看看？",
+            "type": "ai",
+        }
         return {
             "reply": "那个位置我还没有权限访问。先把能打开的文件夹都看看？",
             "type": "ai",
@@ -500,24 +551,21 @@ def _make_password_error_reply(target: str) -> dict:
     }
 
 
+
+
+
 def _find_next_locked_target(game_state: dict) -> str:
     """
-    根据当前章节找出已发现但尚未解锁的下一个目标。
-    返回 target_id 或空字符串。
+    根据当前已发现目标中找出尚未解锁的下一个目标。
+    只返回已被发现（玩家读过对应文件）的 target_id。
     """
     memory = _get_memory(game_state)
-    chapter = game_state.get("chapter", 1)
-    target_order = []
-    if chapter >= 1:
-        target_order.append("work-diary")
-    if chapter >= 2:
-        target_order.append("private")
-    if chapter >= 3:
-        target_order.append("recordings")
-    if chapter >= 4:
-        target_order.append("final")
+    discovered = set(folder_discovery.get_discovered_targets(game_state))
+    target_order = ["work-diary", "private", "recordings", "final"]
 
     for target in target_order:
+        if target not in discovered:
+            continue
         config = SCAN_TARGETS.get(target)
         if not config:
             continue
@@ -527,15 +575,36 @@ def _find_next_locked_target(game_state: dict) -> str:
     return ""
 
 
+def _looks_like_password(token: str) -> bool:
+    """判断 token 是否像密码（数字>=6位，或包含至少两类字符）"""
+    if not token or len(token) < 1:
+        return False
+    if token.isdigit() and len(token) >= 6:
+        return True
+    has_lower = any(c.islower() for c in token)
+    has_upper = any(c.isupper() for c in token)
+    has_digit = any(c.isdigit() for c in token)
+    has_symbol = any(not c.isalnum() for c in token)
+    classes = sum([has_lower, has_upper, has_digit, has_symbol])
+    return classes >= 2 and len(token) >= 6
+
+
+def _mask_password(command: str) -> str:
+    """把命令中的密码替换为「密码」字样，用于前端展示"""
+    parts = command.strip().split()
+    if len(parts) >= 3 and _looks_like_password(parts[-1]):
+        # 例如：获取 工作日记 20030323 → 获取 工作日记 密码
+        return f"{parts[0]} {parts[1]} 密码"
+    return command
+
+
 def handle_get_command(user_input: str, game_state: dict, natural: bool = False) -> dict:
     """
     处理'获取 目标 [密码]'命令
     支持：
-      - 获取 工作日记 20030323
-      - 获取 私人文件夹 ZY2024!starlight
-      - 获取 公司服务器 StarCore@2024
-      - 获取 未命名文档 origin0306
-      - 获取 工作日记（无密码 → 弹出密码输入框）
+      - 获取 工作日记 20030323     → 直接解锁
+      - 获取 工作日记 密码          → 弹出密码输入框
+      - 获取 工作日记              → 弹出密码输入框（保留旧习惯）
     """
     lowered = user_input.lower().strip()
     # 去掉"获取"类前缀
@@ -552,24 +621,43 @@ def handle_get_command(user_input: str, game_state: dict, natural: bool = False)
                 "type": "ai",
             }
         return {
-            "reply": "你想获取什么？可以这样说：\n  · 获取 工作日记 20030323\n  · 获取 私人文件夹\n  · 获取 公司服务器",
+            "reply": "你想获取什么？可以这样说：\n  · 获取 工作日记 密码\n  · 获取 私人文件夹 密码\n  · 获取 公司服务器 密码",
             "type": "ai",
         }
 
     parts = lowered.split()
     password = ""
+    # 判断末尾 token 是否是密码
     if parts:
         last = parts[-1]
-        if _is_password_attempt(last) or (last.isdigit() and len(last) >= 6):
+        if last == "密码":
+            # 获取 工作日记 密码 → 只弹出密码框，不验证
+            password = ""
+            parts = parts[:-1]
+        elif _looks_like_password(last):
             password = last
             parts = parts[:-1]
+        else:
+            password = ""
 
     target_text = " ".join(parts)
     target = _extract_scan_target(target_text) if target_text else ""
 
     if not target:
         return {
-            "reply": f"我不确定'{target_text}'在哪里。\n\n可以试试：工作日记、私人文件夹、公司服务器、未命名文档、研究笔记。",
+            "reply": f"我不确定'{target_text}'在哪里。\n\n可以试试：工作日记、私人文件夹、公司服务器、未命名文档。",
+            "type": "ai",
+        }
+
+    # 检查目标是否已被发现
+    if not folder_discovery.is_target_discovered(game_state, target):
+        display_name = SCAN_TARGETS[target].get("names", [target])[0]
+        return {
+            "reply": (
+                f"我还没发现「{display_name}」在哪。\n"
+                "\n"
+                "先读读已经解锁的文件，线索会告诉你该去哪里。"
+            ),
             "type": "ai",
         }
 
@@ -590,6 +678,7 @@ INTENT_KEYWORDS = {
     "clue": ["查看线索", "线索", "有什么线索", "发现什么", "整理线索"],
     "hint": ["提示", "下一步"],
     "password_hint": ["密码是什么", "密码多少", "怎么破解密码", "密码提示", "怎么分析密码", "密码在哪", "找不到密码", "密码线索", "当前密码", "这个密码"],
+    "folder_help": ["怎么获取文件夹", "怎么解锁文件夹", "怎么打开文件夹", "怎么找文件夹", "文件夹在哪", "找不到文件夹", "怎么获取文件", "怎么解锁文件", "如何获取文件夹", "如何解锁文件夹", "如何获取文件", "怎么扫描文件夹", "怎么获得文件夹", "文件夹怎么打开", "文件怎么获取"],
     "reset": ["重置", "重新开始", "重来"],
 }
 
@@ -636,11 +725,11 @@ SUGGESTION_PATTERNS = [
     (r"(?:打开|读一下?|看看)\s+邮件\s*4", "打开 邮件4"),
     (r"(?:打开|读一下?|看看)\s+邮件\s*5", "打开 邮件5"),
     (r"(?:打开|读一下?|看看)\s+邮件\s*6", "打开 邮件6"),
-    # 扫描/获取
-    (r"(?:扫描|获取|解锁)\s+工作日记", "获取 工作日记 20030323"),
-    (r"(?:扫描|获取|解锁)\s+私人文件夹", "获取 私人文件夹 ZY2024!starlight"),
-    (r"(?:扫描|获取|解锁|连接)\s+公司服务器", "获取 公司服务器 StarCore@2024"),
-    (r"(?:扫描|获取|解锁)\s+未命名文档", "获取 未命名文档 origin0306"),
+    # 扫描/获取（前端展示密码，点击后弹出密码输入框）
+    (r"(?:扫描|获取|解锁)\s+工作日记", "获取 工作日记 密码"),
+    (r"(?:扫描|获取|解锁)\s+私人文件夹", "获取 私人文件夹 密码"),
+    (r"(?:扫描|获取|解锁|连接)\s+公司服务器", "获取 公司服务器 密码"),
+    (r"(?:扫描|获取|解锁)\s+未命名文档", "获取 未命名文档 密码"),
     (r"(?:扫描|查看)\s+研究笔记", "扫描 研究笔记"),
     (r"(?:扫描|查看)\s+邮件", "扫描 邮件"),
     # 工具
@@ -887,6 +976,11 @@ def detect_intent(user_input: str, accessible_files: set, game_state: dict = Non
         if kw.lower() in lowered:
             return "get", user_input
 
+    # 文件夹帮助：不知道怎么获取文件夹
+    for kw in INTENT_KEYWORDS["folder_help"]:
+        if kw.lower() in lowered:
+            return "folder_help", None
+
     # scan 意图特殊处理：检测是否有明确目标
     for kw in INTENT_KEYWORDS["scan"]:
         if kw.lower() in lowered:
@@ -922,53 +1016,64 @@ def detect_intent(user_input: str, accessible_files: set, game_state: dict = Non
 
 def _build_default_suggestions(game_state: dict) -> list:
     """
-    根据当前章节与已读文件生成默认建议列表。
+    根据当前章节、已读文件和已发现目标生成主线建议列表。
     """
     chapter = game_state.get("chapter", 1)
     read = set(game_state.get("files_read", []))
+    discovered = set(folder_discovery.get_discovered_targets(game_state))
     has_read = lambda path: path in read
 
+    def _main_quest_hint(text: str, command: str) -> dict:
+        return {"text": text, "command": command}
+
+    # Chapter 1：引导玩家从桌面文件到发现工作日记
     if chapter == 1:
         if not has_read("files/deck/todolist.txt"):
-            return [{"text": "打开 todolist.txt", "command": "打开 todolist.txt"}]
+            return [_main_quest_hint("打开 todolist.txt", "打开 todolist.txt")]
         if not has_read("files/deck/入职资料.txt"):
-            return [{"text": "打开 入职资料.txt", "command": "打开 入职资料.txt"}]
-        return [
-            {"text": "扫描工作日记文件夹", "command": "扫描 工作日记"},
-            {"text": "用生日密码解锁工作日记", "command": "获取 工作日记 20030323"},
-        ]
+            return [_main_quest_hint("打开 入职资料.txt", "打开 入职资料.txt")]
+        if "work-diary" not in discovered:
+            return [_main_quest_hint("再读一遍 todolist，注意 D 盘", "打开 todolist.txt")]
+        return [_main_quest_hint("获取 工作日记 密码", "获取 工作日记 密码")]
+
+    # Chapter 2：工作日记是主线
     if chapter == 2:
         if not has_read("files/work-diary/01.md"):
-            return [{"text": "打开 第一篇工作日记", "command": "打开 第一篇工作日记"}]
+            return [_main_quest_hint("打开 第一篇工作日记", "打开 第一篇工作日记")]
         if not has_read("files/work-diary/02.md"):
-            return [{"text": "打开 第二篇工作日记", "command": "打开 第二篇工作日记"}]
-        return [
-            {"text": "继续读工作日记", "command": "打开 工作日记"},
-            {"text": "用系统密码打开私人文件夹", "command": "获取 私人文件夹 ZY2024!starlight"},
-        ]
+            return [_main_quest_hint("打开 第二篇工作日记", "打开 第二篇工作日记")]
+        if "private" in discovered:
+            return [_main_quest_hint("获取 私人文件夹 密码", "获取 私人文件夹 密码")]
+        return [_main_quest_hint("继续读工作日记", "打开 工作日记")]
+
+    # Chapter 3：私人文件夹 + 研究笔记
     if chapter == 3:
         if not has_read("files/private/异常观察记录.txt"):
-            return [{"text": "打开 异常观察记录.txt", "command": "打开 异常观察记录.txt"}]
+            return [_main_quest_hint("打开 异常观察记录.txt", "打开 异常观察记录.txt")]
         if not has_read("files/private/账号密码.txt"):
-            return [{"text": "打开 账号密码.txt", "command": "打开 账号密码.txt"}]
-        return [
-            {"text": "连接公司服务器听录音", "command": "获取 公司服务器 StarCore@2024"},
-            {"text": "扫描研究笔记", "command": "扫描 研究笔记"},
-        ]
+            return [_main_quest_hint("打开 账号密码.txt", "打开 账号密码.txt")]
+        if "recordings" not in discovered:
+            return [_main_quest_hint("再读工作日记，找 VPN 线索", "打开 工作日记")]
+        return [_main_quest_hint("获取 公司服务器 密码", "获取 公司服务器 密码")]
+
+    # Chapter 4：录音
     if chapter == 4:
         if not has_read("files/audio/录音-全员会议-0308.txt"):
-            return [{"text": "打开 录音-全员会议", "command": "打开 录音-全员会议"}]
+            return [_main_quest_hint("打开 录音-全员会议", "打开 录音-全员会议")]
         if not has_read("files/audio/录音-林璇陈玑-0313.txt"):
-            return [{"text": "打开 录音-林璇陈玑", "command": "打开 录音-林璇陈玑"}]
-        return [
-            {"text": "打开 未命名文档.md", "command": "打开 未命名文档.md"},
-            {"text": "输入最终密码", "command": "获取 未命名文档 origin0306"},
-        ]
-    if chapter == 5:
-        return [{"text": "输入最终密码", "command": "获取 未命名文档 origin0306"}]
-    if chapter == 6:
+            return [_main_quest_hint("打开 录音-林璇陈玑", "打开 录音-林璇陈玑")]
+        if not has_read("files/audio/录音-陆天枢-0313.txt"):
+            return [_main_quest_hint("打开 录音-陆天枢", "打开 录音-陆天枢")]
+        if "final" not in discovered:
+            return [_main_quest_hint("读研究笔记，找最终线索", "打开 研究笔记")]
+        return [_main_quest_hint("获取 未命名文档 密码", "获取 未命名文档 密码")]
+
+    # Chapter 5 / 6：最终密码
+    if chapter >= 5:
         if not has_read("files/new-folder/未命名文档.md"):
-            return [{"text": "输入最终密码", "command": "获取 未命名文档 origin0306"}]
+            return [_main_quest_hint("获取 未命名文档 密码", "获取 未命名文档 密码")]
+        return []
+
     return []
 
 
@@ -1160,6 +1265,20 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
         result = handle_get_command(argument, game_state, natural=True)
         result["type"] = "ai"
         return result
+
+    if intent == "folder_help":
+        return {
+            "reply": (
+                "要获取被密码保护的文件夹，格式是：\n"
+                "  · 获取 工作日记 密码\n"
+                "  · 获取 私人文件夹 密码\n"
+                "  · 获取 公司服务器 密码\n"
+                "  · 获取 未命名文档 密码\n\n"
+                "如果你已经知道具体密码，也可以直接说：\n"
+                "  · 获取 工作日记 20030323"
+            ),
+            "type": "ai",
+        }
 
     if intent == "files":
         files = sorted(memory.accessible_files)
@@ -1424,8 +1543,11 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
         _reset_off_topic(game_state)
         return handle_command(user_input, game_state)
 
-    # 2. 密码匹配
-    pwd_result = _check_password(user_input)
+    # 2. 密码匹配（裸密码输入，不含获取/解锁等关键词）
+    # 如果输入是「获取 文件夹名 密码」格式，交给 handle_get_command 处理，以验证目标
+    user_lower = user_input.lower()
+    is_get_command = any(kw.lower() in user_lower for kw in INTENT_KEYWORDS["get"])
+    pwd_result = None if is_get_command else _check_password(user_input)
     if pwd_result:
         _reset_off_topic(game_state)
         new_chapter = pwd_result["config"].get("chapter")
@@ -1521,9 +1643,9 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             "learned_score": learned["score"],
         }, user_input, game_state)
 
-    # 6. 本地 Q&A 库降级匹配（只处理超纲和基础身份问题）
+    # 6. 本地 Q&A 库降级匹配（只处理超纲、基础身份、文件夹帮助问题）
     qa_result = qa_engine.find_answer(user_input, chapter=chapter)
-    if qa_result and qa_result.get("category") in ("out_of_scope", "basic_identity"):
+    if qa_result and qa_result.get("category") in ("out_of_scope", "basic_identity", "folder_help"):
         if qa_result.get("category") == "out_of_scope":
             return _save_suggestions({
                 "reply": _record_off_topic(game_state, qa_result["answer"]),
