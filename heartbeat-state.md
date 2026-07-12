@@ -26,14 +26,14 @@
 
 ---
 
-last_heartbeat_started_at: 2026-06-05 18:05
-last_reviewed_change_at: 2026-06-05 18:05
+last_heartbeat_started_at: 2026-07-12 21:31
+last_reviewed_change_at: 2026-07-12 21:31
 last_heartbeat_result: OK
 
 ## 上次收尾状态
-- wrap-up 完成: 是（搭建完毕）
-- observations 追加: 是（首轮无需追加，无素材积累）
-- NOW 更新: 是（搭建初值已写入）
-- memory 更新: 是（称呼+风格已写入）
-- memory 衰减检查: 是（首轮无需衰减）
-- 未 commit 改动: 否
+- wrap-up 完成: 是（响应库重构完成）
+- observations 追加: 是（本轮已记录关键经验）
+- NOW 更新: 是（当前阶段已更新）
+- memory 更新: 是（活跃工作集已更新）
+- memory 衰减检查: 是（本轮已检查）
+- 未 commit 改动: 否（已提交 b81e2cb）

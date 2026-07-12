@@ -1,63 +1,33 @@
 """
-rule_engine.py - 规则匹配
-从 keyword-rules.json 加载模板，根据玩家输入匹配模板回复
+rule_engine.py - 轻量规则辅助
+
+原关键词模板系统已废弃，功能由 response_library.py 替代。
+本文件保留两类轻量匹配：
+  1. find_file_suggestion：检测玩家是否在询问某类文件（如"读日记""看看邮件"）
+  2. find_file_commentary：读取文件时触发 M-M 的插嘴台词（数据源：response-library.json）
 """
 import json
-import re
 from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RULES_FILE = PROJECT_ROOT / "knowledge" / "triggers" / "keyword-rules.json"
+RESPONSE_LIBRARY_FILE = PROJECT_ROOT / "knowledge" / "response-library.json"
 
 
-def _load_rules() -> list:
-    """加载规则文件，不存在则返回空列表"""
-    if not RULES_FILE.exists():
-        return []
+def _load_response_library() -> dict:
+    """加载响应库文件"""
+    if not RESPONSE_LIBRARY_FILE.exists():
+        return {}
     try:
-        with open(RULES_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            return data.get("rules", [])
+        with open(RESPONSE_LIBRARY_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
     except Exception:
-        return []
-
-
-def match_keyword_template(user_input: str, chapter: int, game_state: dict = None):  # -> str or None
-    """
-    匹配关键词模板
-    返回模板字符串或None
-
-    支持 requires_document_read 过滤：当规则设置了 requires_document_read: true，
-    只有 game_state 中标记了 document_read = True 时才命中
-    """
-    if not user_input:
-        return None
-
-    rules = _load_rules()
-    user_input_lower = user_input.lower().strip()
-
-    for rule in rules:
-        rule_chapter = rule.get("chapter", "all")
-        # 章节过滤：当前章或全局
-        if rule_chapter != "all" and rule_chapter != chapter:
-            continue
-
-        # requires_document_read 过滤
-        if rule.get("requires_document_read") and not (game_state or {}).get("document_read"):
-            continue
-
-        keywords = rule.get("keywords", [])
-        for kw in keywords:
-            if kw.lower() in user_input_lower:
-                return rule.get("reply", "")
-
-    return None
+        return {}
 
 
 def find_file_suggestion(user_input: str):  # -> str or None
     """
-    检测玩家是否在询问某类文件（如"看看邮件"、"读日记"）
+    检测玩家是否在询问某类文件（如"看看邮件""读日记"）
     """
     file_triggers = {
         "邮件": "emails",
@@ -79,25 +49,31 @@ def find_file_suggestion(user_input: str):  # -> str or None
 # ============ M-M 文件阅读插嘴 ============
 def find_file_commentary(filename: str, chapter: int, files_read: list) -> str:
     """
-    根据刚读取的文件名，返回 M-M 的插嘴台词
-    每个文件只触发一次（files_read 中已有则返回空）
+    根据刚读取的文件名，返回 M-M 的插嘴台词。
+    每个文件只触发一次（files_read 中已有则返回空）。
 
-    匹配规则：keyword-rules.json 中 file_commentary 字段
+    数据源：response-library.json 中 category 为 file_commentary 的条目，
+    通过条目的 file_commentary 字段匹配文件名。
     """
     # 每个文件只插嘴一次
     if filename in files_read:
         return ""
 
-    rules = _load_rules()
-    for rule in rules:
-        fc = rule.get("file_commentary")
-        if not fc:
+    library = _load_response_library()
+    for entry in library.get("entries", []):
+        if entry.get("category") != "file_commentary":
             continue
-        # 匹配文件名
-        if fc in filename:
-            rule_chapter = rule.get("chapter", "all")
-            if rule_chapter != "all" and rule_chapter != chapter:
-                continue
-            return rule.get("reply", "")
+
+        fc = entry.get("file_commentary", "")
+        if not fc or fc not in filename:
+            continue
+
+        rule_chapter = entry.get("chapter", [])
+        if rule_chapter and chapter not in rule_chapter:
+            continue
+
+        replies = entry.get("replies", [])
+        if replies:
+            return replies[0]
 
     return ""

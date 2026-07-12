@@ -9,8 +9,9 @@ import re
 from pathlib import Path
 
 from engine import ai_fallback, cache_manager, character_state, qa_engine
-from engine import clue_manager, fuzzy_matcher
-from engine.rule_engine import match_keyword_template, find_file_suggestion, find_file_commentary
+from engine import clue_manager, fuzzy_matcher, response_library, learning_store
+from engine.rule_engine import find_file_suggestion, find_file_commentary
+
 from engine.file_reader import (
     read_knowledge_file,
     list_files,
@@ -580,19 +581,19 @@ def handle_get_command(user_input: str, game_state: dict, natural: bool = False)
 
 # ============ 自然语言意图识别 ============
 INTENT_KEYWORDS = {
-    "scan": ["扫描", "scan", "搜一下", "查找", "找文件", "找", "找到", "看看电脑", "还有什么", "发现文件", "查一下", "搜"],
+    "scan": ["扫描", "scan", "查找", "找文件", "发现文件"],
     "files": ["有什么文件", "文件列表", "列出文件", "能看什么", "有哪些文件", "文件"],
-    "read": ["打开", "读取", "读一下", "看看", "查看", "读", "打开文件", "看一下", "读读"],
+    "read": ["打开", "读取", "读一下", "查看", "读", "打开文件", "读读"],
     "get": ["获取", "get", "解锁", "解密", "打开密码", "输入密码打开"],
-    "status": ["状态", "进度", "怎么样了", "怎么样", "到哪了", "情况"],
+    "status": ["状态", "进度", "到哪了", "情况"],
     "memory": ["记忆", "你知道什么", "你知道多少", "你知道些什么"],
     "clue": ["查看线索", "线索", "有什么线索", "发现什么", "整理线索"],
-    "hint": ["提示", "不知道", "该做什么", "怎么办", "下一步", "怎么做"],
+    "hint": ["提示", "下一步"],
     "password_hint": ["密码是什么", "密码多少", "怎么破解密码", "密码提示", "怎么分析密码", "密码在哪", "找不到密码", "密码线索", "当前密码", "这个密码"],
-    "analyze": ["分析", "帮我分析", "协助分析", "分析一下", "帮我看看", "这是怎么回事", "这意味着什么", "帮我推理"],
-    "help": ["帮助", "怎么玩", "玩法", "指令", "命令"],
     "reset": ["重置", "重新开始", "重来"],
 }
+
+
 
 
 # 确认词：用于执行 M-M 上一条建议
@@ -972,7 +973,6 @@ def _build_default_suggestions(game_state: dict) -> list:
 
 
 def _save_suggestions(result: dict, user_input: str, game_state: dict) -> dict:
-
     """
     从返回结果中提取并保存建议命令。
     如果 AI 回复没有提取到建议，则保留前端传来的建议。
@@ -983,16 +983,17 @@ def _save_suggestions(result: dict, user_input: str, game_state: dict) -> dict:
     # 选择追问：必须保留当前选项
     if result.get("type") == "choose_prompt":
         suggestions = game_state.get("pending_choices", [])
+    elif result.get("suggestions"):
+        # 优先使用响应库等来源显式提供的建议
+        suggestions = result["suggestions"]
     elif extracted:
-        # 优先使用当前回复中提取的建议
+        # 其次使用当前回复中提取的建议
         suggestions = extracted
     else:
         # 没有提取到时，按当前状态重新生成默认建议
         suggestions = _build_default_suggestions(game_state)
 
-
     # 统一格式
-
     formatted = []
     for s in suggestions:
         if isinstance(s, dict) and "command" in s:
@@ -1006,6 +1007,7 @@ def _save_suggestions(result: dict, user_input: str, game_state: dict) -> dict:
         game_state.pop("pending_choices", None)
 
     return result
+
 
 
 def _build_password_hint(game_state: dict) -> str:
@@ -1482,10 +1484,37 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             result = _save_suggestions(result, user_input, game_state)
             return result
 
-    # 4. 本地 Q&A 库匹配（RAG 轻量版：基础问题/超纲问题直接回答，节省 AI 调用）
+    # 4. 响应库智能匹配（新核心路径：零 API 成本）
     chapter = game_state.get("chapter", 1)
+    library_match = response_library.find_best_match(user_input, game_state, intent=intent)
+    if library_match:
+        _reset_off_topic(game_state)
+        result = {
+            "reply": library_match["reply"],
+            "type": library_match["type"],
+            "entry_id": library_match["entry_id"],
+            "category": library_match["category"],
+        }
+        # 添加条目中的建议追问
+        suggestions = response_library.get_suggestions_for_entry(library_match["entry"])
+        if suggestions:
+            result["suggestions"] = suggestions
+        return _save_suggestions(result, user_input, game_state)
+
+    # 5. 学习库检索（复用之前 API 生成的结果）
+    learned = learning_store.find_similar(user_input)
+    if learned:
+        _reset_off_topic(game_state)
+        return _save_suggestions({
+            "reply": learned["reply"],
+            "type": "learned_library",
+            "learned_id": learned["id"],
+            "learned_score": learned["score"],
+        }, user_input, game_state)
+
+    # 6. 本地 Q&A 库降级匹配（只处理超纲和基础身份问题）
     qa_result = qa_engine.find_answer(user_input, chapter=chapter)
-    if qa_result:
+    if qa_result and qa_result.get("category") in ("out_of_scope", "basic_identity"):
         if qa_result.get("category") == "out_of_scope":
             return _save_suggestions({
                 "reply": _record_off_topic(game_state, qa_result["answer"]),
@@ -1501,13 +1530,6 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             "qa_category": qa_result["category"],
         }, user_input, game_state)
 
-
-
-    # 5. 关键词模板（快速路径，不消耗 AI 额度）
-    template_reply = match_keyword_template(user_input, chapter, game_state)
-    if template_reply:
-        _reset_off_topic(game_state)
-        return _save_suggestions({"reply": template_reply, "type": "ai"}, user_input, game_state)
 
     # 6. 文件类别询问（"读日记"、"看看邮件"）
     # 只列出已解锁的该类文件，不解锁新文件——新文件要靠 /scan 或对话中的 scan 意图发现
@@ -1550,7 +1572,7 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
         _reset_off_topic(game_state)
         return _save_suggestions({"reply": cached, "type": "cache"}, user_input, game_state)
 
-    # 9. 超纲拦截：常见外部世界问题直接拒绝，避免浪费 AI 额度
+    # 10. 超纲拦截（关键词兜底）
     lowered = user_input.lower()
     out_of_scope_keywords = [
         "天气", "新闻", "股票", "基金", "特朗普", "拜登", "普京", "泽连斯基",
@@ -1568,9 +1590,10 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             "type": "out_of_scope",
         }, user_input, game_state)
 
-    # 9. AI 兜底（RAG 增强版：注入记忆 + 知识检索）
+    # 11. AI 兜底（严格触发：只有输入有实质内容时才调用）
     ai_count = game_state.get("ai_call_count", 0)
-    if ai_count < MAX_AI_CALLS_PER_GAME and ai_fallback.is_configured():
+    if (ai_count < MAX_AI_CALLS_PER_GAME and ai_fallback.is_configured()
+            and learning_store.is_worth_learning(user_input)):
         _reset_off_topic(game_state)
         history = game_state.get("history", [])
         state_name = game_state.get("ai_state", "dormant")
@@ -1583,6 +1606,9 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             memory=memory,
         )
 
+        # 学习：把结果存入学习库，下次同类问题直接命中
+        learning_store.add_learned(user_input, reply, game_state)
+
         # 缓存结果
         cache_manager.set(user_input, reply, chapter)
         game_state["ai_call_count"] = ai_count + 1
@@ -1593,7 +1619,8 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
 
         return _save_suggestions({"reply": reply, "type": "ai_rag"}, user_input, game_state)
 
-    # 10. 超限或 API 未配置：用 NPC 口吻回答，避免跳出系统提示
+    # 12. 超限或 API 未配置：用 NPC 口吻回答，避免跳出系统提示
+
     if not ai_fallback.is_configured():
         fallback_replies = [
             "……这部分内容我处理不了。\n\n我的记忆只到这台电脑的硬盘为止。如果你想问的是文件、日记或录音之外的事，我大概没有权限。",

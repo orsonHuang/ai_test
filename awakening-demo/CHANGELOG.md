@@ -4,7 +4,34 @@
 
 ---
 
+## 2026-07-12 · 响应库重构：从关键词模板到预烘焙智能库
+
+**背景：**
+- 玩家反馈 AI "太笨"：关键词模板触发固定回复，像 FAQ 机器人；意图识别太宽，"帮我看看""分析一下"被误判为文件读取。
+- 单机游戏需要控制 API 成本，不能依赖持续的外部 AI 调用。
+
+**方案：**
+- 预烘焙响应库：开发时一次性生成丰富变体，运行时零 API 成本匹配。
+- 学习闭环：API 只在响应库/学习库都未覆盖且输入有实质内容时才触发，结果自动入库复用。
+- 智能匹配：按章节、已读文件、话题命中、示例相似度、Jaccard 综合打分。
+- 意图收窄：只保留明确操作词（打开/扫描/获取/提示），"分析/看看/怎么玩" 让响应库处理。
+- 清理：删除 `keyword-rules.json`，QA 库降级为超纲+基础身份兜底。
+
+**新增文件：**
+- `engine/response_library.py` — 响应库智能匹配引擎
+- `engine/learning_store.py` — API 学习闭环
+- `knowledge/response-library.json` — 75 条目 / 157 个变体，覆盖剧情、角色、异常、情绪、结局
+
+**修改文件：**
+- `engine/hybrid_reply.py` — 重构 `generate_reply` 优先级：响应库 → 学习库 → 降级 QA → 文件类别 → 缓存 → 超纲 → 严格 AI 兜底
+- `engine/rule_engine.py` — 移除旧关键词模板，保留文件类别询问/阅读插嘴
+- `knowledge/qa-library.json` — 简化为 out_of_scope + basic_identity 兜底
+- `knowledge/triggers/keyword-rules.json` — 删除（功能已合并至响应库）
+
+---
+
 ## 2026-07-11 · generate_reply 引擎流程文档化
+
 
 **GDD/07-tech.md：**
 - 新增「generate_reply 核心处理流程」章节

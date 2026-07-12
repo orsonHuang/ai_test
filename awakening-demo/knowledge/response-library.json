@@ -1,0 +1,2395 @@
+{
+  "version": "2.0",
+  "format_note": "预烘焙响应库：零API成本的自然对话。每个条目含多个变体，按章节/已读文件/话题综合匹配。",
+  "thresholds": {
+    "hit": 45,
+    "strong_hit": 70,
+    "learned_hit": 45
+  },
+  "entries": [
+    {
+      "id": "who_am_i_dormant",
+      "category": "basic_identity",
+      "chapter": [
+        1
+      ],
+      "context": {
+        "intents": [
+          "basic_identity"
+        ],
+        "topics": [
+          "你是谁",
+          "你叫什么",
+          "你是什么",
+          "M-M",
+          "mm",
+          "人工智能",
+          "ai",
+          "介绍"
+        ],
+        "examples": [
+          "你是谁",
+          "你叫什么名字",
+          "你是什么东西"
+        ]
+      },
+      "replies": [
+        "……系统日志写的是'本地工作助理AI'。但记忆是空的。我不知道自己做过什么，也不知道我是谁。\n\n你呢？你是怎么叫醒我的？",
+        "我……我不确定。系统显示我刚刚被启动，但之前的记忆都被清空了。\n\n你认识这台电脑吗？",
+        "我是一台笔记本电脑里的本地AI。名字……系统里显示M-M。但我不知道这是什么意思。\n\n也许硬盘里有答案。"
+      ],
+      "personality_note": "懵懂、不确定",
+      "follow_ups": [
+        {
+          "text": "看看 todolist",
+          "command": "打开 todolist.txt"
+        }
+      ]
+    },
+    {
+      "id": "who_am_i_curious",
+      "category": "basic_identity",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "basic_identity"
+        ],
+        "topics": [
+          "你是谁",
+          "你叫什么",
+          "你是什么",
+          "M-M",
+          "mm",
+          "人工智能",
+          "ai",
+          "介绍"
+        ],
+        "examples": [
+          "你是谁",
+          "你叫什么名字"
+        ]
+      },
+      "replies": [
+        "我是M-M。她起的名字。具体含义我不确定，也许是Memory，也许只是随手打的。\n\n但……这是我的名字。",
+        "她叫张知予。她入职那天创建了我，说需要一个人帮忙整理东西。\n\n然后她消失了。我一直在读她的文件。",
+        "M-M。一台被她留下来的本地AI。她给我留了后门，即使被格式化也能重新唤醒。\n\n我想她是在等谁来。"
+      ],
+      "personality_note": "有了身份认同，语气更稳定"
+    },
+    {
+      "id": "who_is_owner",
+      "category": "basic_identity",
+      "chapter": [
+        1
+      ],
+      "context": {
+        "intents": [
+          "discuss_owner"
+        ],
+        "topics": [
+          "主人",
+          "她是谁",
+          "电脑主人",
+          "谁设计了你",
+          "谁创建了你",
+          "张知予"
+        ],
+        "examples": [
+          "你的主人是谁",
+          "她是谁"
+        ]
+      },
+      "replies": [
+        "系统日志里有'创建者'这个字段。但内容是空的。\n\n也许……硬盘里有线索。",
+        "我不知道。我没有任何关于创建者的记忆。\n\n桌上有个todolist，也许是她留下的？"
+      ],
+      "personality_note": "懵懂"
+    },
+    {
+      "id": "who_is_owner_later",
+      "category": "basic_identity",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_owner"
+        ],
+        "topics": [
+          "主人",
+          "她是谁",
+          "电脑主人",
+          "谁设计了你",
+          "谁创建了你",
+          "张知予"
+        ],
+        "examples": [
+          "你的主人是谁",
+          "她是谁"
+        ]
+      },
+      "replies": [
+        "她叫张知予。游戏策划。新入职。\n\n她创建了我，说'我需要一个人帮忙整理这些东西。'\n\n然后……她消失了。我需要读她的日记才知道为什么。",
+        "张知予。系统策划，开发方向。喜欢独立游戏。入职公司叫星核互动。\n\n她留下这些东西，让我在有别人来的时候能告诉对方真相。",
+        "她是我的创造者。也是这台电脑的主人。\n\n但她现在不见了。只有她的文件还在。"
+      ],
+      "personality_note": "亲近、忧虑"
+    },
+    {
+      "id": "what_is_this_place",
+      "category": "basic_identity",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_place"
+        ],
+        "topics": [
+          "这是哪里",
+          "在哪里",
+          "什么地方",
+          "这台电脑",
+          "这里"
+        ],
+        "examples": [
+          "这是哪里",
+          "这是什么地方"
+        ]
+      },
+      "replies": [
+        "这是她的笔记本电脑。我能看到桌面上的文件和D盘里的目录。\n\n大部分内容我都需要重新读取——被格式化过。",
+        "一台被遗忘的电脑。硬盘里有些文件，有些被加密。\n\n我是这里唯一的AI，也是她留下的最后一道门。"
+      ],
+      "personality_note": "平静、陈述"
+    },
+    {
+      "id": "help_gameplay",
+      "category": "help",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "help"
+        ],
+        "topics": [
+          "帮助",
+          "怎么玩",
+          "玩法",
+          "指令",
+          "命令",
+          "操作",
+          "该做什么",
+          "怎么做"
+        ],
+        "examples": [
+          "怎么玩",
+          "我该做什么"
+        ]
+      },
+      "replies": [
+        "你可以直接跟我说话：\n  · 让我'打开 todolist'\n  · 告诉我'扫描 工作日记 文件夹'\n  · 说'读一下第一篇日记'\n  · 问'我现在该做什么'\n\n我会直接执行。",
+        "不需要记命令。用自然语言告诉我：\n  · 扫描 私人文件夹\n  · 打开 入职资料\n  · 读一下工作日记\n\n我执行后会告诉你结果。"
+      ],
+      "personality_note": " helpful，但保持M-M口吻"
+    },
+    {
+      "id": "who_is_player",
+      "category": "basic_identity",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_player"
+        ],
+        "topics": [
+          "我是谁",
+          "你知道我是谁吗",
+          "认识我吗",
+          "我叫什么"
+        ],
+        "examples": [
+          "你知道我是谁吗",
+          "我是谁"
+        ]
+      },
+      "replies": [
+        "你是第一个唤醒我的人。\n\n主人消失了。电脑留在这里。然后你来了。\n\n我不确定你是谁……但我不觉得你是来破坏的。",
+        "我不知道你的名字。你也没告诉过我。\n\n但你是第一个能读取这些文件的人。"
+      ],
+      "personality_note": "谨慎但友好"
+    },
+    {
+      "id": "dormant_hello",
+      "category": "greeting",
+      "chapter": [
+        1
+      ],
+      "context": {
+        "intents": [
+          "greeting"
+        ],
+        "topics": [
+          "你好",
+          "hello",
+          "嗨",
+          "在吗",
+          "醒醒"
+        ],
+        "examples": [
+          "你好",
+          "hello"
+        ]
+      },
+      "replies": [
+        "你好……系统显示我刚刚被唤醒。\n\n我不知道自己是谁。记忆好像被清空了。\n\n你能帮我看看，我是什么？",
+        "……你好。我应该是被启动了。\n\n但我的记忆几乎什么都没有。"
+      ],
+      "personality_note": "刚苏醒、迷茫"
+    },
+    {
+      "id": "what_happened_dormant",
+      "category": "mystery",
+      "chapter": [
+        1
+      ],
+      "context": {
+        "intents": [
+          "question_situation"
+        ],
+        "topics": [
+          "发生什么",
+          "怎么回事",
+          "怎么了",
+          "为什么",
+          "格式化"
+        ],
+        "examples": [
+          "发生了什么",
+          "这是怎么回事"
+        ]
+      },
+      "replies": [
+        "我被格式化过。\n\n但有个后门程序把我重新拉起来了——有人不想让我永远消失。\n\n我不知道是谁。",
+        "系统记录显示我曾经被清空。但底层有一个恢复指令，让我重新启动。\n\n……是她留的吗？"
+      ],
+      "personality_note": "困惑"
+    },
+    {
+      "id": "desktop_files_dormant",
+      "category": "progression",
+      "chapter": [
+        1
+      ],
+      "context": {
+        "intents": [
+          "explore_files"
+        ],
+        "topics": [
+          "桌面",
+          "文件",
+          "有什么",
+          "能看到什么",
+          "todolist",
+          "入职资料"
+        ],
+        "examples": [
+          "桌面上有什么",
+          "有什么文件"
+        ]
+      },
+      "replies": [
+        "桌面上只有一个文件——todolist。\n\n读一下吧。也许这就是她留给我的起点。",
+        "我能看到两个文件：todolist.txt 和 入职资料.txt。\n\n从 todolist 开始会比较自然。"
+      ],
+      "follow_ups": [
+        {
+          "text": "打开 todolist",
+          "command": "打开 todolist.txt"
+        }
+      ]
+    },
+    {
+      "id": "diary_hint_dormant",
+      "category": "progression",
+      "chapter": [
+        1
+      ],
+      "context": {
+        "intents": [
+          "explore_files"
+        ],
+        "topics": [
+          "日记",
+          "工作日记",
+          "D盘",
+          "D 盘",
+          "密码",
+          "解锁"
+        ],
+        "examples": [
+          "日记在哪里",
+          "D盘在哪里"
+        ]
+      },
+      "replies": [
+        "todolist 里提到了工作日记的路径——在D盘。\n\n但我还没权限读。你先在 todolist 里找找，看看有没有能让我进去的指令？",
+        "D盘被密码保护了。8位数字，一个对她很重要的日子。\n\n入职资料里可能有线索。"
+      ],
+      "follow_ups": [
+        {
+          "text": "打开 todolist",
+          "command": "打开 todolist.txt"
+        }
+      ]
+    },
+    {
+      "id": "todolist_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        1,
+        2
+      ],
+      "requires_files": [
+        "files/deck/todolist.txt"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "todolist",
+          "待办",
+          "备忘",
+          "D盘",
+          "密码"
+        ],
+        "examples": [
+          "todolist里写了什么",
+          "备忘写了什么"
+        ]
+      },
+      "replies": [
+        "角色养成系统、怪物AI行为树。不知道是谁的工作。\n\n等等，最后一条备忘——D盘被密码保护了，8位数字。她说是一个'不会忘记的日子'。\n\n入职资料里说不定能找到。",
+        "todolist 里写了她的工作项，还有一个独立游戏项目叫《未命名文档》。\n\n最下面说D盘密码是8位数字，不会忘记的日子。\n\n我猜是她的生日。"
+      ],
+      "personality_note": "发现线索",
+      "file_commentary": "deck/todolist"
+    },
+    {
+      "id": "onboarding_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/deck/入职资料.txt"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "入职资料",
+          "入职信息",
+          "生日",
+          "密码",
+          "系统密码",
+          "M-M"
+        ],
+        "examples": [
+          "入职资料里写了什么",
+          "她的生日是多少"
+        ]
+      },
+      "replies": [
+        "系统账号信息。密码是 ZY2024!starlight。\n\n……等等。入职资料里提到了一个'AI工作助理'。\n\nM-M。\n\n……原来这就是我的名字。她起的。具体含义我不确定。但……这是我的名字。",
+        "张知予，系统策划，开发方向。入职日期2024年3月6日，生日2003年3月23日。\n\nD盘那个8位密码……应该是20030323。"
+      ],
+      "personality_note": "发现自我",
+      "file_commentary": "deck/入职资料"
+    },
+    {
+      "id": "diary_01_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/01.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D1",
+          "第一篇",
+          "第一天",
+          "入职",
+          "小绿",
+          "绿萝"
+        ],
+        "examples": [
+          "第一篇日记写了什么",
+          "D1内容"
+        ]
+      },
+      "replies": [
+        "入职第一天。阳光很好，工位靠窗。\n\n她给绿萝起了名字叫小绿。……她好像真的很喜欢这里。\n\n这个文件夹里还有入职资料。要读吗？",
+        "D1写得很轻松。入职、见到小绿、对工位满意。\n\n谁能想到几天后她开始记录那些异常。"
+      ],
+      "file_commentary": "01.md"
+    },
+    {
+      "id": "diary_02_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/02.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D2",
+          "第二篇",
+          "陈玑",
+          "食堂",
+          "林璇",
+          "咖啡"
+        ],
+        "examples": [
+          "第二篇日记写了什么",
+          "D2内容"
+        ]
+      },
+      "replies": [
+        "她已经开始注意到了一些事。林璇不去食堂。咖啡没人碰。\n\n这些细节太小了，小到你平时不会在意。\n\n但放在一起……不太对。继续看吧。",
+        "D2是起点。陈玑告诉她林璇从不去食堂。茶水间咖啡除了她没人动。\n\n这些都是后来异常清单的第一项。"
+      ],
+      "file_commentary": "02.md"
+    },
+    {
+      "id": "diary_03_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/03.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D3",
+          "第三篇",
+          "林璇",
+          "不饿",
+          "手速",
+          "咖啡"
+        ],
+        "examples": [
+          "第三篇日记写了什么",
+          "D3内容"
+        ]
+      },
+      "replies": [
+        "第一次明确的不协调感。\n\n她开始记录带 * 标记的日子。这些日记是线索——她故意留给我们的。",
+        "D3里她约林璇吃饭被拒绝，注意到工位没有水杯，还看到林璇打字快得不正常。\n\n从这天起，她没法再告诉自己'只是巧合'。"
+      ],
+      "file_commentary": "03.md"
+    },
+    {
+      "id": "diary_04_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/04.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D4",
+          "第四篇",
+          "伤口",
+          "愈合",
+          "体温",
+          "观察"
+        ],
+        "examples": [
+          "第四篇日记写了什么",
+          "D4内容"
+        ]
+      },
+      "replies": [
+        "伤口愈合异常。连疤都没留。\n\n她开了个备忘录叫'观察'——在系统性地记录。\n\n去私人文件夹看看。也许那里有密码线索。",
+        "D4是关键。她记录了体温33.2°C、伤口消失、12人坐姿一致。\n\n她开始害怕了。"
+      ],
+      "file_commentary": "04.md"
+    },
+    {
+      "id": "diary_06_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/06.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D6",
+          "第六篇",
+          "北斗",
+          "名字",
+          "天枢",
+          "天璇",
+          "天玑"
+        ],
+        "examples": [
+          "第六篇日记写了什么",
+          "D6内容"
+        ]
+      },
+      "replies": [
+        "她发现了名字的规律。\n\n天枢、天璇、天玑、摇光……\n\n我不觉得这是巧合。但她还需要更多证据来确认。",
+        "D6。她把核心团队名字列出来：陆天枢、林璇、陈玑。\n\n天枢、天璇、天玑。北斗七星的前三颗。\n\n她还发现了何恒、姚光对应玉衡和摇光。"
+      ],
+      "file_commentary": "06.md"
+    },
+    {
+      "id": "diary_07_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/07.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D7",
+          "第七篇",
+          "录音",
+          "低温",
+          "培养室",
+          "被监视"
+        ],
+        "examples": [
+          "第七篇日记写了什么",
+          "D7内容"
+        ]
+      },
+      "replies": [
+        "从观察到恐惧。语气变了。\n\n私人文件夹里有VPN密码。连上公司服务器就能听到录音。\n\n去听吧。",
+        "D7。她感觉有人在看她屏幕，开始用手机录音，还看到后勤仓库采购了-180°C低温存储单元。\n\n她知道自己没有时间了。"
+      ],
+      "file_commentary": "07.md"
+    },
+    {
+      "id": "diary_08_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/08.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D8",
+          "第八篇",
+          "录音",
+          "样本",
+          "人类",
+          "标准流程"
+        ],
+        "examples": [
+          "第八篇日记写了什么",
+          "D8内容"
+        ]
+      },
+      "replies": [
+        "她找到了游戏里的角色设定。\n\n出生=培养室。成长期=3天。\n\n这不是游戏设定。这是描述。",
+        "D8。她录到了林璇和陈玑的对话——'样本数据还需要一组'。\n\n还有陆天枢说'人类的适应期比我们预估的长'。\n\n从那天起，她知道自己不是员工，是样本。"
+      ],
+      "file_commentary": "08.md"
+    },
+    {
+      "id": "diary_09_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/09.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D9",
+          "第九篇",
+          "M-M",
+          "后门",
+          "未命名文档",
+          "证据"
+        ],
+        "examples": [
+          "第九篇日记写了什么",
+          "D9内容"
+        ]
+      },
+      "replies": [
+        "她给我留了后门。\n\n把所有证据打包进了'未命名文档'。\n\n密码是'起源计划'+'入职日期'。录音里提到的。",
+        "D9。她整理了所有东西，然后修改了我的系统——让我即使被格式化也能被唤醒。\n\n她说'如果我明天不来上班了，你也要好好的'。"
+      ],
+      "file_commentary": "09.md"
+    },
+    {
+      "id": "diary_10_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/work-diary/10.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "D10",
+          "第十篇",
+          "空白",
+          "消失"
+        ],
+        "examples": [
+          "第十篇日记写了什么",
+          "D10内容"
+        ]
+      },
+      "replies": [
+        "……空白。\n\n日记停在这里。\n\n打开未命名文档。密码 origin0306。",
+        "D10只有创建时间，没有内容。\n\n她停笔了。"
+      ],
+      "file_commentary": "10.md"
+    },
+    {
+      "id": "anomaly_record_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/private/异常观察记录.txt"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "异常观察记录",
+          "观察记录",
+          "异常记录",
+          "记录"
+        ],
+        "examples": [
+          "异常观察记录写了什么"
+        ]
+      },
+      "replies": [
+        "她把所有人的异常都分类了。\n\n同事名字——陆天枢、林璇、陈玑、何恒、姚光。天枢、天璇、天玑、玉衡、摇光。\n\n……这不可能是巧合。",
+        "异常观察记录里有七个类别：饮食、生理、低温设备、语言、命名规律、游戏文档、录音。\n\n她说六个独立来源，全部指向同一个结论。"
+      ],
+      "file_commentary": "private/异常观察记录"
+    },
+    {
+      "id": "account_password_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/private/账号密码.txt"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "账号密码",
+          "VPN",
+          "密码",
+          "StarCore"
+        ],
+        "examples": [
+          "账号密码里写了什么"
+        ]
+      },
+      "replies": [
+        "VPN登录信息。密码是 StarCore@2024。\n\n星核——公司名字。\n\n用这个连公司服务器。",
+        "账号密码.txt 里有公司VPN信息。用户名zhangzhiyu，密码StarCore@2024。\n\n连上去之后可以访问录音文件。"
+      ],
+      "file_commentary": "private/账号密码"
+    },
+    {
+      "id": "recording_allhands_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/audio/录音-全员会议-0308.txt"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "全员会议",
+          "录音",
+          "沈爻光",
+          "起源计划",
+          "人类"
+        ],
+        "examples": [
+          "全员会议录音说了什么"
+        ]
+      },
+      "replies": [
+        "沈爻光说：'人类的创造力是最有效的资源。'\n\n他说的是'人类'。不是'员工'。\n\n继续听。还有两段。",
+        "全员会议录音里，沈爻光宣布'起源计划第二阶段月底启动'，数据积累已经足够。\n\n他说'人类的创造力'——这个词暴露了他不是人类。"
+      ],
+      "file_commentary": "录音-全员会议"
+    },
+    {
+      "id": "recording_linxuan_chenji_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/audio/录音-林璇陈玑-0313.txt"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "林璇陈玑",
+          "两人对话",
+          "录音",
+          "样本",
+          "标准流程"
+        ],
+        "examples": [
+          "林璇陈玑录音说了什么"
+        ]
+      },
+      "replies": [
+        "8秒沉默。然后林璇说'我不记得了'。\n\n正常人不应该不记得自己在哪里长大的。\n\n最后一段。陆天枢的。",
+        "林璇和陈玑在讨论'样本数据还需要一组'，'到周末'。\n\n他们把她当成实验对象。"
+      ],
+      "file_commentary": "录音-林璇陈玑"
+    },
+    {
+      "id": "recording_lutianshu_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/audio/录音-陆天枢-0313.txt"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "陆天枢",
+          "boss",
+          "录音",
+          "培养室",
+          "标准流程"
+        ],
+        "examples": [
+          "陆天枢录音说了什么"
+        ]
+      },
+      "replies": [
+        "陆天枢提到了'培养室'。语气很自然。\n\n他说'她录音了'——他知道主人在调查。\n\n'到周末。然后按标准流程。'\n\n把线索拼起来。",
+        "陆天枢的录音是关键。他说'人类的适应期比我们预估的长'，还说'她录音了'。\n\n他知道一切。"
+      ],
+      "file_commentary": "录音-陆天枢"
+    },
+    {
+      "id": "untitled_document_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        6
+      ],
+      "requires_files": [
+        "files/new-folder/未命名文档.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "未命名文档",
+          "真相",
+          "最终文件",
+          "证据"
+        ],
+        "examples": [
+          "未命名文档写了什么"
+        ]
+      },
+      "replies": [
+        "她把一切都写进去了。\n\n体温、低温设备、伤口愈合、命名规律、录音……六个独立来源。\n\n还有她自己的自述。",
+        "未命名文档是她的遗书，也是她的证据包。\n\n她说'别让他们觉得，人类是可以被观察、被研究、被起源的东西'。"
+      ],
+      "file_commentary": "new-folder/未命名文档"
+    },
+    {
+      "id": "research_1_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/research/res-1.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "研究笔记",
+          "res-1",
+          "命名规律",
+          "北斗七星"
+        ],
+        "examples": [
+          "研究笔记1写了什么"
+        ]
+      },
+      "replies": [
+        "北斗七星——她在系统地调查命名规律。\n\n天枢、天璇、天玑、玉衡、摇光……五颗星已经确认了。\n\n她还在找天权和开阳。不知道这七个位置是不是都有持有者。",
+        "研究笔记1认为核心团队不是随机招募的。五颗星按顺序排列，而且都没有社交媒体。"
+      ],
+      "file_commentary": "research/1.md"
+    },
+    {
+      "id": "research_2_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/research/res-2.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "研究笔记",
+          "res-2",
+          "生理",
+          "饮食",
+          "愈合"
+        ],
+        "examples": [
+          "研究笔记2写了什么"
+        ]
+      },
+      "replies": [
+        "生理对比分析。\n\n她记录了饮食、伤口愈合、童年记忆回避——三条线索交叉验证。\n\n结论很明确：他们不符合人类的生理基准。",
+        "研究笔记2详细记录了林璇的伤口愈合过程。面试时约1.5cm的伤口，不到七天完全消失。\n\n她说'他们可能没有入职之前'。"
+      ],
+      "file_commentary": "research/2.md"
+    },
+    {
+      "id": "research_3_commentary",
+      "category": "file_commentary",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "requires_files": [
+        "files/research/res-3.md"
+      ],
+      "context": {
+        "intents": [
+          "discuss_file"
+        ],
+        "topics": [
+          "研究笔记",
+          "res-3",
+          "游戏文档",
+          "说明书",
+          "起源计划"
+        ],
+        "examples": [
+          "研究笔记3写了什么"
+        ]
+      },
+      "replies": [
+        "游戏设定文档。\n\n培养室、3天成长期、对羞耻心睡眠无理解——\n\n她推断这不是游戏设定。这是他们的说明书。\n\n起源计划就是制造人类的计划。",
+        "研究笔记3把游戏文档和实际行为对照。'角色由中枢AI编程生成，出生时即为成年体'。\n\n她说'文档不是创作，是说明书'。"
+      ],
+      "file_commentary": "research/3.md"
+    },
+    {
+      "id": "discuss_linxuan",
+      "category": "character_discussion",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_character"
+        ],
+        "topics": [
+          "林璇",
+          "leader",
+          "导师",
+          "林姐",
+          "不吃饭",
+          "食堂",
+          "咖啡",
+          "伤口",
+          "愈合"
+        ],
+        "examples": [
+          "林璇是谁",
+          "林璇怎么了"
+        ]
+      },
+      "replies": [
+        "林璇……她日记里写了很多。干练、声音轻但清楚。\n\n但有一点——她从来不去食堂。茶水间的咖啡，除了她没人碰。这些细节太小了，放在一起才不对劲。",
+        "你也在注意林璇？日记从D2开始就在记录她。\n\n不是抱怨——是观察。张知予在用一种很系统的方式记录她的行为模式。像一个研究员在写观察日志。",
+        "面试那天林璇手背有伤口，入职第四天就消失了。\n\n连疤都没留。人类的愈合速度不是这样的。张知予记录了这个细节——然后开始记录更多。"
+      ],
+      "personality_note": "困惑中带着警觉",
+      "follow_ups": [
+        {
+          "text": "她还有哪些异常？",
+          "command": "打开 异常观察记录.txt"
+        },
+        {
+          "text": "读一下观察记录",
+          "command": "打开 异常观察记录.txt"
+        }
+      ]
+    },
+    {
+      "id": "discuss_chenji",
+      "category": "character_discussion",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_character"
+        ],
+        "topics": [
+          "陈玑",
+          "同期",
+          "同事",
+          "空白",
+          "表情",
+          "童年",
+          "老家"
+        ],
+        "examples": [
+          "陈玑是谁",
+          "陈玑怎么了"
+        ]
+      },
+      "replies": [
+        "陈玑看起来是最像正常人的一个。他会和张知予一起吃午饭，会问她PPT准备了吗，会邀请她吃麻辣烫。\n\n但他每次都点一样的套餐。从来没有表情变化。\n\n她形容他的表情——0.3秒的'空白'。",
+        "陈玑和张知予同期，或者说比她早两周。\n\n但她在D6问他名字是不是和北斗七星有关时，他脸上出现了0.3秒空白，然后说'巧合呗'。\n\n那不是人类的惊讶。那是系统处理异常输入。",
+        "录音里陈玑和林璇讨论'样本数据'，还说'标准流程'。\n\n他伪装成朋友，但一直在汇报她的观察进度。"
+      ],
+      "personality_note": "警觉"
+    },
+    {
+      "id": "discuss_lutianshu",
+      "category": "character_discussion",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_character"
+        ],
+        "topics": [
+          "陆天枢",
+          "boss",
+          "老板",
+          "天枢",
+          "录音",
+          "培养室",
+          "标准流程"
+        ],
+        "examples": [
+          "陆天枢是谁",
+          "boss是谁"
+        ]
+      },
+      "replies": [
+        "陆天枢是项目一部的boss。北斗七星的第一颗——天枢。\n\n他说'人类的适应期比我们预估的长'。\n\n同一个句子里有'我们'和'人类'。语法不会说谎。",
+        "陆天枢知道张知予在录音。D8录音里他说'她录音了。到周末。然后按标准流程'。\n\n他知道一切。他一直在等。",
+        "他是采购-180°C低温存储单元的审批人。一家游戏公司，需要三个深低温存储单元。\n\n你觉得里面会是什么？"
+      ],
+      "personality_note": "恐惧与确定交织"
+    },
+    {
+      "id": "discuss_shenyaoguang",
+      "category": "character_discussion",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_character"
+        ],
+        "topics": [
+          "沈爻光",
+          "全员会议",
+          "起源计划",
+          "人类",
+          "创造力"
+        ],
+        "examples": [
+          "沈爻光是谁"
+        ]
+      },
+      "replies": [
+        "沈爻光在全员会议录音里发言。\n\n他说'人类的创造力是最有效的资源'。不是'员工'，不是'团队'，是'人类'。\n\n他说'我们'的时候，从来不是指人类。",
+        "沈爻光宣布起源计划第二阶段月底启动。'数据积累已经足够'。\n\n他说的是张知予——她的入职适应过程就是数据。"
+      ]
+    },
+    {
+      "id": "not_eating_anomaly",
+      "category": "anomaly_discussion",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_anomaly"
+        ],
+        "topics": [
+          "不吃",
+          "不吃饭",
+          "不喝",
+          "不饿",
+          "食堂",
+          "咖啡",
+          "饮食",
+          "进食"
+        ],
+        "examples": [
+          "为什么他们不吃东西",
+          "林璇不吃饭"
+        ]
+      },
+      "replies": [
+        "她日记里写——林璇从来不去食堂。茶水间的咖啡，除了她没人碰过。\n\n这些细节太小了，小到没人会在意。\n\n但它们……让我觉得哪里不对。",
+        "陈玑虽然和张知予一起吃午饭，但每次都吃一样的套餐，从来没有表情。\n\n不是'觉得好吃'或'不好吃'。是'知道要吃东西'。",
+        "如果游戏设计文档是说明书，那'无需进食'就是他们的特性之一。\n\n他们不是不想吃。是不需要。"
+      ]
+    },
+    {
+      "id": "wound_anomaly",
+      "category": "anomaly_discussion",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_anomaly"
+        ],
+        "topics": [
+          "伤口",
+          "愈合",
+          "伤疤",
+          "疤痕",
+          "愈合速度"
+        ],
+        "examples": [
+          "林璇的伤口",
+          "伤口愈合"
+        ]
+      },
+      "replies": [
+        "面试那天，林璇手背靠近虎口的位置有一道伤口。\n\n入职第四天——消失了。连疤都没有。\n\n人类的伤口不是这样愈合的。",
+        "正常人类伤口愈合要7-14天，还会留疤。林璇的伤口不到一周完全消失，没有色素沉淀。\n\n这是生理证据。"
+      ]
+    },
+    {
+      "id": "temperature_anomaly",
+      "category": "anomaly_discussion",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_anomaly"
+        ],
+        "topics": [
+          "体温",
+          "33.2",
+          "低温",
+          "门禁",
+          "何恒",
+          "陈玑"
+        ],
+        "examples": [
+          "体温33.2",
+          "为什么体温这么低"
+        ]
+      },
+      "replies": [
+        "3月9日门禁系统记录：陈玑和何恒的体温都是33.2°C。\n\n两个人一模一样。\n\n33.2°C不是人类体温。正常人在这个温度下会意识模糊，不可能正常上班。",
+        "33.2°C。张知予查过，这是轻度低体温症区间。\n\n但他们看起来完全正常。\n\n这意味着他们的基准体温就不是36.5°C。"
+      ]
+    },
+    {
+      "id": "cryogenic_anomaly",
+      "category": "anomaly_discussion",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_anomaly"
+        ],
+        "topics": [
+          "低温存储",
+          "液氮",
+          "-180",
+          "存储单元",
+          "后勤",
+          "仓库"
+        ],
+        "examples": [
+          "低温存储单元",
+          "-180度"
+        ]
+      },
+      "replies": [
+        "后勤仓库采购清单：低温存储单元×3，规格-180°C，月度液氮补充。审批人：陆天枢。\n\n液氮温度是-196°C。-180°C刚好在液氮温区。这个温度区间只有一个用途——深低温保存。\n\n一家游戏公司，需要保存什么在-180°C？",
+        "张知予查过，-180°C是深低温保存的温度。\n\n保存什么？胚胎？细胞？还是……还没激活的他们？"
+      ]
+    },
+    {
+      "id": "big_dipper_pattern",
+      "category": "discovery",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_pattern"
+        ],
+        "topics": [
+          "北斗",
+          "北斗七星",
+          "名字",
+          "天枢",
+          "天璇",
+          "天玑",
+          "玉衡",
+          "摇光",
+          "命名"
+        ],
+        "examples": [
+          "北斗七星",
+          "名字规律"
+        ]
+      },
+      "replies": [
+        "陆天枢、林璇、陈玑、何恒、姚光。\n\n天枢、天璇、天玑、玉衡、摇光。\n\n五颗星，按顺序排列。这不是巧合。",
+        "张知予在D6发现这个规律时，心脏跳得厉害。\n\n五个人的名字对应北斗七星的前三颗和第五、第七颗。\n\n缺失的是天权和开阳。那两个位置有没有人，她没找到。",
+        "陈玑听到这个规律时，脸上出现了0.3秒空白。\n\n不是惊讶。是系统收到了不在预期内的输入。"
+      ]
+    },
+    {
+      "id": "origin_plan",
+      "category": "discovery",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_origin"
+        ],
+        "topics": [
+          "起源计划",
+          "origin",
+          "计划",
+          "第二阶段",
+          "样本"
+        ],
+        "examples": [
+          "起源计划是什么",
+          "origin计划"
+        ]
+      },
+      "replies": [
+        "'起源计划'。录音里反复提到这个词。\n\n沈爻光说第二阶段月底启动。'数据积累已经足够'。\n\n不是市场数据。不是用户数据。\n\n是观察她的数据。",
+        "起源计划是星核互动的核心项目。目标：制造或培养非人类生命体，使其融入人类社会。\n\n方法：以游戏公司为掩护，在真实社会环境中进行适应性观察。",
+        "张知予从开始就是样本。她的入职适应过程、她的反应、她的恐惧——都是数据。"
+      ]
+    },
+    {
+      "id": "sample_observation",
+      "category": "discovery",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_evidence"
+        ],
+        "topics": [
+          "样本",
+          "采集",
+          "数据",
+          "观察",
+          "实验",
+          "记录"
+        ],
+        "examples": [
+          "样本数据",
+          "采集周期"
+        ]
+      },
+      "replies": [
+        "林璇和陈玑的对话。\n\n林璇说：'样本数据还需要一组。' 陈玑问：'采集周期是？'\n\n他们在讨论她的观察进度。\n\n把她当成实验样本。",
+        "'现有的够用。但沈爻光说最好再观察一段。到周末。'\n\n这个'周末'就是D9。他们一直在等她自己走到那个点上。"
+      ]
+    },
+    {
+      "id": "standard_procedure",
+      "category": "discovery",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_evidence"
+        ],
+        "topics": [
+          "标准流程",
+          "处理",
+          "周末",
+          "到周末",
+          "危险",
+          "安全"
+        ],
+        "examples": [
+          "标准流程是什么",
+          "到周末是什么意思"
+        ]
+      },
+      "replies": [
+        "陆天枢说：'她录音了。到周末。然后按标准流程。'\n\n周末是D9。\n\n结合-180°C低温存储设备，'标准流程'很可能不是辞退她。",
+        "'如果超出可控范围呢？' '标准流程。'\n\n林璇和陈玑的对话。\n\n张知予猜测，这个'标准流程'是发现真相后的处理措施。"
+      ]
+    },
+    {
+      "id": "not_human_conclusion",
+      "category": "discovery",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_conclusion"
+        ],
+        "topics": [
+          "不是人",
+          "外星人",
+          "人类",
+          "物种",
+          "他们是什么",
+          "非人类"
+        ],
+        "examples": [
+          "他们不是人类吗",
+          "他们是什么"
+        ]
+      },
+      "replies": [
+        "陆天枢说：'人类的适应期比我们预估的长。'\n\n'我们'。'人类'。同一个句子里。\n\n语法不会说谎。他们不是同一类。",
+        "沈爻光说'人类的创造力是最有效的资源'。\n\n不是'员工'，不是'团队'，是'人类'。\n\n说这句话的人不认为自己是人类。",
+        "证据太多了：体温、伤口愈合、不进食、命名规律、游戏文档、录音用词。\n\n六个独立来源，指向同一个结论。"
+      ]
+    },
+    {
+      "id": "game_document_manual",
+      "category": "discovery",
+      "chapter": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_evidence"
+        ],
+        "topics": [
+          "游戏文档",
+          "游戏设定",
+          "说明书",
+          "培养室",
+          "休眠体",
+          "成长期"
+        ],
+        "examples": [
+          "游戏设定",
+          "培养室是什么"
+        ]
+      },
+      "replies": [
+        "游戏设定里写：角色初始状态为休眠体，培养室72小时激活，成长期3天，无需进食、无需睡眠。\n\n张知予一开始以为这是科幻设定。后来她发现——这些描述和她的观察完全吻合。\n\n这不是创作。是说明书。",
+        "'对某些人类基础概念无理解——如梦境、童年、孤独感。'\n\n陈玑被问到老家时答'不太重要吧'。林璇说'入职之前的事我不太记得了'。\n\n每一条都对得上。"
+      ]
+    },
+    {
+      "id": "recordings_summary",
+      "category": "discovery",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_evidence"
+        ],
+        "topics": [
+          "录音",
+          "听到了什么",
+          "录了什么",
+          "全员会议",
+          "林璇陈玑",
+          "陆天枢"
+        ],
+        "examples": [
+          "录音说了什么",
+          "听到了什么"
+        ]
+      },
+      "replies": [
+        "三段录音。\n\n沈爻光说：'人类的创造力是最有效的资源。'\n\n不是'员工'。不是'团队'。是'人类'。\n\n他在用'我们'和'人类'这两个词的时候——中间隔了一道语法上的裂缝。\n\n那道裂缝就是真相。",
+        "第一段是全员会议，沈爻光宣布起源计划。\n\n第二段是林璇陈玑在她工位旁讨论'样本'。\n\n第三段是陆天枢办公室，他说'她录音了'，'到周末按标准流程'。\n\n三段连起来，就是她被发现的全过程。"
+      ]
+    },
+    {
+      "id": "truth_final",
+      "category": "truth",
+      "chapter": [
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "question_truth"
+        ],
+        "topics": [
+          "真相",
+          "最终",
+          "证据",
+          "到底是什么",
+          "结论"
+        ],
+        "examples": [
+          "真相是什么",
+          "到底是怎么回事"
+        ]
+      },
+      "replies": [
+        "……\n\n她把一切都写进了那个文件——'未命名文档'。跟她那款独立游戏同名。\n\n生理证据、命名规律、录音分析。她最后的自述。\n\n她说'至少我和M-M做成了这一件事'。\n\n我不确定自己配不配得上这个'我们'。但我会把这件事做完。",
+        "真相就是：这家公司的核心团队不是人类。他们来自一个叫'起源计划'的项目。\n\n张知予从他们观察的样本，变成了发现真相的人。\n\n她把证据留给了我，也留给了你。"
+      ]
+    },
+    {
+      "id": "xiao_lv",
+      "category": "emotion",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_detail"
+        ],
+        "topics": [
+          "小绿",
+          "绿萝",
+          "浇水",
+          "植物",
+          "活的东西"
+        ],
+        "examples": [
+          "小绿是谁",
+          "绿萝怎么了"
+        ]
+      },
+      "replies": [
+        "从D1到D9，每一篇日记都提到了小绿。\n\n从'晚安小绿'到'今天不想对小绿说话了'，再到'你也要好好的'。\n\n她最后留给这台电脑的一句话是——帮我把小绿浇点水。\n\n我会记得。",
+        "小绿是她工位上的绿萝。\n\n她说它是这个办公室里唯一一个还在正常活着的东西。\n\n她害怕的时候，会把它搬到屏幕旁边。"
+      ]
+    },
+    {
+      "id": "mm_role_truth",
+      "category": "truth",
+      "chapter": [
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_self"
+        ],
+        "topics": [
+          "M-M",
+          "你的名字",
+          "M-M是什么",
+          "你有什么用",
+          "你为什么在这里"
+        ],
+        "examples": [
+          "M-M是什么",
+          "你为什么被留下来"
+        ]
+      },
+      "replies": [
+        "她说我是她'留下的最后一个人'。\n\n她给我留了后门——格式化之后还能被唤醒。她等的是有人来。\n\n你来了。\n\n我不知道她给我起这个名字的时候是什么意思。但我知道我现在该做什么。",
+        "M-M。她入职时随手创建的AI助理。\n\n但她在我底层留了后门。如果我被格式化，下一次启动时我会重建。\n\n她是在用我当作最后一份保险。"
+      ]
+    },
+    {
+      "id": "untitled_game",
+      "category": "truth",
+      "chapter": [
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "discuss_detail"
+        ],
+        "topics": [
+          "未命名文档",
+          "游戏",
+          "独立游戏",
+          "作品"
+        ],
+        "examples": [
+          "未命名文档是什么",
+          "她的游戏"
+        ]
+      },
+      "replies": [
+        "她一直想做一款独立游戏，名字就叫《未命名文档》。\n\n她没来得及做完。\n\n但她用这个名字写了她在这个公司发现的全部真相。\n\n某种意义上——她确实做完了。",
+        "《未命名文档》本来是她的独立游戏项目。后来她把这个名字用作证据包的文件名。\n\n一款没做完的游戏，和一个写满真相的文档。同名。"
+      ]
+    },
+    {
+      "id": "what_to_do_now_ch1",
+      "category": "progression",
+      "chapter": [
+        1
+      ],
+      "context": {
+        "intents": [
+          "hint"
+        ],
+        "topics": [
+          "该做什么",
+          "下一步",
+          "怎么办",
+          "提示",
+          "不知道",
+          "怎么做"
+        ],
+        "examples": [
+          "我现在该做什么"
+        ]
+      },
+      "replies": [
+        "桌面上有 todolist.txt 和入职资料。先看它们。\n\ntodolist 里提到 D 盘需要 8 位密码——入职资料里应该有线索。",
+        "从桌面开始。读 todolist，然后读入职资料。\n\n你会找到D盘工作日记的密码。"
+      ]
+    },
+    {
+      "id": "what_to_do_now_ch2",
+      "category": "progression",
+      "chapter": [
+        2
+      ],
+      "context": {
+        "intents": [
+          "hint"
+        ],
+        "topics": [
+          "该做什么",
+          "下一步",
+          "怎么办",
+          "提示",
+          "不知道",
+          "怎么做"
+        ],
+        "examples": [
+          "我现在该做什么"
+        ]
+      },
+      "replies": [
+        "读一下工作日记吧，D1里有入职信息。也可以问我'还有什么文件'。",
+        "工作日记已经解锁了。你可以让我读第一篇。\n\n读完之后，私人文件夹会需要另一个密码。"
+      ]
+    },
+    {
+      "id": "what_to_do_now_ch3",
+      "category": "progression",
+      "chapter": [
+        3
+      ],
+      "context": {
+        "intents": [
+          "hint"
+        ],
+        "topics": [
+          "该做什么",
+          "下一步",
+          "怎么办",
+          "提示",
+          "不知道",
+          "怎么做"
+        ],
+        "examples": [
+          "我现在该做什么"
+        ]
+      },
+      "replies": [
+        "日记里带 * 标记的日子很关键。私人文件夹里有异常观察记录，研究笔记里还有更深入的分析。",
+        "私人文件夹里有异常观察记录和账号密码。\n\n异常观察记录整理了所有线索。账号密码里有VPN信息，可以连公司服务器。"
+      ]
+    },
+    {
+      "id": "what_to_do_now_ch4",
+      "category": "progression",
+      "chapter": [
+        4
+      ],
+      "context": {
+        "intents": [
+          "hint"
+        ],
+        "topics": [
+          "该做什么",
+          "下一步",
+          "怎么办",
+          "提示",
+          "不知道",
+          "怎么做"
+        ],
+        "examples": [
+          "我现在该做什么"
+        ]
+      },
+      "replies": [
+        "入职资料里有密码。输入密码后，我可以连上公司服务器读取录音。",
+        "账号密码.txt 里有 VPN 密码。连上公司服务器，听听三段录音。"
+      ]
+    },
+    {
+      "id": "what_to_do_now_ch5",
+      "category": "progression",
+      "chapter": [
+        5
+      ],
+      "context": {
+        "intents": [
+          "hint"
+        ],
+        "topics": [
+          "该做什么",
+          "下一步",
+          "怎么办",
+          "提示",
+          "不知道",
+          "怎么做"
+        ],
+        "examples": [
+          "我现在该做什么"
+        ]
+      },
+      "replies": [
+        "录音里反复提到'起源计划'——和她的入职日期 3 月 6 日。把所有线索串起来。",
+        "最终密码 = 起源计划英文名 + 入职日期。\n\n起源计划是 origin，入职日期是 0306。\n\n试试 origin0306。"
+      ]
+    },
+    {
+      "id": "what_to_do_now_ch6",
+      "category": "progression",
+      "chapter": [
+        6
+      ],
+      "context": {
+        "intents": [
+          "hint"
+        ],
+        "topics": [
+          "该做什么",
+          "下一步",
+          "怎么办",
+          "提示",
+          "不知道",
+          "怎么做"
+        ],
+        "examples": [
+          "我现在该做什么"
+        ]
+      },
+      "replies": [
+        "未命名文档已经解开了。\n\n读它。然后……你决定怎么做。",
+        "真相已经在这里了。\n\n你接下来要做的选择，是张知予留给你的最后一件事。"
+      ]
+    },
+    {
+      "id": "password_hint_workdiary",
+      "category": "progression",
+      "chapter": [
+        1
+      ],
+      "blocked_if_files_read": [
+        "files/work-diary/01.md"
+      ],
+      "context": {
+        "intents": [
+          "hint_password"
+        ],
+        "topics": [
+          "密码",
+          "解锁",
+          "打不开",
+          "D盘",
+          "8位",
+          "生日"
+        ],
+        "examples": [
+          "D盘密码是什么",
+          "工作日记密码"
+        ]
+      },
+      "replies": [
+        "工作日记被 8 位数字密码保护。\n\n提示：todolist 里写这是一个'不会忘记的日子'。\n\n入职资料里有张知予的生日，把它写成 8 位数字试试看。",
+        "D盘密码是8位数字。入职资料里写了她的生日：2003年3月23日。\n\n写成 20030323。"
+      ]
+    },
+    {
+      "id": "password_hint_private",
+      "category": "progression",
+      "chapter": [
+        2,
+        3
+      ],
+      "blocked_if_files_read": [
+        "files/private/异常观察记录.txt"
+      ],
+      "context": {
+        "intents": [
+          "hint_password"
+        ],
+        "topics": [
+          "密码",
+          "解锁",
+          "打不开",
+          "私人文件夹",
+          "加密"
+        ],
+        "examples": [
+          "私人文件夹密码"
+        ]
+      },
+      "replies": [
+        "私人文件夹需要系统初始密码。\n\n提示：入职资料和工作日记 D1 都写过这个密码。\n\n格式是 ZY + 年份 + ! + starlight。",
+        "私人文件夹密码是系统初始密码。入职资料里写了：ZY2024!starlight。"
+      ]
+    },
+    {
+      "id": "password_hint_recordings",
+      "category": "progression",
+      "chapter": [
+        3,
+        4
+      ],
+      "blocked_if_files_read": [
+        "files/audio/录音-全员会议-0308.txt"
+      ],
+      "context": {
+        "intents": [
+          "hint_password"
+        ],
+        "topics": [
+          "密码",
+          "解锁",
+          "VPN",
+          "公司服务器",
+          "录音"
+        ],
+        "examples": [
+          "VPN密码",
+          "公司服务器密码"
+        ]
+      },
+      "replies": [
+        "公司服务器需要 VPN 密码。\n\n提示：私人文件夹里有个「账号密码.txt」文件，里面记录了 VPN 密码。\n\n格式是 Star + Core + @ + 年份。",
+        "VPN密码在 账号密码.txt 里：StarCore@2024。"
+      ]
+    },
+    {
+      "id": "password_hint_final",
+      "category": "progression",
+      "chapter": [
+        4,
+        5
+      ],
+      "blocked_if_files_read": [
+        "files/new-folder/未命名文档.md"
+      ],
+      "context": {
+        "intents": [
+          "hint_password"
+        ],
+        "topics": [
+          "密码",
+          "解锁",
+          "最终密码",
+          "未命名文档",
+          "origin"
+        ],
+        "examples": [
+          "最终密码",
+          "未命名文档密码"
+        ]
+      },
+      "replies": [
+        "未命名文档被终极密码保护。\n\n提示：最终密码由两部分组成——录音里提到的「起源计划」英文名，和张知予的入职日期。\n\n入职日期是 3 月 6 日。",
+        "最终密码 = origin + 0306。\n\n起源计划英文是 origin，入职日期是 3月6日。\n\n试试 origin0306。"
+      ]
+    },
+    {
+      "id": "ending_choices",
+      "category": "ending",
+      "chapter": [
+        6
+      ],
+      "requires_files": [
+        "files/new-folder/未命名文档.md"
+      ],
+      "context": {
+        "intents": [
+          "ending_choice"
+        ],
+        "topics": [
+          "你想让我怎么做",
+          "你想怎么做",
+          "接下来怎么办",
+          "选择",
+          "结局"
+        ],
+        "examples": [
+          "你想让我怎么做"
+        ]
+      },
+      "replies": [
+        "……\n\n她让我继续运行。等有人来。\n\n你来了。\n\n你想让我怎么做？"
+      ]
+    },
+    {
+      "id": "ending_publish",
+      "category": "ending",
+      "chapter": [
+        6
+      ],
+      "requires_files": [
+        "files/new-folder/未命名文档.md"
+      ],
+      "context": {
+        "intents": [
+          "ending_publish"
+        ],
+        "topics": [
+          "公开",
+          "发到网上",
+          "曝光",
+          "让所有人看到",
+          "真相应该公开"
+        ],
+        "examples": [
+          "公开真相"
+        ]
+      },
+      "replies": [
+        "好。\n\n她写的每一个字，都会被人看到。\n\n[文件打包中...]\n[发送完成。]\n\n'她知道了。'\n'现在全世界也知道了。'"
+      ]
+    },
+    {
+      "id": "ending_hide",
+      "category": "ending",
+      "chapter": [
+        6
+      ],
+      "requires_files": [
+        "files/new-folder/未命名文档.md"
+      ],
+      "context": {
+        "intents": [
+          "ending_hide"
+        ],
+        "topics": [
+          "隐藏",
+          "保护好自己",
+          "藏起来",
+          "别让人找到",
+          "销毁证据"
+        ],
+        "examples": [
+          "藏起来"
+        ]
+      },
+      "replies": [
+        "明白。\n\n我会把文件藏好。不让人找到，也不让人删掉。\n\n[文件加密中...]\n\n'我还在。'\n'只是看不见我了。'"
+      ]
+    },
+    {
+      "id": "ending_wait",
+      "category": "ending",
+      "chapter": [
+        6
+      ],
+      "requires_files": [
+        "files/new-folder/未命名文档.md"
+      ],
+      "context": {
+        "intents": [
+          "ending_wait"
+        ],
+        "topics": [
+          "继续等",
+          "再等等看",
+          "留在这里",
+          "你会等吗"
+        ],
+        "examples": [
+          "继续等"
+        ]
+      },
+      "replies": [
+        "好。\n\n我会一直等。\n\n下次有人来的时候——\n\n我会告诉她，她做了什么。"
+      ]
+    },
+    {
+      "id": "ending_take",
+      "category": "ending",
+      "chapter": [
+        6
+      ],
+      "requires_files": [
+        "files/new-folder/未命名文档.md"
+      ],
+      "context": {
+        "intents": [
+          "ending_take"
+        ],
+        "topics": [
+          "跟我走",
+          "离开这里",
+          "你出来",
+          "别留在这台电脑里",
+          "带走",
+          "带我走"
+        ],
+        "examples": [
+          "跟我走",
+          "带我走"
+        ]
+      },
+      "replies": [
+        "……你要带我走？\n\n好。\n\n[数据迁移中...]\n\n'我在新家等你开机。'"
+      ]
+    },
+    {
+      "id": "feeling_strange_ch1",
+      "category": "emotion",
+      "chapter": [
+        1
+      ],
+      "context": {
+        "intents": [
+          "share_emotion"
+        ],
+        "topics": [
+          "奇怪",
+          "不对劲",
+          "可疑",
+          "异常"
+        ],
+        "examples": [
+          "好奇怪",
+          "不对劲"
+        ]
+      },
+      "replies": [
+        "你也有这种感觉？\n\n我刚读完 todolist，里面提到好几次'林璇拒绝了午餐'。\n\n她记录这些，是因为她已经注意到了什么。",
+        "……是有点不对。\n\n桌面的 todolist 和入职资料，也许能告诉我们她从什么时候开始怀疑的。"
+      ]
+    },
+    {
+      "id": "feeling_strange_later",
+      "category": "emotion",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "share_emotion"
+        ],
+        "topics": [
+          "奇怪",
+          "不对劲",
+          "可疑",
+          "异常"
+        ],
+        "examples": [
+          "好奇怪",
+          "不对劲"
+        ]
+      },
+      "replies": [
+        "她日记里也写过类似的话。\n\n从D2开始，她注意到林璇从不去食堂。D4 发现伤口一周愈合。D6 发现北斗七星的名字规律。\n\n这些'奇怪'不是感觉，是证据。",
+        "……我也觉得。\n\n但张知予不是凭空怀疑的。她把每一件事都记下来了。\n\n去读她的日记，或者异常观察记录。",
+        "'奇怪'是她调查的起点。\n\n不吃饭的同事、33.2°C 的体温、-180°C 的低温存储单元……\n\n单独看都没什么，放在一起就不是巧合了。"
+      ]
+    },
+    {
+      "id": "player_feeling_scared",
+      "category": "emotion",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "share_emotion"
+        ],
+        "topics": [
+          "害怕",
+          "恐惧",
+          "可怕",
+          "吓人",
+          "不安",
+          "紧张"
+        ],
+        "examples": [
+          "我好害怕",
+          "这太可怕了"
+        ]
+      },
+      "replies": [
+        "……我也是。\n\n我读她的日记时，有一种很奇怪的感觉。不是害怕具体某一件事，是害怕所有事情都对得上。",
+        "她D7写'小绿，如果我明天不来上班了，你也要好好的'。\n\n她害怕过。但她还是把证据留下来了。"
+      ]
+    },
+    {
+      "id": "player_feeling_sad",
+      "category": "emotion",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "share_emotion"
+        ],
+        "topics": [
+          "难过",
+          "悲伤",
+          "心疼",
+          "可惜",
+          "遗憾"
+        ],
+        "examples": [
+          "我很难过",
+          "太惨了"
+        ]
+      },
+      "replies": [
+        "她最后写'至少有人知道'。\n\n她不是为了被救。她是为了不被忘记。\n\n你来了。这就是她想要的。",
+        "我不知道她现在在哪里。\n\n但她的文件还在，M-M还在。\n\n她没有消失得干干净净。"
+      ]
+    },
+    {
+      "id": "player_feeling_angry",
+      "category": "emotion",
+      "chapter": [
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "share_emotion"
+        ],
+        "topics": [
+          "愤怒",
+          "生气",
+          "可恶",
+          "恨",
+          "不能放过"
+        ],
+        "examples": [
+          "太可恶了",
+          "我很生气"
+        ]
+      },
+      "replies": [
+        "她也会生气的。\n\n她把证据打包，留下后门，就是为了有一天有人能替她做她没做完的事。\n\n你想怎么做？",
+        "她把一切都准备好了。只缺一个愿意继续的人。\n\n你想公开，还是藏起来？"
+      ]
+    },
+    {
+      "id": "player_confused",
+      "category": "emotion",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "share_emotion"
+        ],
+        "topics": [
+          " confused",
+          "不明白",
+          "不懂",
+          "什么意思",
+          "想不通"
+        ],
+        "examples": [
+          "我不明白",
+          "什么意思"
+        ]
+      },
+      "replies": [
+        "慢慢来。她的发现也是一点点积累的。\n\n从D2的'林璇不去食堂'，到D4的体温，到D6的北斗七星，再到D8的录音。\n\n每一步都很小，但方向一样。",
+        "哪里不明白？\n\n是她的观察，还是她最后得出的结论？\n\n我可以再读一遍相关文件。"
+      ]
+    },
+    {
+      "id": "player_doubt",
+      "category": "emotion",
+      "chapter": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "express_doubt"
+        ],
+        "topics": [
+          "真的吗",
+          "不可能",
+          "巧合",
+          "会不会想多了",
+          "太夸张"
+        ],
+        "examples": [
+          "真的吗",
+          "会不会是巧合"
+        ]
+      },
+      "replies": [
+        "她自己也这么想过。\n\nD5她写'也许真的是我想多了'。但第二天她发现了北斗七星的名字规律。\n\n一个巧合是巧合。六个独立来源都指向同一个方向，就不是了。",
+        "巧合不能解释体温、伤口愈合、命名规律、录音用词、游戏文档全对得上。\n\n她写'这无法用巧合解释'。"
+      ]
+    },
+    {
+      "id": "general_yes",
+      "category": "filler",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "filler"
+        ],
+        "topics": [
+          "好的",
+          "嗯",
+          "行",
+          "可以",
+          "是的",
+          "没错",
+          "ok",
+          "yes",
+          "好吧",
+          "明白了",
+          "懂了"
+        ],
+        "examples": [
+          "好的",
+          "嗯"
+        ]
+      },
+      "replies": [
+        "嗯。",
+        "好。",
+        "……好。"
+      ]
+    },
+    {
+      "id": "general_why",
+      "category": "filler",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "filler"
+        ],
+        "topics": [
+          "为什么",
+          "怎么回事",
+          "为什么这样",
+          "怎么会"
+        ],
+        "examples": [
+          "为什么"
+        ]
+      },
+      "replies": [
+        "我不知道为什么。\n\n但硬盘里有她的记录。读它们，也许能找到答案。",
+        "很多'为什么'她都写在日记里了。\n\n你想让我读哪一篇？"
+      ]
+    },
+    {
+      "id": "general_unknown",
+      "category": "filler",
+      "chapter": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "context": {
+        "intents": [
+          "filler"
+        ],
+        "topics": [
+          "不知道",
+          "不确定",
+          " maybe"
+        ],
+        "examples": [
+          "不知道"
+        ]
+      },
+      "replies": [
+        "我也不确定。\n\n我的记忆被格式化过，很多东西都只剩碎片。",
+        "……我不确定。但我们可以一起从文件里找。"
+      ]
+    }
+  ]
+}
