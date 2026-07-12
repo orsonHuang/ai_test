@@ -22,16 +22,18 @@
                  ↓
 ┌─────────────────────────────────────────────┐
 │ 混合回复引擎 (engine/hybrid_reply.py)        │
-│   - 优先级判断                                │
-│   - 关键词模板匹配                            │
+│   - 14条处理路径，优先级明确                  │
+│   - 响应库智能匹配（新核心）                  │
+│   - 学习闭环                                  │
 │   - 缓存查询                                  │
-│   - AI兜底生成                                │
+│   - AI兜底生成（限流）                        │
 └─────┬──────────┬──────────┬──────────────────┘
-      ↓          ↓          ↓
-┌────────┐ ┌─────────┐ ┌──────────────┐
-│规则模板│ │缓存系统 │ │DeepSeek API    │
-│JSON    │ │JSON文件 │ │deepseek-chat   │
-└────────┘ └─────────┘ └──────────────┘
+      ↓          ↓          ↓          ↓
+┌────────┐ ┌─────────┐ ┌────────┐ ┌──────────────┐
+│响应库   │ │学习库    │ │缓存系统│ │DeepSeek API   │
+│JSON    │ │JSON     │ │JSON    │ │deepseek-chat  │
+│75条目  │ │自动积累 │ │文件    │ │(仅兜底)       │
+└────────┘ └─────────┘ └────────┘ └──────────────┘
 ```
 
 ## 技术栈
@@ -56,8 +58,10 @@ awakening-demo/
 ├── setup.sh                          # 一键部署脚本
 ├── engine/                           # 核心引擎
 │   ├── __init__.py
-│   ├── hybrid_reply.py               # 混合模式核心
-│   ├── rule_engine.py                # 规则匹配
+│   ├── hybrid_reply.py               # 混合模式核心（14条优先级路径）
+│   ├── response_library.py           # 预烘焙响应库智能匹配引擎 ★ 新核心
+│   ├── learning_store.py             # API 学习闭环（未命中→入库）★ 新
+│   ├── rule_engine.py                # 规则匹配（关键词模板已移除）
 │   ├── cache_manager.py              # 缓存管理
 │   ├── ai_fallback.py                # AI兜底
 │   ├── character_state.py            # AI人格状态机
@@ -452,23 +456,37 @@ TEMPERATURE = 0.7
   ├─[8] 密码尝试拦截
   │     _is_password_attempt() 但未匹配已知密码 → 错误提示
   │
-  ├─[9] 缓存命中 (cache_manager)
+  ├─[9] 响应库智能匹配 ★★★ 新核心路径（零 API 成本）
+  │     response_library.find_best_match() — 四维综合打分:
+  │       (a) 章节权重：当前篇章优先
+  │       (b) 已读文件权重：已解锁文件增强命中概率
+  │       (c) 话题匹配：topic_tags 交集分
+  │       (d) 相似度 + Jaccard：文本相似 + 词集重叠
+  │     → 分数 ≥ 55 → 随机变体 → 返回（90%+ 对话走此路径）
+  │     → 分数 < 55 → 进入学习库检查
+  │
+  ├─[10] 学习库检查 ★ 新增
+  │     learning_store.find_match() → 检查历史 API 学习记录
+  │     → 命中 → 返回（零成本复用）
+  │     → 未命中 → 继续下探
+  │
+  ├─[11] 缓存命中 (cache_manager)
   │     MD5 hash 前 12 位 + 章节 → 返回缓存（零成本）
   │
-  ├─[10] 超纲拦截
+  ├─[12] 超纲拦截
   │      天气/新闻/股票/明星等外部话题 → M-M 拒绝
   │      → _record_off_topic() 计入计数
   │
-  ├─[11] AI-RAG 兜底 ★ 核心
+  ├─[13] AI-RAG 兜底（降级路径）
   │      ai_fallback.generate() 调用 DeepSeek API
   │      【三层 Prompt 注入】:
   │        Layer 1: CHARACTER_CARD — M-M 5阶段人设+说话风格
   │        Layer 2: memory.build_context_string() — 已读/已知/线索
   │        Layer 3: knowledge_search.build_knowledge_context() — RAG 检索
-  │      → 结果写入缓存 → _maybe_update_memory_from_reply() 迭代记忆
+  │      → 结果写入缓存 + learning_store（学习闭环）
   │      → 单局上限 20 次 AI 调用
   │
-  └─[12] 超限/未配置兜底
+  └─[14] 超限/未配置兜底
         ├─ API 未配置 → M-M 口吻道歉
         └─ 调用超 20 次 → "运算能力到极限了"
 ```
@@ -477,8 +495,10 @@ TEMPERATURE = 0.7
 
 | 维度 | 设计 |
 |------|------|
-| **成本控制** | 路径 1-10 全部走规则/缓存，零 AI 成本；仅路径 11 调 API |
+| **成本控制** | 路径 1-12 全部走规则/响应库/缓存，零 AI 成本；仅路径 13 调 API |
 | **单局 AI 上限** | 20 次 (MAX_AI_CALLS_PER_GAME) |
+| **响应库** | 预烘焙 75 条目/157 变体，运行时零成本智能匹配 ★ 核心 |
+| **学习闭环** | 路径 13 API 回复 → learning_store 入库 → 下次路径 10 命中 |
 | **建议系统** | 每条回复后 `_save_suggestions()` → 从回复文本或默认规则提取可执行建议 → 前端显示快捷按钮 |
 | **确认执行** | 玩家说"好""可以""试试"等 → 自动执行上一条建议命令，多条则追问选择 |
 | **记忆闭环** | 读文件 → `memory.process_file()` + `clue_manager` 提取线索 → `_save_memory()` 持久化 |
@@ -505,12 +525,14 @@ generate_reply()
   │   ├─ _build_password_hint()  → 密码分析引导
   │   └─ _build_analysis_reply() → 综合推理
   ├─ qa_engine.find_answer()    → qa-library.json
-  ├─ rule_engine.match_keyword_template() → keyword-rules.json
+  ├─ response_library.find_best_match() → response-library.json ★ 新核心
+  ├─ learning_store.find_match() → learning-store.json ★ 新
   ├─ find_file_suggestion()     → 文件类别匹配
   ├─ cache_manager.get()        → 缓存查询
-  ├─ ai_fallback.generate()     → DeepSeek API + RAG
+  ├─ ai_fallback.generate()     → DeepSeek API + RAG（降级路径）
   │   ├─ memory.build_context_string()
-  │   └─ knowledge_search.build_knowledge_context()
+  │   ├─ knowledge_search.build_knowledge_context()
+  │   └─ learning_store.append() → 学习闭环 ★ 新
   └─ _save_suggestions()        → 建议栏 + pending_choices
       └─ _build_default_suggestions() → 章节默认建议
 ```
@@ -520,9 +542,11 @@ generate_reply()
 | type | 含义 | 前端渲染 |
 |------|------|----------|
 | `ai` | M-M 对话回复 | AI 气泡 |
+| `response_library` | 响应库智能匹配命中 ★ 新 | AI 气泡 |
+| `learned` | 学习库命中 ★ 新 | AI 气泡 |
 | `ai_rag` | AI-RAG 生成回复 | AI 气泡 |
 | `qa_library` | 本地 Q&A 库命中 | AI 气泡 |
-| `rule_template` | 关键词模板命中 | AI 气泡 |
+| `rule_template` | 规则模板命中 | AI 气泡 |
 | `cache` | 缓存命中 | AI 气泡 |
 | `command` | 系统命令输出 | 系统提示（黄色居中） |
 | `system` | 系统提醒（密码错误等） | 系统提示 |

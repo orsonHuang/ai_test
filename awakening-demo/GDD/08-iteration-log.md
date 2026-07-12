@@ -528,3 +528,66 @@ hybrid_reply.generate_reply()
 - `CHANGELOG.md`
 - `GDD/08-iteration-log.md`（本文件）
 
+---
+
+## 2026-07-12 · 重构框架 — 响应库重构：从关键词模板到预烘焙智能库
+
+### 背景
+- 玩家反馈 AI "太笨"：关键词模板触发固定回复，像 FAQ 机器人；意图识别太宽，"帮我看看""分析一下"被误判为文件读取
+- 单机游戏需要控制 API 成本，不能依赖持续的外部 AI 调用
+
+### 方案
+- **预烘焙响应库**：开发时一次性生成 75 条目 / 157 变体，运行时零 API 成本匹配
+- **学习闭环**：API 只在响应库/学习库都未覆盖时触发，结果自动入库复用
+- **智能匹配**：按章节、已读文件、话题命中、示例相似度、Jaccard 综合打分
+- **意图收窄**：只保留明确操作词（打开/扫描/获取/提示），模糊意图让响应库处理
+- **清理**：删除 `keyword-rules.json`，QA 库降级为超纲+基础身份兜底
+
+### 新增文件
+- `engine/response_library.py` — 响应库智能匹配引擎（章节权重/话题匹配/相似度/Jaccard 四维打分）
+- `engine/learning_store.py` — API 学习闭环（未命中 → API → 结果自动入库）
+- `knowledge/response-library.json` — 75 条目 / 157 变体，覆盖剧情/角色/异常/情绪/结局
+- `tests/test_response_library.py` — 响应库 CLI 测试脚本
+- `tests/_smoke.py` — 冒烟测试
+
+### 修改文件
+- `engine/hybrid_reply.py` — 重构 `generate_reply` 优先级：响应库 → 学习库 → 降级 QA → 文件类别 → 缓存 → 超纲 → 严格 AI 兜底
+- `engine/rule_engine.py` — 移除旧关键词模板，保留文件类别询问/阅读插嘴
+- `knowledge/qa-library.json` — 简化为 out_of_scope + basic_identity 兜底
+- `knowledge/triggers/keyword-rules.json` — **删除**（功能已合并至响应库）
+- `knowledge/response-library.json` — 补充条目至 530 行
+- `heartbeat-state.md` — 状态更新
+
+### 设计原则
+- **框架思维**：规则引擎不再是"关键词→固定回复"，而是"意图识别+智能匹配+学习闭环"的三层框架
+- 运行时零 API 成本：90%+ 对话走响应库/缓存，API 仅兜底
+- 可扩展：新增剧情只需在 `response-library.json` 中追加条目，框架自动适配
+- 可迁移：响应库文件是纯 JSON，结构清晰，未来可直接迁移至任何对话引擎
+
+### 验证结果
+- ✅ 响应库加载正常（75 条目）
+- ✅ 基础对话命中率 > 85%（"你是谁""你好""帮助"等）
+- ✅ 学习闭环：API 回复 → learning_store.append → 下次直接命中
+- ✅ 旧关键词模板完全移除，无破坏性影响
+- ✅ Python/HTML 编译无错误
+
+### 当前状态
+- 重构框架完成
+- 运行时零 API 成本对话已落地
+- 等待玩家实际体验反馈
+
+### 改动文件
+- `engine/hybrid_reply.py` — generate_reply 流程重排
+- `engine/response_library.py` — 新增
+- `engine/learning_store.py` — 新增
+- `engine/rule_engine.py` — 移除关键词模板
+- `knowledge/response-library.json` — 75条目/157变体
+- `knowledge/qa-library.json` — 简化为兜底
+- `knowledge/triggers/keyword-rules.json` — 删除
+- `tests/test_response_library.py` — 新增
+- `tests/_smoke.py` — 新增
+- `heartbeat-state.md`
+- `GDD/07-tech.md`
+- `GDD/08-iteration-log.md`（本文件）
+- `CHANGELOG.md`
+

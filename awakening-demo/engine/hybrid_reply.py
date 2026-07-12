@@ -1200,7 +1200,16 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
     if intent == "clue":
         clues = memory.get_clues()
         if not clues:
-            return {"reply": "我目前还没整理出什么明确线索。再多读一些文件？", "type": "ai"}
+            chapter = game_state.get("chapter", 1)
+            no_clue_hints = {
+                1: "目前还看不出明确线索。先读读桌面上的 todolist 和入职资料？\n\n我每读一个文件，就会从里面挑出关键的细节。",
+                2: "目前还没整理出明确线索。\n\n读工作日记吧——她在那里面写了不少带 * 标记的异常。读得越多，我整理出来的越多。",
+                3: "目前我整理出的线索还不多。\n\n你读过的每一个文件都会沉淀下来。试试让我读工作日记，或者打开私人文件夹的异常观察记录。",
+                4: "线索在慢慢拼起来。\n\n你读了三段录音，里面提到了关键的几个名字。让我再读一遍研究笔记？",
+                5: "线索接近完整。\n\n打开研究笔记 1-3，把它们和录音串起来。",
+                6: "所有线索都齐了。\n\n未命名文档里有最后的答案。你决定怎么做。",
+            }
+            return {"reply": no_clue_hints.get(chapter, "再读一些文件，我就能整理出更完整的线索了。"), "type": "ai"}
         return {
             "reply": clue_manager.format_clues(clues),
             "type": "ai",
