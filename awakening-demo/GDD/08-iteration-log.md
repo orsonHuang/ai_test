@@ -659,14 +659,59 @@ hybrid_reply.generate_reply()
 - 目标发现与主线引导框架完成
 - 等待新一轮玩家测试反馈
 
+---
+
+## 2026-07-13 · 体验调优：弹窗去除、文件状态、建议对齐与主线推进
+
+### 背景
+玩家新一轮测试反馈 6 项体验问题：
+1. 点击侧边栏文件会额外弹出文件弹窗，打断聊天流
+2. 「文件」按钮只展开侧边栏，没有主动告诉玩家当前文件状态
+3. AI 建议栏文本与按钮分散两端，视觉上不紧凑
+4. 工作日记全部读完后 AI 仍推荐继续读，不会推进到下一主线目标
+5. 问「你是谁」时偶发回答成张知予（响应库变体错误）
+6. 玩家输入空「获取」时，不知道当前有哪些已发现但未解锁的文件夹
+
+### 改动
+
+**前端（`index.html`）**
+- 移除文件查看弹窗：删除 `#file-modal` DOM、CSS、JS 函数与引用
+- 点击文件树只发送「打开 文件名」命令，文件内容在聊天区以卡片呈现
+- 「文件」按钮改为发送「查看文件状态」，后端返回状态并自动展开侧边栏
+- AI 建议栏 `justify-content` 从 `space-between` 改为 `flex-start`，按钮与文本间距统一为 `gap: 12px`
+- 前端 `updateAISuggestion` 与后端同步：
+  - 按顺序指向下一篇未读工作日记
+  - 全部读完后推进到「获取 私人文件夹 密码」
+  - 第 3/4 章也按已发现目标推进主线
+
+**后端（`engine/hybrid_reply.py`）**
+- `files` 自然语言意图改为调用 `_build_file_status_reply`，返回三类文件清单并标记 `expand_sidebar: true`
+- 新增 `_build_get_folder_hint`：列出已发现但未解锁的文件夹，无发现则引导阅读文档
+- `handle_get_command` 空目标或未识别目标时统一调用 `_build_get_folder_hint`
+- `_build_default_suggestions` 第 2 章逻辑重写：按顺序推荐下一篇未读工作日记，全部读完后推进到私人文件夹密码
+
+**配置（`knowledge/response-library.json`）**
+- 修复 `who_am_i_curious` 的第二个变体，从「她叫张知予……」改为 M-M 自我介绍
+
+### 验证结果
+- ✅ Python 编译通过
+- ✅ 响应库 JSON 格式有效
+- ✅ 冒烟测试通过
+- ✅ chapter 2 问「你是谁」返回 M-M 自我介绍
+- ✅ 全部工作日记读完后建议变为「获取 私人文件夹 密码」
+- ✅ 空「获取」时列出已发现未解锁文件夹
+- ✅ 无发现文件夹时提示阅读文档
+- ✅ 「查看文件状态」返回三类文件清单并携带 `expand_sidebar`
+
+### 当前状态
+- 6 项体验问题已修复，等待下一轮测试反馈
+
 ### 改动文件
-- `engine/hybrid_reply.py` — 密码获取、扫描、建议、发现逻辑
-- `engine/folder_discovery.py` — 新增
-- `engine/qa_engine.py` — 增加 folder_help 优先级
-- `knowledge/folder-discoveries.json` — 新增
-- `knowledge/qa-library.json` — 新增 folder_help 条目
-- `index.html` — 建议栏 UI 重构、按钮、执行建议、密码脱敏
-- `GDD/07-tech.md`
-- `GDD/08-iteration-log.md`（本文件）
+- `index.html`
+- `engine/hybrid_reply.py`
+- `knowledge/response-library.json`
 - `CHANGELOG.md`
+- `GDD/08-iteration-log.md`（本文件）
+
+
 

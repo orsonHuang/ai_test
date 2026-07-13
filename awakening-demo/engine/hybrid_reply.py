@@ -598,6 +598,44 @@ def _mask_password(command: str) -> str:
     return command
 
 
+def _build_get_folder_hint(game_state: dict) -> dict:
+    """
+    为「获取/解锁」空目标或未识别目标时生成提示：
+    - 列出已发现但未解锁的文件夹
+    - 没有可解锁目标时提示阅读文档获取线索
+    """
+    discovered = folder_discovery.get_discovered_targets(game_state)
+    memory = _get_memory(game_state)
+
+    locked = []
+    for target_id in discovered:
+        config = SCAN_TARGETS.get(target_id)
+        if not config:
+            continue
+        files = config.get("files", [])
+        if files and not all(f in memory.accessible_files for f in files):
+            display_name = config.get("names", [target_id])[0]
+            locked.append((display_name, target_id))
+
+    if locked:
+        lines = ["目前发现还没解锁的文件夹有这些："]
+        for name, _ in locked:
+            lines.append(f"  · {name}")
+        lines.append("\n可以试试：")
+        for name, _ in locked:
+            lines.append(f"  · 获取 {name} 密码")
+        return {"reply": "\n".join(lines), "type": "ai"}
+
+    return {
+        "reply": (
+            "我还没发现可以解锁的文件夹。\n"
+            "\n"
+            "先读读已经解锁的文件，里面会提到被密码保护的文件夹线索。"
+        ),
+        "type": "ai",
+    }
+
+
 def handle_get_command(user_input: str, game_state: dict, natural: bool = False) -> dict:
     """
     处理'获取 目标 [密码]'命令
@@ -613,17 +651,7 @@ def handle_get_command(user_input: str, game_state: dict, natural: bool = False)
     lowered = lowered.strip()
 
     if not lowered:
-        next_target = _find_next_locked_target(game_state)
-        if next_target:
-            display_name = SCAN_TARGETS[next_target].get("names", [next_target])[0]
-            return {
-                "reply": f"我发现「{display_name}」还没有解锁。可以试试：\n  · 获取 {display_name} 密码",
-                "type": "ai",
-            }
-        return {
-            "reply": "你想获取什么？可以这样说：\n  · 获取 工作日记 密码\n  · 获取 私人文件夹 密码\n  · 获取 公司服务器 密码",
-            "type": "ai",
-        }
+        return _build_get_folder_hint(game_state)
 
     parts = lowered.split()
     password = ""
@@ -644,10 +672,7 @@ def handle_get_command(user_input: str, game_state: dict, natural: bool = False)
     target = _extract_scan_target(target_text) if target_text else ""
 
     if not target:
-        return {
-            "reply": f"我不确定'{target_text}'在哪里。\n\n可以试试：工作日记、私人文件夹、公司服务器、未命名文档。",
-            "type": "ai",
-        }
+        return _build_get_folder_hint(game_state)
 
     # 检查目标是否已被发现
     if not folder_discovery.is_target_discovered(game_state, target):
@@ -665,6 +690,7 @@ def handle_get_command(user_input: str, game_state: dict, natural: bool = False)
         return _try_unlock_with_password(target, password, game_state, natural)
 
     return _prompt_password_for_target(target, game_state, natural)
+
 
 
 # ============ 自然语言意图识别 ============
@@ -1036,15 +1062,26 @@ def _build_default_suggestions(game_state: dict) -> list:
             return [_main_quest_hint("再读一遍 todolist，注意 D 盘", "打开 todolist.txt")]
         return [_main_quest_hint("获取 工作日记 密码", "获取 工作日记 密码")]
 
-    # Chapter 2：工作日记是主线
+    # Chapter 2：工作日记是主线，读完关键篇后推进到私人文件夹
     if chapter == 2:
-        if not has_read("files/work-diary/01.md"):
-            return [_main_quest_hint("打开 第一篇工作日记", "打开 第一篇工作日记")]
-        if not has_read("files/work-diary/02.md"):
-            return [_main_quest_hint("打开 第二篇工作日记", "打开 第二篇工作日记")]
+        diary_files = [
+            "files/work-diary/01.md", "files/work-diary/02.md",
+            "files/work-diary/03.md", "files/work-diary/04.md",
+            "files/work-diary/05.md", "files/work-diary/06.md",
+            "files/work-diary/07.md", "files/work-diary/08.md",
+            "files/work-diary/09.md", "files/work-diary/10.md",
+        ]
+        # 始终优先指向下一篇未读工作日记，避免已读还推"继续读"
+        for f in diary_files:
+            if not has_read(f):
+                num = f.split("/")[-1].split(".")[0].lstrip("0") or "1"
+                cn = INT_TO_CN.get(int(num), num)
+                return [_main_quest_hint(f"打开 第{cn}篇工作日记", f"打开 第{cn}篇工作日记")]
+        # 全部已读：推进主线到私人文件夹
         if "private" in discovered:
             return [_main_quest_hint("获取 私人文件夹 密码", "获取 私人文件夹 密码")]
-        return [_main_quest_hint("继续读工作日记", "打开 工作日记")]
+        return [_main_quest_hint("再读工作日记，找私人文件夹线索", "打开 工作日记")]
+
 
     # Chapter 3：私人文件夹 + 研究笔记
     if chapter == 3:
@@ -1281,18 +1318,10 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
         }
 
     if intent == "files":
-        files = sorted(memory.accessible_files)
-        if not files:
-            return {"reply": "我现在看不到任何文件。要我先扫描一下吗？", "type": "ai"}
-        # 只有一个文件时直接打开，避免再让玩家输入一次
-        if len(files) == 1:
-            only_file = files[0]
-            return handle_file_command(f"/read {only_file}", game_state, natural=True)
-        return {
-            "reply": "我能看到的文件有这些：",
-            "file_list": files,
-            "type": "ai",
-        }
+        result = _build_file_status_reply(game_state)
+        result["expand_sidebar"] = True
+        return result
+
 
     if intent == "read" and argument:
         return handle_file_command(f"/read {argument}", game_state, natural=True)
