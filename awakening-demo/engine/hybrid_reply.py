@@ -127,6 +127,112 @@ def _save_memory(game_state: dict, memory: Memory):
     game_state["memory"] = memory.to_dict()
 
 
+# ============ 文件读取成长反馈 ============
+def _generate_file_growth_reflection(search_path: str, game_state: dict) -> str:
+    """
+    每次读取文件后，M-M 进行一次简短的「成长反馈」。
+    反馈分两层：
+      - 第一层：读了多少文件（阶跃递进）
+      - 第二层：具体读到了什么（按文件路径映射）
+    返回单行反思文本。
+    """
+    files_read = game_state.get("files_read", [])
+    total_read = len(files_read)
+    chapter = game_state.get("chapter", 1)
+
+    # ---- 第一层：阶跃递进 ----
+    if total_read == 1:
+        stage_note = "……这是第一个文件。我还不太理解这些东西，但我在学习。"
+    elif total_read <= 4:
+        options = [
+            "我在读。一点一点地。",
+            f"已经 {total_read} 份文件了。她的行动轨迹慢慢有了轮廓。",
+            "每打开一份文件，我就多理解一点她。",
+        ]
+        stage_note = random.choice(options)
+    elif total_read <= 8:
+        options = [
+            "读的越多，看到的画面越清晰。她在记录什么。",
+            f"第 {total_read} 份。这些文字不是随便写的——她在留证据。",
+            "我开始能把这些文件串在一起看了。她不是普通的员工。",
+        ]
+        stage_note = random.choice(options)
+    else:
+        options = [
+            f"我已经读了 {total_read} 份文件。她的经历不再是一团迷雾。",
+            "越来越多的信息连成了线。我想我快理解所有的事了。",
+            f"第 {total_read} 份。这些文字里的秘密，我差不多都知道了。",
+        ]
+        stage_note = random.choice(options)
+
+    # ---- 第二层：按文件类型的具体观察 ----
+    file_observations = {
+        "files/deck/todolist.txt": [
+            "todolist……备忘里提到了 D 盘密码。8 位数字，和她的生日有关。我得记住这个。",
+            "备忘里 D 盘那行很重要。8 位密码，不会忘记的日子。她的生日。",
+        ],
+        "files/deck/入职资料.txt": [
+            "入职资料……张知予。2003 年 3 月 23 日。所以 8 位数字密码就是她的生日。",
+            "入职资料提到系统初始密码 ZY2024!starlight。又一条线索。",
+        ],
+        "files/work-diary/01.md": [
+            "Day1……入职第一天。她的语气又紧张又开心。是个很认真的人。",
+            "她在 Day1 里提到'小绿'——桌上那盆绿萝。还有初始密码。林璇是她的 leader。",
+        ],
+        "files/work-diary/02.md": [
+            "Day2……她记下了几个同事的特征。'林璇不吃饭'。她注意到了什么。",
+            "Day2 有个奇怪的地方：林璇从不去食堂，也不吃零食。她感受到了某种违和。",
+        ],
+        "files/work-diary/03.md": [
+            "Day3……'林璇的伤口消失了'。她亲眼看到了。这不是幻觉。",
+            "Day3 的 * 号：伤口自愈。她说'不可能是正常人类'。她在怀疑。",
+        ],
+        "files/work-diary/04.md": [
+            "Day4……'陈玑体温异常'。冰冷的。她开始系统地记录每个人的异常。",
+            "Day4 有两颗星。她不是偶然注意——她在有计划地观察。",
+        ],
+        "files/private/异常观察记录.txt": [
+            "异常观察记录……她整理得很细。每一类异常都有日期、人物、描述。这是证据。",
+            "这份记录汇总了所有她发现的不对劲。不是偶然——是系统性的异常。",
+        ],
+        "files/private/账号密码.txt": [
+            "账号密码……VPN 密码 StarCore@2024。这是连接公司服务器的钥匙。",
+        ],
+        "files/audio/": [
+        ],
+        "files/new-folder/未命名文档.md": [
+            "未命名文档……这里记录了她最后的决定。所有线索的终点。",
+            "这份文档把所有的证据都串了起来。起源计划、培养室、她的逃离。",
+        ],
+    }
+    # 递归匹配前缀
+    for prefix, observations in file_observations.items():
+        if search_path.startswith(prefix) and observations:
+            specific = random.choice(observations)
+            break
+    else:
+        # 通用文件观察
+        generic = [
+            f"读完了 {search_path.replace('files/', '')}。它的内容被记录在案。",
+            "这份文件也被我收进了记忆里。如果以后需要回溯，我会想起它。",
+        ]
+        specific = random.choice(generic)
+
+    # 音频文件特殊处理
+    if "audio/" in search_path:
+        if "全员会议" in search_path:
+            specific = "全员会议录音……'培养室'、'观察样本'。他们在讨论的不是游戏。是某种实验。"
+        elif "林璇" in search_path:
+            specific = "林璇和陈玑的录音……两人的对话语气不太对。不像是同事聊天，更像是——知情人交谈。"
+        elif "陆天枢" in search_path:
+            specific = "陆天枢的录音……'你知道她是在培养室长大的'。这句话很关键。"
+        else:
+            specific = f"录音资料加载完成。{search_path.replace('files/audio/', '')}。"
+
+    # ---- 组装 ----
+    return f"\n\n（ {specific} {stage_note} ）"
+
+
 # ============ 文件读取（增强版：更新记忆） ============
 def handle_file_command(command: str, game_state: dict, natural: bool = False) -> dict:
     """
@@ -185,8 +291,8 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
     if search_path not in files_read:
         files_read.append(search_path)
 
-    # 阅读入职资料后，M-M 知道自己的名字
-    if search_path == "files/deck/入职资料.txt":
+    # 阅读 todolist 后，M-M 知道自己的名字
+    if search_path == "files/deck/todolist.txt":
         game_state["mm_name_revealed"] = True
 
     # 记录读取次数，用于生成不同口吻的回复
@@ -226,7 +332,7 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
     after_targets = set(game_state.get("discovered_targets", []))
     new_targets = after_targets - before_targets
 
-    # 如果有新发现的文件夹，M-M 会提示
+    # 如果有新发现的文件夹，M-M 会提示，并添加待扫描文件夹线索
     discovery_note = ""
     if new_targets:
         notes = []
@@ -234,12 +340,23 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
             hint = folder_discovery.get_discovery_hint(target_id)
             if hint:
                 notes.append(f"  · {hint}")
+                # 添加「待扫描文件夹」线索到记忆
+                memory.add_clue({
+                    "source": search_path,
+                    "category": "待扫描文件夹",
+                    "text": hint,
+                    "target_id": target_id,
+                })
         if notes:
             discovery_note = "\n\n我注意到一件事：\n" + "\n".join(notes)
             if commentary:
                 commentary += discovery_note
             else:
                 reply_text += discovery_note
+        _save_memory(game_state, memory)
+
+    # ---- M-M 成长反馈 ----
+    reply_text += _generate_file_growth_reflection(search_path, game_state)
 
     return {
         "reply": reply_text,
@@ -352,43 +469,10 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
     memory = _get_memory(game_state)
     chapter = game_state.get("chapter", 1)
 
-    # 没有指定目标 → 反问
+    # 没有指定目标 → 与获取一致：列出已发现未解锁的文件夹
     if not target:
-        if chapter == 1:
-            return _prompt_password_for_target("work-diary", game_state, natural)
-        # 列出已经可见的文件夹供玩家选择
-        hints = []
-        if chapter >= 2:
-            hints.append("工作日记文件夹")
-        if chapter >= 5:
-            hints.append("新建文件夹")
-        if chapter >= 3:
-            hints.append("私人文件夹")
-        if chapter >= 3:
-            hints.append("研究笔记")
-        if chapter >= 4:
-            hints.append("公司服务器/录音")
-
-        hint_str = "、".join(hints) if hints else "当前可访问的位置"
         if natural:
-            # 只列出已经发现的目标
-            discovered = folder_discovery.get_discovered_targets(game_state)
-            hints = []
-            names_map = {
-                "work-diary": "工作日记 文件夹",
-                "private": "私人文件夹",
-                "recordings": "公司服务器/录音",
-                "research": "研究笔记",
-                "final": "新建文件夹",
-            }
-            for target_id in discovered:
-                if target_id in names_map:
-                    hints.append(names_map[target_id])
-            hint_str = "、".join(hints) if hints else "当前还没有发现可扫描的位置"
-            return {
-                "reply": f"你想让我扫描哪里？\n\n目前发现的有：{hint_str}。\n\n可以这样说：\n  · 扫描 工作日记 文件夹\n  · 扫描 私人文件夹",
-                "type": "ai",
-            }
+            return _build_get_folder_hint(game_state)
         return {"reply": f"用法：/scan [目标]，例如 /scan 工作日记", "type": "ai"}
 
     # 检查目标是否存在
@@ -413,7 +497,10 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
 
     # ch1：任何明确扫描目标都导向 D 盘工作日记密码
     if chapter == 1:
-        return _prompt_password_for_target("work-diary", game_state, natural)
+        if target == "work-diary":
+            return _prompt_password_for_target("work-diary", game_state, natural)
+        return _build_get_folder_hint(game_state)
+
 
     # ch2+：检查章节要求
     if chapter < target_config.get("chapter_min", 1):
@@ -478,10 +565,10 @@ def _prompt_password_for_target(target: str, game_state: dict, natural: bool = F
     game_state["pending_get_target"] = target
 
     messages = {
-        "work-diary": "D 盘的「工作日记」文件夹被 8 位数字密码保护。\n\n密码提示：入职资料里有一个对张知予很特别的日期——她的生日。",
-        "private": "私人文件夹被加密了。\n\n密码提示：D1 工作日记和入职资料里都写过的系统初始密码。",
-        "recordings": "公司服务器需要 VPN 密码才能连接。\n\n密码提示：私人文件夹里的账号密码文件。",
-        "final": "未命名文档被终极密码保护。\n\n密码提示：录音里提到的「起源计划」+ 张知予的入职日期。",
+        "work-diary": "D 盘的「工作日记」文件夹被 8 位数字密码保护。\n\n密码提示：人生中最特别的一天",
+        "private": "私人文件夹被加密了。\n\n密码提示：原始密码",
+        "recordings": "公司服务器需要 VPN 密码才能连接。\n\n密码提示：私人文件夹里的账号密码文件有VPN信息。",
+        "final": "未命名文档被终极密码保护。\n\n密码提示：开始接触异常的日子。",
         "research": "研究笔记文件夹可以直接扫描，不需要密码。",
     }
     msg = messages.get(target, target_config.get("need_password", "请输入密码。"))
@@ -522,7 +609,21 @@ def _try_unlock_with_password(target: str, password: str, game_state: dict, natu
     memory = _get_memory(game_state)
     if unlock_list:
         memory.unlock_files(unlock_list)
-        _save_memory(game_state, memory)
+
+    # 解锁后：将「待扫描文件夹」线索转为「文件线索」
+    # 找到当前 target 的显示名
+    target_display = SCAN_TARGETS.get(target, {}).get("names", [target])[0] if SCAN_TARGETS.get(target) else target
+    # 删除旧的待扫描文件夹线索
+    memory.clues = [c for c in memory.clues if not (c.get("category") == "待扫描文件夹" and c.get("target_id") == target)]
+    # 添加新文件线索
+    file_names_for_clue = [f.replace("files/", "") for f in unlock_list]
+    memory.add_clue({
+        "source": target,
+        "category": "文件线索",
+        "text": f"已解锁「{target_display}」：{', '.join(file_names_for_clue)}",
+    })
+
+    _save_memory(game_state, memory)
 
     hint = pwd_config.get("hint", "权限已解锁")
     file_names = [f.replace("files/", "") for f in unlock_list]
@@ -1055,12 +1156,12 @@ def _build_default_suggestions(game_state: dict) -> list:
     # Chapter 1：引导玩家从桌面文件到发现工作日记
     if chapter == 1:
         if not has_read("files/deck/todolist.txt"):
-            return [_main_quest_hint("打开 todolist.txt", "打开 todolist.txt")]
+            return [_main_quest_hint("试试阅读 todolist.txt", "打开 todolist.txt")]
         if not has_read("files/deck/入职资料.txt"):
-            return [_main_quest_hint("打开 入职资料.txt", "打开 入职资料.txt")]
+            return [_main_quest_hint("看看 入职资料 中是否有线索", "打开 入职资料.txt")]
         if "work-diary" not in discovered:
-            return [_main_quest_hint("再读一遍 todolist，注意 D 盘", "打开 todolist.txt")]
-        return [_main_quest_hint("获取 工作日记 密码", "获取 工作日记 密码")]
+            return [_main_quest_hint("再读一遍 todolist 寻找线索", "打开 todolist.txt")]
+        return [_main_quest_hint("尝试扫描 工作日记 文件夹", "获取 工作日记 密码")]
 
     # Chapter 2：工作日记是主线，读完关键篇后推进到私人文件夹
     if chapter == 2:
@@ -1076,39 +1177,39 @@ def _build_default_suggestions(game_state: dict) -> list:
             if not has_read(f):
                 num = f.split("/")[-1].split(".")[0].lstrip("0") or "1"
                 cn = INT_TO_CN.get(int(num), num)
-                return [_main_quest_hint(f"打开 第{cn}篇工作日记", f"打开 第{cn}篇工作日记")]
+                return [_main_quest_hint(f"开始阅读 第{cn}篇工作日记", f"打开 第{cn}篇工作日记")]
         # 全部已读：推进主线到私人文件夹
         if "private" in discovered:
-            return [_main_quest_hint("获取 私人文件夹 密码", "获取 私人文件夹 密码")]
+            return [_main_quest_hint("尝试扫描 私人文件夹 文件夹", "获取 私人文件夹 密码")]
         return [_main_quest_hint("再读工作日记，找私人文件夹线索", "打开 工作日记")]
 
 
     # Chapter 3：私人文件夹 + 研究笔记
     if chapter == 3:
         if not has_read("files/private/异常观察记录.txt"):
-            return [_main_quest_hint("打开 异常观察记录.txt", "打开 异常观察记录.txt")]
+            return [_main_quest_hint("前往 异常观察记录 寻找一下线索", "打开 异常观察记录.txt")]
         if not has_read("files/private/账号密码.txt"):
-            return [_main_quest_hint("打开 账号密码.txt", "打开 账号密码.txt")]
+            return [_main_quest_hint("看看 账号密码 是否有可用信息", "打开 账号密码.txt")]
         if "recordings" not in discovered:
             return [_main_quest_hint("再读工作日记，找 VPN 线索", "打开 工作日记")]
-        return [_main_quest_hint("获取 公司服务器 密码", "获取 公司服务器 密码")]
+        return [_main_quest_hint("尝试扫描 公司服务器 文件夹", "获取 公司服务器 密码")]
 
     # Chapter 4：录音
     if chapter == 4:
         if not has_read("files/audio/录音-全员会议-0308.txt"):
-            return [_main_quest_hint("打开 录音-全员会议", "打开 录音-全员会议")]
+            return [_main_quest_hint("听听 录音-全员会议", "打开 录音-全员会议")]
         if not has_read("files/audio/录音-林璇陈玑-0313.txt"):
-            return [_main_quest_hint("打开 录音-林璇陈玑", "打开 录音-林璇陈玑")]
+            return [_main_quest_hint("听听下一个录音 录音-林璇陈玑", "打开 录音-林璇陈玑")]
         if not has_read("files/audio/录音-陆天枢-0313.txt"):
-            return [_main_quest_hint("打开 录音-陆天枢", "打开 录音-陆天枢")]
+            return [_main_quest_hint("听听剩下的录音 录音-陆天枢", "打开 录音-陆天枢")]
         if "final" not in discovered:
             return [_main_quest_hint("读研究笔记，找最终线索", "打开 研究笔记")]
-        return [_main_quest_hint("获取 未命名文档 密码", "获取 未命名文档 密码")]
+        return [_main_quest_hint("尝试扫描 未命名文档 ", "获取 未命名文档 密码")]
 
     # Chapter 5 / 6：最终密码
     if chapter >= 5:
         if not has_read("files/new-folder/未命名文档.md"):
-            return [_main_quest_hint("获取 未命名文档 密码", "获取 未命名文档 密码")]
+            return [_main_quest_hint("尝试解开 未命名文档", "获取 未命名文档 密码")]
         return []
 
     return []
@@ -1238,43 +1339,48 @@ def _build_analysis_reply(game_state: dict, focus: str = "") -> str:
 
 def _build_file_status_reply(game_state: dict) -> dict:
     """
-    返回三类文件清单：
-    - 当前已解锁文件
-    - 当前已读文件
-    - 当前发现未解锁文件（下一步文件）
+    返回文件状态清单：
+    - 已阅读文件
+    - 未阅读文件
+    - 待解锁文件夹（标红⚠，若无已发现且待解锁则不展示）
     """
     memory = _get_memory(game_state)
     accessible = sorted(memory.accessible_files)
     read = sorted(memory.processed_files)
-    unlocked = [f for f in accessible if f not in read]
+    unread = [f for f in accessible if f not in read]
 
-    # 已发现但未解锁的目标/文件
+    # 已发现但未解锁的文件夹
     discovered_locked = []
-    next_target = _find_next_locked_target(game_state)
-    if next_target:
-        display_name = SCAN_TARGETS[next_target].get("names", [next_target])[0]
-        discovered_locked.append(display_name)
+    discovered_targets = folder_discovery.get_discovered_targets(game_state)
+    for target_id in discovered_targets:
+        cfg = SCAN_TARGETS.get(target_id)
+        if not cfg:
+            continue
+        target_files = cfg.get("files", [])
+        if target_files and not all(f in accessible for f in target_files):
+            display_name = cfg.get("names", [target_id])[0]
+            discovered_locked.append(display_name)
 
     lines = []
-    lines.append("【当前已解锁文件】")
-    if accessible:
-        lines.extend([f"  · {f.replace('files/', '')}" for f in accessible])
-    else:
-        lines.append("  （无）")
 
-    lines.append("\n【当前已读文件】")
+    if discovered_locked:
+        lines.append("【⚠ 待扫描文件夹】")
+        lines.extend([f"  ⚠ {name}" for name in discovered_locked])
+
+    lines.append("\n【已阅读文件】")
     if read:
         lines.extend([f"  · {f.replace('files/', '')}" for f in read])
     else:
         lines.append("  （无）")
 
-    lines.append("\n【当前发现未解锁文件/目标】")
-    if discovered_locked:
-        lines.extend([f"  · {name}" for name in discovered_locked])
+    lines.append("\n【未阅读文件】")
+    if unread:
+        lines.extend([f"  · {f.replace('files/', '')}" for f in unread])
     else:
         lines.append("  （无）")
 
     return {"reply": "\n".join(lines), "type": "ai"}
+
 
 
 # ============ 命令处理 / 自然语言意图 ============
@@ -1594,9 +1700,21 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
             if new_state == "curious":
                 game_state["mm_name_revealed"] = True
 
-        # ---- 更新 M-M 的记忆：解锁文件 ----
+        # ---- 更新 M-M 的记忆：解锁文件 + 线索迁移 ----
         if unlock_list:
             memory.unlock_files(unlock_list)
+            # 推断被解锁的 target 并迁移线索
+            unlocked_set = set(unlock_list)
+            for target_id, cfg in SCAN_TARGETS.items():
+                if unlocked_set.intersection(set(cfg.get("files", []))):
+                    disp = cfg.get("names", [target_id])[0]
+                    memory.clues = [c for c in memory.clues if not (c.get("category") == "待扫描文件夹" and c.get("target_id") == target_id)]
+                    memory.add_clue({
+                        "source": target_id,
+                        "category": "文件线索",
+                        "text": f"已解锁「{disp}」：{', '.join([f.replace('files/', '') for f in unlock_list])}",
+                    })
+                    break
             _save_memory(game_state, memory)
 
         # ---- 终局标记：密码3解锁未命名文档后，开启终局对话 ----

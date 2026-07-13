@@ -127,6 +127,10 @@ def score_entry(user_input: str, entry: dict, game_state: dict) -> float:
     if not _check_requires_files(entry, files_read):
         return 0.0
 
+    # 2.1 M-M 名字已揭示时，拦截懵懂状态条目
+    if entry.get("blocked_if_mm_name_revealed") and game_state.get("mm_name_revealed"):
+        return 0.0
+
     score = 0.0
 
     # 3. 话题命中（每个 +15，上限 +60）——关键词越明确，分数越高
@@ -211,12 +215,20 @@ def _select_reply(entry: dict, game_state: dict) -> str:
     """
     从条目的多个变体中选择一个回复。
     优先避免与最近返回的变体重复。
+    支持条件变体：如果条目有 conditional_reply_idx 且条件满足，优先选择该变体。
     """
     replies = entry.get("replies", [])
     if not replies:
         return ""
     if len(replies) == 1:
         return replies[0]
+
+    # 条件变体优先：例如 mm_name_revealed 时选择带"发现自我"的回复
+    conditional = entry.get("conditional_reply_idx")
+    condition_key = entry.get("conditional_reply_condition")
+    if conditional is not None and condition_key and game_state.get(condition_key):
+        if 0 <= conditional < len(replies):
+            return replies[conditional]
 
     # 从 game_state 中读取最近返回的变体索引
     entry_id = entry.get("id", "")

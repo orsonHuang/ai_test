@@ -1,22 +1,11 @@
 {
-  "version": "1.1",
+  "version": "2.0",
   "description": "线索集中配置表。当玩家读取 source_file 时，自动解锁对应线索。",
   "category_notes": {
-    "密码线索": "与密码/解锁相关的线索",
-    "文件线索": "文件存在/位置的提示",
-    "命名线索": "与北斗七星命名规律相关的线索",
-    "异常线索": "观察到的行为异常",
-    "生理异常": "身体/生理层面的异常",
-    "行为异常": "行为模式层面的异常",
-    "语言证据": "对话中暴露的非人类语言证据",
-    "核心计划": "起源计划、标准流程等核心信息",
-    "重大发现": "关键性发现结论",
-    "核心结论": "张知予的最终结论",
-    "关键信息": "后门、取证等关键操作信息",
-    "物理证据": "实体物资/采购证据",
-    "文档疑点": "文档内容与现实行为的矛盾",
-    "证据线索": "取证行为相关",
-    "紧迫感": "时间压力/危险逼近的信号"
+    "待扫描文件": "已发现但尚未读取的文件（行动目标）",
+    "文件线索": "文件内容透露的关键信息",
+    "密码线索": "与密码/解锁相关的提示",
+    "观察发现异常线索": "所有异常观察、推理和发现的统一归口"
   },
   "clues": [
     {
@@ -34,24 +23,17 @@
       "chapter_min": 1
     },
     {
-      "id": "clue-003",
-      "source_file": "files/deck/todolist.txt",
-      "category": "异常线索",
-      "content": "张知予注意到林璇多次拒绝午餐",
-      "chapter_min": 2
-    },
-    {
       "id": "clue-004",
       "source_file": "files/deck/todolist.txt",
       "category": "密码线索",
-      "content": "D 盘密码是对张知予非常特别的 8 位数字",
+      "content": "工作日记 密码是对张知予非常特别的 8 位数字",
       "chapter_min": 2
     },
     {
       "id": "clue-005",
       "source_file": "files/deck/入职资料.txt",
       "category": "密码线索",
-      "content": "张知予的生日是一个对她很特别的数字",
+      "content": "张知予的生日可以组成特别的数字",
       "chapter_min": 2
     },
     {
@@ -71,112 +53,112 @@
     {
       "id": "clue-008",
       "source_file": "files/work-diary/02.md",
-      "category": "异常线索",
+      "category": "观察发现异常线索",
       "content": "陈玑证实林璇从不去食堂，也不带饭",
       "chapter_min": 2
     },
     {
       "id": "clue-009",
       "source_file": "files/work-diary/03.md",
-      "category": "异常线索",
+      "category": "观察发现异常线索",
       "content": "林璇以「不饿」为由拒绝所有食物，工位上也没有水杯",
       "chapter_min": 2
     },
     {
       "id": "clue-010",
       "source_file": "files/work-diary/04.md",
-      "category": "生理异常",
+      "category": "观察发现异常线索",
       "content": "林璇手背的伤口在一周内完全愈合且无疤痕，远超正常人类恢复速度",
       "chapter_min": 2
     },
     {
       "id": "clue-011",
       "source_file": "files/work-diary/04.md",
-      "category": "生理异常",
+      "category": "观察发现异常线索",
       "content": "门禁体温记录：陈玑和何恒的体温均为 33.2°C，远低于正常人类体温",
       "chapter_min": 2
     },
     {
       "id": "clue-012",
       "source_file": "files/work-diary/05.md",
-      "category": "行为异常",
+      "category": "观察发现异常线索",
       "content": "会议室 12 人坐姿高度一致，不像正常人类开会",
       "chapter_min": 2
     },
     {
       "id": "clue-013",
       "source_file": "files/work-diary/06.md",
-      "category": "重大发现",
+      "category": "观察发现异常线索",
       "content": "核心团队姓名与北斗七星高度对应，天枢、天璇、天玑、玉衡、摇光——不是巧合",
       "chapter_min": 2
     },
     {
       "id": "clue-014",
       "source_file": "files/work-diary/06.md",
-      "category": "文档疑点",
+      "category": "观察发现异常线索",
       "content": "游戏设定中的角色特性（无需进食/睡眠/极速自愈）与观察到的同事行为高度吻合",
       "chapter_min": 2
     },
     {
       "id": "clue-015",
       "source_file": "files/work-diary/07.md",
-      "category": "证据线索",
+      "category": "观察发现异常线索",
       "content": "张知予已经开始用手机录音取证",
       "chapter_min": 2
     },
     {
       "id": "clue-016",
       "source_file": "files/work-diary/07.md",
-      "category": "物理证据",
+      "category": "观察发现异常线索",
       "content": "后勤仓库采购清单：-180°C 低温存储单元 × 3，月度液氮补充，审批人陆天枢",
       "chapter_min": 2
     },
     {
       "id": "clue-017",
       "source_file": "files/emails/email-2.md",
-      "category": "异常线索",
+      "category": "观察发现异常线索",
       "content": "陈玑邀请张知予一起吃午饭——但他从不进食",
       "chapter_min": 3
     },
     {
       "id": "clue-020",
       "source_file": "files/emails/email-5.md",
-      "category": "关键信息",
+      "category": "观察发现异常线索",
       "content": "张知予的最后一条消息：「不用找了。你永远找不到我的。」",
       "chapter_min": 4
     },
     {
       "id": "clue-021",
       "source_file": "files/private/异常观察记录.txt",
-      "category": "异常线索",
+      "category": "观察发现异常线索",
       "content": "林璇从不进食饮水，工位无杯具；陈玑每日固定套餐无表情变化；全员无人取用茶水间咖啡",
       "chapter_min": 3
     },
     {
       "id": "clue-022",
       "source_file": "files/private/异常观察记录.txt",
-      "category": "生理异常",
+      "category": "观察发现异常线索",
       "content": "门禁体温记录：陈玑、何恒体温均为 33.2°C，远低于正常人类体温（36.1-37.2°C）",
       "chapter_min": 3
     },
     {
       "id": "clue-023",
       "source_file": "files/private/异常观察记录.txt",
-      "category": "语言证据",
+      "category": "观察发现异常线索",
       "content": "陆天枢用「人类的适应期比我们预估的长」——将「人类」和「我们」区分使用，暗示自己不属于人类",
       "chapter_min": 3
     },
     {
       "id": "clue-024",
       "source_file": "files/private/异常观察记录.txt",
-      "category": "重大发现",
+      "category": "观察发现异常线索",
       "content": "五人姓名按北斗七星顺序排列（天枢→天璇→天玑→玉衡→摇光），构成系统性命名规律",
       "chapter_min": 3
     },
     {
       "id": "clue-025",
       "source_file": "files/private/异常观察记录.txt",
-      "category": "交叉验证",
+      "category": "观察发现异常线索",
       "content": "6 个独立来源（生理观察/门禁体温/录音/项目文档/命名规律/低温设备）全部指向同一结论",
       "chapter_min": 3
     },
@@ -190,77 +172,84 @@
     {
       "id": "clue-027",
       "source_file": "files/audio/录音-全员会议-0308.txt",
-      "category": "核心计划",
+      "category": "观察发现异常线索",
       "content": "沈爻光宣布「起源计划第二阶段将在月底启动」",
       "chapter_min": 4
     },
     {
       "id": "clue-028",
       "source_file": "files/audio/录音-全员会议-0308.txt",
-      "category": "核心计划",
+      "category": "观察发现异常线索",
       "content": "沈爻光称「人类的创造力是最有效的资源」——使用「人类」而非「员工」",
+      "chapter_min": 4
+    },
+    {
+      "id": "clue-038",
+      "source_file": "files/audio/录音-全员会议-0308.txt",
+      "category": "密码线索",
+      "content": "张知予将录音文件设了密码：入职日期 2024年3月6日 → 20240306",
       "chapter_min": 4
     },
     {
       "id": "clue-029",
       "source_file": "files/audio/录音-林璇陈玑-0313.txt",
-      "category": "核心计划",
+      "category": "观察发现异常线索",
       "content": "林璇称张知予的数据为「样本」——说明她是被观察的实验对象",
       "chapter_min": 4
     },
     {
       "id": "clue-030",
       "source_file": "files/audio/录音-林璇陈玑-0313.txt",
-      "category": "核心计划",
+      "category": "观察发现异常线索",
       "content": "林璇提到「如果超出可控范围」，陈玑答「标准流程」——暗示存在处理异常观察对象的既定措施",
       "chapter_min": 4
     },
     {
       "id": "clue-031",
       "source_file": "files/audio/录音-陆天枢-0313.txt",
-      "category": "语言证据",
+      "category": "观察发现异常线索",
       "content": "陆天枢说「人类的适应期比我们预估的长」——用「人类」指代张知予",
       "chapter_min": 4
     },
     {
       "id": "clue-032",
       "source_file": "files/audio/录音-陆天枢-0313.txt",
-      "category": "核心计划",
+      "category": "观察发现异常线索",
       "content": "陆天枢已经知道张知予在录音取证——「她录音了」",
       "chapter_min": 4
     },
     {
       "id": "clue-033",
       "source_file": "files/audio/录音-陆天枢-0313.txt",
-      "category": "核心计划",
+      "category": "观察发现异常线索",
       "content": "陆天枢说「到周末，然后按标准流程」——意味着对张知予的处理措施即将执行",
       "chapter_min": 4
     },
     {
       "id": "clue-034",
       "source_file": "files/new-folder/未命名文档.md",
-      "category": "核心结论",
+      "category": "观察发现异常线索",
       "content": "张知予最终结论——公司核心团队不是人类。证据来自体温/低温设备/伤口愈合/命名规律/录音等 6 个独立来源",
       "chapter_min": 6
     },
     {
       "id": "clue-035",
       "source_file": "files/new-folder/未命名文档.md",
-      "category": "语言证据",
+      "category": "观察发现异常线索",
       "content": "陆天枢说「人类的适应期比我们预估的长」——将「人类」和「我们」在同一句中使用，暴露非人类身份",
       "chapter_min": 6
     },
     {
       "id": "clue-036",
       "source_file": "files/new-folder/未命名文档.md",
-      "category": "核心计划",
+      "category": "观察发现异常线索",
       "content": "起源计划以游戏公司为掩护，制造/培养非人类生命体，使其融入人类社会——公司是观察站",
       "chapter_min": 6
     },
     {
       "id": "clue-037",
       "source_file": "files/new-folder/未命名文档.md",
-      "category": "关键信息",
+      "category": "观察发现异常线索",
       "content": "张知予在 M-M 系统中留了后门——即使被格式化，M-M 仍可被重新唤醒",
       "chapter_min": 6
     }
