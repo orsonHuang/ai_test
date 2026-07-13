@@ -47,18 +47,14 @@ def find_file_suggestion(user_input: str):  # -> str or None
 
 
 # ============ M-M 文件阅读插嘴 ============
-def find_file_commentary(filename: str, chapter: int, files_read: list) -> str:
+def find_file_commentary(filename: str, chapter: int, files_read: list, game_state: dict = None) -> str:
     """
     根据刚读取的文件名，返回 M-M 的插嘴台词。
-    每个文件只触发一次（files_read 中已有则返回空）。
+    调用方负责只在第一次读取时触发，本函数不再重复检查。
 
     数据源：response-library.json 中 category 为 file_commentary 的条目，
-    通过条目的 file_commentary 字段匹配文件名。
+    通过条目的 file_commentary 字段匹配文件名，支持条件变体。
     """
-    # 每个文件只插嘴一次
-    if filename in files_read:
-        return ""
-
     library = _load_response_library()
     for entry in library.get("entries", []):
         if entry.get("category") != "file_commentary":
@@ -72,8 +68,28 @@ def find_file_commentary(filename: str, chapter: int, files_read: list) -> str:
         if rule_chapter and chapter not in rule_chapter:
             continue
 
+        # 检查必需文件是否已读
+        required = entry.get("requires_files", [])
+        if required and not all(f in files_read for f in required):
+            continue
+
+        # 检查是否被 mm_name_revealed 拦截
+        if entry.get("blocked_if_mm_name_revealed") and game_state and game_state.get("mm_name_revealed"):
+            continue
+
         replies = entry.get("replies", [])
-        if replies:
-            return replies[0]
+        if not replies:
+            continue
+
+        # 条件变体：例如 mm_name_revealed 时选择特定回复
+        conditional = entry.get("conditional_reply_idx")
+        condition_key = entry.get("conditional_reply_condition")
+        if (conditional is not None and condition_key and game_state
+                and game_state.get(condition_key)):
+            if 0 <= conditional < len(replies):
+                return replies[conditional]
+
+        return replies[0]
 
     return ""
+

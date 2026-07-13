@@ -1,13 +1,16 @@
 """
-knowledge_search.py - 知识库检索
+knowledge_search.py - 知识库检索（Embedding 版）
 根据玩家问题 + M-M 记忆范围，在知识库中搜索相关内容片段
 用于注入 AI prompt 的"知识层"（RAG 的 Retrieval 部分）
+
+使用 Sentence-Transformers embedding 余弦相似度替代 Jaccard。
 """
 import re
 from pathlib import Path
 from typing import Optional
 
 from engine.file_reader import read_knowledge_file, list_files, KNOWLEDGE_DIR
+from engine import sentence_matcher
 
 
 # ============ 分块 ============
@@ -28,7 +31,6 @@ def _split_into_chunks(text: str, max_chunk_size: int = 300) -> list:
         if len(para) <= max_chunk_size:
             chunks.append(para)
         else:
-            # 长段落按句号/换行切分
             sentences = re.split(r"[。！？\n]", para)
             current = ""
             for s in sentences:
@@ -47,26 +49,6 @@ def _split_into_chunks(text: str, max_chunk_size: int = 300) -> list:
     return chunks
 
 
-def _tokenize(text: str) -> set:
-    """中文简易分词：按2-3字滑动窗口提取特征词"""
-    text = text.lower().strip()
-    tokens = set()
-
-    # 2字词
-    for i in range(len(text) - 1):
-        tokens.add(text[i : i + 2])
-
-    # 3字词
-    for i in range(len(text) - 2):
-        tokens.add(text[i : i + 3])
-
-    # 英文单词
-    for word in re.findall(r"[a-zA-Z]+", text):
-        tokens.add(word.lower())
-
-    return tokens
-
-
 # ============ 检索 ============
 
 def search(
@@ -75,7 +57,7 @@ def search(
     top_k: int = 3,
 ) -> list[dict]:
     """
-    在可访问的知识库文件中搜索与查询相关的内容
+    在可访问的知识库文件中搜索与查询相关的内容（embedding 余弦相似度）
 
     Args:
         query: 玩家的问题/输入
@@ -88,38 +70,38 @@ def search(
     if not query or not accessible_files:
         return []
 
-    query_tokens = _tokenize(query)
-    if not query_tokens:
-        return []
-
-    results = []
-
+    # 收集所有文件中的 chunks
+    all_chunks = []  # [(filepath, chunk_text), ...]
     for filepath in accessible_files:
         content = read_knowledge_file(filepath)
         if not content:
             continue
-
         chunks = _split_into_chunks(content)
         for chunk in chunks:
-            chunk_tokens = _tokenize(chunk)
-            if not chunk_tokens:
-                continue
+            if chunk.strip():
+                all_chunks.append((filepath, chunk))
 
-            # Jaccard 相似度
-            intersection = query_tokens & chunk_tokens
-            union = query_tokens | chunk_tokens
-            score = len(intersection) / len(union) if union else 0
+    if not all_chunks:
+        return []
 
-            if score > 0.05:  # 最低阈值
-                results.append(
-                    {
-                        "file": filepath,
-                        "score": round(score, 3),
-                        "content": chunk[:500],  # 截断
-                    }
-                )
+    # 批量编码 query + 所有 chunks
+    texts = [query] + [c[1] for c in all_chunks]
+    all_embs = sentence_matcher.encode_batch(texts)
 
-    # 按分数排序，去重（相似片段只保留分数最高的）
+    import numpy as np
+    query_emb = all_embs[0]
+    results = []
+
+    for i, (filepath, chunk) in enumerate(all_chunks):
+        score = float(np.dot(query_emb, all_embs[i + 1]))
+        if score > 0.2:  # 最低阈值
+            results.append({
+                "file": filepath,
+                "score": round(score, 4),
+                "content": chunk[:500],
+            })
+
+    # 按分数排序，去重
     results.sort(key=lambda x: x["score"], reverse=True)
     seen = set()
     unique = []
@@ -137,7 +119,6 @@ def search(
 def build_knowledge_context(query: str, accessible_files: set, top_k: int = 3) -> str:
     """
     构建注入 AI prompt 的知识上下文字符串
-    这是 RAG 架构中的"知识层"
 
     Returns:
         格式化的知识片段文本，可直接拼入 system prompt

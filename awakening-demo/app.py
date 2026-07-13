@@ -16,6 +16,16 @@ from engine import hybrid_reply, character_state
 
 app = Flask(__name__, static_folder=".", static_url_path="")
 
+# ====== 预加载 embedding 模型（后台异步，避免阻塞服务启动） ======
+print("正在后台加载 embedding 模型...")
+try:
+    from engine.sentence_matcher import load_model_async
+
+    load_model_async()
+    print("embedding 模型后台加载任务已启动")
+except Exception as e:
+    print(f"embedding 模型后台加载失败: {e}")
+
 # ====== 页面路由 ======
 @app.route("/")
 def index():
@@ -33,6 +43,21 @@ def chat():
 
     if not user_input:
         return jsonify({"error": "user_input 不能为空"}), 400
+
+    # 模型尚未加载完成时给出友好提示
+    from engine.sentence_matcher import get_load_status
+
+    model_status = get_load_status()
+    if not model_status.get("loaded"):
+        msg = model_status.get("message", "模型加载中...")
+        progress = model_status.get("progress", 0)
+        return jsonify(
+            {
+                "reply": f"[系统初始化中] {msg}（{progress}%）\n\n请稍等片刻，助理核心仍在启动。",
+                "type": "system",
+                "game_state": game_state,
+            }
+        )
 
     result = hybrid_reply.generate_reply(user_input, game_state)
 
@@ -110,6 +135,15 @@ def health():
             "cache": cache_manager.stats(),
         }
     )
+
+
+@app.route("/api/model-status")
+def model_status():
+    """embedding 模型加载状态（前端开机进度条用）"""
+    from engine.sentence_matcher import get_load_status
+
+    status = get_load_status()
+    return jsonify(status)
 
 
 # ====== 启动 ======

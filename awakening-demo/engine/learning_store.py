@@ -4,12 +4,7 @@ learning_store.py - API 学习闭环
 核心目标：当响应库未命中、需要调用 API 时，把 API 生成的结果存入学习库。
 下次玩家问类似问题，优先从学习库返回，不再重复消耗 API。
 
-只有满足以下条件的输入才会触发学习：
-  1. 响应库匹配分 < hit_threshold（默认 55）
-  2. 输入长度 >= 4 且不是常见无意义词
-  3. 学习库中没有足够相似的条目
-
-学习库匹配阈值：默认 0.55（Jaccard 相似度）
+匹配方式：Sentence-Transformers embedding 余弦相似度
 """
 import hashlib
 import json
@@ -17,6 +12,8 @@ import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Optional
+
+from engine import sentence_matcher
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -47,49 +44,9 @@ def _save_store(store: dict):
         json.dump(store, f, ensure_ascii=False, indent=2)
 
 
-def _tokenize(text: str) -> set:
-    """中文简易分词：2-3字滑动窗口 + 英文单词"""
-    text = text.lower().strip()
-    tokens = set()
-    for i in range(len(text) - 1):
-        tokens.add(text[i : i + 2])
-    for i in range(len(text) - 2):
-        tokens.add(text[i : i + 3])
-    for word in re.findall(r"[a-zA-Z]+", text):
-        tokens.add(word.lower())
-    return tokens
-
-
-def _jaccard(a: str, b: str) -> float:
-    """计算两个字符串的 Jaccard 相似度"""
-    tokens_a = _tokenize(a)
-    tokens_b = _tokenize(b)
-    if not tokens_a or not tokens_b:
-        return 0.0
-    intersection = tokens_a & tokens_b
-    union = tokens_a | tokens_b
-    return len(intersection) / len(union)
-
-
 def _hash_input(text: str) -> str:
     """生成输入的短 hash"""
     return hashlib.md5(text.lower().strip().encode("utf-8")).hexdigest()[:12]
-
-
-def _extract_keywords(text: str) -> list:
-    """简单提取关键词：2-3字组合中出现频率较高的"""
-    tokens = _tokenize(text)
-    # 过滤过短的，保留3字词优先，然后2字词
-    three_chars = [t for t in tokens if len(t) >= 3]
-    two_chars = [t for t in tokens if len(t) == 2]
-    # 去重并限制数量
-    seen = set()
-    result = []
-    for t in three_chars + two_chars:
-        if t not in seen and len(result) < 10:
-            seen.add(t)
-            result.append(t)
-    return result
 
 
 def is_worth_learning(user_input: str) -> bool:
@@ -105,14 +62,14 @@ def is_worth_learning(user_input: str) -> bool:
     return True
 
 
-def has_similar(user_input: str, threshold: float = 0.55) -> bool:
+def has_similar(user_input: str, threshold: float = 0.45) -> bool:
     """检查学习库中是否有相似输入"""
     return find_similar(user_input, threshold) is not None
 
 
-def find_similar(user_input: str, threshold: float = 0.55) -> Optional[dict]:
+def find_similar(user_input: str, threshold: float = 0.45) -> Optional[dict]:
     """
-    在学习库中查找相似输入。
+    在学习库中查找语义相似输入（embedding 余弦相似度）。
 
     Returns:
         {"id": str, "input": str, "reply": str, "chapter": int, "score": float} or None
@@ -122,14 +79,23 @@ def find_similar(user_input: str, threshold: float = 0.55) -> Optional[dict]:
     if not entries:
         return None
 
+    # 收集所有已学习输入的文本
+    texts = [e.get("input", "") for e in entries]
+    if not any(texts):
+        return None
+
+    # 预编码用户输入 + 批量编码所有候选
+    query_emb = sentence_matcher.cached_encode(user_input)
+    cand_embs = sentence_matcher.cached_encode_batch(texts)
+
+    import numpy as np
     best = None
     best_score = 0.0
-
-    for entry in entries:
-        score = _jaccard(user_input, entry.get("input", ""))
+    for i, emb in enumerate(cand_embs):
+        score = float(np.dot(query_emb, emb))
         if score > best_score:
             best_score = score
-            best = entry
+            best = entries[i]
 
     if best and best_score >= threshold:
         return {
@@ -163,7 +129,6 @@ def add_learned(user_input: str, reply: str, game_state: dict):
         "input_hash": _hash_input(user_input),
         "reply": reply,
         "chapter": game_state.get("chapter", 1),
-        "topics": _extract_keywords(user_input),
         "learned_at": datetime.now(timezone.utc).isoformat(),
     }
 
@@ -176,6 +141,7 @@ def clear():
     """清空学习库（重置游戏时调用）"""
     if LEARNED_FILE.exists():
         LEARNED_FILE.unlink()
+    sentence_matcher.clear_cache()
 
 
 def stats() -> dict:

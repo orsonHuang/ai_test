@@ -1720,42 +1720,65 @@ function playBootAnimation() {
   loginForm.style.display = 'none';
   bootScreen.style.display = 'flex';
 
-  const bootLogs = [
-    'BIOS 自检通过',
-    '加载内核模块...',
-    '挂载本地存储...',
-    '初始化用户配置...',
-    '唤醒本地助理核心...',
-    '系统自检完成',
-  ];
-  let progress = 0;
-  let logIndex = 0;
   bootProgressBar.style.width = '0%';
   bootPercent.textContent = '0%';
-  bootLog.textContent = '';
+  bootLog.textContent = '正在连接本地服务...';
 
-  const interval = setInterval(() => {
-    progress += Math.floor(Math.random() * 4) + 2;
-    if (progress > 100) progress = 100;
+  let connected = false;
+  let progress = 0;
+  let finished = false;
+
+  const updateProgress = (p, msg) => {
+    progress = Math.max(0, Math.min(100, p));
     bootProgressBar.style.width = progress + '%';
     bootPercent.textContent = progress + '%';
+    if (msg) bootLog.textContent = msg;
+  };
 
-    const slot = Math.floor(progress / 18);
-    if (slot > logIndex && logIndex < bootLogs.length) {
-      bootLog.textContent = bootLogs[logIndex];
-      logIndex = slot;
+  const finishBoot = () => {
+    if (finished) return;
+    finished = true;
+    bootLog.textContent = '系统准备就绪';
+    setTimeout(() => {
+      bootScreen.style.display = 'none';
+      loginForm.style.display = 'flex';
+      nameInput.focus();
+    }, 400);
+  };
+
+  const poll = async () => {
+    if (finished) return;
+
+    try {
+      const res = await fetch('/api/model-status', { cache: 'no-store' });
+      if (!res.ok) throw new Error('service not ready');
+      const data = await res.json();
+      connected = true;
+
+      updateProgress(data.progress || 0, data.message || '加载中...');
+
+      if (data.loaded) {
+        finishBoot();
+        return;
+      }
+
+      if (data.error) {
+        // 加载失败仍允许进入（降级匹配）
+        bootLog.textContent = '模型加载失败，将使用降级匹配';
+        setTimeout(finishBoot, 1200);
+        return;
+      }
+    } catch (err) {
+      if (!connected) {
+        // 服务尚未响应，缓慢推进到 10% 表示正在连接
+        updateProgress(Math.min(progress + 1, 10), '正在连接本地服务...');
+      }
     }
 
-    if (progress >= 100) {
-      clearInterval(interval);
-      bootLog.textContent = '系统准备就绪';
-      setTimeout(() => {
-        bootScreen.style.display = 'none';
-        loginForm.style.display = 'flex';
-        nameInput.focus();
-      }, 400);
-    }
-  }, 100);
+    setTimeout(poll, 300);
+  };
+
+  poll();
 }
 
 /* =============== 登录 =============== */

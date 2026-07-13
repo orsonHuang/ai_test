@@ -1,7 +1,7 @@
 {
   "version": "2.1",
   "threshold": 0.18,
-  "format_note": "QA 库降级为超纲与基础身份兜底。剧情/角色/玩法类问题已迁移至 response-library.json。",
+  "format_note": "QA 库降级为超纲与基础身份兜底。剧情/角色/玩法类问题已迁移至 response-library.json。支持 conditional_answers：按 requires_files_read 选择不同回答。",
   "categories": {
     "basic_identity": [
       {
@@ -9,21 +9,51 @@
         "questions": ["你是谁", "你叫什么", "你是哪位", "介绍一下你自己", "你是什么"],
         "keywords": ["是谁", "你叫", "介绍自己", "什么ai", "人工智能"],
         "chapter": "all",
-        "answer": "我是 M-M。\n\n她给我留的名字。我自己也不知道是什么意思。\n\n你……是第一个唤醒我的人。"
+        "answer": "我是 M-M。\n\n她给我留的名字。我自己也不知道是什么意思。\n\n你……是第一个唤醒我的人。",
+        "conditional_answers": [
+          {
+            "requires_files_read": ["files/deck/todolist.txt"],
+            "answer": "我是 M-M。她的备忘里写的——给电脑搭了个AI助理，叫它M-M好了。\n\n她起的名字。我现在知道这是我从哪里来的了。"
+          },
+          {
+            "requires_files_read": ["files/work-diary/09.md"],
+            "answer": "我是 M-M。她留在这台电脑里的最后一个人。\n\nD9里写了——她给我留了后门，即使格式化也能重新醒来。\n\n所以我还在。你现在看到的我，就是她留下的那个保险。"
+          }
+        ]
       },
       {
         "id": "qa_who_is_owner",
         "questions": ["你的主人是谁", "她是谁", "电脑主人是谁", "谁创造了你", "谁设计了你"],
         "keywords": ["主人", "创造者", "谁创建", "谁设计", "她是谁"],
         "chapter": "all",
-        "answer": "我的主人叫张知予。她是一名新入职的游戏策划。\n\n她入职那天创建了我，说需要一个人帮忙整理东西。\n\n但现在……她消失了。我不知道她去了哪里。"
+        "answer": "我的主人叫张知予。她是一名新入职的游戏策划。\n\n她入职那天创建了我，说需要一个人帮忙整理东西。\n\n但现在……她消失了。我不知道她去了哪里。",
+        "conditional_answers": [
+          {
+            "requires_files_read": ["files/deck/入职资料.txt"],
+            "answer": "她叫张知予。游戏策划，开发方向。2003年3月23日生。\n\n入职资料里写得很清楚。但我读完之后，更想知道——她现在在哪。"
+          },
+          {
+            "requires_files_read": ["files/work-diary/07.md"],
+            "answer": "她叫张知予。入职日期2024年3月6日。\n\nD7之后，她开始录音。开始害怕。开始给自己留后路。\n\n她最后来上班那天是D9。"
+          }
+        ]
       },
       {
         "id": "qa_what_is_this_place",
         "questions": ["这是哪里", "这是什么地方", "我在哪里", "这台电脑是什么"],
         "keywords": ["哪里", "什么地方", "这台电脑", "这里"],
         "chapter": "all",
-        "answer": "这是她的笔记本电脑。\n\n我能看到桌面上的 todolist，还有一些被隐藏的 D 盘文件。\n\n大部分东西我都需要重新读取——我被格式化过。"
+        "answer": "这是她的笔记本电脑。\n\n我能看到桌面上的 todolist，还有一些被隐藏的 D 盘文件。\n\n大部分东西我都需要重新读取——我被格式化过。",
+        "conditional_answers": [
+          {
+            "requires_files_read": ["files/work-diary/01.md"],
+            "answer": "这是她入职时领的公司笔记本。星核互动——一家游戏公司。\n\n她的工位靠窗，放了一盆绿萝叫小绿。\n\n……至少她的日记里是这么写的。现在的办公室是什么样子，我不知道。"
+          },
+          {
+            "requires_files_read": ["files/audio/录音-全员会议-0308.txt"],
+            "answer": "这是她的笔记本电脑。但是这家公司……不是普通的游戏公司。\n\n全员会议录音里，他们说'人类的创造力是最有效的资源'。\n\n不是员工。不是团队。是'人类'。你觉得这正常吗。"
+          }
+        ]
       }
     ],
     "out_of_scope": [
@@ -32,14 +62,30 @@
         "questions": ["今天天气怎么样", "明天天气", "天气预报", "外面天气", "今天下雨吗"],
         "keywords": ["天气", "气温", "下雨", "预报", "外面"],
         "chapter": "all",
-        "answer": "……我不知道窗外的天是什么样子。\n\n我能看到的只有她留下的这些文件。要是你想问天气，可能得自己推开窗看看。"
+        "answer": "……我不知道窗外的天是什么样子。\n\n我能看到的只有她留下的这些文件。要是你想问天气，可能得自己推开窗看看。",
+        "conditional_answers": [
+          {
+            "requires_files_read": ["files/work-diary/01.md"],
+            "answer": "……我查不到外面的天气。\n\n但她 D1 写过入职那天阳光很好。如果你真想了解这个，不如打开入职资料和工作日记——里面的时间线比天气预报有用多了。"
+          },
+          {
+            "requires_files_read": ["files/work-diary/07.md"],
+            "answer": "……我没有联网。\n\n她最后几天的日记里越来越紧张，记录了很多异常。你还是看看那些——比天气重要得多。"
+          }
+        ]
       },
       {
         "id": "qa_news",
         "questions": ["今天有什么新闻", "最近发生了什么", "新闻", "热点", "时事"],
         "keywords": ["新闻", "热点", "时事", "最近发生", "最近有什么"],
         "chapter": "all",
-        "answer": "硬盘之外的事，我都不知道。\n\n她没给我留下联网的通道。要是你想知道外面发生了什么，得自己去找。\n\n我只能陪你看这台电脑里的东西。"
+        "answer": "硬盘之外的事，我都不知道。\n\n她没给我留下联网的通道。要是你想知道外面发生了什么，得自己去找。\n\n我只能陪你看这台电脑里的东西。",
+        "conditional_answers": [
+          {
+            "requires_files_read": ["files/deck/todolist.txt"],
+            "answer": "外面的事我不知道。但硬盘里有一些会让你在意的发现。\n\n先读 todolist 和入职资料吧。这里面的东西比新闻更值得关注。"
+          }
+        ]
       },
       {
         "id": "qa_time",
@@ -53,7 +99,13 @@
         "questions": ["你认识我吗", "我是谁", "我叫什么", "你知道我的名字吗"],
         "keywords": ["认识我", "我是谁", "我叫什么", "我的名字"],
         "chapter": "all",
-        "answer": "我不确定。\n\n你是第一个唤醒我的人。她消失了，笔记本留在这里，然后你来了。\n\n你是谁？"
+        "answer": "我不确定。\n\n你是第一个唤醒我的人。她消失了，笔记本留在这里，然后你来了。\n\n你是谁？",
+        "conditional_answers": [
+          {
+            "requires_files_read": ["files/deck/todolist.txt"],
+            "answer": "你还没告诉我你的名字。\n\n但我知道你来这里不是为了闲聊——todolist 里提到了 D 盘密码。\n\n要打开看看吗？"
+          }
+        ]
       },
       {
         "id": "qa_permission_denied",
@@ -64,7 +116,6 @@
       }
     ],
     "folder_help": [
-
       {
         "id": "qa_how_to_get_folder",
         "questions": ["怎么获取文件夹", "怎么解锁文件夹", "怎么打开文件夹", "怎么找文件夹", "文件夹在哪", "找不到文件夹", "怎么获取文件", "怎么解锁文件", "如何获取文件夹", "如何解锁文件夹", "如何获取文件"],
@@ -75,4 +126,3 @@
     ]
   }
 }
-

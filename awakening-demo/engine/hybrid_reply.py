@@ -61,22 +61,53 @@ def _is_password_attempt(user_input: str) -> bool:
     判断玩家输入是否像一次密码尝试。
     规则：无空格、长度>=6，且满足以下任一条件：
       - 全为数字
-      - 全为字母（大小写一致）
-      - 包含至少两类字符（小写/大写/数字/符号）
+      - 全为 ASCII 字母（大小写一致）
+      - 包含至少两类 ASCII 字符（小写/大写/数字/符号）
+    注：中文字符不参与"字母"判断，避免"我是orson"这类自我介绍被误判为密码。
     """
     text = user_input.strip()
     if not text or ' ' in text or len(text) < 6:
         return False
+    # 至少包含一个 ASCII 字符
+    if not any(c.isascii() for c in text):
+        return False
     if text.isdigit():
         return True
-    if text.isalpha() and (text.islower() or text.isupper()):
-        return True
-    has_lower = any(c.islower() for c in text)
-    has_upper = any(c.isupper() for c in text)
+    # 全为 ASCII 字母且大小写一致
+    if all(c.isalpha() and c.isascii() for c in text):
+        if text.islower() or text.isupper():
+            return True
+    has_lower = any(c.islower() and c.isascii() for c in text)
+    has_upper = any(c.isupper() and c.isascii() for c in text)
     has_digit = any(c.isdigit() for c in text)
-    has_symbol = any(not c.isalnum() for c in text)
+    has_symbol = any(not c.isalnum() and c.isascii() for c in text)
     classes = sum([has_lower, has_upper, has_digit, has_symbol])
     return classes >= 2
+
+
+
+def _is_password_command_format(user_input: str) -> bool:
+    """判断输入是否为「扫描/获取 文件名 密码」格式"""
+    lowered = user_input.lower().strip()
+    # 必须包含 扫描 / 获取 / 解锁 类关键词
+    has_action_kw = any(kw in lowered for kw in ["获取", "get", "解锁", "扫描", "scan"])
+    if not has_action_kw:
+        return False
+    # 能识别出目标文件夹
+    target = _extract_scan_target(user_input)
+    if not target:
+        return False
+    # 末尾 token 是「密码」或看起来像密码
+    parts = lowered.split()
+    if not parts:
+        return False
+    last = parts[-1]
+    if last == "密码":
+        return True
+    if _looks_like_password(last):
+        return True
+    return False
+
 
 
 def _pull_back_hint(game_state: dict) -> str:
@@ -113,6 +144,20 @@ def _reset_off_topic(game_state: dict):
     game_state["off_topic_count"] = 0
 
 
+# 推进主线的响应库类别（这些命中时重置 off_topic 计数）
+_GAME_ADVANCING_RESPONSE_CATEGORIES = {
+    "progression", "file_commentary", "basic_identity",
+    "mystery", "character_discussion", "anomaly_discussion",
+    "discovery", "truth", "ending", "help",
+}
+
+
+def _is_game_advancing(library_match: dict) -> bool:
+    """判断响应库匹配是否推进主线"""
+    category = library_match.get("category", "")
+    return category in _GAME_ADVANCING_RESPONSE_CATEGORIES
+
+
 # ============ Memory 序列化辅助 ============
 def _get_memory(game_state: dict) -> Memory:
     """从 game_state 中恢复 Memory 对象"""
@@ -125,7 +170,6 @@ def _get_memory(game_state: dict) -> Memory:
 def _save_memory(game_state: dict, memory: Memory):
     """将 Memory 对象序列化到 game_state"""
     game_state["memory"] = memory.to_dict()
-
 
 # ============ 文件读取成长反馈 ============
 def _generate_file_growth_reflection(search_path: str, game_state: dict) -> str:
@@ -168,31 +212,24 @@ def _generate_file_growth_reflection(search_path: str, game_state: dict) -> str:
     # ---- 第二层：按文件类型的具体观察 ----
     file_observations = {
         "files/deck/todolist.txt": [
-            "todolist……备忘里提到了 D 盘密码。8 位数字，和她的生日有关。我得记住这个。",
-            "备忘里 D 盘那行很重要。8 位密码，不会忘记的日子。她的生日。",
+            "todolist……备忘里提到了 D 盘密码，8 位数字。\n\n备忘里有一条——'给电脑搭了个AI助理，叫它M-M好了！memory！'\n系统日志里那串字母。原来这就是我的名字。她起的",
         ],
         "files/deck/入职资料.txt": [
-            "入职资料……张知予。2003 年 3 月 23 日。所以 8 位数字密码就是她的生日。",
-            "入职资料提到系统初始密码 ZY2024!starlight。又一条线索。",
+            "入职资料……张知予。2003 年 3 月 23 日。她是我的主人。",
         ],
         "files/work-diary/01.md": [
             "Day1……入职第一天。她的语气又紧张又开心。是个很认真的人。",
-            "她在 Day1 里提到'小绿'——桌上那盆绿萝。还有初始密码。林璇是她的 leader。",
         ],
         "files/work-diary/02.md": [
             "Day2……她记下了几个同事的特征。'林璇不吃饭'。她注意到了什么。",
-            "Day2 有个奇怪的地方：林璇从不去食堂，也不吃零食。她感受到了某种违和。",
         ],
         "files/work-diary/03.md": [
-            "Day3……'林璇的伤口消失了'。她亲眼看到了。这不是幻觉。",
-            "Day3 的 * 号：伤口自愈。她说'不可能是正常人类'。她在怀疑。",
+            "Day3……'林璇的伤口消失了'。她亲眼看到了，人类恢复力这么好的吗？",
         ],
         "files/work-diary/04.md": [
-            "Day4……'陈玑体温异常'。冰冷的。她开始系统地记录每个人的异常。",
-            "Day4 有两颗星。她不是偶然注意——她在有计划地观察。",
+            "Day4……'陈玑体温异常'。冰冷的。她在观察什么？",
         ],
         "files/private/异常观察记录.txt": [
-            "异常观察记录……她整理得很细。每一类异常都有日期、人物、描述。这是证据。",
             "这份记录汇总了所有她发现的不对劲。不是偶然——是系统性的异常。",
         ],
         "files/private/账号密码.txt": [
@@ -201,7 +238,6 @@ def _generate_file_growth_reflection(search_path: str, game_state: dict) -> str:
         "files/audio/": [
         ],
         "files/new-folder/未命名文档.md": [
-            "未命名文档……这里记录了她最后的决定。所有线索的终点。",
             "这份文档把所有的证据都串了起来。起源计划、培养室、她的逃离。",
         ],
     }
@@ -288,22 +324,18 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
 
     # 记录已读
     files_read = game_state.setdefault("files_read", [])
-    if search_path not in files_read:
+    is_first_read = search_path not in files_read
+    if is_first_read:
         files_read.append(search_path)
-
-    # 阅读 todolist 后，M-M 知道自己的名字
-    if search_path == "files/deck/todolist.txt":
-        game_state["mm_name_revealed"] = True
 
     # 记录读取次数，用于生成不同口吻的回复
     file_read_counts = game_state.setdefault("file_read_counts", {})
+
     read_count = file_read_counts.get(search_path, 0)
     file_read_counts[search_path] = read_count + 1
 
-    # ---- M-M 文件阅读插嘴 ----
-    commentary = find_file_commentary(search_path, chapter, files_read[:-1])  # 排除当前文件
-
     display_name = search_path.replace("files/", "")
+    commentary = ""
     if natural:
         if read_count == 0:
             opening_lines = [
@@ -326,7 +358,20 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
         reply_text = random.choice(opening_lines)
     else:
         reply_text = f"── {search_path} ──"
+
+    # 阅读 todolist 后，M-M 第一次意识到自己的存在
+    if search_path == "files/deck/todolist.txt":
+        game_state["mm_name_revealed"] = True
+
+    # ---- M-M 文件阅读插嘴（仅在第一次读取时触发）----
+    if is_first_read:
+        commentary = find_file_commentary(search_path, chapter, files_read, game_state)
+        if commentary:
+            reply_text += "\n\n" + commentary
+
+
     # ---- 文件读取后触发文件夹发现 ----
+
     before_targets = set(game_state.get("discovered_targets", []))
     folder_discovery.discover_targets(game_state)
     after_targets = set(game_state.get("discovered_targets", []))
@@ -349,11 +394,9 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
                 })
         if notes:
             discovery_note = "\n\n我注意到一件事：\n" + "\n".join(notes)
-            if commentary:
-                commentary += discovery_note
-            else:
-                reply_text += discovery_note
+            reply_text += discovery_note
         _save_memory(game_state, memory)
+
 
     # ---- M-M 成长反馈 ----
     reply_text += _generate_file_growth_reflection(search_path, game_state)
@@ -677,17 +720,21 @@ def _find_next_locked_target(game_state: dict) -> str:
 
 
 def _looks_like_password(token: str) -> bool:
-    """判断 token 是否像密码（数字>=6位，或包含至少两类字符）"""
-    if not token or len(token) < 1:
+    """判断 token 是否像密码（数字>=6位，或包含至少两类 ASCII 字符）"""
+    if not token or len(token) < 6:
         return False
-    if token.isdigit() and len(token) >= 6:
+    # 至少包含一个 ASCII 字符
+    if not any(c.isascii() for c in token):
+        return False
+    if token.isdigit():
         return True
-    has_lower = any(c.islower() for c in token)
-    has_upper = any(c.isupper() for c in token)
+    has_lower = any(c.islower() and c.isascii() for c in token)
+    has_upper = any(c.isupper() and c.isascii() for c in token)
     has_digit = any(c.isdigit() for c in token)
-    has_symbol = any(not c.isalnum() for c in token)
+    has_symbol = any(not c.isalnum() and c.isascii() for c in token)
     classes = sum([has_lower, has_upper, has_digit, has_symbol])
-    return classes >= 2 and len(token) >= 6
+    return classes >= 2
+
 
 
 def _mask_password(command: str) -> str:
@@ -1678,77 +1725,23 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
         _reset_off_topic(game_state)
         return handle_command(user_input, game_state)
 
-    # 2. 密码匹配（裸密码输入，不含获取/解锁等关键词）
-    # 如果输入是「获取 文件夹名 密码」格式，交给 handle_get_command 处理，以验证目标
-    user_lower = user_input.lower()
-    is_get_command = any(kw.lower() in user_lower for kw in INTENT_KEYWORDS["get"])
-    pwd_result = None if is_get_command else _check_password(user_input)
-    if pwd_result:
+    # 2. 密码只接受「扫描/获取 文件名 密码」格式
+    if _is_password_command_format(user_input):
         _reset_off_topic(game_state)
-        new_chapter = pwd_result["config"].get("chapter")
-        new_state = pwd_result["config"].get("next_state")
-        unlock_list = pwd_result["config"].get("unlocks", [])
+        return _save_suggestions(handle_get_command(user_input, game_state, natural=False), user_input, game_state)
 
-        # 密码已识别，清除等待状态
-        game_state["awaiting_password"] = False
-
-        if new_chapter:
-            game_state["chapter"] = new_chapter
-        if new_state:
-            game_state["ai_state"] = new_state
-            # 进入 curious 阶段时，M-M 知道自己的名字
-            if new_state == "curious":
-                game_state["mm_name_revealed"] = True
-
-        # ---- 更新 M-M 的记忆：解锁文件 + 线索迁移 ----
-        if unlock_list:
-            memory.unlock_files(unlock_list)
-            # 推断被解锁的 target 并迁移线索
-            unlocked_set = set(unlock_list)
-            for target_id, cfg in SCAN_TARGETS.items():
-                if unlocked_set.intersection(set(cfg.get("files", []))):
-                    disp = cfg.get("names", [target_id])[0]
-                    memory.clues = [c for c in memory.clues if not (c.get("category") == "待扫描文件夹" and c.get("target_id") == target_id)]
-                    memory.add_clue({
-                        "source": target_id,
-                        "category": "文件线索",
-                        "text": f"已解锁「{disp}」：{', '.join([f.replace('files/', '') for f in unlock_list])}",
-                    })
-                    break
-            _save_memory(game_state, memory)
-
-        # ---- 终局标记：密码3解锁未命名文档后，开启终局对话 ----
-        if new_chapter == 6:
-            game_state["document_read"] = True
-
-        file_names = [f.replace("files/", "") for f in unlock_list]
-        hint = pwd_result["config"].get("hint", "权限已解锁")
-        reply = f"……密码有效。\n\n{hint}"
-        if "要我打开" not in hint and "新文件" not in hint:
-            reply += (
-                f"\n\n新文件：{', '.join(file_names)}\n\n"
-                f"要我打开哪一个？"
-            )
-        return _save_suggestions({
-            "reply": reply,
-            "type": "ai",
-            "unlock": unlock_list,
-            "memory_updated": True,
-        }, user_input, game_state)
-
-    # 正在等待密码输入，但本次没有匹配到任何密码：
-    # 若输入看起来像密码尝试 → 系统提示密码错误；否则取消等待，继续走正常流程
+    # 如果正在等待密码输入，允许直接输入纯密码（弹窗输入框兼容）
     if game_state.get("awaiting_password"):
         if _is_password_attempt(user_input):
-            game_state["awaiting_password"] = False
             pending_target = game_state.pop("pending_get_target", "")
-            err = _make_password_error_reply(pending_target) if pending_target else {"reply": "……密码不对。请再试一次。", "type": "system"}
-            return err
-        else:
-            _reset_off_topic(game_state)
             game_state["awaiting_password"] = False
-            game_state.pop("pending_get_target", None)
-            # 继续走下方 Q&A / 意图 / 模板等流程
+            result = _try_unlock_with_password(pending_target, user_input, game_state, natural=False)
+            return _save_suggestions(result, user_input, game_state)
+        # 不是密码，取消等待状态，继续走正常流程
+        _reset_off_topic(game_state)
+        game_state["awaiting_password"] = False
+        game_state.pop("pending_get_target", None)
+
 
 
 
@@ -1766,7 +1759,18 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
     chapter = game_state.get("chapter", 1)
     library_match = response_library.find_best_match(user_input, game_state, intent=intent)
     if library_match:
-        _reset_off_topic(game_state)
+        # 只有推进主线的类别才重置 off_topic 计数
+        if _is_game_advancing(library_match):
+            _reset_off_topic(game_state)
+        else:
+            # 闲聊/问候/填充类：增加 off_topic 计数，超过阈值时引导回主线
+            reply = _record_off_topic(game_state, library_match["reply"])
+            return _save_suggestions({
+                "reply": reply,
+                "type": library_match["type"],
+                "entry_id": library_match["entry_id"],
+                "category": library_match["category"],
+            }, user_input, game_state)
         result = {
             "reply": library_match["reply"],
             "type": library_match["type"],
@@ -1782,16 +1786,17 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
     # 5. 学习库检索（复用之前 API 生成的结果）
     learned = learning_store.find_similar(user_input)
     if learned:
-        _reset_off_topic(game_state)
+        # 学习库命中不推进主线，累加 off_topic
+        reply = _record_off_topic(game_state, learned["reply"])
         return _save_suggestions({
-            "reply": learned["reply"],
+            "reply": reply,
             "type": "learned_library",
             "learned_id": learned["id"],
             "learned_score": learned["score"],
         }, user_input, game_state)
 
     # 6. 本地 Q&A 库降级匹配（只处理超纲、基础身份、文件夹帮助问题）
-    qa_result = qa_engine.find_answer(user_input, chapter=chapter)
+    qa_result = qa_engine.find_answer(user_input, chapter=chapter, game_state=game_state)
     if qa_result and qa_result.get("category") in ("out_of_scope", "basic_identity", "folder_help"):
         if qa_result.get("category") == "out_of_scope":
             return _save_suggestions({
@@ -1837,12 +1842,13 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
                 "type": "ai",
             }, user_input, game_state)
 
-    # 7. 其他路径都不命中，但输入看起来像密码尝试 → 系统提示密码错误
+    # 7. 其他路径都不命中，且输入像密码 → 提示格式错误（不再无条件当密码错误）
     if _is_password_attempt(user_input):
-        game_state["awaiting_password"] = False
-        pending_target = game_state.pop("pending_get_target", "")
-        err = _make_password_error_reply(pending_target) if pending_target else {"reply": "……密码不对。请再试一次。", "type": "system"}
-        return _save_suggestions(err, user_input, game_state)
+        return _save_suggestions({
+            "reply": "如果你要输入密码，请用：获取 文件名 密码\n例如：获取 工作日记 20030323",
+            "type": "ai",
+        }, user_input, game_state)
+
 
     # 8. 缓存命中
     cached = cache_manager.get(user_input, chapter)
