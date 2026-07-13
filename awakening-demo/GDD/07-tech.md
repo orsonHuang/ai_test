@@ -5,48 +5,46 @@
 ```
 ┌─────────────────────────────────────────────┐
 │ 浏览器 (index.html)                          │
-│   - 终端风格UI                                │
-│   - 对话气泡                                  │
-│   - 章节进度                                  │
-│   - 输入框                                    │
+│   - 终端风格UI / 开机进度条(轮询模型状态)      │
+│   - 对话气泡 / 章节进度 / 输入框 / 文件树      │
 └────────────────┬────────────────────────────┘
-                 │ HTTP /api/chat
+                 │ HTTP /api/chat  /api/model-status  /health
                  ↓
 ┌─────────────────────────────────────────────┐
 │ Flask 后端 (app.py)                          │
-│   - 路由: /api/chat                          │
-│   - 路由: /api/command  (处理 /命令)         │
-│   - 路由: /api/status  (AI状态)              │
+│   - 启动时后台异步加载 embedding 模型          │
+│   - /api/model-status → 前端进度条轮询         │
+│   - /api/chat /api/status /api/reset         │
 └────────────────┬────────────────────────────┘
                  │
                  ↓
 ┌─────────────────────────────────────────────┐
 │ 混合回复引擎 (engine/hybrid_reply.py)        │
-│   - 14条处理路径，优先级明确                  │
-│   - 响应库智能匹配（新核心）                  │
-│   - 学习闭环                                  │
-│   - 缓存查询                                  │
-│   - AI兜底生成（限流）                        │
-└─────┬──────────┬──────────┬──────────────────┘
-      ↓          ↓          ↓          ↓
-┌────────┐ ┌─────────┐ ┌────────┐ ┌──────────────┐
-│响应库   │ │学习库    │ │缓存系统│ │DeepSeek API   │
-│JSON    │ │JSON     │ │JSON    │ │deepseek-chat  │
-│75条目  │ │自动积累 │ │文件    │ │(仅兜底)       │
-└────────┘ └─────────┘ └────────┘ └──────────────┘
+│   - generate_reply() 总调度，优先级明确        │
+│   - 命令 + 密码 + 意图识别 + 响应库 + 学习库    │
+│   - AI兜底生成（限流20次）                     │
+└─────┬──────┬──────┬──────┬──────┬────────────┘
+      ↓      ↓      ↓      ↓      ↓
+┌─────────┐┌──────────┐┌──────┐┌──────────┐┌──────────────┐
+│响应库    ││学习库     ││QA库  ││规则引擎  ││DeepSeek API   │
+│75条目   ││自动积累   ││条件  ││文件插嘴  ││deepseek-chat  │
+│四维打分 ││复用       ││回答  ││文件建议  ││+ RAG检索     │
+└─────────┘└──────────┘└──────┘└──────────┘└──────────────┘
+                         底层依赖
+          ┌─────────────────────────────────┐
+          │ sentence_matcher.py             │
+          │ embedding 语义相似度引擎         │
+          │ (paraphrase-multilingual-MiniLM) │
+          │ 异步加载 + 进度可观察            │
+          └─────────────────────────────────┘
 ```
 
 ## 技术栈
 
-| 层 | 选型 | 版本 | 理由 |
-|----|------|------|------|
-| 后端 | Python | 3.13 | 你已熟悉 |
-| Web框架 | Flask | 3.x | 轻量、单文件易部署 |
-| LLM SDK | openai | 1.x | 兼容 OpenAI API |
-| 前端 | HTML5 + 原生JS | - | 无构建步骤、单文件部署 |
-| 样式 | 原生CSS | - | 单文件、复古终端风 |
-| 数据 | JSON文件 | - | 无需数据库 |
-| 部署 | 腾讯云Ubuntu + Nginx | - | 你已有服务器 |
+| 技术栈 | Python 3.13 / Flask 3.x / DeepSeek API / Sentence-Transformers |
+| 核心引擎 | 16个模块，hybrid_reply.py 总调度 |
+| 核心路径 | 响应库智能匹配（~90%对话）+ 学习库复用 + AI-RAG兜底 |
+| Embedding | paraphrase-multilingual-MiniLM-L12-v2 (~118MB)，异步加载+进度可观察 |
 
 ## 文件结构
 
@@ -56,22 +54,23 @@ awakening-demo/
 ├── app.py                            # Flask主程序（150行）
 ├── index.html                        # 前端（单文件，400行）
 ├── setup.sh                          # 一键部署脚本
-├── engine/                           # 核心引擎
+├── engine/                           # 核心引擎（16个模块）
 │   ├── __init__.py
-│   ├── hybrid_reply.py               # 混合模式核心（14条优先级路径）
-│   ├── response_library.py           # 预烘焙响应库智能匹配引擎 ★ 新核心
-│   ├── learning_store.py             # API 学习闭环（未命中→入库）★ 新
-│   ├── folder_discovery.py           # 文件夹线索发现（读文件→发现目标）★ 新
-│   ├── rule_engine.py                # 规则匹配（关键词模板已移除）
-│   ├── cache_manager.py              # 缓存管理
-│   ├── ai_fallback.py                # AI兜底
-│   ├── character_state.py            # AI人格状态机
-│   ├── file_reader.py                # 知识库读取
-│   ├── memory.py                     # 记忆系统
-│   ├── knowledge_search.py           # RAG知识检索
-│   ├── fuzzy_matcher.py              # 文件名模糊纠错
-│   ├── qa_engine.py                  # 本地问答库
-│   └── clue_manager.py               # 线索管理
+│   ├── hybrid_reply.py               # 混合模式总调度（generate_reply 入口）
+│   ├── response_library.py           # 预烘焙响应库智能匹配引擎 ★ 核心
+│   ├── learning_store.py             # API学习闭环（未命中→入库→复用）
+│   ├── folder_discovery.py           # 文件夹线索发现（读文件→发现目标）
+│   ├── rule_engine.py                # 文件插嘴(find_file_commentary) + 文件建议
+│   ├── sentence_matcher.py           # ★ Embedding语义相似度引擎（底层基础设施）
+│   ├── cache_manager.py              # 缓存管理（MD5+章节键）
+│   ├── ai_fallback.py                # DeepSeek API兜底+RAG三层Prompt注入
+│   ├── character_state.py            # AI人格5阶段状态机
+│   ├── file_reader.py                # 知识库文件读取+路径安全检查
+│   ├── memory.py                     # M-M记忆系统（dataclass）
+│   ├── knowledge_search.py           # RAG知识检索（分块+embedding+Top-K）
+│   ├── fuzzy_matcher.py              # 文件名模糊纠错（difflib）
+│   ├── qa_engine.py                  # 本地QA库匹配（embedding + 条件回答）
+│   └── clue_manager.py               # 线索提取与管理（clues.json配置驱动）
 ├── knowledge/                        # 知识库（你主导）
 │   ├── files/                        # 虚拟文件
 │   │   ├── welcome.txt
@@ -407,7 +406,7 @@ TEMPERATURE = 0.7
 
 ## generate_reply 核心处理流程
 
-`engine/hybrid_reply.py` 的 `generate_reply()` 是整个对话系统的调度中心，按优先级从高到低走 12 条路径：
+`engine/hybrid_reply.py` 的 `generate_reply()` 是整个对话系统的调度中心，按优先级从高到低走 **15 条路径**：
 
 ```
 玩家输入
@@ -418,7 +417,7 @@ TEMPERATURE = 0.7
   │
   ├─[2] 密码匹配
   │     _check_password() — 识别嵌入在自然语言中的密码
-  │     → 解锁文件、推进章节、更新记忆，type=ai
+  │     → 解锁文件、推进章节(mm_name_revealed/chapter/ai_state)、更新记忆
   │
   ├─[3] 密码等待状态
   │     awaiting_password=True 时：
@@ -433,63 +432,109 @@ TEMPERATURE = 0.7
   │     ├─ files        → 列出可访问文件
   │     ├─ status       → 章节/AI状态/文件/调用统计
   │     ├─ memory       → M-M 记忆内容
-  │     ├─ clue         → 已收集线索（clue_manager.format_clues）
+  │     ├─ clue         → 已收集线索
   │     ├─ hint         → 按章节提供下一步提示
-  │     ├─ password_hint → 密码分析引导（不给明文密码）
-  │     ├─ analyze      → 综合推理（密码+线索+下一步，_build_analysis_reply）
-  │     ├─ confirm      → 确认词（好/可以/试试）执行上一条建议
-  │     ├─ choose       → 多选建议中解析玩家选择（_parse_choice）
+  │     ├─ password_hint → 密码分析引导
+  │     ├─ analyze      → 综合推理（密码+线索+下一步）
+  │     ├─ confirm      → 确认词执行上一条建议
+  │     ├─ choose       → 多选解析（_parse_choice）
   │     └─ help/reset   → 帮助/重置
-  │     → 执行后 _save_suggestions() 更新前端建议栏
   │
-  ├─[5] 本地 Q&A 库 (qa_engine + qa-library.json)
-  │     Jaccard 相似度匹配常见问题
-  │     ├─ 游戏内问题 → 直接回答（零成本）
-  │     └─ out_of_scope → _record_off_topic() 计数，超 3 次拉回主线
+  ├─[5] 响应库智能匹配 ★ 核心路径（零 API 成本）
+  │     response_library.find_best_match() — 四维综合打分:
+  │       (a) 章节权重 (b) 已读文件权重 (c) 话题匹配 (d) Jaccard+示例相似
+  │     → 推进主线类别 (progression/file_commentary/discovery等) → 重置 off_topic
+  │     → 非主线类别 (greeting/filler) → 累加 off_topic，超3次追加主线引导
+  │     → 条件变体：mm_name_revealed 时切换 who_am_i_curious 版本
   │
-  ├─[6] 关键词模板 (rule_engine + keyword-rules.json)
-  │     60+ 条规则按 5 阶段分组，支持 requires_document_read 过滤
-  │     → M-M 口吻直接返回（零成本）
+  ├─[6] 学习库检索
+  │     learning_store.find_similar() → 检查历史 API 学习记录
+  │     → 命中 → 返回（零成本，但计入 off_topic）
   │
-  ├─[7] 文件类别询问 (find_file_suggestion)
+  ├─[7] 本地 Q&A 库降级 (qa_engine + qa-library.json)
+  │     sentence_matcher embedding 语义匹配
+  │     ├─ out_of_scope / basic_identity / folder_help → 直接回答
+  │     ├─ conditional_answers：按 requires_files_read 选择不同回答
+  │     └─ 超纲问题 → _record_off_topic() 计次 + 条件变体中嵌入主线引导
+  │
+  ├─[8] 文件类别询问 (find_file_suggestion)
   │     "读日记""看邮件"等 → 列出该类已解锁文件
   │
-  ├─[8] 密码尝试拦截
+  ├─[9] 密码尝试拦截
   │     _is_password_attempt() 但未匹配已知密码 → 错误提示
   │
-  ├─[9] 响应库智能匹配 ★★★ 新核心路径（零 API 成本）
-  │     response_library.find_best_match() — 四维综合打分:
-  │       (a) 章节权重：当前篇章优先
-  │       (b) 已读文件权重：已解锁文件增强命中概率
-  │       (c) 话题匹配：topic_tags 交集分
-  │       (d) 相似度 + Jaccard：文本相似 + 词集重叠
-  │     → 分数 ≥ 55 → 随机变体 → 返回（90%+ 对话走此路径）
-  │     → 分数 < 55 → 进入学习库检查
+  ├─[10] 密码等待超时检查
+  │      awaiting_password 超 30 秒 → 取消等待并提示
   │
-  ├─[10] 学习库检查 ★ 新增
-  │     learning_store.find_match() → 检查历史 API 学习记录
-  │     → 命中 → 返回（零成本复用）
-  │     → 未命中 → 继续下探
+  ├─[11] 文件阅读建议 (find_file_suggestion 补充)
+  │      针对未被上面路径覆盖的文件读取意图
   │
-  ├─[11] 缓存命中 (cache_manager)
-  │     MD5 hash 前 12 位 + 章节 → 返回缓存（零成本）
-  │
-  ├─[12] 超纲拦截
-  │      天气/新闻/股票/明星等外部话题 → M-M 拒绝
-  │      → _record_off_topic() 计入计数
+  ├─[12] 通用响应 (greeting/filler)
+  │      问候、确认词、简单交互
   │
   ├─[13] AI-RAG 兜底（降级路径）
   │      ai_fallback.generate() 调用 DeepSeek API
   │      【三层 Prompt 注入】:
   │        Layer 1: CHARACTER_CARD — M-M 5阶段人设+说话风格
-  │        Layer 2: memory.build_context_string() — 已读/已知/线索
-  │        Layer 3: knowledge_search.build_knowledge_context() — RAG 检索
+  │        Layer 2: character_state prompt_suffix — 当前阶段语气
+  │        Layer 3: memory.build_context_string() — 已读/已知/线索
+  │        Layer 4: knowledge_search.build_knowledge_context() — RAG 检索
   │      → 结果写入缓存 + learning_store（学习闭环）
-  │      → 单局上限 20 次 AI 调用
+  │      → 单局上限 MAX_AI_CALLS 次 AI 调用
   │
-  └─[14] 超限/未配置兜底
+  ├─[14] 超纲拦截
+  │      天气/新闻/股票/明星等外部话题 → M-M 拒绝
+  │      → _record_off_topic() 计入计数
+  │
+  └─[15] 超限/未配置兜底
         ├─ API 未配置 → M-M 口吻道歉
-        └─ 调用超 20 次 → "运算能力到极限了"
+        └─ 调用超限 → "运算能力到极限了"
+```
+
+### 文件依赖关系矩阵
+
+**哪个模块依赖哪个数据文件、哪个模块被哪个模块调用：**
+
+```
+generate_reply()  ← hybrid_reply.py（总入口）
+  │
+  ├─[意图识别] detect_intent() → handle_natural_intent()
+  │   ├─ handle_file_command()
+  │   │   ├─ file_reader.py: read_knowledge_file() → knowledge/files/**
+  │   │   ├─ clue_manager.py: get_clues_for_file() → knowledge/clues.json
+  │   │   ├─ folder_discovery.py: discover_targets() → knowledge/folder-discoveries.json
+  │   │   ├─ rule_engine.py: find_file_commentary() → knowledge/response-library.json
+  │   │   ├─ memory.py: process_file() + add_clue()
+  │   │   └─ _generate_file_growth_reflection() [可注释]
+  │   ├─ handle_scan_command()
+  │   │   └─ folder_discovery.py: is_target_discovered()
+  │   └─ handle_get_command()
+  │       └─ _check_password() → knowledge/triggers/passwords.json
+  │
+  ├─[响应库] response_library.py: find_best_match()
+  │   ├─ knowledge/response-library.json（75条目/157变体）
+  │   ├─ 条件过滤: requires_files / blocked_if_mm_name_revealed
+  │   └─ 条件变体: conditional_reply_idx + conditional_reply_condition
+  │
+  ├─[学习库] learning_store.py: find_similar()
+  │   └─ cache/learned.json（API 回复自动积累）
+  │
+  ├─[QA库] qa_engine.py: find_answer()
+  │   ├─ sentence_matcher.py: encode_batch() [embedding模型]
+  │   ├─ knowledge/qa-library.json → conditional_answers
+  │   └─ _select_answer() → requires_files_read 条件
+  │
+  ├─[规则] rule_engine.py: find_file_suggestion()
+  │
+  ├─[AI兜底] ai_fallback.py: generate()
+  │   ├─ character_state.py: get_state() → ai_state prompt_suffix
+  │   ├─ memory.py: build_context_string()
+  │   ├─ knowledge_search.py: build_knowledge_context()
+  │   │   ├─ sentence_matcher.py: encode_batch()
+  │   │   └─ file_reader.py: read_knowledge_file() → knowledge/files/**
+  │   └─ learning_store.py: add_learned() [学习闭环]
+  │
+  └─[建议] _save_suggestions() → _build_default_suggestions()
 ```
 
 ### 关键设计决策
@@ -498,46 +543,58 @@ TEMPERATURE = 0.7
 |------|------|
 | **成本控制** | 路径 1-12 全部走规则/响应库/缓存，零 AI 成本；仅路径 13 调 API |
 | **单局 AI 上限** | 20 次 (MAX_AI_CALLS_PER_GAME) |
-| **响应库** | 预烘焙 75 条目/157 变体，运行时零成本智能匹配 ★ 核心 |
-| **学习闭环** | 路径 13 API 回复 → learning_store 入库 → 下次路径 10 命中 |
-| **目标发现** | 读取含线索的文件后，自动发现对应文件夹；未发现的目标不能扫描/获取 |
-| **主线建议** | 根据章节、已读文件、已发现目标动态生成下一步建议 |
-| **执行建议** | 点击「执行建议」直接把建议作为输入发送，无需手动输入 |
-| **密码脱敏** | 前端展示「获取 工作日记 密码」，命令不泄露明文 |
-| **建议系统** | 每条回复后 `_save_suggestions()` → 从回复文本或默认规则提取可执行建议 → 前端显示快捷按钮 |
-| **确认执行** | 玩家说"好""可以""试试"等 → 自动执行上一条建议命令，多条则追问选择 |
-| **记忆闭环** | 读文件 → `memory.process_file()` + `clue_manager` 提取线索 → `_save_memory()` 持久化 |
-| **模糊纠错** | `fuzzy_matcher.correct_filename()` — 处理拼写错误（"入职自立"→"入职资料"） |
-| **off_topic 拉回** | 连续 3 次无关输入 → 强制返回当前章节主线提示 |
-| **文件别名** | `_extract_filename()` 支持"第一篇/D1/日记一/todolist/全员会议"等多种叫法 |
+| **响应库** | 预烘焙 75 条目/157 变体，四维综合打分 |
+| **学习闭环** | API 回复 → learning_store 入库 → 下次直接命中 |
+| **目标发现** | 读含线索文件后 folder_discovery 自动发现目标文件夹 |
+| **Embedding** | paraphrase-multilingual-MiniLM-L12-v2，异步加载+进度可观察 |
+| **条件回答** | QA库支持 requires_files_read 变体，反向匹配最新进度 |
+| **off_topic 拉回** | 推进主线类别(progression/file_commentary等)重置；闲聊/问候累加，超3次引导回主线 |
+| **M-M自我发现** | 读 todolist.txt → mm_name_revealed=True → who_am_i_curious 解锁 |
+| **文件别名** | _extract_filename() 支持"第一篇/D1/todolist"等多种叫法 |
 | **密码容错** | 支持整句匹配或嵌入自然语言（"我输入密码 ZY2024!starlight"） |
+
+### M-M 名字揭示触发条件
+
+M-M 知道自己是"MM"有两个触发点（`hybrid_reply.py`）：
+
+| 触发条件 | 代码位置 | 说明 |
+|---------|---------|------|
+| 读 `todolist.txt` | `handle_file_command`: `if search_path == "files/deck/todolist.txt"` | 玩家首次 `/read` todolist 后立即设置 |
+| 输入密码 `20030323` | `handle_get_command`: `if new_state == "curious"` | 解锁工作日记后设置（兜底路径） |
+
+设置后影响：
+- `response_library.py`: who_am_i_dormant 被拦截，who_am_i_curious 解锁条件变体
+- `rule_engine.py`: todolist_commentary 的 conditional_reply_idx=2 触发名字揭示版本
+- `qa_engine.py`: basic_identity 条件回答切换到 MM 名字已知版本
 
 ### 模块调用图
 
 ```
 generate_reply()
   ├─ handle_command()           → / 命令
-  ├─ _check_password()          → passwords.json（仅裸密码，不含获取/解锁关键词）
+  ├─ _check_password()          → passwords.json（裸密码/自然语言嵌入）
   ├─ _is_password_attempt()     → 密码识别
-  ├─ detect_intent()            → 意图识别（新增 folder_help）
+  ├─ detect_intent()            → 意图识别
   │   ├─ _extract_scan_target() → SCAN_TARGETS + target_id
   │   ├─ _extract_filename()    → alias_map + fuzzy_matcher
   │   └─ _parse_choice()        → CN_NUMBERS 多选解析
   ├─ handle_natural_intent()
-  │   ├─ handle_scan_command()   → 扫描流程（需目标已发现）+ _prompt_password_for_target
-  │   ├─ handle_get_command()    → 获取 文件夹 密码 格式解析
-  │   ├─ handle_file_command()   → 读取 + clue_manager.get_clues_for_file + folder_discovery.discover_targets
+  │   ├─ handle_scan_command()   → 扫描流程（需目标已发现）
+  │   ├─ handle_get_command()    → 获取 文件夹 密码 格式
+  │   ├─ handle_file_command()   → 读取 + clue_manager + folder_discovery + file_commentary + growth_reflection
   │   ├─ _build_password_hint()  → 密码分析引导
   │   └─ _build_analysis_reply() → 综合推理
-  ├─ qa_engine.find_answer()    → qa-library.json（新增 folder_help）
-  ├─ response_library.find_best_match() → response-library.json
-  ├─ learning_store.find_match() → learning-store.json
+  ├─ response_library.find_best_match() → response-library.json ★ 核心
+  ├─ learning_store.find_similar() → learning-store.json
+  ├─ qa_engine.find_answer()    → qa-library.json (embedding + conditional_answers)
   ├─ find_file_suggestion()     → 文件类别匹配
   ├─ cache_manager.get()        → 缓存查询
   ├─ ai_fallback.generate()     → DeepSeek API + RAG（降级路径）
+  │   ├─ character_state.get_state()
   │   ├─ memory.build_context_string()
   │   ├─ knowledge_search.build_knowledge_context()
-  │   └─ learning_store.append() → 学习闭环
+  │   │   └─ sentence_matcher.encode_batch()
+  │   └─ learning_store.add_learned() → 学习闭环
   └─ _save_suggestions()        → 建议栏 + pending_choices
       └─ _build_default_suggestions() → 章节/已读/发现目标 主线建议
 ```

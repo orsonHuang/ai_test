@@ -399,7 +399,8 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
 
 
     # ---- M-M 成长反馈 ----
-    reply_text += _generate_file_growth_reflection(search_path, game_state)
+    # [已注释] 暂时不启用文件读取成长反馈
+    # reply_text += _generate_file_growth_reflection(search_path, game_state)
 
     return {
         "reply": reply_text,

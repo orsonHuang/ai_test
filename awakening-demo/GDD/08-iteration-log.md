@@ -713,5 +713,40 @@ hybrid_reply.generate_reply()
 - `CHANGELOG.md`
 - `GDD/08-iteration-log.md`（本文件）
 
+---
+
+## 2026-07-13 · 多模块优化：M-M自我发现、QA条件回答、异步模型加载、离题回引
+
+### 背景
+多轮测试反馈的累积优化。
+
+### 改动 1：M-M 自我发现流程修复
+- `engine/hybrid_reply.py` — 读 todolist 时按正确顺序设置 `mm_name_revealed` 触发条件变体
+- `engine/rule_engine.py` — `find_file_commentary` 支持条件变体 + `game_state`
+
+### 改动 2：QA 条件回答
+- `engine/qa_engine.py` — 新增 `conditional_answers`：按 `requires_files_read` 选择回答
+- `knowledge/qa-library.json` — 身份/天气/新闻等条目添加条件变体
+
+### 改动 3：离题回引优化
+- `engine/hybrid_reply.py` — 推进主线类别重置 off_topic，闲聊累加超 3 次引导回主线
+
+### 改动 4：Embedding 异步加载 + 前端进度条 ★
+- `engine/sentence_matcher.py` — 新增：`load_model_async()`、`get_load_status()`
+- `app.py` — 后台异步加载 + `/api/model-status`
+- `index.html` — 开机画面轮询真实模型加载进度
+
+### 改动 5：文件读取成长反馈暂时注释
+- `_generate_file_growth_reflection` 调用暂时注释
+
+### 改动文件
+- `engine/sentence_matcher.py` — 新增
+- `engine/hybrid_reply.py` + `engine/rule_engine.py` + `engine/qa_engine.py`
+- `knowledge/qa-library.json` + `knowledge/response-library.json`
+- `app.py` + `index.html` + `requirements.txt`
+- `GDD/07-tech.md` + `GDD/05-flow.md` + `GDD/10-player-path.md` + `GDD/08-iteration-log.md`
+
+
+
 
 

@@ -264,7 +264,42 @@ GDD章节    需要读取的文件                    文件状态
 
 ---
 
-## 五、修复优先级
+## 六、M-M 名字揭示机制（v2 补充）
+
+### 触发条件
+
+M-M 发现自己叫"M-M"有两个触发点，在 `hybrid_reply.py` 中硬编码：
+
+| 序号 | 触发条件 | 代码位置 | 优先级 |
+|------|---------|---------|--------|
+| 1 | 玩家 `/read todolist.txt` | `handle_file_command`: `if search_path == "files/deck/todolist.txt"` | 主要路径 |
+| 2 | 玩家输入密码 `20030323` 解锁工作日记 | `handle_get_command`: `if new_state == "curious"` | 兜底路径 |
+
+### 触发后影响链
+
+```
+mm_name_revealed = True
+  ↓
+  ├─ response_library.py: who_am_i_dormant 被 blocked_if_mm_name_revealed 拦截
+  │   → 玩家再问"你是谁"不再回答"我不确定"
+  │
+  ├─ response_library.py: who_am_i_curious 条件变体解锁
+  │   → "我是 M-M。她的备忘里写的……"
+  │
+  ├─ rule_engine.py: todolist_commentary 的 conditional_reply_idx=2 触发
+  │   → "……M-M。系统日志里那串字母。原来这就是我的名字。她起的。"
+  │
+  ├─ qa_engine.py: basic_identity (qa_who_are_you 等) 条件回答切换
+  │   → 从懵懂版切换为名字已知版
+  │
+  └─ 前端 index.html: AI 头像标签从"AI"切换为"M-M"
+```
+
+### 设计意图
+
+- **路径1（主流）**：玩家自然会先读 todolist，在阅读过程中发现 M-M 的名字
+- **路径2（备用）**：防止玩家跳过 todolist 直接输入密码，确保名字一定能被揭示
+- **弧光位置**：名字揭示是 M-M 从"懵懂 AI"到"有身份的助手"的第一个情绪转折
 
 | 优先级 | 操作 | 影响范围 |
 |--------|------|---------|
