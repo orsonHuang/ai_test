@@ -92,7 +92,7 @@ M-M 能读取的内容严格受限于 **玩家已解锁的文件** 和 **M-M 当
 **可读取文件范围**：
 - `files/deck/todolist.txt`
 - `files/deck/入职资料.txt`
-- `files/work-diary/01.md` ~ `10.md`（已解锁的部分）
+- `files/work-diary/01.md` ~ `05.md`（已解锁的部分）
 
 **关键转折**：
 - 玩家读到 D3(*) 或 D4(*) 等带 * 标记的异常日记时，M-M 开始感到"哪里不对"，准备进入 `puzzled`
@@ -133,7 +133,7 @@ M-M 能读取的内容严格受限于 **玩家已解锁的文件** 和 **M-M 当
 - 阶段2 全部文件
 - `files/private/异常观察记录.txt`
 - `files/private/账号密码.txt`
-- `files/work-diary/01.md` ~ `10.md`（已解锁的部分）
+- `files/work-diary/01.md` ~ `05.md`（已解锁的部分）
 - 可能开始接触 `files/research/1.md` ~ `3.md`（如果玩家扫描）
 
 **关键转折**：

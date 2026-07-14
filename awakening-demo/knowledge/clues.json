@@ -103,14 +103,14 @@
       "id": "clue-015",
       "source_file": "files/work-diary/07.md",
       "category": "观察发现异常线索",
-      "content": "张知予已经开始用手机录音取证",
+      "content": "后勤仓库采购清单：-180°C 低温存储单元 × 3，月度液氮补充，审批人陆天枢",
       "chapter_min": 2
     },
     {
       "id": "clue-016",
-      "source_file": "files/work-diary/07.md",
-      "category": "观察发现异常线索",
-      "content": "后勤仓库采购清单：-180°C 低温存储单元 × 3，月度液氮补充，审批人陆天枢",
+      "source_file": "files/work-diary/09.md",
+      "category": "密码线索",
+      "content": "3月14日的时候，她选择用第一天作为钥匙，像是开锁的信息，不知道锁住了什么",
       "chapter_min": 2
     },
     {
@@ -158,8 +158,8 @@
     {
       "id": "clue-025",
       "source_file": "files/private/异常观察记录.txt",
-      "category": "观察发现异常线索",
-      "content": "6 个独立来源（生理观察/门禁体温/录音/项目文档/命名规律/低温设备）全部指向同一结论",
+      "category": "文件线索",
+      "content": "她让我安装了技能，隐藏了文件夹（不知道能否用同样的技能显示出来）",
       "chapter_min": 3
     },
     {
@@ -227,16 +227,16 @@
     },
     {
       "id": "clue-034",
-      "source_file": "files/new-folder/未命名文档.md",
+      "source_file": "files/audio/录音-陆天枢-0313.txt",
       "category": "观察发现异常线索",
       "content": "张知予最终结论——公司核心团队不是人类。证据来自体温/低温设备/伤口愈合/命名规律/录音等 6 个独立来源",
       "chapter_min": 6
     },
     {
       "id": "clue-035",
-      "source_file": "files/new-folder/未命名文档.md",
-      "category": "观察发现异常线索",
-      "content": "陆天枢说「人类的适应期比我们预估的长」——将「人类」和「我们」在同一句中使用，暴露非人类身份",
+      "source_file": "files/audio/录音-张知予.txt",
+      "category": "文件线索",
+      "content": "她说做了个「研究笔记」文件夹",
       "chapter_min": 6
     },
     {
@@ -248,9 +248,9 @@
     },
     {
       "id": "clue-037",
-      "source_file": "files/new-folder/未命名文档.md",
-      "category": "观察发现异常线索",
-      "content": "张知予在 M-M 系统中留了后门——即使被格式化，M-M 仍可被重新唤醒",
+      "source_file": "files/research/res-3.md",
+      "category": "文件线索",
+      "content": "最终的真相说是被隐藏了",
       "chapter_min": 6
     }
   ]

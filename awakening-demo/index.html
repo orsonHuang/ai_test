@@ -565,7 +565,8 @@ html, body {
   border-radius: 0 10px 10px 10px;
   padding: 0;
   overflow: hidden;
-  max-width: 800px;
+  width: 800px;
+  max-width: 100%;
   font-family: var(--font);
 }
 
@@ -591,7 +592,7 @@ html, body {
   line-height: 1.8;
   white-space: pre-wrap;
   word-wrap: break-word;
-  max-height: 360px;
+  height: 400px;
   overflow-y: auto;
 }
 
@@ -1350,9 +1351,7 @@ function maskPasswordText(text) {
 const DIARY_FILES = [
   'files/work-diary/01.md', 'files/work-diary/02.md',
   'files/work-diary/03.md', 'files/work-diary/04.md',
-  'files/work-diary/05.md', 'files/work-diary/06.md',
-  'files/work-diary/07.md', 'files/work-diary/08.md',
-  'files/work-diary/09.md', 'files/work-diary/10.md',
+  'files/work-diary/05.md',
 ];
 
 const INT_TO_CN = {

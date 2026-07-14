@@ -191,16 +191,23 @@ class Memory:
         """
         根据章节号创建初始记忆
 
-        第1章：只能看到 todolist.txt
-        第2章：可访问工作日记 D1-D7，入职资料
-        第3章：+ 私人文件夹（密码1解锁）
-        第4章：+ 公司录音（密码2解锁）
-        第5-6章：+ 证据包（密码3解锁）
-        """
+    第1章：只能看到 todolist.txt、入职资料.txt
+    第2章：可访问工作日记 D1-D5（默认可见），入职资料
+    第3章：+ 私人文件夹（密码2解锁）
+    第4章：+ 公司录音（密码3解锁）
+    第5-6章：+ 证据包（密码4解锁）
+    """
         memory = cls()
 
         # 第1章基础：桌面 deck 文件夹（todolist + 入职资料）默认可见
         memory.accessible_files.add("files/deck/todolist.txt")
         memory.accessible_files.add("files/deck/入职资料.txt")
+
+        # 默认线索：开局即可见
+        memory.add_clue({
+            "source": "files/deck",
+            "category": "文件线索",
+            "text": "桌面上有 todolist.txt 和 入职资料.txt",
+        })
 
         return memory

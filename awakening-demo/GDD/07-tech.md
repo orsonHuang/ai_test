@@ -326,8 +326,8 @@ STATES = {
   "passwords": {
     "20030323": {
       "chapter": 2,
-      "unlocks": ["work-diary/01.md", "work-diary/02.md", "..."],
-      "hint": "扫描成功。工作日记文件夹已解锁：01.md ～ 10.md。要我打开哪一个？",
+      "unlocks": ["work-diary/01.md", "work-diary/02.md", "work-diary/03.md", "work-diary/04.md", "work-diary/05.md"],
+      "hint": "扫描成功。工作日记文件夹已解锁：01.md ～ 05.md。要我打开哪一个？",
       "source": "入职资料中主人的生日（2003年3月23日）",
       "next_state": "curious"
     },
@@ -335,7 +335,7 @@ STATES = {
       "chapter": 3,
       "unlocks": ["private/异常观察记录.txt", "private/账号密码.txt"],
       "hint": "私人文件夹已解锁。里面有两份文件。",
-      "source": "入职资料中的系统密码",
+      "source": "入职资料和工作日记 D5 中的系统初始密码",
       "next_state": "puzzled"
     },
     "StarCore@2024": {

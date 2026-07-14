@@ -4,7 +4,32 @@
 
 ---
 
+## 2026-07-14 · 体验与流程同步：文本卡片尺寸、工作日记引导与私人文件夹发现
+
+**背景：**
+- 文件/文档卡片阅读时窗口大小不统一，影响阅读体验
+- 工作日记解锁5篇后，AI 仍建议阅读"第六篇"，与文件树显示不一致
+- 私人文件夹的发现线索写在 D1 日记中，但玩家正常流程更晚才读到该篇，位置不够自然
+- 开局缺少默认线索，玩家不清楚桌面上有什么文件
+
+**方案：**
+- 文件卡片统一尺寸：固定宽度 800px、正文高度 400px，超出宽度自动换行、超出高度内部滚动
+- 第二章工作日记引导限制为前5篇可见日记（01-05），读完后推进到私人文件夹
+- 私人文件夹发现源从 `work-diary/01.md` 改为 `work-diary/05.md`，与"建立私人文件夹"的日记内容对齐
+- 开局默认线索：桌面有 `todolist.txt` 和 `入职资料.txt`
+- 同步更新 GDD 玩家体验流程与相关技术文档
+
+**修改文件：**
+- `index.html` — `.message.file .message-bubble` 改为 `width: 800px` + `max-width: 100%`；`.file-body` 改为 `height: 400px`；`DIARY_FILES` 限制为 01-05
+- `engine/hybrid_reply.py` — `generate_quest_suggestions` 第二章只引导前5篇日记；私人文件夹密码提示改为 D5 日记
+- `engine/memory.py` — `init_for_chapter` 添加默认线索
+- `knowledge/folder-discoveries.json` — `discover-private` 的 `source_file` 改为 `files/work-diary/05.md`
+- `GDD/05-flow.md` / `GDD/10-player-path.md` / `GDD/02-gameplay.md` — 同步流程设计
+
+---
+
 ## 2026-07-13 · 体验调优：弹窗去除、文件状态、建议对齐与主线推进
+
 
 **背景：**
 - 侧边栏点击文件会额外弹窗，打断聊天流

@@ -11,7 +11,7 @@
     },
     {
       "id": "discover-private",
-      "source_file": "files/work-diary/01.md",
+      "source_file": "files/work-diary/05.md",
       "target_id": "private",
       "hint": "电脑上还有一个加密的私人文件夹",
       "unlock_password": "ZY2024!starlight"

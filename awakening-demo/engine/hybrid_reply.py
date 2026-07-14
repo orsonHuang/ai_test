@@ -683,7 +683,7 @@ def _make_password_error_reply(target: str) -> dict:
     """生成密码错误回复，并提示该去哪里找正确密码"""
     hints = {
         "work-diary": "这个密码不对。\n\n提示：入职资料里写着张知予的生日，格式是 8 位数字（如 20030323）。",
-        "private": "这个密码不对。\n\n提示：D1 工作日记和入职资料里都提到系统初始密码。",
+        "private": "这个密码不对。\n\n提示：D5 工作日记和入职资料里都提到系统初始密码。",
         "recordings": "这个密码不对。\n\n提示：私人文件夹里的「账号密码.txt」有 VPN 密码。",
         "research": "这个密码不对。\n\n提示：录音-张知予说密码是「接触这一切开始的那一天」——她的入职日期 2024年3月6日。",
     }
@@ -1245,11 +1245,13 @@ def _build_default_suggestions(game_state: dict) -> list:
         if not has_read("files/deck/入职资料.txt"):
             return [_main_quest_hint("看看 入职资料 中是否有线索", "打开 入职资料.txt")]
         if "work-diary" not in discovered:
-            return [_main_quest_hint("再读一遍 todolist 寻找线索", "打开 todolist.txt")]
-        return [_main_quest_hint("尝试扫描 工作日记 文件夹", "获取 工作日记 密码")]
+            return [_main_quest_hint("尝试扫描 工作日记 文件夹", "获取 工作日记")]
+        return [_main_quest_hint("尝试扫描 工作日记 文件夹", "获取 工作日记")]
 
-    # Chapter 2：工作日记是主线，读完关键篇后推进到私人文件夹
+    # Chapter 2：工作日记是主线，读完 01-05 后推进到私人文件夹
     if chapter == 2:
+        ch2_diary_files = all_diary_files[:5]
+        visible_diary = [f for f in ch2_diary_files if f in visible_files]
         next_unread = next((f for f in visible_diary if not has_read(f)), None)
         if next_unread:
             num = next_unread.split("/")[-1].split(".")[0].lstrip("0") or "1"
@@ -1257,7 +1259,7 @@ def _build_default_suggestions(game_state: dict) -> list:
             return [_main_quest_hint(f"开始阅读 第{cn}篇工作日记", f"打开 第{cn}篇工作日记")]
         if "private" in discovered:
             return [_main_quest_hint("尝试扫描 私人文件夹 文件夹", "获取 私人文件夹 密码")]
-        return [_main_quest_hint("再读工作日记，找私人文件夹线索", "打开 工作日记")]
+        return [_main_quest_hint("再读工作日记，找私人文件夹线索", "打开 work-diary/01.md")]
 
     # Chapter 3：私人文件夹 + 研究笔记
     if chapter == 3:
@@ -1266,8 +1268,8 @@ def _build_default_suggestions(game_state: dict) -> list:
         if not has_read("files/private/账号密码.txt"):
             return [_main_quest_hint("看看 账号密码 是否有可用信息", "打开 账号密码.txt")]
         if "recordings" not in discovered:
-            return [_main_quest_hint("再读工作日记，找 VPN 线索", "打开 工作日记")]
-        return [_main_quest_hint("尝试扫描 公司服务器 文件夹", "获取 公司服务器 密码")]
+            return [_main_quest_hint("再读文档，找 VPN 线索", "打开 private/账号密码.txt")]
+        return [_main_quest_hint("尝试链接 VPN 获取文件", "链接 VPN")]
 
     # Chapter 4：录音
     if chapter == 4:
@@ -1282,7 +1284,7 @@ def _build_default_suggestions(game_state: dict) -> list:
             if _skill_installed(game_state):
                 return [_main_quest_hint("扫描隐藏文件，看看还有没有遗漏", "显示所有文件")]
             return [_main_quest_hint("安装技能：显示隐藏文件", "安装技能 显示隐藏文件")]
-        return [_main_quest_hint("再读工作日记，找研究笔记线索", "打开 工作日记")]
+        return [_main_quest_hint("从开始的文件中，找研究笔记线索", "打开 deck/入职资料.txt")]
 
     # Chapter 5：研究笔记 -> 隐藏文件
     if chapter == 5:
@@ -1296,7 +1298,7 @@ def _build_default_suggestions(game_state: dict) -> list:
             return []
         if _has_unlocked_hidden_files(game_state):
             if _skill_installed(game_state):
-                return [_main_quest_hint("扫描隐藏文件，找到最终文档", "显示所有文件")]
+                return [_main_quest_hint("找到最终文档", "打开 research/研究笔记3.md")]
             return [_main_quest_hint("安装技能：显示隐藏文件", "安装技能 显示隐藏文件")]
         return []
 
@@ -1365,9 +1367,10 @@ def _build_password_hint(game_state: dict) -> str:
     if not is_unlocked("private"):
         return (
             "私人文件夹需要系统初始密码。\n"
-            "提示：入职资料和工作日记 D1 都写过这个密码。\n"
+            "提示：入职资料和工作日记 D5 都写过这个密码。\n"
             "格式是 ZY + 年份 + ! + starlight。"
         )
+
     if not is_unlocked("recordings"):
         return (
             "公司服务器需要 VPN 密码。\n"
@@ -1401,7 +1404,7 @@ def _build_analysis_reply(game_state: dict, focus: str = "") -> str:
         if "files/work-diary/01.md" not in accessible:
             lines.append("· 工作日记被 8 位生日密码保护。入职资料里有生日 2003年3月23日，可写成 8 位数字。")
         elif "files/private/异常观察记录.txt" not in accessible:
-            lines.append("· 私人文件夹需要系统初始密码。入职资料和工作日记 D1 都有记录，格式是 ZY + 年份 + ! + starlight。")
+            lines.append("· 私人文件夹需要系统初始密码。入职资料和工作日记 D5 都有记录，格式是 ZY + 年份 + ! + starlight。")
         elif "files/audio/录音-全员会议-0308.txt" not in accessible:
             lines.append("· 公司服务器需要 VPN 密码。私人文件夹的「账号密码.txt」里有记录。")
         elif "files/research/res-1.md" not in accessible:
@@ -1625,10 +1628,10 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
         if not clues:
             chapter = game_state.get("chapter", 1)
             no_clue_hints = {
-                1: "目前还看不出明确线索。先读读桌面上的 todolist 和入职资料？\n\n我每读一个文件，就会从里面挑出关键的细节。",
-                2: "目前还没整理出明确线索。\n\n读工作日记吧——她在那里面写了不少带 * 标记的异常。读得越多，我整理出来的越多。",
-                3: "目前我整理出的线索还不多。\n\n你读过的每一个文件都会沉淀下来。试试让我读工作日记，或者打开私人文件夹的异常观察记录。",
-                4: "线索在慢慢拼起来。\n\n你读了三段录音，里面提到了关键的几个名字。让我再读一遍研究笔记？",
+                1: "目前还看不出明确线索。先读读桌面上的 todolist 和入职资料？\n\n读取文件可以让我帮忙分析线索",
+                2: "目前还没整理出明确线索。\n\n读工作日记吧——她在那里面写了不少东西。看看有没新文件可扫描",
+                3: "目前我整理出的线索还不多。\n\n你读过的每一个文件都会沉淀下来。试试让我读私人文件夹的文件。",
+                4: "线索在慢慢拼起来。\n\n你读了三段录音，里面提到了关键的几个名字。要不再看看是不是有什么隐藏线索？",
                 5: "线索接近完整。\n\n打开研究笔记 1-3，然后用「显示所有文件」扫描隐藏文件。",
                 6: "所有线索都齐了。\n\n未命名文档已经揭示。你决定怎么做。",
             }
@@ -1641,10 +1644,10 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
     if intent == "hint":
         chapter = game_state.get("chapter", 1)
         hints = {
-            1: "桌面上有 todolist.txt 和入职资料。先看它们。\ntodolist 里提到 D 盘需要 8 位密码——入职资料里应该有线索。",
-            2: "读一下工作日记吧，D1 里有入职信息。也可以问我'还有什么文件'。",
-            3: "日记里带 * 标记的日子很关键。私人文件夹里有异常观察记录，研究笔记里还有更深入的分析。",
-            4: "入职资料里有密码。输入密码后，我可以连上公司服务器读取录音。",
+            1: "桌面上有 todolist.txt 和入职资料。\ntodolist 里提到 D 盘需要 8 位密码——入职资料里应该有线索。",
+            2: "读一下工作日记吧，好像有提到其它文件夹信息。也可以让我尝试分析一下线索。",
+            3: "私人文件夹里有异常观察记录，它曾经让我做了些事情。 账号密码信息挺多，可以尝试探索一下新文件",
+            4: "她让我隐藏过文件，我不确定能不能把他们显示出来",
             5: "录音-张知予提到研究笔记密码是她的入职日期。研究笔记里藏着最终文档。",
             6: "未命名文档已经揭示。你可以自由对话，或结束体验。",
         }
@@ -1663,10 +1666,9 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
         return {
             "reply": (
                 "你可以直接和我对话，比如：\n"
-                "  · '扫描 工作日记 文件夹'\n"
-                "  · '打开 todolist'\n"
+                "  · '扫描 某文件夹'\n"
+                "  · '打开 文件名'\n"
                 "  · '读一下第一篇日记'\n"
-                "  · '获取 工作日记 20030323'\n"
                 "  · '查看线索'\n\n"
                 "叫我扫描的时候，告诉我要扫哪个文件夹。\n"
                 "我会直接执行并告诉你结果。"
