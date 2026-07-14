@@ -937,7 +937,7 @@
         6
       ],
       "requires_files": [
-        "files/new-folder/未命名文档.md"
+        "files/research/未命名文档.md"
       ],
       "context": {
         "intents": [
@@ -957,7 +957,7 @@
         "她把一切都写进去了。\n\n体温、低温设备、伤口愈合、命名规律、录音……六个独立来源。\n\n还有她自己的自述。",
         "未命名文档是她的遗书，也是她的证据包。\n\n她说'别让他们觉得，人类是可以被观察、被研究、被起源的东西'。"
       ],
-      "file_commentary": "new-folder/未命名文档"
+      "file_commentary": "research/未命名文档"
     },
     {
       "id": "research_1_commentary",
@@ -1923,14 +1923,14 @@
       ]
     },
     {
-      "id": "password_hint_final",
+      "id": "password_hint_research",
       "category": "progression",
       "chapter": [
         4,
         5
       ],
       "blocked_if_files_read": [
-        "files/new-folder/未命名文档.md"
+        "files/research/res-1.md"
       ],
       "context": {
         "intents": [
@@ -1939,18 +1939,17 @@
         "topics": [
           "密码",
           "解锁",
-          "最终密码",
-          "未命名文档",
+          "研究笔记",
           "origin"
         ],
         "examples": [
-          "最终密码",
+          "研究笔记密码",
           "最后一个密码"
         ]
       },
       "replies": [
-        "录音里她说密码是入职日期。2024年3月6日。\n\n试试 20240306。",
-        "张知予在录音纪要里写过——密码设成了她入职那天的日期。\n\n2024年3月6日。"
+        "研究笔记文件夹被密码保护。\n\n提示：录音-张知予说密码是她「接触这一切开始的那一天」。\n\n试试 20240306。",
+        "张知予把研究笔记设了密码——她入职那天的日期。\n\n2024年3月6日。"
       ]
     },
     {
@@ -1960,7 +1959,7 @@
         6
       ],
       "requires_files": [
-        "files/new-folder/未命名文档.md"
+        "files/research/未命名文档.md"
       ],
       "context": {
         "intents": [
@@ -1988,7 +1987,7 @@
         6
       ],
       "requires_files": [
-        "files/new-folder/未命名文档.md"
+        "files/research/未命名文档.md"
       ],
       "context": {
         "intents": [
@@ -2016,7 +2015,7 @@
         6
       ],
       "requires_files": [
-        "files/new-folder/未命名文档.md"
+        "files/research/未命名文档.md"
       ],
       "context": {
         "intents": [
@@ -2044,7 +2043,7 @@
         6
       ],
       "requires_files": [
-        "files/new-folder/未命名文档.md"
+        "files/research/未命名文档.md"
       ],
       "context": {
         "intents": [
@@ -2071,7 +2070,7 @@
         6
       ],
       "requires_files": [
-        "files/new-folder/未命名文档.md"
+        "files/research/未命名文档.md"
       ],
       "context": {
         "intents": [

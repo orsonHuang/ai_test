@@ -10,6 +10,7 @@ from pathlib import Path
 
 from engine import ai_fallback, cache_manager, character_state, qa_engine
 from engine import clue_manager, fuzzy_matcher, response_library, learning_store, folder_discovery
+from engine import hidden_file_state
 from engine.rule_engine import find_file_suggestion, find_file_commentary
 
 from engine.file_reader import (
@@ -118,10 +119,11 @@ def _pull_back_hint(game_state: dict) -> str:
         2: "工作日记已经解锁了。你可以让我读第一篇。",
         3: "私人文件夹里有异常观察记录。要我打开吗？",
         4: "公司服务器的录音还在等我连上去。",
-        5: "把所有线索拼起来，找到最终密码。",
-        6: "未命名文档已经解开。你决定怎么做？",
+        5: "录音-张知予提到研究笔记的密码。找到研究笔记，然后用「显示所有文件」扫描隐藏文件。",
+        6: "未命名文档已经揭示。你决定怎么做？",
     }
     return hints.get(chapter, "如果你不知道做什么，可以试试问我'该做什么'。")
+
 
 
 def _record_off_topic(game_state: dict, reply: str) -> str:
@@ -237,7 +239,7 @@ def _generate_file_growth_reflection(search_path: str, game_state: dict) -> str:
         ],
         "files/audio/": [
         ],
-        "files/new-folder/未命名文档.md": [
+        "files/research/未命名文档.md": [
             "这份文档把所有的证据都串了起来。起源计划、培养室、她的逃离。",
         ],
     }
@@ -292,6 +294,14 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
     if search_path is None:
         # 兜底：尝试 files/ 前缀
         search_path = f"files/{filename}"
+
+    # 隐藏文件未揭示时不应被读取
+    if not hidden_file_state.is_file_visible(search_path, game_state):
+        return {
+            "reply": f"我找不到这个文件：{filename}\n\n我能看到的文件有限。要我列出当前可访问的文件吗？",
+            "type": "ai",
+        }
+
     content = read_knowledge_file(search_path) if search_path else None
 
     if content is None:
@@ -415,6 +425,8 @@ def handle_list_command(sub_dir, game_state: dict) -> dict:
     """处理 /files 或 /ls 命令"""
     sub = sub_dir or "files"
     files = list_files(sub)
+    # 过滤掉仍然隐藏的文件
+    files = [f for f in files if hidden_file_state.is_file_visible(f"{sub}/{f}", game_state)]
     if not files:
         return {"reply": f"{sub}/ 目录下没有文件", "type": "ai"}
     return {
@@ -432,8 +444,7 @@ SCAN_TARGETS = {
         "files": [
             "files/work-diary/01.md", "files/work-diary/02.md",
             "files/work-diary/03.md", "files/work-diary/04.md",
-            "files/work-diary/05.md", "files/work-diary/06.md",
-            "files/work-diary/07.md",
+            "files/work-diary/05.md",
         ],
         "found_msg": "我扫描了工作日记文件夹，发现这些：",
         "empty_msg": "工作日记文件夹里的文件我都已经找到了。",
@@ -462,19 +473,9 @@ SCAN_TARGETS = {
         "empty_msg": "录音文件夹里的文件我都已经找到了。",
         "need_password": "公司服务器需要通过 VPN 连接。需要 VPN 密码……异常观察记录旁边有个账号密码文件。",
     },
-    "final": {
-        "names": ["未命名文档", "最终文件", "证据", "核心文档", "新建文件夹"],
-        "chapter_min": 2,
-        "files": [
-            "files/new-folder/未命名文档.md",
-        ],
-        "found_msg": "新建文件夹里找到了一个文件：",
-        "empty_msg": "这个文件我早就找到了。",
-        "need_password": "这个文件被终极密码保护着。线索散落在录音和研究笔记里。",
-    },
     "research": {
         "names": ["研究笔记", "研究", "笔记", "research", "调查笔记"],
-        "chapter_min": 3,
+        "chapter_min": 4,
         "files": [
             "files/research/res-1.md",
             "files/research/res-2.md",
@@ -482,6 +483,7 @@ SCAN_TARGETS = {
         ],
         "found_msg": "研究笔记文件夹里有她更深入的分析……她真的在系统地调查他们。",
         "empty_msg": "研究笔记我都已经整理好了。",
+        "need_password": "研究笔记文件夹被密码保护。提示：录音-张知予说密码是「接触这一切开始的那一天」。",
     },
 
 }
@@ -559,7 +561,7 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
 
     # 检查是否需要密码
     if target_config.get("need_password") and chapter < {
-        "private": 3, "recordings": 4, "final": 6, "work-diary": 2,
+        "private": 3, "recordings": 4, "research": 5, "work-diary": 2,
     }.get(target, 99):
         return _prompt_password_for_target(target, game_state, natural)
 
@@ -612,8 +614,7 @@ def _prompt_password_for_target(target: str, game_state: dict, natural: bool = F
         "work-diary": "D 盘的「工作日记」文件夹被 8 位数字密码保护。\n\n密码提示：人生中最特别的一天",
         "private": "私人文件夹被加密了。\n\n密码提示：原始密码",
         "recordings": "公司服务器需要 VPN 密码才能连接。\n\n密码提示：私人文件夹里的账号密码文件有VPN信息。",
-        "final": "未命名文档被终极密码保护。\n\n密码提示：开始接触异常的日子。",
-        "research": "研究笔记文件夹可以直接扫描，不需要密码。",
+        "research": "研究笔记文件夹被密码保护。\n\n密码提示：录音-张知予说密码是「接触这一切开始的那一天」。",
     }
     msg = messages.get(target, target_config.get("need_password", "请输入密码。"))
     return {"reply": msg, "type": "ai", "password_prompt": True, "password_target": target}
@@ -688,7 +689,7 @@ def _make_password_error_reply(target: str) -> dict:
         "work-diary": "这个密码不对。\n\n提示：入职资料里写着张知予的生日，格式是 8 位数字（如 20030323）。",
         "private": "这个密码不对。\n\n提示：D1 工作日记和入职资料里都提到系统初始密码。",
         "recordings": "这个密码不对。\n\n提示：私人文件夹里的「账号密码.txt」有 VPN 密码。",
-        "final": "这个密码不对。\n\n提示：听听录音，「起源计划」和入职日期组合起来就是最终密码。",
+        "research": "这个密码不对。\n\n提示：录音-张知予说密码是「接触这一切开始的那一天」——她的入职日期 2024年3月6日。",
     }
     return {
         "reply": hints.get(target, "密码错误。请再试一次。"),
@@ -706,7 +707,7 @@ def _find_next_locked_target(game_state: dict) -> str:
     """
     memory = _get_memory(game_state)
     discovered = set(folder_discovery.get_discovered_targets(game_state))
-    target_order = ["work-diary", "private", "recordings", "final"]
+    target_order = ["work-diary", "private", "recordings", "research"]
 
     for target in target_order:
         if target not in discovered:
@@ -847,7 +848,7 @@ INTENT_KEYWORDS = {
     "scan": ["扫描", "scan", "查找", "找文件", "发现文件"],
     "files": ["有什么文件", "文件列表", "列出文件", "能看什么", "有哪些文件", "文件"],
     "read": ["打开", "读取", "读一下", "查看", "读", "打开文件", "读读"],
-    "get": ["获取", "get", "解锁", "解密", "打开密码", "输入密码打开"],
+    "get": ["获取", "get", "解锁", "解密", "打开密码", "输入密码打开", "链接", "连接", "link"],
     "status": ["状态", "进度", "到哪了", "情况"],
     "memory": ["记忆", "你知道什么", "你知道多少", "你知道些什么"],
     "clue": ["查看线索", "线索", "有什么线索", "发现什么", "整理线索"],
@@ -855,6 +856,8 @@ INTENT_KEYWORDS = {
     "password_hint": ["密码是什么", "密码多少", "怎么破解密码", "密码提示", "怎么分析密码", "密码在哪", "找不到密码", "密码线索", "当前密码", "这个密码"],
     "folder_help": ["怎么获取文件夹", "怎么解锁文件夹", "怎么打开文件夹", "怎么找文件夹", "文件夹在哪", "找不到文件夹", "怎么获取文件", "怎么解锁文件", "如何获取文件夹", "如何解锁文件夹", "如何获取文件", "怎么扫描文件夹", "怎么获得文件夹", "文件夹怎么打开", "文件怎么获取"],
     "reset": ["重置", "重新开始", "重来"],
+    "install_skill": ["安装技能", "学习技能", "装载技能", "激活技能"],
+    "show_hidden": ["显示隐藏文件", "显示所有文件", "显示隐藏", "显示所有", "扫描隐藏文件", "查看隐藏文件"],
 }
 
 
@@ -904,7 +907,7 @@ SUGGESTION_PATTERNS = [
     (r"(?:扫描|获取|解锁)\s+工作日记", "获取 工作日记 密码"),
     (r"(?:扫描|获取|解锁)\s+私人文件夹", "获取 私人文件夹 密码"),
     (r"(?:扫描|获取|解锁|连接)\s+公司服务器", "获取 公司服务器 密码"),
-    (r"(?:扫描|获取|解锁)\s+未命名文档", "获取 未命名文档 密码"),
+    (r"(?:扫描|获取|解锁)\s+研究笔记", "获取 研究笔记 密码"),
     (r"(?:扫描|查看)\s+研究笔记", "扫描 研究笔记"),
     (r"(?:扫描|查看)\s+邮件", "扫描 邮件"),
     # 工具
@@ -1045,7 +1048,7 @@ def _extract_filename(user_input: str, accessible_files: set) -> str:
 
         short = full_path.replace("files/", "")
         # 子目录内文件的别名：去掉文件夹前缀（如 deck/todolist.txt → todolist.txt）
-        for dir_prefix in ("deck/", "private/", "new-folder/"):
+        for dir_prefix in ("deck/", "private/", "research/"):
             if dir_prefix in short:
                 flat = short.replace(dir_prefix, "")
                 aliases.add(flat.lower())
@@ -1189,17 +1192,41 @@ def detect_intent(user_input: str, accessible_files: set, game_state: dict = Non
     return "none", None
 
 
+def _has_unlocked_hidden_files(game_state: dict) -> bool:
+    """判断当前已解锁的文件夹中是否还有未揭示的隐藏文件"""
+    memory = _get_memory(game_state)
+    return bool(hidden_file_state.get_hidden_files_in_unlocked_folders(memory.accessible_files, game_state))
+
+
+def _skill_installed(game_state: dict) -> bool:
+    """玩家是否已安装「显示隐藏文件」技能"""
+    return bool(game_state.get("hidden_files", {}).get("skill_installed", False))
+
+
 def _build_default_suggestions(game_state: dict) -> list:
     """
     根据当前章节、已读文件和已发现目标生成主线建议列表。
+    只考虑当前可见文件，避免推荐尚未揭示的隐藏文件。
     """
     chapter = game_state.get("chapter", 1)
     read = set(game_state.get("files_read", []))
     discovered = set(folder_discovery.get_discovered_targets(game_state))
+    memory = _get_memory(game_state)
+    visible_files = hidden_file_state.get_visible_files(memory.accessible_files, game_state)
     has_read = lambda path: path in read
 
     def _main_quest_hint(text: str, command: str) -> dict:
         return {"text": text, "command": command}
+
+    all_diary_files = [
+        "files/work-diary/01.md", "files/work-diary/02.md",
+        "files/work-diary/03.md", "files/work-diary/04.md",
+        "files/work-diary/05.md", "files/work-diary/06.md",
+        "files/work-diary/07.md", "files/work-diary/08.md",
+        "files/work-diary/09.md", "files/work-diary/10.md",
+    ]
+    # 只考虑可见的日记文件
+    visible_diary = [f for f in all_diary_files if f in visible_files]
 
     # Chapter 1：引导玩家从桌面文件到发现工作日记
     if chapter == 1:
@@ -1213,24 +1240,14 @@ def _build_default_suggestions(game_state: dict) -> list:
 
     # Chapter 2：工作日记是主线，读完关键篇后推进到私人文件夹
     if chapter == 2:
-        diary_files = [
-            "files/work-diary/01.md", "files/work-diary/02.md",
-            "files/work-diary/03.md", "files/work-diary/04.md",
-            "files/work-diary/05.md", "files/work-diary/06.md",
-            "files/work-diary/07.md", "files/work-diary/08.md",
-            "files/work-diary/09.md", "files/work-diary/10.md",
-        ]
-        # 始终优先指向下一篇未读工作日记，避免已读还推"继续读"
-        for f in diary_files:
-            if not has_read(f):
-                num = f.split("/")[-1].split(".")[0].lstrip("0") or "1"
-                cn = INT_TO_CN.get(int(num), num)
-                return [_main_quest_hint(f"开始阅读 第{cn}篇工作日记", f"打开 第{cn}篇工作日记")]
-        # 全部已读：推进主线到私人文件夹
+        next_unread = next((f for f in visible_diary if not has_read(f)), None)
+        if next_unread:
+            num = next_unread.split("/")[-1].split(".")[0].lstrip("0") or "1"
+            cn = INT_TO_CN.get(int(num), num)
+            return [_main_quest_hint(f"开始阅读 第{cn}篇工作日记", f"打开 第{cn}篇工作日记")]
         if "private" in discovered:
             return [_main_quest_hint("尝试扫描 私人文件夹 文件夹", "获取 私人文件夹 密码")]
         return [_main_quest_hint("再读工作日记，找私人文件夹线索", "打开 工作日记")]
-
 
     # Chapter 3：私人文件夹 + 研究笔记
     if chapter == 3:
@@ -1250,17 +1267,32 @@ def _build_default_suggestions(game_state: dict) -> list:
             return [_main_quest_hint("听听下一个录音 录音-林璇陈玑", "打开 录音-林璇陈玑")]
         if not has_read("files/audio/录音-陆天枢-0313.txt"):
             return [_main_quest_hint("听听剩下的录音 录音-陆天枢", "打开 录音-陆天枢")]
-        if "final" not in discovered:
-            return [_main_quest_hint("读研究笔记，找最终线索", "打开 研究笔记")]
-        return [_main_quest_hint("尝试扫描 未命名文档 ", "获取 未命名文档 密码")]
+        # 三段可见录音都听完后，如果还有隐藏录音没揭示，引导安装/使用技能
+        if _has_unlocked_hidden_files(game_state):
+            if _skill_installed(game_state):
+                return [_main_quest_hint("扫描隐藏文件，看看还有没有遗漏", "显示所有文件")]
+            return [_main_quest_hint("安装技能：显示隐藏文件", "安装技能 显示隐藏文件")]
+        return [_main_quest_hint("再读工作日记，找研究笔记线索", "打开 工作日记")]
 
-    # Chapter 5 / 6：最终密码
-    if chapter >= 5:
-        if not has_read("files/new-folder/未命名文档.md"):
-            return [_main_quest_hint("尝试解开 未命名文档", "获取 未命名文档 密码")]
+    # Chapter 5：研究笔记 -> 隐藏文件
+    if chapter == 5:
+        if not has_read("files/research/res-1.md"):
+            return [_main_quest_hint("读读研究笔记 1", "打开 研究笔记1")]
+        if not has_read("files/research/res-2.md"):
+            return [_main_quest_hint("读读研究笔记 2", "打开 研究笔记2")]
+        if not has_read("files/research/res-3.md"):
+            return [_main_quest_hint("读读研究笔记 3", "打开 研究笔记3")]
+        if "files/research/未命名文档.md" in visible_files:
+            return []
+        if _has_unlocked_hidden_files(game_state):
+            if _skill_installed(game_state):
+                return [_main_quest_hint("扫描隐藏文件，找到最终文档", "显示所有文件")]
+            return [_main_quest_hint("安装技能：显示隐藏文件", "安装技能 显示隐藏文件")]
         return []
 
+    # Chapter 6：终局
     return []
+
 
 
 def _save_suggestions(result: dict, user_input: str, game_state: dict) -> dict:
@@ -1332,13 +1364,14 @@ def _build_password_hint(game_state: dict) -> str:
             "提示：私人文件夹里有个「账号密码.txt」文件，里面记录了 VPN 密码。\n"
             "格式是 Star + Core + @ + 年份。"
         )
-    if not is_unlocked("final"):
+    if not is_unlocked("research"):
         return (
-            "未命名文档被终极密码保护。\n"
-            "提示：最终密码由两部分组成——录音里提到的「起源计划」英文名，和张知予的入职日期。\n"
-            "入职日期是 3 月 6 日。"
+            "研究笔记文件夹被密码保护。\n"
+            "提示：录音-张知予说密码是「接触这一切开始的那一天」。\n"
+            "那是她的入职日期。"
         )
     return "目前没有发现需要密码的未解锁文件。"
+
 
 
 def _build_analysis_reply(game_state: dict, focus: str = "") -> str:
@@ -1361,10 +1394,10 @@ def _build_analysis_reply(game_state: dict, focus: str = "") -> str:
             lines.append("· 私人文件夹需要系统初始密码。入职资料和工作日记 D1 都有记录，格式是 ZY + 年份 + ! + starlight。")
         elif "files/audio/录音-全员会议-0308.txt" not in accessible:
             lines.append("· 公司服务器需要 VPN 密码。私人文件夹的「账号密码.txt」里有记录。")
-        elif "files/new-folder/未命名文档.md" not in accessible:
-            lines.append("· 最终密码 = 起源计划英文名 + 张知予入职日期（3月6日）。")
+        elif "files/research/res-1.md" not in accessible:
+            lines.append("· 研究笔记文件夹需要密码。录音-张知予说密码是「接触这一切开始的那一天」——她的入职日期。")
         else:
-            lines.append("· 所有加密文件都已解锁。")
+            lines.append("· 所有加密文件夹都已解锁。试试「显示所有文件」，看看有没有被隐藏的文件。")
 
     # 线索分析
     if not focus or "线索" in focus or "证据" in focus:
@@ -1393,7 +1426,7 @@ def _build_file_status_reply(game_state: dict) -> dict:
     - 待解锁文件夹（标红⚠，若无已发现且待解锁则不展示）
     """
     memory = _get_memory(game_state)
-    accessible = sorted(memory.accessible_files)
+    accessible = sorted(hidden_file_state.get_visible_files(memory.accessible_files, game_state))
     read = sorted(memory.processed_files)
     unread = [f for f in accessible if f not in read]
 
@@ -1405,7 +1438,7 @@ def _build_file_status_reply(game_state: dict) -> dict:
         if not cfg:
             continue
         target_files = cfg.get("files", [])
-        if target_files and not all(f in accessible for f in target_files):
+        if target_files and not all(f in memory.accessible_files for f in target_files):
             display_name = cfg.get("names", [target_id])[0]
             discovered_locked.append(display_name)
 
@@ -1430,14 +1463,91 @@ def _build_file_status_reply(game_state: dict) -> dict:
     return {"reply": "\n".join(lines), "type": "ai"}
 
 
+# 隐藏文件技能：安装
+def _handle_install_skill(game_state: dict) -> dict:
+    """处理「安装技能 显示隐藏文件」"""
+    if "hidden_files" not in game_state:
+        game_state["hidden_files"] = {"skill_installed": True, "revealed": []}
+    else:
+        game_state["hidden_files"]["skill_installed"] = True
+    return {
+        "reply": "技能已安装：显示隐藏文件。\n\n现在你可以说「显示所有文件」来扫描已解锁文件夹中的隐藏文件。",
+        "type": "ai",
+    }
 
-# ============ 命令处理 / 自然语言意图 ============
+
+# 隐藏文件技能：扫描并揭示
+def _handle_show_hidden_files(game_state: dict) -> dict:
+    """处理「显示所有文件」等命令，揭示已解锁文件夹中的隐藏文件"""
+    hidden_state = game_state.get("hidden_files")
+    if not hidden_state or not hidden_state.get("skill_installed"):
+        return {
+            "reply": "你还没有安装「显示隐藏文件」技能。\n\n对我说：安装技能 显示隐藏文件",
+            "type": "ai",
+        }
+
+    memory = _get_memory(game_state)
+    revealed = set(hidden_state.get("revealed", []))
+    newly_revealed = []
+
+    for path in hidden_file_state.get_default_hidden_files():
+        if path in revealed:
+            continue
+        folder = "/".join(path.split("/")[:-1])
+        # 判断该文件夹是否已解锁：其中至少有一个可见文件
+        visible = hidden_file_state.get_visible_files(memory.accessible_files, game_state)
+        if any(v.startswith(folder + "/") for v in visible):
+            newly_revealed.append(path)
+
+    if not newly_revealed:
+        return {
+            "reply": "扫描了目前的文件夹，暂无隐藏文件",
+            "type": "ai",
+        }
+
+    # 揭示文件：加入 AI 可访问范围
+    memory.unlock_files(newly_revealed)
+    for path in newly_revealed:
+        memory.add_clue({
+            "source": "show_hidden_files",
+            "category": "隐藏文件",
+            "text": f"隐藏文件已显示：{path.replace('files/', '')}",
+        })
+    _save_memory(game_state, memory)
+    revealed.update(newly_revealed)
+    game_state["hidden_files"]["revealed"] = sorted(revealed)
+
+    file_names = [p.replace("files/", "") for p in newly_revealed]
+    reply = "扫描到隐藏文件，已显示（" + ", ".join(file_names) + "）"
+
+    # 终局：如果揭示了未命名文档
+    if "files/research/未命名文档.md" in newly_revealed:
+        game_state["chapter"] = 6
+        game_state["ai_state"] = "truth"
+        return {
+            "reply": reply + "\n\n最终文档已发现，可自由对话 或 结束体验",
+            "type": "ending_alert",
+            "unlock": newly_revealed,
+        }
+
+    return {
+        "reply": reply,
+        "type": "ai",
+        "unlock": newly_revealed,
+    }
+
 
 def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
     """
     执行自然语言意图，并用 M-M 口吻包装结果
     """
     memory = _get_memory(game_state)
+
+    if intent == "install_skill":
+        return _handle_install_skill(game_state)
+
+    if intent == "show_hidden":
+        return _handle_show_hidden_files(game_state)
 
     if intent == "scan_ask":
         # 无目标扫描 → 反问玩家想扫描哪里
@@ -1464,7 +1574,7 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
                 "  · 扫描 工作日记 密码\n"
                 "  · 扫描 私人文件夹 密码\n"
                 "  · 扫描 公司服务器 密码\n"
-                "  · 扫描 未命名文档 密码\n\n"
+                "  · 扫描 研究笔记 密码\n\n"
                 "如果你已经知道具体密码，也可以直接说：\n"
                 "  · 扫描 工作日记 20030323"
             ),
@@ -1475,6 +1585,7 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
         result = _build_file_status_reply(game_state)
         result["expand_sidebar"] = True
         return result
+
 
 
     if intent == "read" and argument:
@@ -1508,8 +1619,8 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
                 2: "目前还没整理出明确线索。\n\n读工作日记吧——她在那里面写了不少带 * 标记的异常。读得越多，我整理出来的越多。",
                 3: "目前我整理出的线索还不多。\n\n你读过的每一个文件都会沉淀下来。试试让我读工作日记，或者打开私人文件夹的异常观察记录。",
                 4: "线索在慢慢拼起来。\n\n你读了三段录音，里面提到了关键的几个名字。让我再读一遍研究笔记？",
-                5: "线索接近完整。\n\n打开研究笔记 1-3，把它们和录音串起来。",
-                6: "所有线索都齐了。\n\n未命名文档里有最后的答案。你决定怎么做。",
+                5: "线索接近完整。\n\n打开研究笔记 1-3，然后用「显示所有文件」扫描隐藏文件。",
+                6: "所有线索都齐了。\n\n未命名文档已经揭示。你决定怎么做。",
             }
             return {"reply": no_clue_hints.get(chapter, "再读一些文件，我就能整理出更完整的线索了。"), "type": "ai"}
         return {
@@ -1520,12 +1631,12 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
     if intent == "hint":
         chapter = game_state.get("chapter", 1)
         hints = {
-            1: "桌面上有 todolist.txt 和入职资料。todolist 里提到 D 盘需要 8 位密码——入职资料里应该有线索。",
+            1: "桌面上有 todolist.txt 和入职资料。先看它们。\ntodolist 里提到 D 盘需要 8 位密码——入职资料里应该有线索。",
             2: "读一下工作日记吧，D1 里有入职信息。也可以问我'还有什么文件'。",
             3: "日记里带 * 标记的日子很关键。私人文件夹里有异常观察记录，研究笔记里还有更深入的分析。",
             4: "入职资料里有密码。输入密码后，我可以连上公司服务器读取录音。",
-            5: "录音里反复提到'起源计划'和她的入职日期 3 月 6 日。把所有线索拼起来。",
-            6: "已经很接近了。输入你想到的最终密码，打开未命名文档。",
+            5: "录音-张知予提到研究笔记密码是她的入职日期。研究笔记里藏着最终文档。",
+            6: "未命名文档已经揭示。你可以自由对话，或结束体验。",
         }
         return {
             "reply": hints.get(chapter, "继续和我对话，我会把知道的告诉你。"),
@@ -1691,8 +1802,8 @@ def handle_command(user_input: str, game_state: dict) -> dict:
             2: "试试读一下工作日记，D1 里有关于入职的信息。输入 /files 看看有什么。",
             3: "注意到日记里带 * 标记的日子了吗？那些是重要的。私人文件夹里有异常观察记录，还可以扫描研究笔记看看她更深入的分析。",
             4: "VPN密码在账号密码文件里。输入密码连接公司服务器，听听她录下了什么。",
-            5: "录音里提到了'起源计划'——和她的入职日期有关。把所有线索串起来。",
-            6: "你已经很接近真相了。组合所有线索，找到最后一个密码。",
+            5: "录音-张知予提到研究笔记密码是她的入职日期。研究笔记里藏着最终文档。",
+            6: "未命名文档已经揭示。你可以自由对话，或结束体验。",
         }
         return {
             "reply": hints.get(chapter, "继续和 M-M 对话，它可能会给你线索。试试 /files 看看。"),
@@ -1972,4 +2083,5 @@ def new_game_state() -> dict:
         "awaiting_password": False,
         "off_topic_count": 0,
         "memory": memory.to_dict(),
+        "hidden_files": {"skill_installed": False, "revealed": []},
     }

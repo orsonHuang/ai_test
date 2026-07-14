@@ -377,6 +377,24 @@ html, body {
   color: var(--text);
 }
 
+.tree-file.hidden-default {
+  color: var(--error);
+}
+
+.tree-file.hidden-default.read {
+  color: var(--error);
+}
+
+.tree-file.hidden-default .icon::before {
+  content: '▸ ';
+  color: var(--error);
+}
+
+.tree-file.hidden-default.read .icon::before {
+  content: '✓ ';
+  color: var(--error);
+}
+
 /* 主聊天区域 */
 #main {
   flex: 1;
@@ -511,6 +529,20 @@ html, body {
   background: rgba(255, 85, 85, 0.05);
   border-radius: 4px;
   color: var(--error);
+}
+
+.message.ending_alert {
+  justify-content: center;
+  color: var(--error);
+  margin: 12px 0;
+}
+
+.message.ending_alert .message-bubble {
+  border: 1px solid var(--error);
+  background: rgba(255, 85, 85, 0.08);
+  border-radius: 4px;
+  color: var(--error);
+  text-align: center;
 }
 
 /* 文件卡片：与 M-M 对话明显区分 */
@@ -1155,7 +1187,8 @@ const DISPLAY_NAMES = {
   'files/audio/录音-全员会议-0308.txt': '录音-全员会议',
   'files/audio/录音-林璇陈玑-0313.txt': '录音-林璇陈玑',
   'files/audio/录音-陆天枢-0313.txt': '录音-陆天枢',
-  'files/new-folder/未命名文档.md': '未命名文档.md',
+  'files/audio/录音-张知予.txt': '录音-张知予',
+  'files/research/未命名文档.md': '未命名文档.md',
   'files/research/res-1.md': '研究笔记1',
   'files/research/res-2.md': '研究笔记2',
   'files/research/res-3.md': '研究笔记3',
@@ -1173,9 +1206,19 @@ const FOLDER_NAMES = {
   'files/private': '私人文件夹',
   'files/audio': '录音',
   'files/research': '研究笔记',
-  'files/new-folder': '新建文件夹',
   'files/emails': '邮件',
 };
+
+// 默认隐藏的文件（显示后文件名会标红）
+const DEFAULT_HIDDEN_FILES = new Set([
+  'files/work-diary/06.md',
+  'files/work-diary/07.md',
+  'files/work-diary/08.md',
+  'files/work-diary/09.md',
+  'files/work-diary/10.md',
+  'files/audio/录音-张知予.txt',
+  'files/research/未命名文档.md',
+]);
 
 /* =============== 文件夹展开状态（持久化到会话） =============== */
 let folderState = {
@@ -1195,6 +1238,7 @@ let gameState = {
   mm_name_revealed: false,
   awaiting_password: false,
   discovered_targets: [],
+  hidden_files: {skill_installed: false, revealed: []},
   memory: {
     accessible_files: ['files/deck/todolist.txt', 'files/deck/入职资料.txt'],
     processed_files: [],
@@ -1249,7 +1293,7 @@ function addMessage(content, type = 'ai', meta = {}) {
     bubble.innerHTML = '<span class="prefix">&gt;</span>' + escapeHtml(content);
     div.appendChild(avatar);
     div.appendChild(bubble);
-  } else if (type === 'system' || type === 'password' || type === 'error') {
+  } else if (type === 'system' || type === 'password' || type === 'error' || type === 'ending_alert') {
     const bubble = document.createElement('div');
     bubble.className = 'message-bubble';
     bubble.innerHTML = escapeHtml(content).replace(/\n/g, '<br>');
@@ -1320,7 +1364,10 @@ function updateAISuggestion() {
   const chapter = gameState.chapter || 1;
   const read = new Set(gameState.files_read || []);
   const discovered = new Set(gameState.discovered_targets || []);
+  const accessible = new Set(gameState.memory?.accessible_files || []);
+  const skillInstalled = gameState.hidden_files?.skill_installed || false;
   const hasRead = (path) => read.has(path);
+  const isAccessible = (path) => accessible.has(path);
 
   let suggestion = '和我对话，我会帮你推进。';
   let suggestions = [];
@@ -1351,7 +1398,7 @@ function updateAISuggestion() {
   } else if (chapter === 2) {
     let nextDiary = null;
     for (const f of DIARY_FILES) {
-      if (!hasRead(f)) {
+      if (!hasRead(f) && isAccessible(f)) {
         nextDiary = f;
         break;
       }
@@ -1392,29 +1439,46 @@ function updateAISuggestion() {
     } else if (!hasRead('files/audio/录音-陆天枢-0313.txt')) {
       suggestion = '还有陆天枢的录音，听听他怎么说';
       suggestions = [{text: suggestion, command: '打开 录音-陆天枢'}];
-    } else if (discovered.has('final')) {
-      suggestion = '所有录音听完，该打开未命名文档了';
-      suggestions = [{text: '获取 未命名文档 密码', command: '获取 未命名文档 密码'}];
+    } else if (!hasRead('files/audio/录音-张知予.txt')) {
+      if (skillInstalled) {
+        suggestion = '录音文件夹里可能还有隐藏文件，扫描看看';
+        suggestions = [{text: '显示所有文件', command: '显示所有文件'}];
+      } else {
+        suggestion = '安装「显示隐藏文件」技能，可以扫描隐藏录音';
+        suggestions = [{text: '安装技能 显示隐藏文件', command: '安装技能 显示隐藏文件'}];
+      }
+    } else if (!discovered.has('research')) {
+      suggestion = '录音-张知予提到了研究笔记，再读读看';
+      suggestions = [{text: suggestion, command: '打开 录音-张知予'}];
     } else {
-      suggestion = '读研究笔记，找最终密码的线索';
-      suggestions = [{text: '打开 研究笔记', command: '打开 研究笔记'}];
+      suggestion = '研究笔记已发现，获取它的密码';
+      suggestions = [{text: '获取 研究笔记 密码', command: '获取 研究笔记 密码'}];
     }
   } else if (chapter === 5) {
-    if (!hasRead('files/new-folder/未命名文档.md')) {
-      suggestion = '起源计划 + 入职日期，组合成最终密码';
-      suggestions = [{text: '获取 未命名文档 密码', command: '获取 未命名文档 密码'}];
+    if (!hasRead('files/research/res-1.md')) {
+      suggestion = '读读研究笔记 1';
+      suggestions = [{text: suggestion, command: '打开 研究笔记1'}];
+    } else if (!hasRead('files/research/res-2.md')) {
+      suggestion = '读读研究笔记 2';
+      suggestions = [{text: suggestion, command: '打开 研究笔记2'}];
+    } else if (!hasRead('files/research/res-3.md')) {
+      suggestion = '读读研究笔记 3';
+      suggestions = [{text: suggestion, command: '打开 研究笔记3'}];
+    } else if (!isAccessible('files/research/未命名文档.md')) {
+      if (skillInstalled) {
+        suggestion = '扫描隐藏文件，找到最终文档';
+        suggestions = [{text: '显示所有文件', command: '显示所有文件'}];
+      } else {
+        suggestion = '安装「显示隐藏文件」技能，揭示最终文档';
+        suggestions = [{text: '安装技能 显示隐藏文件', command: '安装技能 显示隐藏文件'}];
+      }
     } else {
       suggestion = '真相已经揭开，决定下一步怎么做';
       suggestions = [];
     }
   } else if (chapter === 6) {
-    if (!hasRead('files/new-folder/未命名文档.md')) {
-      suggestion = '输入最终密码，打开未命名文档';
-      suggestions = [{text: suggestion, command: '获取 未命名文档 密码'}];
-    } else {
-      suggestion = '真相已经揭开，决定下一步怎么做';
-      suggestions = [];
-    }
+    suggestion = '真相已经揭开，决定下一步怎么做';
+    suggestions = [];
   }
 
   aiSuggestion.textContent = suggestion;
@@ -1427,7 +1491,6 @@ function updateAISuggestion() {
     btnExecute.disabled = suggestions.length === 0;
   }
 }
-
 
 function updateUI() {
   chapterDisplay.textContent = `第 ${gameState.chapter} 章`;
@@ -1522,7 +1585,10 @@ function renderTreeNode(tree, container, readSet, depth = 0) {
       container.appendChild(folderEl);
     } else {
       const fileEl = document.createElement('div');
-      fileEl.className = 'tree-file' + (readSet.has(node.fullPath) ? ' read' : '');
+      let fileClass = 'tree-file';
+      if (readSet.has(node.fullPath)) fileClass += ' read';
+      if (DEFAULT_HIDDEN_FILES.has(node.fullPath)) fileClass += ' hidden-default';
+      fileEl.className = fileClass;
       fileEl.dataset.file = node.fullPath.replace(/^files\//, '');
       fileEl.innerHTML = (
         '<span class="icon">' + (readSet.has(node.fullPath) ? '' : '▸') + '</span>' +
@@ -1633,6 +1699,7 @@ async function sendMessage() {
     if (data.reply) {
       let type = 'ai';
       if (data.type === 'command' || data.type === 'system') type = 'system';
+      if (data.type === 'ending_alert') type = 'ending_alert';
       addMessage(data.reply, type);
     }
 

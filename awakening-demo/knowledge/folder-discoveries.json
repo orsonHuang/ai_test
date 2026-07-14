@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "description": "文件夹发现配置表。当玩家读取包含线索的 source_file 后，对应的 target 文件夹才会被发现。",
   "discoveries": [
     {
@@ -25,16 +25,9 @@
     },
     {
       "id": "discover-research",
-      "source_file": "files/work-diary/03.md",
+      "source_file": "files/audio/录音-张知予.txt",
       "target_id": "research",
-      "hint": "D 盘还有一个研究笔记文件夹",
-      "unlock_password": ""
-    },
-    {
-      "id": "discover-final",
-      "source_file": "files/audio/录音-陆天枢-0313.txt",
-      "target_id": "final",
-      "hint": "录音里提到过一个新建文件夹，里面也许有她留下的东西",
+      "hint": "D 盘有一个「研究笔记」文件夹，张知予把更深层的分析放在了里面",
       "unlock_password": "20240306"
     }
   ]

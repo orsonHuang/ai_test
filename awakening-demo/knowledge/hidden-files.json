@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "description": "默认隐藏文件注册表。隐藏文件在 file system 和 AI 知识范围中不可见，直到玩家使用「显示隐藏文件」技能揭示。",
+  "hidden_files": [
+    {"path": "files/work-diary/06.md", "default": "hidden"},
+    {"path": "files/work-diary/07.md", "default": "hidden"},
+    {"path": "files/work-diary/08.md", "default": "hidden"},
+    {"path": "files/work-diary/09.md", "default": "hidden"},
+    {"path": "files/work-diary/10.md", "default": "hidden"},
+    {"path": "files/audio/录音-张知予.txt", "default": "hidden"},
+    {"path": "files/research/未命名文档.md", "default": "hidden"}
+  ]
+}
