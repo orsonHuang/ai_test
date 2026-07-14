@@ -130,7 +130,7 @@ def organize_clues(clues: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]
 
 def format_clues(clues: List[Dict[str, Any]]) -> str:
     """把线索列表格式化为 M-M 口吻的汇报文本。
-    
+
     四分类：待扫描文件 → 密码线索 → 文件线索 → 观察发现异常线索
     """
     if not clues:
@@ -139,7 +139,15 @@ def format_clues(clues: List[Dict[str, Any]]) -> str:
     organized = organize_clues(clues)
     lines = ["我整理了一下目前读到的线索："]
 
-    # 1. 优先展示「待扫描文件」——行动目标
+    # 1. 优先展示「待扫描文件夹」——最高行动目标
+    folder_items = organized.pop("待扫描文件夹", [])
+    if folder_items:
+        lines.append("\n【⚠ 待扫描文件夹】")
+        for i, item in enumerate(folder_items, 1):
+            short_source = item.get("source", "").replace("files/", "")
+            lines.append(f"  ⚠ {i}. {item['text']}（来自 {short_source}）")
+
+    # 2. 优先展示「待扫描文件」——行动目标
     scan_items = organized.pop("待扫描文件", [])
     if scan_items:
         lines.append("\n【⚠ 待扫描文件】")
@@ -147,7 +155,7 @@ def format_clues(clues: List[Dict[str, Any]]) -> str:
             short_source = item.get("source", "").replace("files/", "")
             lines.append(f"  {i}. {item['text']}（来自 {short_source}）")
 
-    # 2. 密码线索 —— 推进主线的钥匙
+    # 3. 密码线索 —— 推进主线的钥匙
     pwd_items = organized.pop("密码线索", [])
     if pwd_items:
         lines.append("\n【密码线索】")
@@ -155,7 +163,7 @@ def format_clues(clues: List[Dict[str, Any]]) -> str:
             short_source = item.get("source", "").replace("files/", "")
             lines.append(f"  {i}. {item['text']}（来自 {short_source}）")
 
-    # 3. 文件线索
+    # 4. 文件线索
     file_items = organized.pop("文件线索", [])
     if file_items:
         lines.append("\n【文件线索】")
@@ -163,7 +171,7 @@ def format_clues(clues: List[Dict[str, Any]]) -> str:
             short_source = item.get("source", "").replace("files/", "")
             lines.append(f"  {i}. {item['text']}（来自 {short_source}）")
 
-    # 4. 观察发现异常线索 —— 所有异常的归口
+    # 5. 观察发现异常线索 —— 所有异常的归口
     anomaly_items = organized.pop("观察发现异常线索", [])
     if anomaly_items:
         lines.append("\n【观察发现异常线索】")
