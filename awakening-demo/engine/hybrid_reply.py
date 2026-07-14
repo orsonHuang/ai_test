@@ -554,10 +554,6 @@ def handle_scan_command(game_state: dict, natural: bool = False, target: str = "
             "reply": "那个位置我还没有权限访问。先把能打开的文件夹都看看？",
             "type": "ai",
         }
-        return {
-            "reply": "那个位置我还没有权限访问。先把能打开的文件夹都看看？",
-            "type": "ai",
-        }
 
     # 检查是否需要密码
     if target_config.get("need_password") and chapter < {
@@ -794,16 +790,17 @@ def handle_get_command(user_input: str, game_state: dict, natural: bool = False)
       - 获取 工作日记 密码          → 弹出密码输入框
       - 获取 工作日记              → 弹出密码输入框（保留旧习惯）
     """
-    lowered = user_input.lower().strip()
-    # 去掉"获取"类前缀
+    # 保留原始大小写以提取密码（如 ZY2024!starlight）
+    original = user_input.strip()
     for kw in INTENT_KEYWORDS["get"]:
-        lowered = lowered.replace(kw.lower(), "")
-    lowered = lowered.strip()
+        original = re.sub(re.escape(kw), "", original, flags=re.IGNORECASE)
+    original = original.strip()
 
-    if not lowered:
+    if not original:
         return _build_get_folder_hint(game_state)
 
-    parts = lowered.split()
+
+    parts = original.split()
     password = ""
     # 判断末尾 token 是否是密码
     if parts:
@@ -840,6 +837,7 @@ def handle_get_command(user_input: str, game_state: dict, natural: bool = False)
         return _try_unlock_with_password(target, password, game_state, natural)
 
     return _prompt_password_for_target(target, game_state, natural)
+
 
 
 
@@ -1107,6 +1105,10 @@ def _extract_filename(user_input: str, accessible_files: set) -> str:
             elif "陆天枢" in full_path:
                 aliases.add("陆天枢")
                 aliases.add("天枢")
+            elif "张知予" in full_path:
+                aliases.add("录音-张知予")
+                aliases.add("张知予录音")
+                aliases.add("张知予")
 
         for alias in aliases:
             alias_map[alias] = full_path
@@ -1180,6 +1182,14 @@ def detect_intent(user_input: str, accessible_files: set, game_state: dict = Non
     bare_filename = _extract_filename(user_input, accessible_files)
     if bare_filename:
         return "read", bare_filename
+
+    # 安装/显示隐藏文件技能意图：必须优先于通用 files 意图
+    for kw in INTENT_KEYWORDS["install_skill"]:
+        if kw.lower() in lowered:
+            return "install_skill", None
+    for kw in INTENT_KEYWORDS["show_hidden"]:
+        if kw.lower() in lowered:
+            return "show_hidden", None
 
     # 其他通用意图
     for intent, keywords in INTENT_KEYWORDS.items():
