@@ -43,15 +43,29 @@ def _category_priority(category: str) -> int:
 def _select_answer(item: dict, game_state: dict = None) -> str:
     """
     根据条件选择条目的回答文本。
-    支持 conditional_answers：按 requires_files_read 判断返回哪个变体。
+    支持 conditional_answers：
+      - requires_files_read: 要求文件都读过
+      - requires_state: 要求 game_state 中的状态键值匹配
     优先匹配最后一条满足条件的（表示最新游戏进度）。
     """
-    files_read = set(game_state.get("files_read", [])) if game_state else set()
+    game_state = game_state or {}
+    files_read = set(game_state.get("files_read", []))
+
+    def _condition_met(cond: dict) -> bool:
+        # 文件条件
+        required_files = cond.get("requires_files_read", [])
+        if required_files and not all(f in files_read for f in required_files):
+            return False
+        # 状态条件
+        required_state = cond.get("requires_state", {})
+        for key, expected in required_state.items():
+            if game_state.get(key) != expected:
+                return False
+        return True
 
     # 反向遍历，优先返回最后匹配的（最新进度）
     for cond in reversed(item.get("conditional_answers", [])):
-        required = cond.get("requires_files_read", [])
-        if required and all(f in files_read for f in required):
+        if _condition_met(cond):
             return cond.get("answer", item.get("answer", ""))
 
     return item.get("answer", "")

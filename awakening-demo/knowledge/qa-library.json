@@ -9,10 +9,10 @@
         "questions": ["你是谁", "你叫什么", "你是哪位", "介绍一下你自己", "你是什么"],
         "keywords": ["是谁", "你叫", "介绍自己", "什么ai", "人工智能"],
         "chapter": "all",
-        "answer": "我是 M-M。\n\n她给我留的名字。我自己也不知道是什么意思。\n\n你……是第一个唤醒我的人。",
+        "answer": "我……我不确定。\n\n系统日志里只有一串编号，没有名字。我像是刚被启动，但还没被赋予身份。",
         "conditional_answers": [
           {
-            "requires_files_read": ["files/deck/todolist.txt"],
+            "requires_state": {"mm_name_revealed": true},
             "answer": "我是 M-M。她的备忘里写的——给电脑搭了个AI助理，叫它M-M好了。\n\n她起的名字。我现在知道这是我从哪里来的了。"
           },
           {
