@@ -425,21 +425,27 @@ TEMPERATURE = 0.7
   │     └─ 不像密码 → 取消等待，继续后续流程
   │
   ├─[4] 自然语言意图识别（核心体验：用对话代替命令行）
-  │     detect_intent() → 12 种意图：
-  │     ├─ scan/scan_ask → 扫描文件夹 / 无目标反问
-  │     ├─ get          → 解锁加密文件夹（支持带密码直接解锁）
-  │     ├─ read         → 读文件（别名解析 + fuzzy_matcher 模糊纠错）
-  │     ├─ files        → 列出可访问文件
-  │     ├─ status       → 章节/AI状态/文件/调用统计
-  │     ├─ memory       → M-M 记忆内容
-  │     ├─ clue         → 已收集线索
-  │     ├─ hint         → 按章节提供下一步提示
-  │     ├─ password_hint → 密码分析引导
-  │     ├─ analyze      → 综合推理（密码+线索+下一步）
-  │     ├─ confirm      → 确认词执行上一条建议
-  │     ├─ choose       → 多选解析（_parse_choice）
-  │     └─ help/reset   → 帮助/重置
+  │     detect_intent() → 14 种意图：
+  │     ├─ scan/scan_ask   → 扫描文件夹 / 无目标反问
+  │     ├─ get            → 解锁加密文件夹（支持带密码直接解锁）
+  │     ├─ read           → 读文件（别名解析 + fuzzy_matcher 模糊纠错）
+  │     ├─ files          → 列出可访问文件
+  │     ├─ status         → 章节/AI状态/文件/调用统计
+  │     ├─ memory         → M-M 记忆内容
+  │     ├─ clue           → 已收集线索
+  │     ├─ hint           → 按章节提供下一步提示
+  │     ├─ password_hint  → 密码分析引导
+  │     ├─ analyze        → 综合推理（密码+线索+下一步）
+  │     ├─ confirm        → 确认词执行上一条建议
+  │     ├─ choose         → 多选解析（_parse_choice）
+  │     ├─ install_skill  → 安装「显示隐藏文件」技能
+  │     ├─ show_hidden    → 按文件夹批量揭示隐藏文件
+  │     └─ help/reset     → 帮助/重置
   │
+  │     设计约束：显式操作意图（show_hidden / install_skill）必须优先于裸文件名匹配。
+  │     例如「显示隐藏文件 录音」应触发 show_hidden，而不是把「录音」当作 read 别名。
+  │
+
   ├─[5] 响应库智能匹配 ★ 核心路径（零 API 成本）
   │     response_library.find_best_match() — 四维综合打分:
   │       (a) 章节权重 (b) 已读文件权重 (c) 话题匹配 (d) Jaccard+示例相似
@@ -576,11 +582,13 @@ generate_reply()
   ├─ _is_password_attempt()     → 密码识别
   ├─ detect_intent()            → 意图识别
   │   ├─ _extract_scan_target() → SCAN_TARGETS + target_id
-  │   ├─ _extract_filename()    → alias_map + fuzzy_matcher
+  │   ├─ _extract_filename()    → alias_map + hidden_file display_name + fuzzy_matcher
+  │   ├─ _resolve_hidden_folder() → hidden-files.json 文件夹批量揭示
   │   └─ _parse_choice()        → CN_NUMBERS 多选解析
   ├─ handle_natural_intent()
   │   ├─ handle_scan_command()   → 扫描流程（需目标已发现）
   │   ├─ handle_get_command()    → 获取 文件夹 密码 格式
+  │   ├─ handle_show_hidden()    → 显示隐藏文件（按文件夹批量揭示）
   │   ├─ handle_file_command()   → 读取 + clue_manager + folder_discovery + file_commentary + growth_reflection
   │   ├─ _build_password_hint()  → 密码分析引导
   │   └─ _build_analysis_reply() → 综合推理
@@ -598,6 +606,7 @@ generate_reply()
   └─ _save_suggestions()        → 建议栏 + pending_choices
       └─ _build_default_suggestions() → 章节/已读/发现目标 主线建议
 ```
+
 
 ### 回复类型 (type)
 

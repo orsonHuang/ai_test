@@ -1238,6 +1238,11 @@ def detect_intent(user_input: str, accessible_files: set, game_state: dict = Non
     if bare_filename:
         return "read", bare_filename
 
+    # 直接输入文件名（如 "todolist"、"d1"）也视为读取意图
+    bare_filename = _extract_filename(user_input, accessible_files)
+    if bare_filename:
+        return "read", bare_filename
+
     # 安装/显示隐藏文件技能意图：必须优先于通用 files 意图
     for kw in INTENT_KEYWORDS["install_skill"]:
         if kw.lower() in lowered:
@@ -1277,6 +1282,7 @@ def _build_default_suggestions(game_state: dict) -> list:
     read = set(game_state.get("files_read", []))
     discovered = set(folder_discovery.get_discovered_targets(game_state))
     memory = _get_memory(game_state)
+
     visible_files = hidden_file_state.get_visible_files(memory.accessible_files, game_state)
     has_read = lambda path: path in read
 
