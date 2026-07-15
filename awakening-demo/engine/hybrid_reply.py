@@ -489,6 +489,46 @@ SCAN_TARGETS = {
 }
 
 
+# ============ 隐藏文件文件夹映射 ============
+HIDDEN_FOLDER_TARGETS = {
+    "work-diary": {
+        "names": ["工作日记", "work-diary", "日记", "d盘", "d 盘"],
+        "path": "files/work-diary",
+    },
+    "audio": {
+        "names": ["录音", "audio", "公司服务器", "recordings", "录音文件夹"],
+        "path": "files/audio",
+    },
+    "research": {
+        "names": ["研究笔记", "research", "笔记", "研究笔记文件夹"],
+        "path": "files/research",
+    },
+}
+
+
+def _resolve_hidden_folder(user_input: str) -> str:
+    """从玩家输入中提取隐藏文件目标文件夹，返回完整路径或空字符串"""
+    lowered = user_input.lower().strip()
+    for target_id, config in HIDDEN_FOLDER_TARGETS.items():
+        if target_id.lower() in lowered:
+            return config["path"]
+        for name in config["names"]:
+            if name.lower() in lowered:
+                return config["path"]
+    # 支持直接输入 files/xxx 路径
+    if lowered.startswith("files/"):
+        return lowered.rstrip("/")
+    return ""
+
+
+def _get_hidden_folder_display_name(path: str) -> str:
+    """返回隐藏文件夹的对外显示名"""
+    for config in HIDDEN_FOLDER_TARGETS.values():
+        if config["path"] == path:
+            return config["names"][0]
+    return path
+
+
 def _extract_scan_target(user_input: str) -> str:
     """从玩家输入中提取扫描目标，返回 target_id 或空字符串"""
     lowered = user_input.lower().strip()
@@ -608,7 +648,7 @@ def _prompt_password_for_target(target: str, game_state: dict, natural: bool = F
 
     messages = {
         "work-diary": "D 盘的「工作日记」文件夹被 8 位数字密码保护。\n\n密码提示：人生中最特别的一天",
-        "private": "私人文件夹被加密了。\n\n密码提示：原始密码",
+        "private": "私人文件夹被加密了。\n\n密码提示：系统初始密码（尽快修改）",
         "recordings": "公司服务器需要 VPN 密码才能连接。\n\n密码提示：私人文件夹里的账号密码文件有VPN信息。",
         "research": "研究笔记文件夹被密码保护。\n\n密码提示：录音-张知予说密码是「接触这一切开始的那一天」。",
     }
@@ -650,19 +690,6 @@ def _try_unlock_with_password(target: str, password: str, game_state: dict, natu
     memory = _get_memory(game_state)
     if unlock_list:
         memory.unlock_files(unlock_list)
-
-    # 解锁后：将「待扫描文件夹」线索转为「文件线索」
-    # 找到当前 target 的显示名
-    target_display = SCAN_TARGETS.get(target, {}).get("names", [target])[0] if SCAN_TARGETS.get(target) else target
-    # 删除旧的待扫描文件夹线索
-    memory.clues = [c for c in memory.clues if not (c.get("category") == "待扫描文件夹" and c.get("target_id") == target)]
-    # 添加新文件线索
-    file_names_for_clue = [f.replace("files/", "") for f in unlock_list]
-    memory.add_clue({
-        "source": target,
-        "category": "文件线索",
-        "text": f"已解锁「{target_display}」：{', '.join(file_names_for_clue)}",
-    })
 
     _save_memory(game_state, memory)
 
@@ -1189,7 +1216,7 @@ def detect_intent(user_input: str, accessible_files: set, game_state: dict = Non
             return "install_skill", None
     for kw in INTENT_KEYWORDS["show_hidden"]:
         if kw.lower() in lowered:
-            return "show_hidden", None
+            return "show_hidden", _resolve_hidden_folder(user_input)
 
     # 其他通用意图
     for intent, keywords in INTENT_KEYWORDS.items():
@@ -1282,7 +1309,7 @@ def _build_default_suggestions(game_state: dict) -> list:
         # 三段可见录音都听完后，如果还有隐藏录音没揭示，引导安装/使用技能
         if _has_unlocked_hidden_files(game_state):
             if _skill_installed(game_state):
-                return [_main_quest_hint("扫描隐藏文件，看看还有没有遗漏", "显示所有文件")]
+                return [_main_quest_hint("扫描隐藏文件，看看还有没有遗漏", "显示隐藏文件")]
             return [_main_quest_hint("发现我有个技能，显示隐藏文件，可安装使用", "安装技能 显示隐藏文件")]
         return [_main_quest_hint("新发现的中，找到 研究笔记 的密码线索，尝试扫描 研究笔记", "扫描 研究笔记")]
 
@@ -1484,14 +1511,14 @@ def _handle_install_skill(game_state: dict) -> dict:
     else:
         game_state["hidden_files"]["skill_installed"] = True
     return {
-        "reply": "技能已安装：显示隐藏文件。\n\n现在你可以说「显示所有文件」来扫描已解锁文件夹中的隐藏文件。",
+        "reply": "技能已安装：显示隐藏文件。\n\n现在你可以说「显示所有文件 文件夹名」来扫描指定文件夹中的隐藏文件。",
         "type": "ai",
     }
 
 
 # 隐藏文件技能：扫描并揭示
-def _handle_show_hidden_files(game_state: dict) -> dict:
-    """处理「显示所有文件」等命令，揭示已解锁文件夹中的隐藏文件"""
+def _handle_show_hidden_files(game_state: dict, folder_path: str = None) -> dict:
+    """处理「显示所有文件/显示隐藏文件」命令，揭示指定已解锁文件夹中的隐藏文件"""
     hidden_state = game_state.get("hidden_files")
     if not hidden_state or not hidden_state.get("skill_installed"):
         return {
@@ -1499,33 +1526,44 @@ def _handle_show_hidden_files(game_state: dict) -> dict:
             "type": "ai",
         }
 
+    # 未指定文件夹 → 弹出文件夹输入框
+    if not folder_path:
+        return {
+            "reply": "请输入想扫描隐藏文件的文件夹",
+            "type": "ai",
+            "folder_prompt": True,
+        }
+
     memory = _get_memory(game_state)
+    visible = hidden_file_state.get_visible_files(memory.accessible_files, game_state)
+    prefix = folder_path.rstrip("/") + "/"
+
+    # 该文件夹必须已经解锁（至少有一个可见文件）
+    if not any(v.startswith(prefix) for v in visible):
+        folder_display = _get_hidden_folder_display_name(folder_path)
+        return {
+            "reply": f"「{folder_display}」还没有解锁，我无法扫描其中的隐藏文件。",
+            "type": "ai",
+        }
+
     revealed = set(hidden_state.get("revealed", []))
     newly_revealed = []
 
     for path in hidden_file_state.get_default_hidden_files():
         if path in revealed:
             continue
-        folder = "/".join(path.split("/")[:-1])
-        # 判断该文件夹是否已解锁：其中至少有一个可见文件
-        visible = hidden_file_state.get_visible_files(memory.accessible_files, game_state)
-        if any(v.startswith(folder + "/") for v in visible):
+        if path.startswith(prefix):
             newly_revealed.append(path)
 
+    folder_display = _get_hidden_folder_display_name(folder_path)
     if not newly_revealed:
         return {
-            "reply": "扫描了目前的文件夹，暂无隐藏文件",
+            "reply": f"扫描了「{folder_display}」，暂无隐藏文件。",
             "type": "ai",
         }
 
     # 揭示文件：加入 AI 可访问范围
     memory.unlock_files(newly_revealed)
-    for path in newly_revealed:
-        memory.add_clue({
-            "source": "show_hidden_files",
-            "category": "隐藏文件",
-            "text": f"隐藏文件已显示：{path.replace('files/', '')}",
-        })
     _save_memory(game_state, memory)
     revealed.update(newly_revealed)
     game_state["hidden_files"]["revealed"] = sorted(revealed)
@@ -1550,6 +1588,7 @@ def _handle_show_hidden_files(game_state: dict) -> dict:
     }
 
 
+
 def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
     """
     执行自然语言意图，并用 M-M 口吻包装结果
@@ -1560,7 +1599,7 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
         return _handle_install_skill(game_state)
 
     if intent == "show_hidden":
-        return _handle_show_hidden_files(game_state)
+        return _handle_show_hidden_files(game_state, argument)
 
     if intent == "scan_ask":
         # 无目标扫描 → 反问玩家想扫描哪里

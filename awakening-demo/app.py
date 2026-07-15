@@ -88,6 +88,7 @@ def chat():
             "file_list": result.get("file_list"),
             "password_prompt": result.get("password_prompt", False),
             "password_target": result.get("password_target"),
+            "folder_prompt": result.get("folder_prompt", False),
         }
     )
 

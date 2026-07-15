@@ -801,7 +801,8 @@ html, body {
 }
 
 /* =============== 密码输入弹窗 =============== */
-#password-modal {
+#password-modal,
+#folder-modal {
   position: absolute;
   top: 0;
   left: 0;
@@ -1056,6 +1057,21 @@ html, body {
     </div>
   </div>
 
+  <!-- 扫描隐藏文件弹窗 -->
+  <div id="folder-modal">
+    <div class="password-box">
+      <div class="password-title-row">
+        <span class="password-title">显示隐藏文件</span>
+        <button id="folder-close" class="password-close">×</button>
+      </div>
+      <div class="password-message" id="folder-message">请输入想扫描隐藏文件的文件夹</div>
+      <div class="password-input-row">
+        <input id="folder-input" type="text" class="password-input" placeholder="例如：工作日记、录音、研究笔记..." autocomplete="off" maxlength="32">
+        <button id="folder-submit" class="password-submit">确认</button>
+      </div>
+    </div>
+  </div>
+
 
 
   <!-- 名字输入遮罩 -->
@@ -1124,6 +1140,7 @@ html, body {
             <span id="ai-suggestion">和我对话，我会帮你推进。</span>
           </div>
           <div id="input-hint-actions">
+            <button id="btn-show-hidden" class="hint-btn" title="显示隐藏文件" style="display: none;">👁 显示隐藏文件</button>
             <button id="btn-clues" class="hint-btn" title="查看已收集的线索">🔍 线索</button>
             <button id="btn-files" class="hint-btn" title="查看文件树">📁 文件</button>
             <button id="btn-execute" class="hint-btn primary" title="直接执行当前建议" disabled>▶ 执行建议</button>
@@ -1165,9 +1182,15 @@ const passwordSubmitBtn = document.getElementById('password-submit');
 const passwordCloseBtn = document.getElementById('password-close');
 const aiSuggestion = document.getElementById('ai-suggestion');
 const fileTree = document.getElementById('file-tree');
+const btnShowHidden = document.getElementById('btn-show-hidden');
 const btnClues = document.getElementById('btn-clues');
 const btnFiles = document.getElementById('btn-files');
 const btnExecute = document.getElementById('btn-execute');
+const folderModal = document.getElementById('folder-modal');
+const folderMessage = document.getElementById('folder-message');
+const folderInputEl = document.getElementById('folder-input');
+const folderSubmitBtn = document.getElementById('folder-submit');
+const folderCloseBtn = document.getElementById('folder-close');
 
 /* =============== 显示名映射 =============== */
 const DISPLAY_NAMES = {
@@ -1497,6 +1520,12 @@ function updateUI() {
   aiBadge.style.color = AI_STATE_COLORS[gameState.ai_state] || '#666';
   aiCounter.textContent = `AI: ${gameState.ai_call_count}/20`;
 
+  // 显示隐藏文件按钮：安装技能后才出现
+  if (btnShowHidden) {
+    const skillInstalled = gameState.hidden_files && gameState.hidden_files.skill_installed;
+    btnShowHidden.style.display = skillInstalled ? 'inline-flex' : 'none';
+  }
+
   document.querySelectorAll('.chapter-pip').forEach(pip => {
     const ch = parseInt(pip.dataset.chapter);
     pip.classList.remove('active', 'passed');
@@ -1553,7 +1582,14 @@ function renderTreeNode(tree, container, readSet, depth = 0) {
   const entries = Object.entries(tree).sort((a, b) => {
     // 文件夹排在文件前面
     if (a[1].type !== b[1].type) return a[1].type === 'folder' ? -1 : 1;
-    return a[0].localeCompare(b[0], undefined, { numeric: true });
+    // 使用显示名排序（而非原始 key），确保按 1./2./3. 的数字顺序
+    const nameA = a[1].type === 'folder'
+      ? (FOLDER_NAMES[a[1].fullPath] || a[0])
+      : (DISPLAY_NAMES[a[1].fullPath] || a[0]);
+    const nameB = b[1].type === 'folder'
+      ? (FOLDER_NAMES[b[1].fullPath] || b[0])
+      : (DISPLAY_NAMES[b[1].fullPath] || b[0]);
+    return nameA.localeCompare(nameB, undefined, { numeric: true });
   });
 
   for (const [name, node] of entries) {
@@ -1649,6 +1685,43 @@ passwordInputEl.addEventListener('keydown', (e) => {
 
 
 
+/* =============== 显示隐藏文件弹窗 =============== */
+function showFolderModal(message) {
+  folderMessage.textContent = message || '请输入想扫描隐藏文件的文件夹';
+  folderModal.style.display = 'flex';
+  folderInputEl.value = '';
+  folderInputEl.focus();
+}
+
+function hideFolderModal() {
+  folderModal.style.display = 'none';
+  folderInputEl.value = '';
+  inputEl.focus();
+}
+
+function submitFolderModal() {
+  const folder = folderInputEl.value.trim();
+  if (!folder) return;
+  hideFolderModal();
+  inputEl.value = `显示隐藏文件 ${folder}`;
+  sendMessage();
+}
+
+folderSubmitBtn.addEventListener('click', submitFolderModal);
+folderCloseBtn.addEventListener('click', hideFolderModal);
+folderInputEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    submitFolderModal();
+  }
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    hideFolderModal();
+  }
+});
+
+
+
 /* =============== 发送消息 =============== */
 const CONFIRM_WORDS_FRONTEND = new Set(['好', '好的', '可以', '行', '嗯', '是的', '没错', '就这么办', '听你的', '好呀', '好吧', 'ok', 'yes', '打开', '执行', '试试', '试一下', '试一试']);
 
@@ -1724,6 +1797,10 @@ async function sendMessage() {
       showPasswordModal(data.reply || '请输入密码以解锁。', data.password_target);
     }
 
+    if (data.folder_prompt) {
+      showFolderModal(data.reply || '请输入想扫描隐藏文件的文件夹');
+    }
+
     if (data.expand_sidebar) {
       sidebar.classList.remove('collapsed');
       sidebarToggle.textContent = '[−]';
@@ -1753,6 +1830,11 @@ inputEl.addEventListener('keydown', (e) => {
 });
 
 /* =============== 工具按钮 =============== */
+btnShowHidden.addEventListener('click', () => {
+  inputEl.value = '显示隐藏文件';
+  sendMessage();
+});
+
 btnClues.addEventListener('click', () => {
   inputEl.value = '查看线索';
   sendMessage();

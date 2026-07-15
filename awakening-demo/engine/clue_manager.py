@@ -15,10 +15,83 @@ from typing import List, Dict, Any, Optional
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 CLUES_CONFIG_PATH = PROJECT_ROOT / "knowledge" / "clues.json"
 
+# 对外显示名映射（与前端 DISPLAY_NAMES / FOLDER_NAMES 保持一致）
+DISPLAY_NAMES = {
+    'files/deck/todolist.txt': 'todolist.txt',
+    'files/deck/入职资料.txt': '入职资料.txt',
+    'files/work-diary/01.md': '01-0306.md',
+    'files/work-diary/02.md': '02-0307.md',
+    'files/work-diary/03.md': '03-0308-录音.md',
+    'files/work-diary/04.md': '04-0309.md',
+    'files/work-diary/05.md': '05-0310.md',
+    'files/work-diary/06.md': '06-0311.md',
+    'files/work-diary/07.md': '07-0312.md',
+    'files/work-diary/08.md': '08-0313-录音.md',
+    'files/work-diary/09.md': '09-0314-录音.md',
+    'files/work-diary/10.md': '10-0315.md',
+    'files/private/异常观察记录.txt': '异常观察记录.txt',
+    'files/private/账号密码.txt': '账号密码.txt',
+    'files/audio/录音-全员会议-0308.txt': '录音-0308-全员会议',
+    'files/audio/录音-林璇陈玑-0313.txt': '录音-0313-林璇陈玑',
+    'files/audio/录音-陆天枢-0313.txt': '录音-0313-陆天枢',
+    'files/audio/录音-张知予.txt': '录音-0314-张知予',
+    'files/research/未命名文档.md': '未命名文档.md',
+    'files/research/res-1.md': '研究笔记1',
+    'files/research/res-2.md': '研究笔记2',
+    'files/research/res-3.md': '研究笔记3',
+    'files/emails/email-1.md': '邮件1',
+    'files/emails/email-2.md': '邮件2',
+    'files/emails/email-3.md': '邮件3',
+    'files/emails/email-4.md': '邮件4',
+    'files/emails/email-5.md': '邮件5',
+    'files/emails/email-6.md': '邮件6',
+}
+
+FOLDER_NAMES = {
+    'files/deck': '1.桌面',
+    'files/work-diary': '2.工作日记',
+    'files/private': '3.私人文件夹',
+    'files/audio': '4.录音',
+    'files/research': '5.研究笔记',
+    'files/emails': '6.邮件',
+}
+
+FOLDER_NAME_ALIASES = {
+    'work-diary': '2.工作日记',
+    'private': '3.私人文件夹',
+    'audio': '4.录音',
+    'recordings': '4.录音',
+    'research': '5.研究笔记',
+    'deck': '1.桌面',
+    'emails': '6.邮件',
+}
+
+
+def _format_clue_source(source: str) -> str:
+    """把 source 路径/ID 转换为对外显示名"""
+    if not source:
+        return '未知来源'
+    if source in DISPLAY_NAMES:
+        return DISPLAY_NAMES[source]
+    if source in FOLDER_NAMES:
+        return FOLDER_NAMES[source]
+    if source in FOLDER_NAME_ALIASES:
+        return FOLDER_NAME_ALIASES[source]
+    if source == 'show_hidden_files':
+        return '显示隐藏文件'
+    # 去掉 files/ 前缀，如果剩下的部分在映射中
+    if source.startswith('files/'):
+        tail = source.replace('files/', '')
+        if tail in DISPLAY_NAMES:
+            return DISPLAY_NAMES[tail]
+        if tail in FOLDER_NAMES:
+            return FOLDER_NAMES[tail]
+    return source
+
+
 # 保留 CLUE_PATTERN 用于清理文件中残留的 clue 标记（file_reader.py 使用）
 CLUE_PATTERN = re.compile(r"<!--\s*clue:\s*(.+?)\s*-->", re.IGNORECASE | re.DOTALL)
 
-# 缓存已加载的配置
 _clues_cache: Optional[List[Dict[str, Any]]] = None
 
 
@@ -131,7 +204,8 @@ def organize_clues(clues: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]
 def format_clues(clues: List[Dict[str, Any]]) -> str:
     """把线索列表格式化为 M-M 口吻的汇报文本。
 
-    四分类：待扫描文件 → 密码线索 → 文件线索 → 观察发现异常线索
+    三分类：待扫描文件 → 密码线索 → 文件线索
+    （观察发现异常线索 暂不显示）
     """
     if not clues:
         return "我目前还没整理出什么明确线索。"
@@ -144,47 +218,43 @@ def format_clues(clues: List[Dict[str, Any]]) -> str:
     if folder_items:
         lines.append("\n【⚠ 待扫描文件夹】")
         for i, item in enumerate(folder_items, 1):
-            short_source = item.get("source", "").replace("files/", "")
-            lines.append(f"  ⚠ {i}. {item['text']}（来自 {short_source}）")
+            source_display = _format_clue_source(item.get("source", ""))
+            lines.append(f"  ⚠ {i}. {item['text']} ---（来自 {source_display}）")
 
     # 2. 优先展示「待扫描文件」——行动目标
     scan_items = organized.pop("待扫描文件", [])
     if scan_items:
         lines.append("\n【⚠ 待扫描文件】")
         for i, item in enumerate(scan_items, 1):
-            short_source = item.get("source", "").replace("files/", "")
-            lines.append(f"  {i}. {item['text']}（来自 {short_source}）")
+            source_display = _format_clue_source(item.get("source", ""))
+            lines.append(f"  {i}. {item['text']} ---（来自 {source_display}）")
 
     # 3. 密码线索 —— 推进主线的钥匙
     pwd_items = organized.pop("密码线索", [])
     if pwd_items:
         lines.append("\n【密码线索】")
         for i, item in enumerate(pwd_items, 1):
-            short_source = item.get("source", "").replace("files/", "")
-            lines.append(f"  {i}. {item['text']}（来自 {short_source}）")
+            source_display = _format_clue_source(item.get("source", ""))
+            lines.append(f"  {i}. {item['text']} ---（来自 {source_display}）")
 
     # 4. 文件线索
     file_items = organized.pop("文件线索", [])
     if file_items:
         lines.append("\n【文件线索】")
         for i, item in enumerate(file_items, 1):
-            short_source = item.get("source", "").replace("files/", "")
-            lines.append(f"  {i}. {item['text']}（来自 {short_source}）")
+            source_display = _format_clue_source(item.get("source", ""))
+            lines.append(f"  {i}. {item['text']} ---（来自 {source_display}）")
 
-    # 5. 观察发现异常线索 —— 所有异常的归口
-    anomaly_items = organized.pop("观察发现异常线索", [])
-    if anomaly_items:
-        lines.append("\n【观察发现异常线索】")
-        for i, item in enumerate(anomaly_items, 1):
-            short_source = item.get("source", "").replace("files/", "")
-            lines.append(f"  {i}. {item['text']}（来自 {short_source}）")
+    # 5. 观察发现异常线索 —— 暂不显示
+    organized.pop("观察发现异常线索", [])
 
     # 兜底：如果还有残留的其它分类（理论上不应该存在）
     for category, items in organized.items():
         lines.append(f"\n【{category}】")
         for i, item in enumerate(items, 1):
-            short_source = item.get("source", "").replace("files/", "")
-            lines.append(f"  {i}. {item['text']}（来自 {short_source}）")
+            source_display = _format_clue_source(item.get("source", ""))
+            lines.append(f"  {i}. {item['text']} ---（来自 {source_display}）")
 
     return "\n".join(lines)
+
 
