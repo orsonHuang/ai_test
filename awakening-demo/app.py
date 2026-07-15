@@ -6,6 +6,10 @@ import os
 import sys
 from pathlib import Path
 
+# 设置 HuggingFace 国内镜像，避免首次下载 embedding 模型失败
+os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
+os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS", "1")
+
 # 添加项目根目录到Python路径
 PROJECT_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT_ROOT))

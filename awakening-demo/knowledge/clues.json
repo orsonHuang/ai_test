@@ -237,7 +237,7 @@
       "source_file": "files/audio/录音-张知予.txt",
       "category": "文件线索",
       "content": "她说做了个「研究笔记」文件夹",
-      "chapter_min": 6
+      "chapter_min": 4
     },
     {
       "id": "clue-036",
@@ -250,8 +250,8 @@
       "id": "clue-037",
       "source_file": "files/research/res-3.md",
       "category": "文件线索",
-      "content": "最终的真相说是被隐藏了",
-      "chapter_min": 6
+      "content": "张知予说：最终的真相被隐藏了",
+      "chapter_min": 5
     }
   ]
 }

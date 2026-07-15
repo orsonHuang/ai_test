@@ -1269,7 +1269,7 @@ def _build_default_suggestions(game_state: dict) -> list:
             return [_main_quest_hint("看看 账号密码 是否有可用信息", "打开 账号密码.txt")]
         if "recordings" not in discovered:
             return [_main_quest_hint("再读文档，找 VPN 线索", "打开 private/账号密码.txt")]
-        return [_main_quest_hint("尝试链接 VPN 获取文件", "链接 VPN")]
+        return [_main_quest_hint("尝试连接 VPN 获取文件", "连接 VPN")]
 
     # Chapter 4：录音
     if chapter == 4:
@@ -1283,8 +1283,8 @@ def _build_default_suggestions(game_state: dict) -> list:
         if _has_unlocked_hidden_files(game_state):
             if _skill_installed(game_state):
                 return [_main_quest_hint("扫描隐藏文件，看看还有没有遗漏", "显示所有文件")]
-            return [_main_quest_hint("安装技能：显示隐藏文件", "安装技能 显示隐藏文件")]
-        return [_main_quest_hint("从开始的文件中，找研究笔记线索", "打开 deck/入职资料.txt")]
+            return [_main_quest_hint("发现我有个技能，显示隐藏文件，可安装使用", "安装技能 显示隐藏文件")]
+        return [_main_quest_hint("新发现的中，找到 研究笔记 的密码线索，尝试扫描 研究笔记", "扫描 研究笔记")]
 
     # Chapter 5：研究笔记 -> 隐藏文件
     if chapter == 5:
@@ -1298,8 +1298,8 @@ def _build_default_suggestions(game_state: dict) -> list:
             return []
         if _has_unlocked_hidden_files(game_state):
             if _skill_installed(game_state):
-                return [_main_quest_hint("找到最终文档", "打开 research/研究笔记3.md")]
-            return [_main_quest_hint("安装技能：显示隐藏文件", "安装技能 显示隐藏文件")]
+                return [_main_quest_hint("找到最终文档", "查看线索")]
+            return [_main_quest_hint("发现我有个技能，显示隐藏文件，可安装使用", "安装技能 显示隐藏文件")]
         return []
 
     # Chapter 6：终局
