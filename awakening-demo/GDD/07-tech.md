@@ -722,9 +722,53 @@ gunicorn -w 2 -b 127.0.0.1:8080 app:app --daemon
 - 章节切换时预加载下一章内容
 - 缓存文件不重复解析
 
+## 隐藏功能（Debug / GM）
+
+以下功能不影响正常游戏流程，仅作为调试和 GM 工具使用。
+
+### GM MODE — 回复路径可视化
+
+- **触发**：玩家在对话中发送 `GM MODE` 或 `【GM MODE】`（大小写敏感）。
+- **效果**：切换 `game_state.gm_mode` 布尔开关。
+- **开启后**：每次 `generate_reply()` 返回的回复末尾自动追加一行 `[GM] 路径: X-层级名称`，显示本次回复命中了哪一层调度。
+- **路径层级映射**（与 `generate_reply()` 代码分支对应）：
+
+| 内部 type | GM 显示 |
+|-----------|---------|
+| `command` | 1-命令解析 |
+| `password` | 2-密码系统 |
+| 自然意图相关（`scan`/`read`/`get`/`clue`/`status`/`memory` 等） | 3-自然语言意图 |
+| `response_library` | 4-响应库匹配 |
+| `learned_library` | 5-学习库匹配 |
+| `qa_library` / `file_listing` | 6-Q&A库 / 6-文件类别 |
+| `cache` | 8-缓存命中 |
+| `out_of_scope` | 10-超纲拦截 |
+| `ai_rag` | 11-AI兜底生成 |
+| `fallback` / `limit_reached` | 12-API未配置 / 12-AI调用超限 |
+| `ai_api_direct` | 0-AI API直调 |
+| `gm_mode_toggle` | 0-GM模式 |
+
+- **实现位置**：`engine/hybrid_reply.py`
+  - `_is_gm_mode_toggle()` / `_gm_path_label()` / `_apply_gm_mode()`
+  - 在 `generate_reply()` 最前面检测切换指令
+  - `_save_suggestions()` 与命令分支统一应用 `_apply_gm_mode()`
+
+### USE AI API — 直接调用 AI API
+
+- **触发**：玩家在对话中发送 `【USE AI API】<文本>`、`[USE AI API]<文本>` 或 `USE AI API <文本>`。
+- **效果**：跳过本地响应库、学习库、Q&A库、缓存等所有规则层，直接使用 `<文本>` 调用 `ai_fallback.generate()`。
+- **上下文注入**：调用时仍然携带角色卡、当前 AI 状态、M-M 记忆上下文和知识库 RAG 检索结果，与普通 AI 兜底一致。
+- **不影响核心玩法**：
+  - 不增加 `ai_call_count`（不占用玩家有限的 20 次 AI 调用额度）
+  - 不触发 `_maybe_update_memory_from_reply()`（不写入 M-M 记忆）
+  - 不进入学习库和缓存
+- **未配置或空文本**：若 `DEEPSEEK_API_KEY` 未配置，返回「AI API 未配置」提示；若 `<文本>` 为空，提示用户输入内容。
+- **实现位置**：`engine/hybrid_reply.py` 的 `generate_reply()` 最前面。
+
 ## 未来扩展
 
 ### V2.0
+
 - 加入声音设计
 - 多结局动画
 - 二周目（新剧情）

@@ -5,7 +5,38 @@
 
 ---
 
+## 2026-07-15 · 新增两个隐藏功能：USE AI API 直调 与 GM MODE 路径显示
+
+### 背景
+需要在不破坏核心玩法的前提下，为开发/调试提供两个隐藏入口：
+1. 直接调用 AI API 生成回复，便于快速验证角色卡和 RAG 效果。
+2. 可视化每次回复命中的处理层级，便于排查回复路径。
+
+### 方案
+- 在 `engine/hybrid_reply.py` 的 `generate_reply()` 最前面检测两个隐藏指令。
+- `GM MODE`：切换 `game_state.gm_mode`，开启后在所有回复末尾追加 `[GM] 路径: X-层级`。
+- `USE AI API`：提取前缀后的文本，直接调用 `ai_fallback.generate()`；不增加 `ai_call_count`，不写入记忆/学习库/缓存。
+- 新增辅助函数：`_extract_hidden_api_text()`、`_is_gm_mode_toggle()`、`_gm_path_label()`、`_apply_gm_mode()`。
+
+### 修改文件
+- `engine/hybrid_reply.py` — 隐藏功能入口与 GM 路径应用
+- `GDD/07-tech.md` — 新增「隐藏功能（Debug / GM）」章节
+- `GDD/08-iteration-log.md` — 本条目
+- `CHANGELOG.md` — 本条目
+
+### 验证
+- `GM MODE` 切换成功，后续回复底部追加路径层级。
+- `/help` 等命令分支也正确显示 GM 路径。
+- `USE AI API <文本>` 直接走 API，本地无 KEY 时返回配置缺失提示。
+- `ai_call_count` 在隐藏调用前后保持不变。
+
+### 当前状态
+- 本地验证通过，等待提交 Git 并部署。
+
+---
+
 ## 2026-07-15 · 待扫描文件夹解锁后自动迁移到文件线索
+
 
 ### 背景
 玩家在「线索」面板中看到「待扫描文件夹」列表。当某个文件夹已经被扫描/解锁后，该条目仍然停留在「待扫描文件夹」中，造成目标已完成但仍在行动提示区展示的困扰。例如「可以通过 VPN 连接公司服务器，获取录音」在工作日记解锁后仍显示为待扫描。

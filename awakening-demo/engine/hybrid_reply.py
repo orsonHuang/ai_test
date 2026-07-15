@@ -7,8 +7,10 @@ import json
 import random
 import re
 from pathlib import Path
+from typing import Optional
 
 from engine import ai_fallback, cache_manager, character_state, qa_engine
+
 from engine import clue_manager, fuzzy_matcher, response_library, learning_store, folder_discovery
 from engine import hidden_file_state
 from engine.rule_engine import find_file_suggestion, find_file_commentary
@@ -28,6 +30,66 @@ PASSWORD_FILE = TRIGGERS_DIR / "passwords.json"
 
 # AI 调用上限
 MAX_AI_CALLS_PER_GAME = 20
+
+
+# ============ 隐藏功能（不影响核心玩法） ============
+# 格式：【USE AI API】+ 文本  或  USE AI API + 文本
+HIDDEN_AI_API_PREFIXES = ("【USE AI API】", "[USE AI API]", "USE AI API")
+HIDDEN_GM_MODE_TRIGGERS = ("【GM MODE】", "[GM MODE]", "GM MODE")
+
+
+def _extract_hidden_api_text(user_input: str) -> Optional[str]:
+    """提取 USE AI API 后面的文本；不符合格式返回 None"""
+
+    for prefix in HIDDEN_AI_API_PREFIXES:
+        if user_input.startswith(prefix):
+            return user_input[len(prefix):].strip()
+    return None
+
+
+def _is_gm_mode_toggle(user_input: str) -> bool:
+    return user_input.strip() in HIDDEN_GM_MODE_TRIGGERS
+
+
+def _gm_path_label(result_type: str) -> str:
+    """将内部 type 映射为中文路径层级"""
+    mapping = {
+        "command": "1-命令解析",
+        "password": "2-密码系统",
+        "response_library": "4-响应库匹配",
+        "learned_library": "5-学习库匹配",
+        "qa_library": "6-Q&A库",
+        "file_listing": "6-文件类别",
+        "cache": "8-缓存命中",
+        "out_of_scope": "10-超纲拦截",
+        "ai_rag": "11-AI兜底生成",
+        "fallback": "12-API未配置",
+        "limit_reached": "12-AI调用超限",
+        "ai_api_direct": "0-AI API直调",
+        "gm_mode_toggle": "0-GM模式",
+        "empty": "空输入",
+        "unknown": "未知",
+    }
+    if result_type in mapping:
+        return mapping[result_type]
+    # 自然语言意图分支产生多种子类型，统一归类
+    if result_type in {
+        "natural_intent", "status", "memory", "clue", "hint", "help",
+        "reset", "choose_prompt", "scan", "read", "get", "install_skill",
+        "show_hidden", "folder_help", "confirm", "files", "scan_ask",
+    }:
+        return "3-自然语言意图"
+    return f"{result_type}"
+
+
+def _apply_gm_mode(result: dict, game_state: dict) -> dict:
+    """GM 模式开启时，在回复末尾追加本次命中的路径层级"""
+    if not game_state.get("gm_mode"):
+        return result
+    result = dict(result)
+    path = _gm_path_label(result.get("type", "unknown"))
+    result["reply"] = f"{result.get('reply', '').rstrip()}\n\n[GM] 路径: {path}"
+    return result
 
 
 # ============ 密码检测 ============
@@ -1399,7 +1461,8 @@ def _save_suggestions(result: dict, user_input: str, game_state: dict) -> dict:
     if result.get("type") != "choose_prompt":
         game_state.pop("pending_choices", None)
 
-    return result
+    return _apply_gm_mode(result, game_state)
+
 
 
 
@@ -1929,10 +1992,49 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
 
     memory = _get_memory(game_state)
 
+    # 0. 隐藏功能（不影响核心玩法）
+    # GM MODE 切换
+    if _is_gm_mode_toggle(user_input):
+        game_state["gm_mode"] = not game_state.get("gm_mode", False)
+        status = "开启" if game_state["gm_mode"] else "关闭"
+        return _apply_gm_mode(
+            {
+                "reply": f"[GM 模式已{status}] 后续每次回复底部会显示路径层级。",
+                "type": "gm_mode_toggle",
+            },
+            game_state,
+        )
+
+    # USE AI API 直调
+    api_text = _extract_hidden_api_text(user_input)
+    if api_text is not None:
+        if not api_text:
+            return _apply_gm_mode(
+                {"reply": "请在 【USE AI API】 后输入要发送给 AI API 的文本内容。", "type": "ai_api_direct"},
+                game_state,
+            )
+        if not ai_fallback.is_configured():
+            return _apply_gm_mode(
+                {"reply": "AI API 未配置（DEEPSEEK_API_KEY 缺失），无法调用。", "type": "ai_api_direct"},
+                game_state,
+            )
+        state_name = game_state.get("ai_state", "dormant")
+        history = game_state.get("history", [])
+        # 隐藏调用不影响核心玩法的 ai_call_count 和记忆迭代
+        reply = ai_fallback.generate(
+            user_input=api_text,
+            state_name=state_name,
+            history=history,
+            memory=memory,
+        )
+        return _apply_gm_mode({"reply": reply, "type": "ai_api_direct"}, game_state)
+
     # 1. 玩家命令（/开头）
+
     if user_input.startswith("/"):
         _reset_off_topic(game_state)
-        return handle_command(user_input, game_state)
+        return _apply_gm_mode(handle_command(user_input, game_state), game_state)
+
 
     # 2. 密码只接受「扫描/获取 文件名 密码」格式
     if _is_password_command_format(user_input):
@@ -2179,6 +2281,8 @@ def new_game_state() -> dict:
         "mm_name_revealed": False,
         "awaiting_password": False,
         "off_topic_count": 0,
+        "gm_mode": False,
         "memory": memory.to_dict(),
         "hidden_files": {"skill_installed": False, "revealed": []},
     }
+

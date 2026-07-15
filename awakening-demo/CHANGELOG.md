@@ -4,7 +4,27 @@
 
 ---
 
+## 2026-07-15 · 新增两个隐藏功能：USE AI API 直调 与 GM MODE 路径显示
+
+**背景：**
+- 需要不破坏核心玩法的调试/GM 工具：直接调用 AI API 和回复路径可视化。
+
+**方案：**
+- `GM MODE` / `【GM MODE】` 切换 `game_state.gm_mode`，开启后在每次回复末尾追加 `[GM] 路径: X-层级名称`。
+- `USE AI API <文本>` / `【USE AI API】<文本>` 直接调用 `ai_fallback.generate()`，仍注入角色卡、记忆和知识库上下文。
+- 隐藏调用不增加 `ai_call_count`，不写入记忆/学习库/缓存。
+- 命令分支统一应用 `_apply_gm_mode()`。
+
+**修改文件：**
+- `engine/hybrid_reply.py` — 隐藏功能入口、GM 路径映射与应用
+- `GDD/07-tech.md` — 新增「隐藏功能（Debug / GM）」章节
+- `GDD/08-iteration-log.md` — 追加记录
+- `CHANGELOG.md` — 本条目
+
+---
+
 ## 2026-07-15 · 待扫描文件夹解锁后自动迁移到文件线索
+
 
 **背景：**
 - 已扫描/解锁的文件夹条目仍停留在「待扫描文件夹」分类中，造成已完成目标与待办目标混淆。
