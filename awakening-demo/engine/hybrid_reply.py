@@ -1233,23 +1233,19 @@ def detect_intent(user_input: str, accessible_files: set, game_state: dict = Non
                 return "read", filename
             break
 
-    # 直接输入文件名（如 "todolist"、"d1"）也视为读取意图
-    bare_filename = _extract_filename(user_input, accessible_files)
-    if bare_filename:
-        return "read", bare_filename
-
-    # 直接输入文件名（如 "todolist"、"d1"）也视为读取意图
-    bare_filename = _extract_filename(user_input, accessible_files)
-    if bare_filename:
-        return "read", bare_filename
-
-    # 安装/显示隐藏文件技能意图：必须优先于通用 files 意图
+    # 安装/显示隐藏文件技能意图：必须优先于裸文件名匹配
+    # 否则「录音」等文件别名会拦截「显示隐藏文件 录音」
     for kw in INTENT_KEYWORDS["install_skill"]:
         if kw.lower() in lowered:
             return "install_skill", None
     for kw in INTENT_KEYWORDS["show_hidden"]:
         if kw.lower() in lowered:
             return "show_hidden", _resolve_hidden_folder(user_input)
+
+    # 直接输入文件名（如 "todolist"、"d1"）也视为读取意图
+    bare_filename = _extract_filename(user_input, accessible_files)
+    if bare_filename:
+        return "read", bare_filename
 
     # 其他通用意图
     for intent, keywords in INTENT_KEYWORDS.items():
@@ -1260,6 +1256,7 @@ def detect_intent(user_input: str, accessible_files: set, game_state: dict = Non
                 return intent, None
 
     return "none", None
+
 
 
 def _has_unlocked_hidden_files(game_state: dict) -> bool:
