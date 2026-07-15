@@ -119,7 +119,7 @@ def _pull_back_hint(game_state: dict) -> str:
         2: "工作日记已经解锁了。你可以让我读第一篇。",
         3: "私人文件夹里有异常观察记录。要我打开吗？",
         4: "公司服务器的录音还在等我连上去。",
-        5: "录音-张知予提到研究笔记的密码。找到研究笔记，然后用「显示所有文件」扫描隐藏文件。",
+        5: "录音-张知予提到研究笔记的密码。找到研究笔记，然后用「显示隐藏文件」扫描隐藏文件。",
         6: "未命名文档已经揭示。你决定怎么做？",
     }
     return hints.get(chapter, "如果你不知道做什么，可以试试问我'该做什么'。")
@@ -289,18 +289,34 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
 
     filename = parts[1].strip()
 
-    # 智能路径解析
-    search_path = resolve_file_path(filename)
-    if search_path is None:
-        # 兜底：尝试 files/ 前缀
-        search_path = f"files/{filename}"
+    # 1. 优先按外部显示名解析隐藏文件（输入 display_name 即可揭示）
+    display_path = hidden_file_state.resolve_hidden_by_display_name(filename)
+    if display_path:
+        search_path = display_path
+    else:
+        # 智能路径解析
+        search_path = resolve_file_path(filename)
+        if search_path is None:
+            # 兜底：尝试 files/ 前缀
+            search_path = f"files/{filename}"
 
-    # 隐藏文件未揭示时不应被读取
+    # 2. 若目标是隐藏文件且未揭示，自动揭示并加入可访问范围
+    newly_revealed = False
+    if hidden_file_state.is_default_hidden(search_path) and not hidden_file_state.is_file_visible(search_path, game_state):
+        hidden_file_state.reveal_hidden_file(search_path, game_state)
+        memory = _get_memory(game_state)
+        memory.unlock_file(search_path)
+        _save_memory(game_state, memory)
+        newly_revealed = True
+
+    # 3. 隐藏文件未揭示时不应被读取（兜底）
     if not hidden_file_state.is_file_visible(search_path, game_state):
         return {
             "reply": f"我找不到这个文件：{filename}\n\n我能看到的文件有限。要我列出当前可访问的文件吗？",
             "type": "ai",
         }
+
+
 
     content = read_knowledge_file(search_path) if search_path else None
 
@@ -312,6 +328,7 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
 
     # ---- 更新 M-M 的记忆 ----
     memory = _get_memory(game_state)
+
 
     # 生成一个简单的内容摘要
     summary = ""
@@ -344,7 +361,7 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
     read_count = file_read_counts.get(search_path, 0)
     file_read_counts[search_path] = read_count + 1
 
-    display_name = search_path.replace("files/", "")
+    display_name = hidden_file_state.get_display_name(search_path) or search_path.replace("files/", "")
     commentary = ""
     if natural:
         if read_count == 0:
@@ -367,7 +384,8 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
             ]
         reply_text = random.choice(opening_lines)
     else:
-        reply_text = f"── {search_path} ──"
+        reply_text = f"── {display_name} ──"
+
 
     # 阅读 todolist 后，M-M 第一次意识到自己的存在
     if search_path == "files/deck/todolist.txt":
@@ -412,13 +430,17 @@ def handle_file_command(command: str, game_state: dict, natural: bool = False) -
     # [已注释] 暂时不启用文件读取成长反馈
     # reply_text += _generate_file_growth_reflection(search_path, game_state)
 
-    return {
+    result = {
         "reply": reply_text,
         "file_content": content,
         "type": "file_read",
         "file": search_path,
         "memory_updated": True,
     }
+    if newly_revealed:
+        result["unlock"] = [search_path]
+    return result
+
 
 
 def handle_list_command(sub_dir, game_state: dict) -> dict:
@@ -1145,6 +1167,11 @@ def _extract_filename(user_input: str, accessible_files: set) -> str:
         if alias in cleaned:
             return alias_map[alias]
 
+    # 额外支持：外部显示文件名也可匹配隐藏文件（如 06-0311.md）
+    display_path = hidden_file_state.resolve_hidden_by_display_name(cleaned.strip())
+    if display_path:
+        return display_path
+
     # 模糊匹配兜底：处理"入职自立"这类 typo
     if accessible_files:
         corrected, score = fuzzy_matcher.correct_filename(cleaned, accessible_files)
@@ -1152,6 +1179,7 @@ def _extract_filename(user_input: str, accessible_files: set) -> str:
             return corrected
 
     return None
+
 
 
 def detect_intent(user_input: str, accessible_files: set, game_state: dict = None) -> tuple:
@@ -1437,7 +1465,7 @@ def _build_analysis_reply(game_state: dict, focus: str = "") -> str:
         elif "files/research/res-1.md" not in accessible:
             lines.append("· 研究笔记文件夹需要密码。录音-张知予说密码是「接触这一切开始的那一天」——她的入职日期。")
         else:
-            lines.append("· 所有加密文件夹都已解锁。试试「显示所有文件」，看看有没有被隐藏的文件。")
+            lines.append("· 所有加密文件夹都已解锁。试试「显示隐藏文件」，看看有没有被隐藏的文件。")
 
     # 线索分析
     if not focus or "线索" in focus or "证据" in focus:
@@ -1511,7 +1539,7 @@ def _handle_install_skill(game_state: dict) -> dict:
     else:
         game_state["hidden_files"]["skill_installed"] = True
     return {
-        "reply": "技能已安装：显示隐藏文件。\n\n现在你可以说「显示所有文件 文件夹名」来扫描指定文件夹中的隐藏文件。",
+        "reply": "技能已安装：显示隐藏文件。\n\n现在你可以说「显示隐藏文件 文件夹名」来扫描指定文件夹中的隐藏文件。",
         "type": "ai",
     }
 
@@ -1671,7 +1699,7 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
                 2: "目前还没整理出明确线索。\n\n读工作日记吧——她在那里面写了不少东西。看看有没新文件可扫描",
                 3: "目前我整理出的线索还不多。\n\n你读过的每一个文件都会沉淀下来。试试让我读私人文件夹的文件。",
                 4: "线索在慢慢拼起来。\n\n你读了三段录音，里面提到了关键的几个名字。要不再看看是不是有什么隐藏线索？",
-                5: "线索接近完整。\n\n打开研究笔记 1-3，然后用「显示所有文件」扫描隐藏文件。",
+                5: "线索接近完整。\n\n打开研究笔记 1-3，然后用「显示隐藏文件」扫描隐藏文件。",
                 6: "所有线索都齐了。\n\n未命名文档已经揭示。你决定怎么做。",
             }
             return {"reply": no_clue_hints.get(chapter, "再读一些文件，我就能整理出更完整的线索了。"), "type": "ai"}

@@ -749,4 +749,43 @@ hybrid_reply.generate_reply()
 
 
 
+## 2026-07-15 · 隐藏文件显示逻辑简化：输入外部显示文件名即显示
+
+### 背景
+降低玩家操作成本，隐藏文件不再依赖「安装技能 + 扫描文件夹」两步流程，改为直接输入文件的外部显示文件名即可揭示并读取。
+
+### 改动
+1. **隐藏文件注册表扩展**
+   - `knowledge/hidden-files.json` — 为每个隐藏文件新增 `display_name` 字段，记录对玩家显示的名字。
+
+2. **隐藏文件状态层增强**
+   - `engine/hidden_file_state.py` — 新增：
+     - `get_display_name(filepath)`：获取隐藏文件的对外显示名。
+     - `resolve_hidden_by_display_name(display_name)`：根据显示名反查隐藏文件路径。
+     - `reveal_hidden_file(filepath, game_state)`：单独揭示某个隐藏文件。
+
+3. **文件读取入口支持显示名揭示**
+   - `engine/hybrid_reply.py` — `handle_file_command()`：
+     - 先尝试按外部显示名解析隐藏文件。
+     - 若目标是未揭示的隐藏文件，自动揭示并加入 M-M 可访问范围。
+     - 读取成功且为新揭示时，返回 `unlock` 字段通知前端刷新文件树。
+     - 回复文案统一使用外部显示名（如 `06-0311.md`）。
+   - `engine/hybrid_reply.py` — `_extract_filename()`：
+     - 自然语言输入也支持通过外部显示名直接命中隐藏文件。
+
+### 影响
+- 玩家可直接输入 `06-0311.md`、`录音-0314-张知予`、`未命名文档.md` 等显示名查看隐藏文件。
+- 原有的「安装技能 / 显示隐藏文件」流程仍保留，作为批量扫描的备选方式。
+
+### 改动文件
+- `knowledge/hidden-files.json`
+- `engine/hidden_file_state.py`
+- `engine/hybrid_reply.py`
+- `GDD/08-iteration-log.md`
+
+
+
+
+
+
 

@@ -1,13 +1,13 @@
 {
   "version": "1.0",
-  "description": "默认隐藏文件注册表。隐藏文件在 file system 和 AI 知识范围中不可见，直到玩家使用「显示隐藏文件」技能揭示。",
+  "description": "默认隐藏文件注册表。隐藏文件在 file system 和 AI 知识范围中不可见，输入对应的外部显示文件名即可揭示。",
   "hidden_files": [
-    {"path": "files/work-diary/06.md", "default": "hidden"},
-    {"path": "files/work-diary/07.md", "default": "hidden"},
-    {"path": "files/work-diary/08.md", "default": "hidden"},
-    {"path": "files/work-diary/09.md", "default": "hidden"},
-    {"path": "files/work-diary/10.md", "default": "hidden"},
-    {"path": "files/audio/录音-张知予.txt", "default": "hidden"},
-    {"path": "files/research/未命名文档.md", "default": "hidden"}
+    {"path": "files/work-diary/06.md", "default": "hidden", "display_name": "06-0311.md"},
+    {"path": "files/work-diary/07.md", "default": "hidden", "display_name": "07-0312.md"},
+    {"path": "files/work-diary/08.md", "default": "hidden", "display_name": "08-0313-录音.md"},
+    {"path": "files/work-diary/09.md", "default": "hidden", "display_name": "09-0314-录音.md"},
+    {"path": "files/work-diary/10.md", "default": "hidden", "display_name": "10-0315.md"},
+    {"path": "files/audio/录音-张知予.txt", "default": "hidden", "display_name": "录音-0314-张知予"},
+    {"path": "files/research/未命名文档.md", "default": "hidden", "display_name": "未命名文档.md"}
   ]
 }

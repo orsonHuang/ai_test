@@ -2,17 +2,18 @@
 hidden_file_state.py - 隐藏文件状态管理
 管理「显示/隐藏」文件状态：
   - 默认隐藏文件不出现在 file system 和 AI 知识范围中
-  - 玩家安装「显示隐藏文件」技能后，可通过「显示所有文件」揭示
+  - 玩家输入对应隐藏文件的外部显示文件名即可揭示该文件
 """
 import json
 from pathlib import Path
-from typing import Set, List
+from typing import Set, List, Optional
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 HIDDEN_FILES_FILE = PROJECT_ROOT / "knowledge" / "hidden-files.json"
 
 _default_hidden_files: Set[str] = set()
+_hidden_file_display_names: dict = {}
 
 
 def _load_registry() -> dict:
@@ -26,12 +27,16 @@ def _load_registry() -> dict:
 
 
 def _ensure_loaded():
-    global _default_hidden_files
+    global _default_hidden_files, _hidden_file_display_names
     if not _default_hidden_files:
         registry = _load_registry()
         for entry in registry.get("hidden_files", []):
-            if entry.get("default") == "hidden":
-                _default_hidden_files.add(entry.get("path"))
+            path = entry.get("path")
+            if entry.get("default") == "hidden" and path:
+                _default_hidden_files.add(path)
+                display_name = entry.get("display_name")
+                if display_name:
+                    _hidden_file_display_names[path] = display_name
 
 
 def get_default_hidden_files() -> Set[str]:
@@ -44,6 +49,21 @@ def is_default_hidden(filepath: str) -> bool:
     """判断文件是否默认隐藏"""
     _ensure_loaded()
     return filepath in _default_hidden_files
+
+
+def get_display_name(filepath: str) -> Optional[str]:
+    """返回隐藏文件的对外显示名，非隐藏文件返回 None"""
+    _ensure_loaded()
+    return _hidden_file_display_names.get(filepath)
+
+
+def resolve_hidden_by_display_name(display_name: str) -> Optional[str]:
+    """根据外部显示名查找对应的隐藏文件路径"""
+    _ensure_loaded()
+    for path, name in _hidden_file_display_names.items():
+        if name == display_name:
+            return path
+    return None
 
 
 def get_revealed_hidden_files(game_state: dict) -> Set[str]:
@@ -61,6 +81,22 @@ def is_file_visible(filepath: str, game_state: dict) -> bool:
     if not is_default_hidden(filepath):
         return True
     return filepath in get_revealed_hidden_files(game_state)
+
+
+def reveal_hidden_file(filepath: str, game_state: dict) -> bool:
+    """
+    揭示单个隐藏文件。
+    返回 True 表示本次为新揭示，False 表示已经揭示过或不是隐藏文件。
+    """
+    if not is_default_hidden(filepath):
+        return False
+    hidden_state = game_state.setdefault("hidden_files", {"skill_installed": False, "revealed": []})
+    revealed = set(hidden_state.get("revealed", []))
+    if filepath in revealed:
+        return False
+    revealed.add(filepath)
+    hidden_state["revealed"] = sorted(revealed)
+    return True
 
 
 def get_visible_files(accessible_files: Set[str], game_state: dict) -> Set[str]:
