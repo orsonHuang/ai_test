@@ -5,7 +5,35 @@
 
 ---
 
+## 2026-07-15 · 待扫描文件夹解锁后自动迁移到文件线索
+
+### 背景
+玩家在「线索」面板中看到「待扫描文件夹」列表。当某个文件夹已经被扫描/解锁后，该条目仍然停留在「待扫描文件夹」中，造成目标已完成但仍在行动提示区展示的困扰。例如「可以通过 VPN 连接公司服务器，获取录音」在工作日记解锁后仍显示为待扫描。
+
+### 方案
+- 在 `engine/hybrid_reply.py` 的 `clue` 意图处理分支中，先对线索列表进行预处理。
+- 对 `category == "待扫描文件夹"` 的线索，检查其 `target_id` 是否已全部解锁（`SCAN_TARGETS[target_id].files` 全部进入 `memory.accessible_files`）。
+- 已解锁的条目临时将其分类改为「文件线索」，再交给 `clue_manager.format_clues()` 渲染。
+- 新增模块级辅助函数 `_is_target_unlocked(target_id, game_state)`，同时复用于 `_build_password_hint()`。
+
+### 修改文件
+- `engine/hybrid_reply.py` — 新增 `_is_target_unlocked()`，并在 clue 意图分支中迁移已解锁条目
+- `GDD/07-tech.md` — 补充「线索分类与已解锁迁移」章节
+- `GDD/08-iteration-log.md` — 本条目
+- `CHANGELOG.md` — 本条目
+- `knowledge/triggers/passwords.json` — 用户文本微调：VPN 解锁提示文案
+
+### 验证
+- 未解锁时：「工作日记」显示在「待扫描文件夹」
+- 解锁后：该条目移动到「文件线索」，「待扫描文件夹」不再显示
+
+### 当前状态
+- 已完成本地验证，等待提交 Git 并部署
+
+---
+
 ## 2026-07-07 - 项目初始化
+
 
 ### AI操作
 - 建立 `awakening-demo/` 项目结构

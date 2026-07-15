@@ -731,10 +731,10 @@ def _try_unlock_with_password(target: str, password: str, game_state: dict, natu
 def _make_password_error_reply(target: str) -> dict:
     """生成密码错误回复，并提示该去哪里找正确密码"""
     hints = {
-        "work-diary": "这个密码不对。\n\n提示：入职资料里写着张知予的生日，格式是 8 位数字（如 20030323）。",
-        "private": "这个密码不对。\n\n提示：D5 工作日记和入职资料里都提到系统初始密码。",
+        "work-diary": "这个密码不对。\n\n提示：入职资料里有几个日期，尝试转成 8 位数字。",
+        "private": "这个密码不对。\n\n提示：工作日记01.md 和 入职资料里都提到系统初始密码。",
         "recordings": "这个密码不对。\n\n提示：私人文件夹里的「账号密码.txt」有 VPN 密码。",
-        "research": "这个密码不对。\n\n提示：录音-张知予说密码是「接触这一切开始的那一天」——她的入职日期 2024年3月6日。",
+        "research": "这个密码不对。\n\n提示：录音-张知予说密码是「接触这一切开始的那一天」，应该是一个日期。",
     }
     return {
         "reply": hints.get(target, "密码错误。请再试一次。"),
@@ -1403,39 +1403,42 @@ def _save_suggestions(result: dict, user_input: str, game_state: dict) -> dict:
 
 
 
+def _is_target_unlocked(target_id: str, game_state: dict) -> bool:
+    """判断某个扫描目标文件夹是否已全部解锁（文件进入 accessible_files）"""
+    cfg = SCAN_TARGETS.get(target_id)
+    if not cfg:
+        return True
+    memory = _get_memory(game_state)
+    accessible = memory.accessible_files
+    return all(f in accessible for f in cfg.get("files", []))
+
+
 def _build_password_hint(game_state: dict) -> str:
     """
     根据当前已解锁状态生成密码分析引导，不直接给出完整密码。
     """
-    memory = _get_memory(game_state)
-    accessible = memory.accessible_files
+    if not _is_target_unlocked("work-diary", game_state):
 
-    def is_unlocked(target_id: str) -> bool:
-        cfg = SCAN_TARGETS.get(target_id)
-        if not cfg:
-            return True
-        return all(f in accessible for f in cfg.get("files", []))
-
-    if not is_unlocked("work-diary"):
         return (
             "工作日记被 8 位数字密码保护。\n"
             "提示：todolist 里写这是一个'不会忘记的日子'。\n"
             "入职资料里有张知予的生日，把它写成 8 位数字试试看。"
         )
-    if not is_unlocked("private"):
+    if not _is_target_unlocked("private", game_state):
         return (
             "私人文件夹需要系统初始密码。\n"
             "提示：入职资料和工作日记 D5 都写过这个密码。\n"
             "格式是 ZY + 年份 + ! + starlight。"
         )
 
-    if not is_unlocked("recordings"):
+    if not _is_target_unlocked("recordings", game_state):
         return (
             "公司服务器需要 VPN 密码。\n"
             "提示：私人文件夹里有个「账号密码.txt」文件，里面记录了 VPN 密码。\n"
             "格式是 Star + Core + @ + 年份。"
         )
-    if not is_unlocked("research"):
+    if not _is_target_unlocked("research", game_state):
+
         return (
             "研究笔记文件夹被密码保护。\n"
             "提示：录音-张知予说密码是「接触这一切开始的那一天」。\n"
@@ -1659,7 +1662,7 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
                 "  · 扫描 公司服务器 密码\n"
                 "  · 扫描 研究笔记 密码\n\n"
                 "如果你已经知道具体密码，也可以直接说：\n"
-                "  · 扫描 工作日记 20030323"
+                "  · 扫描 工作日记 12345678"
             ),
             "type": "ai",
         }
@@ -1706,10 +1709,22 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
                 6: "所有线索都齐了。\n\n未命名文档已经揭示。你决定怎么做。",
             }
             return {"reply": no_clue_hints.get(chapter, "再读一些文件，我就能整理出更完整的线索了。"), "type": "ai"}
+
+        # 已扫描解锁的「待扫描文件夹」线索，归类为「文件线索」
+        processed_clues = []
+        for clue in clues:
+            if clue.get("category") == "待扫描文件夹":
+                target_id = clue.get("target_id")
+                if target_id and _is_target_unlocked(target_id, game_state):
+                    clue = dict(clue)
+                    clue["category"] = "文件线索"
+            processed_clues.append(clue)
+
         return {
-            "reply": clue_manager.format_clues(clues),
+            "reply": clue_manager.format_clues(processed_clues),
             "type": "ai",
         }
+
 
     if intent == "hint":
         chapter = game_state.get("chapter", 1)
@@ -1717,7 +1732,7 @@ def handle_natural_intent(intent: str, argument, game_state: dict) -> dict:
             1: "桌面上有 todolist.txt 和入职资料。\ntodolist 里提到 D 盘需要 8 位密码——入职资料里应该有线索。",
             2: "读一下工作日记吧，好像有提到其它文件夹信息。也可以让我尝试分析一下线索。",
             3: "私人文件夹里有异常观察记录，它曾经让我做了些事情。 账号密码信息挺多，可以尝试探索一下新文件",
-            4: "她让我隐藏过文件，我不确定能不能把他们显示出来",
+            4: "她隐藏的文件中，有提到“钥匙”，像是解开一个秘密的关键",
             5: "录音-张知予提到研究笔记密码是她的入职日期。研究笔记里藏着最终文档。",
             6: "未命名文档已经揭示。你可以自由对话，或结束体验。",
         }
@@ -2039,7 +2054,7 @@ def generate_reply(user_input: str, game_state: dict) -> dict:
     # 7. 其他路径都不命中，且输入像密码 → 提示格式错误（不再无条件当密码错误）
     if _is_password_attempt(user_input):
         return _save_suggestions({
-            "reply": "如果你要输入密码，请用：获取 文件名 密码\n例如：获取 工作日记 20030323",
+            "reply": "如果你要输入密码，请用：获取 文件名 密码\n例如：获取 工作日记 12345678",
             "type": "ai",
         }, user_input, game_state)
 
