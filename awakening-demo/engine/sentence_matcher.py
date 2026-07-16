@@ -11,8 +11,12 @@ sentence_matcher.py - 基于 Sentence-Transformers 的语义相似度引擎
 """
 import threading
 import time
+from pathlib import Path
 import numpy as np
 from typing import Optional, List, Tuple, Any
+
+# 线上服务器预置的本地模型路径，避免从 HuggingFace 在线下载时网络不稳定
+LOCAL_MODEL_PATH = Path("/root/.cache/torch/sentence_transformers/paraphrase-multilingual-MiniLM-L12-v2")
 
 # ---- 全局状态 ----
 _model = None          # SentenceTransformer 实例
@@ -65,8 +69,12 @@ def _load_model_sync():
         time.sleep(0.05)
 
         _set_status(20, "正在加载 embedding 模型（首次约需 5-15 秒）...")
-        # 轻量多语言模型，支持中英文，CPU 友好
-        _model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+        # 优先使用服务器本地预置模型，避免 HuggingFace 在线下载失败
+        if LOCAL_MODEL_PATH.exists():
+            _model = SentenceTransformer(str(LOCAL_MODEL_PATH))
+        else:
+            # 轻量多语言模型，支持中英文，CPU 友好
+            _model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
 
         _set_status(75, "模型加载完成，正在预热...")
         _model.encode(["预热"], normalize_embeddings=True)
