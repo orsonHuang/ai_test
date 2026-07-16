@@ -8,18 +8,21 @@
 ## 当前在哪
 
 - **当前项目**：Awakening Demo（AI 对话解谜游戏）
-- **当前阶段**：隐藏文件显示逻辑已上线，并已部署到 Lighthouse 服务器
+- **当前阶段**：线上 embedding 模型重复加载问题已修复，服务运行稳定
 - **本轮完成**：
-  - 隐藏文件显示逻辑调整：输入外部显示文件名即可揭示并读取
-  - 更新 GDD 迭代日志（08-iteration-log.md）
-  - 本地提交到 Git
-  - 部署到腾讯云 Lighthouse（159.75.127.135），不影响 openclaw 与 orson-huang-homepage
+  - 定位根因：gunicorn `-w 2` 双 worker 导致每个进程独立加载 embedding 模型
+  - 修复方案：worker 降至 1，模型仅加载 1 份
+  - 增加本地模型缓存兜底：`sentence_matcher.py` 优先从 `/root/.cache/torch/sentence_transformers/...` 加载，避免 HuggingFace/hf-mirror 网络超时
+  - 通过 modelscope 预下载模型到服务器本地缓存
+  - 更新 `setup.sh` 默认 worker 数为 1
+  - 本地 Git 提交
+  - 验证 openclaw、orson-huang-homepage 未受影响
 
 ---
 
 ## 下一步
 
-- 在公网环境测试三轮隐藏文件读取与整体游戏流程
+- 在公网环境测试多轮对话，确认不再反复提示"加载中"
 - 根据线上反馈继续补充响应库或调匹配阈值
 
 ---

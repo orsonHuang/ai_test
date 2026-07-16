@@ -31,6 +31,13 @@
 - QA 库口吻优化：去掉元语言，全部 M-M 第一人称
 - 线索意图兜底：按章节给引导，不再死板
 
+### 2026-07-16 — Awakening Demo 线上修复
+- 问题：游戏反复提示"加载 embedding 模型"
+- 根因：gunicorn `-w 2` 双 worker，每个进程内存隔离，模型被加载两次
+- 修复：worker 降至 1；sentence_matcher.py 优先从服务器本地路径加载模型
+- 部署注意：服务器非 git 仓库，直接改文件；HuggingFace/hf-mirror 下载超时，改用 modelscope 预下载
+- 结果：openclaw、orson-huang-homepage 未受影响；服务已恢复
+
 ---
 
 ## 活跃模式（中确定性）
