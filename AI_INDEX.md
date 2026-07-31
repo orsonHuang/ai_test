@@ -22,6 +22,9 @@
 |----------|------|
 | 讨论 Project ZH | `Project-ZH/README.md` |
 | 查看操作历史 | `Project-ZH/CHANGELOG.md` |
+| 讨论 HeroGuide（勇者引路人） | `HeroGuide/README.md` |
+| HeroGuide 核心玩法 | `HeroGuide/GDD/01-核心玩法.md` |
+| HeroGuide 寻路设计 | `HeroGuide/GDD/02-寻路与AI设计.md` |
 
 ---
 

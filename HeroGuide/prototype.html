@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>勇者引路人 · 玩法原型</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #FFF8E7;
+    color: #4A4A4A;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    user-select: none;
+  }
+  #app {
+    width: 100%;
+    max-width: 480px;
+    background: #FFF8E7;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* ===== 顶部信息条 ===== */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #FFF8E7;
+    border-bottom: 2px solid #FFE0B2;
+    flex-shrink: 0;
+  }
+  .topbar .title { font-size: 18px; font-weight: bold; color: #4A4A4A; }
+  .topbar .info { font-size: 13px; color: #888; }
+  .btn-back {
+    background: #4ECDC4; color: #fff; border: none; border-radius: 8px;
+    padding: 6px 14px; font-size: 14px; cursor: pointer; font-weight: bold;
+  }
+  .btn-back:active { transform: scale(0.95); }
+
+  /* ===== 地图区域 ===== */
+  .map-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    overflow: auto;
+  }
+  #mapCanvas {
+    border: 3px solid #8D8D8D;
+    border-radius: 12px;
+    background: #7CB342;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    touch-action: none;
+  }
+
+  /* ===== 物品栏 ===== */
+  .itembar {
+    background: #FFF8E7;
+    border-top: 2px solid #FFE0B2;
+    padding: 12px 16px;
+    flex-shrink: 0;
+  }
+  .items {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .item-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border: 3px solid #8D8D8D;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.1s;
+    position: relative;
+  }
+  .item-btn:active { transform: scale(0.95); }
+  .item-btn.selected { border-color: #FF8C42; background: #FFF3E0; box-shadow: 0 0 0 3px rgba(255,140,66,0.3); }
+  .item-btn.disabled { opacity: 0.4; }
+  .item-btn .icon { font-size: 28px; line-height: 1; }
+  .item-btn .count { font-size: 12px; font-weight: bold; color: #4A4A4A; margin-top: 2px; }
+  .item-btn .badge {
+    position: absolute; top: -6px; right: -6px;
+    background: #FF6B6B; color: #fff; font-size: 11px; font-weight: bold;
+    border-radius: 10px; padding: 1px 6px; min-width: 18px; text-align: center;
+  }
+
+  .btn-start {
+    width: 100%;
+    padding: 14px;
+    background: #FF8C42;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s;
+  }
+  .btn-start:active { transform: scale(0.98); }
+  .btn-start:disabled { background: #ccc; color: #999; cursor: not-allowed; }
+  .btn-start.ready { box-shadow: 0 0 0 4px rgba(255,140,66,0.3); animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0%,100%{ box-shadow: 0 0 0 4px rgba(255,140,66,0.3);} 50%{ box-shadow: 0 0 0 8px rgba(255,140,66,0.15);} }
+
+  /* ===== 结算弹窗 ===== */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #FFF8E7;
+    border-radius: 20px;
+    padding: 28px 24px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .modal h2 { font-size: 28px; margin-bottom: 12px; }
+  .modal .stars { font-size: 36px; margin: 12px 0; letter-spacing: 4px; }
+  .modal .detail { font-size: 15px; color: #666; margin: 8px 0; }
+  .modal .reason { font-size: 14px; color: #FF6B6B; margin: 8px 0; font-weight: bold; }
+  .modal-btns { display: flex; gap: 10px; margin-top: 20px; }
+  .modal-btns button {
+    flex: 1; padding: 12px; border: none; border-radius: 10px;
+    font-size: 16px; font-weight: bold; cursor: pointer;
+  }
+  .modal-btns .btn-primary { background: #FF8C42; color: #fff; }
+  .modal-btns .btn-secondary { background: #4ECDC4; color: #fff; }
+  .modal-btns button:active { transform: scale(0.97); }
+
+  /* ===== 提示条 ===== */
+  .tip-bar {
+    background: #FFF9C4;
+    border-top: 1px solid #FBC02D;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #5D4037;
+    text-align: center;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ===== 关卡选择 ===== */
+  .level-select {
+    padding: 20px 16px;
+  }
+  .level-select h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #4A4A4A;
+  }
+  .level-select .subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 24px;
+  }
+  .level-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .level-card {
+    background: #fff;
+    border: 3px solid #8D8D8D;
+    border-radius: 14px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .level-card:active { transform: scale(0.98); }
+  .level-card .num {
+    width: 44px; height: 44px;
+    background: #FF8C42; color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: bold; flex-shrink: 0;
+  }
+  .level-card .info { flex: 1; }
+  .level-card .name { font-size: 16px; font-weight: bold; }
+  .level-card .desc { font-size: 12px; color: #888; margin-top: 2px; }
+  .level-card .stars { font-size: 18px; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<!-- 结算弹窗 -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2 id="modalTitle"></h2>
+    <div class="stars" id="modalStars"></div>
+    <div class="detail" id="modalDetail"></div>
+    <div class="reason" id="modalReason"></div>
+    <div class="modal-btns">
+      <button class="btn-secondary" id="btnRetry">重试</button>
+      <button class="btn-primary" id="btnNext">下一关</button>
+    </div>
+  </div>
+</div>
+
+<script>
+//============================================================
+// 关卡数据
+//============================================================
+const LEVELS = [
+  {
+    id: 1, name: "第一次引导",
+    desc: "放石头堵住陷阱，让勇者绕路",
+    size: { w: 7, h: 5 },
+    hero: { x: 0, y: 2 },
+    demonKing: { x: 6, y: 2 },
+    walls: [],
+    traps: [{ x: 3, y: 2 }],
+    guards: [],
+    items: { stone: 1, portal: 0 },
+    starThresholds: { 3: 1, 2: 2, 1: 3 }
+  },
+  {
+    id: 2, name: "双重危机",
+    desc: "两个陷阱，合理使用石头",
+    size: { w: 8, h: 6 },
+    hero: { x: 0, y: 0 },
+    demonKing: { x: 7, y: 5 },
+    walls: [[3,0],[3,1],[3,2],[3,3]],
+    traps: [{ x: 1, y: 3 }, { x: 5, y: 2 }],
+    guards: [],
+    items: { stone: 2, portal: 0 },
+    starThresholds: { 3: 2, 2: 3, 1: 4 }
+  },
+  {
+    id: 3, name: "绕后击杀",
+    desc: "守卫面前不能放东西，引导勇者绕到背后",
+    size: { w: 8, h: 7 },
+    hero: { x: 0, y: 3 },
+    demonKing: { x: 7, y: 3 },
+    walls: [[3,0],[3,1],[3,5],[3,6]],
+    traps: [],
+    guards: [{ x: 4, y: 3, facing: "left", visionRange: 3 }],
+    items: { stone: 2, portal: 0 },
+    starThresholds: { 3: 1, 2: 2, 1: 3 }
+  }
+];
+
+//============================================================
+// 全局状态
+//============================================================
+const CELL = 56; // 每格像素
+const STATE = {
+  screen: "menu", // menu | game
+  levelIdx: 0,
+  level: null,
+  grid: null, // 二维数组，存格子类型
+  hero: null,
+  demonKing: null,
+  guards: [],
+  placedItems: [], // [{type, x, y, ...}]
+  selectedItem: null, // "stone" | "portal-in" | null
+  portalPending: null, // 传送门第一格 {x,y}
+  path: null, // [{x,y,danger}]
+  phase: "prepare", // prepare | execute | result
+  items: { stone: 0, portal: 0 },
+  usedCount: 0,
+  tip: "",
+  animTimer: null,
+  heroAnimPos: null, // 执行中勇者当前像素位置
+  pathIdx: 0,
+};
+
+//============================================================
+// 格子类型
+//============================================================
+const C = {
+  GROUND: 0,
+  WALL: 1,
+  TRAP: 2,
+  STONE: 3,
+  PORTAL_IN: 4,
+  PORTAL_OUT: 5,
+  GUARD: 6,
+  GUARD_VISION: 7,    // 致命但可通行
+  GUARD_BACK: 8,      // 安全可通行（触发击杀）
+  DEMON_KING: 9,
+};
+
+// 是否障碍（不可通行，影响寻路）
+function isBlocked(t) {
+  return t === C.WALL || t === C.STONE || t === C.GUARD || t === C.DEMON_KING;
+}
+// 是否致命（可通行但会死）
+function isDangerous(t) {
+  return t === C.TRAP || t === C.GUARD_VISION;
+}
+
+//============================================================
+// 初始化关卡
+//============================================================
+function loadLevel(idx) {
+  const lv = LEVELS[idx];
+  STATE.levelIdx = idx;
+  STATE.level = lv;
+  STATE.phase = "prepare";
+  STATE.placedItems = [];
+  STATE.selectedItem = null;
+  STATE.portalPending = null;
+  STATE.usedCount = 0;
+  STATE.tip = getTip(lv.id);
+  STATE.heroAnimPos = null;
+  STATE.pathIdx = 0;
+
+  // 物品栏（副本）
+  STATE.items = { stone: lv.items.stone, portal: lv.items.portal };
+
+  // 构建网格
+  const g = [];
+  for (let y = 0; y < lv.size.h; y++) {
+    g[y] = [];
+    for (let x = 0; x < lv.size.w; x++) g[y][x] = C.GROUND;
+  }
+  // 墙壁
+  for (const [x, y] of lv.walls) g[y][x] = C.WALL;
+  // 陷阱
+  for (const t of lv.traps) g[t.y][t.x] = C.TRAP;
+  // 魔王
+  g[lv.demonKing.y][lv.demonKing.x] = C.DEMON_KING;
+  // 守卫
+  STATE.guards = [];
+  for (const gd of lv.guards) {
+    g[gd.y][gd.x] = C.GUARD;
+    const guard = { ...gd, alive: true };
+    STATE.guards.push(guard);
+    // 计算视野格
+    applyGuardVision(g, guard, true);
+  }
+  STATE.grid = g;
+  STATE.hero = { ...lv.hero };
+  STATE.demonKing = { ...lv.demonKing };
+
+  recalcPath();
+  renderGame();
+}
+
+// 守卫视野：在视野方向的格子上标记 GUARD_VISION（直到遇到障碍截断）
+function applyGuardVision(g, guard, on) {
+  const dirs = { up: [0,-1], down: [0,1], left: [-1,0], right: [1,0] };
+  const [dx, dy] = dirs[guard.facing];
+  for (let i = 1; i <= guard.visionRange; i++) {
+    const x = guard.x + dx * i;
+    const y = guard.y + dy * i;
+    if (x < 0 || y < 0 || x >= STATE.level.size.w || y >= STATE.level.size.h) break;
+    const t = g[y][x];
+    if (t === C.WALL || t === C.STONE || t === C.GUARD || t === C.DEMON_KING) break;
+    if (t === C.GROUND || t === C.TRAP) {
+      g[y][x] = on ? C.GUARD_VISION : (t === C.TRAP ? C.TRAP : C.GROUND);
+    }
+    // 注意：如果原是TRAP，视野移除后恢复TRAP（简化处理）
+  }
+}
+
+// 计算守卫背后格（与守卫相邻、非视野方向的格子）
+function getGuardBackPos(guard) {
+  const dirs = { up: [0,-1], down: [0,1], left: [-1,0], right: [1,0] };
+  const [dx, dy] = dirs[guard.facing];
+  // 背后 = 反方向
+  const bx = guard.x - dx;
+  const by = guard.y - dy;
+  return { x: bx, y: by };
+}
+
+//============================================================
+// A* 寻路（4方向）
+// 致命格（陷阱/视野）权重=1=普通地面，勇者会走
+// 障碍格不可通行
+// 传送门：入口邻居包含出口，A->B权重0
+//============================================================
+function findPath(grid, start, goal) {
+  const W = STATE.level.size.w, H = STATE.level.size.h;
+  const key = (x, y) => y * W + x;
+  const open = new Map(); // key -> {x,y,g,f,parent}
+  const closed = new Set();
+  const startKey = key(start.x, start.y);
+  open.set(startKey, { x: start.x, y: start.y, g: 0, f: heur(start, goal), parent: null });
+
+  while (open.size > 0) {
+    // 找f最小的
+    let bestKey = null, bestNode = null;
+    for (const [k, n] of open) {
+      if (!bestNode || n.f < bestNode.f) { bestNode = n; bestKey = k; }
+    }
+    open.delete(bestKey);
+    closed.add(bestKey);
+
+    // 到达目标相邻格（魔王格本身是障碍，到相邻即成功）
+    if (bestNode.x === goal.x && bestNode.y === goal.y) {
+      return reconstruct(bestNode);
+    }
+    // 魔王相邻判定
+    if (isAdjacent(bestNode, goal)) {
+      return reconstruct(bestNode);
+    }
+
+    // 邻居
+    const neighbors = getNeighbors(grid, bestNode);
+    for (const nb of neighbors) {
+      const nk = key(nb.x, nb.y);
+      if (closed.has(nk)) continue;
+      const isPortal = nb.portal;
+      const stepCost = isPortal ? 0 : 1;
+      const g = bestNode.g + stepCost;
+      const existing = open.get(nk);
+      if (!existing || g < existing.g) {
+        open.set(nk, { x: nb.x, y: nb.y, g, f: g + heur(nb, goal), parent: bestNode });
+      }
+    }
+  }
+  return null; // 无路径
+}
+
+function heur(a, b) {
+  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y);
+}
+function isAdjacent(a, b) {
+  return Math.abs(a.x - b.x) + Math.abs(a.y - b.y) === 1;
+}
+function getNeighbors(grid, node) {
+  const W = STATE.level.size.w, H = STATE.level.size.h;
+  const dirs = [[0,-1],[0,1],[-1,0],[1,0]];
+  const result = [];
+  for (const [dx, dy] of dirs) {
+    const x = node.x + dx, y = node.y + dy;
+    if (x < 0 || y < 0 || x >= W || y >= H) continue;
+    const t = grid[y][x];
+    if (isBlocked(t)) continue;
+    result.push({ x, y });
+  }
+  // 传送门：当前格是入口 -> 邻居包含出口
+  if (grid[node.y][node.x] === C.PORTAL_IN) {
+    // 找配对出口
+    for (const item of STATE.placedItems) {
+      if (item.type === "portal" && item.x === node.x && item.y === node.y) {
+        result.push({ x: item.x2, y: item.y2, portal: true });
+      } else if (item.type === "portal" && item.x2 === node.x && item.y2 === node.y) {
+        result.push({ x: item.x, y: item.y, portal: true });
+      }
+    }
+  }
+  return result;
+}
+function reconstruct(node) {
+  const path = [];
+  let cur = node;
+  while (cur) { path.unshift({ x: cur.x, y: cur.y }); cur = cur.parent; }
+  return path;
+}
+
+//============================================================
+// 重新计算路径 + 危险标注
+//============================================================
+function recalcPath() {
+  const raw = findPath(STATE.grid, STATE.hero, STATE.demonKing);
+  if (!raw) {
+    STATE.path = null;
+    return;
+  }
+  // 标注每格是否危险
+  const path = raw.map(p => {
+    const t = STATE.grid[p.y]?.[p.x];
+    return { ...p, danger: isDangerous(t) };
+  });
+  STATE.path = path;
+}
+
+//============================================================
+// 渲染：Canvas
+//============================================================
+let canvas, ctx;
+
+function renderGame() {
+  const app = document.getElementById("app");
+  if (STATE.screen === "menu") {
+    renderMenu();
+    return;
+  }
+  // 游戏界面
+  const lv = STATE.level;
+  const safe = isPathSafe();
+  app.innerHTML = `
+    <div class="topbar">
+      <button class="btn-back" onclick="goMenu()">返回</button>
+      <div class="title">关卡 ${lv.id} · ${lv.name}</div>
+      <div class="info">物品 ${STATE.usedCount}/${lv.items.stone + lv.items.portal * 2}</div>
+    </div>
+    <div class="map-wrap">
+      <canvas id="mapCanvas" width="${lv.size.w * CELL}" height="${lv.size.h * CELL}"></canvas>
+    </div>
+    <div class="tip-bar" id="tipBar">${STATE.tip}</div>
+    <div class="itembar" id="itembar">
+      <div class="items" id="itemsRow"></div>
+      <button class="btn-start ${safe ? 'ready' : ''}" id="btnStart" ${!safe ? 'disabled' : ''} onclick="startExecute()">
+        ${STATE.phase === 'execute' ? '执行中...' : '出发 →'}
+      </button>
+    </div>
+  `;
+  canvas = document.getElementById("mapCanvas");
+  ctx = canvas.getContext("2d");
+  canvas.addEventListener("click", onCanvasClick);
+  renderItems();
+  drawMap();
+}
+
+function renderMenu() {
+  const app = document.getElementById("app");
+  let cards = "";
+  for (let i = 0; i < LEVELS.length; i++) {
+    const lv = LEVELS[i];
+    cards += `
+      <div class="level-card" onclick="loadLevel(${i}); STATE.screen='game'; renderGame();">
+        <div class="num">${lv.id}</div>
+        <div class="info">
+          <div class="name">${lv.name}</div>
+          <div class="desc">${lv.desc}</div>
+        </div>
+        <div class="stars">⭐⭐⭐</div>
+      </div>
+    `;
+  }
+  app.innerHTML = `
+    <div class="level-select">
+      <h1>⚔️ 勇者引路人</h1>
+      <div class="subtitle">引导蠢勇者安全到达魔王面前</div>
+      <div class="level-list">${cards}</div>
+    </div>
+  `;
+}
+
+function renderItems() {
+  const row = document.getElementById("itemsRow");
+  if (!row) return;
+  const lv = STATE.level;
+  let html = "";
+  if (lv.items.stone > 0) {
+    const remaining = STATE.items.stone;
+    html += `
+      <div class="item-btn ${STATE.selectedItem === 'stone' ? 'selected' : ''} ${remaining === 0 ? 'disabled' : ''}"
+           onclick="selectItem('stone')">
+        <div class="icon">🪨</div>
+        <div class="count">石头</div>
+        ${remaining > 0 ? `<div class="badge">${remaining}</div>` : ''}
+      </div>`;
+  }
+  if (lv.items.portal > 0) {
+    const remaining = STATE.items.portal;
+    html += `
+      <div class="item-btn ${STATE.selectedItem === 'portal' ? 'selected' : ''} ${remaining === 0 ? 'disabled' : ''}"
+           onclick="selectItem('portal')">
+        <div class="icon">🌀</div>
+        <div class="count">传送门</div>
+        ${remaining > 0 ? `<div class="badge">${remaining}</div>` : ''}
+      </div>`;
+  }
+  row.innerHTML = html;
+}
+
+function selectItem(type) {
+  if (STATE.phase !== "prepare") return;
+  if (STATE.items[type] <= 0) return;
+  STATE.selectedItem = STATE.selectedItem === type ? null : type;
+  STATE.portalPending = null;
+  STATE.tip = STATE.selectedItem === "stone" ? "点击地图空格放置石头" :
+              STATE.selectedItem === "portal" ? "点击第一个格子作为传送门入口" :
+              getTip(STATE.level.id);
+  renderGame();
+}
+
+//============================================================
+// Canvas 点击
+//============================================================
+function onCanvasClick(e) {
+  if (STATE.phase !== "prepare") return;
+  const rect = canvas.getBoundingClientRect();
+  const scale = canvas.width / rect.width;
+  const px = (e.clientX - rect.left) * scale;
+  const py = (e.clientY - rect.top) * scale;
+  const x = Math.floor(px / CELL);
+  const y = Math.floor(py / CELL);
+  if (x < 0 || y < 0 || x >= STATE.level.size.w || y >= STATE.level.size.h) return;
+
+  // 点击已放置物品 -> 移除
+  const existing = STATE.placedItems.find(it => 
+    (it.x === x && it.y === y) || (it.type === "portal" && it.x2 === x && it.y2 === y)
+  );
+  if (existing) {
+    removeItem(existing);
+    return;
+  }
+
+  if (!STATE.selectedItem) return;
+  if (!canPlace(x, y)) {
+    flashCell(x, y);
+    return;
+  }
+  placeItem(x, y);
+}
+
+function canPlace(x, y) {
+  const t = STATE.grid[y][x];
+  // 不能放在墙/守卫/魔王/勇者
+  if (t === C.WALL || t === C.GUARD || t === C.DEMON_KING) return false;
+  if (x === STATE.hero.x && y === STATE.hero.y) return false;
+  // 不能放在守卫视野格
+  if (t === C.GUARD_VISION) return false;
+  // 不能放在已有物品上
+  if (t === C.STONE || t === C.PORTAL_IN || t === C.PORTAL_OUT) return false;
+  return true;
+}
+
+function placeItem(x, y) {
+  const type = STATE.selectedItem;
+  if (type === "stone") {
+    STATE.grid[y][x] = C.STONE;
+    STATE.placedItems.push({ type: "stone", x, y });
+    STATE.items.stone--;
+    STATE.usedCount++;
+    if (STATE.items.stone === 0) STATE.selectedItem = null;
+    STATE.tip = "石头已放置，路径已更新";
+  } else if (type === "portal") {
+    if (!STATE.portalPending) {
+      STATE.portalPending = { x, y };
+      STATE.tip = "已选入口，点击第二个格子作为出口";
+      renderGame();
+      return;
+    }
+    // 放置出口
+    const a = STATE.portalPending;
+    if (a.x === x && a.y === y) { STATE.portalPending = null; STATE.tip = "出口不能和入口相同"; renderGame(); return; }
+    if (!canPlace(x, y)) { flashCell(x, y); return; }
+    STATE.grid[a.y][a.x] = C.PORTAL_IN;
+    STATE.grid[y][x] = C.PORTAL_OUT;
+    STATE.placedItems.push({ type: "portal", x: a.x, y: a.y, x2: x, y2: y });
+    STATE.items.portal--;
+    STATE.usedCount++;
+    STATE.portalPending = null;
+    if (STATE.items.portal === 0) STATE.selectedItem = null;
+    STATE.tip = "传送门已放置，路径已更新";
+  }
+  recalcPath();
+  renderGame();
+}
+
+function removeItem(item) {
+  if (item.type === "stone") {
+    STATE.grid[item.y][item.x] = C.GROUND;
+    STATE.items.stone++;
+    STATE.usedCount--;
+  } else if (item.type === "portal") {
+    STATE.grid[item.y][item.x] = C.GROUND;
+    STATE.grid[item.y2][item.x2] = C.GROUND;
+    STATE.items.portal++;
+    STATE.usedCount--;
+  }
+  STATE.placedItems = STATE.placedItems.filter(it => it !== item);
+  recalcPath();
+  STATE.tip = "物品已收回";
+  renderGame();
+}
+
+function flashCell(x, y) {
+  // 简单闪烁：重绘加红框
+  drawMap();
+  ctx.strokeStyle = "#FF0000";
+  ctx.lineWidth = 4;
+  ctx.strokeRect(x * CELL + 2, y * CELL + 2, CELL - 4, CELL - 4);
+  setTimeout(() => drawMap(), 200);
+}
+
+//============================================================
+// 绘制地图
+//============================================================
+function drawMap() {
+  const g = STATE.grid;
+  const lv = STATE.level;
+  // 背景
+  ctx.fillStyle = "#7CB342";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // 草地纹理
+  for (let y = 0; y < lv.size.h; y++) {
+    for (let x = 0; x < lv.size.w; x++) {
+      drawCell(x, y, g[y][x]);
+    }
+  }
+
+  // 守卫视野覆盖
+  for (const guard of STATE.guards) {
+    if (!guard.alive) continue;
+    drawVision(guard);
+  }
+
+  // 路径虚线
+  if (STATE.path && STATE.phase === "prepare") {
+    drawPath();
+  }
+  if (STATE.phase === "execute" && STATE.path) {
+    drawExecutePath();
+  }
+
+  // 角色
+  drawHero();
+  drawDemonKing();
+  for (const guard of STATE.guards) {
+    if (guard.alive) drawGuard(guard);
+  }
+}
+
+function drawCell(x, y, t) {
+  const px = x * CELL, py = y * CELL;
+  // 草地底纹
+  ctx.fillStyle = "#7CB342";
+  ctx.fillRect(px, py, CELL, CELL);
+  // 格子边线
+  ctx.strokeStyle = "rgba(0,0,0,0.08)";
+  ctx.lineWidth = 1;
+  ctx.strokeRect(px, py, CELL, CELL);
+
+  if (t === C.WALL) {
+    ctx.fillStyle = "#8D8D8D";
+    ctx.fillRect(px + 2, py + 2, CELL - 4, CELL - 4);
+    ctx.fillStyle = "#A8A8A8";
+    ctx.fillRect(px + 2, py + 2, CELL - 4, 6);
+    ctx.strokeStyle = "#6B6B6B";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(px + 2, py + 2, CELL - 4, CELL - 4);
+  } else if (t === C.TRAP) {
+    // 尖刺
+    ctx.fillStyle = "#607D8B";
+    for (let i = 0; i < 3; i++) {
+      const sx = px + 10 + i * 16;
+      ctx.beginPath();
+      ctx.moveTo(sx, py + CELL - 10);
+      ctx.lineTo(sx + 6, py + 12);
+      ctx.lineTo(sx + 12, py + CELL - 10);
+      ctx.closePath();
+      ctx.fill();
+    }
+    ctx.strokeStyle = "#455A64";
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 3; i++) {
+      const sx = px + 10 + i * 16;
+      ctx.beginPath();
+      ctx.moveTo(sx, py + CELL - 10);
+      ctx.lineTo(sx + 6, py + 12);
+      ctx.lineTo(sx + 12, py + CELL - 10);
+      ctx.stroke();
+    }
+  } else if (t === C.STONE) {
+    drawStone(px, py);
+  } else if (t === C.PORTAL_IN || t === C.PORTAL_OUT) {
+    drawPortal(px, py, t === C.PORTAL_IN);
+  }
+}
+
+function drawStone(px, py) {
+  ctx.fillStyle = "#8D8D8D";
+  ctx.beginPath();
+  ctx.ellipse(px + CELL/2, py + CELL/2 + 4, CELL/2 - 8, CELL/2 - 12, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#A8A8A8";
+  ctx.beginPath();
+  ctx.ellipse(px + CELL/2 - 4, py + CELL/2, CELL/2 - 14, CELL/2 - 18, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#6B6B6B";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.ellipse(px + CELL/2, py + CELL/2 + 4, CELL/2 - 8, CELL/2 - 12, 0, 0, Math.PI * 2);
+  ctx.stroke();
+}
+
+function drawPortal(px, py, isIn) {
+  const cx = px + CELL/2, cy = py + CELL/2;
+  // 旋涡
+  ctx.strokeStyle = isIn ? "#4ECDC4" : "#26A69A";
+  ctx.lineWidth = 3;
+  for (let i = 0; i < 3; i++) {
+    ctx.beginPath();
+    ctx.arc(cx, cy, 8 + i * 6, 0, Math.PI * 1.5);
+    ctx.stroke();
+  }
+  ctx.fillStyle = isIn ? "#4ECDC4" : "#26A69A";
+  ctx.font = "10px sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(isIn ? "入" : "出", cx, cy + 3);
+}
+
+function drawVision(guard) {
+  const dirs = { up: [0,-1], down: [0,1], left: [-1,0], right: [1,0] };
+  const [dx, dy] = dirs[guard.facing];
+  ctx.fillStyle = "rgba(255, 107, 107, 0.3)";
+  for (let i = 1; i <= guard.visionRange; i++) {
+    const x = guard.x + dx * i;
+    const y = guard.y + dy * i;
+    if (x < 0 || y < 0 || x >= STATE.level.size.w || y >= STATE.level.size.h) break;
+    const t = STATE.grid[y][x];
+    if (t === C.WALL || t === C.STONE || t === C.GUARD || t === C.DEMON_KING) break;
+    ctx.fillRect(x * CELL, y * CELL, CELL, CELL);
+    // 边框
+    ctx.strokeStyle = "rgba(255, 107, 107, 0.6)";
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.strokeRect(x * CELL + 2, y * CELL + 2, CELL - 4, CELL - 4);
+    ctx.setLineDash([]);
+  }
+}
+
+function drawPath() {
+  if (!STATE.path || STATE.path.length < 2) return;
+  const safe = isPathSafe();
+  // 逐段画虚线
+  for (let i = 0; i < STATE.path.length - 1; i++) {
+    const p1 = STATE.path[i];
+    const p2 = STATE.path[i + 1];
+    const danger = p1.danger || p2.danger;
+    ctx.strokeStyle = danger ? "#FF6B6B" : "#7CB342";
+    ctx.lineWidth = 4;
+    ctx.setLineDash([8, 6]);
+    ctx.beginPath();
+    // 传送门段画弧线
+    if (Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y) > 1) {
+      ctx.moveTo(p1.x * CELL + CELL/2, p1.y * CELL + CELL/2);
+      ctx.quadraticCurveTo(
+        (p1.x + p2.x) / 2 * CELL + CELL/2,
+        (p1.y + p2.y) / 2 * CELL + CELL/2 - 20,
+        p2.x * CELL + CELL/2, p2.y * CELL + CELL/2
+      );
+    } else {
+      ctx.moveTo(p1.x * CELL + CELL/2, p1.y * CELL + CELL/2);
+      ctx.lineTo(p2.x * CELL + CELL/2, p2.y * CELL + CELL/2);
+    }
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
+  // 危险格标注
+  for (const p of STATE.path) {
+    if (p.danger) {
+      ctx.fillStyle = "#FF6B6B";
+      ctx.font = "bold 16px sans-serif";
+      ctx.textAlign = "center";
+      const t = STATE.grid[p.y][p.x];
+      const icon = t === C.TRAP ? "⚠️" : "👁️";
+      ctx.fillText(icon, p.x * CELL + CELL/2, p.y * CELL + 12);
+    }
+  }
+
+  // 无路提示
+  if (!STATE.path || STATE.path.length === 0) {
+    // 已在UI提示
+  }
+}
+
+function drawExecutePath() {
+  if (!STATE.path || STATE.path.length < 2) return;
+  // 已走部分实线，未走部分淡虚线
+  for (let i = 0; i < STATE.path.length - 1; i++) {
+    const p1 = STATE.path[i];
+    const p2 = STATE.path[i + 1];
+    const walked = i < STATE.pathIdx;
+    ctx.strokeStyle = walked ? "#FFD93D" : "rgba(255,255,255,0.3)";
+    ctx.lineWidth = walked ? 4 : 3;
+    ctx.setLineDash(walked ? [] : [6, 6]);
+    ctx.beginPath();
+    ctx.moveTo(p1.x * CELL + CELL/2, p1.y * CELL + CELL/2);
+    ctx.lineTo(p2.x * CELL + CELL/2, p2.y * CELL + CELL/2);
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+}
+
+function drawHero() {
+  let px, py;
+  if (STATE.heroAnimPos) {
+    px = STATE.heroAnimPos.x;
+    py = STATE.heroAnimPos.y;
+  } else {
+    px = STATE.hero.x * CELL + CELL/2;
+    py = STATE.hero.y * CELL + CELL/2;
+  }
+  // 身体
+  ctx.fillStyle = "#4A90D9";
+  ctx.beginPath();
+  ctx.arc(px, py + 4, 16, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#2c5f8d";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // 头
+  ctx.fillStyle = "#FFD93D";
+  ctx.beginPath();
+  ctx.arc(px, py - 10, 10, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+  // 眼睛
+  ctx.fillStyle = "#4A4A4A";
+  ctx.beginPath();
+  ctx.arc(px - 3, py - 11, 1.5, 0, Math.PI * 2);
+  ctx.arc(px + 3, py - 11, 1.5, 0, Math.PI * 2);
+  ctx.fill();
+  // 剑
+  ctx.strokeStyle = "#E0E0E0";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(px + 12, py - 4);
+  ctx.lineTo(px + 22, py - 14);
+  ctx.stroke();
+  ctx.strokeStyle = "#8D8D8D";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(px + 10, py - 2);
+  ctx.lineTo(px + 14, py - 6);
+  ctx.stroke();
+}
+
+function drawDemonKing() {
+  const px = STATE.demonKing.x * CELL + CELL/2;
+  const py = STATE.demonKing.y * CELL + CELL/2;
+  // 身体
+  ctx.fillStyle = "#D32F2F";
+  ctx.beginPath();
+  ctx.arc(px, py + 2, 20, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#8B0000";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // 角
+  ctx.fillStyle = "#FFD93D";
+  ctx.beginPath();
+  ctx.moveTo(px - 10, py - 14);
+  ctx.lineTo(px - 14, py - 24);
+  ctx.lineTo(px - 6, py - 16);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(px + 10, py - 14);
+  ctx.lineTo(px + 14, py - 24);
+  ctx.lineTo(px + 6, py - 16);
+  ctx.fill();
+  // 眼睛
+  ctx.fillStyle = "#FFD93D";
+  ctx.beginPath();
+  ctx.arc(px - 6, py - 4, 3, 0, Math.PI * 2);
+  ctx.arc(px + 6, py - 4, 3, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = "#000";
+  ctx.beginPath();
+  ctx.arc(px - 6, py - 4, 1.5, 0, Math.PI * 2);
+  ctx.arc(px + 6, py - 4, 1.5, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function drawGuard(guard) {
+  const px = guard.x * CELL + CELL/2;
+  const py = guard.y * CELL + CELL/2;
+  // 身体
+  ctx.fillStyle = "#9C27B0";
+  ctx.beginPath();
+  ctx.arc(px, py + 2, 16, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#6A1B9A";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  // 头
+  ctx.fillStyle = "#9C27B0";
+  ctx.beginPath();
+  ctx.arc(px, py - 10, 9, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+  // 眼睛（红色，朝向方向）
+  ctx.fillStyle = "#FF0000";
+  const dirs = { up: [0,-1], down: [0,1], left: [-1,0], right: [1,0] };
+  const [ex, ey] = dirs[guard.facing];
+  ctx.beginPath();
+  ctx.arc(px + ex * 3 - 3, py - 11 + ey * 3, 1.5, 0, Math.PI * 2);
+  ctx.arc(px + ex * 3 + 3, py - 11 + ey * 3, 1.5, 0, Math.PI * 2);
+  ctx.fill();
+  // 三叉戟
+  ctx.strokeStyle = "#8D8D8D";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(px + 14, py);
+  ctx.lineTo(px + 22, py - 10);
+  ctx.stroke();
+}
+
+//============================================================
+// 路径安全判定
+//============================================================
+function isPathSafe() {
+  if (!STATE.path || STATE.path.length === 0) return false;
+  return !STATE.path.some(p => p.danger);
+}
+
+//============================================================
+// 执行阶段
+//============================================================
+function startExecute() {
+  if (!isPathSafe()) return;
+  STATE.phase = "execute";
+  STATE.pathIdx = 0;
+  STATE.tip = "勇者出发了！";
+  document.getElementById("btnStart").disabled = true;
+  document.getElementById("btnStart").textContent = "执行中...";
+  stepHero();
+}
+
+function stepHero() {
+  if (STATE.pathIdx >= STATE.path.length - 1) {
+    // 到达终点
+    onVictory();
+    return;
+  }
+  const from = STATE.path[STATE.pathIdx];
+  const to = STATE.path[STATE.pathIdx + 1];
+  const fromPx = { x: from.x * CELL + CELL/2, y: from.y * CELL + CELL/2 };
+  const toPx = { x: to.x * CELL + CELL/2, y: to.y * CELL + CELL/2 };
+  const duration = 250;
+  const startT = performance.now();
+
+  function animate(now) {
+    const t = Math.min(1, (now - startT) / duration);
+    STATE.heroAnimPos = {
+      x: fromPx.x + (toPx.x - fromPx.x) * t,
+      y: fromPx.y + (toPx.y - fromPx.y) * t
+    };
+    drawMap();
+    if (t < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      STATE.heroAnimPos = null;
+      STATE.hero = { x: to.x, y: to.y };
+      STATE.pathIdx++;
+      // 检查事件
+      checkCellEvent(to);
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+function checkCellEvent(p) {
+  const t = STATE.grid[p.y][p.x];
+  // 陷阱
+  if (t === C.TRAP) {
+    STATE.tip = "勇者踩中了陷阱！";
+    drawMap();
+    setTimeout(() => onDefeat("踩中陷阱"), 400);
+    return;
+  }
+  // 守卫视野
+  if (t === C.GUARD_VISION) {
+    STATE.tip = "勇者被守卫发现了！";
+    drawMap();
+    setTimeout(() => onDefeat("闯入守卫视野"), 400);
+    return;
+  }
+  // 守卫背后（触发击杀）
+  for (const guard of STATE.guards) {
+    if (!guard.alive) continue;
+    const back = getGuardBackPos(guard);
+    if (back.x === p.x && back.y === p.y) {
+      // 击杀守卫
+      guard.alive = false;
+      // 移除视野
+      applyGuardVision(STATE.grid, guard, false);
+      // 守卫格变地面
+      STATE.grid[guard.y][guard.x] = C.GROUND;
+      STATE.tip = "勇者从背后击杀了守卫！";
+      drawMap();
+      setTimeout(() => stepHero(), 500);
+      return;
+    }
+  }
+  // 传送门
+  if (t === C.PORTAL_IN) {
+    // 找出口
+    for (const item of STATE.placedItems) {
+      if (item.type === "portal") {
+        let dest;
+        if (item.x === p.x && item.y === p.y) dest = { x: item.x2, y: item.y2 };
+        else if (item.x2 === p.x && item.y2 === p.y) dest = { x: item.x, y: item.y };
+        if (dest) {
+          STATE.tip = "勇者传送到出口！";
+          STATE.hero = dest;
+          STATE.pathIdx++; // 跳过传送段
+          drawMap();
+          setTimeout(() => stepHero(), 300);
+          return;
+        }
+      }
+    }
+  }
+  // 魔王相邻 -> 胜利
+  if (isAdjacent(p, STATE.demonKing)) {
+    onVictory();
+    return;
+  }
+  // 继续
+  stepHero();
+}
+
+//============================================================
+// 结算
+//============================================================
+function onVictory() {
+  STATE.phase = "result";
+  const lv = STATE.level;
+  const used = STATE.usedCount;
+  let stars = 1;
+  if (used <= lv.starThresholds[3]) stars = 3;
+  else if (used <= lv.starThresholds[2]) stars = 2;
+  showModal({
+    title: "通关成功！",
+    stars: "⭐".repeat(stars) + "☆".repeat(3 - stars),
+    detail: `使用物品：${used} / 最优 ${lv.starThresholds[3]}`,
+    reason: "",
+    isWin: true
+  });
+}
+
+function onDefeat(reason) {
+  STATE.phase = "result";
+  showModal({
+    title: "失败了！",
+    stars: "",
+    detail: "",
+    reason: "失败原因：" + reason,
+    isWin: false
+  });
+}
+
+function showModal(data) {
+  document.getElementById("modalTitle").textContent = data.title;
+  document.getElementById("modalStars").textContent = data.stars;
+  document.getElementById("modalDetail").textContent = data.detail;
+  document.getElementById("modalReason").textContent = data.reason;
+  const btnNext = document.getElementById("btnNext");
+  if (data.isWin && STATE.levelIdx < LEVELS.length - 1) {
+    btnNext.textContent = "下一关";
+    btnNext.style.display = "";
+  } else if (data.isWin) {
+    btnNext.textContent = "返回菜单";
+    btnNext.style.display = "";
+  } else {
+    btnNext.textContent = "返回菜单";
+    btnNext.style.display = "";
+  }
+  document.getElementById("modal").classList.add("show");
+}
+
+function hideModal() {
+  document.getElementById("modal").classList.remove("show");
+}
+
+function goMenu() {
+  STATE.screen = "menu";
+  STATE.phase = "prepare";
+  hideModal();
+  renderMenu();
+}
+
+//============================================================
+// 提示文案
+//============================================================
+function getTip(levelId) {
+  if (levelId === 1) return "点击石头选中，再点地图放置。堵住陷阱让勇者绕路！";
+  if (levelId === 2) return "两个陷阱需要两块石头。注意墙壁会让路径有分支！";
+  if (levelId === 3) return "守卫面前（红色区域）不能放东西！用石头堵住直路，迫使勇者绕到守卫背后。";
+  return "";
+}
+
+//============================================================
+// 弹窗按钮
+//============================================================
+document.getElementById("btnRetry").addEventListener("click", () => {
+  hideModal();
+  loadLevel(STATE.levelIdx);
+});
+document.getElementById("btnNext").addEventListener("click", () => {
+  hideModal();
+  if (STATE.levelIdx < LEVELS.length - 1) {
+    loadLevel(STATE.levelIdx + 1);
+  } else {
+    goMenu();
+  }
+});
+
+//============================================================
+// 启动
+//============================================================
+renderMenu();
+</script>
+</body>
+</html>

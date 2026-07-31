@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深圳游戏公司整理 — 按项目类型与公司规模分类</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --accent: #2563eb;
+    --badge-large: #dc2626;
+    --badge-medium: #f59e0b;
+    --badge-small: #16a34a;
+    --tag-bg: #f3f4f6;
+    --row-hover: #f9fafb;
+    --section-bg: #f8fafc;
+    --card-bg: #ffffff;
+    --card-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+  }
+  .container { max-width: 1280px; margin: 0 auto; padding: 40px 24px; }
+
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .subtitle { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+
+  /* Stats row */
+  .stats { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 36px; }
+  .stat-card {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 24px;
+    min-width: 130px;
+  }
+  .stat-card .num { font-size: 28px; font-weight: 700; color: var(--accent); }
+  .stat-card .label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  /* Section */
+  .section { margin-bottom: 42px; }
+  .section h2 {
+    font-size: 20px; font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section h2 .icon { font-size: 24px; }
+
+  /* Size badge */
+  .badge {
+    display: inline-block; padding: 2px 10px; border-radius: 20px;
+    font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap;
+  }
+  .badge.l { background: var(--badge-large); }
+  .badge.m { background: var(--badge-medium); }
+  .badge.s { background: var(--badge-small); }
+  .badge-list { background: #8b5cf6; }
+
+  /* Tables */
+  table {
+    width: 100%; border-collapse: collapse;
+    background: var(--card-bg);
+    box-shadow: var(--card-shadow);
+    border-radius: 10px; overflow: hidden;
+    font-size: 13px;
+  }
+  thead th {
+    background: #f1f5f9; text-align: left;
+    padding: 12px 14px; font-weight: 600;
+    color: var(--muted); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:hover { background: var(--row-hover); }
+  tbody tr:last-child td { border-bottom: none; }
+
+  .company-name { font-weight: 600; }
+  .company-name .stock { color: var(--muted); font-weight: 400; font-size: 11px; margin-left: 4px; }
+  .tag {
+    display: inline-block; background: var(--tag-bg);
+    padding: 2px 8px; border-radius: 4px;
+    font-size: 11px; margin: 2px 4px 2px 0;
+    white-space: nowrap;
+  }
+
+  /* Category cross-ref */
+  .crossref { margin-top: 40px; }
+  .crossref h2 { border: none; margin-bottom: 12px; }
+  .crossref-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+  .crossref-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px 20px; box-shadow: var(--card-shadow);
+  }
+  .crossref-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .crossref-card ul { list-style: none; font-size: 13px; line-height: 2; }
+  .crossref-card ul li::before { content: "▪"; color: var(--accent); margin-right: 8px; }
+  .note {
+    background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px;
+    padding: 12px 16px; font-size: 13px; margin-top: 36px; color: #92400e;
+  }
+
+  .footer { margin-top: 48px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 16px; }
+  @media (max-width: 768px) {
+    .container { padding: 20px 12px; }
+    table { font-size: 11px; }
+    thead th, tbody td { padding: 8px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>深圳游戏公司整理</h1>
+<p class="subtitle">按项目类型与公司规模分类 · 数据来源：公开信息综合整理 · 更新至 2026年7月</p>
+
+<div class="stats">
+  <div class="stat-card"><div class="num">45+</div><div class="label">收录公司</div></div>
+  <div class="stat-card"><div class="num">10</div><div class="label">上市企业</div></div>
+  <div class="stat-card"><div class="num">千亿级</div><div class="label">南山区产业规模</div></div>
+  <div class="stat-card"><div class="num">20万+</div><div class="label">从业人数</div></div>
+</div>
+
+<!-- ============================
+     按公司规模分类
+     ============================ -->
+<div class="section">
+  <h2><span class="icon">🏢</span> 一、按公司规模分类</h2>
+
+  <h3 style="font-size:16px; margin:16px 0 8px;"><span class="badge l">大型</span> 1000人以上 / 头部企业</h3>
+  <table>
+    <thead>
+      <tr><th>公司</th><th>规模</th><th>上市</th><th>核心项目类型</th><th>代表作</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="company-name">腾讯游戏<span class="stock">(00700.HK)</span></td>
+        <td>10000+</td><td>港股</td>
+        <td><span class="tag">MOBA</span><span class="tag">FPS</span><span class="tag">RPG</span><span class="tag">开放世界</span><span class="tag">休闲</span><span class="tag">全品类</span></td>
+        <td>王者荣耀、和平精英、三角洲行动、无畏契约、元梦之星</td>
+      </tr>
+      <tr>
+        <td class="company-name">冰川网络<span class="stock">(300533.SZ)</span></td>
+        <td>~1700-2100</td><td>A股创业板</td>
+        <td><span class="tag">MMORPG</span><span class="tag">放置卡牌</span><span class="tag">SLG</span><span class="tag">出海</span></td>
+        <td>远征OL、龙武、超能世界、Hero Clash、X-Clash</td>
+      </tr>
+      <tr>
+        <td class="company-name">大梦龙途</td>
+        <td>1200+</td><td>未上市</td>
+        <td><span class="tag">小游戏</span><span class="tag">塔防</span><span class="tag">国战</span><span class="tag">出海</span></td>
+        <td>向僵尸开炮、北凉悍刀行、葫芦娃大作战、甘道夫醒醒啦</td>
+      </tr>
+      <tr>
+        <td class="company-name">凯撒文化<span class="stock">(002425.SZ)</span></td>
+        <td>500-1000</td><td>A股主板</td>
+        <td><span class="tag">IP改编</span><span class="tag">SLG</span><span class="tag">卡牌</span><span class="tag">动漫影视联动</span></td>
+        <td>三国志2017、圣斗士星矢:重生、新三国志</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:16px; margin:28px 0 8px;"><span class="badge m">中型</span> 300-999人 / 腰部力量</h3>
+  <table>
+    <thead>
+      <tr><th>公司</th><th>规模</th><th>上市</th><th>核心项目类型</th><th>代表作</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="company-name">创梦天地 (iDreamSky)<span class="stock">(01119.HK)</span></td>
+        <td>500-999</td><td>港股</td>
+        <td><span class="tag">二次元射击</span><span class="tag">休闲跑酷</span><span class="tag">IP发行</span></td>
+        <td>卡拉彼丘、地铁跑酷、机甲战队、荣耀全明星</td>
+      </tr>
+      <tr>
+        <td class="company-name">中青宝<span class="stock">(300052.SZ)</span></td>
+        <td>500-999</td><td>A股创业板</td>
+        <td><span class="tag">MMORPG</span><span class="tag">页游</span><span class="tag">红色文化游戏</span></td>
+        <td>裂天之刃、亮剑2</td>
+      </tr>
+      <tr>
+        <td class="company-name">第七大道<span class="stock">(00797.HK)</span></td>
+        <td>500-999</td><td>港股</td>
+        <td><span class="tag">休闲射击</span><span class="tag">页游</span></td>
+        <td>弹弹堂</td>
+      </tr>
+      <tr>
+        <td class="company-name">禅游科技<span class="stock">(02660.HK)</span></td>
+        <td>500-999</td><td>港股</td>
+        <td><span class="tag">棋牌</span><span class="tag">休闲</span></td>
+        <td>天天斗地主(真人版)、指尖四川麻将</td>
+      </tr>
+      <tr>
+        <td class="company-name">中手游<span class="stock">(00302.HK)</span></td>
+        <td>~350+</td><td>港股</td>
+        <td><span class="tag">IP游戏</span><span class="tag">RPG</span><span class="tag">卡牌</span><span class="tag">仙剑IP运营</span></td>
+        <td>龙珠觉醒、仙剑奇侠传系列、三千幻世</td>
+      </tr>
+      <tr>
+        <td class="company-name">迷你玩</td>
+        <td>~400 (曾1000)</td><td>未上市</td>
+        <td><span class="tag">沙盒</span><span class="tag">UGC</span><span class="tag">青少年向</span></td>
+        <td>迷你世界</td>
+      </tr>
+      <tr>
+        <td class="company-name">望尘科技<span class="stock">(02458.HK)</span></td>
+        <td>~400</td><td>港股</td>
+        <td><span class="tag">体育模拟</span><span class="tag">足球</span><span class="tag">篮球</span><span class="tag">FIFPro/NBA授权</span></td>
+        <td>NBA篮球大师、足球大师、最佳11人</td>
+      </tr>
+      <tr>
+        <td class="company-name">墨麟集团</td>
+        <td>300-500</td><td>未上市</td>
+        <td><span class="tag">MMORPG</span><span class="tag">ARPG</span></td>
+        <td>古剑奇谭WEB、风云无双</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:16px; margin:28px 0 8px;"><span class="badge s">中小型</span> 100-299人 / 中坚力量</h3>
+  <table>
+    <thead>
+      <tr><th>公司</th><th>规模</th><th>上市</th><th>核心项目类型</th><th>代表作</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="company-name">凉屋游戏</td>
+        <td>100-499</td><td>未上市(A轮)</td>
+        <td><span class="tag">Roguelike</span><span class="tag">独立游戏</span><span class="tag">像素风</span><span class="tag">动作</span></td>
+        <td>元气骑士、战魂铭人、怪蛋迷宫</td>
+      </tr>
+      <tr>
+        <td class="company-name">尚游游戏</td>
+        <td>100-499</td><td>未上市</td>
+        <td><span class="tag">MMORPG</span><span class="tag">Roguelike</span><span class="tag">策略</span><span class="tag">二次元</span></td>
+        <td>诺亚传说、霓虹深渊:无限、无悔华夏、新月同行</td>
+      </tr>
+      <tr>
+        <td class="company-name">淘乐网络<span class="stock">(大晟文化 600892)</span></td>
+        <td>150-500</td><td>母公司A股</td>
+        <td><span class="tag">回合制MMORPG</span><span class="tag">仙侠</span></td>
+        <td>桃花源记、灵域</td>
+      </tr>
+      <tr>
+        <td class="company-name">博雅互动<span class="stock">(00434.HK)</span></td>
+        <td>100-499</td><td>港股</td>
+        <td><span class="tag">棋牌</span><span class="tag">休闲</span></td>
+        <td>博雅斗地主、博雅四川麻将</td>
+      </tr>
+      <tr>
+        <td class="company-name">灵游互娱</td>
+        <td>100-499</td><td>未上市(A轮)</td>
+        <td><span class="tag">小游戏</span><span class="tag">休闲</span><span class="tag">出海</span></td>
+        <td>休闲游戏矩阵</td>
+      </tr>
+      <tr>
+        <td class="company-name">乐易网络</td>
+        <td>100-499</td><td>未上市</td>
+        <td><span class="tag">RPG</span><span class="tag">动作</span><span class="tag">出海</span></td>
+        <td>西部风云、英雄入侵</td>
+      </tr>
+      <tr>
+        <td class="company-name">前海幻境</td>
+        <td>100-499</td><td>未上市</td>
+        <td><span class="tag">二次元</span><span class="tag">RPG</span><span class="tag">策略</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="company-name">海拓时代</td>
+        <td>100-299</td><td>未上市</td>
+        <td><span class="tag">SLG</span><span class="tag">出海</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="company-name">爱的番茄</td>
+        <td>100-299</td><td>未上市</td>
+        <td><span class="tag">乙女向</span><span class="tag">女性向</span><span class="tag">RPG</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="company-name">九九互动</td>
+        <td>100-299</td><td>未上市</td>
+        <td><span class="tag">休闲</span><span class="tag">小游戏发行</span><span class="tag">出海</span></td>
+        <td>猪来了、Piggy Go、Island King</td>
+      </tr>
+      <tr>
+        <td class="company-name">乙亥互娱 (尚游旗下)</td>
+        <td>100-299</td><td>未上市</td>
+        <td><span class="tag">策略</span><span class="tag">二次元</span><span class="tag">Roguelike</span></td>
+        <td>无悔华夏、霓虹深渊:无限、新月同行</td>
+      </tr>
+      <tr>
+        <td class="company-name">星河互动</td>
+        <td>100-499</td><td>未上市</td>
+        <td><span class="tag">MMORPG</span><span class="tag">开放世界</span></td>
+        <td>塞尔之光</td>
+      </tr>
+      <tr>
+        <td class="company-name">范特西科技</td>
+        <td>100-299</td><td>未上市</td>
+        <td><span class="tag">体育模拟</span><span class="tag">NBA</span></td>
+        <td>NBA征程</td>
+      </tr>
+      <tr>
+        <td class="company-name">第一波网络</td>
+        <td>100-299</td><td>未上市</td>
+        <td><span class="tag">IP改编</span><span class="tag">网络小说改编</span><span class="tag">RPG</span></td>
+        <td>雪鹰领主、莽荒纪</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size:16px; margin:28px 0 8px;"><span class="badge-list">小型 / 工作室</span> 100人以下 / 独立与初创</h3>
+  <table>
+    <thead>
+      <tr><th>公司</th><th>规模</th><th>上市</th><th>核心项目类型</th><th>代表作</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="company-name">游戏科学 (游科互动)</td>
+        <td>50-99</td><td>未上市(腾讯投资)</td>
+        <td><span class="tag">3A单机</span><span class="tag">ARPG</span><span class="tag">中国神话题材</span></td>
+        <td>黑神话:悟空、黑神话:钟馗、战争艺术:赤潮</td>
+      </tr>
+      <tr>
+        <td class="company-name">汉家松鼠</td>
+        <td>&lt;50</td><td>未上市</td>
+        <td><span class="tag">独立RPG</span><span class="tag">武侠</span><span class="tag">沙盒</span></td>
+        <td>汉家江湖、部落与弯刀、金庸群侠传X</td>
+      </tr>
+      <tr>
+        <td class="company-name">其乐游戏 (尚游旗下)</td>
+        <td>50-99</td><td>未上市</td>
+        <td><span class="tag">Roguelike</span><span class="tag">休闲竞技</span></td>
+        <td>元气骑士(发行)</td>
+      </tr>
+      <tr>
+        <td class="company-name">愿景互娱</td>
+        <td>50-99</td><td>未上市</td>
+        <td><span class="tag">独立游戏</span><span class="tag">小游戏</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="company-name">星锐游戏</td>
+        <td>&lt;50</td><td>未上市</td>
+        <td><span class="tag">独立游戏</span><span class="tag">休闲</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="company-name">翻江倒海互娱</td>
+        <td>&lt;50</td><td>未上市</td>
+        <td><span class="tag">海外发行</span><span class="tag">游戏发行</span></td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="company-name">奇迅新游</td>
+        <td>&lt;100</td><td>未上市</td>
+        <td><span class="tag">体育休闲</span><span class="tag">体感</span></td>
+        <td>羽毛球高高手</td>
+      </tr>
+      <tr>
+        <td class="company-name">萌蛋互动</td>
+        <td>&lt;100</td><td>未上市</td>
+        <td><span class="tag">休闲</span><span class="tag">社交</span></td>
+        <td>猪来了</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================
+     按项目类型分类
+     ============================ -->
+<div class="section crossref">
+  <h2>二、按项目类型分类速查</h2>
+  <div class="crossref-grid">
+
+    <div class="crossref-card">
+      <h3>🎮 MOBA / FPS / 竞技</h3>
+      <ul>
+        <li>腾讯游戏 — 王者荣耀、和平精英、三角洲行动、无畏契约</li>
+        <li>创梦天地 — 卡拉彼丘 (二次元射击)</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>⚔️ MMORPG / 国战</h3>
+      <ul>
+        <li>腾讯游戏 — 天涯明月刀、DNF手游等</li>
+        <li>冰川网络 — 远征OL、龙武、远征2</li>
+        <li>淘乐网络 — 桃花源记、灵域</li>
+        <li>尚游游戏 — 诺亚传说 (运营15年)</li>
+        <li>中青宝 — 裂天之刃</li>
+        <li>墨麟集团 — 古剑奇谭WEB</li>
+        <li>星河互动 — 塞尔之光</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>🎴 卡牌 / 放置 / SLG</h3>
+      <ul>
+        <li>冰川网络 — 超能世界 (放置卡牌)、X-Clash (SLG)</li>
+        <li>凯撒文化 — 三国志2017 (SLG)</li>
+        <li>海拓时代 — SLG 出海</li>
+        <li>第一波网络 — 雪鹰领主 (IP卡牌RPG)</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>🐉 二次元 / 女性向</h3>
+      <ul>
+        <li>创梦天地 — 卡拉彼丘</li>
+        <li>尚游/乙亥互娱 — 新月同行</li>
+        <li>前海幻境 — 二次元RPG</li>
+        <li>爱的番茄 — 乙女向RPG</li>
+        <li>中手游 — 三千幻世</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>🎰 棋牌 / 休闲</h3>
+      <ul>
+        <li>禅游科技 — 天天斗地主、四川麻将</li>
+        <li>博雅互动 — 博雅斗地主</li>
+        <li>腾讯游戏 — 腾讯斗地主、元梦之星</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>📱 小游戏 (IAP / IAA)</h3>
+      <ul>
+        <li>大梦龙途 — 向僵尸开炮、葫芦娃大作战</li>
+        <li>九九互动 — 猪来了、200+款小游戏</li>
+        <li>灵游互娱 — 休闲小游戏矩阵</li>
+        <li>微播信息 — 休闲小游戏</li>
+        <li>愿景互娱 — 独立小游戏</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>⚽ 体育模拟</h3>
+      <ul>
+        <li>望尘科技 — NBA篮球大师、足球大师 (FIFPro/NBA授权)</li>
+        <li>范特西科技 — NBA征程</li>
+        <li>奇迅新游 — 羽毛球高高手</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>🕹️ 独立游戏 / Roguelike</h3>
+      <ul>
+        <li>凉屋游戏 — 元气骑士、战魂铭人</li>
+        <li>汉家松鼠 — 汉家江湖、部落与弯刀</li>
+        <li>尚游/乙亥互娱 — 霓虹深渊:无限</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>🏆 3A单机 / 主机</h3>
+      <ul>
+        <li>游戏科学 — 黑神话:悟空、黑神话:钟馗</li>
+        <li>腾讯游戏 — 多款3A投资与合作项目</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>🌏 出海发行</h3>
+      <ul>
+        <li>腾讯游戏 — 全球化发行 (Level Infinite)</li>
+        <li>大梦龙途 — 向僵尸开炮国际版</li>
+        <li>冰川网络 — Hero Clash、X-Clash</li>
+        <li>创梦天地 — 地铁跑酷、机甲战队</li>
+        <li>乐易网络 — 西部风云</li>
+        <li>九九互动 — Piggy Go、Island King</li>
+        <li>海拓时代 — SLG出海</li>
+        <li>翻江倒海互娱 — 海外发行</li>
+      </ul>
+    </div>
+
+    <div class="crossref-card">
+      <h3>🧱 沙盒 / UGC</h3>
+      <ul>
+        <li>迷你玩 — 迷你世界</li>
+        <li>腾讯游戏 — 元梦之星</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================
+     上市公司速查
+     ============================ -->
+<div class="section" style="margin-top:42px;">
+  <h2>三、深圳游戏上市公司速查</h2>
+  <table>
+    <thead>
+      <tr><th>公司</th><th>股票代码</th><th>交易所</th><th>主营方向</th><th>2025年营收规模</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>腾讯控股</td><td>00700.HK</td><td>港交所</td><td>全品类游戏 + 社交平台</td><td>游戏收入超2000亿</td></tr>
+      <tr><td>冰川网络</td><td>300533.SZ</td><td>深交所创业板</td><td>MMORPG + 放置卡牌 + SLG出海</td><td>25.54亿</td></tr>
+      <tr><td>中手游</td><td>00302.HK</td><td>港交所</td><td>IP游戏发行与研发</td><td>35.52亿(2024)</td></tr>
+      <tr><td>创梦天地</td><td>01119.HK</td><td>港交所</td><td>自研+IP发行</td><td>—</td></tr>
+      <tr><td>禅游科技</td><td>02660.HK</td><td>港交所</td><td>棋牌休闲</td><td>—</td></tr>
+      <tr><td>第七大道</td><td>00797.HK</td><td>港交所</td><td>休闲射击</td><td>—</td></tr>
+      <tr><td>博雅互动</td><td>00434.HK</td><td>港交所</td><td>棋牌休闲</td><td>—</td></tr>
+      <tr><td>望尘科技</td><td>02458.HK</td><td>港交所</td><td>体育模拟</td><td>4.7亿(2025H1)</td></tr>
+      <tr><td>凯撒文化</td><td>002425.SZ</td><td>深交所主板</td><td>IP改编+SLG</td><td>—</td></tr>
+      <tr><td>中青宝</td><td>300052.SZ</td><td>深交所创业板</td><td>MMORPG+红色文化</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="note">
+  <strong>备注：</strong>
+  <ul style="margin:8px 0 0 16px; line-height:1.8;">
+    <li>数据来源：公开报道、企查查/天眼查、公司官网、招聘网站等，信息可能存在滞后或偏差。</li>
+    <li>公司规模为近似值，"100-499人"档位中部分公司实际人数可能在区间的不同位置。</li>
+    <li>深圳游戏产业高度集中于<strong>南山区</strong>，已形成千亿级产业集群，拥有游戏上市企业9家以上。</li>
+    <li>广东省是全国游戏产业第一大省，深圳20家小游戏企业入围2025年全国百强，仅次于广州(32家)。</li>
+    <li>部分公司未纳入本表（如小型外包/美术工作室、纯渠道/平台公司等），欢迎补充。</li>
+  </ul>
+</div>
+
+<div class="footer">
+  整理日期：2026年7月16日 · 为 Orson 项目参考整理
+</div>
+
+</div>
+</body>
+</html>
