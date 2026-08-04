@@ -1,0 +1,213 @@
+{
+  "main": {
+    "id": "887f2b133a510e47",
+    "type": "split",
+    "children": [
+      {
+        "id": "056d38663f280ca5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2969832f583b5261",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "COMMAND_MANUAL.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "COMMAND_MANUAL"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "64f3819435db3b69",
+    "type": "split",
+    "children": [
+      {
+        "id": "43d58a91cb20dfa9",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f36778257cbb7ac6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "9e3b6a4df8c98fe7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "96296387a7b72be4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "149c52dbb70cda57",
+    "type": "split",
+    "children": [
+      {
+        "id": "589903ac268cd330",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "04274cf3a6d9efa1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "wiki/关卡节奏与心流设计.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "关卡节奏与心流设计 的反向链接列表"
+            }
+          },
+          {
+            "id": "bb8b023e08dfa922",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "COMMAND_MANUAL.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "COMMAND_MANUAL 的出链列表"
+            }
+          },
+          {
+            "id": "dfa4916dbecd0c31",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "bebb21f6c9121367",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "647c093b4b73d8e4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Clippings/积累→设计→执行：论游戏系统策划的自我修养.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "积累→设计→执行：论游戏系统策划的自我修养 的大纲"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "f36778257cbb7ac6",
+  "lastOpenFiles": [
+    "NOW.md",
+    "README.md",
+    "agents/BUILD_GUIDE.md",
+    "agents/prompts/README.md",
+    "agents/prompts/expert-context.template.md",
+    "wiki/关卡节奏与心流设计.md",
+    "wiki/系统策划能力框架.md",
+    "wiki/开放世界空间设计方法论.md",
+    "raw-sources/20260720-霍格沃茨之遗关卡设计.md",
+    "domains/关卡策划.md",
+    "Clippings/《霍格沃茨之遗》关卡设计浅析.md",
+    "wiki/游戏定价与市场趋势.md",
+    "domains/市场与商业化.md",
+    "domains/系统策划.md",
+    "Clippings/独立游戏开发——一场“勇敢者的游戏”.md",
+    "未命名 1.base",
+    "未命名.base",
+    "raw-sources/20260720-从零开始做开放世界.md",
+    "domains/domain.template.md",
+    "domains/README.md",
+    "Clippings/积累→设计→执行：论游戏系统策划的自我修养.md",
+    "Clippings/Steam游戏定价全面分析：3A、2A、独立游戏售价区别有多大？.md",
+    "Clippings/从零开始，做一款开放世界.md",
+    "Clippings/README.md"
+  ]
+}

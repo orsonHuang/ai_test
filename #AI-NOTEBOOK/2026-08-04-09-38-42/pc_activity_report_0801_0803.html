@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电脑操作记录报告 - 2026年8月1日~3日</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    padding: 20px;
+    line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    padding: 30px 40px;
+    border-radius: 12px 12px 0 0;
+  }
+  .header h1 { font-size: 24px; margin-bottom: 6px; }
+  .header .subtitle { font-size: 14px; color: #a0a0c0; }
+  .header .meta { display: flex; gap: 20px; margin-top: 12px; font-size: 13px; }
+  .header .meta span { background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; }
+
+  /* Summary cards */
+  .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 20px 0; }
+  .summary-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border-top: 4px solid #ddd;
+  }
+  .summary-card.sat { border-top-color: #4ecdc4; }
+  .summary-card.sun { border-top-color: #ff6b6b; }
+  .summary-card.mon { border-top-color: #5b8def; }
+  .summary-card .day { font-size: 13px; color: #888; margin-bottom: 4px; }
+  .summary-card .date { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .summary-card .desc { font-size: 12px; color: #666; }
+  .summary-card .activity-count { font-size: 32px; font-weight: 800; margin: 8px 0; }
+  .summary-card.sat .activity-count { color: #4ecdc4; }
+  .summary-card.sun .activity-count { color: #ff6b6b; }
+  .summary-card.mon .activity-count { color: #5b8def; }
+  .summary-card .tag-line { font-size: 11px; color: #aaa; }
+
+  /* Timeline */
+  .timeline-section {
+    background: #fff;
+    border-radius: 0 0 12px 12px;
+    padding: 30px 40px;
+  }
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 30px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  .day-header:first-child { margin-top: 0; }
+  .day-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .day-badge.sat { background: #4ecdc4; }
+  .day-badge.sun { background: #ff6b6b; }
+  .day-badge.mon { background: #5b8def; }
+  .day-header .day-title { font-size: 16px; font-weight: 600; }
+  .day-header .day-note { font-size: 12px; color: #999; margin-left: auto; }
+
+  /* Timeline items */
+  .timeline-item {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+    border-left: 3px solid #e0e0e0;
+    margin-left: 8px;
+    padding-left: 16px;
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 14px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid #ccc;
+  }
+  .timeline-item.entertainment::before { border-color: #4ecdc4; }
+  .timeline-item.work::before { border-color: #5b8def; }
+  .timeline-item.personal::before { border-color: #ffa940; }
+  .timeline-item.gaming::before { border-color: #ff6b6b; }
+
+  .timeline-time {
+    min-width: 60px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    padding-top: 2px;
+  }
+  .timeline-content { flex: 1; }
+  .timeline-content .title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .timeline-content .detail {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.5;
+  }
+  .category-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 8px;
+    font-weight: 600;
+  }
+  .category-tag.entertainment { background: #e6fffa; color: #00a695; }
+  .category-tag.work { background: #e8efff; color: #2b6cb0; }
+  .category-tag.personal { background: #fff5e6; color: #cc7a00; }
+  .category-tag.gaming { background: #ffe6e6; color: #cc3030; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #aaa;
+  }
+  .footer a { color: #5b8def; text-decoration: none; }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin: 20px 0;
+    font-size: 12px;
+    color: #666;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  .legend-dot.entertainment { background: #4ecdc4; }
+  .legend-dot.work { background: #5b8def; }
+  .legend-dot.personal { background: #ffa940; }
+  .legend-dot.gaming { background: #ff6b6b; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>🖥️ 电脑操作记录报告</h1>
+    <div class="subtitle">2026年8月1日（周六）~ 8月3日（周一）</div>
+    <div class="meta">
+      <span>📅 周末 + 周一</span>
+      <span>👤 用户: admin</span>
+      <span>⏱️ 生成时间: 2026-08-04 09:38</span>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary">
+    <div class="summary-card sat">
+      <div class="day">周六</div>
+      <div class="date">8月1日</div>
+      <div class="activity-count">2</div>
+      <div class="desc">条活动记录</div>
+      <div class="tag-line">晚间短暂使用</div>
+    </div>
+    <div class="summary-card sun">
+      <div class="day">周日</div>
+      <div class="date">8月2日</div>
+      <div class="activity-count">4</div>
+      <div class="desc">条活动记录</div>
+      <div class="tag-line">看电影 + 钉钉登录 + LOL</div>
+    </div>
+    <div class="summary-card mon">
+      <div class="day">周一</div>
+      <div class="date">8月3日</div>
+      <div class="activity-count">11</div>
+      <div class="desc">条活动记录</div>
+      <div class="tag-line">全天活跃，工作+娱乐</div>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot entertainment"></span> 娱乐/影音</div>
+    <div class="legend-item"><span class="legend-dot gaming"></span> 游戏</div>
+    <div class="legend-item"><span class="legend-dot work"></span> 工作</div>
+    <div class="legend-item"><span class="legend-dot personal"></span> 个人事务</div>
+  </div>
+
+  <!-- Timeline Section -->
+  <div class="timeline-section">
+
+    <!-- 8月1日 -->
+    <div class="day-header">
+      <span class="day-badge sat">8月1日</span>
+      <span class="day-title">周六</span>
+      <span class="day-note">使用极少，仅晚间短暂使用</span>
+    </div>
+
+    <div class="timeline-item entertainment">
+      <div class="timeline-time">22:45</div>
+      <div class="timeline-content">
+        <div class="title">应用跳转列表更新 <span class="category-tag entertainment">系统</span></div>
+        <div class="detail">CustomDestinations 跳转列表文件被更新，说明此时有应用程序处于活动状态</div>
+      </div>
+    </div>
+
+    <div class="timeline-item personal">
+      <div class="timeline-time">23:59</div>
+      <div class="timeline-content">
+        <div class="title">百度搜索 <span class="category-tag personal">浏览器</span></div>
+        <div class="detail">Edge 浏览器访问百度，搜索了"时间"（可能是查看当前时间或日期）</div>
+      </div>
+    </div>
+
+    <!-- 8月2日 -->
+    <div class="day-header">
+      <span class="day-badge sun">8月2日</span>
+      <span class="day-title">周日</span>
+      <span class="day-note">白天看电影，晚间钉钉登录+LOL</span>
+    </div>
+
+    <div class="timeline-item entertainment">
+      <div class="timeline-time">12:39</div>
+      <div class="timeline-content">
+        <div class="title">LIBVIO 影视网站观影 <span class="category-tag entertainment">影音</span></div>
+        <div class="detail">
+          libvio.link 域名已停用，切换到 libhd.com 新域名<br>
+          浏览了多部电影：<b>蜘蛛侠：英雄归来/英雄远征/英雄无归</b>、<b>银河护卫队：假日特辑</b>、<b>鬼灭之刃：无限城篇</b>、<b>暗杀教室：大家的时间</b>、<b>黄泉的使者</b><br>
+          同时打开了多个夸克网盘分享链接下载资源
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item entertainment">
+      <div class="timeline-time">19:10</div>
+      <div class="timeline-content">
+        <div class="title">libvio 域名停止通知 <span class="category-tag entertainment">影音</span></div>
+        <div class="detail">再次访问旧域名 libvio.link，看到域名暂时停止使用通知</div>
+      </div>
+    </div>
+
+    <div class="timeline-item work">
+      <div class="timeline-time">21:56</div>
+      <div class="timeline-content">
+        <div class="title">钉钉 CLI 登录 <span class="category-tag work">工作</span></div>
+        <div class="detail">通过 Edge 浏览器完成钉钉 OAuth2 授权登录（DingTalk CLI），可能是在配置钉钉相关工具或机器人</div>
+      </div>
+    </div>
+
+    <div class="timeline-item gaming">
+      <div class="timeline-time">22:42</div>
+      <div class="timeline-content">
+        <div class="title">英雄联盟经典模式 <span class="category-tag gaming">游戏</span></div>
+        <div class="detail">访问 LOL 官网经典模式页面（经典模式专属藏品介绍），浏览至 22:47</div>
+      </div>
+    </div>
+
+    <!-- 8月3日 -->
+    <div class="day-header">
+      <span class="day-badge mon">8月3日</span>
+      <span class="day-title">周一</span>
+      <span class="day-note">全天活跃，工作+娱乐混合</span>
+    </div>
+
+    <div class="timeline-item personal">
+      <div class="timeline-time">09:24</div>
+      <div class="timeline-content">
+        <div class="title">客服转网订单 <span class="category-tag personal">个人事务</span></div>
+        <div class="detail">访问 kfzw.oreo20.cn，查看订单状态、选择门店和规格（可能是手机转网或业务办理）</div>
+      </div>
+    </div>
+
+    <div class="timeline-item gaming">
+      <div class="timeline-time">10:18</div>
+      <div class="timeline-content">
+        <div class="title">B站观看三角洲行动攻略 + 直播 <span class="category-tag gaming">游戏</span></div>
+        <div class="detail">
+          B站搜索"三角洲行动"（Delta Force），观看多个攻略视频：<br>
+          • "萌新请进！万字攻略手把手带你入坑"第01/02期<br>
+          • "新手玩家如何配装？怎样正确处置战利品？"<br>
+          • 观看三角洲行动 B站直播（多个直播间）<br>
+          同时还看了火影忍者策划吐槽视频、AI影视课体验视频、Steam游戏推荐（角斗士血域/永夜之围/Carmagist）
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item personal">
+      <div class="timeline-time">11:14</div>
+      <div class="timeline-content">
+        <div class="title">百度搜索 LiberLive 吉他 <span class="category-tag personal">个人事务</span></div>
+        <div class="detail">搜索并访问 LiberLive 官网（融合伴奏吉他/自由现场/无弦吉他），多次浏览产品页面</div>
+      </div>
+    </div>
+
+    <div class="timeline-item gaming">
+      <div class="timeline-time">11:37</div>
+      <div class="timeline-content">
+        <div class="title">英雄联盟经典模式页面 <span class="category-tag gaming">游戏</span></div>
+        <div class="detail">访问 LOL 官网经典模式介绍页，同时继续看三角洲行动攻略视频</div>
+      </div>
+    </div>
+
+    <div class="timeline-item personal">
+      <div class="timeline-time">12:04</div>
+      <div class="timeline-content">
+        <div class="title">QQ邮箱 + Moka招聘面试 <span class="category-tag personal">个人事务</span></div>
+        <div class="detail">
+          从QQ邮箱收到邮件链接跳转到 Moka 招聘平台，面试状态被标记为<b>已接受</b><br>
+          之后继续看B站"何晨光是什么梗"视频
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item personal">
+      <div class="timeline-time">13:59</div>
+      <div class="timeline-content">
+        <div class="title">QQ邮箱 <span class="category-tag personal">个人事务</span></div>
+        <div class="detail">访问QQ邮箱查看邮件</div>
+      </div>
+    </div>
+
+    <div class="timeline-item entertainment">
+      <div class="timeline-time">15:03</div>
+      <div class="timeline-content">
+        <div class="title">B站消息中心 + Chrome 搜索 <span class="category-tag entertainment">影音</span></div>
+        <div class="detail">
+          Edge：B站搜索"何晨光是什么梗"、访问B站消息中心<br>
+          Chrome（15:07）：打开 Google 和百度首页（可能只是默认启动页加载）
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item work">
+      <div class="timeline-time">17:04</div>
+      <div class="timeline-content">
+        <div class="title">TAPD 项目管理 + Edge 更新 <span class="category-tag work">工作</span></div>
+        <div class="detail">
+          登录 TAPD 平台，查看 Project ZH 迭代：<br>
+          • <b>1.19.0</b> 迭代看板<br>
+          • <b>1.20.0</b> 迭代看板<br>
+          • "我的工作"待办列表<br>
+          同时 Edge 浏览器进行了版本更新（151版本新增功能页）
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item work">
+      <div class="timeline-time">18:03</div>
+      <div class="timeline-content">
+        <div class="title">企业微信活跃 <span class="category-tag work">工作</span></div>
+        <div class="detail">WXWork（企业微信）Default 配置文件更新，可能是在后台同步或手动登录查看消息</div>
+      </div>
+    </div>
+
+    <div class="timeline-item gaming">
+      <div class="timeline-time">22:55</div>
+      <div class="timeline-content">
+        <div class="title">英雄联盟通行证 + 网吧特权活动 <span class="category-tag gaming">游戏</span></div>
+        <div class="detail">
+          深夜继续浏览 LOL 相关页面：<br>
+          • 第3赛季第1幕通行证<br>
+          • 网吧特权福利活动页面<br>
+          活动持续至 22:59
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>数据来源：Windows Recent Items、Jump Lists、Chrome/Edge 浏览历史、企业微信配置文件、系统文件时间戳</p>
+    <p>注：Prefetch（程序运行记录）因权限限制无法读取；系统事件日志因 PowerShell 输出问题未能完整获取</p>
+    <p>由 WorkBuddy (小七) 于 2026-08-04 生成 🎯</p>
+  </div>
+
+</div>
+</body>
+</html>

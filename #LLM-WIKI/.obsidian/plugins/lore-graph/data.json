@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "enabled": true,
+  "hiddenFolders": [
+    "agents",
+    "system",
+    "clippings"
+  ],
+  "maxNodes": 20,
+  "keepTrail": false
+}

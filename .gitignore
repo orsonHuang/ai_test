@@ -15,3 +15,7 @@ awakening-demo/cache/
 # macOS / Windows
 .DS_Store
 Thumbs.db
+
+# IDE / CodeBuddy
+.codebuddy/
+.workbuddy/
