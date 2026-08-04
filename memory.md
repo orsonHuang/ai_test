@@ -38,6 +38,15 @@
 - 部署注意：服务器非 git 仓库，直接改文件；HuggingFace/hf-mirror 下载超时，改用 modelscope 预下载
 - 结果：openclaw、orson-huang-homepage 未受影响；服务已恢复
 
+### 2026-08-04 — 工作区目录结构规则
+- 新容器：新建内容必须落入 `#PROJECT/`、`#LLM-WIKI/`、`#AI-NOTEBOOK/`、`#DOWNLOAD/` 四个文件夹之一
+- `#PROJECT/`：所有项目文件夹及项目工作
+- `#LLM-WIKI/`：知识库，AI 工作前优先检索；原 `llm-wiki/`（小写）已不存在
+- `#AI-NOTEBOOK/`：临时草稿与实验性 AI 输出
+- `#DOWNLOAD/`：Orson 手动下载保存的内容
+- 来源：Orson 明确整理工作区结构
+- 状态：稳定
+
 ---
 
 ## 活跃模式（中确定性）

@@ -18,6 +18,18 @@
 
 ## 按需路由（根据 NOW.md 上下文选读）
 
+### 工作区容器
+
+| 触发条件 | 文件 |
+|----------|------|
+| 启动新项目、查找项目资料 | `#PROJECT/<项目名>/README.md` |
+| 查询知识库、需要方法论支持 | `#LLM-WIKI/README.md` → `#LLM-WIKI/AGENTS.md` → 按主题深入 `domains/` / `wiki/` |
+| 需要确认知识库指令或触发词 | `#LLM-WIKI/COMMAND_MANUAL.md` |
+| 查看临时草稿、实验性输出 | `#AI-NOTEBOOK/` 下对应文件 |
+| 读取手动下载的源文件 | `#DOWNLOAD/` 下对应文件 |
+
+### 历史项目（待迁移到 #PROJECT）
+
 | 触发条件 | 文件 |
 |----------|------|
 | 讨论 Project ZH | `Project-ZH/README.md` |
@@ -25,6 +37,17 @@
 | 讨论 HeroGuide（勇者引路人） | `HeroGuide/README.md` |
 | HeroGuide 核心玩法 | `HeroGuide/GDD/01-核心玩法.md` |
 | HeroGuide 寻路设计 | `HeroGuide/GDD/02-寻路与AI设计.md` |
+| 讨论 Brainstorm-GodotGame（脑暴项目） | `Brainstorm-GodotGame/README.md` |
+| GodotGame 脑暴日志 | `Brainstorm-GodotGame/00-脑暴日志.md` |
+| 讨论 Godot-RogueIdle（放置肉鸽） | `Godot-RogueIdle/GDD/README.md` |
+| RogueIdle 战斗系统 | `Godot-RogueIdle/GDD/01-战斗系统/` |
+| RogueIdle 地图系统 | `Godot-RogueIdle/GDD/02-地图系统/` |
+| RogueIdle 装备系统 | `Godot-RogueIdle/GDD/03-装备系统/` |
+| RogueIdle 技能系统 | `Godot-RogueIdle/GDD/04-技能系统/` |
+| RogueIdle 英雄职业 | `Godot-RogueIdle/GDD/05-英雄职业/` |
+| RogueIdle 局外养成 | `Godot-RogueIdle/GDD/06-局外养成/` |
+| RogueIdle 技术架构 | `Godot-RogueIdle/GDD/07-技术架构/` |
+| RogueIdle 项目计划 | `Godot-RogueIdle/project-plan/` |
 
 ---
 
@@ -33,3 +56,4 @@
 | 路径 | 原因 |
 |------|------|
 | `meta-agent-collab/` | 框架教学文档，日常协作不需要 |
+| `#LLM-WIKI/system/` | 知识库内部协议与维护脚本，仅在知识库任务中按需读取 |

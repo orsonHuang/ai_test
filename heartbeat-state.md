@@ -26,14 +26,14 @@
 
 ---
 
-last_heartbeat_started_at: 2026-07-16
-last_reviewed_change_at: 2026-07-16
+last_heartbeat_started_at: 2026-08-04
+last_reviewed_change_at: 2026-08-04
 last_heartbeat_result: OK
 
 ## 上次收尾状态
-- wrap-up 完成: 是（embedding 加载修复 + setup.sh 更新 + Git 提交）
-- observations 追加: 是（本轮已记录关键经验）
-- NOW 更新: 是（当前阶段已更新）
-- memory 更新: 是（活跃工作集已更新）
+- wrap-up 完成: 是（工作间目录结构规则更新 + 流程文件同步）
+- observations 追加: 否（本轮为元层规则调整，无新观察素材）
+- NOW 更新: 是（当前阶段已更新为目录结构调整）
+- memory 更新: 是（目录结构偏好已记录）
 - memory 衰减检查: 是（本轮已检查）
-- 未 commit 改动: 否
+- 未 commit 改动: 是（AGENT.md / AI_INDEX.md / NOW.md / memory.md / heartbeat-state.md 待提交）
