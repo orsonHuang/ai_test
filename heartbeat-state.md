@@ -31,9 +31,9 @@ last_reviewed_change_at: 2026-08-06
 last_heartbeat_result: OK
 
 ## 上次收尾状态
-- wrap-up 完成: 是（#PROJECT 项目必读 README 规则落地）
-- observations 追加: 否（本轮为元层规则调整，无新观察素材）
+- wrap-up 完成: 是（LLM-WIKI 整理 + Godot-RogueIdle 迭代 + 流程文件已提交）
+- observations 追加: 否（本轮主要是保存现有工作）
 - NOW 更新: 是（当前阶段已更新为流程文件维护）
 - memory 更新: 是（目录结构与 README 规则已记录）
 - memory 衰减检查: 是（本轮已检查）
-- 未 commit 改动: 否（AGENT.md / AI_INDEX.md 已提交 f3a29b3）
+- 未 commit 改动: 否（全部改动已提交 1d450f8）
