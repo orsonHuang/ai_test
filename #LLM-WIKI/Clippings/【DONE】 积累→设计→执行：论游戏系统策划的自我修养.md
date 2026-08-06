@@ -6,6 +6,7 @@ author:
 published:
 created: 2026-07-20
 description: "关于系统策划的自我修养，我自己总结下来主要是三部分。"
+status: done
 tags:
   - "clippings"
 ---

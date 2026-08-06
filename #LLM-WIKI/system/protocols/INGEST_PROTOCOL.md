@@ -20,7 +20,7 @@
 | 来源 | 前置处理 |
 |---|---|
 | URL / 附件 | 核实标题、作者、日期、正文完整性和可追溯位置 |
-| Clippings | 检查截断、段落、图片与嵌入内容；确认终态后再标准化为 `YYYYMMDD-简短标题.md` |
+| Clippings | 检查截断、段落、图片与嵌入内容。无前缀或无 `status` 字段的文件视为新导入；确认终态后标准化为 `【TODO】YYYYMMDD-简短标题.md`，frontmatter 添加 `status: todo` |
 | IMA | 本地配置必须 `enabled: true`；按 `system/integrations/IMA-GUIDE.md` 鉴权、选择知识库、搜索并获取全文 |
 | 多来源 | 默认逐篇评分；只有共同问题链、连续章节或互补证据明确且用户确认时才合并 raw |
 
@@ -64,8 +64,9 @@
 1. 完整写入后实测行数；达到 300 行评估拆分，达到 500 行必须拆分或明确挂账。
 2. 按规划消费 raw 批注；条目清空后删除整个 `## 批注` 段。
 3. 更新受影响的 domain、`system/registry/index.md`、`system/registry/quick-reference.md`、`system/registry/raw-list.md` 和 `system/registry/KNOWLEDGE_STATUS.md`。
-4. 运行健康检查与 Query / Agent 回归。
-5. 更新根目录 `NOW.md`、`system/maintenance/CHANGELOG.md`，输出阶段三闭合包。
+4. 将对应 Clippings 文件的 frontmatter `status` 改为 `done`，文件名前缀从 `【TODO】` 改为 `【DONE】`。
+5. 运行健康检查与 Query / Agent 回归。
+6. 更新根目录 `NOW.md`、`system/maintenance/CHANGELOG.md`，输出阶段三闭合包。
 
 ## 四、零状态规则
 

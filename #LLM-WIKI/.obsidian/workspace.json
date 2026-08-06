@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "COMMAND_MANUAL.md",
+                "file": "Clippings/【TODO】TGDC 游戏用户研究的进化之路 - 腾讯游戏学堂.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "COMMAND_MANUAL"
+              "title": "【TODO】TGDC 游戏用户研究的进化之路 - 腾讯游戏学堂"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "文件列表"
@@ -113,12 +115,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "COMMAND_MANUAL.md",
+                "file": "Clippings/【TODO】TGDC 游戏用户研究的进化之路 - 腾讯游戏学堂.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "COMMAND_MANUAL 的出链列表"
+              "title": "出链"
             }
           },
           {
@@ -183,31 +185,35 @@
       "bases:新建数据库": false
     }
   },
-  "active": "f36778257cbb7ac6",
+  "active": "2969832f583b5261",
   "lastOpenFiles": [
-    "NOW.md",
-    "README.md",
-    "agents/BUILD_GUIDE.md",
-    "agents/prompts/README.md",
-    "agents/prompts/expert-context.template.md",
-    "wiki/关卡节奏与心流设计.md",
-    "wiki/系统策划能力框架.md",
-    "wiki/开放世界空间设计方法论.md",
-    "raw-sources/20260720-霍格沃茨之遗关卡设计.md",
-    "domains/关卡策划.md",
-    "Clippings/《霍格沃茨之遗》关卡设计浅析.md",
-    "wiki/游戏定价与市场趋势.md",
-    "domains/市场与商业化.md",
-    "domains/系统策划.md",
-    "Clippings/独立游戏开发——一场“勇敢者的游戏”.md",
+    "Clippings/【TODO】聚用户之力，做更好游戏 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】TGDC 游戏用户研究的进化之路 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】步履不停，为游戏人创造更多可能 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】创意与设计如何助力内容力构建 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】So, why do you want to create a Serious Game - 腾讯游戏学堂.md",
+    "Clippings/【TODO】教育游戏的价值及发展趋势 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】圆桌讨论：变革中的游戏与社会认知——游戏人文传播 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】砥砺前行，探索新生 - 腾讯游戏学堂.md",
+    "Clippings/【DONE】 积累→设计→执行：论游戏系统策划的自我修养.md",
+    "Clippings/【DONE】 独立游戏开发——一场勇敢者的游戏.md",
+    "Clippings/【DONE】 从零开始，做一款开放世界.md",
+    "Clippings/【DONE】 《霍格沃茨之遗》关卡设计浅析.md",
+    "Clippings/【DONE】 Steam游戏定价全面分析：3A、2A、独立游戏售价区别有多大？.md",
+    "Clippings/【TODO】音舞不凡——《QQ炫舞手游》的诞生之路 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】这是一个影响深远的选择！—— 迈入互动作品的夏天 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】纪念碑谷2-超乎想像的诞生 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】我们是如何打造《英雄联盟》IP宇宙的？ - 腾讯游戏学堂.md",
+    "Clippings/【TODO】从CF到CFM，谈FPS游戏的长青之路 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】《魂斗罗：归来》从0到1的研发经验分享 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】《闪耀暖暖》与背后的创作精神 - 腾讯游戏学堂.md",
+    "Clippings/【TODO】Make the Impossible Possible- Create a New IP, Cook it AAA - 腾讯游戏学堂.md",
+    "Clippings/【TODO】 做1%用户沉浸的游戏 - 腾讯游戏学堂.md",
+    "Clippings/[TODO]纪念碑谷2-超乎想像的诞生 - 腾讯游戏学堂.md",
+    "Clippings/[TODO]音舞不凡——《QQ炫舞手游》的诞生之路 - 腾讯游戏学堂.md",
+    "Clippings/TODO - 音舞不凡——《QQ炫舞手游》的诞生之路 - 腾讯游戏学堂.md",
+    "Clippings/[TODO]这是一个影响深远的选择！—— 迈入互动作品的夏天 - 腾讯游戏学堂.md",
     "未命名 1.base",
-    "未命名.base",
-    "raw-sources/20260720-从零开始做开放世界.md",
-    "domains/domain.template.md",
-    "domains/README.md",
-    "Clippings/积累→设计→执行：论游戏系统策划的自我修养.md",
-    "Clippings/Steam游戏定价全面分析：3A、2A、独立游戏售价区别有多大？.md",
-    "Clippings/从零开始，做一款开放世界.md",
-    "Clippings/README.md"
+    "未命名.base"
   ]
 }

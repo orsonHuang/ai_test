@@ -1,4 +1,4 @@
----
+﻿---
 title: "独立游戏开发——一场“勇敢者的游戏”"
 source: "https://mp.weixin.qq.com/s/O0wKxOFvRGqe5dHaDVbEcg"
 author:
@@ -6,6 +6,7 @@ author:
 published:
 created: 2026-07-20
 description: "中国独立游戏制作人图鉴。"
+status: done
 tags:
   - "clippings"
 ---

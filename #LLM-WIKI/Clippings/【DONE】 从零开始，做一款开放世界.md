@@ -6,6 +6,7 @@ author:
 published:
 created: 2026-07-20
 description: "只需7步。"
+status: done
 tags:
   - "clippings"
 ---

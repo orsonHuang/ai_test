@@ -19,3 +19,6 @@ Thumbs.db
 # IDE / CodeBuddy
 .codebuddy/
 .workbuddy/
+
+# Environment variables (contains API keys)
+.env

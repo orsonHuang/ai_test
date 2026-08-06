@@ -6,6 +6,7 @@ author:
 published:
 created: 2026-07-20
 description: "游戏在变得越来越贵，这是近些年的大趋势。"
+status: done
 tags:
   - "clippings"
 ---

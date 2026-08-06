@@ -12,7 +12,7 @@
 
 触发词：开始 Ingest、消化、入库、处理这篇来源。
 
-执行：读 `system/protocols/INGEST_PROTOCOL.md` 和 `system/maintenance/checklists/ingest-stage-gates.md`。只有明确入库意图才进入；仅提供 URL 且意图不明时先确认“只读摘要还是入库”。
+执行：读 `system/protocols/INGEST_PROTOCOL.md` 和 `system/maintenance/checklists/ingest-stage-gates.md`。只有明确入库意图才进入；仅提供 URL 且意图不明时先确认"只读摘要还是入库"。
 
 IMA 来源先检查 `system/integrations/ima-config.local.json`：禁用则停止并说明；启用后按 `system/integrations/IMA-GUIDE.md` 获取内容。
 
@@ -34,9 +34,24 @@ IMA 来源先检查 `system/integrations/ima-config.local.json`：禁用则停�
 
 执行：整理 ContextBrief → Query 路由 → `agents/EXPERT_PROTOCOL.md` → `agents/BUILD_GUIDE.md`。仅显式命令显示模式标签。
 
+## 6. 查找 Clippings
+
+触发词：找未消化的 Clippings、还有哪些没入库、列出待处理来源、Clippings 状态。
+
+执行：搜索 `Clippings/` 下所有 `.md` 文件（排除 `README.md`），按三态规则区分：
+
+**未消化（需 Ingest）**：
+- `status: todo` 的文件
+- **或** 文件名前 6 个字符既不是 `【DONE】` 也不是 `【TODO】`（无前缀的新文件，应对 Obsidian Web Clipper 未自动写入 status 的意外情况）
+
+**已消化入库**：
+- `status: done` 且文件名以 `【DONE】` 开头
+
+输出清单时按状态分组，标注每篇的标题、来源 URL 和创建日期。如果文件名前缀与 frontmatter status 不一致，标出并询问是否修复。
+
 ## 冲突处理
 
 - 同时命中多个写入流程：列出命中项并请求排序。
-- “不要查知识库”只关闭 Knowledge 检索，不自动关闭 Web。
-- “不要联网”不影响读取本地知识库。
+- "不要查知识库"只关闭 Knowledge 检索，不自动关闭 Web。
+- "不要联网"不影响读取本地知识库。
 - 初始化目录重命名与其他编辑不得并行执行。
