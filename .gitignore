@@ -22,3 +22,7 @@ Thumbs.db
 
 # Environment variables (contains API keys)
 .env
+
+# DiceMonster embedded repos (managed separately)
+#PROJECT/DiceMonster/DiceMonsterTT/
+#PROJECT/DiceMonster/dice-monster-godot/
