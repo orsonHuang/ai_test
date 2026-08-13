@@ -15,10 +15,10 @@
 
 ## 按需路由（根据NOW.md 上下文选读）
 ### 工作区容器
-> **项目工作铁律**：每次针对 #PROJECT/<项目名>/ 里的项目进行工作前，**必须先读取该项目的** README.md，了解项目结构、工作流与注意事项。如果没有 README.md，先建 README 再开展后续工作。
+> **项目工作铁律**：每次针对 #PROJECT/<项目名>/ 里的项目进行工作前，**必须先读取该项目的** README.md（即项目 INDEX 文件），学习并执行其中的「工作规则」「目录结构」「注意事项」。如果没有 README.md，先按 AGENT.md 中的标准模板创建再开展后续工作。
 | 触发条件 | 文件 |
 |----------|------|
-| 启动新项目、继续已有项目工作 | #PROJECT/<项目名>/README.md（必读） |
+| 启动新项目、继续已有项目工作 | #PROJECT/<项目名>/README.md（必读，项目 INDEX） |
 | 查询知识库、需要方法论支持 | #LLM-WIKI/README.md → #LLM-WIKI/AGENTS.md → 按主题深入 domains/ / wiki/ |
 | 需要确认知识库指令或触发词 | #LLM-WIKI/COMMAND_MANUAL.md |
 | 查看临时草稿、实验性输出 | #AI-NOTEBOOK/ 下对应文件 |
