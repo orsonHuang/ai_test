@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://cq65vlxeo54xr"]
+
+[ext_resource type="Script" uid="uid://qd8fw75yet4r" path="res://scripts/resources/CharacterData.gd" id="1_7xfgf"]
+
+[resource]
+script = ExtResource("1_7xfgf")
+id = "enemy_slime"
+display_name = "史莱姆"
+is_player = false
+max_hp = 150
+attack = 28
+defense = 6
+crit_rate = 0.08
+skill_ids = PackedStringArray()
+color = Color(0.9, 0.3, 0.3, 1)
