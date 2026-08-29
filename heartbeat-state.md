@@ -26,14 +26,14 @@
 
 ---
 
-last_heartbeat_started_at: 2026-08-06
-last_reviewed_change_at: 2026-08-06
+last_heartbeat_started_at: 2026-08-19
+last_reviewed_change_at: 2026-08-19
 last_heartbeat_result: OK
 
 ## 上次收尾状态
-- wrap-up 完成: 是（LLM-WIKI 整理 + Godot-RogueIdle 迭代 + 流程文件已提交）
-- observations 追加: 否（本轮主要是保存现有工作）
-- NOW 更新: 是（当前阶段已更新为流程文件维护）
-- memory 更新: 是（目录结构与 README 规则已记录）
-- memory 衰减检查: 是（本轮已检查）
-- 未 commit 改动: 否（全部改动已提交 1d450f8）
+- wrap-up 完成: 是（DiceMonster GDD 数值/音效/技术架构补充完成）
+- observations 追加: 否（本轮主要是 GDD 文档完善）
+- NOW 更新: 是（当前阶段已更新为 GDD 文档完善阶段）
+- memory 更新: 否（无需新增记忆）
+- memory 衰减检查: 否（本轮未检查）
+- 未 commit 改动: 是（4 个 GDD 文件已修改，待提交）

@@ -26,3 +26,11 @@ Thumbs.db
 # DiceMonster embedded repos (managed separately)
 #PROJECT/DiceMonster/DiceMonsterTT/
 #PROJECT/DiceMonster/dice-monster-godot/
+
+# Local toolchain & caches (auto-generated, do not commit)
+.npm-cache/
+.tools/
+
+# Office temp lock files
+~$*
+._*
