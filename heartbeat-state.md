@@ -26,14 +26,14 @@
 
 ---
 
-last_heartbeat_started_at: 2026-08-19
-last_reviewed_change_at: 2026-08-19
+last_heartbeat_started_at: 2026-09-01
+last_reviewed_change_at: 2026-09-01
 last_heartbeat_result: OK
 
 ## 上次收尾状态
-- wrap-up 完成: 是（DiceMonster GDD 数值/音效/技术架构补充完成）
-- observations 追加: 否（本轮主要是 GDD 文档完善）
-- NOW 更新: 是（当前阶段已更新为 GDD 文档完善阶段）
-- memory 更新: 否（无需新增记忆）
+- wrap-up 完成: 是（#GDD-TEMPLATE 规范 README 产出完成）
+- observations 追加: 否（方法论产出，无案例观察）
+- NOW 更新: 是（当前阶段更新为 GDD 规范 v1 待确认）
+- memory 更新: 是（新增 GDD 规范条目）
 - memory 衰减检查: 否（本轮未检查）
-- 未 commit 改动: 是（4 个 GDD 文件已修改，待提交）
+- 未 commit 改动: 是（README/NOW/memory/heartbeat 已改，本轮收尾最后一步 commit）

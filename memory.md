@@ -47,6 +47,12 @@
 - 无尽模式保留为独立模式(首次通关后解锁)
 - 状态：GDD 文档已完成，待补充数值细节
 
+### 2026-09-01 — GDD 规范 v1（#GDD-TEMPLATE）
+- 来源：`#DOWNLOAD` 的 Weapon Farm Dual Loop 设计文档 zip，解压为 `#GDD-TEMPLATE/`（《刃种农庄》样例 GDD，10 份文档）
+- 产出：`#GDD-TEMPLATE/README.md` = GDD 规范 INDEX。核心：四阶段漏斗（concept→top_design→architecture→systems）+ analysis/design 配对（决策记录与定稿分离）+ 边界即契约（不是什么/不做清单/不负责）+ P0 最小闭环与验证标准收尾
+- 使用约定：新项目 GDD 放 `#PROJECT/<项目名>/GDD/` 按规范执行；系统拆分以 02_architecture 的「目录映射」为准；GDD 永不承载最终数值
+- 状态：规范 v1，待 Orson 确认
+
 ### 2026-08-04 — 工作区目录结构规则
 - 新容器：新建内容必须落入 `#PROJECT/`、`#LLM-WIKI/`、`#AI-NOTEBOOK/`、`#DOWNLOAD/` 四个文件夹之一
 - `#PROJECT/`：所有项目文件夹及项目工作
