@@ -31,9 +31,9 @@ last_reviewed_change_at: 2026-09-02
 last_heartbeat_result: OK
 
 ## 上次收尾状态
-- wrap-up 完成: 是（DiceMonster GDD v2 重写完成，旧版迁入 GDD_旧）
-- observations 追加: 否（无案例观察）
-- NOW 更新: 是（当前阶段更新为 GDD v2 完成待确认待定决策）
-- memory 更新: 是（新增 DiceMonster 工程实况与 GDD v2 条目）
+- wrap-up 完成: 是（全项目空间提交完成，工作区干净）
+- observations 追加: 否
+- NOW 更新: 否（无新状态，上轮记录仍准确）
+- memory 更新: 是（追加 GDD_旧 归位备注：旧文档移至外层 #PROJECT/DiceMonster/GDD_旧/ 备份，DiceMonsterTT 内不保留，防 AI 误读）
 - memory 衰减检查: 否（本轮未检查）
-- 未 commit 改动: 是（submodule GDD 重写 + 主仓库 README/状态文件，收尾最后一步 commit）
+- 未 commit 改动: 否（主仓库 d7d3dad；submodule 06c2a87；两仓库均未 push）

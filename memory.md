@@ -51,6 +51,7 @@
 - 工程实况：DiceMonsterTT = **TapTap Maker + 纯 Lua**（非 Godot），core/data/ui 三层，226 个 lua；核心闭环已可玩（3 层×8 行行进度地图/战斗/奖励/商店/休息/事件/Boss/层过渡）
 - Orson 拍板：奖励=全部领取式+可放弃；地图=8 行行进度制（树状废弃）；GDD 用四阶段规范结构（规范首个试点）；未实现系统保留为规划蓝图
 - 产出：`DiceMonsterTT/GDD/` v2（11 份，S01 骰子核心/S02 地图/S03 战斗意图/S04 奖励经济/S05 外层局外规划），旧 17 份迁入 `GDD_旧/`
+- 旧文档归位：Orson 主动把 `GDD_旧/` 移出 DiceMonsterTT，现位于外层 `#PROJECT/DiceMonster/GDD_旧/`（17 份备份）——**DiceMonsterTT 工程内不保留旧文档，防 AI 误读**；旧版完整历史另见 submodule 提交 2f98684
 - 关键追认：重摇**选中的**骰子、d10 掉落新增、附魔可逆可恢复、怪物主题森林→沙漠火山→深渊（33 只，docs/怪物设计总览.md 是 SSOT）
 - 已知缺口：debuff 意图空转、DOT 退化、HP 1000 测试值、附魔不退款、死代码待清理；碎片经济断链待拍板（提案：结算时金币 1:1 转碎片）
 - 状态：GDD v2 定稿，待定决策待 Orson 确认
