@@ -1,7 +1,0 @@
-全项目空间提交：旧 GDD 备份归位 + 模板样例入库 + 历史遗留清理
-
-- #PROJECT/DiceMonster/GDD_旧/：旧版 GDD 17 份由 DiceMonsterTT 移入此处备份（用户操作，避免工程内 AI 误读），首次入库
-- #GDD-TEMPLATE/：GDD 规范样例（《刃种农庄》10 份文档）入库；README 规范已于上轮提交
-- #DOWNLOAD/：GDD 样例来源 zip 入库
-- submodule DiceMonsterTT 指针更新（06c2a87：移除仓库内 GDD_旧 副本）
-- 清理历史遗留删除记录：#PROJECT/DiceMonster/GDD/ 旧位置 17 份、dice-monster-godot/ 旧工程（磁盘上早已不存在，删除从未提交）
