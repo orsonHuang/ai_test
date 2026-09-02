@@ -1,5 +1,0 @@
-DiceMonster GDD v2 重写（四阶段规范首个试点）+ 项目 README 更新
-
-- DiceMonsterTT submodule: GDD v2（11 份，concept/top_design/architecture + S01~S05，analysis+design 配对），旧版迁入 GDD_旧
-- 外层项目 README: 技术选型改 TapTap Maker+Lua、目录结构与 SSOT 规则更新、状态清单刷新
-- 收尾状态文件更新（NOW/memory/heartbeat）
