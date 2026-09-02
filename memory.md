@@ -47,6 +47,14 @@
 - 无尽模式保留为独立模式(首次通关后解锁)
 - 状态：GDD 文档已完成，待补充数值细节
 
+### 2026-09-02 — DiceMonster 工程实况与 GDD v2
+- 工程实况：DiceMonsterTT = **TapTap Maker + 纯 Lua**（非 Godot），core/data/ui 三层，226 个 lua；核心闭环已可玩（3 层×8 行行进度地图/战斗/奖励/商店/休息/事件/Boss/层过渡）
+- Orson 拍板：奖励=全部领取式+可放弃；地图=8 行行进度制（树状废弃）；GDD 用四阶段规范结构（规范首个试点）；未实现系统保留为规划蓝图
+- 产出：`DiceMonsterTT/GDD/` v2（11 份，S01 骰子核心/S02 地图/S03 战斗意图/S04 奖励经济/S05 外层局外规划），旧 17 份迁入 `GDD_旧/`
+- 关键追认：重摇**选中的**骰子、d10 掉落新增、附魔可逆可恢复、怪物主题森林→沙漠火山→深渊（33 只，docs/怪物设计总览.md 是 SSOT）
+- 已知缺口：debuff 意图空转、DOT 退化、HP 1000 测试值、附魔不退款、死代码待清理；碎片经济断链待拍板（提案：结算时金币 1:1 转碎片）
+- 状态：GDD v2 定稿，待定决策待 Orson 确认
+
 ### 2026-09-01 — GDD 规范 v1（#GDD-TEMPLATE）
 - 来源：`#DOWNLOAD` 的 Weapon Farm Dual Loop 设计文档 zip，解压为 `#GDD-TEMPLATE/`（《刃种农庄》样例 GDD，10 份文档）
 - 产出：`#GDD-TEMPLATE/README.md` = GDD 规范 INDEX。核心：四阶段漏斗（concept→top_design→architecture→systems）+ analysis/design 配对（决策记录与定稿分离）+ 边界即契约（不是什么/不做清单/不负责）+ P0 最小闭环与验证标准收尾

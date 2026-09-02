@@ -7,19 +7,22 @@
 
 ## 当前在哪
 
-- **当前项目**：GDD 规范提炼（#GDD-TEMPLATE）；DiceMonster GDD 等待开放问题确认
-- **当前阶段**：GDD 规范 v1 已产出，待 Orson 确认
+- **当前项目**：DiceMonster（DiceMonsterTT 工程）
+- **当前阶段**：GDD v2 重写完成（四阶段规范结构，首个规范试点），待确认各 analysis 待定决策
 - **本轮完成**：
-  - 通读 `#GDD-TEMPLATE/` 全部 10 份文档（《刃种农庄》样例 GDD）
-  - 提炼规范并写入 `#GDD-TEMPLATE/README.md`：四阶段漏斗、analysis/design 配对、决策记录格式、分阶段必备章节、契约链评审清单、新项目落地流程
+  - 重学 DiceMonster：代码实况（TapTap Maker + Lua，core/data/ui 三层，核心闭环可玩）+ 旧 GDD 17 份 + 怪物设计总览
+  - Orson 拍板 4 项：奖励=全部领取式+可放弃 / 地图=8 行行进度制 / GDD 用四阶段规范 / 未实现系统保留为规划
+  - 旧 GDD 迁入 `DiceMonsterTT/GDD_旧/`；新 GDD 11 份写入 `DiceMonsterTT/GDD/`（README + 3 阶段×2 + S01~S05×2）
+  - 外层项目 README 全量更新（技术选型/目录结构/SSOT 规则/状态清单）
 
 ---
 
 ## 下一步
 
-- Orson 确认 GDD 规范 v1（尤其：是否要求数值/执行层扩展章节）
-- 后续新项目 GDD 按规范执行；旧项目 GDD 可对照规范补齐
-- 回到 DiceMonster：等待各模块"开放问题"设计决策确认
+- Orson 确认各 analysis「待定决策」：碎片转换制（提案 1:1）、random 节点清理、附魔权重/退款修复范围
+- 代码清理：死代码（3 选 1 生成器/random 配置）+ 已知缺陷（附魔退款/词条权重/转盘文案）
+- 数值回收：玩家 HP 1000→100 全链路重调
+- P1 落地：存档 → 外层大厅 → 结算转换 → 技能树
 
 ---
 
