@@ -26,14 +26,23 @@
 
 ---
 
-last_heartbeat_started_at: 2026-09-02
-last_reviewed_change_at: 2026-09-02
+last_heartbeat_started_at: 2026-09-04
+last_reviewed_change_at: 2026-09-04
 last_heartbeat_result: OK
 
 ## 上次收尾状态
-- wrap-up 完成: 是（全项目空间提交完成，工作区干净）
+- wrap-up 完成: 是
 - observations 追加: 否
-- NOW 更新: 否（无新状态，上轮记录仍准确）
-- memory 更新: 是（追加 GDD_旧 归位备注：旧文档移至外层 #PROJECT/DiceMonster/GDD_旧/ 备份，DiceMonsterTT 内不保留，防 AI 误读）
+- NOW 更新: 是（第二轮：longcat GDD 18 份写完，阻塞项改为「20 个 analysis 问题块待确认」）
+- memory 更新: 是（追加 2026-09-04 第二轮条目：GDD 18 份 + 核心设计定调 + 架构四条铁律 + 关键决策摘录）
 - memory 衰减检查: 否（本轮未检查）
-- 未 commit 改动: 否（主仓库 d7d3dad；submodule 06c2a87；两仓库均未 push）
+- AI_INDEX 更新: 是（第二轮：路由 Cocos-Longcat → longcat，新增 GDD 四阶段路由）
+- 未 commit 改动: **是**（本轮新增 `#PROJECT/longcat/` 18 份；上轮 `#Game-TearDown/Longcat/` 9 份未提交；改动 AI_INDEX.md / NOW.md / memory.md / 本文件）
+- commit 状态: 未执行（Orson 未要求，按全局规则不主动 commit）
+
+## 下轮启动提示
+- **首要阻塞**：`#PROJECT/longcat/GDD/` 全部 analysis 为 `agent_proposal`（34 个问题块），待 Orson 确认后转 `user_confirmed`
+  - 确认顺序建议：00_concept → 01_top_design → 02_architecture → 03_systems
+  - **确认前不动代码**
+- 次要待办：旧代号目录 `#PROJECT/Cocos-Longcat/` 待 Orson 批准后删除（内容已迁移至 `#PROJECT/longcat/`）
+- 若回主线 DiceMonster：仍停在「Orson 确认各 analysis 待定决策」

@@ -22,6 +22,7 @@
 | 进入游戏案例库前 | #Game-TearDown/README.md（必读，案例库 INDEX） |
 | 查询知识库、需要方法论支持 | #LLM-WIKI/README.md → #LLM-WIKI/AGENTS.md → 按主题深入 domains/ / wiki/ |
 | 需要游戏案例/拆解实证 | #Game-TearDown/README.md → 对应 <游戏名>/README.md → 按需深入 overview/gameplay/systems/numbers/ux/notes |
+| 需要滑行填充解谜案例（Longcat） | #Game-TearDown/Longcat/README.md → gameplay/核心机制拆解.md（规则伪代码）、numbers/难度曲线实证数据.md（50关基准）、systems/关卡系统.md（生成器架构）、notes/对微信小游戏项目的启示.md |
 | 需要确认知识库指令或触发词 | #LLM-WIKI/COMMAND_MANUAL.md |
 | 查看临时草稿、实验性输出 | #AI-NOTEBOOK/ 下对应文件 |
 | 读取手动下载的源文件 | #DOWNLOAD/ 下对应文件 |
@@ -54,6 +55,9 @@
 | DiceMonster 肉鸽能力设计 | #PROJECT/DiceMonster/GDD/11-肉鸽能力.md |
 | DiceMonster 装备系统设计 | #PROJECT/DiceMonster/GDD/12-装备系统.md |
 | DiceMonster 开发计划 | #PROJECT/DiceMonster/project-plan/README.md |
+| 讨论 longcat（微信小游戏·滑行填充+Roguelike） | #PROJECT/longcat/README.md（工作代号，正式名待定） |
+| longcat GDD（四阶段规范） | #PROJECT/longcat/GDD/README.md → 00_concept → 01_top_design → 02_architecture → 03_systems（S01~S05） |
+| Longcat 拆解数据回查 | #Game-TearDown/Longcat/ 下对应子目录 |
 
 ---
 

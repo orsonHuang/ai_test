@@ -56,6 +56,30 @@
 - 已知缺口：debuff 意图空转、DOT 退化、HP 1000 测试值、附魔不退款、死代码待清理；碎片经济断链待拍板（提案：结算时金币 1:1 转碎片）
 - 状态：GDD v2 定稿，待定决策待 Orson 确认
 
+### 2026-09-04 — 新支线：Cocos-Longcat（微信小游戏 · 滑行填充解谜）
+- 起因：Orson 问 Longcat（poki.com/zh/g/longcat，Martin Magni / Fancade，2024-03）。本轮定位 = **只做 TearDown + 建项目骨架**，玩法方案未定
+- 技术栈（Orson 指定）：**Cocos Creator + MCP 辅助开发 + 发微信小游戏**（区别于主线的 TapTap Maker+Lua 与 Godot 线）
+- 产出 1：`#Game-TearDown/Longcat/` 完整拆解 9 份（overview / gameplay×2 / systems×2 / numbers / ux / notes×2 + README）
+- 产出 2：`#PROJECT/Cocos-Longcat/` 项目骨架（README + GDD/ 占位）。**文件夹名是技术栈占位代号，正式名待 Orson 拍板**
+- 产出 3：AI_INDEX 加 2 条路由（Longcat 案例 + Cocos-Longcat 项目）
+- 核心方法论产出：把 Longcat 抽象为「**增量式哈密顿路径谜题**」；难度双旋钮 = 长度（线性易生成）+ 分支稀缺度（非线性需验证）
+- 关键数据（自行派生统计，源自 Fancade Wiki 1–50 关官方解法）：平均 13.02 步，中位 13，众数 14，区间 5–21；**37% 的关卡比前一关短**（步数≠难度）；31–40 段 16.5 步 → 41–50 段 16.1 步（Plateau，靠结构不靠长度）；第 15/40/47 关是刻意「回落调剂关」
+- 判定：同类竞品在 Poki 已红海（Snek Left / Apple Worm / Worm Out 等数十款），**纯换皮不做**；推荐差异化 = 目标变体（收集+终点，不做全覆盖）+ 元层（Roguelike 能力三选一）+ 微信特供（每日挑战/群排行/分享提示）
+- 状态：TearDown 完成，GDD 未启动。阻塞 = ① 项目正式名 ② 玩法方向
+
+### 2026-09-04（第二轮）— longcat GDD 全套写完（18 份）
+- Orson 指定：项目文件夹改名 `longcat`（原代号 Cocos-Longcat），按 `#GDD-TEMPLATE` 规范 v1 写全套 GDD
+- 位置：`#PROJECT/longcat/GDD/` —— README×2 + 00/01/02 各 (analysis+design) + 03_systems S01~S05 各 (analysis+design) = **18 份**
+- **核心设计定调（本轮最重要的判断）**：
+  - **核心保留「全覆盖」，不动规则**——理由是放弃全覆盖就同时放弃可生成性（收集模式=一般路径规划，解极多、难度不可量化），而「可批量生成+100% 可验证」是这类游戏唯一的护城河
+  - **差异化全压元层**（Roguelike 九条命 + 能力三选一），机制层（特殊方块）与目标层（收集+终点）一律降 P1
+  - 依据：Longcat 的缺陷不是规则错，是**没有接住失败的机制**；应加回收层，不改规则层
+- **架构四条铁律**：① 能力以 modifier 参数单向注入，核心零能力分支 ② modifier 必须放宽约束型（应用后合法移动集合 ⊇ 应用前）→ 保证「无能力可解 ⇒ 任意能力组合下可解」，且放宽性可复合传递故 N 个能力只需 N 次校验 ③ 关卡数据所有权归 S02 独占 ④ 离线生成器/求解器与运行时共用同一份 `core/` 纯 TS 代码
+- **系统拆分 S01~S05**：滑行核心 / 关卡 / run / 能力 / 局外
+- 关键决策摘录：初始 body 长度=1（无需初始朝向字段）；身体即墙（撞身体停下非判负）；滑行 0 格=无效输入（**一条规则覆盖边界/墙/身体/掉头四场景，不需独立"禁止掉头"规则**）；难度指标=解的数量+首步容错率（**不用步数**，实证 37% 关卡比前一关短）；关卡内嵌一条参考解（运行时不实现求解器）；run 分层随机、进度刻度用「段」不用「关」；关内进度不持久化（恢复时本关重置不消耗命，副作用=天然防 Sl 大法）；解锁由累计进度驱动（**非单次 run 表现**，避免马太效应惩罚新手）；广告只做激励视频（提示/复活/双倍解锁），禁强制插屏与常驻 Banner
+- **状态：全部 analysis 为 `agent_proposal`，共 34 个问题块待 Orson 确认（概念5/顶层6/架构6/S01·5/S02·3/S03·3/S04·3/S05·3），确认前不动代码**
+- 遗留：旧代号目录 `#PROJECT/Cocos-Longcat/` 内容已迁移，待 Orson 批准后删除
+
 ### 2026-09-01 — GDD 规范 v1（#GDD-TEMPLATE）
 - 来源：`#DOWNLOAD` 的 Weapon Farm Dual Loop 设计文档 zip，解压为 `#GDD-TEMPLATE/`（《刃种农庄》样例 GDD，10 份文档）
 - 产出：`#GDD-TEMPLATE/README.md` = GDD 规范 INDEX。核心：四阶段漏斗（concept→top_design→architecture→systems）+ analysis/design 配对（决策记录与定稿分离）+ 边界即契约（不是什么/不做清单/不负责）+ P0 最小闭环与验证标准收尾
