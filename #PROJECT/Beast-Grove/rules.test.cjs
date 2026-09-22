@@ -1,0 +1,15 @@
+const test=require('node:test'),assert=require('node:assert/strict'),R=require('./rules.js');
+const piece=(id,side,kind,x,y)=>({id,side,kind,x,y});
+const position=pieces=>({...R.initial(),pieces});
+test('初始布局合法，对称且双方均可行动',()=>{const s=R.initial();assert.equal(s.pieces.length,8);assert.equal(new Set(s.pieces.map(p=>p.x+','+p.y)).size,8);assert.ok(R.allMoves(s).length);assert.equal(R.allMoves(s).length,R.allMoves({...s,turn:1}).length);});
+test('鼠吃象，象不能吃鼠，同级可吃',()=>{const a=piece('a',0,'rat',0,2),b=piece('b',1,'elephant',0,3);assert.ok(R.canEat(a,b));assert.equal(R.canEat(b,a),false);assert.ok(R.canEat(a,{...b,kind:'rat'}));});
+test('水陆边界不能吃子，非鼠不能入水',()=>{const s=position([piece('a',0,'rat',2,2),piece('b',1,'rat',1,2)]);assert.equal(R.canEat(s.pieces[0],s.pieces[1]),false);s.pieces[0]=piece('a',0,'elephant',1,3);assert.equal(R.moves(s,'a').some(m=>m.x===2),false);});
+test('虎跳河且河鼠阻断',()=>{const s=position([piece('a',0,'tiger',1,3),piece('b',1,'cat',4,0)]);assert.ok(R.moves(s,'a').some(m=>m.x===3&&m.y===3&&m.jump));s.pieces.push(piece('r',1,'rat',2,3));assert.equal(R.moves(s,'a').some(m=>m.x===3&&m.y===3),false);});
+test('营地不能立即得分，守到下回合才得分',()=>{let s=position([piece('a',0,'cat',0,4),piece('b',1,'cat',4,0)]);s=R.apply(s,{id:'a',x:0,y:3});assert.deepEqual(s.scores,[0,0]);s=R.apply(s,{id:'b',x:4,y:1});assert.deepEqual(s.scores,[1,0]);});
+test('第五颗星结束比赛',()=>{let s=position([piece('a',0,'cat',0,3),piece('b',1,'cat',4,0)]);s.turn=1;s.scores=[4,0];s=R.apply(s,{id:'b',x:4,y:1});assert.equal(s.winner,0);});
+test('守点棋子被吃后不得星',()=>{const s=position([piece('a',0,'cat',0,3),piece('c',0,'rat',4,6),piece('b',1,'tiger',0,2)]);s.turn=1;const n=R.apply(s,{id:'b',x:0,y:3});assert.deepEqual(n.scores,[0,0]);assert.equal(n.pieces.some(p=>p.id==='a'),false);});
+test('吃光敌方立即获胜，AI选择可直接获胜的走法',()=>{const s=position([piece('a',0,'tiger',0,3),piece('b',1,'cat',0,2)]);const m=R.choose(s,'normal',()=>0);assert.equal(R.apply(s,m).winner,0);});
+test('敌方兽穴获胜，禁止进入己方兽穴',()=>{const s=position([piece('a',0,'cat',2,1),piece('b',1,'cat',4,4)]);assert.equal(R.apply(s,{id:'a',x:2,y:0}).winner,0);s.pieces[0].y=5;assert.equal(R.moves(s,'a').some(m=>m.y===6),false);});
+test('非法操作拒绝且原状态保持不变',()=>{const s=R.initial(),copy=R.clone(s);assert.throws(()=>R.apply(s,{id:'0-cat',x:4,y:0}));const n=R.apply(s,R.allMoves(s)[0]);assert.deepEqual(s,copy);assert.notDeepEqual(s,n);});
+test('100步按星数结算，同分和局',()=>{const s=R.initial();s.ply=99;assert.equal(R.apply(s,R.allMoves(s)[0]).winner,-1);});
+test('AI完整对局可终结、无重叠棋子，且没有额外行动',()=>{for(let game=0;game<6;game++){let s=R.initial(),seed=game+1;const rng=()=>((seed=(seed*1664525+1013904223)>>>0)/4294967296);while(s.winner===null){const before=s.ply;s=R.apply(s,R.choose(s,game%2?'easy':'normal',rng));assert.equal(s.ply,before+1);assert.equal(new Set(s.pieces.map(p=>p.x+','+p.y)).size,s.pieces.length);assert.ok(s.ply<=100);}assert.ok([-1,0,1].includes(s.winner));}});
