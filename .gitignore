@@ -27,6 +27,9 @@ Thumbs.db
 #PROJECT/DiceMonster/DiceMonsterTT/
 #PROJECT/DiceMonster/dice-monster-godot/
 
+# Junction to the same Nite-Nite repository under #PROJECT (avoid duplicate Git entry)
+/Nite-Nite/
+
 # Local toolchain & caches (auto-generated, do not commit)
 .npm-cache/
 .tools/
