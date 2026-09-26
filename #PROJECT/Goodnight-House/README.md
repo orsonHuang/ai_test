@@ -19,6 +19,7 @@ Cocos 2D 竖屏轻量逻辑解谜，首发微信小游戏。玩家依据睡前�
 |---|---|
 | `GDD/设计文档.md` | 定位、玩法、关卡、UI、外层、广告、范围与决策 |
 | `执行文档.md` | 技术划分、制作顺序、交付物与验收清单 |
+| `docs/MCP选型.md` | GitHub候选、安全静态初筛与接入验收；推荐Funplay，尚未安装 |
 | `references/ui-feedback-20260926.png` | 用户标注原图，设施栏规则已被最新文字修订覆盖 |
 | `cocosProject/Goodnight-House/` | 现有Creator 3.8.8初始工程，含独立Git目录；本轮未修改 |
 
