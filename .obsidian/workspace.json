@@ -1,0 +1,231 @@
+{
+  "main": {
+    "id": "049bcc46031c18ed",
+    "type": "split",
+    "children": [
+      {
+        "id": "b256f5be22d37457",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fef36e7ad0bd2966",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "#PROJECT/Goodnight-House/执行文档.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "执行文档"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ac756f7090a85414",
+    "type": "split",
+    "children": [
+      {
+        "id": "342e9f551a8c697c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a11ba7d8fc86925f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "2af26f34d3b548a3",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "7d506a65a5234077",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 486.5
+  },
+  "right": {
+    "id": "178c5f7cda3478c1",
+    "type": "split",
+    "children": [
+      {
+        "id": "592e3796967e2252",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3a2e97e8647a203c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "#PROJECT/DiceMonster/DiceMonsterTT/docs/地图UI改造落地规划.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "092dec3e6d18a743",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "#PROJECT/DiceMonster/DiceMonsterTT/docs/地图UI改造落地规划.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "40424f7df92aff7f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "9d6d025d77693f8a",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "da63ce13f68fb3ec",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "#PROJECT/DiceMonster/DiceMonsterTT/docs/地图UI改造落地规划.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "fef36e7ad0bd2966",
+  "lastOpenFiles": [
+    "#PROJECT/DiceMonster/DiceMonsterTT/scripts/core/RunShop.lua",
+    "#PROJECT/DiceMonster/DiceMonsterTT/scripts/ui/ShopNumberScreen.lua",
+    "#PROJECT/DiceMonster/DiceMonsterTT/scripts/core/ShopSession.lua",
+    "#PROJECT/DiceMonster/DiceMonsterTT/scripts/data/ShopConfig.lua",
+    "#PROJECT/DiceMonster/DiceMonsterTT/scripts/ui/utils/ActionStyle.lua",
+    "#PROJECT/Goodnight-House/docs/MCP选型.md",
+    "#PROJECT/Goodnight-House/docs",
+    "#PROJECT/DiceMonster/DiceMonsterTT/tests/shop-game-ui.cjs",
+    "#PROJECT/Goodnight-House/GDD/设计文档.md",
+    "#PROJECT/新工作准备/黄宝育-作品集/黄宝育-游戏分析报告-面试提交版.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/tests/shop-game-sequence.cjs",
+    "#PROJECT/DiceMonster/DiceMonsterTT/custom-tools/shop_game_sequence.js",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/temp/programming/packer-driver/targets/preview.lock",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/temp/programming/packer-driver/targets/editor.lock",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/10/10b516ad-ae94-468a-a050-11ce19d40c3d.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/b0/b078dcad-656d-4ba3-b76e-70c88e63e045.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/74/744d520a-8483-4fbc-a47b-ab57d28d6203.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/1a/1a8fc1a3-80e2-4d20-9087-426d2162ba44.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/57/57520716-48c8-4a19-8acf-41c9f8777fb0.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/c9/c903a495-69a9-4bb1-8266-c5d8a692ee6f.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/35/35ac62e8-0b7a-4367-970d-dfdfbdd023c6.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/ac/ac74fa2b-1f5b-4ff5-a3f0-f127f4483e91.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/38/389d5fee-e29c-4221-b397-a4934a0a5694.png",
+    "#PROJECT/Goodnight-House/cocosProject/Goodnight-House/library/7b/7b5313d0-f1aa-4b1b-a3c8-59d523c35301.png",
+    "#PROJECT/Goodnight-House/执行文档.md",
+    "#PROJECT/Goodnight-House/README.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/docs/商店V2规则与数值草案.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/docs/地图UI改造落地规划.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/docs/地图UI黑曜石素材清单.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/docs/怪物意图图标素材需求-v1待决策.md",
+    "#PROJECT/新工作准备/我的简历/黄宝育-游戏系统策划-角色养成方向-吉比特.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/project-plan/UI附魔返回与骰子详情验收.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/docs/第2与3层意图试玩说明.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/docs/第1层意图试玩说明.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/assets/image/battle_v2/candidates/action-icons-v1/README.md",
+    "#PROJECT/DiceMonster/DiceMonsterTT/project-plan/UI下载错误排查.md",
+    "#PROJECT/新工作准备/我的简历/黄宝育-资深系统策划-鸣潮基础系统方向.md"
+  ]
+}

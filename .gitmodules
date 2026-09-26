@@ -1,3 +1,8 @@
 [submodule "orson-huang-homepage"]
-    path = orson-huang-homepage
+    path = "#PROJECT/orson-huang-homepage"
     url = git@github.com:orsonHuang/myHomePage.git
+
+[submodule "#PROJECT/DiceMonster/DiceMonsterTT"]
+    path = "#PROJECT/DiceMonster/DiceMonsterTT"
+    url = https://maker.taptap.cn/git/29192dfc-cb1c-44a3-b428-02d085a62c5e.git
+    branch = main

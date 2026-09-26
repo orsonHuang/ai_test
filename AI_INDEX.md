@@ -1,4 +1,4 @@
-﻿# AI_INDEX · 文件路由表
+# AI_INDEX · 文件路由表
 > **用法**：AI 每轮对话前按本文路由加载文件，避免盲目全读或遗漏关键文件。> **维护**：文件增减时同步更新本表。Orson 无需手动维护。
 ---
 
@@ -50,11 +50,17 @@
 | Godot-WeChat 脑暴日志 | #PROJECT/Brainstorm/brainStorm-0807/00-脑暴日志.md |
 | 骰子战斗游戏概念设计 | #PROJECT/Brainstorm/brainStorm-0807/dice-game-concept.md |
 | 讨论 DiceMonster（骰子打怪） | #PROJECT/DiceMonster/README.md |
-| DiceMonster GDD 总览 | #PROJECT/DiceMonster/GDD/README.md |
-| DiceMonster 各模块（核心循环/骰子/牌型/战斗/关卡/UI/音效/数值/技术/扩展/肉鸽能力/装备系统） | #PROJECT/DiceMonster/GDD/01-核心循环.md ~ 12-装备系统.md |
-| DiceMonster 肉鸽能力设计 | #PROJECT/DiceMonster/GDD/11-肉鸽能力.md |
-| DiceMonster 装备系统设计 | #PROJECT/DiceMonster/GDD/12-装备系统.md |
-| DiceMonster 开发计划 | #PROJECT/DiceMonster/project-plan/README.md |
+| DiceMonster 当前 GDD 总览 | #PROJECT/DiceMonster/DiceMonsterTT/GDD/README.md |
+| DiceMonster 系统设计 | #PROJECT/DiceMonster/DiceMonsterTT/GDD/03_systems/ |
+| DiceMonster 34怪现状与意图策略评审（建议未定稿） | #PROJECT/DiceMonster/DiceMonsterTT/docs/怪物意图与策略评审-2026-09-22.md |
+| DiceMonster 新怪物意图设计（已确认，全34怪落地） | #PROJECT/DiceMonster/DiceMonsterTT/docs/怪物意图设计-v1提案.md |
+| DiceMonster 意图图标素材需求（已确认，攻击用剑） | #PROJECT/DiceMonster/DiceMonsterTT/docs/怪物意图图标素材需求-v1待决策.md |
+| DiceMonster 意图图标原稿/提示词/验收结果 | #PROJECT/DiceMonster/DiceMonsterTT/docs/意图图标生产记录.md |
+| DiceMonster 第2/3层23怪、隐藏Boss阶段与三层试炼验收 | #PROJECT/DiceMonster/DiceMonsterTT/docs/第2与3层意图试玩说明.md |
+| DiceMonster 首层怪物参数、100HP、试炼入口与验收 | #PROJECT/DiceMonster/DiceMonsterTT/docs/第1层意图试玩说明.md |
+| DiceMonster 工程 README / 工作规则 | #PROJECT/DiceMonster/DiceMonsterTT/README.md |
+| DiceMonster 开发计划 | #PROJECT/DiceMonster/DiceMonsterTT/project-plan/README.md |
+| DiceMonster 旧 GDD（仅历史参考） | #PROJECT/DiceMonster/GDD_旧/ |
 | 讨论 longcat（微信小游戏·滑行填充+Roguelike） | #PROJECT/longcat/README.md（工作代号，正式名待定） |
 | longcat GDD（四阶段规范） | #PROJECT/longcat/GDD/README.md → 00_concept → 01_top_design → 02_architecture → 03_systems（S01~S05） |
 | Longcat 拆解数据回查 | #Game-TearDown/Longcat/ 下对应子目录 |
@@ -67,3 +73,9 @@
 |------|------|
 | meta-agent-collab/ | 框架教学文档，日常协作不需要 |
 | #LLM-WIKI/system/ | 知识库内部协议与维护脚本，仅在知识库任务中按需读取 |
+
+### 兽境小憩（新项目）
+- 休闲斗兽棋 / Cocos 微信小游戏核心原型：#PROJECT/Beast-Grove/README.md；试玩记录：PLAYTEST.md。
+
+### 晚安小屋（新项目）
+- Cocos 2D／微信小游戏／房间逻辑解谜：`#PROJECT/Nite-Nite/README.md`；玩法：`GDD/设计文档.md`；任务与验收：`执行文档.md`。相对路径均以该项目根目录为基准。

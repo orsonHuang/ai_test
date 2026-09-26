@@ -26,23 +26,65 @@
 
 ---
 
-last_heartbeat_started_at: 2026-09-04
-last_reviewed_change_at: 2026-09-04
+last_heartbeat_started_at: 2026-09-22
+last_reviewed_change_at: 2026-09-22
 last_heartbeat_result: OK
 
 ## 上次收尾状态
 - wrap-up 完成: 是
 - observations 追加: 否
-- NOW 更新: 是（第二轮：longcat GDD 18 份写完，阻塞项改为「20 个 analysis 问题块待确认」）
-- memory 更新: 是（追加 2026-09-04 第二轮条目：GDD 18 份 + 核心设计定调 + 架构四条铁律 + 关键决策摘录）
+- NOW 更新: 是（DiceMonster 漂移修复与测试状态已同步）
+- memory 更新: 是（追加文档迭代、测试优先、Maker 需确认、附魔不退款契约）
 - memory 衰减检查: 否（本轮未检查）
-- AI_INDEX 更新: 是（第二轮：路由 Cocos-Longcat → longcat，新增 GDD 四阶段路由）
-- 未 commit 改动: **是**（本轮新增 `#PROJECT/longcat/` 18 份；上轮 `#Game-TearDown/Longcat/` 9 份未提交；改动 AI_INDEX.md / NOW.md / memory.md / 本文件）
-- commit 状态: 未执行（Orson 未要求，按全局规则不主动 commit）
+- AI_INDEX 更新: 是（DiceMonster 路由指向当前 DiceMonsterTT 文档）
+- 未 commit 改动: **是**（DiceMonsterTT 子仓及外层 README/索引/状态文件有本轮改动；工作区另有既存无关改动）
+- commit 状态: 本批菜单改动未提交（Orson 已授权 Maker 推送构建，但构建前 LSP Error 门禁阻塞；未调用构建工具）
 
 ## 下轮启动提示
-- **首要阻塞**：`#PROJECT/longcat/GDD/` 全部 analysis 为 `agent_proposal`（34 个问题块），待 Orson 确认后转 `user_confirmed`
-  - 确认顺序建议：00_concept → 01_top_design → 02_architecture → 03_systems
-  - **确认前不动代码**
-- 次要待办：旧代号目录 `#PROJECT/Cocos-Longcat/` 待 Orson 批准后删除（内容已迁移至 `#PROJECT/longcat/`）
-- 若回主线 DiceMonster：仍停在「Orson 确认各 analysis 待定决策」
+- 2026-09-25 背景替换轮：用户明确提交构建，两张背景及最小0Error门禁修正已通过Maker指定文件提交01334e8；pushed/远端构建成功/preview200。npm117/117，Lua LSP0Error且检查进程停止；工作区干净，runtime watcher正常无新日志。memory/NOW同步；待用户Ctrl+F5后视觉验收。
+- 2026-09-24 加载策略问询：确认当前全量引用+DWP，无启动预下载组；本地资产146.5MiB、地图19.1MiB，仅原文件量非传输量。已解释启动预载可行及等待前移，建议正式使用资源预载并缩图，询问范围；本轮未改游戏或构建，memory/NOW同步。
+- 2026-09-24 意图演出轮已构建：c0cbebe pushed、远端构建成功、preview200；全34怪/P2图标测试，施毒球命中叠层、防御/蓄力自增益、伤害后适应反馈。70Lua/86测试、LSP0Error/186Warning；诊断进程已停止，watcher正常。memory/NOW同步；等待用户游戏内验收，不重复询问已授权构建。其他任务未提交变更仍保留。
+- 2026-09-24 地图404轮：用户授权推送验证；bee6926成功推送/构建/preview200，保留Maker自动生成6fee75b的九张图片UUID（与原报错匹配）。初判缺meta已纠正，PNG未漏提交；新增meta守卫、失败句柄不永久缓存。86测试通过，LSP0Error/186Warning且进程停止。watcher正常但只有菜单启动与非地图UUID警告，无进地图记录；已请用户刷新挑战，需要继续验证404。浏览器intro登录阻挡。memory/NOW同步，并行意图代码与project-plan混合改动未提交。
+- 2026-09-24 意图图标制作轮：10新＋2复用已完成并本地接入；单剑替换爪痕、连击剑残影、条件徽记提示行、状态分义。原稿/提示词/验收页归档；128px透明图167538字节，70Lua/82测试通过，npm包装器EPERM由同测试入口直跑解决。memory/NOW/INDEX/GDD/计划同步；本批未提交构建或实机验收，其他任务未提交改动保留。覆盖旧图标待决策条目。
+- 2026-09-24 主页文字轮：主页去标题、营地名下移已完成，80测试/70Lua通过、LSP0Error/184Warning且检查进程停止。用户授权构建，Maker指定文件推送88a5010，远端成功、preview200；地图与菜单已构建。未纳入并行战斗/意图文件。预览UI调用超时，库存显示intro登录跳转，未截图验收；watcher正常尚无运行日志。memory/NOW已同步，本条覆盖此前未推送状态。
+- 2026-09-24 地图黑曜石轮已收尾：用户确认A、直接进入；九张素材与运行时代码本地接入，底栏移除，路线/热区/防连点修复。70Lua/79回归通过，LSP0Error，诊断进程已停止；memory/NOW/GDD/计划/素材提示词同步。原始图标1254²、资源19.1MiB，真机和发布尺寸优化待验收。本批未提交/构建，须询问Maker授权；并行战斗/意图改动保留。此项覆盖旧地图待确认记录。
+- 2026-09-24 意图图标素材轮：已对34怪数据和现有128px图标核实，保存《怪物意图图标素材需求-v1待决策》，建议9张新图+3张复用。AI_INDEX/memory/NOW同步；只写待决策文档，未生成/接入图标，未提交或Maker构建；工作区其他并行改动未触碰。
+- 2026-09-23 地图UI规划轮收尾：地图/图标审计和落地文档完成，memory/NOW同步；已询问A/B、底部范围、单击进入建议，尚待确认。只新增规划与索引，无生产素材/运行时代码改动，未提交构建。参考图不能替代真实8行与隐藏路线规则。
+- 2026-09-23 全阵容意图轮收尾：用户验收首层通过，第二/三层23怪及隐藏Boss已落地，三层试炼已扩展。70回归通过，LSP0Error/182Warning，诊断进程已停止；memory/NOW/INDEX/GDD/计划已同步。本批未提交构建，等Maker授权；不覆盖并行UI/商店改动。
+- 2026-09-23 首层意图轮已收尾：11怪新意图、100HP、格挡/毒、实时预览、独立试炼及文档完成，memory/NOW/AI_INDEX同步。62Lua/61回归通过，scripts/.luarc.json下LSP0Error/177Warning；报告 #AI-NOTEBOOK/DiceMonster-intents-scripts-lsp-20260923，诊断进程已停止。本批未commit/构建，按项目规则等待Maker确认；并行UI改动原样保留。
+- 2026-09-23 菜单铺满任务完成：LSP 从 881 Error 收敛为 0 Error（176 Warning），60 Lua / 47 项回归通过；466a43c 已推送，远端构建成功、preview refresh 200。日志 watcher 正常且暂无新运行日志；下一步真机验收两侧黑边与背景裁切。
+- 2026-09-23 意图补充已收尾：单段/多段、按次格挡、毒层伤害后减1已写入提案；memory/NOW同步。其他交互仍是建议，未改代码、未提交构建。
+- 2026-09-23 17:07 构建复查：用户已授权推送，47 项回归通过；LSP 881 Error（报告 #AI-NOTEBOOK/DiceMonster-menu-lsp-20260923/lua_errors.log），按无 Error 门禁未构建/推送，诊断进程已停止。
+- 2026-09-23 菜单黑边修正已本地完成：9:20 基准，root 全视口 cover，内容透明独立滚动，原点击反馈保留。60 Lua / 47 项回归通过，S05/计划/memory/NOW 同步；用户要求不询问，未追问、未构建或推送本批改动。
+- 2026-09-23 真机测试：官方 generate_test_qrcode 已成功返回 App 944255 二维码，提供扫码替代入口。网页“配置暂不可读”根因未确认；本地 app_id 仍缺，不误报为已修复。保留并行代码改动，未构建/发布。
+- 怪物意图设计轮：v1提案已保存，34怪覆盖完成，memory/NOW/索引同步；六类意图与试验数值待确认。只新增设计文档，未提交推送，未进行实现或平衡试玩。
+- **最新复核覆盖下方旧状态**：另一任务已推送菜单素材/脚本（f136ebe），当前 62abb48 与远端同步、工作区干净；60 Lua / 44 项测试通过。19:07:40 LSP 仍报 879 Error，本轮未重复构建；最新构建成功状态未核实。Orson 澄清仅是其他任务停止编辑，未豁免静态检查。
+- UI 进度问询已核对：首批 3/9 张素材已接入，两页结构与反馈已编码，三个主页子系统仍占位；本次仅汇报，未获得静态检查豁免，未构建。
+- 怪物评审轮已收尾：34 怪审计文档完成，memory/NOW 已同步；玩法建议尚未确认。本轮仅文档/记忆更新，未提交、未构建。交付前直接运行测试脚本：52 Lua / 26 项全通过。
+- 菜单线框已获授权构建：77703eb 推送/构建/预览刷新成功，浏览器介绍/登录页导致视觉验收未完成。
+- **DiceMonster 当前**：菜单首批 3 张美术已接入，统一点击反馈/键盘/弹窗隔离与回归完成；构建已授权，但 LSP 报 879 条 Error，尚未提交推送，等待修复或本次门禁豁免决定。报告见 #AI-NOTEBOOK/DiceMonster-menu-lsp-20260922/lua_errors.log；memory/NOW 已同步。
+- 本地基线：`npm test` 全绿（58 个 Lua 文件、42 项回归、菜单资源/文档漂移/附魔扣款守卫；含其他并行任务回归），不代表 LSP 检查通过。
+- 后续优先级：Maker 实机验收 → 34 怪意图对齐 → HP 1000→100 全链路平衡 → 存档/外层。
+- **longcat 阻塞**：GDD analysis 待 Orson 确认，确认前不动代码；旧代号目录删除仍需授权。
+
+## 兽境小憩本轮补充（2026-09-22）
+- 新项目 Demo 完成，memory/NOW 已同步，试玩页面保留当前对局。
+- 其他项目既存未提交改动保持原样；本轮仅提交 Beast-Grove 项目文件。
+
+- 兽境小憩设计轮收尾：V2提案和README已更新，memory/NOW已同步；本轮无运行时代码改动，不重置对局。
+
+## 晚安小屋本轮收尾（2026-09-26）
+- README、精简GDD、执行文档和用户UI标注图已保存；memory/NOW/AI_INDEX同步。
+- 用户确认首发微信小游戏，每次主动重开刷新首次免费提示；不沿用先前跨重开累计的建议。
+- 尚未创建引擎工程或实现玩法；下一步M0规则和生成器。只处理本项目新增文件的提交，既存其他改动保留。
+
+- 2026-09-26 晚安小屋MCP选型：GitHub静态初筛推荐Funplay v0.6.4，harady/caravanglory备用。依据本机监听、Origin检查、默认脚本检查、截图与预制体能力；检查不等于沙箱或完整安全审计。报告 `#PROJECT/Goodnight-House/docs/MCP选型.md`。尚未安装、未修改MCP配置、未实机连接；现有工程路径为cocosProject/Goodnight-House，package配置Creator3.8.8，覆盖早先“尚未创建工程”的旧记录。
+
+- 2026-09-26 晚安小屋准备核对：用户已打开Cocos并创建2D工程；本地package配置3.8.8，检测到Creator运行进程，assets尚无已保存.scene，工程Git尚无首个提交。当前会话无Cocos/Funplay工具，尚未连接MCP。答复需区分扩展功能与实际产出质量：接入后验证节点／预制体保存读回、截图与交互；先做小屋UI样板，再铺关。用户暂不需提前准备全套美术、AppID或广告位；这些在对应阶段处理。本轮仅核对，未安装或修改工程。
+
+- 2026-09-26 晚安小屋更名 Nite-Nite：实际目录 #PROJECT/Nite-Nite，独立私有仓库 https://github.com/orsonHuang/Nite-Nite（main）；用户明确授权创建私有仓库和安装 MCP。首提交8b7a877已推送后安装 Funplay0.6.4。Cocos3.8.8场景／预制体创建、保存重开、实例覆盖和真实预览截图通过，详见 docs/环境准备.md。含#路径启动失败，已新增本地 junction D:/_Files/ai_test/Nite-Nite 指向实际项目；Cocos从该入口的 cocosProject/Nite-Nite 打开，文件唯一。Codex nite-nite-cocos 配置 http://127.0.0.1:22358/；工具目录未刷新时重启MCP连接。下一步建议M0规则与唯一解、UI样板、五关切片，本轮未实现玩法。旧选型/未安装记录为历史状态。
+
+- Nite-Nite 接入收尾：安装验收提交 7191dbd09bf51d6e73d31360e5cb0682bc32ab94 已同步至私有远端 main，GitHub HTTPS 中断后改用官方 Git 数据 API，blob/tree/commit SHA 与本地一致；项目工作区干净。用户已登录，真实预览截图通过；云服务页提示不属于本次本地开发阻塞。
+
+- 2026-09-26 Nite-Nite MVP：原生 MVP.scene＋Room/AnimalCard/Clue/Popup 四类链接预制体完成，层级／属性可编辑；禁止运行时纯代码生成页面。五关唯一且可推理，13项规则回归、TypeScript、真实浏览器交互通过；100候选93通过7拒绝，不等同人工难度验收。首次提示免费、每次重开恢复；真实广告／微信构建真机／每日地区榜未接入。制作与验收指南 docs/MVP验收.md。提交789f546已推送私有main；下一步用户试玩五关后微信测试构建与美术迭代。写实际路径后需刷新Cocos资源；跨Prefab实例引用用根Node序列化并在onLoad取组件。
+- 本轮收尾：memory/NOW已同步；Nite-Nite独立仓库已提交推送。外层既存暂存和未提交改动原样保留，未打包提交或推送。
