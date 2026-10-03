@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2700" height="2100" viewBox="0 0 2700 2100">
+<rect width="2700" height="2100" fill="#f5f3ee"/>
+<text x="100" y="72" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="62" font-weight="700" fill="#243641">迷雾远征 · 游戏流程图</text>
+<text x="103" y="143" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="400" fill="#6a777c">Godot / Steam  ·  全自动回合制战斗  ·  玩法讨论稿</text>
+<rect x="65" y="205" width="690" height="1710" rx="28" fill="#ffffff" stroke="#dcded9" stroke-width="2"/>
+<text x="100" y="245" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="35" font-weight="700" fill="#243641">01  出发与路线规划</text>
+<text x="100" y="286" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="400" fill="#758086">先看目标，再决定如何前进</text>
+<rect x="850" y="205" width="1000" height="1710" rx="28" fill="#ffffff" stroke="#dcded9" stroke-width="2"/>
+<text x="885" y="245" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="35" font-weight="700" fill="#243641">02  区域探索循环</text>
+<text x="885" y="286" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="400" fill="#758086">有限时段，分配收益与风险</text>
+<rect x="1910" y="205" width="725" height="1710" rx="28" fill="#ffffff" stroke="#dcded9" stroke-width="2"/>
+<text x="1945" y="245" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="35" font-weight="700" fill="#243641">03  魔王挑战与局后</text>
+<text x="1945" y="286" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="400" fill="#758086">整局构筑的最终检验</text>
+<polyline points="410,410 410,460" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="410,460 418.0,443.0 402.0,443.0" fill="#45798a"/>
+<polyline points="410,580 410,640" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="410,640 418.0,623.0 402.0,623.0" fill="#45798a"/>
+<polyline points="410,740 410,800" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="410,800 418.0,783.0 402.0,783.0" fill="#45798a"/>
+<polyline points="410,890 410,980" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="410,980 418.0,963.0 402.0,963.0" fill="#45798a"/>
+<polyline points="410,1100 410,1185" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="410,1185 418.0,1168.0 402.0,1168.0" fill="#45798a"/>
+<polyline points="630,1280 805,1280 805,370 945,370" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="945,370 928.0,362.0 928.0,378.0" fill="#45798a"/>
+<text x="716" y="1238" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#45798a">普通区域</text>
+<polyline points="410,1375 410,1415 730,1415 730,1840 1865,1840 1865,370 1980,370" fill="none" stroke="#ac762a" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1980,370 1963.0,362.0 1963.0,378.0" fill="#ac762a"/>
+<rect x="880" y="1813" width="480" height="55" rx="12" fill="#fff7e7" stroke="none" stroke-width="3"/>
+<text x="1120" y="1840" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="29" font-weight="700" fill="#ac762a">进入魔王城：最终挑战</text>
+<polyline points="1300,430 1300,490" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1300,490 1308.0,473.0 1292.0,473.0" fill="#45798a"/>
+<polyline points="1300,690 1300,760" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1300,760 1308.0,743.0 1292.0,743.0" fill="#45798a"/>
+<text x="1345" y="725" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#38765e">是</text>
+<polyline points="1065,590 922,590" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="922,590 939.0,598.0 939.0,582.0" fill="#45798a"/>
+<text x="983" y="537" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="24" font-weight="400" fill="#45798a">用尽／主动离开</text>
+<polyline points="1300,905 1300,970" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1300,970 1308.0,953.0 1292.0,953.0" fill="#45798a"/>
+<polyline points="1110,1050 1055,1050 1055,1190" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1055,1190 1063.0,1173.0 1047.0,1173.0" fill="#45798a"/>
+<text x="1030" y="1124" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#45798a">否</text>
+<polyline points="1490,1050 1500,1050 1500,1190" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1500,1190 1508.0,1173.0 1492.0,1173.0" fill="#45798a"/>
+<text x="1544" y="1118" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#45798a">是</text>
+<polyline points="1500,1305 1500,1345" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1500,1345 1508.0,1328.0 1492.0,1328.0" fill="#45798a"/>
+<polyline points="1055,1320 940,1320 940,1712 1000,1712" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1000,1712 983.0,1704.0 983.0,1720.0" fill="#45798a"/>
+<polyline points="1500,1495 1500,1580 1320,1580 1320,1650" fill="none" stroke="#38765e" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1320,1650 1328.0,1633.0 1312.0,1633.0" fill="#38765e"/>
+<text x="1460" y="1534" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#38765e">是</text>
+<polyline points="1645,1420 1718,1420" fill="none" stroke="#ad5655" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1718,1420 1701.0,1412.0 1701.0,1428.0" fill="#ad5655"/>
+<text x="1690" y="1380" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#ad5655">否</text>
+<polyline points="1640,1712 1805,1712 1805,590 1535,590" fill="none" stroke="#38765e" stroke-width="5" stroke-linejoin="round"/>
+<polygon points="1535,590 1552.0,598.0 1552.0,582.0" fill="#38765e"/>
+<rect x="1630" y="1583" width="182" height="54" rx="12" fill="#eaf4ec" stroke="none" stroke-width="3"/>
+<text x="1721" y="1610" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="700" fill="#38765e">继续探索</text>
+<polyline points="2270,430 2270,520" fill="none" stroke="#ac762a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2270,520 2278.0,503.0 2262.0,503.0" fill="#ac762a"/>
+<polyline points="2070,610 2070,790" fill="none" stroke="#38765e" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2070,790 2078.0,773.0 2062.0,773.0" fill="#38765e"/>
+<text x="2020" y="705" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#38765e">胜利</text>
+<polyline points="2470,610 2470,790" fill="none" stroke="#ad5655" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2470,790 2478.0,773.0 2462.0,773.0" fill="#ad5655"/>
+<text x="2520" y="705" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#ad5655">战败</text>
+<polyline points="2075,880 2075,1000 2270,1000 2270,1100" fill="none" stroke="#38765e" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2270,1100 2278.0,1083.0 2262.0,1083.0" fill="#38765e"/>
+<polyline points="2475,880 2475,1000 2270,1000" fill="none" stroke="#ad5655" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2270,1000 2287.0,1008.0 2287.0,992.0" fill="#ad5655"/>
+<polyline points="1947,1162 1980,1162" fill="none" stroke="#ad5655" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="1980,1162 1963.0,1154.0 1963.0,1170.0" fill="#ad5655"/>
+<polyline points="2270,1225 2270,1300" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2270,1300 2278.0,1283.0 2262.0,1283.0" fill="#45798a"/>
+<polyline points="2270,1425 2270,1500" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="2270,1500 2278.0,1483.0 2262.0,1483.0" fill="#45798a"/>
+<rect x="160" y="310" width="500" height="100" rx="20" fill="#eaf1f3" stroke="#45798a" stroke-width="3"/>
+<text x="410.0" y="360.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="700" fill="#243641">开始新冒险</text>
+<rect x="120" y="460" width="580" height="120" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="410.0" y="498.25" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">生成本局地图</text>
+<text x="410.0" y="541.75" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">公开部分 Boss 与套装掉落</text>
+<rect x="160" y="640" width="500" height="100" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="410.0" y="690.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="700" fill="#243641">选择主角与起手技能</text>
+<rect x="160" y="800" width="500" height="90" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="410.0" y="845.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="700" fill="#243641">从新手村出发</text>
+<rect x="150" y="980" width="520" height="120" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="410.0" y="1016.8" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="400" fill="#243641">选择前进的相邻区域</text>
+<text x="410.0" y="1063.2" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="400" fill="#243641">不可后退</text>
+<circle cx="103" cy="1040" r="27" fill="white" stroke="#45798a" stroke-width="3"/>
+<text x="103" y="1040" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#45798a">A</text>
+<polyline points="130,1040 150,1040" fill="none" stroke="#45798a" stroke-width="4" stroke-linejoin="round"/>
+<polygon points="150,1040 133.0,1032.0 133.0,1048.0" fill="#45798a"/>
+<polygon points="410,1185 630,1280 410,1375 190,1280" fill="#fff2d9" stroke="#ac762a" stroke-width="3"/>
+<text x="410" y="1280" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="31" font-weight="700" fill="#243641">进入魔王城？</text>
+<rect x="113" y="1470" width="587" height="267" rx="18" fill="#f5f7f7" stroke="none" stroke-width="3"/>
+<text x="148" y="1515" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="29" font-weight="700" fill="#243641">选路与信息</text>
+<text x="148" y="1565" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="26" font-weight="400" fill="#596b73">从当前区域选择前方相邻区域</text>
+<text x="148" y="1609" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="26" font-weight="400" fill="#596b73">相邻迷雾揭开，提供选路信息</text>
+<text x="148" y="1653" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="26" font-weight="400" fill="#596b73">Boss 地标与掉落目标提前可见</text>
+<text x="148" y="1697" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="26" font-weight="400" fill="#596b73">离开后不能返回原区域</text>
+<rect x="945" y="310" width="740" height="120" rx="20" fill="#eaf1f3" stroke="#45798a" stroke-width="3"/>
+<text x="1315.0" y="348.25" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">进入区域，揭开相邻迷雾并确定内容</text>
+<text x="1315.0" y="391.75" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">获得本区探索时段（示例 6 点）</text>
+<polygon points="1300,490 1535,590 1300,690 1065,590" fill="#fff2d9" stroke="#ac762a" stroke-width="3"/>
+<text x="1300" y="590" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="31" font-weight="700" fill="#243641">继续探索？</text>
+<text x="1300" y="622" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="18" font-weight="400" fill="#85682d">有可用点数，并选择留下</text>
+<circle cx="895" cy="590" r="27" fill="white" stroke="#45798a" stroke-width="3"/>
+<text x="895" y="590" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#45798a">A</text>
+<text x="947" y="645" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="24" font-weight="400" fill="#45798a">回到选路</text>
+<rect x="955" y="760" width="730" height="145" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="1320.0" y="789.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">选择可支付的行动，并扣除时段</text>
+<text x="1320.0" y="832.5" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">宝藏／事件／休整／招募：1 点</text>
+<text x="1320.0" y="876.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">小怪战：1 点  ·  副本挑战：2 点</text>
+<polygon points="1300,970 1490,1050 1300,1130 1110,1050" fill="#fff2d9" stroke="#ac762a" stroke-width="3"/>
+<text x="1300" y="1050" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="31" font-weight="700" fill="#243641">战斗行动？</text>
+<rect x="905" y="1190" width="300" height="130" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="1055.0" y="1215.85" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="27" font-weight="400" fill="#243641">处理非战斗行动</text>
+<text x="1055.0" y="1255.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="27" font-weight="400" fill="#243641">宝藏／事件</text>
+<text x="1055.0" y="1294.15" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="27" font-weight="400" fill="#243641">休整／招募</text>
+<rect x="1280" y="1190" width="440" height="115" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="1500.0" y="1225.75" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">全自动回合制战斗</text>
+<text x="1500.0" y="1269.25" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">主角＋最多 2 名随从</text>
+<polygon points="1500,1345 1645,1420 1500,1495 1355,1420" fill="#fff2d9" stroke="#ac762a" stroke-width="3"/>
+<text x="1500" y="1420" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#243641">获胜？</text>
+<circle cx="1745" cy="1420" r="27" fill="white" stroke="#ad5655" stroke-width="3"/>
+<text x="1745" y="1420" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#ad5655">B</text>
+<text x="1715" y="1483" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="400" fill="#ad5655">战败结算</text>
+<rect x="1000" y="1650" width="640" height="125" rx="20" fill="#edf6ee" stroke="#38765e" stroke-width="3"/>
+<text x="1320.0" y="1689.3" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="400" fill="#243641">获得奖励并整理构筑</text>
+<text x="1320.0" y="1735.7" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="400" fill="#243641">换装／调整队伍与技能</text>
+<text x="1290" y="1798" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#38765e">副本可重复挑战；每次均消耗时段</text>
+<rect x="1980" y="310" width="580" height="120" rx="20" fill="#fff4df" stroke="#ac762a" stroke-width="3"/>
+<text x="2270.0" y="346.8" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="400" fill="#243641">攻打魔王城</text>
+<text x="2270.0" y="393.2" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="32" font-weight="400" fill="#243641">全自动回合制战斗</text>
+<polygon points="2270,520 2470,610 2270,700 2070,610" fill="#fff2d9" stroke="#ac762a" stroke-width="3"/>
+<text x="2270" y="610" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="31" font-weight="700" fill="#243641">击败魔王？</text>
+<rect x="1940" y="790" width="270" height="90" rx="20" fill="#edf6ee" stroke="#38765e" stroke-width="3"/>
+<text x="2075.0" y="835.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="31" font-weight="700" fill="#243641">本局通关</text>
+<rect x="2340" y="790" width="270" height="90" rx="20" fill="#fbefed" stroke="#ad5655" stroke-width="3"/>
+<text x="2475.0" y="835.0" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="31" font-weight="700" fill="#243641">本局失败</text>
+<rect x="1980" y="1100" width="580" height="125" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="2270.0" y="1138.575" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="33" font-weight="400" fill="#243641">本局结算</text>
+<text x="2270.0" y="1186.425" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="33" font-weight="400" fill="#243641">奖励与冒险记录</text>
+<circle cx="1920" cy="1162" r="27" fill="white" stroke="#ad5655" stroke-width="3"/>
+<text x="1920" y="1162" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="700" fill="#ad5655">B</text>
+<rect x="1980" y="1300" width="580" height="125" rx="20" fill="#ffffff" stroke="#45798a" stroke-width="3"/>
+<text x="2270.0" y="1340.75" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">局外解锁（规划）</text>
+<text x="2270.0" y="1384.25" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">扩展职业、技能与装备内容</text>
+<rect x="2020" y="1500" width="500" height="110" rx="20" fill="#eaf1f3" stroke="#45798a" stroke-width="3"/>
+<text x="2270.0" y="1533.25" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">再次冒险</text>
+<text x="2270.0" y="1576.75" text-anchor="middle" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="30" font-weight="400" fill="#243641">返回开始，生成新地图</text>
+<rect x="1980" y="1680" width="580" height="132" rx="18" fill="#f5f7f7" stroke="none" stroke-width="3"/>
+<text x="2015" y="1724" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#243641">图中 A、B 为跨区域连接标记</text>
+<text x="2015" y="1768" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="400" fill="#596b73">同字母表示流程在此处衔接</text>
+<text x="100" y="1981" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="400" fill="#64727a">示意约定：每区 6 点、普通行动 1 点、副本 2 点；仅用于讨论，非最终数值。</text>
+<text x="100" y="2030" text-anchor="start" dominant-baseline="central" font-family="Microsoft YaHei, sans-serif" font-size="28" font-weight="400" fill="#64727a">当前按“战败结束本局”绘制；撤退、复活与局外奖励细则待定。换装与选路不耗点。</text>
+</svg>

@@ -28,6 +28,11 @@
 - **套装表（SetResource）**：引用效果原子，定义激活条件
 - **装备表（EquipmentResource）**：引用词条 ID 池，不直接绑定具体词条
 
+## 脑暴资料（未定稿）
+
+- [游戏流程图 PNG](./docs/brainstorm/game-flow-v1.png) / [可放大 SVG](./docs/brainstorm/game-flow-v1.svg)：2026-10-03，根据本轮讨论绘制选路、区域行动点、重复副本、自动战斗与局后循环。6 点预算、具体消耗和战败处理均为示意，未替代现有 GDD，也未实现到工程。
+- [流程图绘制脚本](./docs/brainstorm/draw_game_flow.py)：用于更新 PNG 与 SVG。
+
 ## 版本记录
 
 | 版本 | 日期 | 说明 |
