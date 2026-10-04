@@ -1,0 +1,4 @@
+[
+  {"name": "session_activate", "arguments": {"session_id": "cat-idle"}},
+  {"name": "test_run", "arguments": {"suite": "expedition_rules", "verbose": true}}
+]

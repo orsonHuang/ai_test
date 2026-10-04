@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogRegion.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "river"
+display_name = "银月渡口"
+stage = 2
+ap = 6
+next_ids = PackedStringArray("frost", "ash")
+adjacent_ids = PackedStringArray("briar", "ruins", "quarry", "ember", "frost", "ash")
+family = "storm"
+initial_landmark = false
+hp_mult = 1.25
+atk_mult = 1.15
+polygon = PackedVector2Array(220, 310, 290, 310, 385, 300, 380, 425, 300, 445, 210, 420)
+label_position = Vector2(300, 361)
+tint = Color(0.19215686274509805, 0.3411764705882353, 0.3843137254901961, 1)
+boss_name = "逐月之影"

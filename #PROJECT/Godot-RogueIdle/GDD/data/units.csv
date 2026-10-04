@@ -1,0 +1,13 @@
+id,name,side,kind,hp,atk,armor,speed,hp_per_level,atk_per_level,armor_every_levels
+hero,远征者,ally,hero,160,24,5,12,14,3,2
+priest,修女,ally,follower,100,11,3,14,14,3,2
+ranger,游侠,ally,follower,112,17,3,20,14,3,2
+guardian,卫士,ally,follower,175,13,8,15,14,3,2
+thorn,荆棘守卫,enemy,boss,240,21,4,10,0,0,0
+storm,猎风首领,enemy,boss,210,24,3,18,0,0,0
+ember,余烬祭司,enemy,boss,260,20,3,11,0,0,0
+king,黯冠魔王,enemy,final,620,32,7,13,0,0,0
+shadow,噬光影卫,enemy,final_add,120,18,3,16,0,0,0
+raider,劫掠者,enemy,minion,90,14,3,13,0,0,0
+stalker,潜袭者,enemy,minion,75,15,2,16,0,0,0
+acolyte,侍火者,enemy,minion,85,12,2,11,0,0,0

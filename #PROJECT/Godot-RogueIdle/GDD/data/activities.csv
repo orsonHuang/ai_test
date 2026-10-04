@@ -1,0 +1,8 @@
+id,name,ap_cost,placement,limit_per_region,draw_weight
+dungeon,首领副本,2,fixed,-1,0
+rest,营地休整,1,fixed,-1,0
+chest,宝箱,1,optional,1,3
+event,事件,1,optional,1,3
+patrol,巡游敌人,1,optional,1,3
+recruit,招募,1,optional,1,2
+merchant,行商,1,optional,1,2

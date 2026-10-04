@@ -1,0 +1,1202 @@
+[
+  {
+    "tool": "session_activate",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"status\":\"ok\",\"active_session_id\":\"cat-idle@65d1\",\"matched\":\"hint\",\"matched_name\":\"cat-idle\"}"
+        }
+      ],
+      "structuredContent": {
+        "status": "ok",
+        "active_session_id": "cat-idle@65d1",
+        "matched": "hint",
+        "matched_name": "cat-idle"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"readiness_after\":\"ready\",\"reason\":\"Play/stop is a runtime action\",\"stopped\":true,\"undoable\":false,\"was_running\":true}"
+        }
+      ],
+      "structuredContent": {
+        "readiness_after": "ready",
+        "reason": "Play/stop is a runtime action",
+        "stopped": true,
+        "undoable": false,
+        "was_running": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":false,\"path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"previous_scene_path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": false,
+        "path": "res://scenes/expedition/components/RegionTile.tscn",
+        "previous_scene_path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "settled",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1.0,\"path\":\"/RegionTile\",\"property\":\"anchor_right\",\"undoable\":true,\"value\":0.0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1.0,
+        "path": "/RegionTile",
+        "property": "anchor_right",
+        "undoable": true,
+        "value": 0.0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1.0,\"path\":\"/RegionTile\",\"property\":\"anchor_bottom\",\"undoable\":true,\"value\":0.0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1.0,
+        "path": "/RegionTile",
+        "property": "anchor_bottom",
+        "undoable": true,
+        "value": 0.0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":0.0,\"path\":\"/RegionTile\",\"property\":\"offset_left\",\"undoable\":true,\"value\":0.0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 0.0,
+        "path": "/RegionTile",
+        "property": "offset_left",
+        "undoable": true,
+        "value": 0.0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":0.0,\"path\":\"/RegionTile\",\"property\":\"offset_top\",\"undoable\":true,\"value\":0.0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 0.0,
+        "path": "/RegionTile",
+        "property": "offset_top",
+        "undoable": true,
+        "value": 0.0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":-552.0,\"path\":\"/RegionTile\",\"property\":\"offset_right\",\"undoable\":true,\"value\":600.0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": -552.0,
+        "path": "/RegionTile",
+        "property": "offset_right",
+        "undoable": true,
+        "value": 600.0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":-8.0,\"path\":\"/RegionTile\",\"property\":\"offset_bottom\",\"undoable\":true,\"value\":640.0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": -8.0,
+        "path": "/RegionTile",
+        "property": "offset_bottom",
+        "undoable": true,
+        "value": 640.0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1,\"path\":\"/RegionTile\",\"property\":\"grow_horizontal\",\"undoable\":true,\"value\":0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1,
+        "path": "/RegionTile",
+        "property": "grow_horizontal",
+        "undoable": true,
+        "value": 0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1,\"path\":\"/RegionTile\",\"property\":\"grow_vertical\",\"undoable\":true,\"value\":0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1,
+        "path": "/RegionTile",
+        "property": "grow_vertical",
+        "undoable": true,
+        "value": 0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/components/RegionTile.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":false,\"path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"previous_scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": false,
+        "path": "res://scenes/expedition/components/UnitCard.tscn",
+        "previous_scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "settled",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":230.0,\"y\":138.0},\"path\":\"/UnitCard\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":230.0,\"y\":0.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 230.0,
+          "y": 138.0
+        },
+        "path": "/UnitCard",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 230.0,
+          "y": 0.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":12,\"path\":\"/UnitCard/Rows\",\"property\":\"theme_override_constants/separation\",\"undoable\":true,\"value\":2}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 12,
+        "path": "/UnitCard/Rows",
+        "property": "theme_override_constants/separation",
+        "undoable": true,
+        "value": 2
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":21,\"path\":\"/UnitCard/Rows/Name\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":19}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 21,
+        "path": "/UnitCard/Rows/Name",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 19
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":16,\"path\":\"/UnitCard/Rows/HealthText\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":14}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 16,
+        "path": "/UnitCard/Rows/HealthText",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 14
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":17,\"path\":\"/UnitCard/Rows/Stats\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":14}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 17,
+        "path": "/UnitCard/Rows/Stats",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 14
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":15,\"path\":\"/UnitCard/Rows/Status\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":13}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 15,
+        "path": "/UnitCard/Rows/Status",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 13
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/components/UnitCard.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_patch",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"old_size\":927,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"replacements\":1,\"size\":971,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "old_size": 927,
+        "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "replacements": 1,
+        "size": 971,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_patch",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"old_size\":22028,\"path\":\"res://scripts/expedition/ui/FogDemo.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"replacements\":1,\"size\":22016,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "old_size": 22028,
+        "path": "res://scripts/expedition/ui/FogDemo.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "replacements": 1,
+        "size": 22016,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":false,\"path\":\"res://scenes/expedition/MapPage.tscn\",\"previous_scene_path\":\"res://scenes/expedition/MapPage.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"already_current\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": false,
+        "path": "res://scenes/expedition/MapPage.tscn",
+        "previous_scene_path": "res://scenes/expedition/MapPage.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "already_current",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":12,\"path\":\"/MapPage/MapColumns/SquadColumn\",\"property\":\"theme_override_constants/separation\",\"undoable\":true,\"value\":8}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 12,
+        "path": "/MapPage/MapColumns/SquadColumn",
+        "property": "theme_override_constants/separation",
+        "undoable": true,
+        "value": 8
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":12,\"path\":\"/MapPage/MapColumns/RegionColumn\",\"property\":\"theme_override_constants/separation\",\"undoable\":true,\"value\":8}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 12,
+        "path": "/MapPage/MapColumns/RegionColumn",
+        "property": "theme_override_constants/separation",
+        "undoable": true,
+        "value": 8
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"金色 · 所在地区 / 选中\\n青色边界 · 可以前往\\n深色 · 未探明地区\",\"path\":\"/MapPage/MapColumns/SquadColumn/Legend\",\"property\":\"text\",\"undoable\":true,\"value\":\"金色 · 所在 / 选中\\n青色边界 · 可以前往\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "金色 · 所在地区 / 选中\n青色边界 · 可以前往\n深色 · 未探明地区",
+        "path": "/MapPage/MapColumns/SquadColumn/Legend",
+        "property": "text",
+        "undoable": true,
+        "value": "金色 · 所在 / 选中\n青色边界 · 可以前往"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":225.0},\"path\":\"/MapPage/MapColumns/RegionColumn/RegionDescription\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":0.0,\"y\":130.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 225.0
+        },
+        "path": "/MapPage/MapColumns/RegionColumn/RegionDescription",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 0.0,
+          "y": 130.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":46.0},\"path\":\"/MapPage/MapColumns/RegionColumn/Activity0\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":0.0,\"y\":40.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 46.0
+        },
+        "path": "/MapPage/MapColumns/RegionColumn/Activity0",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 0.0,
+          "y": 40.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":null,\"path\":\"/MapPage/MapColumns/RegionColumn/Activity0\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":17}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": null,
+        "path": "/MapPage/MapColumns/RegionColumn/Activity0",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 17
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":46.0},\"path\":\"/MapPage/MapColumns/RegionColumn/Activity1\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":0.0,\"y\":40.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 46.0
+        },
+        "path": "/MapPage/MapColumns/RegionColumn/Activity1",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 0.0,
+          "y": 40.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":null,\"path\":\"/MapPage/MapColumns/RegionColumn/Activity1\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":17}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": null,
+        "path": "/MapPage/MapColumns/RegionColumn/Activity1",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 17
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":46.0},\"path\":\"/MapPage/MapColumns/RegionColumn/Activity2\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":0.0,\"y\":40.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 46.0
+        },
+        "path": "/MapPage/MapColumns/RegionColumn/Activity2",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 0.0,
+          "y": 40.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":null,\"path\":\"/MapPage/MapColumns/RegionColumn/Activity2\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":17}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": null,
+        "path": "/MapPage/MapColumns/RegionColumn/Activity2",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 17
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":46.0},\"path\":\"/MapPage/MapColumns/RegionColumn/Activity3\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":0.0,\"y\":40.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 46.0
+        },
+        "path": "/MapPage/MapColumns/RegionColumn/Activity3",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 0.0,
+          "y": 40.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":null,\"path\":\"/MapPage/MapColumns/RegionColumn/Activity3\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":17}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": null,
+        "path": "/MapPage/MapColumns/RegionColumn/Activity3",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 17
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":46.0},\"path\":\"/MapPage/MapColumns/RegionColumn/Activity4\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":0.0,\"y\":40.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 46.0
+        },
+        "path": "/MapPage/MapColumns/RegionColumn/Activity4",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 0.0,
+          "y": 40.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":null,\"path\":\"/MapPage/MapColumns/RegionColumn/Activity4\",\"property\":\"theme_override_font_sizes/font_size\",\"undoable\":true,\"value\":17}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": null,
+        "path": "/MapPage/MapColumns/RegionColumn/Activity4",
+        "property": "theme_override_font_sizes/font_size",
+        "undoable": true,
+        "value": 17
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/MapPage.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/MapPage.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.184313729405403,\"g\":0.152941182255745,\"r\":0.0823529437184334},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"Button\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"normal\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.184313729405403,
+          "g": 0.152941182255745,
+          "r": 0.0823529437184334
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "Button",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "normal",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.30588236451149,\"g\":0.290196090936661,\"r\":0.156862750649452},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"Button\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"hover\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.30588236451149,
+          "g": 0.290196090936661,
+          "r": 0.156862750649452
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "Button",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "hover",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.30588236451149,\"g\":0.290196090936661,\"r\":0.156862750649452},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"Button\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"pressed\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.30588236451149,
+          "g": 0.290196090936661,
+          "r": 0.156862750649452
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "Button",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "pressed",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.121568627655506,\"g\":0.0980392172932625,\"r\":0.0470588244497776},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"Button\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"disabled\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.121568627655506,
+          "g": 0.0980392172932625,
+          "r": 0.0470588244497776
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "Button",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "disabled",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.30588236451149,\"g\":0.290196090936661,\"r\":0.156862750649452},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"Button\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"focus\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.30588236451149,
+          "g": 0.290196090936661,
+          "r": 0.156862750649452
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "Button",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "focus",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":true,\"path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"previous_scene_path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":true,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": true,
+        "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "previous_scene_path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": true,
+        "settle": "settled",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_run",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":1,\"elapsed_msec\":1692,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":5836509,\"run_token\":4,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"current\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[{\"details\":{\"code\":\"Condition \\\"error != Error::OK\\\" is true. Returning: Variant()\",\"error_type\":0,\"error_type_name\":\"error\",\"frames\":[{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},{\"function\":\"test_save_load_and_corruption_falls_back\",\"line\":136,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"rationale\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"resolved\":{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},\"source\":{\"function\":\"parse_string\",\"line\":629,\"path\":\"core/io/json.cpp\"}},\"function\":\"load_state\",\"level\":\"error\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\",\"source\":\"editor\",\"text\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\"}],\"recent_errors_may_predate_run\":true,\"recent_errors_scope\":\"retained_recent\",\"recent_errors_truncated\":false,\"retained_errors\":[{\"details\":{\"code\":\"Condition \\\"error != Error::OK\\\" is true. Returning: Variant()\",\"error_type\":0,\"error_type_name\":\"error\",\"frames\":[{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},{\"function\":\"test_save_load_and_corruption_falls_back\",\"line\":136,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"rationale\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"resolved\":{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},\"source\":{\"function\":\"parse_string\",\"line\":629,\"path\":\"core/io/json.cpp\"}},\"function\":\"load_state\",\"level\":\"error\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\",\"source\":\"editor\",\"text\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\"}],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+        }
+      ],
+      "structuredContent": {
+        "autosave": true,
+        "current_run_errors": [],
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 1,
+          "elapsed_msec": 1692,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 3000,
+          "run_started_msec": 5836509,
+          "run_token": 4,
+          "session_active": true,
+          "status": "live"
+        },
+        "helper_live": true,
+        "mode": "current",
+        "reason": "Game launched and the Godot AI game helper is live.",
+        "recent_errors": [
+          {
+            "details": {
+              "code": "Condition \"error != Error::OK\" is true. Returning: Variant()",
+              "error_type": 0,
+              "error_type_name": "error",
+              "frames": [
+                {
+                  "function": "load_state",
+                  "line": 37,
+                  "path": "res://scripts/expedition/FogSave.gd"
+                },
+                {
+                  "function": "test_save_load_and_corruption_falls_back",
+                  "line": 136,
+                  "path": "res://tests/test_expedition_rules.gd"
+                },
+                {
+                  "function": "run_suite",
+                  "line": 48,
+                  "path": "res://addons/godot_ai/testing/test_runner.gd"
+                },
+                {
+                  "function": "run_suites",
+                  "line": 158,
+                  "path": "res://addons/godot_ai/testing/test_runner.gd"
+                },
+                {
+                  "function": "run_tests",
+                  "line": 44,
+                  "path": "res://addons/godot_ai/handlers/test_handler.gd"
+                },
+                {
+                  "function": "_call_handler",
+                  "line": 193,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_dispatch",
+                  "line": 150,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "tick",
+                  "line": 122,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_process",
+                  "line": 108,
+                  "path": "res://addons/godot_ai/connection.gd"
+                }
+              ],
+              "message": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+              "rationale": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+              "resolved": {
+                "function": "load_state",
+                "line": 37,
+                "path": "res://scripts/expedition/FogSave.gd"
+              },
+              "source": {
+                "function": "parse_string",
+                "line": 629,
+                "path": "core/io/json.cpp"
+              }
+            },
+            "function": "load_state",
+            "level": "error",
+            "line": 37,
+            "path": "res://scripts/expedition/FogSave.gd",
+            "source": "editor",
+            "text": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'"
+          }
+        ],
+        "recent_errors_may_predate_run": true,
+        "recent_errors_scope": "retained_recent",
+        "recent_errors_truncated": false,
+        "retained_errors": [
+          {
+            "details": {
+              "code": "Condition \"error != Error::OK\" is true. Returning: Variant()",
+              "error_type": 0,
+              "error_type_name": "error",
+              "frames": [
+                {
+                  "function": "load_state",
+                  "line": 37,
+                  "path": "res://scripts/expedition/FogSave.gd"
+                },
+                {
+                  "function": "test_save_load_and_corruption_falls_back",
+                  "line": 136,
+                  "path": "res://tests/test_expedition_rules.gd"
+                },
+                {
+                  "function": "run_suite",
+                  "line": 48,
+                  "path": "res://addons/godot_ai/testing/test_runner.gd"
+                },
+                {
+                  "function": "run_suites",
+                  "line": 158,
+                  "path": "res://addons/godot_ai/testing/test_runner.gd"
+                },
+                {
+                  "function": "run_tests",
+                  "line": 44,
+                  "path": "res://addons/godot_ai/handlers/test_handler.gd"
+                },
+                {
+                  "function": "_call_handler",
+                  "line": 193,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_dispatch",
+                  "line": 150,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "tick",
+                  "line": 122,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_process",
+                  "line": 108,
+                  "path": "res://addons/godot_ai/connection.gd"
+                }
+              ],
+              "message": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+              "rationale": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+              "resolved": {
+                "function": "load_state",
+                "line": 37,
+                "path": "res://scripts/expedition/FogSave.gd"
+              },
+              "source": {
+                "function": "parse_string",
+                "line": 629,
+                "path": "core/io/json.cpp"
+              }
+            },
+            "function": "load_state",
+            "level": "error",
+            "line": 37,
+            "path": "res://scripts/expedition/FogSave.gd",
+            "source": "editor",
+            "text": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'"
+          }
+        ],
+        "scene": "",
+        "session_active": true,
+        "undoable": false,
+        "was_already_running": false
+      },
+      "isError": false
+    }
+  }
+]

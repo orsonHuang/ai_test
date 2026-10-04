@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "medic"
+display_name = "战地医师"
+category = "events"
+values = {"id": "medic", "name": "战地医师", "phase": "M1", "option_a": "付费治疗", "outcome_a": "gold:-10;party_heal_pct:80", "option_b": "简单包扎", "outcome_b": "party_heal_pct:20"}

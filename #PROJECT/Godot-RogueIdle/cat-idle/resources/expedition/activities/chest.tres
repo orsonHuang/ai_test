@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "chest"
+display_name = "宝箱"
+category = "activities"
+values = {"id": "chest", "name": "宝箱", "ap_cost": 1, "placement": "optional", "limit_per_region": 1, "draw_weight": 3}

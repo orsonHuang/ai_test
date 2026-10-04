@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "storm_2"
+display_name = "猎风"
+category = "sets"
+values = {"set_id": "storm", "name": "猎风", "piece_count": 2, "effect_key": "marked_direct_damage_bonus_pct", "value": 30, "trigger_limit_per_round": 0, "heal_cap_per_round": 0}

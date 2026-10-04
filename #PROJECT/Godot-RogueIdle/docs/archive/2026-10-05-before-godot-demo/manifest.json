@@ -1,0 +1,122 @@
+[
+  {
+    "path": ".editorconfig",
+    "sha256": "3b2c749c8a940905a08f727d8be9017c9568a12421c0aee7e37e9543b3751b1b",
+    "bytes": 33
+  },
+  {
+    "path": ".gitattributes",
+    "sha256": "21b01a606c9f85f18bb9230245f00ab104df7409cbb2fe9423f6751ca72ba754",
+    "bytes": 80
+  },
+  {
+    "path": ".gitignore",
+    "sha256": "d6194b1a176268740a0b7f153bd4926908b4a0955a9a311181c0200b4329bc94",
+    "bytes": 46
+  },
+  {
+    "path": "godot-ai-LICENSE.txt",
+    "sha256": "f2afe4af4ec80c453ca34704bc61d5d24a9bd948d365ca22699cabb8b4a18308",
+    "bytes": 1078
+  },
+  {
+    "path": "icon.svg",
+    "sha256": "6c80384360a5b269d1054bfb27241258154e2cc8167c522016fdc1820e84e0f8",
+    "bytes": 995
+  },
+  {
+    "path": "icon.svg.import",
+    "sha256": "cdcc37115e9fc09b30093a354ee88846540b3497dd4592fa6e74143bb0265210",
+    "bytes": 1013
+  },
+  {
+    "path": "project.godot",
+    "sha256": "ce36f61450832b52fdf829a45d1e658d28e63b54440db29c3f11902557256e52",
+    "bytes": 761
+  },
+  {
+    "path": "data/enemy_slime.tres",
+    "sha256": "452eeb3d4f7431f93e25a9496de50ee15aa0354a79ae1cdc38fa9f9ae169fe57",
+    "bytes": 436
+  },
+  {
+    "path": "data/warrior.tres",
+    "sha256": "ff2a6c7f2ac626855a096d657af9c05618c4eef3632e7b8b180a096e345d83c6",
+    "bytes": 492
+  },
+  {
+    "path": "scenes/Battle.tscn",
+    "sha256": "c29411e5bb917f6ea8cc3992df97b2cc92f9ac34aad34696ad62cc0f1b09601f",
+    "bytes": 5577
+  },
+  {
+    "path": "scenes/BattleCharacter.tscn",
+    "sha256": "5c9148ebc87eb65ffd3bf0c3f22efb9be27ba9f055b17bb5cd43f292bc437b83",
+    "bytes": 660
+  },
+  {
+    "path": "scenes/FloatingNumber.tscn",
+    "sha256": "865f8e152981db89aa4f5d34b4cb3cc798aae1175e06fdedc93783ceed952139",
+    "bytes": 470
+  },
+  {
+    "path": "scripts/autoload/DamageCalculator.gd",
+    "sha256": "89ffa194652cbc8ff1a3f31b98756fe44508c66a99eae69c3a4dfc09f99cb06e",
+    "bytes": 1123
+  },
+  {
+    "path": "scripts/autoload/DamageCalculator.gd.uid",
+    "sha256": "9bc7c68e85b956ce59466f739e898bf9b0151956e324746536ca539d62fc054a",
+    "bytes": 20
+  },
+  {
+    "path": "scripts/battle/BattleCharacter.gd",
+    "sha256": "6a7bc1b107832adc9d0a5715a917cd5ee7583eda6a37d15296cd6b1e981c12a4",
+    "bytes": 2074
+  },
+  {
+    "path": "scripts/battle/BattleCharacter.gd.uid",
+    "sha256": "5ac9f68a394cef79dfddd7112e3fb43f74c4257cc6b0a0d35d3bdf2cce3fe4a8",
+    "bytes": 20
+  },
+  {
+    "path": "scripts/battle/BattleManager.gd",
+    "sha256": "d866a5c6893670bad274a9e1ec37d18ecf7d6703cbaa5c6e3685689b86b20433",
+    "bytes": 5165
+  },
+  {
+    "path": "scripts/battle/BattleManager.gd.uid",
+    "sha256": "becaf895ae63360be1e146f3de0532a28a7fdd90aaf758ab139e5bf49a2c07b6",
+    "bytes": 20
+  },
+  {
+    "path": "scripts/resources/CharacterData.gd",
+    "sha256": "09bc3d8f3ffd4c7778ecb07841dab952b3af2f33fdd41bbabb4b15d3a658fa04",
+    "bytes": 669
+  },
+  {
+    "path": "scripts/resources/CharacterData.gd.uid",
+    "sha256": "09da604db0d9476c963e207a2005f4474b93dc90555ae4d99ad8aaf012768aef",
+    "bytes": 19
+  },
+  {
+    "path": "scripts/ui/BattleUI.gd",
+    "sha256": "d8ee730216c4794d6dacfae550677ad68ad9b004dedc305bf189107ef579e6fd",
+    "bytes": 2959
+  },
+  {
+    "path": "scripts/ui/BattleUI.gd.uid",
+    "sha256": "2cc5253590a1e65e21eaf9f3c4c92c0a110c9a71e1846335ce3ad0b9b51b6056",
+    "bytes": 20
+  },
+  {
+    "path": "scripts/ui/FloatingNumber.gd",
+    "sha256": "41faaa8b3e2f84f24b39b66631fe85a7f93522c15c99fefedb65f9e241e618bb",
+    "bytes": 367
+  },
+  {
+    "path": "scripts/ui/FloatingNumber.gd.uid",
+    "sha256": "382efa83b7405826ca7364247f3a03700bc10ae4673562ac3c9558a6362ef63a",
+    "bytes": 20
+  }
+]

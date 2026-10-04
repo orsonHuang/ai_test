@@ -1,6 +1,6 @@
-# DiceMonster · 骰子打怪
+# 骰子魔法师
 
-> 项目代号：**DiceMonster**（暂定，可改）
+> 正式游戏名：**骰子魔法师**；英文副标题：**DICE MAGE**。工程目录沿用原技术标识，不作为展示名称。
 > 立项日期：2026-08-07
 > 灵感参考：《小丑牌》(Balatro) 的「投掷→选子→组牌型→结算」核心体验 + 《杀戮尖塔》爬塔结构
 > 技术选型：**TapTap Maker + 纯 Lua**（旧 Godot 方案已废弃，见 GDD 02_architecture analysis）

@@ -1,0 +1,838 @@
+[
+  {
+    "tool": "session_activate",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"status\":\"ok\",\"active_session_id\":\"cat-idle@65d1\",\"matched\":\"hint\",\"matched_name\":\"cat-idle\"}"
+        }
+      ],
+      "structuredContent": {
+        "status": "ok",
+        "active_session_id": "cat-idle@65d1",
+        "matched": "hint",
+        "matched_name": "cat-idle"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"readiness_after\":\"ready\",\"reason\":\"Play/stop is a runtime action\",\"stopped\":true,\"undoable\":false,\"was_running\":true}"
+        }
+      ],
+      "structuredContent": {
+        "readiness_after": "ready",
+        "reason": "Play/stop is a runtime action",
+        "stopped": true,
+        "undoable": false,
+        "was_running": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":false,\"path\":\"res://scenes/expedition/LoadoutPage.tscn\",\"previous_scene_path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": false,
+        "path": "res://scenes/expedition/LoadoutPage.tscn",
+        "previous_scene_path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "settled",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":12,\"path\":\"/LoadoutPage/LoadoutRows/LoadoutColumns/TacticsColumn\",\"property\":\"theme_override_constants/separation\",\"undoable\":true,\"value\":4}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 12,
+        "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/TacticsColumn",
+        "property": "theme_override_constants/separation",
+        "undoable": true,
+        "value": 4
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":12,\"path\":\"/LoadoutPage/LoadoutRows/LoadoutColumns/EquipmentColumn\",\"property\":\"theme_override_constants/separation\",\"undoable\":true,\"value\":4}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 12,
+        "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/EquipmentColumn",
+        "property": "theme_override_constants/separation",
+        "undoable": true,
+        "value": 4
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":12,\"path\":\"/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn\",\"property\":\"theme_override_constants/separation\",\"undoable\":true,\"value\":4}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 12,
+        "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn",
+        "property": "theme_override_constants/separation",
+        "undoable": true,
+        "value": 4
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":130.0},\"path\":\"/LoadoutPage/LoadoutRows/LoadoutColumns/TacticsColumn/TacticHelp\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":0.0,\"y\":60.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 130.0
+        },
+        "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/TacticsColumn/TacticHelp",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 0.0,
+          "y": 60.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":365.0,\"y\":200.0},\"path\":\"/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn/Inventory\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":365.0,\"y\":150.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 365.0,
+          "y": 200.0
+        },
+        "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn/Inventory",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 365.0,
+          "y": 150.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":220.0},\"path\":\"/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn/Comparison\",\"property\":\"custom_minimum_size\",\"undoable\":true,\"value\":{\"x\":0.0,\"y\":180.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 220.0
+        },
+        "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn/Comparison",
+        "property": "custom_minimum_size",
+        "undoable": true,
+        "value": {
+          "x": 0.0,
+          "y": 180.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/LoadoutPage.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/LoadoutPage.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.184313729405403,\"g\":0.152941182255745,\"r\":0.0823529437184334},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"OptionButton\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"normal\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.184313729405403,
+          "g": 0.152941182255745,
+          "r": 0.0823529437184334
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "OptionButton",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "normal",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.30588236451149,\"g\":0.290196090936661,\"r\":0.156862750649452},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"OptionButton\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"hover\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.30588236451149,
+          "g": 0.290196090936661,
+          "r": 0.156862750649452
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "OptionButton",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "hover",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.30588236451149,\"g\":0.290196090936661,\"r\":0.156862750649452},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"OptionButton\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"pressed\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.30588236451149,
+          "g": 0.290196090936661,
+          "r": 0.156862750649452
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "OptionButton",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "pressed",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.30588236451149,\"g\":0.290196090936661,\"r\":0.156862750649452},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"OptionButton\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"disabled\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.30588236451149,
+          "g": 0.290196090936661,
+          "r": 0.156862750649452
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "OptionButton",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "disabled",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"bg_color\":{\"a\":1.0,\"b\":0.30588236451149,\"g\":0.290196090936661,\"r\":0.156862750649452},\"border\":{\"bottom\":1,\"left\":1,\"right\":1,\"top\":1},\"class_name\":\"OptionButton\",\"corners\":{\"bottom_left\":7,\"bottom_right\":7,\"top_left\":7,\"top_right\":7},\"margins\":{\"bottom\":8.0,\"left\":8.0,\"right\":8.0,\"top\":8.0},\"name\":\"focus\",\"path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"stylebox_class\":\"StyleBoxFlat\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "bg_color": {
+          "a": 1.0,
+          "b": 0.30588236451149,
+          "g": 0.290196090936661,
+          "r": 0.156862750649452
+        },
+        "border": {
+          "bottom": 1,
+          "left": 1,
+          "right": 1,
+          "top": 1
+        },
+        "class_name": "OptionButton",
+        "corners": {
+          "bottom_left": 7,
+          "bottom_right": 7,
+          "top_left": 7,
+          "top_right": 7
+        },
+        "margins": {
+          "bottom": 8.0,
+          "left": 8.0,
+          "right": 8.0,
+          "top": 8.0
+        },
+        "name": "focus",
+        "path": "res://resources/expedition/ExpeditionTheme.tres",
+        "stylebox_class": "StyleBoxFlat",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_patch",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"old_size\":2039,\"path\":\"res://scripts/expedition/ui/FogRegionTile.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"replacements\":1,\"size\":2042,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "old_size": 2039,
+        "path": "res://scripts/expedition/ui/FogRegionTile.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "replacements": 1,
+        "size": 2042,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":false,\"path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"previous_scene_path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"already_current\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": false,
+        "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "previous_scene_path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "already_current",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":0.45,\"path\":\"/ExpeditionDemo\",\"property\":\"playback_interval\",\"undoable\":true,\"value\":0.65}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 0.45,
+        "path": "/ExpeditionDemo",
+        "property": "playback_interval",
+        "undoable": true,
+        "value": 0.65
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/window_width_override\",\"old_value\":1440,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":1280}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/window_width_override",
+        "old_value": 1440,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 1280
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/window_height_override\",\"old_value\":810,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":720}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/window_height_override",
+        "old_value": 810,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 720
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_run",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":3,\"elapsed_msec\":2075,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":6383977,\"run_token\":6,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"current\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[{\"details\":{\"code\":\"Parse Error: Function \\\"push_front()\\\" not found in base PackedStringArray.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[],\"message\":\"Parse Error: Function \\\"push_front()\\\" not found in base PackedStringArray.\",\"rationale\":\"\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Function \\\"push_front()\\\" not found in base PackedStringArray.\"},{\"details\":{\"code\":\"Parse Error: Cannot find member \\\"push_front\\\" in base \\\"PackedStringArray\\\".\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[],\"message\":\"Parse Error: Cannot find member \\\"push_front\\\" in base \\\"PackedStringArray\\\".\",\"rationale\":\"\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Cannot find member \\\"push_front\\\" in base \\\"PackedStringArray\\\".\"},{\"details\":{\"code\":\"Condition \\\"error != Error::OK\\\" is true. Returning: Variant()\",\"error_type\":0,\"error_type_name\":\"error\",\"frames\":[{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},{\"function\":\"test_save_load_and_corruption_falls_back\",\"line\":136,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"rationale\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"resolved\":{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},\"source\":{\"function\":\"parse_string\",\"line\":629,\"path\":\"core/io/json.cpp\"}},\"function\":\"load_state\",\"level\":\"error\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\",\"source\":\"editor\",\"text\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\"}],\"recent_errors_may_predate_run\":true,\"recent_errors_scope\":\"retained_recent\",\"recent_errors_truncated\":false,\"retained_errors\":[{\"details\":{\"code\":\"Parse Error: Function \\\"push_front()\\\" not found in base PackedStringArray.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[],\"message\":\"Parse Error: Function \\\"push_front()\\\" not found in base PackedStringArray.\",\"rationale\":\"\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Function \\\"push_front()\\\" not found in base PackedStringArray.\"},{\"details\":{\"code\":\"Parse Error: Cannot find member \\\"push_front\\\" in base \\\"PackedStringArray\\\".\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[],\"message\":\"Parse Error: Cannot find member \\\"push_front\\\" in base \\\"PackedStringArray\\\".\",\"rationale\":\"\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":21,\"path\":\"res://scripts/expedition/ui/FogUnitCard.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Cannot find member \\\"push_front\\\" in base \\\"PackedStringArray\\\".\"},{\"details\":{\"code\":\"Condition \\\"error != Error::OK\\\" is true. Returning: Variant()\",\"error_type\":0,\"error_type_name\":\"error\",\"frames\":[{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},{\"function\":\"test_save_load_and_corruption_falls_back\",\"line\":136,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"rationale\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"resolved\":{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},\"source\":{\"function\":\"parse_string\",\"line\":629,\"path\":\"core/io/json.cpp\"}},\"function\":\"load_state\",\"level\":\"error\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\",\"source\":\"editor\",\"text\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\"}],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+        }
+      ],
+      "structuredContent": {
+        "autosave": true,
+        "current_run_errors": [],
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 3,
+          "elapsed_msec": 2075,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 3000,
+          "run_started_msec": 6383977,
+          "run_token": 6,
+          "session_active": true,
+          "status": "live"
+        },
+        "helper_live": true,
+        "mode": "current",
+        "reason": "Game launched and the Godot AI game helper is live.",
+        "recent_errors": [
+          {
+            "details": {
+              "code": "Parse Error: Function \"push_front()\" not found in base PackedStringArray.",
+              "error_type": 2,
+              "error_type_name": "script",
+              "frames": [],
+              "message": "Parse Error: Function \"push_front()\" not found in base PackedStringArray.",
+              "rationale": "",
+              "resolved": {
+                "function": "GDScript::reload",
+                "line": 21,
+                "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 21,
+                "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+              }
+            },
+            "function": "GDScript::reload",
+            "level": "error",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+            "source": "editor",
+            "text": "Parse Error: Function \"push_front()\" not found in base PackedStringArray."
+          },
+          {
+            "details": {
+              "code": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\".",
+              "error_type": 2,
+              "error_type_name": "script",
+              "frames": [],
+              "message": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\".",
+              "rationale": "",
+              "resolved": {
+                "function": "GDScript::reload",
+                "line": 21,
+                "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 21,
+                "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+              }
+            },
+            "function": "GDScript::reload",
+            "level": "error",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+            "source": "editor",
+            "text": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\"."
+          },
+          {
+            "details": {
+              "code": "Condition \"error != Error::OK\" is true. Returning: Variant()",
+              "error_type": 0,
+              "error_type_name": "error",
+              "frames": [
+                {
+                  "function": "load_state",
+                  "line": 37,
+                  "path": "res://scripts/expedition/FogSave.gd"
+                },
+                {
+                  "function": "test_save_load_and_corruption_falls_back",
+                  "line": 136,
+                  "path": "res://tests/test_expedition_rules.gd"
+                },
+                {
+                  "function": "run_suite",
+                  "line": 48,
+                  "path": "res://addons/godot_ai/testing/test_runner.gd"
+                },
+                {
+                  "function": "run_suites",
+                  "line": 158,
+                  "path": "res://addons/godot_ai/testing/test_runner.gd"
+                },
+                {
+                  "function": "run_tests",
+                  "line": 44,
+                  "path": "res://addons/godot_ai/handlers/test_handler.gd"
+                },
+                {
+                  "function": "_call_handler",
+                  "line": 193,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_dispatch",
+                  "line": 150,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "tick",
+                  "line": 122,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_process",
+                  "line": 108,
+                  "path": "res://addons/godot_ai/connection.gd"
+                }
+              ],
+              "message": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+              "rationale": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+              "resolved": {
+                "function": "load_state",
+                "line": 37,
+                "path": "res://scripts/expedition/FogSave.gd"
+              },
+              "source": {
+                "function": "parse_string",
+                "line": 629,
+                "path": "core/io/json.cpp"
+              }
+            },
+            "function": "load_state",
+            "level": "error",
+            "line": 37,
+            "path": "res://scripts/expedition/FogSave.gd",
+            "source": "editor",
+            "text": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'"
+          }
+        ],
+        "recent_errors_may_predate_run": true,
+        "recent_errors_scope": "retained_recent",
+        "recent_errors_truncated": false,
+        "retained_errors": [
+          {
+            "details": {
+              "code": "Parse Error: Function \"push_front()\" not found in base PackedStringArray.",
+              "error_type": 2,
+              "error_type_name": "script",
+              "frames": [],
+              "message": "Parse Error: Function \"push_front()\" not found in base PackedStringArray.",
+              "rationale": "",
+              "resolved": {
+                "function": "GDScript::reload",
+                "line": 21,
+                "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 21,
+                "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+              }
+            },
+            "function": "GDScript::reload",
+            "level": "error",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+            "source": "editor",
+            "text": "Parse Error: Function \"push_front()\" not found in base PackedStringArray."
+          },
+          {
+            "details": {
+              "code": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\".",
+              "error_type": 2,
+              "error_type_name": "script",
+              "frames": [],
+              "message": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\".",
+              "rationale": "",
+              "resolved": {
+                "function": "GDScript::reload",
+                "line": 21,
+                "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 21,
+                "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+              }
+            },
+            "function": "GDScript::reload",
+            "level": "error",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+            "source": "editor",
+            "text": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\"."
+          },
+          {
+            "details": {
+              "code": "Condition \"error != Error::OK\" is true. Returning: Variant()",
+              "error_type": 0,
+              "error_type_name": "error",
+              "frames": [
+                {
+                  "function": "load_state",
+                  "line": 37,
+                  "path": "res://scripts/expedition/FogSave.gd"
+                },
+                {
+                  "function": "test_save_load_and_corruption_falls_back",
+                  "line": 136,
+                  "path": "res://tests/test_expedition_rules.gd"
+                },
+                {
+                  "function": "run_suite",
+                  "line": 48,
+                  "path": "res://addons/godot_ai/testing/test_runner.gd"
+                },
+                {
+                  "function": "run_suites",
+                  "line": 158,
+                  "path": "res://addons/godot_ai/testing/test_runner.gd"
+                },
+                {
+                  "function": "run_tests",
+                  "line": 44,
+                  "path": "res://addons/godot_ai/handlers/test_handler.gd"
+                },
+                {
+                  "function": "_call_handler",
+                  "line": 193,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_dispatch",
+                  "line": 150,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "tick",
+                  "line": 122,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_process",
+                  "line": 108,
+                  "path": "res://addons/godot_ai/connection.gd"
+                }
+              ],
+              "message": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+              "rationale": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+              "resolved": {
+                "function": "load_state",
+                "line": 37,
+                "path": "res://scripts/expedition/FogSave.gd"
+              },
+              "source": {
+                "function": "parse_string",
+                "line": 629,
+                "path": "core/io/json.cpp"
+              }
+            },
+            "function": "load_state",
+            "level": "error",
+            "line": 37,
+            "path": "res://scripts/expedition/FogSave.gd",
+            "source": "editor",
+            "text": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'"
+          }
+        ],
+        "scene": "",
+        "session_active": true,
+        "undoable": false,
+        "was_already_running": false
+      },
+      "isError": false
+    }
+  }
+]

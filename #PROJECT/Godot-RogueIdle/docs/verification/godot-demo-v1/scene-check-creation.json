@@ -1,0 +1,73 @@
+[
+  {
+    "tool": "session_activate",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"status\":\"ok\",\"active_session_id\":\"cat-idle@65d1\",\"matched\":\"hint\",\"matched_name\":\"cat-idle\"}"
+        }
+      ],
+      "structuredContent": {
+        "status": "ok",
+        "active_session_id": "cat-idle@65d1",
+        "matched": "hint",
+        "matched_name": "cat-idle"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_create",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://tools/verify_demo.gd\",\"res://tools/verify_demo.gd.uid\"]},\"committed\":true,\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"import_pending\":false,\"import_settle\":\"settled\",\"import_settled\":true,\"path\":\"res://tools/verify_demo.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":2365,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://tools/verify_demo.gd",
+            "res://tools/verify_demo.gd.uid"
+          ]
+        },
+        "committed": true,
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "import_pending": false,
+        "import_settle": "settled",
+        "import_settled": true,
+        "path": "res://tools/verify_demo.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 2365,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "filesystem_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"global_class_count\":55,\"global_classes_registered_delta\":0,\"reason\":\"Filesystem scan is an editor operation\",\"scan_completed\":true,\"scan_settle\":\"settled\",\"undoable\":false,\"was_already_scanning\":false}"
+        }
+      ],
+      "structuredContent": {
+        "global_class_count": 55,
+        "global_classes_registered_delta": 0,
+        "reason": "Filesystem scan is an editor operation",
+        "scan_completed": true,
+        "scan_settle": "settled",
+        "undoable": false,
+        "was_already_scanning": false
+      },
+      "isError": false
+    }
+  }
+]

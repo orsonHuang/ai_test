@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "supplies"
+display_name = "遗落补给"
+category = "events"
+values = {"id": "supplies", "name": "遗落补给", "phase": "M1", "option_a": "分发补给", "outcome_a": "party_heal_pct:30", "option_b": "换成钱币", "outcome_b": "gold:20"}

@@ -1,0 +1,248 @@
+[
+  {
+    "name": "session_activate",
+    "arguments": {
+      "session_id": "cat-idle"
+    }
+  },
+  {
+    "name": "project_manage",
+    "arguments": {
+      "op": "stop"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/data/FogRegion.gd",
+      "old_text": "@export var polygon: PackedVector2Array = []",
+      "new_text": "@export var polygon: PackedVector2Array = []\n    set(value):\n        polygon = value\n        emit_changed()"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/data/FogRegion.gd",
+      "old_text": "@export var label_position: Vector2 = Vector2.ZERO",
+      "new_text": "@export var label_position: Vector2 = Vector2.ZERO\n    set(value):\n        label_position = value\n        emit_changed()"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/data/FogRegion.gd",
+      "old_text": "@export var tint: Color = Color(\"#344e48\")",
+      "new_text": "@export var tint: Color = Color(\"#344e48\")\n    set(value):\n        tint = value\n        emit_changed()"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogRegionTile.gd",
+      "old_text": "        definition = value\n        if is_node_ready():",
+      "new_text": "        if definition != null and definition.changed.is_connected(_definition_changed):\n            definition.changed.disconnect(_definition_changed)\n        definition = value\n        if definition != null:\n            definition.changed.connect(_definition_changed)\n        if is_node_ready():"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogRegionTile.gd",
+      "old_text": "func _ready() -> void:",
+      "new_text": "func _definition_changed() -> void:\n    if Engine.is_editor_hint() and is_node_ready():\n        refresh(true, false, false, false)\n\nfunc _ready() -> void:"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogMapBoard.gd",
+      "old_text": "@export var reference_size: Vector2 = Vector2(600, 640)",
+      "new_text": "@export var reference_size: Vector2 = Vector2(600, 640):\n    set(value):\n        reference_size = value\n        if is_node_ready():\n            _resize_world()"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogMapBoard.gd",
+      "old_text": "    if not has_node(\"World\"):",
+      "new_text": "    if not has_node(\"World\") or reference_size.x <= 0.0 or reference_size.y <= 0.0:"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://tests/test_expedition_rules.gd",
+      "old_text": "func test_seed_fog_and_no_recursive_reveal() -> void:",
+      "new_text": "func test_powered_fixture_does_not_mutate_shared_catalog() -> void:\n    var powered: FogRun = _run(123, true)\n    var normal: FogRun = _run(123)\n    assert_eq(powered.tables.units.hero.atk, 2000)\n    assert_eq(normal.tables.units.hero.atk, 24)\n    assert_eq(source.table(\"units\").hero.atk, 24)\n\nfunc test_seed_fog_and_no_recursive_reveal() -> void:"
+    }
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/components/UnitCard.tscn"
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "apply",
+      "params": {
+        "node_path": "/UnitCard",
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres"
+      }
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/components/RegionTile.tscn"
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "apply",
+      "params": {
+        "node_path": "/RegionTile",
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres"
+      }
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/components/DecisionModal.tscn"
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "apply",
+      "params": {
+        "node_path": "/DecisionModal",
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres"
+      }
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/MapPage.tscn"
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "apply",
+      "params": {
+        "node_path": "/MapPage",
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres"
+      }
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/LoadoutPage.tscn"
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "apply",
+      "params": {
+        "node_path": "/LoadoutPage",
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres"
+      }
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/BattlePage.tscn"
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "apply",
+      "params": {
+        "node_path": "/BattlePage",
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres"
+      }
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+      "force_reload": true
+    }
+  },
+  {
+    "name": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "application/run/main_scene",
+        "value": "res://scenes/expedition/ExpeditionDemo.tscn"
+      }
+    }
+  },
+  {
+    "name": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/size/window_width_override",
+        "value": 1440
+      }
+    }
+  },
+  {
+    "name": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/size/window_height_override",
+        "value": 810
+      }
+    }
+  },
+  {
+    "name": "filesystem_manage",
+    "arguments": {
+      "op": "scan"
+    }
+  },
+  {
+    "name": "test_run",
+    "arguments": {
+      "suite": "expedition_rules",
+      "verbose": true
+    }
+  }
+]

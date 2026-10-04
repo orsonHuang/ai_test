@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogRegion.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "village"
+display_name = "鹿鸣村"
+stage = 0
+ap = 0
+next_ids = PackedStringArray("briar", "ruins")
+adjacent_ids = PackedStringArray("briar", "ruins")
+family = ""
+initial_landmark = false
+hp_mult = 1
+atk_mult = 1
+polygon = PackedVector2Array(215, 550, 290, 550, 385, 550, 365, 610, 250, 610)
+label_position = Vector2(300, 575)
+tint = Color(0.47058823529411764, 0.39215686274509803, 0.2823529411764706, 1)
+boss_name = "远征起点"

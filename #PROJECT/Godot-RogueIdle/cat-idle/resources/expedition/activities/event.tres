@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "event"
+display_name = "事件"
+category = "activities"
+values = {"id": "event", "name": "事件", "ap_cost": 1, "placement": "optional", "limit_per_region": 1, "draw_weight": 3}

@@ -1,0 +1,59 @@
+[
+  {
+    "name": "session_activate",
+    "arguments": {
+      "session_id": "cat-idle"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/FogSave.gd",
+      "old_text": "        var decoded: Variant = JSON.parse_string(FileAccess.get_file_as_string(candidate))",
+      "new_text": "        var parser: JSON = JSON.new()\n        if parser.parse(FileAccess.get_file_as_string(candidate)) != OK:\n            continue\n        var decoded: Variant = parser.data"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/FogSave.gd",
+      "old_text": "        var state: Variant = JSON.parse_string(payload)",
+      "new_text": "        if parser.parse(payload) != OK:\n            continue\n        var state: Variant = parser.data"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/FogRun.gd",
+      "old_text": "        data.last_report = report.duplicate(true)",
+      "new_text": "        data.last_report = {\"outcome\": report.outcome, \"rounds\": report.rounds,\n            \"stats\": report.stats.duplicate(true), \"first_fall\": report.first_fall}\n        for member: Dictionary in data.party:\n            for unit: Dictionary in report.units:\n                if unit.side == \"ally\" and unit.id == member.id:\n                    member.hp = int(unit.hp)"
+    }
+  },
+  {
+    "name": "script_create",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogRegionTile.gd",
+      "content": "@tool\nextends Control\nsignal region_selected(region_id: String)\n\n## The resource owns polygon vertices and label coordinates. These child properties are preview-driven.\n@export var definition: FogRegion:\n    set(value):\n        definition = value\n        if is_node_ready():\n            refresh(true, false, false, false)\n\nfunc _ready() -> void:\n    refresh(true, false, false, false)\n\nfunc _has_point(point: Vector2) -> bool:\n    return definition != null and Geometry2D.is_point_in_polygon(point, definition.polygon)\n\nfunc _gui_input(event: InputEvent) -> void:\n    if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:\n        region_selected.emit(definition.id)\n        accept_event()\n\nfunc refresh(known: bool, current: bool, reachable: bool, selected: bool) -> void:\n    if definition == null or not is_node_ready():\n        return\n    $Land.polygon = definition.polygon\n    $Land.color = definition.tint if known else Color(\"#202d38\")\n    $Border.points = definition.polygon\n    $Border.closed = true\n    $Border.width = 4.0 if current or selected else 2.0\n    $Border.default_color = Color(\"#e6c780\") if current or selected else (Color(\"#84cbb7\") if reachable else Color(\"#557278\"))\n    $Caption.position = definition.label_position - Vector2(93, 18)\n    $Caption.size = Vector2(186, 44)\n    $Caption.text = definition.display_name if known or definition.initial_landmark else \"未探明\"\n    $Caption.modulate = Color.WHITE if known or definition.initial_landmark else Color(\"#7b8d9b\")\n    $Detail.position = definition.label_position + Vector2(-103, 19)\n    $Detail.size = Vector2(206, 26)\n    var symbols: Dictionary = {\"thorn\": \"荆棘\", \"storm\": \"猎风\", \"ember\": \"余烬\", \"king\": \"最终战\", \"\": \"集结\"}\n    $Detail.text = (\"你在这里\" if current else (\"可前往 · \" if reachable else \"\")) + str(symbols.get(definition.family, \"\"))\n    if not known and not definition.initial_landmark:\n        $Detail.text = \"战争迷雾\"\n    tooltip_text = definition.boss_name if known or definition.initial_landmark else \"进入相邻地区后揭开迷雾\"\n"
+    }
+  },
+  {
+    "name": "script_create",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogMapBoard.gd",
+      "content": "@tool\nextends Control\n## World scale and position are derived from the available container size; edit vertices in FogRegion resources.\n@export var reference_size: Vector2 = Vector2(600, 640)\nfunc _ready() -> void:\n    resized.connect(_resize_world)\n    _resize_world()\nfunc _resize_world() -> void:\n    if not has_node(\"World\"):\n        return\n    var factor: float = minf(size.x / reference_size.x, size.y / reference_size.y)\n    $World.scale = Vector2.ONE * factor\n    $World.position = (size - reference_size * factor) * 0.5\n"
+    }
+  },
+  {
+    "name": "script_create",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+      "content": "extends PanelContainer\nfunc display_unit(unit: Dictionary, position_index: int = 0) -> void:\n    visible = not unit.is_empty()\n    if unit.is_empty():\n        return\n    $Rows/Name.text = \"%02d  %s\" % [position_index + 1, unit.name]\n    var maximum: int = int(unit.get(\"max_hp\", unit.hp))\n    $Rows/Health.max_value = maximum\n    $Rows/Health.value = int(unit.hp)\n    $Rows/HealthText.text = \"生命 %d / %d   护盾 %d\" % [unit.hp, maximum, unit.get(\"shield\", 0)]\n    $Rows/Stats.text = \"攻 %d    甲 %d    速 %d\" % [unit.atk, unit.armor, unit.speed]\n    var states: PackedStringArray = []\n    if int(unit.get(\"burn\", 0)) > 0:\n        states.append(\"灼烧 %d\" % unit.burn)\n    if int(unit.get(\"mark\", 0)) > 0:\n        states.append(\"被标记\")\n    if int(unit.hp) <= 0:\n        states.append(\"倒下\")\n    $Rows/Status.text = \" · \".join(states) if not states.is_empty() else \"就绪\"\n    modulate = Color(\"#74818a\") if int(unit.hp) <= 0 else Color.WHITE\n"
+    }
+  },
+  {
+    "name": "filesystem_manage",
+    "arguments": {
+      "op": "scan"
+    }
+  }
+]

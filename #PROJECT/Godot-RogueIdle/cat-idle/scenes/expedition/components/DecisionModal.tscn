@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://q8q401bp0q3b"]
+
+[ext_resource type="Theme" uid="uid://cqsd85b7ees4j" path="res://resources/expedition/ExpeditionTheme.tres" id="1_dlfej"]
+
+[node name="DecisionModal" type="Control" unique_id=1599909201]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_dlfej")
+
+[node name="Scrim" type="ColorRect" parent="." unique_id=1808340895]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.02745098, 0.0627451, 0.09411765, 0.9098039)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=961958442]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="PanelContainer" parent="Center" unique_id=472713053]
+custom_minimum_size = Vector2(740, 0)
+layout_mode = 2
+
+[node name="ModalRows" type="VBoxContainer" parent="Center/Panel" unique_id=1470866842]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ModalTitle" type="Label" parent="Center/Panel/ModalRows" unique_id=1840152374]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "雾境远征"
+
+[node name="ModalDescription" type="RichTextLabel" parent="Center/Panel/ModalRows" unique_id=69208160]
+custom_minimum_size = Vector2(0, 330)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "整备小队，穿越迷雾。"
+
+[node name="ModalOptionA" type="OptionButton" parent="Center/Panel/ModalRows" unique_id=1844552955]
+layout_mode = 2
+
+[node name="ModalOptionB" type="OptionButton" parent="Center/Panel/ModalRows" unique_id=1170048497]
+layout_mode = 2
+
+[node name="ModalButtons" type="HBoxContainer" parent="Center/Panel/ModalRows" unique_id=1444985619]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ModalAction0" type="Button" parent="Center/Panel/ModalRows/ModalButtons" unique_id=912904239]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "选项1"
+
+[node name="ModalAction1" type="Button" parent="Center/Panel/ModalRows/ModalButtons" unique_id=1822322293]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "选项2"
+
+[node name="ModalAction2" type="Button" parent="Center/Panel/ModalRows/ModalButtons" unique_id=1082184064]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "选项3"

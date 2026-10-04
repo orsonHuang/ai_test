@@ -1,0 +1,17 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogUnit.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "king"
+display_name = "黯冠魔王"
+side = "enemy"
+kind = "final"
+hp = 620
+atk = 32
+armor = 7
+speed = 13
+hp_per_level = 0
+atk_per_level = 0
+armor_every_levels = 0

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogUnit.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "storm"
+display_name = "猎风首领"
+side = "enemy"
+kind = "boss"
+hp = 210
+atk = 24
+armor = 3
+speed = 18
+hp_per_level = 0
+atk_per_level = 0
+armor_every_levels = 0

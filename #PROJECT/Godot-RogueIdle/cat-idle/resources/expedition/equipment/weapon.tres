@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "weapon"
+display_name = "weapon"
+category = "equipment"
+values = {"slot": "weapon", "base_hp": 0, "base_atk": 6, "base_armor": 0, "base_speed": 0, "hp_per_tier": 0, "atk_per_tier": 2, "armor_per_tier": 0, "speed_per_tier": 0}

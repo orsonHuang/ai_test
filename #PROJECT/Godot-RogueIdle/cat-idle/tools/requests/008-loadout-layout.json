@@ -1,0 +1,243 @@
+[
+  {
+    "name": "session_activate",
+    "arguments": {
+      "session_id": "cat-idle"
+    }
+  },
+  {
+    "name": "project_manage",
+    "arguments": {
+      "op": "stop"
+    }
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/LoadoutPage.tscn"
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/TacticsColumn",
+      "property": "theme_override_constants/separation",
+      "value": 4
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/EquipmentColumn",
+      "property": "theme_override_constants/separation",
+      "value": 4
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn",
+      "property": "theme_override_constants/separation",
+      "value": 4
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/TacticsColumn/TacticHelp",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 0,
+        "y": 60
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn/Inventory",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 365,
+        "y": 150
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/LoadoutPage/LoadoutRows/LoadoutColumns/InventoryColumn/Comparison",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 0,
+        "y": 180
+      }
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "OptionButton",
+        "name": "normal",
+        "bg_color": "#15272f",
+        "border_color": "#2c454d",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "OptionButton",
+        "name": "hover",
+        "bg_color": "#284a4e",
+        "border_color": "#2c454d",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "OptionButton",
+        "name": "pressed",
+        "bg_color": "#284a4e",
+        "border_color": "#2c454d",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "OptionButton",
+        "name": "disabled",
+        "bg_color": "#284a4e",
+        "border_color": "#2c454d",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "OptionButton",
+        "name": "focus",
+        "bg_color": "#284a4e",
+        "border_color": "#2c454d",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogRegionTile.gd",
+      "old_text": "(\"你在这里\" if current else",
+      "new_text": "(\"你在这里 · \" if current else"
+    }
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/ExpeditionDemo.tscn"
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/ExpeditionDemo",
+      "property": "playback_interval",
+      "value": 0.65
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/size/window_width_override",
+        "value": 1280
+      }
+    }
+  },
+  {
+    "name": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/size/window_height_override",
+        "value": 720
+      }
+    }
+  },
+  {
+    "name": "project_run",
+    "arguments": {
+      "mode": "current"
+    }
+  }
+]

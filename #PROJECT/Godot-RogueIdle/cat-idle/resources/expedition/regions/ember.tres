@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogRegion.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ember"
+display_name = "余烬荒原"
+stage = 2
+ap = 6
+next_ids = PackedStringArray("ash")
+adjacent_ids = PackedStringArray("ruins", "river", "ash")
+family = "ember"
+initial_landmark = true
+hp_mult = 1.25
+atk_mult = 1.15
+polygon = PackedVector2Array(385, 300, 540, 280, 535, 375, 470, 420, 380, 425)
+label_position = Vector2(465, 348)
+tint = Color(0.4470588235294118, 0.2980392156862745, 0.23921568627450981, 1)
+boss_name = "熔火祭司"

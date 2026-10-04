@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bylywjvkyibwg"]
+
+[ext_resource type="Theme" uid="uid://cqsd85b7ees4j" path="res://resources/expedition/ExpeditionTheme.tres" id="1_e00th"]
+[ext_resource type="Script" uid="uid://d34fc75dxhleb" path="res://scripts/expedition/ui/FogRegionTile.gd" id="1_u67rt"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/briar.tres" id="2_e00th"]
+
+[node name="RegionTile" type="Control" unique_id=1828439693]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 600.0
+offset_bottom = 640.0
+grow_horizontal = 0
+grow_vertical = 0
+tooltip_text = "古树守卫"
+theme = ExtResource("1_e00th")
+script = ExtResource("1_u67rt")
+definition = ExtResource("2_e00th")
+
+[node name="Land" type="Polygon2D" parent="." unique_id=1212095704]
+color = Color(0.23529412, 0.39607844, 0.3254902, 1)
+polygon = PackedVector2Array(120, 425, 210, 420, 300, 445, 290, 550, 215, 550, 160, 510)
+
+[node name="Border" type="Line2D" parent="." unique_id=287705601]
+points = PackedVector2Array(120, 425, 210, 420, 300, 445, 290, 550, 215, 550, 160, 510)
+closed = true
+width = 2.0
+default_color = Color(0.33333334, 0.44705883, 0.47058824, 1)
+
+[node name="Caption" type="Label" parent="." unique_id=803154847]
+layout_mode = 0
+offset_left = 117.0
+offset_top = 457.0
+offset_right = 303.0
+offset_bottom = 501.0
+theme_override_font_sizes/font_size = 21
+text = "荆棘林地"
+horizontal_alignment = 1
+
+[node name="Detail" type="Label" parent="." unique_id=59777223]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 494.0
+offset_right = 313.0
+offset_bottom = 520.0
+theme_override_font_sizes/font_size = 15
+text = "荆棘"
+horizontal_alignment = 1

@@ -1,0 +1,336 @@
+[
+  {
+    "tool": "session_activate",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"status\":\"ok\",\"active_session_id\":\"cat-idle@65d1\",\"matched\":\"exact_id\"}"
+        }
+      ],
+      "structuredContent": {
+        "status": "ok",
+        "active_session_id": "cat-idle@65d1",
+        "matched": "exact_id"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_create",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"class_name\":\"FogEntry\",\"class_registration\":\"scan_required\",\"class_registration_hint\":\"New class_name 'FogEntry' isn't in the global class table yet. Call filesystem_manage(op=\\\"scan\\\") if it won't resolve on the next call (e.g. resource_manage op=\\\"create\\\", or used as a type in another script). The editor also registers it on its next filesystem scan or when its window regains focus.\",\"cleanup\":{\"rm\":[\"res://scripts/expedition/data/FogEntry.gd\",\"res://scripts/expedition/data/FogEntry.gd.uid\"]},\"committed\":true,\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"import_pending\":false,\"import_settle\":\"settled\",\"import_settled\":true,\"path\":\"res://scripts/expedition/data/FogEntry.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":180,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "class_name": "FogEntry",
+        "class_registration": "scan_required",
+        "class_registration_hint": "New class_name 'FogEntry' isn't in the global class table yet. Call filesystem_manage(op=\"scan\") if it won't resolve on the next call (e.g. resource_manage op=\"create\", or used as a type in another script). The editor also registers it on its next filesystem scan or when its window regains focus.",
+        "cleanup": {
+          "rm": [
+            "res://scripts/expedition/data/FogEntry.gd",
+            "res://scripts/expedition/data/FogEntry.gd.uid"
+          ]
+        },
+        "committed": true,
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "import_pending": false,
+        "import_settle": "settled",
+        "import_settled": true,
+        "path": "res://scripts/expedition/data/FogEntry.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 180,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_create",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"class_name\":\"FogUnit\",\"class_registration\":\"scan_required\",\"class_registration_hint\":\"New class_name 'FogUnit' isn't in the global class table yet. Call filesystem_manage(op=\\\"scan\\\") if it won't resolve on the next call (e.g. resource_manage op=\\\"create\\\", or used as a type in another script). The editor also registers it on its next filesystem scan or when its window regains focus.\",\"cleanup\":{\"rm\":[\"res://scripts/expedition/data/FogUnit.gd\",\"res://scripts/expedition/data/FogUnit.gd.uid\"]},\"committed\":true,\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"import_pending\":false,\"import_settle\":\"settled\",\"import_settled\":true,\"path\":\"res://scripts/expedition/data/FogUnit.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":800,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "class_name": "FogUnit",
+        "class_registration": "scan_required",
+        "class_registration_hint": "New class_name 'FogUnit' isn't in the global class table yet. Call filesystem_manage(op=\"scan\") if it won't resolve on the next call (e.g. resource_manage op=\"create\", or used as a type in another script). The editor also registers it on its next filesystem scan or when its window regains focus.",
+        "cleanup": {
+          "rm": [
+            "res://scripts/expedition/data/FogUnit.gd",
+            "res://scripts/expedition/data/FogUnit.gd.uid"
+          ]
+        },
+        "committed": true,
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "import_pending": false,
+        "import_settle": "settled",
+        "import_settled": true,
+        "path": "res://scripts/expedition/data/FogUnit.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 800,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_create",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"class_name\":\"FogRegion\",\"class_registration\":\"scan_required\",\"class_registration_hint\":\"New class_name 'FogRegion' isn't in the global class table yet. Call filesystem_manage(op=\\\"scan\\\") if it won't resolve on the next call (e.g. resource_manage op=\\\"create\\\", or used as a type in another script). The editor also registers it on its next filesystem scan or when its window regains focus.\",\"cleanup\":{\"rm\":[\"res://scripts/expedition/data/FogRegion.gd\",\"res://scripts/expedition/data/FogRegion.gd.uid\"]},\"committed\":true,\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"import_pending\":false,\"import_settle\":\"settled\",\"import_settled\":true,\"path\":\"res://scripts/expedition/data/FogRegion.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":935,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "class_name": "FogRegion",
+        "class_registration": "scan_required",
+        "class_registration_hint": "New class_name 'FogRegion' isn't in the global class table yet. Call filesystem_manage(op=\"scan\") if it won't resolve on the next call (e.g. resource_manage op=\"create\", or used as a type in another script). The editor also registers it on its next filesystem scan or when its window regains focus.",
+        "cleanup": {
+          "rm": [
+            "res://scripts/expedition/data/FogRegion.gd",
+            "res://scripts/expedition/data/FogRegion.gd.uid"
+          ]
+        },
+        "committed": true,
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "import_pending": false,
+        "import_settle": "settled",
+        "import_settled": true,
+        "path": "res://scripts/expedition/data/FogRegion.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 935,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_create",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"class_name\":\"FogCatalog\",\"class_registration\":\"scan_required\",\"class_registration_hint\":\"New class_name 'FogCatalog' isn't in the global class table yet. Call filesystem_manage(op=\\\"scan\\\") if it won't resolve on the next call (e.g. resource_manage op=\\\"create\\\", or used as a type in another script). The editor also registers it on its next filesystem scan or when its window regains focus.\",\"cleanup\":{\"rm\":[\"res://scripts/expedition/data/FogCatalog.gd\",\"res://scripts/expedition/data/FogCatalog.gd.uid\"]},\"committed\":true,\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"import_pending\":false,\"import_settle\":\"settled\",\"import_settled\":true,\"path\":\"res://scripts/expedition/data/FogCatalog.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":1295,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "class_name": "FogCatalog",
+        "class_registration": "scan_required",
+        "class_registration_hint": "New class_name 'FogCatalog' isn't in the global class table yet. Call filesystem_manage(op=\"scan\") if it won't resolve on the next call (e.g. resource_manage op=\"create\", or used as a type in another script). The editor also registers it on its next filesystem scan or when its window regains focus.",
+        "cleanup": {
+          "rm": [
+            "res://scripts/expedition/data/FogCatalog.gd",
+            "res://scripts/expedition/data/FogCatalog.gd.uid"
+          ]
+        },
+        "committed": true,
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "import_pending": false,
+        "import_settle": "settled",
+        "import_settled": true,
+        "path": "res://scripts/expedition/data/FogCatalog.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 1295,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_create",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://scripts/expedition/FogCombat.gd\",\"res://scripts/expedition/FogCombat.gd.uid\"]},\"committed\":true,\"diagnostics\":[{\"details\":{\"code\":\"Parse Error: Could not find type \\\"FogCatalog\\\" in the current scope.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[{\"function\":\"<anonymous lambda>\",\"line\":284,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},{\"function\":\"capture_this_file\",\"line\":15,\"path\":\"res://addons/godot_ai/utils/diagnostics_capture.gd\"},{\"function\":\"_capture_gdscript_load_diagnostics\",\"line\":279,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},{\"function\":\"_attach_gdscript_diagnostics\",\"line\":248,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},{\"function\":\"create_script\",\"line\":64,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Parse Error: Could not find type \\\"FogCatalog\\\" in the current scope.\",\"rationale\":\"\",\"resolved\":{\"function\":\"<anonymous lambda>\",\"line\":284,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":5,\"path\":\"res://scripts/expedition/FogCombat.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":5,\"path\":\"res://scripts/expedition/FogCombat.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Could not find type \\\"FogCatalog\\\" in the current scope.\"},{\"details\":{\"code\":\"Parse Error: Could not find type \\\"FogCatalog\\\" in the current scope.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[{\"function\":\"<anonymous lambda>\",\"line\":284,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},{\"function\":\"capture_this_file\",\"line\":15,\"path\":\"res://addons/godot_ai/utils/diagnostics_capture.gd\"},{\"function\":\"_capture_gdscript_load_diagnostics\",\"line\":279,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},{\"function\":\"_attach_gdscript_diagnostics\",\"line\":248,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},{\"function\":\"create_script\",\"line\":64,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Parse Error: Could not find type \\\"FogCatalog\\\" in the current scope.\",\"rationale\":\"\",\"resolved\":{\"function\":\"<anonymous lambda>\",\"line\":284,\"path\":\"res://addons/godot_ai/handlers/script_handler.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":17,\"path\":\"res://scripts/expedition/FogCombat.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":17,\"path\":\"res://scripts/expedition/FogCombat.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Could not find type \\\"FogCatalog\\\" in the current scope.\"}],\"diagnostics_detail\":\"log_capture\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"import_pending\":false,\"import_settle\":\"settled\",\"import_settled\":true,\"path\":\"res://scripts/expedition/FogCombat.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":14938,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://scripts/expedition/FogCombat.gd",
+            "res://scripts/expedition/FogCombat.gd.uid"
+          ]
+        },
+        "committed": true,
+        "diagnostics": [
+          {
+            "details": {
+              "code": "Parse Error: Could not find type \"FogCatalog\" in the current scope.",
+              "error_type": 2,
+              "error_type_name": "script",
+              "frames": [
+                {
+                  "function": "<anonymous lambda>",
+                  "line": 284,
+                  "path": "res://addons/godot_ai/handlers/script_handler.gd"
+                },
+                {
+                  "function": "capture_this_file",
+                  "line": 15,
+                  "path": "res://addons/godot_ai/utils/diagnostics_capture.gd"
+                },
+                {
+                  "function": "_capture_gdscript_load_diagnostics",
+                  "line": 279,
+                  "path": "res://addons/godot_ai/handlers/script_handler.gd"
+                },
+                {
+                  "function": "_attach_gdscript_diagnostics",
+                  "line": 248,
+                  "path": "res://addons/godot_ai/handlers/script_handler.gd"
+                },
+                {
+                  "function": "create_script",
+                  "line": 64,
+                  "path": "res://addons/godot_ai/handlers/script_handler.gd"
+                },
+                {
+                  "function": "_call_handler",
+                  "line": 193,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_dispatch",
+                  "line": 150,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "tick",
+                  "line": 122,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_process",
+                  "line": 108,
+                  "path": "res://addons/godot_ai/connection.gd"
+                }
+              ],
+              "message": "Parse Error: Could not find type \"FogCatalog\" in the current scope.",
+              "rationale": "",
+              "resolved": {
+                "function": "<anonymous lambda>",
+                "line": 284,
+                "path": "res://addons/godot_ai/handlers/script_handler.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 5,
+                "path": "res://scripts/expedition/FogCombat.gd"
+              }
+            },
+            "function": "GDScript::reload",
+            "level": "error",
+            "line": 5,
+            "path": "res://scripts/expedition/FogCombat.gd",
+            "source": "editor",
+            "text": "Parse Error: Could not find type \"FogCatalog\" in the current scope."
+          },
+          {
+            "details": {
+              "code": "Parse Error: Could not find type \"FogCatalog\" in the current scope.",
+              "error_type": 2,
+              "error_type_name": "script",
+              "frames": [
+                {
+                  "function": "<anonymous lambda>",
+                  "line": 284,
+                  "path": "res://addons/godot_ai/handlers/script_handler.gd"
+                },
+                {
+                  "function": "capture_this_file",
+                  "line": 15,
+                  "path": "res://addons/godot_ai/utils/diagnostics_capture.gd"
+                },
+                {
+                  "function": "_capture_gdscript_load_diagnostics",
+                  "line": 279,
+                  "path": "res://addons/godot_ai/handlers/script_handler.gd"
+                },
+                {
+                  "function": "_attach_gdscript_diagnostics",
+                  "line": 248,
+                  "path": "res://addons/godot_ai/handlers/script_handler.gd"
+                },
+                {
+                  "function": "create_script",
+                  "line": 64,
+                  "path": "res://addons/godot_ai/handlers/script_handler.gd"
+                },
+                {
+                  "function": "_call_handler",
+                  "line": 193,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_dispatch",
+                  "line": 150,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "tick",
+                  "line": 122,
+                  "path": "res://addons/godot_ai/dispatcher.gd"
+                },
+                {
+                  "function": "_process",
+                  "line": 108,
+                  "path": "res://addons/godot_ai/connection.gd"
+                }
+              ],
+              "message": "Parse Error: Could not find type \"FogCatalog\" in the current scope.",
+              "rationale": "",
+              "resolved": {
+                "function": "<anonymous lambda>",
+                "line": 284,
+                "path": "res://addons/godot_ai/handlers/script_handler.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 17,
+                "path": "res://scripts/expedition/FogCombat.gd"
+              }
+            },
+            "function": "GDScript::reload",
+            "level": "error",
+            "line": 17,
+            "path": "res://scripts/expedition/FogCombat.gd",
+            "source": "editor",
+            "text": "Parse Error: Could not find type \"FogCatalog\" in the current scope."
+          }
+        ],
+        "diagnostics_detail": "log_capture",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "import_pending": false,
+        "import_settle": "settled",
+        "import_settled": true,
+        "path": "res://scripts/expedition/FogCombat.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 14938,
+        "undoable": false
+      },
+      "isError": false
+    }
+  }
+]

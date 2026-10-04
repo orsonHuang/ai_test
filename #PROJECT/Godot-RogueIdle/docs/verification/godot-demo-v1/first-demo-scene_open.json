@@ -1,0 +1,19 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"force_reload\":true,\"path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"previous_scene_path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":true,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+    }
+  ],
+  "structuredContent": {
+    "force_reload": true,
+    "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+    "previous_scene_path": "res://scenes/expedition/ExpeditionDemo.tscn",
+    "reason": "Scene navigation cannot be undone via editor undo",
+    "reloaded_from_disk": true,
+    "settle": "settled",
+    "switched": true,
+    "undoable": false
+  },
+  "isError": false
+}

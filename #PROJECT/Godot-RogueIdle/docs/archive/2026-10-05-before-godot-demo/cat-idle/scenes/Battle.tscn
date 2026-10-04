@@ -1,0 +1,203 @@
+[gd_scene format=3 uid="uid://imdk6cx6w8hd"]
+
+[ext_resource type="Script" uid="uid://dhtgd4p82o85n" path="res://scripts/battle/BattleManager.gd" id="1_jy5qw"]
+[ext_resource type="PackedScene" path="res://scenes/BattleCharacter.tscn" id="4_ghi56"]
+[ext_resource type="Script" uid="uid://c8n7mcmtr10mp" path="res://scripts/ui/BattleUI.gd" id="5_jkl78"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mno90"]
+bg_color = Color(0.1, 0.1, 0.12, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.3, 0.35, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Battle" type="Node2D" unique_id=451370809]
+
+[node name="BattleManager" type="Node" parent="." unique_id=943180802]
+script = ExtResource("1_jy5qw")
+character_scene = ExtResource("4_ghi56")
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=128464834]
+position = Vector2(300, 450)
+
+[node name="EnemySpawn" type="Marker2D" parent="." unique_id=2134792352]
+position = Vector2(900, 450)
+
+[node name="Background" type="ColorRect" parent="." unique_id=462901297]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.08, 0.08, 0.1, 1)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1642325858]
+
+[node name="Control" type="Control" parent="UI" unique_id=112025501]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_jkl78")
+
+[node name="TopBar" type="Panel" parent="UI/Control" unique_id=2087623814]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mno90")
+
+[node name="TurnIndicator" type="Label" parent="UI/Control/TopBar" unique_id=1292022577]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -15.0
+offset_right = 150.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftPanel" type="Panel" parent="UI/Control" unique_id=1767048798]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -150.0
+offset_right = 220.0
+offset_bottom = 150.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mno90")
+
+[node name="PlayerName" type="Label" parent="UI/Control/LeftPanel" unique_id=1833296135]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "战士"
+horizontal_alignment = 1
+
+[node name="PlayerHPBar" type="ProgressBar" parent="UI/Control/LeftPanel" unique_id=672299224]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 55.0
+offset_right = -10.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="PlayerInfo" type="Label" parent="UI/Control/LeftPanel" unique_id=1191816147]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 90.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RightPanel" type="Panel" parent="UI/Control" unique_id=1734524388]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -150.0
+offset_right = -20.0
+offset_bottom = 150.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mno90")
+
+[node name="EnemyName" type="Label" parent="UI/Control/RightPanel" unique_id=2073130206]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 22
+text = "史莱姆"
+horizontal_alignment = 1
+
+[node name="EnemyHPBar" type="ProgressBar" parent="UI/Control/RightPanel" unique_id=1672855469]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 55.0
+offset_right = -10.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="EnemyInfo" type="Label" parent="UI/Control/RightPanel" unique_id=123872978]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 90.0
+offset_bottom = 170.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="LogPanel" type="Panel" parent="UI/Control" unique_id=1507934291]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -180.0
+offset_right = 300.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mno90")
+
+[node name="LogLabel" type="RichTextLabel" parent="UI/Control/LogPanel" unique_id=647465659]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+
+[node name="RestartButton" type="Button" parent="UI/Control" unique_id=746532637]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_top = 80.0
+offset_right = -30.0
+offset_bottom = 120.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 18
+text = "重新开始"

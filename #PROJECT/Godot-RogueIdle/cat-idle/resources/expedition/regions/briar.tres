@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogRegion.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "briar"
+display_name = "荆棘林地"
+stage = 1
+ap = 6
+next_ids = PackedStringArray("quarry", "river")
+adjacent_ids = PackedStringArray("village", "ruins", "quarry", "river")
+family = "thorn"
+initial_landmark = true
+hp_mult = 1
+atk_mult = 1
+polygon = PackedVector2Array(120, 425, 210, 420, 300, 445, 290, 550, 215, 550, 160, 510)
+label_position = Vector2(210, 475)
+tint = Color(0.23529411764705882, 0.396078431372549, 0.3254901960784314, 1)
+boss_name = "古树守卫"

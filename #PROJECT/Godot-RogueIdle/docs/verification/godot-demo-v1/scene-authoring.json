@@ -1,0 +1,2470 @@
+[
+  {
+    "tool": "session_activate",
+    "arguments": {
+      "session_id": "cat-idle"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"status\":\"ok\",\"active_session_id\":\"cat-idle@65d1\",\"matched\":\"hint\",\"matched_name\":\"cat-idle\"}"
+        }
+      ],
+      "structuredContent": {
+        "status": "ok",
+        "active_session_id": "cat-idle@65d1",
+        "matched": "hint",
+        "matched_name": "cat-idle"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/SquadColumn/PartyCards",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Party0",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Party0\",\"parent_path\":\"/MapPage/MapColumns/SquadColumn/PartyCards\",\"path\":\"/MapPage/MapColumns/SquadColumn/PartyCards/Party0\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Party0",
+        "parent_path": "/MapPage/MapColumns/SquadColumn/PartyCards",
+        "path": "/MapPage/MapColumns/SquadColumn/PartyCards/Party0",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/SquadColumn/PartyCards",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Party1",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Party1\",\"parent_path\":\"/MapPage/MapColumns/SquadColumn/PartyCards\",\"path\":\"/MapPage/MapColumns/SquadColumn/PartyCards/Party1\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Party1",
+        "parent_path": "/MapPage/MapColumns/SquadColumn/PartyCards",
+        "path": "/MapPage/MapColumns/SquadColumn/PartyCards/Party1",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/SquadColumn/PartyCards",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Party2",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Party2\",\"parent_path\":\"/MapPage/MapColumns/SquadColumn/PartyCards\",\"path\":\"/MapPage/MapColumns/SquadColumn/PartyCards/Party2\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Party2",
+        "parent_path": "/MapPage/MapColumns/SquadColumn/PartyCards",
+        "path": "/MapPage/MapColumns/SquadColumn/PartyCards/Party2",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_attach",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard",
+      "script_path": "res://scripts/expedition/ui/FogMapBoard.gd"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"had_previous_script\":false,\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard\",\"script_path\":\"res://scripts/expedition/ui/FogMapBoard.gd\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "had_previous_script": false,
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard",
+        "script_path": "res://scripts/expedition/ui/FogMapBoard.gd",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "Castle",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Castle\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Castle\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Castle",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Castle",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Castle",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/castle.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Castle\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/castle.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Castle",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/castle.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "Frost",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Frost\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Frost\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Frost",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Frost",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Frost",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/frost.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Frost\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/frost.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Frost",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/frost.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "Ash",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Ash\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ash\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Ash",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ash",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ash",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/ash.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ash\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/ash.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ash",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/ash.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "Quarry",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Quarry\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Quarry\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Quarry",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Quarry",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Quarry",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/quarry.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Quarry\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/quarry.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Quarry",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/quarry.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "River",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"River\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/River\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "River",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/River",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/River",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/river.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/River\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/river.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/River",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/river.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "Ember",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Ember\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ember\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Ember",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ember",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ember",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/ember.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ember\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/ember.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ember",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/ember.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "Briar",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Briar\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Briar\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Briar",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Briar",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Briar",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/briar.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Briar\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/briar.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Briar",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/briar.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "Ruins",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Ruins\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ruins\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Ruins",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ruins",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ruins",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/ruins.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ruins\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/ruins.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Ruins",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/ruins.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+      "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+      "name": "Village",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Village\",\"parent_path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Village\",\"scene_path\":\"res://scenes/expedition/components/RegionTile.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Village",
+        "parent_path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Village",
+        "scene_path": "res://scenes/expedition/components/RegionTile.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Village",
+      "property": "definition",
+      "value": "res://resources/expedition/regions/village.tres",
+      "scene_file": "res://scenes/expedition/MapPage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"res://resources/expedition/regions/briar.tres\",\"path\":\"/MapPage/MapColumns/AtlasColumn/MapBoard/World/Village\",\"property\":\"definition\",\"undoable\":true,\"value\":\"res://resources/expedition/regions/village.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "res://resources/expedition/regions/briar.tres",
+        "path": "/MapPage/MapColumns/AtlasColumn/MapBoard/World/Village",
+        "property": "definition",
+        "undoable": true,
+        "value": "res://resources/expedition/regions/village.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "arguments": {},
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/MapPage.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/MapPage.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_manage",
+    "arguments": {
+      "op": "create",
+      "params": {
+        "path": "res://scenes/expedition/LoadoutPage.tscn",
+        "root_type": "Control",
+        "root_name": "LoadoutPage"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/LoadoutPage.tscn\",\"reason\":\"Scene creation involves file system operations\",\"root_name\":\"LoadoutPage\",\"root_type\":\"Control\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/LoadoutPage.tscn",
+        "reason": "Scene creation involves file system operations",
+        "root_name": "LoadoutPage",
+        "root_type": "Control",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "set_anchor_preset",
+      "params": {
+        "path": "/LoadoutPage",
+        "preset": "full_rect"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"anchors\":{\"bottom\":1.0,\"left\":0.0,\"right\":1.0,\"top\":0.0},\"margin\":0,\"offsets\":{\"bottom\":0.0,\"left\":0.0,\"right\":0.0,\"top\":0.0},\"path\":\"/LoadoutPage\",\"preset\":\"full_rect\",\"resize_mode\":\"minsize\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "anchors": {
+          "bottom": 1.0,
+          "left": 0.0,
+          "right": 1.0,
+          "top": 0.0
+        },
+        "margin": 0,
+        "offsets": {
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0,
+          "top": 0.0
+        },
+        "path": "/LoadoutPage",
+        "preset": "full_rect",
+        "resize_mode": "minsize",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "build_layout",
+      "params": {
+        "parent_path": "/LoadoutPage",
+        "tree": {
+          "type": "VBoxContainer",
+          "name": "LoadoutRows",
+          "properties": {
+            "theme_override_constants/separation": 12
+          },
+          "children": [
+            {
+              "type": "Label",
+              "name": "LoadoutTitle",
+              "properties": {
+                "text": "战前整备",
+                "theme_override_font_sizes/font_size": 30
+              }
+            },
+            {
+              "type": "Label",
+              "name": "Formation",
+              "properties": {
+                "text": "前排  主角 → 牧师  后排",
+                "theme_override_font_sizes/font_size": 22
+              }
+            },
+            {
+              "type": "HBoxContainer",
+              "name": "FormationActions",
+              "properties": {
+                "theme_override_constants/separation": 12
+              },
+              "children": [
+                {
+                  "type": "Button",
+                  "name": "SwapFront",
+                  "properties": {
+                    "text": "交换 1 ↔ 2",
+                    "custom_minimum_size": {
+                      "x": 0,
+                      "y": 46
+                    }
+                  }
+                },
+                {
+                  "type": "Button",
+                  "name": "SwapRear",
+                  "properties": {
+                    "text": "交换 2 ↔ 3",
+                    "custom_minimum_size": {
+                      "x": 0,
+                      "y": 46
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "HBoxContainer",
+              "name": "LoadoutColumns",
+              "properties": {
+                "theme_override_constants/separation": 12,
+                "size_flags_vertical": 3
+              },
+              "children": [
+                {
+                  "type": "VBoxContainer",
+                  "name": "TacticsColumn",
+                  "properties": {
+                    "theme_override_constants/separation": 12,
+                    "custom_minimum_size": {
+                      "x": 340,
+                      "y": 0
+                    }
+                  },
+                  "children": [
+                    {
+                      "type": "Label",
+                      "name": "TacticsHeading",
+                      "properties": {
+                        "text": "自动战术",
+                        "theme_override_font_sizes/font_size": 24
+                      }
+                    },
+                    {
+                      "type": "Label",
+                      "name": "ActiveLabel",
+                      "properties": {
+                        "text": "主角主动技能",
+                        "theme_override_font_sizes/font_size": 17
+                      }
+                    },
+                    {
+                      "type": "OptionButton",
+                      "name": "ActiveChoice",
+                      "properties": {}
+                    },
+                    {
+                      "type": "Label",
+                      "name": "PassiveLabel",
+                      "properties": {
+                        "text": "主角被动",
+                        "theme_override_font_sizes/font_size": 17
+                      }
+                    },
+                    {
+                      "type": "OptionButton",
+                      "name": "PassiveChoice",
+                      "properties": {}
+                    },
+                    {
+                      "type": "Label",
+                      "name": "TargetLabel",
+                      "properties": {
+                        "text": "攻击目标",
+                        "theme_override_font_sizes/font_size": 17
+                      }
+                    },
+                    {
+                      "type": "OptionButton",
+                      "name": "TargetChoice",
+                      "properties": {}
+                    },
+                    {
+                      "type": "Label",
+                      "name": "PolicyLabel",
+                      "properties": {
+                        "text": "技能释放时机",
+                        "theme_override_font_sizes/font_size": 17
+                      }
+                    },
+                    {
+                      "type": "OptionButton",
+                      "name": "PolicyChoice",
+                      "properties": {}
+                    },
+                    {
+                      "type": "Button",
+                      "name": "ApplyTactics",
+                      "properties": {
+                        "text": "应用战术",
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 46
+                        }
+                      }
+                    },
+                    {
+                      "type": "RichTextLabel",
+                      "name": "TacticHelp",
+                      "properties": {
+                        "text": "调整仅在战外生效。\n\n铁壁可等待重击威胁；重击可等待标记，最多等一次自身行动。\n\n改变生命上限不会免费治疗。",
+                        "bbcode_enabled": true,
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 130
+                        },
+                        "size_flags_vertical": 1,
+                        "theme_override_font_sizes/normal_font_size": 18
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "VBoxContainer",
+                  "name": "EquipmentColumn",
+                  "properties": {
+                    "theme_override_constants/separation": 12,
+                    "size_flags_horizontal": 3
+                  },
+                  "children": [
+                    {
+                      "type": "Label",
+                      "name": "EquipmentHeading",
+                      "properties": {
+                        "text": "主角当前装备",
+                        "theme_override_font_sizes/font_size": 24
+                      }
+                    },
+                    {
+                      "type": "RichTextLabel",
+                      "name": "Equipped",
+                      "properties": {
+                        "text": "三个部位尚未装备",
+                        "bbcode_enabled": true,
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 320
+                        },
+                        "size_flags_vertical": 3,
+                        "theme_override_font_sizes/normal_font_size": 18
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "VBoxContainer",
+                  "name": "InventoryColumn",
+                  "properties": {
+                    "theme_override_constants/separation": 12,
+                    "size_flags_horizontal": 3
+                  },
+                  "children": [
+                    {
+                      "type": "Label",
+                      "name": "InventoryHeading",
+                      "properties": {
+                        "text": "远征背包",
+                        "theme_override_font_sizes/font_size": 24
+                      }
+                    },
+                    {
+                      "type": "ItemList",
+                      "name": "Inventory",
+                      "properties": {
+                        "size_flags_vertical": 3,
+                        "custom_minimum_size": {
+                          "x": 365,
+                          "y": 200
+                        }
+                      }
+                    },
+                    {
+                      "type": "RichTextLabel",
+                      "name": "Comparison",
+                      "properties": {
+                        "text": "选择装备查看详情。",
+                        "bbcode_enabled": true,
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 220
+                        },
+                        "size_flags_vertical": 1,
+                        "theme_override_font_sizes/normal_font_size": 18
+                      }
+                    },
+                    {
+                      "type": "Button",
+                      "name": "EquipItem",
+                      "properties": {
+                        "text": "装备到对应部位",
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 46
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "anchor_preset": "full_rect"
+        }
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"node_count\":27,\"root_path\":\"/LoadoutPage/LoadoutRows\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "node_count": 27,
+        "root_path": "/LoadoutPage/LoadoutRows",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "arguments": {},
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/LoadoutPage.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/LoadoutPage.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_manage",
+    "arguments": {
+      "op": "create",
+      "params": {
+        "path": "res://scenes/expedition/BattlePage.tscn",
+        "root_type": "Control",
+        "root_name": "BattlePage"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/BattlePage.tscn\",\"reason\":\"Scene creation involves file system operations\",\"root_name\":\"BattlePage\",\"root_type\":\"Control\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/BattlePage.tscn",
+        "reason": "Scene creation involves file system operations",
+        "root_name": "BattlePage",
+        "root_type": "Control",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "set_anchor_preset",
+      "params": {
+        "path": "/BattlePage",
+        "preset": "full_rect"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"anchors\":{\"bottom\":1.0,\"left\":0.0,\"right\":1.0,\"top\":0.0},\"margin\":0,\"offsets\":{\"bottom\":0.0,\"left\":0.0,\"right\":0.0,\"top\":0.0},\"path\":\"/BattlePage\",\"preset\":\"full_rect\",\"resize_mode\":\"minsize\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "anchors": {
+          "bottom": 1.0,
+          "left": 0.0,
+          "right": 1.0,
+          "top": 0.0
+        },
+        "margin": 0,
+        "offsets": {
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0,
+          "top": 0.0
+        },
+        "path": "/BattlePage",
+        "preset": "full_rect",
+        "resize_mode": "minsize",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "build_layout",
+      "params": {
+        "parent_path": "/BattlePage",
+        "tree": {
+          "type": "VBoxContainer",
+          "name": "BattleRows",
+          "properties": {
+            "theme_override_constants/separation": 12
+          },
+          "children": [
+            {
+              "type": "HBoxContainer",
+              "name": "BattleHeader",
+              "properties": {
+                "theme_override_constants/separation": 12
+              },
+              "children": [
+                {
+                  "type": "Label",
+                  "name": "RoundTitle",
+                  "properties": {
+                    "text": "等待第一场战斗",
+                    "theme_override_font_sizes/font_size": 28
+                  }
+                },
+                {
+                  "type": "Control",
+                  "name": "HeaderSpacer",
+                  "properties": {
+                    "size_flags_horizontal": 3
+                  }
+                },
+                {
+                  "type": "Button",
+                  "name": "Pause",
+                  "properties": {
+                    "text": "暂停",
+                    "custom_minimum_size": {
+                      "x": 0,
+                      "y": 46
+                    }
+                  }
+                },
+                {
+                  "type": "Button",
+                  "name": "Speed1",
+                  "properties": {
+                    "text": "1x",
+                    "custom_minimum_size": {
+                      "x": 0,
+                      "y": 46
+                    }
+                  }
+                },
+                {
+                  "type": "Button",
+                  "name": "Speed2",
+                  "properties": {
+                    "text": "2x",
+                    "custom_minimum_size": {
+                      "x": 0,
+                      "y": 46
+                    }
+                  }
+                },
+                {
+                  "type": "Button",
+                  "name": "Speed4",
+                  "properties": {
+                    "text": "4x",
+                    "custom_minimum_size": {
+                      "x": 0,
+                      "y": 46
+                    }
+                  }
+                },
+                {
+                  "type": "Button",
+                  "name": "Skip",
+                  "properties": {
+                    "text": "跳过回放",
+                    "custom_minimum_size": {
+                      "x": 0,
+                      "y": 46
+                    }
+                  }
+                },
+                {
+                  "type": "Button",
+                  "name": "Claim",
+                  "properties": {
+                    "text": "查看战报 / 领取",
+                    "custom_minimum_size": {
+                      "x": 0,
+                      "y": 46
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "Label",
+              "name": "BattleIntent",
+              "properties": {
+                "text": "战斗全自动 · 速度决定回合顺序",
+                "theme_override_font_sizes/font_size": 21,
+                "autowrap_mode": 2
+              }
+            },
+            {
+              "type": "Label",
+              "name": "AllyHeading",
+              "properties": {
+                "text": "远征小队  ·  左侧为前排",
+                "theme_override_font_sizes/font_size": 18
+              }
+            },
+            {
+              "type": "HBoxContainer",
+              "name": "Allies",
+              "properties": {
+                "theme_override_constants/separation": 12
+              }
+            },
+            {
+              "type": "Label",
+              "name": "EnemyHeading",
+              "properties": {
+                "text": "敌方阵列  ·  左侧为前排",
+                "theme_override_font_sizes/font_size": 18
+              }
+            },
+            {
+              "type": "HBoxContainer",
+              "name": "Enemies",
+              "properties": {
+                "theme_override_constants/separation": 12
+              }
+            },
+            {
+              "type": "RichTextLabel",
+              "name": "CombatLog",
+              "properties": {
+                "text": "战斗事件将在这里显示。",
+                "bbcode_enabled": true,
+                "custom_minimum_size": {
+                  "x": 0,
+                  "y": 100
+                },
+                "size_flags_vertical": 3,
+                "theme_override_font_sizes/normal_font_size": 18
+              }
+            }
+          ],
+          "anchor_preset": "full_rect"
+        }
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"node_count\":16,\"root_path\":\"/BattlePage/BattleRows\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "node_count": 16,
+        "root_path": "/BattlePage/BattleRows",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/BattlePage/BattleRows/Allies",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Ally0",
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Ally0\",\"parent_path\":\"/BattlePage/BattleRows/Allies\",\"path\":\"/BattlePage/BattleRows/Allies/Ally0\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Ally0",
+        "parent_path": "/BattlePage/BattleRows/Allies",
+        "path": "/BattlePage/BattleRows/Allies/Ally0",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/BattlePage/BattleRows/Allies/Ally0",
+      "property": "size_flags_horizontal",
+      "value": 3,
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1,\"path\":\"/BattlePage/BattleRows/Allies/Ally0\",\"property\":\"size_flags_horizontal\",\"undoable\":true,\"value\":3}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1,
+        "path": "/BattlePage/BattleRows/Allies/Ally0",
+        "property": "size_flags_horizontal",
+        "undoable": true,
+        "value": 3
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/BattlePage/BattleRows/Allies",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Ally1",
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Ally1\",\"parent_path\":\"/BattlePage/BattleRows/Allies\",\"path\":\"/BattlePage/BattleRows/Allies/Ally1\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Ally1",
+        "parent_path": "/BattlePage/BattleRows/Allies",
+        "path": "/BattlePage/BattleRows/Allies/Ally1",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/BattlePage/BattleRows/Allies/Ally1",
+      "property": "size_flags_horizontal",
+      "value": 3,
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1,\"path\":\"/BattlePage/BattleRows/Allies/Ally1\",\"property\":\"size_flags_horizontal\",\"undoable\":true,\"value\":3}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1,
+        "path": "/BattlePage/BattleRows/Allies/Ally1",
+        "property": "size_flags_horizontal",
+        "undoable": true,
+        "value": 3
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/BattlePage/BattleRows/Allies",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Ally2",
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Ally2\",\"parent_path\":\"/BattlePage/BattleRows/Allies\",\"path\":\"/BattlePage/BattleRows/Allies/Ally2\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Ally2",
+        "parent_path": "/BattlePage/BattleRows/Allies",
+        "path": "/BattlePage/BattleRows/Allies/Ally2",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/BattlePage/BattleRows/Allies/Ally2",
+      "property": "size_flags_horizontal",
+      "value": 3,
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1,\"path\":\"/BattlePage/BattleRows/Allies/Ally2\",\"property\":\"size_flags_horizontal\",\"undoable\":true,\"value\":3}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1,
+        "path": "/BattlePage/BattleRows/Allies/Ally2",
+        "property": "size_flags_horizontal",
+        "undoable": true,
+        "value": 3
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/BattlePage/BattleRows/Enemies",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Enemy0",
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Enemy0\",\"parent_path\":\"/BattlePage/BattleRows/Enemies\",\"path\":\"/BattlePage/BattleRows/Enemies/Enemy0\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Enemy0",
+        "parent_path": "/BattlePage/BattleRows/Enemies",
+        "path": "/BattlePage/BattleRows/Enemies/Enemy0",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/BattlePage/BattleRows/Enemies/Enemy0",
+      "property": "size_flags_horizontal",
+      "value": 3,
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1,\"path\":\"/BattlePage/BattleRows/Enemies/Enemy0\",\"property\":\"size_flags_horizontal\",\"undoable\":true,\"value\":3}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1,
+        "path": "/BattlePage/BattleRows/Enemies/Enemy0",
+        "property": "size_flags_horizontal",
+        "undoable": true,
+        "value": 3
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/BattlePage/BattleRows/Enemies",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Enemy1",
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Enemy1\",\"parent_path\":\"/BattlePage/BattleRows/Enemies\",\"path\":\"/BattlePage/BattleRows/Enemies/Enemy1\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Enemy1",
+        "parent_path": "/BattlePage/BattleRows/Enemies",
+        "path": "/BattlePage/BattleRows/Enemies/Enemy1",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/BattlePage/BattleRows/Enemies/Enemy1",
+      "property": "size_flags_horizontal",
+      "value": 3,
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1,\"path\":\"/BattlePage/BattleRows/Enemies/Enemy1\",\"property\":\"size_flags_horizontal\",\"undoable\":true,\"value\":3}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1,
+        "path": "/BattlePage/BattleRows/Enemies/Enemy1",
+        "property": "size_flags_horizontal",
+        "undoable": true,
+        "value": 3
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/BattlePage/BattleRows/Enemies",
+      "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+      "name": "Enemy2",
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Enemy2\",\"parent_path\":\"/BattlePage/BattleRows/Enemies\",\"path\":\"/BattlePage/BattleRows/Enemies/Enemy2\",\"scene_path\":\"res://scenes/expedition/components/UnitCard.tscn\",\"type\":\"PanelContainer\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Enemy2",
+        "parent_path": "/BattlePage/BattleRows/Enemies",
+        "path": "/BattlePage/BattleRows/Enemies/Enemy2",
+        "scene_path": "res://scenes/expedition/components/UnitCard.tscn",
+        "type": "PanelContainer",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/BattlePage/BattleRows/Enemies/Enemy2",
+      "property": "size_flags_horizontal",
+      "value": 3,
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":1,\"path\":\"/BattlePage/BattleRows/Enemies/Enemy2\",\"property\":\"size_flags_horizontal\",\"undoable\":true,\"value\":3}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 1,
+        "path": "/BattlePage/BattleRows/Enemies/Enemy2",
+        "property": "size_flags_horizontal",
+        "undoable": true,
+        "value": 3
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/BattlePage/BattleRows/CombatLog",
+      "property": "scroll_following",
+      "value": true,
+      "scene_file": "res://scenes/expedition/BattlePage.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":false,\"path\":\"/BattlePage/BattleRows/CombatLog\",\"property\":\"scroll_following\",\"undoable\":true,\"value\":true}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": false,
+        "path": "/BattlePage/BattleRows/CombatLog",
+        "property": "scroll_following",
+        "undoable": true,
+        "value": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "arguments": {},
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/BattlePage.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/BattlePage.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_manage",
+    "arguments": {
+      "op": "create",
+      "params": {
+        "path": "res://scenes/expedition/components/DecisionModal.tscn",
+        "root_type": "Control",
+        "root_name": "DecisionModal"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/components/DecisionModal.tscn\",\"reason\":\"Scene creation involves file system operations\",\"root_name\":\"DecisionModal\",\"root_type\":\"Control\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/components/DecisionModal.tscn",
+        "reason": "Scene creation involves file system operations",
+        "root_name": "DecisionModal",
+        "root_type": "Control",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "set_anchor_preset",
+      "params": {
+        "path": "/DecisionModal",
+        "preset": "full_rect"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"anchors\":{\"bottom\":1.0,\"left\":0.0,\"right\":1.0,\"top\":0.0},\"margin\":0,\"offsets\":{\"bottom\":0.0,\"left\":0.0,\"right\":0.0,\"top\":0.0},\"path\":\"/DecisionModal\",\"preset\":\"full_rect\",\"resize_mode\":\"minsize\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "anchors": {
+          "bottom": 1.0,
+          "left": 0.0,
+          "right": 1.0,
+          "top": 0.0
+        },
+        "margin": 0,
+        "offsets": {
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0,
+          "top": 0.0
+        },
+        "path": "/DecisionModal",
+        "preset": "full_rect",
+        "resize_mode": "minsize",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/DecisionModal",
+      "property": "mouse_filter",
+      "value": 0,
+      "scene_file": "res://scenes/expedition/components/DecisionModal.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":0,\"path\":\"/DecisionModal\",\"property\":\"mouse_filter\",\"undoable\":true,\"value\":0}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": 0,
+        "path": "/DecisionModal",
+        "property": "mouse_filter",
+        "undoable": true,
+        "value": 0
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "build_layout",
+      "params": {
+        "parent_path": "/DecisionModal",
+        "tree": {
+          "type": "ColorRect",
+          "name": "Scrim",
+          "properties": {
+            "color": "#071018e8",
+            "mouse_filter": 0
+          },
+          "anchor_preset": "full_rect"
+        }
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"node_count\":1,\"root_path\":\"/DecisionModal/Scrim\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "node_count": 1,
+        "root_path": "/DecisionModal/Scrim",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "build_layout",
+      "params": {
+        "parent_path": "/DecisionModal",
+        "tree": {
+          "type": "CenterContainer",
+          "name": "Center",
+          "properties": {},
+          "children": [
+            {
+              "type": "PanelContainer",
+              "name": "Panel",
+              "properties": {
+                "custom_minimum_size": {
+                  "x": 740,
+                  "y": 0
+                }
+              },
+              "children": [
+                {
+                  "type": "VBoxContainer",
+                  "name": "ModalRows",
+                  "properties": {
+                    "theme_override_constants/separation": 12
+                  },
+                  "children": [
+                    {
+                      "type": "Label",
+                      "name": "ModalTitle",
+                      "properties": {
+                        "text": "雾境远征",
+                        "theme_override_font_sizes/font_size": 32
+                      }
+                    },
+                    {
+                      "type": "RichTextLabel",
+                      "name": "ModalDescription",
+                      "properties": {
+                        "text": "整备小队，穿越迷雾。",
+                        "bbcode_enabled": true,
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 330
+                        },
+                        "size_flags_vertical": 1,
+                        "theme_override_font_sizes/normal_font_size": 18
+                      }
+                    },
+                    {
+                      "type": "OptionButton",
+                      "name": "ModalOptionA",
+                      "properties": {}
+                    },
+                    {
+                      "type": "OptionButton",
+                      "name": "ModalOptionB",
+                      "properties": {}
+                    },
+                    {
+                      "type": "HBoxContainer",
+                      "name": "ModalButtons",
+                      "properties": {
+                        "theme_override_constants/separation": 12
+                      },
+                      "children": [
+                        {
+                          "type": "Button",
+                          "name": "ModalAction0",
+                          "properties": {
+                            "text": "选项1",
+                            "custom_minimum_size": {
+                              "x": 0,
+                              "y": 46
+                            }
+                          }
+                        },
+                        {
+                          "type": "Button",
+                          "name": "ModalAction1",
+                          "properties": {
+                            "text": "选项2",
+                            "custom_minimum_size": {
+                              "x": 0,
+                              "y": 46
+                            }
+                          }
+                        },
+                        {
+                          "type": "Button",
+                          "name": "ModalAction2",
+                          "properties": {
+                            "text": "选项3",
+                            "custom_minimum_size": {
+                              "x": 0,
+                              "y": 46
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "anchor_preset": "full_rect"
+        }
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"node_count\":11,\"root_path\":\"/DecisionModal/Center\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "node_count": 11,
+        "root_path": "/DecisionModal/Center",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "arguments": {},
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/components/DecisionModal.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/components/DecisionModal.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_manage",
+    "arguments": {
+      "op": "create",
+      "params": {
+        "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "root_type": "Control",
+        "root_name": "ExpeditionDemo"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"reason\":\"Scene creation involves file system operations\",\"root_name\":\"ExpeditionDemo\",\"root_type\":\"Control\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "reason": "Scene creation involves file system operations",
+        "root_name": "ExpeditionDemo",
+        "root_type": "Control",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "set_anchor_preset",
+      "params": {
+        "path": "/ExpeditionDemo",
+        "preset": "full_rect"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"anchors\":{\"bottom\":1.0,\"left\":0.0,\"right\":1.0,\"top\":0.0},\"margin\":0,\"offsets\":{\"bottom\":0.0,\"left\":0.0,\"right\":0.0,\"top\":0.0},\"path\":\"/ExpeditionDemo\",\"preset\":\"full_rect\",\"resize_mode\":\"minsize\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "anchors": {
+          "bottom": 1.0,
+          "left": 0.0,
+          "right": 1.0,
+          "top": 0.0
+        },
+        "margin": 0,
+        "offsets": {
+          "bottom": 0.0,
+          "left": 0.0,
+          "right": 0.0,
+          "top": 0.0
+        },
+        "path": "/ExpeditionDemo",
+        "preset": "full_rect",
+        "resize_mode": "minsize",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/ExpeditionDemo",
+      "property": "size",
+      "value": {
+        "x": 1600,
+        "y": 900
+      },
+      "scene_file": "res://scenes/expedition/ExpeditionDemo.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":1152.0,\"y\":648.0},\"path\":\"/ExpeditionDemo\",\"property\":\"size\",\"undoable\":true,\"value\":{\"x\":1600.0,\"y\":900.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 1152.0,
+          "y": 648.0
+        },
+        "path": "/ExpeditionDemo",
+        "property": "size",
+        "undoable": true,
+        "value": {
+          "x": 1600.0,
+          "y": 900.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "theme_manage",
+    "arguments": {
+      "op": "apply",
+      "params": {
+        "node_path": "/ExpeditionDemo",
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleared\":false,\"node_path\":\"/ExpeditionDemo\",\"theme_path\":\"res://resources/expedition/ExpeditionTheme.tres\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "cleared": false,
+        "node_path": "/ExpeditionDemo",
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "build_layout",
+      "params": {
+        "parent_path": "/ExpeditionDemo",
+        "tree": {
+          "type": "ColorRect",
+          "name": "Background",
+          "properties": {
+            "color": "#0c171e",
+            "mouse_filter": 2
+          },
+          "anchor_preset": "full_rect"
+        }
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"node_count\":1,\"root_path\":\"/ExpeditionDemo/Background\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "node_count": 1,
+        "root_path": "/ExpeditionDemo/Background",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "ui_manage",
+    "arguments": {
+      "op": "build_layout",
+      "params": {
+        "parent_path": "/ExpeditionDemo",
+        "tree": {
+          "type": "MarginContainer",
+          "name": "SafeArea",
+          "properties": {
+            "theme_override_constants/margin_left": 24,
+            "theme_override_constants/margin_top": 24,
+            "theme_override_constants/margin_right": 24,
+            "theme_override_constants/margin_bottom": 24
+          },
+          "children": [
+            {
+              "type": "VBoxContainer",
+              "name": "Shell",
+              "properties": {
+                "theme_override_constants/separation": 12
+              },
+              "children": [
+                {
+                  "type": "HBoxContainer",
+                  "name": "Header",
+                  "properties": {
+                    "theme_override_constants/separation": 12
+                  },
+                  "children": [
+                    {
+                      "type": "VBoxContainer",
+                      "name": "Brand",
+                      "properties": {
+                        "theme_override_constants/separation": 12
+                      },
+                      "children": [
+                        {
+                          "type": "Label",
+                          "name": "Title",
+                          "properties": {
+                            "text": "雾境远征",
+                            "theme_override_font_sizes/font_size": 34
+                          }
+                        },
+                        {
+                          "type": "Label",
+                          "name": "Subtitle",
+                          "properties": {
+                            "text": "FOGBOUND  /  三人小队 · 向北而行",
+                            "theme_override_font_sizes/font_size": 15
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Control",
+                      "name": "BrandSpacer",
+                      "properties": {
+                        "size_flags_horizontal": 3
+                      }
+                    },
+                    {
+                      "type": "Label",
+                      "name": "Summary",
+                      "properties": {
+                        "text": "小队 Lv.1   金币 15",
+                        "theme_override_font_sizes/font_size": 20
+                      }
+                    },
+                    {
+                      "type": "Button",
+                      "name": "NewRun",
+                      "properties": {
+                        "text": "新远征",
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 46
+                        }
+                      }
+                    },
+                    {
+                      "type": "Button",
+                      "name": "ContinueRun",
+                      "properties": {
+                        "text": "继续",
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 46
+                        }
+                      }
+                    },
+                    {
+                      "type": "Button",
+                      "name": "Help",
+                      "properties": {
+                        "text": "手册",
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 46
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "TabContainer",
+                  "name": "Pages",
+                  "properties": {
+                    "size_flags_vertical": 3
+                  }
+                },
+                {
+                  "type": "HBoxContainer",
+                  "name": "FooterRow",
+                  "properties": {
+                    "theme_override_constants/separation": 12
+                  },
+                  "children": [
+                    {
+                      "type": "Label",
+                      "name": "Footer",
+                      "properties": {
+                        "text": "准备出发",
+                        "theme_override_font_sizes/font_size": 17,
+                        "size_flags_horizontal": 3,
+                        "text_overrun_behavior": 3
+                      }
+                    },
+                    {
+                      "type": "Button",
+                      "name": "Pending",
+                      "properties": {
+                        "text": "处理待结算内容",
+                        "custom_minimum_size": {
+                          "x": 0,
+                          "y": 46
+                        }
+                      }
+                    },
+                    {
+                      "type": "Label",
+                      "name": "SaveStatus",
+                      "properties": {
+                        "text": "准备出发",
+                        "theme_override_font_sizes/font_size": 16
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "anchor_preset": "full_rect"
+        }
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"node_count\":16,\"root_path\":\"/ExpeditionDemo/SafeArea\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "node_count": 16,
+        "root_path": "/ExpeditionDemo/SafeArea",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/ExpeditionDemo/SafeArea/Shell/Pages",
+      "scene_path": "res://scenes/expedition/MapPage.tscn",
+      "name": "远征地图",
+      "scene_file": "res://scenes/expedition/ExpeditionDemo.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"远征地图\",\"parent_path\":\"/ExpeditionDemo/SafeArea/Shell/Pages\",\"path\":\"/ExpeditionDemo/SafeArea/Shell/Pages/远征地图\",\"scene_path\":\"res://scenes/expedition/MapPage.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "远征地图",
+        "parent_path": "/ExpeditionDemo/SafeArea/Shell/Pages",
+        "path": "/ExpeditionDemo/SafeArea/Shell/Pages/远征地图",
+        "scene_path": "res://scenes/expedition/MapPage.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/ExpeditionDemo/SafeArea/Shell/Pages",
+      "scene_path": "res://scenes/expedition/LoadoutPage.tscn",
+      "name": "小队整备",
+      "scene_file": "res://scenes/expedition/ExpeditionDemo.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"小队整备\",\"parent_path\":\"/ExpeditionDemo/SafeArea/Shell/Pages\",\"path\":\"/ExpeditionDemo/SafeArea/Shell/Pages/小队整备\",\"scene_path\":\"res://scenes/expedition/LoadoutPage.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "小队整备",
+        "parent_path": "/ExpeditionDemo/SafeArea/Shell/Pages",
+        "path": "/ExpeditionDemo/SafeArea/Shell/Pages/小队整备",
+        "scene_path": "res://scenes/expedition/LoadoutPage.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/ExpeditionDemo/SafeArea/Shell/Pages",
+      "scene_path": "res://scenes/expedition/BattlePage.tscn",
+      "name": "自动战斗",
+      "scene_file": "res://scenes/expedition/ExpeditionDemo.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"自动战斗\",\"parent_path\":\"/ExpeditionDemo/SafeArea/Shell/Pages\",\"path\":\"/ExpeditionDemo/SafeArea/Shell/Pages/自动战斗\",\"scene_path\":\"res://scenes/expedition/BattlePage.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "自动战斗",
+        "parent_path": "/ExpeditionDemo/SafeArea/Shell/Pages",
+        "path": "/ExpeditionDemo/SafeArea/Shell/Pages/自动战斗",
+        "scene_path": "res://scenes/expedition/BattlePage.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_create",
+    "arguments": {
+      "parent_path": "/ExpeditionDemo",
+      "scene_path": "res://scenes/expedition/components/DecisionModal.tscn",
+      "name": "Modal",
+      "scene_file": "res://scenes/expedition/ExpeditionDemo.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"name\":\"Modal\",\"parent_path\":\"/ExpeditionDemo\",\"path\":\"/ExpeditionDemo/Modal\",\"scene_path\":\"res://scenes/expedition/components/DecisionModal.tscn\",\"type\":\"Control\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "name": "Modal",
+        "parent_path": "/ExpeditionDemo",
+        "path": "/ExpeditionDemo/Modal",
+        "scene_path": "res://scenes/expedition/components/DecisionModal.tscn",
+        "type": "Control",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/ExpeditionDemo/Modal",
+      "property": "visible",
+      "value": false,
+      "scene_file": "res://scenes/expedition/ExpeditionDemo.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":true,\"path\":\"/ExpeditionDemo/Modal\",\"property\":\"visible\",\"undoable\":true,\"value\":false}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": true,
+        "path": "/ExpeditionDemo/Modal",
+        "property": "visible",
+        "undoable": true,
+        "value": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_attach",
+    "arguments": {
+      "path": "/ExpeditionDemo",
+      "script_path": "res://scripts/expedition/ui/FogDemo.gd"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"had_previous_script\":false,\"path\":\"/ExpeditionDemo\",\"script_path\":\"res://scripts/expedition/ui/FogDemo.gd\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "had_previous_script": false,
+        "path": "/ExpeditionDemo",
+        "script_path": "res://scripts/expedition/ui/FogDemo.gd",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "arguments": {
+      "path": "/ExpeditionDemo",
+      "property": "catalog",
+      "value": "res://resources/expedition/catalog.tres",
+      "scene_file": "res://scenes/expedition/ExpeditionDemo.tscn"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":null,\"path\":\"/ExpeditionDemo\",\"property\":\"catalog\",\"undoable\":true,\"value\":\"res://resources/expedition/catalog.tres\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": null,
+        "path": "/ExpeditionDemo",
+        "property": "catalog",
+        "undoable": true,
+        "value": "res://resources/expedition/catalog.tres"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "arguments": {},
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/size/viewport_width",
+        "value": 1600
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/viewport_width\",\"old_value\":1152,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":1600}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/viewport_width",
+        "old_value": 1152,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 1600
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/size/viewport_height",
+        "value": 900
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/viewport_height\",\"old_value\":648,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":900}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/viewport_height",
+        "old_value": 648,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 900
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/size/window_width_override",
+        "value": 1440
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/window_width_override\",\"old_value\":0,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":1440}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/window_width_override",
+        "old_value": 0,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 1440
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/size/window_height_override",
+        "value": 810
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/window_height_override\",\"old_value\":0,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":810}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/window_height_override",
+        "old_value": 0,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 810
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "arguments": {
+      "op": "settings_set",
+      "params": {
+        "key": "display/window/stretch/mode",
+        "value": "canvas_items"
+      }
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/stretch/mode\",\"old_value\":\"canvas_items\",\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"String\",\"undoable\":false,\"value\":\"canvas_items\"}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/stretch/mode",
+        "old_value": "canvas_items",
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "String",
+        "undoable": false,
+        "value": "canvas_items"
+      },
+      "isError": false
+    }
+  }
+]

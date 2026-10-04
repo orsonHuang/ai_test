@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://dnmjsuuuqgpfw"]
+
+[ext_resource type="Theme" uid="uid://cqsd85b7ees4j" path="res://resources/expedition/ExpeditionTheme.tres" id="1_oyxvx"]
+
+[node name="LoadoutPage" type="Control" unique_id=188718321]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_oyxvx")
+
+[node name="LoadoutRows" type="VBoxContainer" parent="." unique_id=94325479]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 12
+
+[node name="LoadoutTitle" type="Label" parent="LoadoutRows" unique_id=1677842500]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "战前整备"
+
+[node name="Formation" type="Label" parent="LoadoutRows" unique_id=1315767568]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "前排  主角 → 牧师  后排"
+
+[node name="FormationActions" type="HBoxContainer" parent="LoadoutRows" unique_id=1390849116]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SwapFront" type="Button" parent="LoadoutRows/FormationActions" unique_id=1655285451]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "交换 1 ↔ 2"
+
+[node name="SwapRear" type="Button" parent="LoadoutRows/FormationActions" unique_id=227510587]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "交换 2 ↔ 3"
+
+[node name="LoadoutColumns" type="HBoxContainer" parent="LoadoutRows" unique_id=390632109]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="TacticsColumn" type="VBoxContainer" parent="LoadoutRows/LoadoutColumns" unique_id=1748138208]
+custom_minimum_size = Vector2(340, 0)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TacticsHeading" type="Label" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=399350577]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "自动战术"
+
+[node name="ActiveLabel" type="Label" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=359028923]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "主角主动技能"
+
+[node name="ActiveChoice" type="OptionButton" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=1951925356]
+layout_mode = 2
+
+[node name="PassiveLabel" type="Label" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=2115660974]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "主角被动"
+
+[node name="PassiveChoice" type="OptionButton" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=1207028236]
+layout_mode = 2
+
+[node name="TargetLabel" type="Label" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=831425352]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "攻击目标"
+
+[node name="TargetChoice" type="OptionButton" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=1775504774]
+layout_mode = 2
+
+[node name="PolicyLabel" type="Label" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=735776808]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "技能释放时机"
+
+[node name="PolicyChoice" type="OptionButton" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=1534837376]
+layout_mode = 2
+
+[node name="ApplyTactics" type="Button" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=2128318067]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "应用战术"
+
+[node name="TacticHelp" type="RichTextLabel" parent="LoadoutRows/LoadoutColumns/TacticsColumn" unique_id=998939858]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "调整仅在战外生效。
+
+铁壁可等待重击威胁；重击可等待标记，最多等一次自身行动。
+
+改变生命上限不会免费治疗。"
+
+[node name="EquipmentColumn" type="VBoxContainer" parent="LoadoutRows/LoadoutColumns" unique_id=225475057]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="EquipmentHeading" type="Label" parent="LoadoutRows/LoadoutColumns/EquipmentColumn" unique_id=1721169664]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "主角当前装备"
+
+[node name="Equipped" type="RichTextLabel" parent="LoadoutRows/LoadoutColumns/EquipmentColumn" unique_id=991846764]
+custom_minimum_size = Vector2(0, 320)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "三个部位尚未装备"
+
+[node name="InventoryColumn" type="VBoxContainer" parent="LoadoutRows/LoadoutColumns" unique_id=1393705006]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="InventoryHeading" type="Label" parent="LoadoutRows/LoadoutColumns/InventoryColumn" unique_id=822890811]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "远征背包"
+
+[node name="Inventory" type="ItemList" parent="LoadoutRows/LoadoutColumns/InventoryColumn" unique_id=630575932]
+custom_minimum_size = Vector2(365, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Comparison" type="RichTextLabel" parent="LoadoutRows/LoadoutColumns/InventoryColumn" unique_id=1768279527]
+custom_minimum_size = Vector2(0, 180)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "选择装备查看详情。"
+
+[node name="EquipItem" type="Button" parent="LoadoutRows/LoadoutColumns/InventoryColumn" unique_id=183334765]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "装备到对应部位"

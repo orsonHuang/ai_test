@@ -1,0 +1,184 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":1,\"elapsed_msec\":2515,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":5574262,\"run_token\":2,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"current\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[{\"details\":{\"code\":\"Condition \\\"error != Error::OK\\\" is true. Returning: Variant()\",\"error_type\":0,\"error_type_name\":\"error\",\"frames\":[{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},{\"function\":\"test_save_load_and_corruption_falls_back\",\"line\":136,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"rationale\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"resolved\":{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},\"source\":{\"function\":\"parse_string\",\"line\":629,\"path\":\"core/io/json.cpp\"}},\"function\":\"load_state\",\"level\":\"error\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\",\"source\":\"editor\",\"text\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\"}],\"recent_errors_may_predate_run\":true,\"recent_errors_scope\":\"retained_recent\",\"recent_errors_truncated\":false,\"retained_errors\":[{\"details\":{\"code\":\"Condition \\\"error != Error::OK\\\" is true. Returning: Variant()\",\"error_type\":0,\"error_type_name\":\"error\",\"frames\":[{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},{\"function\":\"test_save_load_and_corruption_falls_back\",\"line\":136,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"rationale\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\",\"resolved\":{\"function\":\"load_state\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\"},\"source\":{\"function\":\"parse_string\",\"line\":629,\"path\":\"core/io/json.cpp\"}},\"function\":\"load_state\",\"level\":\"error\",\"line\":37,\"path\":\"res://scripts/expedition/FogSave.gd\",\"source\":\"editor\",\"text\":\"Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'\"}],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+    }
+  ],
+  "structuredContent": {
+    "autosave": true,
+    "current_run_errors": [],
+    "game_status": {
+      "active": true,
+      "editor_log_cursor": 1,
+      "elapsed_msec": 2515,
+      "helper_expected": true,
+      "helper_live": true,
+      "ready": true,
+      "ready_wait_msec": 3000,
+      "run_started_msec": 5574262,
+      "run_token": 2,
+      "session_active": true,
+      "status": "live"
+    },
+    "helper_live": true,
+    "mode": "current",
+    "reason": "Game launched and the Godot AI game helper is live.",
+    "recent_errors": [
+      {
+        "details": {
+          "code": "Condition \"error != Error::OK\" is true. Returning: Variant()",
+          "error_type": 0,
+          "error_type_name": "error",
+          "frames": [
+            {
+              "function": "load_state",
+              "line": 37,
+              "path": "res://scripts/expedition/FogSave.gd"
+            },
+            {
+              "function": "test_save_load_and_corruption_falls_back",
+              "line": 136,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+          "rationale": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+          "resolved": {
+            "function": "load_state",
+            "line": 37,
+            "path": "res://scripts/expedition/FogSave.gd"
+          },
+          "source": {
+            "function": "parse_string",
+            "line": 629,
+            "path": "core/io/json.cpp"
+          }
+        },
+        "function": "load_state",
+        "level": "error",
+        "line": 37,
+        "path": "res://scripts/expedition/FogSave.gd",
+        "source": "editor",
+        "text": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'"
+      }
+    ],
+    "recent_errors_may_predate_run": true,
+    "recent_errors_scope": "retained_recent",
+    "recent_errors_truncated": false,
+    "retained_errors": [
+      {
+        "details": {
+          "code": "Condition \"error != Error::OK\" is true. Returning: Variant()",
+          "error_type": 0,
+          "error_type_name": "error",
+          "frames": [
+            {
+              "function": "load_state",
+              "line": 37,
+              "path": "res://scripts/expedition/FogSave.gd"
+            },
+            {
+              "function": "test_save_load_and_corruption_falls_back",
+              "line": 136,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+          "rationale": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+          "resolved": {
+            "function": "load_state",
+            "line": 37,
+            "path": "res://scripts/expedition/FogSave.gd"
+          },
+          "source": {
+            "function": "parse_string",
+            "line": 629,
+            "path": "core/io/json.cpp"
+          }
+        },
+        "function": "load_state",
+        "level": "error",
+        "line": 37,
+        "path": "res://scripts/expedition/FogSave.gd",
+        "source": "editor",
+        "text": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'"
+      }
+    ],
+    "scene": "",
+    "session_active": true,
+    "undoable": false,
+    "was_already_running": false
+  },
+  "isError": false
+}

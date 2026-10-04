@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "forge"
+display_name = "废弃工坊"
+category = "events"
+values = {"id": "forge", "name": "废弃工坊", "phase": "M1", "option_a": "修复散件", "outcome_a": "gold:-15;gear_choice_fine:1", "option_b": "回收残料", "outcome_b": "gold:15"}

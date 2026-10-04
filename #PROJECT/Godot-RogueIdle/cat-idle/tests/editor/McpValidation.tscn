@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://meqrg4u24t8c"]
+
+[node name="McpValidation" type="Control" unique_id=1619538510]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ProofLabel" type="Label" parent="." unique_id=1555422305]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.0
+offset_right = 41.0
+offset_bottom = 103.0
+text = "MCP verified: editable and persistent"

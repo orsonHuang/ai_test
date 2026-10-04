@@ -1,0 +1,21 @@
+[
+  {
+    "name": "session_activate",
+    "arguments": {
+      "session_id": "cat-idle"
+    }
+  },
+  {
+    "name": "script_create",
+    "arguments": {
+      "path": "res://tools/verify_demo.gd",
+      "content": "extends SceneTree\n\nvar checks: int = 0\nvar failures: Array[String] = []\n\nfunc _init() -> void:\n    var packed: PackedScene = load(\"res://scenes/expedition/ExpeditionDemo.tscn\") as PackedScene\n    _check(packed != null, \"Main scene loads\")\n    if packed == null:\n        quit(1)\n        return\n    var scene: Node = packed.instantiate()\n    var count: int = _walk(scene)\n    var pages: Node = scene.find_child(\"Pages\", true, false)\n    _check(pages.get_child_count() == 3, \"Three native page instances\")\n    for page: Node in pages.get_children():\n        _check(not page.scene_file_path.is_empty(), \"Page keeps PackedScene reference: \" + page.name)\n    var world: Node = scene.find_child(\"World\", true, false)\n    _check(world.get_child_count() == 9, \"Nine editable map tiles\")\n    for tile: Node in world.get_children():\n        _check(tile.scene_file_path.ends_with(\"RegionTile.tscn\"), \"Tile instance: \" + tile.name)\n        _check(tile.get(\"definition\") is FogRegion, \"Tile resource: \" + tile.name)\n        _check(tile.get(\"definition\").polygon.size() >= 3, \"Tile geometry: \" + tile.name)\n    var config: FogCatalog = scene.get(\"catalog\")\n    _check(config != null and config.regions.size() == 9, \"Catalog binding\")\n    _check(config.units.size() == 12 and config.events.size() == 6, \"M1 content counts\")\n    _check(int(config.table(\"units\").hero.atk) == 24, \"Normal hero configuration\")\n    _check(is_equal_approx(float(scene.get(\"playback_interval\")), 0.65), \"Restored Inspector parameter\")\n    _check(ProjectSettings.get_setting(\"application/run/main_scene\") == \"res://scenes/expedition/ExpeditionDemo.tscn\", \"F5 entry\")\n    scene.free()\n    print(\"VERIFY_DEMO: \" + JSON.stringify({\"checks\": checks, \"native_nodes\": count, \"failures\": failures}))\n    quit(0 if failures.is_empty() else 1)\n\nfunc _check(condition: bool, message: String) -> void:\n    checks += 1\n    if not condition:\n        failures.append(message)\n        push_error(message)\n\nfunc _walk(node: Node) -> int:\n    var total: int = 1\n    if node.get_parent() != null:\n        _check(node.owner != null, \"Saved owner: \" + str(node.name))\n    var attached: Script = node.get_script() as Script\n    if attached != null:\n        _check(attached.can_instantiate(), \"Valid script: \" + attached.resource_path)\n    for child: Node in node.get_children():\n        total += _walk(child)\n    return total\n"
+    }
+  },
+  {
+    "name": "filesystem_manage",
+    "arguments": {
+      "op": "scan"
+    }
+  }
+]

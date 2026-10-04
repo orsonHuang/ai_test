@@ -1,0 +1,138 @@
+{
+  "chest": {
+    "ap": 5.0,
+    "current": "briar",
+    "error": "",
+    "inventory": 1.0,
+    "modal": false,
+    "party": [
+      {
+        "armor": 8.0,
+        "armor_every_levels": 2.0,
+        "atk": 24.0,
+        "atk_per_level": 3.0,
+        "hp": 160.0,
+        "hp_per_level": 14.0,
+        "id": "hero",
+        "kind": "hero",
+        "max_hp": 160.0,
+        "name": "远征者",
+        "side": "ally",
+        "speed": 10.0
+      },
+      {
+        "armor": 3.0,
+        "armor_every_levels": 2.0,
+        "atk": 11.0,
+        "atk_per_level": 3.0,
+        "hp": 100.0,
+        "hp_per_level": 14.0,
+        "id": "priest",
+        "kind": "follower",
+        "max_hp": 100.0,
+        "name": "修女",
+        "side": "ally",
+        "speed": 14.0
+      }
+    ],
+    "phase": "region"
+  },
+  "event": {
+    "ap": 4.0,
+    "current": "briar",
+    "error": "",
+    "inventory": 2.0,
+    "modal": false,
+    "party": [
+      {
+        "armor": 8.0,
+        "armor_every_levels": 2.0,
+        "atk": 31.0,
+        "atk_per_level": 3.0,
+        "hp": 160.0,
+        "hp_per_level": 14.0,
+        "id": "hero",
+        "kind": "hero",
+        "max_hp": 160.0,
+        "name": "远征者",
+        "side": "ally",
+        "speed": 12.0
+      },
+      {
+        "armor": 3.0,
+        "armor_every_levels": 2.0,
+        "atk": 11.0,
+        "atk_per_level": 3.0,
+        "hp": 100.0,
+        "hp_per_level": 14.0,
+        "id": "priest",
+        "kind": "follower",
+        "max_hp": 100.0,
+        "name": "修女",
+        "side": "ally",
+        "speed": 14.0
+      }
+    ],
+    "phase": "region"
+  },
+  "loadout": {
+    "active": "fire",
+    "equipped": {
+      "armor": "chest/briar/1",
+      "charm": "",
+      "weapon": "forge/briar/weapon"
+    },
+    "gold": 15.0,
+    "party": [
+      {
+        "armor": 7.0,
+        "armor_every_levels": 2.0,
+        "atk": 31.0,
+        "atk_per_level": 3.0,
+        "hp": 160.0,
+        "hp_per_level": 14.0,
+        "id": "hero",
+        "kind": "hero",
+        "max_hp": 184.0,
+        "name": "远征者",
+        "side": "ally",
+        "speed": 16.0
+      },
+      {
+        "armor": 3.0,
+        "armor_every_levels": 2.0,
+        "atk": 11.0,
+        "atk_per_level": 3.0,
+        "hp": 100.0,
+        "hp_per_level": 14.0,
+        "id": "priest",
+        "kind": "follower",
+        "max_hp": 100.0,
+        "name": "修女",
+        "side": "ally",
+        "speed": 14.0
+      }
+    ],
+    "passive": "regen"
+  },
+  "logs": {
+    "source": "game",
+    "lines": [
+      {
+        "level": "info",
+        "run_id": "r6383977-6",
+        "source": "game",
+        "text": "[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\n"
+      }
+    ],
+    "total_count": 1,
+    "returned_count": 1,
+    "offset": 0,
+    "limit": 20,
+    "has_more": false,
+    "run_id": "r6383977-6",
+    "is_running": true,
+    "dropped_count": 0,
+    "stale_run_id": false
+  }
+}

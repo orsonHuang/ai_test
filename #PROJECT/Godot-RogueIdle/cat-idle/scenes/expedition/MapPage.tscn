@@ -1,0 +1,239 @@
+[gd_scene format=3 uid="uid://dn1o1vb48wuun"]
+
+[ext_resource type="PackedScene" uid="uid://be0j7n4o47eeq" path="res://scenes/expedition/components/UnitCard.tscn" id="1_iypvk"]
+[ext_resource type="Theme" uid="uid://cqsd85b7ees4j" path="res://resources/expedition/ExpeditionTheme.tres" id="1_qh80p"]
+[ext_resource type="Script" uid="uid://bmi8lbyl0i7l3" path="res://scripts/expedition/ui/FogMapBoard.gd" id="2_qh80p"]
+[ext_resource type="PackedScene" uid="uid://bylywjvkyibwg" path="res://scenes/expedition/components/RegionTile.tscn" id="3_mwmjb"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/castle.tres" id="4_l1smx"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/frost.tres" id="5_oterf"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/ash.tres" id="6_443gr"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/quarry.tres" id="7_afufu"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/river.tres" id="8_ahcjd"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/ember.tres" id="9_1b6ma"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/ruins.tres" id="10_uug8u"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/village.tres" id="11_0i52d"]
+
+[node name="MapPage" type="Control" unique_id=1538482909]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qh80p")
+
+[node name="MapColumns" type="HBoxContainer" parent="." unique_id=352273579]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 12
+
+[node name="SquadColumn" type="VBoxContainer" parent="MapColumns" unique_id=315250998]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SquadHeading" type="Label" parent="MapColumns/SquadColumn" unique_id=312922796]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "远征小队"
+
+[node name="Budget" type="Label" parent="MapColumns/SquadColumn" unique_id=523955477]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "整备后出发"
+
+[node name="BudgetBar" type="ProgressBar" parent="MapColumns/SquadColumn" unique_id=1093588356]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+max_value = 6.0
+value = 6.0
+show_percentage = false
+
+[node name="PartyCards" type="VBoxContainer" parent="MapColumns/SquadColumn" unique_id=507184438]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Party0" parent="MapColumns/SquadColumn/PartyCards" unique_id=917513118 instance=ExtResource("1_iypvk")]
+layout_mode = 2
+
+[node name="Party1" parent="MapColumns/SquadColumn/PartyCards" unique_id=853838788 instance=ExtResource("1_iypvk")]
+layout_mode = 2
+
+[node name="Party2" parent="MapColumns/SquadColumn/PartyCards" unique_id=1199889738 instance=ExtResource("1_iypvk")]
+layout_mode = 2
+
+[node name="SetSummary" type="Label" parent="MapColumns/SquadColumn" unique_id=1941945241]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "尚未成套"
+
+[node name="PartyNote" type="Label" parent="MapColumns/SquadColumn" unique_id=9946534]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "前排承受多数攻击"
+autowrap_mode = 2
+
+[node name="Legend" type="Label" parent="MapColumns/SquadColumn" unique_id=1812652366]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "金色 · 所在 / 选中
+青色边界 · 可以前往"
+
+[node name="AtlasColumn" type="VBoxContainer" parent="MapColumns" unique_id=1866042690]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="AtlasTitle" type="Label" parent="MapColumns/AtlasColumn" unique_id=808463108]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "向北，穿越迷雾"
+horizontal_alignment = 1
+
+[node name="MapBoard" type="Control" parent="MapColumns/AtlasColumn" unique_id=1346513847]
+custom_minimum_size = Vector2(500, 400)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("2_qh80p")
+
+[node name="World" type="Control" parent="MapColumns/AtlasColumn/MapBoard" unique_id=1559960967]
+anchors_preset = 0
+offset_left = 99.875
+offset_right = 99.875
+scale = Vector2(1.26875, 1.26875)
+mouse_filter = 2
+
+[node name="Castle" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=1828439693 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "黯冠魔王"
+definition = ExtResource("4_l1smx")
+
+[node name="Frost" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=48088892 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "白狼领主"
+definition = ExtResource("5_oterf")
+
+[node name="Ash" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=707605305 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "余烬执政官"
+definition = ExtResource("6_443gr")
+
+[node name="Quarry" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=37736503 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "苔岩巨像"
+definition = ExtResource("7_afufu")
+
+[node name="River" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=1731224680 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "逐月之影"
+definition = ExtResource("8_ahcjd")
+
+[node name="Ember" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=349464599 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "熔火祭司"
+definition = ExtResource("9_1b6ma")
+
+[node name="Briar" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=1172386525 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ruins" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=145830200 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "失落猎手"
+definition = ExtResource("10_uug8u")
+
+[node name="Village" parent="MapColumns/AtlasColumn/MapBoard/World" unique_id=917989498 instance=ExtResource("3_mwmjb")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "远征起点"
+definition = ExtResource("11_0i52d")
+
+[node name="AtlasCaption" type="Label" parent="MapColumns/AtlasColumn" unique_id=154828220]
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "鹿鸣村 → 三个地区 → 魔王城"
+horizontal_alignment = 1
+
+[node name="RegionColumn" type="VBoxContainer" parent="MapColumns" unique_id=1460118928]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RegionTitle" type="Label" parent="MapColumns/RegionColumn" unique_id=1821560705]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "荆棘林地"
+
+[node name="RegionDescription" type="RichTextLabel" parent="MapColumns/RegionColumn" unique_id=1030025248]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+
+[node name="EnterRegion" type="Button" parent="MapColumns/RegionColumn" unique_id=843229380]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "选择相邻前方地区"
+
+[node name="Divider" type="HSeparator" parent="MapColumns/RegionColumn" unique_id=950031357]
+layout_mode = 2
+
+[node name="ActivityHeading" type="Label" parent="MapColumns/RegionColumn" unique_id=138514726]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "当前地区 · 可用行动"
+
+[node name="Activity0" type="Button" parent="MapColumns/RegionColumn" unique_id=2005255758]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "活动"
+
+[node name="Activity1" type="Button" parent="MapColumns/RegionColumn" unique_id=1261425496]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "活动"
+
+[node name="Activity2" type="Button" parent="MapColumns/RegionColumn" unique_id=1914534451]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "活动"
+
+[node name="Activity3" type="Button" parent="MapColumns/RegionColumn" unique_id=2007289730]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "活动"
+
+[node name="Activity4" type="Button" parent="MapColumns/RegionColumn" unique_id=2016179550]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+text = "活动"
+
+[node name="ActivityHint" type="Label" parent="MapColumns/RegionColumn" unique_id=509388941]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "可提前离开，无法回头。"
+autowrap_mode = 2

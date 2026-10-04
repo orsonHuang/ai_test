@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "#PROJECT/新工作准备/黄宝育-作品集/黄宝育-游戏分析报告-面试提交版.md",
+                "file": "#PROJECT/Godot-RogueIdle/GDD/01-战斗系统/02-战斗UI.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "黄宝育-游戏分析报告-面试提交版"
+              "title": "02-战斗UI"
             }
           }
         ]
@@ -188,29 +188,37 @@
       "bases:新建数据库": false
     }
   },
-  "active": "fef36e7ad0bd2966",
+  "active": "a11ba7d8fc86925f",
   "lastOpenFiles": [
-    "#PROJECT/Nite-Nite/artifacts/playtest/08-twelve-residents.png",
-    "#PROJECT/Nite-Nite/artifacts/playtest/debug12.png",
-    "#PROJECT/Nite-Nite/artifacts/debug12.cjs",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/temp/mcp-captures/workbench-verified.png",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/temp/programming/packer-driver/targets/preview.lock",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/temp/programming/packer-driver/targets/editor.lock",
-    "#PROJECT/Nite-Nite/artifacts/workbench-test-uEcYqM/validation/reviews/night-1-v4.json",
-    "#PROJECT/Nite-Nite/artifacts/workbench-test-uEcYqM/validation/reviews/night-1-v3-backup.json",
-    "#PROJECT/Nite-Nite/artifacts/workbench-test-uEcYqM/validation/drafts/night-1.json",
-    "#PROJECT/Nite-Nite/artifacts/workbench-test-uEcYqM/validation/drafts",
-    "#PROJECT/Nite-Nite/artifacts/workbench-test-uEcYqM/validation/reviews",
-    "#PROJECT/Nite-Nite/artifacts/workbench-test-uEcYqM/validation",
-    "#PROJECT/Nite-Nite/artifacts/workbench-test-uEcYqM/cocosProject/Nite-Nite/assets/Data/levels.json",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/temp/mcp-captures/workbench-panel.png",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/temp/mcp-captures/workbench-first.png",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/library/1e/1e13ee17-72d6-4a4f-be99-1c910e0ae021.png",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/library/16/16903954-bc78-405f-9375-e701288f4574.png",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/library/d6/d68d923a-55f0-4539-a814-667f7088d227.png",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/assets/Art/pig.png",
-    "#PROJECT/Nite-Nite/tools/art-source/pig.svg",
-    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/assets/Art/koala.png",
+    "#PROJECT/Nite-Nite/references/resident-pilot/cat-silver-idle-concept-v1-prompt.txt",
+    "#PROJECT/Nite-Nite/references/resident-pilot/cat-silver-idle-concept-v1.png",
+    "#PROJECT/Nite-Nite/validation/resident-polish/acceptance.json",
+    "#PROJECT/Nite-Nite/validation/resident-polish/qr-result.json",
+    "#PROJECT/Nite-Nite/validation/resident-polish/wechat-game.jpg",
+    "#PROJECT/Nite-Nite/artifacts/wechat-resident-polish-preview.png",
+    "#PROJECT/Nite-Nite/validation/resident-polish/qr-log.txt",
+    "#PROJECT/Nite-Nite/validation/resident-polish/wechat-ready.jpg",
+    "#PROJECT/Nite-Nite/validation/resident-polish/wechat-home.jpg",
+    "#PROJECT/Nite-Nite/tools/test-resident-notes.cjs",
+    "#PROJECT/Nite-Nite/validation/resident-polish/build/build-audit.json",
+    "#PROJECT/Nite-Nite/validation/resident-polish/build",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/first-screen.js",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/slogan.png",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/logo.png",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/engine-adapter.js",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/web-adapter.js",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/application.js",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/subpackages/main/native/fe/fe0f9c42-f62f-4089-a8d7-9c289fec5b2b.png",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/subpackages/main/native/fc/fcffc98f-2e23-4b3b-a22e-05c38057e98a.png",
+    "#PROJECT/Nite-Nite/cocosProject/Nite-Nite/build/wechatgame/subpackages/main/native/f8/f88e2b1c-4fc3-4912-9100-4b2792669051.png",
+    "#PROJECT/Nite-Nite/docs/住户交互与素材交接.md",
+    "#PROJECT/Nite-Nite/docs/声音试听与接入.md",
+    "#PROJECT/Nite-Nite/artifacts/audio-deps/imageio_ffmpeg/binaries/README.md",
+    "#PROJECT/Nite-Nite/docs/游戏圈与分享.md",
+    "#PROJECT/Nite-Nite/docs/平台接入.md",
+    "#PROJECT/Godot-RogueIdle/GDD/01-战斗系统/02-敌人设计.md",
+    "#PROJECT/Godot-RogueIdle/GDD/01-战斗系统/01-战斗规则.md",
+    "#PROJECT/新工作准备/黄宝育-作品集/黄宝育-游戏分析报告-面试提交版.md",
     "#LLM-WIKI/system/maintenance/CHANGELOG_archive/README.md",
     "#LLM-WIKI/system/maintenance/checklists/release-package-check.md",
     "#LLM-WIKI/system/maintenance/checklists/README.md",
@@ -227,14 +235,6 @@
     "#LLM-WIKI/system/registry/index.md",
     "#LLM-WIKI/system/protocols/WIKI-LINK-STANDARD.md",
     "#LLM-WIKI/system/protocols/SCORING_SYSTEM.md",
-    "#LLM-WIKI/system/protocols/RUNTIME_ROUTING.md",
-    "#LLM-WIKI/system/protocols/MODEL_ROUTING.md",
-    "#LLM-WIKI/system/protocols/QUERY_PROTOCOL.md",
-    "#LLM-WIKI/system/protocols/INGEST_PROTOCOL.md",
-    "#LLM-WIKI/system/maintenance/SETUP.md",
-    "#LLM-WIKI/system/maintenance/README.md",
-    "#LLM-WIKI/system/integrations/README.md",
-    "#LLM-WIKI/system/integrations/IMA-GUIDE.md",
-    "#LLM-WIKI/system/maintenance/CHANGELOG.md"
+    "#LLM-WIKI/system/protocols/RUNTIME_ROUTING.md"
   ]
 }

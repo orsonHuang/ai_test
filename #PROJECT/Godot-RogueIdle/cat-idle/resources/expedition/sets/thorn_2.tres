@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "thorn_2"
+display_name = "荆棘"
+category = "sets"
+values = {"set_id": "thorn", "name": "荆棘", "piece_count": 2, "effect_key": "counter_attack_coeff", "value": 0.65, "trigger_limit_per_round": 1, "heal_cap_per_round": 0}

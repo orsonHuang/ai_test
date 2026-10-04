@@ -1,0 +1,596 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":54,\"elapsed_msec\":3001,\"helper_expected\":true,\"helper_live\":false,\"ready\":false,\"ready_wait_msec\":3000,\"run_started_msec\":7133847,\"run_token\":7,\"session_active\":false,\"status\":\"not_live\"},\"helper_live\":false,\"mode\":\"main\",\"reason\":\"Game launched but is not responding. A recent editor error may be related, but may predate this run: Parse Error: Could not parse global class \\\"FogRegion\\\" from \\\"res://scripts/expedition/data/FogRegion.gd\\\". (res://scripts/expedition/ui/FogRegionTile.gd:6). Check logs_read(source='editor', include_details=true).\",\"recent_errors\":[{\"details\":{\"code\":\"Parse Error: Could not parse global class \\\"FogRegion\\\" from \\\"res://scripts/expedition/data/FogRegion.gd\\\".\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[],\"message\":\"Parse Error: Could not parse global class \\\"FogRegion\\\" from \\\"res://scripts/expedition/data/FogRegion.gd\\\".\",\"rationale\":\"\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":6,\"path\":\"res://scripts/expedition/ui/FogRegionTile.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":6,\"path\":\"res://scripts/expedition/ui/FogRegionTile.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":6,\"path\":\"res://scripts/expedition/ui/FogRegionTile.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Could not parse global class \\\"FogRegion\\\" from \\\"res://scripts/expedition/data/FogRegion.gd\\\".\"},{\"details\":{\"code\":\"Parse Error: Unexpected \\\"Indent\\\" in class body.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[],\"message\":\"Parse Error: Unexpected \\\"Indent\\\" in class body.\",\"rationale\":\"\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":18,\"path\":\"res://scripts/expedition/data/FogRegion.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":18,\"path\":\"res://scripts/expedition/data/FogRegion.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":18,\"path\":\"res://scripts/expedition/data/FogRegion.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Unexpected \\\"Indent\\\" in class body.\"},{\"details\":{\"code\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[{\"function\":\"move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"},{\"function\":\"test_seed_fog_and_no_recursive_reveal\",\"line\":45,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\",\"rationale\":\"\",\"resolved\":{\"function\":\"move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"},\"source\":{\"function\":\"FogRun.move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"}},\"function\":\"move_to\",\"level\":\"error\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\",\"source\":\"editor\",\"text\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\"},{\"details\":{\"code\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[{\"function\":\"move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"},{\"function\":\"test_seed_fog_and_no_recursive_reveal\",\"line\":42,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\",\"rationale\":\"\",\"resolved\":{\"function\":\"move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"},\"source\":{\"function\":\"FogRun.move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"}},\"function\":\"move_to\",\"level\":\"error\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\",\"source\":\"editor\",\"text\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\"},{\"details\":{\"code\":\"Invalid access to property or key 'village' on a base object of type 'Dictionary'.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[{\"function\":\"_reveal_neighbours\",\"line\":76,\"path\":\"res://scripts/expedition/FogRun.gd\"},{\"function\":\"new_run\",\"line\":34,\"path\":\"res://scripts/expedition/FogRun.gd\"},{\"function\":\"_run\",\"line\":26,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"test_seed_fog_and_no_recursive_reveal\",\"line\":38,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Invalid access to property or key 'village' on a base object of type 'Dictionary'.\",\"rationale\":\"\",\"resolved\":{\"function\":\"_reveal_neighbours\",\"line\":76,\"path\":\"res://scripts/expedition/FogRun.gd\"},\"source\":{\"function\":\"FogRun._reveal_neighbours\",\"line\":76,\"path\":\"res://scripts/expedition/FogRun.gd\"}},\"function\":\"_reveal_neighbours\",\"level\":\"error\",\"line\":76,\"path\":\"res://scripts/expedition/FogRun.gd\",\"source\":\"editor\",\"text\":\"Invalid access to property or key 'village' on a base object of type 'Dictionary'.\"}],\"recent_errors_may_predate_run\":true,\"recent_errors_scope\":\"retained_recent\",\"recent_errors_truncated\":false,\"retained_errors\":[{\"details\":{\"code\":\"Parse Error: Could not parse global class \\\"FogRegion\\\" from \\\"res://scripts/expedition/data/FogRegion.gd\\\".\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[],\"message\":\"Parse Error: Could not parse global class \\\"FogRegion\\\" from \\\"res://scripts/expedition/data/FogRegion.gd\\\".\",\"rationale\":\"\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":6,\"path\":\"res://scripts/expedition/ui/FogRegionTile.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":6,\"path\":\"res://scripts/expedition/ui/FogRegionTile.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":6,\"path\":\"res://scripts/expedition/ui/FogRegionTile.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Could not parse global class \\\"FogRegion\\\" from \\\"res://scripts/expedition/data/FogRegion.gd\\\".\"},{\"details\":{\"code\":\"Parse Error: Unexpected \\\"Indent\\\" in class body.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[],\"message\":\"Parse Error: Unexpected \\\"Indent\\\" in class body.\",\"rationale\":\"\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":18,\"path\":\"res://scripts/expedition/data/FogRegion.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":18,\"path\":\"res://scripts/expedition/data/FogRegion.gd\"}},\"function\":\"GDScript::reload\",\"level\":\"error\",\"line\":18,\"path\":\"res://scripts/expedition/data/FogRegion.gd\",\"source\":\"editor\",\"text\":\"Parse Error: Unexpected \\\"Indent\\\" in class body.\"},{\"details\":{\"code\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[{\"function\":\"move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"},{\"function\":\"test_seed_fog_and_no_recursive_reveal\",\"line\":45,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\",\"rationale\":\"\",\"resolved\":{\"function\":\"move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"},\"source\":{\"function\":\"FogRun.move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"}},\"function\":\"move_to\",\"level\":\"error\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\",\"source\":\"editor\",\"text\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\"},{\"details\":{\"code\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[{\"function\":\"move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"},{\"function\":\"test_seed_fog_and_no_recursive_reveal\",\"line\":42,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\",\"rationale\":\"\",\"resolved\":{\"function\":\"move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"},\"source\":{\"function\":\"FogRun.move_to\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\"}},\"function\":\"move_to\",\"level\":\"error\",\"line\":128,\"path\":\"res://scripts/expedition/FogRun.gd\",\"source\":\"editor\",\"text\":\"Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.\"},{\"details\":{\"code\":\"Invalid access to property or key 'village' on a base object of type 'Dictionary'.\",\"error_type\":2,\"error_type_name\":\"script\",\"frames\":[{\"function\":\"_reveal_neighbours\",\"line\":76,\"path\":\"res://scripts/expedition/FogRun.gd\"},{\"function\":\"new_run\",\"line\":34,\"path\":\"res://scripts/expedition/FogRun.gd\"},{\"function\":\"_run\",\"line\":26,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"test_seed_fog_and_no_recursive_reveal\",\"line\":38,\"path\":\"res://tests/test_expedition_rules.gd\"},{\"function\":\"run_suite\",\"line\":48,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_suites\",\"line\":158,\"path\":\"res://addons/godot_ai/testing/test_runner.gd\"},{\"function\":\"run_tests\",\"line\":44,\"path\":\"res://addons/godot_ai/handlers/test_handler.gd\"},{\"function\":\"_call_handler\",\"line\":193,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_dispatch\",\"line\":150,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"tick\",\"line\":122,\"path\":\"res://addons/godot_ai/dispatcher.gd\"},{\"function\":\"_process\",\"line\":108,\"path\":\"res://addons/godot_ai/connection.gd\"}],\"message\":\"Invalid access to property or key 'village' on a base object of type 'Dictionary'.\",\"rationale\":\"\",\"resolved\":{\"function\":\"_reveal_neighbours\",\"line\":76,\"path\":\"res://scripts/expedition/FogRun.gd\"},\"source\":{\"function\":\"FogRun._reveal_neighbours\",\"line\":76,\"path\":\"res://scripts/expedition/FogRun.gd\"}},\"function\":\"_reveal_neighbours\",\"level\":\"error\",\"line\":76,\"path\":\"res://scripts/expedition/FogRun.gd\",\"source\":\"editor\",\"text\":\"Invalid access to property or key 'village' on a base object of type 'Dictionary'.\"}],\"scene\":\"\",\"session_active\":false,\"undoable\":false,\"was_already_running\":false}"
+    }
+  ],
+  "structuredContent": {
+    "autosave": true,
+    "current_run_errors": [],
+    "game_status": {
+      "active": true,
+      "editor_log_cursor": 54,
+      "elapsed_msec": 3001,
+      "helper_expected": true,
+      "helper_live": false,
+      "ready": false,
+      "ready_wait_msec": 3000,
+      "run_started_msec": 7133847,
+      "run_token": 7,
+      "session_active": false,
+      "status": "not_live"
+    },
+    "helper_live": false,
+    "mode": "main",
+    "reason": "Game launched but is not responding. A recent editor error may be related, but may predate this run: Parse Error: Could not parse global class \"FogRegion\" from \"res://scripts/expedition/data/FogRegion.gd\". (res://scripts/expedition/ui/FogRegionTile.gd:6). Check logs_read(source='editor', include_details=true).",
+    "recent_errors": [
+      {
+        "details": {
+          "code": "Parse Error: Could not parse global class \"FogRegion\" from \"res://scripts/expedition/data/FogRegion.gd\".",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [],
+          "message": "Parse Error: Could not parse global class \"FogRegion\" from \"res://scripts/expedition/data/FogRegion.gd\".",
+          "rationale": "",
+          "resolved": {
+            "function": "GDScript::reload",
+            "line": 6,
+            "path": "res://scripts/expedition/ui/FogRegionTile.gd"
+          },
+          "source": {
+            "function": "GDScript::reload",
+            "line": 6,
+            "path": "res://scripts/expedition/ui/FogRegionTile.gd"
+          }
+        },
+        "function": "GDScript::reload",
+        "level": "error",
+        "line": 6,
+        "path": "res://scripts/expedition/ui/FogRegionTile.gd",
+        "source": "editor",
+        "text": "Parse Error: Could not parse global class \"FogRegion\" from \"res://scripts/expedition/data/FogRegion.gd\"."
+      },
+      {
+        "details": {
+          "code": "Parse Error: Unexpected \"Indent\" in class body.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [],
+          "message": "Parse Error: Unexpected \"Indent\" in class body.",
+          "rationale": "",
+          "resolved": {
+            "function": "GDScript::reload",
+            "line": 18,
+            "path": "res://scripts/expedition/data/FogRegion.gd"
+          },
+          "source": {
+            "function": "GDScript::reload",
+            "line": 18,
+            "path": "res://scripts/expedition/data/FogRegion.gd"
+          }
+        },
+        "function": "GDScript::reload",
+        "level": "error",
+        "line": 18,
+        "path": "res://scripts/expedition/data/FogRegion.gd",
+        "source": "editor",
+        "text": "Parse Error: Unexpected \"Indent\" in class body."
+      },
+      {
+        "details": {
+          "code": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [
+            {
+              "function": "move_to",
+              "line": 128,
+              "path": "res://scripts/expedition/FogRun.gd"
+            },
+            {
+              "function": "test_seed_fog_and_no_recursive_reveal",
+              "line": 45,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.",
+          "rationale": "",
+          "resolved": {
+            "function": "move_to",
+            "line": 128,
+            "path": "res://scripts/expedition/FogRun.gd"
+          },
+          "source": {
+            "function": "FogRun.move_to",
+            "line": 128,
+            "path": "res://scripts/expedition/FogRun.gd"
+          }
+        },
+        "function": "move_to",
+        "level": "error",
+        "line": 128,
+        "path": "res://scripts/expedition/FogRun.gd",
+        "source": "editor",
+        "text": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'."
+      },
+      {
+        "details": {
+          "code": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [
+            {
+              "function": "move_to",
+              "line": 128,
+              "path": "res://scripts/expedition/FogRun.gd"
+            },
+            {
+              "function": "test_seed_fog_and_no_recursive_reveal",
+              "line": 42,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.",
+          "rationale": "",
+          "resolved": {
+            "function": "move_to",
+            "line": 128,
+            "path": "res://scripts/expedition/FogRun.gd"
+          },
+          "source": {
+            "function": "FogRun.move_to",
+            "line": 128,
+            "path": "res://scripts/expedition/FogRun.gd"
+          }
+        },
+        "function": "move_to",
+        "level": "error",
+        "line": 128,
+        "path": "res://scripts/expedition/FogRun.gd",
+        "source": "editor",
+        "text": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'."
+      },
+      {
+        "details": {
+          "code": "Invalid access to property or key 'village' on a base object of type 'Dictionary'.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [
+            {
+              "function": "_reveal_neighbours",
+              "line": 76,
+              "path": "res://scripts/expedition/FogRun.gd"
+            },
+            {
+              "function": "new_run",
+              "line": 34,
+              "path": "res://scripts/expedition/FogRun.gd"
+            },
+            {
+              "function": "_run",
+              "line": 26,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "test_seed_fog_and_no_recursive_reveal",
+              "line": 38,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Invalid access to property or key 'village' on a base object of type 'Dictionary'.",
+          "rationale": "",
+          "resolved": {
+            "function": "_reveal_neighbours",
+            "line": 76,
+            "path": "res://scripts/expedition/FogRun.gd"
+          },
+          "source": {
+            "function": "FogRun._reveal_neighbours",
+            "line": 76,
+            "path": "res://scripts/expedition/FogRun.gd"
+          }
+        },
+        "function": "_reveal_neighbours",
+        "level": "error",
+        "line": 76,
+        "path": "res://scripts/expedition/FogRun.gd",
+        "source": "editor",
+        "text": "Invalid access to property or key 'village' on a base object of type 'Dictionary'."
+      }
+    ],
+    "recent_errors_may_predate_run": true,
+    "recent_errors_scope": "retained_recent",
+    "recent_errors_truncated": false,
+    "retained_errors": [
+      {
+        "details": {
+          "code": "Parse Error: Could not parse global class \"FogRegion\" from \"res://scripts/expedition/data/FogRegion.gd\".",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [],
+          "message": "Parse Error: Could not parse global class \"FogRegion\" from \"res://scripts/expedition/data/FogRegion.gd\".",
+          "rationale": "",
+          "resolved": {
+            "function": "GDScript::reload",
+            "line": 6,
+            "path": "res://scripts/expedition/ui/FogRegionTile.gd"
+          },
+          "source": {
+            "function": "GDScript::reload",
+            "line": 6,
+            "path": "res://scripts/expedition/ui/FogRegionTile.gd"
+          }
+        },
+        "function": "GDScript::reload",
+        "level": "error",
+        "line": 6,
+        "path": "res://scripts/expedition/ui/FogRegionTile.gd",
+        "source": "editor",
+        "text": "Parse Error: Could not parse global class \"FogRegion\" from \"res://scripts/expedition/data/FogRegion.gd\"."
+      },
+      {
+        "details": {
+          "code": "Parse Error: Unexpected \"Indent\" in class body.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [],
+          "message": "Parse Error: Unexpected \"Indent\" in class body.",
+          "rationale": "",
+          "resolved": {
+            "function": "GDScript::reload",
+            "line": 18,
+            "path": "res://scripts/expedition/data/FogRegion.gd"
+          },
+          "source": {
+            "function": "GDScript::reload",
+            "line": 18,
+            "path": "res://scripts/expedition/data/FogRegion.gd"
+          }
+        },
+        "function": "GDScript::reload",
+        "level": "error",
+        "line": 18,
+        "path": "res://scripts/expedition/data/FogRegion.gd",
+        "source": "editor",
+        "text": "Parse Error: Unexpected \"Indent\" in class body."
+      },
+      {
+        "details": {
+          "code": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [
+            {
+              "function": "move_to",
+              "line": 128,
+              "path": "res://scripts/expedition/FogRun.gd"
+            },
+            {
+              "function": "test_seed_fog_and_no_recursive_reveal",
+              "line": 45,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.",
+          "rationale": "",
+          "resolved": {
+            "function": "move_to",
+            "line": 128,
+            "path": "res://scripts/expedition/FogRun.gd"
+          },
+          "source": {
+            "function": "FogRun.move_to",
+            "line": 128,
+            "path": "res://scripts/expedition/FogRun.gd"
+          }
+        },
+        "function": "move_to",
+        "level": "error",
+        "line": 128,
+        "path": "res://scripts/expedition/FogRun.gd",
+        "source": "editor",
+        "text": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'."
+      },
+      {
+        "details": {
+          "code": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [
+            {
+              "function": "move_to",
+              "line": 128,
+              "path": "res://scripts/expedition/FogRun.gd"
+            },
+            {
+              "function": "test_seed_fog_and_no_recursive_reveal",
+              "line": 42,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'.",
+          "rationale": "",
+          "resolved": {
+            "function": "move_to",
+            "line": 128,
+            "path": "res://scripts/expedition/FogRun.gd"
+          },
+          "source": {
+            "function": "FogRun.move_to",
+            "line": 128,
+            "path": "res://scripts/expedition/FogRun.gd"
+          }
+        },
+        "function": "move_to",
+        "level": "error",
+        "line": 128,
+        "path": "res://scripts/expedition/FogRun.gd",
+        "source": "editor",
+        "text": "Invalid access to property or key 'next_ids' on a base object of type 'Dictionary'."
+      },
+      {
+        "details": {
+          "code": "Invalid access to property or key 'village' on a base object of type 'Dictionary'.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [
+            {
+              "function": "_reveal_neighbours",
+              "line": 76,
+              "path": "res://scripts/expedition/FogRun.gd"
+            },
+            {
+              "function": "new_run",
+              "line": 34,
+              "path": "res://scripts/expedition/FogRun.gd"
+            },
+            {
+              "function": "_run",
+              "line": 26,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "test_seed_fog_and_no_recursive_reveal",
+              "line": 38,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Invalid access to property or key 'village' on a base object of type 'Dictionary'.",
+          "rationale": "",
+          "resolved": {
+            "function": "_reveal_neighbours",
+            "line": 76,
+            "path": "res://scripts/expedition/FogRun.gd"
+          },
+          "source": {
+            "function": "FogRun._reveal_neighbours",
+            "line": 76,
+            "path": "res://scripts/expedition/FogRun.gd"
+          }
+        },
+        "function": "_reveal_neighbours",
+        "level": "error",
+        "line": 76,
+        "path": "res://scripts/expedition/FogRun.gd",
+        "source": "editor",
+        "text": "Invalid access to property or key 'village' on a base object of type 'Dictionary'."
+      }
+    ],
+    "scene": "",
+    "session_active": false,
+    "undoable": false,
+    "was_already_running": false
+  },
+  "isError": false
+}

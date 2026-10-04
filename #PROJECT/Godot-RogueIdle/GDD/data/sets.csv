@@ -1,0 +1,7 @@
+set_id,name,piece_count,effect_key,value,trigger_limit_per_round,heal_cap_per_round
+thorn,荆棘,2,counter_attack_coeff,0.65,1,0
+thorn,荆棘,3,shield_after_counter,14,1,0
+storm,猎风,2,marked_direct_damage_bonus_pct,30,0,0
+storm,猎风,3,chase_attack_coeff,0.5,1,0
+ember,余烬,2,burn_stacks_on_primary_hit,1,0,0
+ember,余烬,3,heal_per_target_burn_tick,4,0,8

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="catIdle"
-run/main_scene="res://scenes/Battle.tscn"
+run/main_scene="res://scenes/expedition/ExpeditionDemo.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,6 +21,10 @@ _mcp_game_helper="*res://addons/godot_ai/runtime/game_helper.gd"
 
 [display]
 
+window/size/viewport_width=1600
+window/size/viewport_height=900
+window/size/window_width_override=1440
+window/size/window_height_override=810
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

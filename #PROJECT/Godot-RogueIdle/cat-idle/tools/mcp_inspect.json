@@ -1,0 +1,7 @@
+[
+  {"name":"session_activate","arguments":{"session_id":"cat-idle@65d1"}},
+  {"name":"scene_manage","arguments":{"op":"get_roots"}},
+  {"name":"scene_get_hierarchy","arguments":{"depth":4,"limit":80}},
+  {"name":"editor_screenshot","arguments":{"source":"viewport_2d","max_resolution":1200}},
+  {"name":"api_manage","arguments":{"op":"get_class","params":{"class_name":"Control","sections":["properties"],"include_inherited":false,"limit":90}}}
+]

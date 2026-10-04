@@ -1,0 +1,14 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+    },
+    {
+      "type": "saved_image",
+      "path": "D:\\_Files\\ai_test\\#PROJECT\\Godot-RogueIdle\\docs\\verification\\godot-demo-v1\\castle-battle-paused_content_1.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "isError": false
+}

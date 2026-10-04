@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://b2kc81vd4yn2h"]
+
+[ext_resource type="Theme" uid="uid://cqsd85b7ees4j" path="res://resources/expedition/ExpeditionTheme.tres" id="1_578to"]
+[ext_resource type="Script" uid="uid://pb66ae5u1q61" path="res://scripts/expedition/ui/FogDemo.gd" id="2_7vatg"]
+[ext_resource type="Resource" path="res://resources/expedition/catalog.tres" id="3_u8cwl"]
+[ext_resource type="PackedScene" uid="uid://dn1o1vb48wuun" path="res://scenes/expedition/MapPage.tscn" id="4_nxkrr"]
+[ext_resource type="PackedScene" uid="uid://dnmjsuuuqgpfw" path="res://scenes/expedition/LoadoutPage.tscn" id="5_71qya"]
+[ext_resource type="PackedScene" uid="uid://bauwqrdjyd8jt" path="res://scenes/expedition/BattlePage.tscn" id="6_8besi"]
+[ext_resource type="PackedScene" uid="uid://q8q401bp0q3b" path="res://scenes/expedition/components/DecisionModal.tscn" id="7_74egw"]
+
+[node name="ExpeditionDemo" type="Control" unique_id=1330887218]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_578to")
+script = ExtResource("2_7vatg")
+catalog = ExtResource("3_u8cwl")
+
+[node name="Background" type="ColorRect" parent="." unique_id=629639379]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.047058824, 0.09019608, 0.11764706, 1)
+
+[node name="SafeArea" type="MarginContainer" parent="." unique_id=431256137]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Shell" type="VBoxContainer" parent="SafeArea" unique_id=719058246]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Header" type="HBoxContainer" parent="SafeArea/Shell" unique_id=2130216190]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Brand" type="VBoxContainer" parent="SafeArea/Shell/Header" unique_id=357171114]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="SafeArea/Shell/Header/Brand" unique_id=1841269975]
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "雾境远征"
+
+[node name="Subtitle" type="Label" parent="SafeArea/Shell/Header/Brand" unique_id=1563830507]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "FOGBOUND  /  三人小队 · 向北而行"
+
+[node name="BrandSpacer" type="Control" parent="SafeArea/Shell/Header" unique_id=96681355]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Summary" type="Label" parent="SafeArea/Shell/Header" unique_id=2081061777]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "小队 Lv.1   金币 15"
+
+[node name="NewRun" type="Button" parent="SafeArea/Shell/Header" unique_id=920249631]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "新远征"
+
+[node name="ContinueRun" type="Button" parent="SafeArea/Shell/Header" unique_id=508427013]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "继续"
+
+[node name="Help" type="Button" parent="SafeArea/Shell/Header" unique_id=1207137394]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "手册"
+
+[node name="Pages" type="TabContainer" parent="SafeArea/Shell" unique_id=554148389]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="远征地图" parent="SafeArea/Shell/Pages" unique_id=1538482909 instance=ExtResource("4_nxkrr")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="小队整备" parent="SafeArea/Shell/Pages" unique_id=188718321 instance=ExtResource("5_71qya")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="自动战斗" parent="SafeArea/Shell/Pages" unique_id=97577047 instance=ExtResource("6_8besi")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="FooterRow" type="HBoxContainer" parent="SafeArea/Shell" unique_id=1888123394]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Footer" type="Label" parent="SafeArea/Shell/FooterRow" unique_id=445385701]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 17
+text = "准备出发"
+text_overrun_behavior = 3
+
+[node name="Pending" type="Button" parent="SafeArea/Shell/FooterRow" unique_id=1812497360]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "处理待结算内容"
+
+[node name="SaveStatus" type="Label" parent="SafeArea/Shell/FooterRow" unique_id=126258271]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "准备出发"
+
+[node name="Modal" parent="." unique_id=1599909201 instance=ExtResource("7_74egw")]
+visible = false
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2

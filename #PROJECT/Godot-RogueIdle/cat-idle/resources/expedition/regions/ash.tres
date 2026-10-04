@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogRegion.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ash"
+display_name = "灰烬边城"
+stage = 3
+ap = 6
+next_ids = PackedStringArray("castle")
+adjacent_ids = PackedStringArray("river", "ember", "frost", "castle")
+family = "ember"
+initial_landmark = false
+hp_mult = 1.5
+atk_mult = 1.3
+polygon = PackedVector2Array(300, 165, 480, 150, 550, 215, 540, 280, 385, 300, 290, 310)
+label_position = Vector2(416, 222)
+tint = Color(0.4, 0.27450980392156865, 0.2549019607843137, 1)
+boss_name = "余烬执政官"

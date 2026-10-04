@@ -1,0 +1,5 @@
+[
+  {"name":"session_manage","arguments":{"op":"list"}},
+  {"name":"session_activate","arguments":{"session_id":"cat-idle"}},
+  {"name":"editor_state","arguments":{}}
+]

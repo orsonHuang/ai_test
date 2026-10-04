@@ -1,0 +1,20 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogRegion.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ruins"
+display_name = "遗风丘陵"
+stage = 1
+ap = 6
+next_ids = PackedStringArray("river", "ember")
+adjacent_ids = PackedStringArray("village", "briar", "river", "ember")
+family = "storm"
+initial_landmark = false
+hp_mult = 1
+atk_mult = 1
+polygon = PackedVector2Array(300, 445, 380, 425, 470, 420, 440, 510, 385, 550, 290, 550)
+label_position = Vector2(378, 476)
+tint = Color(0.29411764705882354, 0.3254901960784314, 0.4117647058823529, 1)
+boss_name = "失落猎手"

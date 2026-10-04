@@ -1,0 +1,4 @@
+slot,base_hp,base_atk,base_armor,base_speed,hp_per_tier,atk_per_tier,armor_per_tier,speed_per_tier
+weapon,0,6,0,0,0,2,0,0
+armor,24,0,2,0,8,0,1,0
+charm,12,0,0,2,4,0,0,0

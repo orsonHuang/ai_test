@@ -1,0 +1,2 @@
+# Keep archived bytes unchanged across Git checkouts so SHA256 remains meaningful.
+* -text

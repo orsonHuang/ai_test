@@ -1,0 +1,434 @@
+{
+  "set": {
+    "old_value": 0.65,
+    "path": "/ExpeditionDemo",
+    "property": "playback_interval",
+    "undoable": true,
+    "value": 0.45
+  },
+  "reload": {
+    "force_reload": true,
+    "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+    "previous_scene_path": "res://scenes/expedition/ExpeditionDemo.tscn",
+    "reason": "Scene navigation cannot be undone via editor undo",
+    "reloaded_from_disk": true,
+    "settle": "settled",
+    "switched": true,
+    "undoable": false
+  },
+  "run": {
+    "autosave": true,
+    "current_run_errors": [],
+    "game_status": {
+      "active": true,
+      "editor_log_cursor": 3,
+      "elapsed_msec": 2337,
+      "helper_expected": true,
+      "helper_live": true,
+      "ready": true,
+      "ready_wait_msec": 3000,
+      "run_started_msec": 6288359,
+      "run_token": 5,
+      "session_active": true,
+      "status": "live"
+    },
+    "helper_live": true,
+    "mode": "current",
+    "reason": "Game launched and the Godot AI game helper is live.",
+    "recent_errors": [
+      {
+        "details": {
+          "code": "Parse Error: Function \"push_front()\" not found in base PackedStringArray.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [],
+          "message": "Parse Error: Function \"push_front()\" not found in base PackedStringArray.",
+          "rationale": "",
+          "resolved": {
+            "function": "GDScript::reload",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+          },
+          "source": {
+            "function": "GDScript::reload",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+          }
+        },
+        "function": "GDScript::reload",
+        "level": "error",
+        "line": 21,
+        "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+        "source": "editor",
+        "text": "Parse Error: Function \"push_front()\" not found in base PackedStringArray."
+      },
+      {
+        "details": {
+          "code": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\".",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [],
+          "message": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\".",
+          "rationale": "",
+          "resolved": {
+            "function": "GDScript::reload",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+          },
+          "source": {
+            "function": "GDScript::reload",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+          }
+        },
+        "function": "GDScript::reload",
+        "level": "error",
+        "line": 21,
+        "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+        "source": "editor",
+        "text": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\"."
+      },
+      {
+        "details": {
+          "code": "Condition \"error != Error::OK\" is true. Returning: Variant()",
+          "error_type": 0,
+          "error_type_name": "error",
+          "frames": [
+            {
+              "function": "load_state",
+              "line": 37,
+              "path": "res://scripts/expedition/FogSave.gd"
+            },
+            {
+              "function": "test_save_load_and_corruption_falls_back",
+              "line": 136,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+          "rationale": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+          "resolved": {
+            "function": "load_state",
+            "line": 37,
+            "path": "res://scripts/expedition/FogSave.gd"
+          },
+          "source": {
+            "function": "parse_string",
+            "line": 629,
+            "path": "core/io/json.cpp"
+          }
+        },
+        "function": "load_state",
+        "level": "error",
+        "line": 37,
+        "path": "res://scripts/expedition/FogSave.gd",
+        "source": "editor",
+        "text": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'"
+      }
+    ],
+    "recent_errors_may_predate_run": true,
+    "recent_errors_scope": "retained_recent",
+    "recent_errors_truncated": false,
+    "retained_errors": [
+      {
+        "details": {
+          "code": "Parse Error: Function \"push_front()\" not found in base PackedStringArray.",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [],
+          "message": "Parse Error: Function \"push_front()\" not found in base PackedStringArray.",
+          "rationale": "",
+          "resolved": {
+            "function": "GDScript::reload",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+          },
+          "source": {
+            "function": "GDScript::reload",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+          }
+        },
+        "function": "GDScript::reload",
+        "level": "error",
+        "line": 21,
+        "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+        "source": "editor",
+        "text": "Parse Error: Function \"push_front()\" not found in base PackedStringArray."
+      },
+      {
+        "details": {
+          "code": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\".",
+          "error_type": 2,
+          "error_type_name": "script",
+          "frames": [],
+          "message": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\".",
+          "rationale": "",
+          "resolved": {
+            "function": "GDScript::reload",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+          },
+          "source": {
+            "function": "GDScript::reload",
+            "line": 21,
+            "path": "res://scripts/expedition/ui/FogUnitCard.gd"
+          }
+        },
+        "function": "GDScript::reload",
+        "level": "error",
+        "line": 21,
+        "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+        "source": "editor",
+        "text": "Parse Error: Cannot find member \"push_front\" in base \"PackedStringArray\"."
+      },
+      {
+        "details": {
+          "code": "Condition \"error != Error::OK\" is true. Returning: Variant()",
+          "error_type": 0,
+          "error_type_name": "error",
+          "frames": [
+            {
+              "function": "load_state",
+              "line": 37,
+              "path": "res://scripts/expedition/FogSave.gd"
+            },
+            {
+              "function": "test_save_load_and_corruption_falls_back",
+              "line": 136,
+              "path": "res://tests/test_expedition_rules.gd"
+            },
+            {
+              "function": "run_suite",
+              "line": 48,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_suites",
+              "line": 158,
+              "path": "res://addons/godot_ai/testing/test_runner.gd"
+            },
+            {
+              "function": "run_tests",
+              "line": 44,
+              "path": "res://addons/godot_ai/handlers/test_handler.gd"
+            },
+            {
+              "function": "_call_handler",
+              "line": 193,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_dispatch",
+              "line": 150,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "tick",
+              "line": 122,
+              "path": "res://addons/godot_ai/dispatcher.gd"
+            },
+            {
+              "function": "_process",
+              "line": 108,
+              "path": "res://addons/godot_ai/connection.gd"
+            }
+          ],
+          "message": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+          "rationale": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'",
+          "resolved": {
+            "function": "load_state",
+            "line": 37,
+            "path": "res://scripts/expedition/FogSave.gd"
+          },
+          "source": {
+            "function": "parse_string",
+            "line": 629,
+            "path": "core/io/json.cpp"
+          }
+        },
+        "function": "load_state",
+        "level": "error",
+        "line": 37,
+        "path": "res://scripts/expedition/FogSave.gd",
+        "source": "editor",
+        "text": "Parse JSON failed. Error at line 0: Expected 'true', 'false', or 'null', got 'interrupted'"
+      }
+    ],
+    "scene": "",
+    "session_active": true,
+    "undoable": false,
+    "was_already_running": false
+  },
+  "interval": 0.45,
+  "resumed": {
+    "ap": 0.0,
+    "current": "castle",
+    "error": "",
+    "inventory": 4.0,
+    "modal": false,
+    "party": [
+      {
+        "armor": 11.0,
+        "armor_every_levels": 2.0,
+        "atk": 41.0,
+        "atk_per_level": 3.0,
+        "hp": 266.0,
+        "hp_per_level": 14.0,
+        "id": "hero",
+        "kind": "hero",
+        "max_hp": 266.0,
+        "name": "远征者",
+        "side": "ally",
+        "speed": 12.0
+      },
+      {
+        "armor": 4.0,
+        "armor_every_levels": 2.0,
+        "atk": 20.0,
+        "atk_per_level": 3.0,
+        "hp": 142.0,
+        "hp_per_level": 14.0,
+        "id": "priest",
+        "kind": "follower",
+        "max_hp": 142.0,
+        "name": "修女",
+        "side": "ally",
+        "speed": 14.0
+      },
+      {
+        "armor": 4.0,
+        "armor_every_levels": 2.0,
+        "atk": 26.0,
+        "atk_per_level": 3.0,
+        "hp": 127.0,
+        "hp_per_level": 14.0,
+        "id": "ranger",
+        "kind": "follower",
+        "max_hp": 154.0,
+        "name": "游侠",
+        "side": "ally",
+        "speed": 20.0
+      }
+    ],
+    "phase": "battle"
+  },
+  "battle": {
+    "id": "battle/castle/9",
+    "index": 0.0,
+    "inventory": 4.0,
+    "paused": true
+  },
+  "ended": {
+    "ap": 0.0,
+    "current": "castle",
+    "error": "",
+    "inventory": 4.0,
+    "modal": true,
+    "party": [
+      {
+        "armor": 11.0,
+        "armor_every_levels": 2.0,
+        "atk": 41.0,
+        "atk_per_level": 3.0,
+        "hp": 197.0,
+        "hp_per_level": 14.0,
+        "id": "hero",
+        "kind": "hero",
+        "max_hp": 266.0,
+        "name": "远征者",
+        "side": "ally",
+        "speed": 12.0
+      },
+      {
+        "armor": 4.0,
+        "armor_every_levels": 2.0,
+        "atk": 20.0,
+        "atk_per_level": 3.0,
+        "hp": 66.0,
+        "hp_per_level": 14.0,
+        "id": "priest",
+        "kind": "follower",
+        "max_hp": 142.0,
+        "name": "修女",
+        "side": "ally",
+        "speed": 14.0
+      },
+      {
+        "armor": 4.0,
+        "armor_every_levels": 2.0,
+        "atk": 26.0,
+        "atk_per_level": 3.0,
+        "hp": 63.0,
+        "hp_per_level": 14.0,
+        "id": "ranger",
+        "kind": "follower",
+        "max_hp": 154.0,
+        "name": "游侠",
+        "side": "ally",
+        "speed": 20.0
+      }
+    ],
+    "phase": "ended"
+  },
+  "no_double_claim": {
+    "claim_again": false,
+    "inventory": 4.0,
+    "outcome": "victory"
+  },
+  "logs": {
+    "source": "game",
+    "lines": [
+      {
+        "level": "info",
+        "run_id": "r6288359-5",
+        "source": "game",
+        "text": "[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\n"
+      }
+    ],
+    "total_count": 1,
+    "returned_count": 1,
+    "offset": 0,
+    "limit": 30,
+    "has_more": false,
+    "run_id": "r6288359-5",
+    "is_running": true,
+    "dropped_count": 0,
+    "stale_run_id": false
+  }
+}

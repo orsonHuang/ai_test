@@ -1,0 +1,32 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"current_scene\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"game_capture_ready\":true,\"game_status\":{\"active\":true,\"editor_log_cursor\":54,\"elapsed_msec\":83338,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":20000,\"run_started_msec\":7133847,\"run_token\":7,\"session_active\":true,\"status\":\"live\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":true,\"is_playing\":true,\"project_name\":\"catIdle\",\"readiness\":\"playing\",\"session_active\":true}"
+    }
+  ],
+  "structuredContent": {
+    "current_scene": "res://scenes/expedition/ExpeditionDemo.tscn",
+    "game_capture_ready": true,
+    "game_status": {
+      "active": true,
+      "editor_log_cursor": 54,
+      "elapsed_msec": 83338,
+      "helper_expected": true,
+      "helper_live": true,
+      "ready": true,
+      "ready_wait_msec": 20000,
+      "run_started_msec": 7133847,
+      "run_token": 7,
+      "session_active": true,
+      "status": "live"
+    },
+    "godot_version": "4.7.2-stable (steam)",
+    "helper_live": true,
+    "is_playing": true,
+    "project_name": "catIdle",
+    "readiness": "playing",
+    "session_active": true
+  },
+  "isError": false
+}

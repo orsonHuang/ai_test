@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ember_2"
+display_name = "余烬"
+category = "sets"
+values = {"set_id": "ember", "name": "余烬", "piece_count": 2, "effect_key": "burn_stacks_on_primary_hit", "value": 1, "trigger_limit_per_round": 0, "heal_cap_per_round": 0}

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogUnit.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ranger"
+display_name = "游侠"
+side = "ally"
+kind = "follower"
+hp = 112
+atk = 17
+armor = 3
+speed = 20
+hp_per_level = 14
+atk_per_level = 3
+armor_every_levels = 2

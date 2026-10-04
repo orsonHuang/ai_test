@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "swift"
+display_name = "迅捷"
+category = "affixes"
+values = {"id": "swift", "name": "迅捷", "stat": "speed", "value": 2, "weight": 1, "slots": "weapon|armor|charm"}

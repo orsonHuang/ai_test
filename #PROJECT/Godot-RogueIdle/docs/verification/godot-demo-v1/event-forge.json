@@ -1,0 +1,14 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"source\": \"game\", \"width\": 1280, \"height\": 720, \"original_width\": 1280, \"original_height\": 720, \"format\": \"png\"}"
+    },
+    {
+      "type": "saved_image",
+      "path": "D:\\_Files\\ai_test\\#PROJECT\\Godot-RogueIdle\\docs\\verification\\godot-demo-v1\\event-forge_content_1.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "isError": false
+}

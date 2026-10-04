@@ -1,0 +1,107 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"duration_ms\":146,\"edited_scene\":\"res://scenes/expedition/ExpeditionDemo.tscn\",\"failed\":0,\"passed\":12,\"results\":[{\"assertion_count\":4,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_battle_is_deterministic_and_attributes_burn\"},{\"assertion_count\":20,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_budget_no_double_claim_and_regional_growth\"},{\"assertion_count\":4,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_burn_hits_health_without_spending_shield\"},{\"assertion_count\":2,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_cooldown_uses_own_actions_and_speed_order\"},{\"assertion_count\":31,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_counter_once_per_round_and_no_recursive_chain\"},{\"assertion_count\":7,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_defeat_claim_is_terminal_and_keeps_final_health\"},{\"assertion_count\":5,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_equipping_max_health_does_not_heal\"},{\"assertion_count\":8,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_event_invalid_branch_keeps_paid_entry_and_fallback\"},{\"assertion_count\":7,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_every_map_route_has_three_regions\"},{\"assertion_count\":7,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_recruit_respects_hero_after_formation_swap\"},{\"assertion_count\":5,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_save_load_and_corruption_falls_back\"},{\"assertion_count\":8,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_seed_fog_and_no_recursive_reveal\"}],\"skipped\":0,\"suite_count\":1,\"suites_run\":[\"expedition_rules\"],\"total\":12}"
+    }
+  ],
+  "structuredContent": {
+    "duration_ms": 146,
+    "edited_scene": "res://scenes/expedition/ExpeditionDemo.tscn",
+    "failed": 0,
+    "passed": 12,
+    "results": [
+      {
+        "assertion_count": 4,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_battle_is_deterministic_and_attributes_burn"
+      },
+      {
+        "assertion_count": 20,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_budget_no_double_claim_and_regional_growth"
+      },
+      {
+        "assertion_count": 4,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_burn_hits_health_without_spending_shield"
+      },
+      {
+        "assertion_count": 2,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_cooldown_uses_own_actions_and_speed_order"
+      },
+      {
+        "assertion_count": 31,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_counter_once_per_round_and_no_recursive_chain"
+      },
+      {
+        "assertion_count": 7,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_defeat_claim_is_terminal_and_keeps_final_health"
+      },
+      {
+        "assertion_count": 5,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_equipping_max_health_does_not_heal"
+      },
+      {
+        "assertion_count": 8,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_event_invalid_branch_keeps_paid_entry_and_fallback"
+      },
+      {
+        "assertion_count": 7,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_every_map_route_has_three_regions"
+      },
+      {
+        "assertion_count": 7,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_recruit_respects_hero_after_formation_swap"
+      },
+      {
+        "assertion_count": 5,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_save_load_and_corruption_falls_back"
+      },
+      {
+        "assertion_count": 8,
+        "message": "",
+        "passed": true,
+        "suite": "expedition_rules",
+        "test": "test_seed_fog_and_no_recursive_reveal"
+      }
+    ],
+    "skipped": 0,
+    "suite_count": 1,
+    "suites_run": [
+      "expedition_rules"
+    ],
+    "total": 12
+  },
+  "isError": false
+}

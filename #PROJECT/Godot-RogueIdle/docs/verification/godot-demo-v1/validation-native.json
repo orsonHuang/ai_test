@@ -1,0 +1,213 @@
+[
+  {
+    "tool": "script_create",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://tests/test_editor_validation.gd\",\"res://tests/test_editor_validation.gd.uid\"]},\"committed\":true,\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"import_pending\":false,\"import_settle\":\"settled\",\"import_settled\":true,\"path\":\"res://tests/test_editor_validation.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":868,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://tests/test_editor_validation.gd",
+            "res://tests/test_editor_validation.gd.uid"
+          ]
+        },
+        "committed": true,
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "import_pending": false,
+        "import_settle": "settled",
+        "import_settled": true,
+        "path": "res://tests/test_editor_validation.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 868,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":{\"x\":0.0,\"y\":0.0},\"path\":\"/McpValidation/ProofLabel\",\"property\":\"position\",\"undoable\":true,\"value\":{\"x\":40.0,\"y\":80.0}}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": {
+          "x": 0.0,
+          "y": 0.0
+        },
+        "path": "/McpValidation/ProofLabel",
+        "property": "position",
+        "undoable": true,
+        "value": {
+          "x": 40.0,
+          "y": 80.0
+        }
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "node_set_property",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"old_value\":\"\",\"path\":\"/McpValidation/ProofLabel\",\"property\":\"text\",\"undoable\":true,\"value\":\"MCP verified: editable and persistent\"}"
+        }
+      ],
+      "structuredContent": {
+        "old_value": "",
+        "path": "/McpValidation/ProofLabel",
+        "property": "text",
+        "undoable": true,
+        "value": "MCP verified: editable and persistent"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "test_run",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"duration_ms\":8,\"edited_scene\":\"res://tests/editor/McpValidation.tscn\",\"failed\":0,\"passed\":1,\"results\":[{\"assertion_count\":6,\"message\":\"\",\"passed\":true,\"suite\":\"editor_validation\",\"test\":\"test_native_undo_and_redo\"}],\"skipped\":0,\"suite_count\":1,\"suites_run\":[\"editor_validation\"],\"total\":1}"
+        }
+      ],
+      "structuredContent": {
+        "duration_ms": 8,
+        "edited_scene": "res://tests/editor/McpValidation.tscn",
+        "failed": 0,
+        "passed": 1,
+        "results": [
+          {
+            "assertion_count": 6,
+            "message": "",
+            "passed": true,
+            "suite": "editor_validation",
+            "test": "test_native_undo_and_redo"
+          }
+        ],
+        "skipped": 0,
+        "suite_count": 1,
+        "suites_run": [
+          "editor_validation"
+        ],
+        "total": 1
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://tests/editor/McpValidation.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://tests/editor/McpValidation.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":false,\"path\":\"res://scenes/Battle.tscn\",\"previous_scene_path\":\"res://tests/editor/McpValidation.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": false,
+        "path": "res://scenes/Battle.tscn",
+        "previous_scene_path": "res://tests/editor/McpValidation.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "settled",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":false,\"path\":\"res://tests/editor/McpValidation.tscn\",\"previous_scene_path\":\"res://scenes/Battle.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": false,
+        "path": "res://tests/editor/McpValidation.tscn",
+        "previous_scene_path": "res://scenes/Battle.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "settled",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_run",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":2866,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":3551896,\"run_token\":1,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"current\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[],\"recent_errors_may_predate_run\":false,\"recent_errors_scope\":\"none\",\"recent_errors_truncated\":false,\"retained_errors\":[],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+        }
+      ],
+      "structuredContent": {
+        "autosave": true,
+        "current_run_errors": [],
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 2866,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 3000,
+          "run_started_msec": 3551896,
+          "run_token": 1,
+          "session_active": true,
+          "status": "live"
+        },
+        "helper_live": true,
+        "mode": "current",
+        "reason": "Game launched and the Godot AI game helper is live.",
+        "recent_errors": [],
+        "recent_errors_may_predate_run": false,
+        "recent_errors_scope": "none",
+        "recent_errors_truncated": false,
+        "retained_errors": [],
+        "scene": "",
+        "session_active": true,
+        "undoable": false,
+        "was_already_running": false
+      },
+      "isError": false
+    }
+  }
+]

@@ -1,0 +1,1221 @@
+[
+  {
+    "path": "res://resources/expedition/regions/village.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/village.tres\"]},\"path\":\"res://resources/expedition/regions/village.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":588,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/village.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/village.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 588,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/regions/briar.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/briar.tres\"]},\"path\":\"res://resources/expedition/regions/briar.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":621,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/briar.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/briar.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 621,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/regions/ruins.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/ruins.tres\"]},\"path\":\"res://resources/expedition/regions/ruins.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":621,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/ruins.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/ruins.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 621,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/regions/quarry.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/quarry.tres\"]},\"path\":\"res://resources/expedition/regions/quarry.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":597,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/quarry.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/quarry.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 597,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/regions/river.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/river.tres\"]},\"path\":\"res://resources/expedition/regions/river.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":640,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/river.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/river.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 640,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/regions/ember.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/ember.tres\"]},\"path\":\"res://resources/expedition/regions/ember.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":592,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/ember.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/ember.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 592,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/regions/frost.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/frost.tres\"]},\"path\":\"res://resources/expedition/regions/frost.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":614,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/frost.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/frost.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 614,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/regions/ash.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/ash.tres\"]},\"path\":\"res://resources/expedition/regions/ash.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":600,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/ash.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/ash.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 600,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/regions/castle.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/regions/castle.tres\"]},\"path\":\"res://resources/expedition/regions/castle.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":580,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/regions/castle.tres"
+          ]
+        },
+        "path": "res://resources/expedition/regions/castle.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 580,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/hero.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/hero.tres\"]},\"path\":\"res://resources/expedition/units/hero.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":321,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/hero.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/hero.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 321,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/priest.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/priest.tres\"]},\"path\":\"res://resources/expedition/units/priest.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":326,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/priest.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/priest.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 326,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/ranger.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/ranger.tres\"]},\"path\":\"res://resources/expedition/units/ranger.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":326,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/ranger.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/ranger.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 326,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/guardian.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/guardian.tres\"]},\"path\":\"res://resources/expedition/units/guardian.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":328,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/guardian.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/guardian.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 328,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/thorn.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/thorn.tres\"]},\"path\":\"res://resources/expedition/units/thorn.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":323,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/thorn.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/thorn.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 323,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/storm.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/storm.tres\"]},\"path\":\"res://resources/expedition/units/storm.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":323,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/storm.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/storm.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 323,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/ember.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/ember.tres\"]},\"path\":\"res://resources/expedition/units/ember.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":323,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/ember.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/ember.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 323,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/king.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/king.tres\"]},\"path\":\"res://resources/expedition/units/king.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":323,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/king.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/king.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 323,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/shadow.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/shadow.tres\"]},\"path\":\"res://resources/expedition/units/shadow.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":329,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/shadow.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/shadow.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 329,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/raider.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/raider.tres\"]},\"path\":\"res://resources/expedition/units/raider.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":324,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/raider.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/raider.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 324,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/stalker.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/stalker.tres\"]},\"path\":\"res://resources/expedition/units/stalker.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":325,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/stalker.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/stalker.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 325,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/units/acolyte.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/units/acolyte.tres\"]},\"path\":\"res://resources/expedition/units/acolyte.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":325,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/units/acolyte.tres"
+          ]
+        },
+        "path": "res://resources/expedition/units/acolyte.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 325,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/activities/dungeon.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/activities/dungeon.tres\"]},\"path\":\"res://resources/expedition/activities/dungeon.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":345,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/activities/dungeon.tres"
+          ]
+        },
+        "path": "res://resources/expedition/activities/dungeon.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 345,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/activities/rest.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/activities/rest.tres\"]},\"path\":\"res://resources/expedition/activities/rest.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":339,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/activities/rest.tres"
+          ]
+        },
+        "path": "res://resources/expedition/activities/rest.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 339,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/activities/chest.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/activities/chest.tres\"]},\"path\":\"res://resources/expedition/activities/chest.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":339,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/activities/chest.tres"
+          ]
+        },
+        "path": "res://resources/expedition/activities/chest.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 339,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/activities/event.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/activities/event.tres\"]},\"path\":\"res://resources/expedition/activities/event.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":339,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/activities/event.tres"
+          ]
+        },
+        "path": "res://resources/expedition/activities/event.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 339,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/activities/patrol.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/activities/patrol.tres\"]},\"path\":\"res://resources/expedition/activities/patrol.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":345,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/activities/patrol.tres"
+          ]
+        },
+        "path": "res://resources/expedition/activities/patrol.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 345,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/activities/recruit.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/activities/recruit.tres\"]},\"path\":\"res://resources/expedition/activities/recruit.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":343,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/activities/recruit.tres"
+          ]
+        },
+        "path": "res://resources/expedition/activities/recruit.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 343,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/activities/merchant.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/activities/merchant.tres\"]},\"path\":\"res://resources/expedition/activities/merchant.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":345,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/activities/merchant.tres"
+          ]
+        },
+        "path": "res://resources/expedition/activities/merchant.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 345,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/equipment/weapon.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/equipment/weapon.tres\"]},\"path\":\"res://resources/expedition/equipment/weapon.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":394,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/equipment/weapon.tres"
+          ]
+        },
+        "path": "res://resources/expedition/equipment/weapon.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 394,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/equipment/armor.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/equipment/armor.tres\"]},\"path\":\"res://resources/expedition/equipment/armor.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":392,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/equipment/armor.tres"
+          ]
+        },
+        "path": "res://resources/expedition/equipment/armor.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 392,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/equipment/charm.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/equipment/charm.tres\"]},\"path\":\"res://resources/expedition/equipment/charm.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":392,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/equipment/charm.tres"
+          ]
+        },
+        "path": "res://resources/expedition/equipment/charm.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 392,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/affixes/hardy.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/affixes/hardy.tres\"]},\"path\":\"res://resources/expedition/affixes/hardy.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":331,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/affixes/hardy.tres"
+          ]
+        },
+        "path": "res://resources/expedition/affixes/hardy.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 331,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/affixes/sharp.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/affixes/sharp.tres\"]},\"path\":\"res://resources/expedition/affixes/sharp.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":327,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/affixes/sharp.tres"
+          ]
+        },
+        "path": "res://resources/expedition/affixes/sharp.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 327,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/affixes/swift.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/affixes/swift.tres\"]},\"path\":\"res://resources/expedition/affixes/swift.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":329,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/affixes/swift.tres"
+          ]
+        },
+        "path": "res://resources/expedition/affixes/swift.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 329,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/sets/thorn_2.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/sets/thorn_2.tres\"]},\"path\":\"res://resources/expedition/sets/thorn_2.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":385,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/sets/thorn_2.tres"
+          ]
+        },
+        "path": "res://resources/expedition/sets/thorn_2.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 385,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/sets/thorn_3.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/sets/thorn_3.tres\"]},\"path\":\"res://resources/expedition/sets/thorn_3.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":383,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/sets/thorn_3.tres"
+          ]
+        },
+        "path": "res://resources/expedition/sets/thorn_3.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 383,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/sets/storm_2.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/sets/storm_2.tres\"]},\"path\":\"res://resources/expedition/sets/storm_2.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":393,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/sets/storm_2.tres"
+          ]
+        },
+        "path": "res://resources/expedition/sets/storm_2.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 393,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/sets/storm_3.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/sets/storm_3.tres\"]},\"path\":\"res://resources/expedition/sets/storm_3.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":382,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/sets/storm_3.tres"
+          ]
+        },
+        "path": "res://resources/expedition/sets/storm_3.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 382,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/sets/ember_2.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/sets/ember_2.tres\"]},\"path\":\"res://resources/expedition/sets/ember_2.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":388,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/sets/ember_2.tres"
+          ]
+        },
+        "path": "res://resources/expedition/sets/ember_2.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 388,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/sets/ember_3.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/sets/ember_3.tres\"]},\"path\":\"res://resources/expedition/sets/ember_3.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":387,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/sets/ember_3.tres"
+          ]
+        },
+        "path": "res://resources/expedition/sets/ember_3.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 387,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/skills/guard.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/skills/guard.tres\"]},\"path\":\"res://resources/expedition/skills/guard.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":378,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/skills/guard.tres"
+          ]
+        },
+        "path": "res://resources/expedition/skills/guard.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 378,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/skills/burst.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/skills/burst.tres\"]},\"path\":\"res://resources/expedition/skills/burst.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":394,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/skills/burst.tres"
+          ]
+        },
+        "path": "res://resources/expedition/skills/burst.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 394,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/skills/fire.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/skills/fire.tres\"]},\"path\":\"res://resources/expedition/skills/fire.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":366,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/skills/fire.tres"
+          ]
+        },
+        "path": "res://resources/expedition/skills/fire.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 366,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/skills/mend.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/skills/mend.tres\"]},\"path\":\"res://resources/expedition/skills/mend.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":388,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/skills/mend.tres"
+          ]
+        },
+        "path": "res://resources/expedition/skills/mend.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 388,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/skills/mark_shot.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/skills/mark_shot.tres\"]},\"path\":\"res://resources/expedition/skills/mark_shot.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":408,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/skills/mark_shot.tres"
+          ]
+        },
+        "path": "res://resources/expedition/skills/mark_shot.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 408,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/skills/protect.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/skills/protect.tres\"]},\"path\":\"res://resources/expedition/skills/protect.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":408,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/skills/protect.tres"
+          ]
+        },
+        "path": "res://resources/expedition/skills/protect.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 408,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/events/supplies.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/events/supplies.tres\"]},\"path\":\"res://resources/expedition/events/supplies.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":378,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/events/supplies.tres"
+          ]
+        },
+        "path": "res://resources/expedition/events/supplies.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 378,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/events/medic.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/events/medic.tres\"]},\"path\":\"res://resources/expedition/events/medic.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":391,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/events/medic.tres"
+          ]
+        },
+        "path": "res://resources/expedition/events/medic.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 391,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/events/shrine.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/events/shrine.tres\"]},\"path\":\"res://resources/expedition/events/shrine.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":393,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/events/shrine.tres"
+          ]
+        },
+        "path": "res://resources/expedition/events/shrine.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 393,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/events/forge.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/events/forge.tres\"]},\"path\":\"res://resources/expedition/events/forge.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":382,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/events/forge.tres"
+          ]
+        },
+        "path": "res://resources/expedition/events/forge.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 382,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/events/notes.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/events/notes.tres\"]},\"path\":\"res://resources/expedition/events/notes.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":391,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/events/notes.tres"
+          ]
+        },
+        "path": "res://resources/expedition/events/notes.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 391,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/events/pilgrim.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/events/pilgrim.tres\"]},\"path\":\"res://resources/expedition/events/pilgrim.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":385,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/events/pilgrim.tres"
+          ]
+        },
+        "path": "res://resources/expedition/events/pilgrim.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 385,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "path": "res://resources/expedition/catalog.tres",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://resources/expedition/catalog.tres\"]},\"path\":\"res://resources/expedition/catalog.tres\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":6983,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://resources/expedition/catalog.tres"
+          ]
+        },
+        "path": "res://resources/expedition/catalog.tres",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 6983,
+        "undoable": false
+      },
+      "isError": false
+    }
+  }
+]

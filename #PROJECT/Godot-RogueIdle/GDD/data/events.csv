@@ -1,0 +1,13 @@
+id,name,phase,option_a,outcome_a,option_b,outcome_b
+supplies,遗落补给,M1,分发补给,party_heal_pct:30,换成钱币,gold:20
+medic,战地医师,M1,付费治疗,gold:-10;party_heal_pct:80,简单包扎,party_heal_pct:20
+shrine,古树誓约,M1,献出生命,hero_hp_cost:20;next_hero_atk_pct:20,收下奉礼,gold:10
+forge,废弃工坊,M1,修复散件,gold:-15;gear_choice_fine:1,回收残料,gold:15
+notes,敌情笔记,M1,寻找破绽,next_enemy_hp_pct:-15,研究防御,next_enemy_atk_pct:-15
+pilgrim,朝圣之泉,M1,主角饮用,hero_heal_pct:70,全队分享,party_heal_pct:25
+caravan,受困商队,M2,购买补给,gold:-15;party_heal_pct:70,接受报酬,gold:12
+oath,背水誓约,M2,立下誓约,hero_hp_cost:25;next_hero_atk_pct:25,平复心神,hero_heal_pct:20
+armory,遗失军械,M2,修复军械,gold:-25;gear_choice_fine:1,拿走散件,gear_random_normal:1
+sentry,哨兵遗志,M2,继承守护,next_hero_shield:40,收取遗物,gold:20
+feast,山道宴席,M2,支付宴费,gold:-20;party_heal_pct:100,接受干粮,party_heal_pct:25
+footprints,追猎足迹,M2,分析弱点,next_enemy_armor_flat:-3,出售线索,gold:15

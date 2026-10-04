@@ -1,0 +1,7 @@
+id,owner,cooldown_actions,attack_coeff,shield,heal,burn_stacks,condition
+guard,hero,2,1,40,0,0,ready_or_threat
+burst,hero,2,1.85,0,0,0,ready_or_wait_mark_one_action
+fire,hero,2,0.9,0,0,2,ready
+mend,priest,1,0,0,32,0,lowest_hp_ratio_below_0.70
+mark_shot,ranger,2,0.8,0,0,0,ready_apply_mark_before_damage
+protect,guardian,2,0.85,26,0,0,ready_shield_front_before_attack

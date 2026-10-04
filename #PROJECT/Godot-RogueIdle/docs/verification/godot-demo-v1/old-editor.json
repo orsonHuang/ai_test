@@ -1,0 +1,804 @@
+[
+  {
+    "tool": "session_activate",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"status\":\"ok\",\"active_session_id\":\"cat-idle@65d1\",\"matched\":\"exact_id\"}"
+        }
+      ],
+      "structuredContent": {
+        "status": "ok",
+        "active_session_id": "cat-idle@65d1",
+        "matched": "exact_id"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"count\":1,\"current_scene\":\"res://scenes/Battle.tscn\",\"scenes\":[\"res://scenes/Battle.tscn\"]}"
+        }
+      ],
+      "structuredContent": {
+        "count": 1,
+        "current_scene": "res://scenes/Battle.tscn",
+        "scenes": [
+          "res://scenes/Battle.tscn"
+        ]
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_get_hierarchy",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"root\":\"\",\"nodes\":[{\"children_count\":5,\"name\":\"Battle\",\"path\":\"/Battle\",\"type\":\"Node2D\"},{\"children_count\":0,\"name\":\"BattleManager\",\"path\":\"/Battle/BattleManager\",\"type\":\"Node\"},{\"children_count\":0,\"name\":\"PlayerSpawn\",\"path\":\"/Battle/PlayerSpawn\",\"type\":\"Marker2D\"},{\"children_count\":0,\"name\":\"EnemySpawn\",\"path\":\"/Battle/EnemySpawn\",\"type\":\"Marker2D\"},{\"children_count\":0,\"name\":\"Background\",\"path\":\"/Battle/Background\",\"type\":\"ColorRect\"},{\"children_count\":1,\"name\":\"UI\",\"path\":\"/Battle/UI\",\"type\":\"CanvasLayer\"},{\"children_count\":5,\"name\":\"Control\",\"path\":\"/Battle/UI/Control\",\"type\":\"Control\"},{\"children_count\":1,\"name\":\"TopBar\",\"path\":\"/Battle/UI/Control/TopBar\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"TurnIndicator\",\"path\":\"/Battle/UI/Control/TopBar/TurnIndicator\",\"type\":\"Label\"},{\"children_count\":3,\"name\":\"LeftPanel\",\"path\":\"/Battle/UI/Control/LeftPanel\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"PlayerName\",\"path\":\"/Battle/UI/Control/LeftPanel/PlayerName\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"PlayerHPBar\",\"path\":\"/Battle/UI/Control/LeftPanel/PlayerHPBar\",\"type\":\"ProgressBar\"},{\"children_count\":0,\"name\":\"PlayerInfo\",\"path\":\"/Battle/UI/Control/LeftPanel/PlayerInfo\",\"type\":\"Label\"},{\"children_count\":3,\"name\":\"RightPanel\",\"path\":\"/Battle/UI/Control/RightPanel\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"EnemyName\",\"path\":\"/Battle/UI/Control/RightPanel/EnemyName\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"EnemyHPBar\",\"path\":\"/Battle/UI/Control/RightPanel/EnemyHPBar\",\"type\":\"ProgressBar\"},{\"children_count\":0,\"name\":\"EnemyInfo\",\"path\":\"/Battle/UI/Control/RightPanel/EnemyInfo\",\"type\":\"Label\"},{\"children_count\":1,\"name\":\"LogPanel\",\"path\":\"/Battle/UI/Control/LogPanel\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"LogLabel\",\"path\":\"/Battle/UI/Control/LogPanel/LogLabel\",\"type\":\"RichTextLabel\"},{\"children_count\":0,\"name\":\"RestartButton\",\"path\":\"/Battle/UI/Control/RestartButton\",\"type\":\"Button\"}],\"total_count\":20,\"offset\":0,\"limit\":80,\"has_more\":false}"
+        }
+      ],
+      "structuredContent": {
+        "root": "",
+        "nodes": [
+          {
+            "children_count": 5,
+            "name": "Battle",
+            "path": "/Battle",
+            "type": "Node2D"
+          },
+          {
+            "children_count": 0,
+            "name": "BattleManager",
+            "path": "/Battle/BattleManager",
+            "type": "Node"
+          },
+          {
+            "children_count": 0,
+            "name": "PlayerSpawn",
+            "path": "/Battle/PlayerSpawn",
+            "type": "Marker2D"
+          },
+          {
+            "children_count": 0,
+            "name": "EnemySpawn",
+            "path": "/Battle/EnemySpawn",
+            "type": "Marker2D"
+          },
+          {
+            "children_count": 0,
+            "name": "Background",
+            "path": "/Battle/Background",
+            "type": "ColorRect"
+          },
+          {
+            "children_count": 1,
+            "name": "UI",
+            "path": "/Battle/UI",
+            "type": "CanvasLayer"
+          },
+          {
+            "children_count": 5,
+            "name": "Control",
+            "path": "/Battle/UI/Control",
+            "type": "Control"
+          },
+          {
+            "children_count": 1,
+            "name": "TopBar",
+            "path": "/Battle/UI/Control/TopBar",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "TurnIndicator",
+            "path": "/Battle/UI/Control/TopBar/TurnIndicator",
+            "type": "Label"
+          },
+          {
+            "children_count": 3,
+            "name": "LeftPanel",
+            "path": "/Battle/UI/Control/LeftPanel",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "PlayerName",
+            "path": "/Battle/UI/Control/LeftPanel/PlayerName",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "PlayerHPBar",
+            "path": "/Battle/UI/Control/LeftPanel/PlayerHPBar",
+            "type": "ProgressBar"
+          },
+          {
+            "children_count": 0,
+            "name": "PlayerInfo",
+            "path": "/Battle/UI/Control/LeftPanel/PlayerInfo",
+            "type": "Label"
+          },
+          {
+            "children_count": 3,
+            "name": "RightPanel",
+            "path": "/Battle/UI/Control/RightPanel",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "EnemyName",
+            "path": "/Battle/UI/Control/RightPanel/EnemyName",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "EnemyHPBar",
+            "path": "/Battle/UI/Control/RightPanel/EnemyHPBar",
+            "type": "ProgressBar"
+          },
+          {
+            "children_count": 0,
+            "name": "EnemyInfo",
+            "path": "/Battle/UI/Control/RightPanel/EnemyInfo",
+            "type": "Label"
+          },
+          {
+            "children_count": 1,
+            "name": "LogPanel",
+            "path": "/Battle/UI/Control/LogPanel",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "LogLabel",
+            "path": "/Battle/UI/Control/LogPanel/LogLabel",
+            "type": "RichTextLabel"
+          },
+          {
+            "children_count": 0,
+            "name": "RestartButton",
+            "path": "/Battle/UI/Control/RestartButton",
+            "type": "Button"
+          }
+        ],
+        "total_count": 20,
+        "offset": 0,
+        "limit": 80,
+        "has_more": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "editor_screenshot",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\": \"viewport_2d\", \"width\": 644, \"height\": 1193, \"original_width\": 644, \"original_height\": 1193, \"format\": \"png\"}"
+        },
+        {
+          "type": "saved_image",
+          "path": "D:\\_Files\\ai_test\\#PROJECT\\Godot-RogueIdle\\docs\\verification\\godot-demo-v1\\old-editor_3_content_1.png",
+          "mimeType": "image/png"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "tool": "api_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"can_instantiate\":true,\"class_name\":\"Control\",\"engine_version\":\"4.7.2-stable (steam)\",\"include_inherited\":false,\"inheritance_chain\":[\"Control\",\"CanvasItem\",\"Node\",\"Object\"],\"is_singleton\":false,\"limit\":90,\"offset\":0,\"parent_class\":\"CanvasItem\",\"properties\":[{\"class_name\":\"\",\"default\":[],\"hint\":31,\"hint_string\":\"NodePath\",\"name\":\"accessibility_controls_nodes\",\"type\":\"Array\",\"usage\":6},{\"class_name\":\"\",\"default\":[],\"hint\":31,\"hint_string\":\"NodePath\",\"name\":\"accessibility_described_by_nodes\",\"type\":\"Array\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":0,\"hint_string\":\"\",\"name\":\"accessibility_description\",\"type\":\"String\",\"usage\":6},{\"class_name\":\"\",\"default\":[],\"hint\":31,\"hint_string\":\"NodePath\",\"name\":\"accessibility_flow_to_nodes\",\"type\":\"Array\",\"usage\":6},{\"class_name\":\"\",\"default\":[],\"hint\":31,\"hint_string\":\"NodePath\",\"name\":\"accessibility_labeled_by_nodes\",\"type\":\"Array\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"Off,Polite,Assertive\",\"name\":\"accessibility_live\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":0,\"hint_string\":\"\",\"name\":\"accessibility_name\",\"type\":\"String\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"0,1,0.001,or_less,or_greater\",\"name\":\"anchor_bottom\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"0,1,0.001,or_less,or_greater\",\"name\":\"anchor_left\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"0,1,0.001,or_less,or_greater\",\"name\":\"anchor_right\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"0,1,0.001,or_less,or_greater\",\"name\":\"anchor_top\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":-1,\"hint\":2,\"hint_string\":\"Custom:-1,Full Rect:15,Top Left:0,Top Right:1,Bottom Right:3,Bottom Left:2,Center Left:4,Center Top:5,Center Right:6,Center Bottom:7,Center:8,Left Wide:9,Top Wide:10,Right Wide:11,Bottom Wide:12,VCenter Wide:13,HCenter Wide:14\",\"name\":\"anchors_preset\",\"type\":\"int\",\"usage\":14},{\"class_name\":\"\",\"default\":false,\"hint\":0,\"hint_string\":\"\",\"name\":\"clip_contents\",\"type\":\"bool\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":-1.0,\"y\":-1.0},\"hint\":0,\"hint_string\":\"suffix:px\",\"name\":\"custom_maximum_size\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.0,\"y\":0.0},\"hint\":0,\"hint_string\":\"suffix:px\",\"name\":\"custom_minimum_size\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"Inherited,Disabled,Enabled\",\"name\":\"focus_behavior_recursive\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"None,Click,All,Accessibility\",\"name\":\"focus_mode\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":26,\"hint_string\":\"Control\",\"name\":\"focus_neighbor_bottom\",\"type\":\"NodePath\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":26,\"hint_string\":\"Control\",\"name\":\"focus_neighbor_left\",\"type\":\"NodePath\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":26,\"hint_string\":\"Control\",\"name\":\"focus_neighbor_right\",\"type\":\"NodePath\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":26,\"hint_string\":\"Control\",\"name\":\"focus_neighbor_top\",\"type\":\"NodePath\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":26,\"hint_string\":\"Control\",\"name\":\"focus_next\",\"type\":\"NodePath\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":26,\"hint_string\":\"Control\",\"name\":\"focus_previous\",\"type\":\"NodePath\",\"usage\":6},{\"class_name\":\"\",\"default\":1,\"hint\":2,\"hint_string\":\"Left,Right,Both\",\"name\":\"grow_horizontal\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":1,\"hint\":2,\"hint_string\":\"Top,Bottom,Both\",\"name\":\"grow_vertical\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"Inherited,Based on Application Locale,Left-to-Right,Right-to-Left,Based on System Locale\",\"name\":\"layout_direction\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"Position,Anchors,Container,Uncontrolled\",\"name\":\"layout_mode\",\"type\":\"int\",\"usage\":14},{\"class_name\":\"\",\"default\":true,\"hint\":0,\"hint_string\":\"\",\"name\":\"localize_numeral_system\",\"type\":\"bool\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"Inherited,Disabled,Enabled\",\"name\":\"mouse_behavior_recursive\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"Arrow,I-Beam,Pointing Hand,Cross,Wait,Busy,Drag,Can Drop,Forbidden,Vertical Resize,Horizontal Resize,Secondary Diagonal Resize,Main Diagonal Resize,Move,Vertical Split,Horizontal Split,Help\",\"name\":\"mouse_default_cursor_shape\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"Stop,Pass (Propagate Up),Ignore\",\"name\":\"mouse_filter\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":true,\"hint\":0,\"hint_string\":\"\",\"name\":\"mouse_force_pass_scroll_events\",\"type\":\"bool\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"-4096,4096,1,or_less,or_greater,suffix:px\",\"name\":\"offset_bottom\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"-4096,4096,1,or_less,or_greater,suffix:px\",\"name\":\"offset_left\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"-4096,4096,1,or_less,or_greater,suffix:px\",\"name\":\"offset_right\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"-4096,4096,1,or_less,or_greater,suffix:px\",\"name\":\"offset_top\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":false,\"hint\":42,\"hint_string\":\"\",\"name\":\"offset_transform_enabled\",\"type\":\"bool\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.0,\"y\":0.0},\"hint\":0,\"hint_string\":\"suffix:px\",\"name\":\"offset_transform_pivot\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.5,\"y\":0.5},\"hint\":0,\"hint_string\":\"\",\"name\":\"offset_transform_pivot_ratio\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.0,\"y\":0.0},\"hint\":0,\"hint_string\":\"suffix:px\",\"name\":\"offset_transform_position\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.0,\"y\":0.0},\"hint\":0,\"hint_string\":\"\",\"name\":\"offset_transform_position_ratio\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"-360,360,0.1,or_less,or_greater,radians_as_degrees\",\"name\":\"offset_transform_rotation\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":1.0,\"y\":1.0},\"hint\":5,\"hint_string\":\"\",\"name\":\"offset_transform_scale\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":true,\"hint\":0,\"hint_string\":\"\",\"name\":\"offset_transform_visual_only\",\"type\":\"bool\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.0,\"y\":0.0},\"hint\":0,\"hint_string\":\"suffix:px\",\"name\":\"pivot_offset\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.0,\"y\":0.0},\"hint\":0,\"hint_string\":\"\",\"name\":\"pivot_offset_ratio\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.0,\"y\":0.0},\"hint\":0,\"hint_string\":\"suffix:px\",\"name\":\"position\",\"type\":\"Vector2\",\"usage\":4},{\"class_name\":\"\",\"default\":false,\"hint\":0,\"hint_string\":\"\",\"name\":\"propagate_maximum_size\",\"type\":\"bool\",\"usage\":6},{\"class_name\":\"\",\"default\":0.0,\"hint\":1,\"hint_string\":\"-360,360,0.1,or_less,or_greater,radians_as_degrees\",\"name\":\"rotation\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":1.0,\"y\":1.0},\"hint\":0,\"hint_string\":\"\",\"name\":\"scale\",\"type\":\"Vector2\",\"usage\":6},{\"class_name\":\"\",\"default\":null,\"hint\":34,\"hint_string\":\"Node\",\"name\":\"shortcut_context\",\"type\":\"Object\",\"usage\":6},{\"class_name\":\"\",\"default\":{\"x\":0.0,\"y\":0.0},\"hint\":0,\"hint_string\":\"suffix:px\",\"name\":\"size\",\"type\":\"Vector2\",\"usage\":4},{\"class_name\":\"\",\"default\":1,\"hint\":6,\"hint_string\":\"Fill:1,Expand:2,Shrink Center:4,Shrink End:8\",\"name\":\"size_flags_horizontal\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":1.0,\"hint\":1,\"hint_string\":\"0,20,0.01,or_greater\",\"name\":\"size_flags_stretch_ratio\",\"type\":\"float\",\"usage\":6},{\"class_name\":\"\",\"default\":1,\"hint\":6,\"hint_string\":\"Fill:1,Expand:2,Shrink Center:4,Shrink End:8\",\"name\":\"size_flags_vertical\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"Theme\",\"default\":null,\"hint\":17,\"hint_string\":\"Theme\",\"name\":\"theme\",\"type\":\"Object\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":3,\"hint_string\":\"\",\"name\":\"theme_type_variation\",\"type\":\"String\",\"usage\":6},{\"class_name\":\"\",\"default\":0,\"hint\":2,\"hint_string\":\"Inherit,Always,Disabled\",\"name\":\"tooltip_auto_translate_mode\",\"type\":\"int\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":18,\"hint_string\":\"\",\"name\":\"tooltip_text\",\"type\":\"String\",\"usage\":6},{\"class_name\":\"\",\"default\":\"\",\"hint\":0,\"hint_string\":\"\",\"name\":\"translation_context\",\"type\":\"StringName\",\"usage\":6}],\"property_count\":60,\"property_returned_count\":60}"
+        }
+      ],
+      "structuredContent": {
+        "can_instantiate": true,
+        "class_name": "Control",
+        "engine_version": "4.7.2-stable (steam)",
+        "include_inherited": false,
+        "inheritance_chain": [
+          "Control",
+          "CanvasItem",
+          "Node",
+          "Object"
+        ],
+        "is_singleton": false,
+        "limit": 90,
+        "offset": 0,
+        "parent_class": "CanvasItem",
+        "properties": [
+          {
+            "class_name": "",
+            "default": [],
+            "hint": 31,
+            "hint_string": "NodePath",
+            "name": "accessibility_controls_nodes",
+            "type": "Array",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": [],
+            "hint": 31,
+            "hint_string": "NodePath",
+            "name": "accessibility_described_by_nodes",
+            "type": "Array",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 0,
+            "hint_string": "",
+            "name": "accessibility_description",
+            "type": "String",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": [],
+            "hint": 31,
+            "hint_string": "NodePath",
+            "name": "accessibility_flow_to_nodes",
+            "type": "Array",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": [],
+            "hint": 31,
+            "hint_string": "NodePath",
+            "name": "accessibility_labeled_by_nodes",
+            "type": "Array",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "Off,Polite,Assertive",
+            "name": "accessibility_live",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 0,
+            "hint_string": "",
+            "name": "accessibility_name",
+            "type": "String",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "0,1,0.001,or_less,or_greater",
+            "name": "anchor_bottom",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "0,1,0.001,or_less,or_greater",
+            "name": "anchor_left",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "0,1,0.001,or_less,or_greater",
+            "name": "anchor_right",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "0,1,0.001,or_less,or_greater",
+            "name": "anchor_top",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": -1,
+            "hint": 2,
+            "hint_string": "Custom:-1,Full Rect:15,Top Left:0,Top Right:1,Bottom Right:3,Bottom Left:2,Center Left:4,Center Top:5,Center Right:6,Center Bottom:7,Center:8,Left Wide:9,Top Wide:10,Right Wide:11,Bottom Wide:12,VCenter Wide:13,HCenter Wide:14",
+            "name": "anchors_preset",
+            "type": "int",
+            "usage": 14
+          },
+          {
+            "class_name": "",
+            "default": false,
+            "hint": 0,
+            "hint_string": "",
+            "name": "clip_contents",
+            "type": "bool",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": -1.0,
+              "y": -1.0
+            },
+            "hint": 0,
+            "hint_string": "suffix:px",
+            "name": "custom_maximum_size",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hint": 0,
+            "hint_string": "suffix:px",
+            "name": "custom_minimum_size",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "Inherited,Disabled,Enabled",
+            "name": "focus_behavior_recursive",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "None,Click,All,Accessibility",
+            "name": "focus_mode",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 26,
+            "hint_string": "Control",
+            "name": "focus_neighbor_bottom",
+            "type": "NodePath",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 26,
+            "hint_string": "Control",
+            "name": "focus_neighbor_left",
+            "type": "NodePath",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 26,
+            "hint_string": "Control",
+            "name": "focus_neighbor_right",
+            "type": "NodePath",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 26,
+            "hint_string": "Control",
+            "name": "focus_neighbor_top",
+            "type": "NodePath",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 26,
+            "hint_string": "Control",
+            "name": "focus_next",
+            "type": "NodePath",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 26,
+            "hint_string": "Control",
+            "name": "focus_previous",
+            "type": "NodePath",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 1,
+            "hint": 2,
+            "hint_string": "Left,Right,Both",
+            "name": "grow_horizontal",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 1,
+            "hint": 2,
+            "hint_string": "Top,Bottom,Both",
+            "name": "grow_vertical",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "Inherited,Based on Application Locale,Left-to-Right,Right-to-Left,Based on System Locale",
+            "name": "layout_direction",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "Position,Anchors,Container,Uncontrolled",
+            "name": "layout_mode",
+            "type": "int",
+            "usage": 14
+          },
+          {
+            "class_name": "",
+            "default": true,
+            "hint": 0,
+            "hint_string": "",
+            "name": "localize_numeral_system",
+            "type": "bool",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "Inherited,Disabled,Enabled",
+            "name": "mouse_behavior_recursive",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "Arrow,I-Beam,Pointing Hand,Cross,Wait,Busy,Drag,Can Drop,Forbidden,Vertical Resize,Horizontal Resize,Secondary Diagonal Resize,Main Diagonal Resize,Move,Vertical Split,Horizontal Split,Help",
+            "name": "mouse_default_cursor_shape",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "Stop,Pass (Propagate Up),Ignore",
+            "name": "mouse_filter",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": true,
+            "hint": 0,
+            "hint_string": "",
+            "name": "mouse_force_pass_scroll_events",
+            "type": "bool",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "-4096,4096,1,or_less,or_greater,suffix:px",
+            "name": "offset_bottom",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "-4096,4096,1,or_less,or_greater,suffix:px",
+            "name": "offset_left",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "-4096,4096,1,or_less,or_greater,suffix:px",
+            "name": "offset_right",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "-4096,4096,1,or_less,or_greater,suffix:px",
+            "name": "offset_top",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": false,
+            "hint": 42,
+            "hint_string": "",
+            "name": "offset_transform_enabled",
+            "type": "bool",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hint": 0,
+            "hint_string": "suffix:px",
+            "name": "offset_transform_pivot",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.5,
+              "y": 0.5
+            },
+            "hint": 0,
+            "hint_string": "",
+            "name": "offset_transform_pivot_ratio",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hint": 0,
+            "hint_string": "suffix:px",
+            "name": "offset_transform_position",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hint": 0,
+            "hint_string": "",
+            "name": "offset_transform_position_ratio",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "-360,360,0.1,or_less,or_greater,radians_as_degrees",
+            "name": "offset_transform_rotation",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "hint": 5,
+            "hint_string": "",
+            "name": "offset_transform_scale",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": true,
+            "hint": 0,
+            "hint_string": "",
+            "name": "offset_transform_visual_only",
+            "type": "bool",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hint": 0,
+            "hint_string": "suffix:px",
+            "name": "pivot_offset",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hint": 0,
+            "hint_string": "",
+            "name": "pivot_offset_ratio",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hint": 0,
+            "hint_string": "suffix:px",
+            "name": "position",
+            "type": "Vector2",
+            "usage": 4
+          },
+          {
+            "class_name": "",
+            "default": false,
+            "hint": 0,
+            "hint_string": "",
+            "name": "propagate_maximum_size",
+            "type": "bool",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0.0,
+            "hint": 1,
+            "hint_string": "-360,360,0.1,or_less,or_greater,radians_as_degrees",
+            "name": "rotation",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 1.0,
+              "y": 1.0
+            },
+            "hint": 0,
+            "hint_string": "",
+            "name": "scale",
+            "type": "Vector2",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": null,
+            "hint": 34,
+            "hint_string": "Node",
+            "name": "shortcut_context",
+            "type": "Object",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "hint": 0,
+            "hint_string": "suffix:px",
+            "name": "size",
+            "type": "Vector2",
+            "usage": 4
+          },
+          {
+            "class_name": "",
+            "default": 1,
+            "hint": 6,
+            "hint_string": "Fill:1,Expand:2,Shrink Center:4,Shrink End:8",
+            "name": "size_flags_horizontal",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 1.0,
+            "hint": 1,
+            "hint_string": "0,20,0.01,or_greater",
+            "name": "size_flags_stretch_ratio",
+            "type": "float",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 1,
+            "hint": 6,
+            "hint_string": "Fill:1,Expand:2,Shrink Center:4,Shrink End:8",
+            "name": "size_flags_vertical",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "Theme",
+            "default": null,
+            "hint": 17,
+            "hint_string": "Theme",
+            "name": "theme",
+            "type": "Object",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 3,
+            "hint_string": "",
+            "name": "theme_type_variation",
+            "type": "String",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": 0,
+            "hint": 2,
+            "hint_string": "Inherit,Always,Disabled",
+            "name": "tooltip_auto_translate_mode",
+            "type": "int",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 18,
+            "hint_string": "",
+            "name": "tooltip_text",
+            "type": "String",
+            "usage": 6
+          },
+          {
+            "class_name": "",
+            "default": "",
+            "hint": 0,
+            "hint_string": "",
+            "name": "translation_context",
+            "type": "StringName",
+            "usage": 6
+          }
+        ],
+        "property_count": 60,
+        "property_returned_count": 60
+      },
+      "isError": false
+    }
+  }
+]

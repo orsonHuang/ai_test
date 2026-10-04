@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="CharacterData" format=3 uid="uid://dx2uyhtbci6qm"]
+
+[ext_resource type="Script" uid="uid://qd8fw75yet4r" path="res://scripts/resources/CharacterData.gd" id="1_7xfgf"]
+
+[resource]
+script = ExtResource("1_7xfgf")
+id = "warrior"
+display_name = "战士"
+max_hp = 200
+attack = 35
+defense = 12
+speed = 12
+crit_rate = 0.15
+crit_damage = 1.8
+skill_ids = PackedStringArray("warrior_roar", "warrior_rampage", "warrior_thorns")
+color = Color(0.2, 0.5, 0.9, 1)

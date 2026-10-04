@@ -1,0 +1,61 @@
+[
+  {
+    "name": "session_activate",
+    "arguments": {
+      "session_id": "cat-idle"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://tests/test_expedition_rules.gd",
+      "old_text": "func test_battle_is_deterministic_and_burn_bypasses_shield() -> void:",
+      "new_text": "func test_battle_is_deterministic_and_attributes_burn() -> void:"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://tests/test_expedition_rules.gd",
+      "old_text": "    assert_eq(completed, 6)",
+      "new_text": "    assert_eq(completed, 6)\n\nfunc test_burn_hits_health_without_spending_shield() -> void:\n    var run: FogRun = _run()\n    run.move_to(\"ember\")\n    var hero: Dictionary = run.members()[0]\n    hero.armor = 100\n    hero.atk = 1\n    hero.hp = 500\n    hero.max_hp = 500\n    var enemy: Dictionary = run.tables.units.ember.duplicate(true)\n    enemy.hp = 10000\n    enemy.max_hp = 10000\n    enemy.atk = 1\n    var report: Dictionary = Fight.new().simulate([hero], [enemy],\n        {\"active\": \"guard\", \"passive\": \"resolve\", \"policy\": \"ready\", \"target\": \"front\", \"opening_shield\": 80}, source)\n    var checked: bool = false\n    for index: int in range(1, report.frames.size()):\n        var frame: Dictionary = report.frames[index]\n        if frame.kind == \"burn\" and int(frame.actor) == 0:\n            var before: Dictionary = report.frames[index - 1].units[0]\n            var after: Dictionary = frame.units[0]\n            assert_eq(after.shield, before.shield)\n            assert_gt(int(before.shield), 0)\n            assert_eq(int(before.hp) - int(after.hp), 7)\n            checked = true\n            break\n    assert_true(checked)\n\nfunc test_cooldown_uses_own_actions_and_speed_order() -> void:\n    var run: FogRun = _run()\n    var hero: Dictionary = run.members()[0]\n    hero.hp = 10000\n    hero.max_hp = 10000\n    hero.atk = 1\n    hero.speed = 20\n    var enemy: Dictionary = run.tables.units.raider.duplicate(true)\n    enemy.hp = 10000\n    enemy.max_hp = 10000\n    enemy.atk = 1\n    var report: Dictionary = Fight.new().simulate([hero], [enemy],\n        {\"active\": \"guard\", \"passive\": \"resolve\", \"policy\": \"ready\", \"target\": \"front\"}, source)\n    var shield_rounds: Array = []\n    var first_actor: int = -1\n    for frame: Dictionary in report.frames:\n        if first_actor == -1 and int(frame.actor) >= 0:\n            first_actor = int(frame.actor)\n        if frame.kind == \"shield\" and int(frame.actor) == 0:\n            shield_rounds.append(int(frame.round))\n    assert_eq(first_actor, 0)\n    assert_eq(shield_rounds.slice(0, 3), [1, 4, 7])\n\nfunc test_counter_once_per_round_and_no_recursive_chain() -> void:\n    var run: FogRun = _run()\n    var hero: Dictionary = run.members()[0]\n    hero.hp = 10000\n    hero.max_hp = 10000\n    hero.atk = 10\n    var enemy: Dictionary = run.tables.units.raider.duplicate(true)\n    enemy.hp = 10000\n    enemy.max_hp = 10000\n    enemy.atk = 1\n    var report: Dictionary = Fight.new().simulate([hero], [enemy, enemy.duplicate(true)],\n        {\"active\": \"guard\", \"passive\": \"resolve\", \"policy\": \"ready\", \"target\": \"front\", \"set_id\": \"thorn\", \"set_count\": 3}, source)\n    var counts: Dictionary = {}\n    for frame: Dictionary in report.frames:\n        if frame.kind == \"counter\":\n            counts[frame.round] = int(counts.get(frame.round, 0)) + 1\n    assert_true(not counts.is_empty())\n    for value: int in counts.values():\n        assert_eq(value, 1)\n\nfunc test_defeat_claim_is_terminal_and_keeps_final_health() -> void:\n    var run: FogRun = _run()\n    run.move_to(\"briar\")\n    run.data.party = [{\"id\": \"hero\", \"hp\": 1}]\n    run.configure_tactics(\"burst\", \"fury\", \"front\", \"ready\")\n    assert_true(run.begin_battle(\"dungeon\"))\n    assert_eq(run.data.battle.report.outcome, \"defeat\")\n    run.advance_battle(true)\n    assert_true(run.claim_reward())\n    assert_eq(run.data.phase, \"ended\")\n    assert_eq(run.data.party[0].hp, 0)\n    assert_false(run.move_to(\"quarry\"))\n    assert_false(run.claim_reward())\n"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/FogCombat.gd",
+      "old_text": "    serial = 0\n    for index:",
+      "new_text": "    serial = 0\n    round_number = 0\n    for index:"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogDemo.gd",
+      "old_text": "    text += \"\\n首个倒下：%s\" % report.get(\"first_fall\", \"无\")",
+      "new_text": "    var fallen: String = str(report.get(\"first_fall\", \"\"))\n    text += \"\\n首个倒下的队友：%s\" % (\"无\" if fallen.is_empty() else fallen)"
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+      "old_text": "    $Rows/Status.text = \" · \".join(states) if not states.is_empty() else \"就绪\"",
+      "new_text": "    if unit.get(\"side\", \"\") == \"enemy\" and unit.has(\"intent\"):\n        states.push_front(str(unit.intent))\n    $Rows/Status.text = \" · \".join(states) if not states.is_empty() else \"就绪\""
+    }
+  },
+  {
+    "name": "filesystem_manage",
+    "arguments": {
+      "op": "scan"
+    }
+  },
+  {
+    "name": "test_run",
+    "arguments": {
+      "suite": "expedition_rules",
+      "verbose": true
+    }
+  }
+]

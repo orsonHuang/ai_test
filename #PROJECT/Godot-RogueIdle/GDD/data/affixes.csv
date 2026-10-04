@@ -1,0 +1,4 @@
+id,name,stat,value,weight,slots
+hardy,坚韧,max_hp,10,1,weapon|armor|charm
+sharp,锋利,atk,2,1,weapon|armor|charm
+swift,迅捷,speed,2,1,weapon|armor|charm

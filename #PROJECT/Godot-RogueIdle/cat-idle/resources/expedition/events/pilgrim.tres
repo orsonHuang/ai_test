@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "pilgrim"
+display_name = "朝圣之泉"
+category = "events"
+values = {"id": "pilgrim", "name": "朝圣之泉", "phase": "M1", "option_a": "主角饮用", "outcome_a": "hero_heal_pct:70", "option_b": "全队分享", "outcome_b": "party_heal_pct:25"}

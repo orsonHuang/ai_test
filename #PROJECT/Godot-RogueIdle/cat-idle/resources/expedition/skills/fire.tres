@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "fire"
+display_name = "fire"
+category = "skills"
+values = {"id": "fire", "owner": "hero", "cooldown_actions": 2, "attack_coeff": 0.9, "shield": 0, "heal": 0, "burn_stacks": 2, "condition": "ready"}

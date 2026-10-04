@@ -1,0 +1,17 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogUnit.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "raider"
+display_name = "劫掠者"
+side = "enemy"
+kind = "minion"
+hp = 90
+atk = 14
+armor = 3
+speed = 13
+hp_per_level = 0
+atk_per_level = 0
+armor_every_levels = 0

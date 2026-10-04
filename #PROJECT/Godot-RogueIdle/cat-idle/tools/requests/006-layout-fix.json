@@ -1,0 +1,428 @@
+[
+  {
+    "name": "session_activate",
+    "arguments": {
+      "session_id": "cat-idle"
+    }
+  },
+  {
+    "name": "project_manage",
+    "arguments": {
+      "op": "stop"
+    }
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/components/RegionTile.tscn"
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/RegionTile",
+      "property": "anchor_right",
+      "value": 0
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/RegionTile",
+      "property": "anchor_bottom",
+      "value": 0
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/RegionTile",
+      "property": "offset_left",
+      "value": 0
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/RegionTile",
+      "property": "offset_top",
+      "value": 0
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/RegionTile",
+      "property": "offset_right",
+      "value": 600
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/RegionTile",
+      "property": "offset_bottom",
+      "value": 640
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/RegionTile",
+      "property": "grow_horizontal",
+      "value": 0
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/RegionTile",
+      "property": "grow_vertical",
+      "value": 0
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/components/UnitCard.tscn"
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/UnitCard",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 230,
+        "y": 0
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/UnitCard/Rows",
+      "property": "theme_override_constants/separation",
+      "value": 2
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/UnitCard/Rows/Name",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 19
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/UnitCard/Rows/HealthText",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 14
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/UnitCard/Rows/Stats",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 14
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/UnitCard/Rows/Status",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 13
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogUnitCard.gd",
+      "old_text": "    $Rows/Status.text = \" · \".join(states) if not states.is_empty() else \"就绪\"",
+      "new_text": "    $Rows/Status.visible = unit.has(\"burn\")\n    $Rows/Status.text = \" · \".join(states) if not states.is_empty() else \"就绪\""
+    }
+  },
+  {
+    "name": "script_patch",
+    "arguments": {
+      "path": "res://scripts/expedition/ui/FogDemo.gd",
+      "old_text": "n(\"PartyNote\").text = \"前排承受多数攻击\\n跨区不回血 · 休整消耗1时段\\n空位可在沿途招募随从\"",
+      "new_text": "n(\"PartyNote\").text = \"前排承受多数攻击\\n跨区不回血 · 休整消耗1时段\""
+    }
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/MapPage.tscn"
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/SquadColumn",
+      "property": "theme_override_constants/separation",
+      "value": 8
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn",
+      "property": "theme_override_constants/separation",
+      "value": 8
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/SquadColumn/Legend",
+      "property": "text",
+      "value": "金色 · 所在 / 选中\n青色边界 · 可以前往"
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/RegionDescription",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 0,
+        "y": 130
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity0",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 0,
+        "y": 40
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity0",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 17
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity1",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 0,
+        "y": 40
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity1",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 17
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity2",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 0,
+        "y": 40
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity2",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 17
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity3",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 0,
+        "y": 40
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity3",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 17
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity4",
+      "property": "custom_minimum_size",
+      "value": {
+        "x": 0,
+        "y": 40
+      }
+    }
+  },
+  {
+    "name": "node_set_property",
+    "arguments": {
+      "path": "/MapPage/MapColumns/RegionColumn/Activity4",
+      "property": "theme_override_font_sizes/font_size",
+      "value": 17
+    }
+  },
+  {
+    "name": "scene_save",
+    "arguments": {}
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "Button",
+        "name": "normal",
+        "bg_color": "#15272f",
+        "border_color": "#2c454d",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "Button",
+        "name": "hover",
+        "bg_color": "#284a4e",
+        "border_color": "#ad9869",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "Button",
+        "name": "pressed",
+        "bg_color": "#284a4e",
+        "border_color": "#ad9869",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "Button",
+        "name": "disabled",
+        "bg_color": "#0c191f",
+        "border_color": "#ad9869",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "theme_manage",
+    "arguments": {
+      "op": "set_stylebox_flat",
+      "params": {
+        "theme_path": "res://resources/expedition/ExpeditionTheme.tres",
+        "class_name": "Button",
+        "name": "focus",
+        "bg_color": "#284a4e",
+        "border_color": "#ad9869",
+        "border": {
+          "all": 1
+        },
+        "corners": {
+          "all": 7
+        },
+        "margins": {
+          "all": 8
+        }
+      }
+    }
+  },
+  {
+    "name": "scene_open",
+    "arguments": {
+      "path": "res://scenes/expedition/ExpeditionDemo.tscn",
+      "force_reload": true
+    }
+  },
+  {
+    "name": "project_run",
+    "arguments": {
+      "mode": "current"
+    }
+  }
+]

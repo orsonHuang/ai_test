@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://bauwqrdjyd8jt"]
+
+[ext_resource type="PackedScene" uid="uid://be0j7n4o47eeq" path="res://scenes/expedition/components/UnitCard.tscn" id="1_ffb1g"]
+
+[node name="BattlePage" type="Control" unique_id=97577047]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleRows" type="VBoxContainer" parent="." unique_id=824374011]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 12
+
+[node name="BattleHeader" type="HBoxContainer" parent="BattleRows" unique_id=651590809]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="RoundTitle" type="Label" parent="BattleRows/BattleHeader" unique_id=1992192608]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "等待第一场战斗"
+
+[node name="HeaderSpacer" type="Control" parent="BattleRows/BattleHeader" unique_id=477851052]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Pause" type="Button" parent="BattleRows/BattleHeader" unique_id=1805800744]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "暂停"
+
+[node name="Speed1" type="Button" parent="BattleRows/BattleHeader" unique_id=1215675129]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "1x"
+
+[node name="Speed2" type="Button" parent="BattleRows/BattleHeader" unique_id=260151955]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "2x"
+
+[node name="Speed4" type="Button" parent="BattleRows/BattleHeader" unique_id=1545826088]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "4x"
+
+[node name="Skip" type="Button" parent="BattleRows/BattleHeader" unique_id=1313833737]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "跳过回放"
+
+[node name="Claim" type="Button" parent="BattleRows/BattleHeader" unique_id=1272519395]
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+text = "查看战报 / 领取"
+
+[node name="BattleIntent" type="Label" parent="BattleRows" unique_id=1545132065]
+layout_mode = 2
+theme_override_font_sizes/font_size = 21
+text = "战斗全自动 · 速度决定回合顺序"
+autowrap_mode = 2
+
+[node name="AllyHeading" type="Label" parent="BattleRows" unique_id=1988421299]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "远征小队  ·  左侧为前排"
+
+[node name="Allies" type="HBoxContainer" parent="BattleRows" unique_id=610128546]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Ally0" parent="BattleRows/Allies" unique_id=917513118 instance=ExtResource("1_ffb1g")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Ally1" parent="BattleRows/Allies" unique_id=1845198622 instance=ExtResource("1_ffb1g")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Ally2" parent="BattleRows/Allies" unique_id=1140365933 instance=ExtResource("1_ffb1g")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EnemyHeading" type="Label" parent="BattleRows" unique_id=2100042802]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "敌方阵列  ·  左侧为前排"
+
+[node name="Enemies" type="HBoxContainer" parent="BattleRows" unique_id=675244923]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Enemy0" parent="BattleRows/Enemies" unique_id=2056345882 instance=ExtResource("1_ffb1g")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Enemy1" parent="BattleRows/Enemies" unique_id=16169823 instance=ExtResource("1_ffb1g")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Enemy2" parent="BattleRows/Enemies" unique_id=39298289 instance=ExtResource("1_ffb1g")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CombatLog" type="RichTextLabel" parent="BattleRows" unique_id=687902652]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "战斗事件将在这里显示。"
+scroll_following = true

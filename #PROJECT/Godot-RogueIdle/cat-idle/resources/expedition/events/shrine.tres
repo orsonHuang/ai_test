@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogEntry.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "shrine"
+display_name = "古树誓约"
+category = "events"
+values = {"id": "shrine", "name": "古树誓约", "phase": "M1", "option_a": "献出生命", "outcome_a": "hero_hp_cost:20;next_hero_atk_pct:20", "option_b": "收下奉礼", "outcome_b": "gold:10"}

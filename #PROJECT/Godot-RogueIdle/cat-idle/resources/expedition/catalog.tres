@@ -1,0 +1,68 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogCatalog.gd" id="1"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/village.tres" id="2"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/briar.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/ruins.tres" id="4"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/quarry.tres" id="5"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/river.tres" id="6"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/ember.tres" id="7"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/frost.tres" id="8"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/ash.tres" id="9"]
+[ext_resource type="Resource" path="res://resources/expedition/regions/castle.tres" id="10"]
+[ext_resource type="Resource" path="res://resources/expedition/units/hero.tres" id="11"]
+[ext_resource type="Resource" path="res://resources/expedition/units/priest.tres" id="12"]
+[ext_resource type="Resource" path="res://resources/expedition/units/ranger.tres" id="13"]
+[ext_resource type="Resource" path="res://resources/expedition/units/guardian.tres" id="14"]
+[ext_resource type="Resource" path="res://resources/expedition/units/thorn.tres" id="15"]
+[ext_resource type="Resource" path="res://resources/expedition/units/storm.tres" id="16"]
+[ext_resource type="Resource" path="res://resources/expedition/units/ember.tres" id="17"]
+[ext_resource type="Resource" path="res://resources/expedition/units/king.tres" id="18"]
+[ext_resource type="Resource" path="res://resources/expedition/units/shadow.tres" id="19"]
+[ext_resource type="Resource" path="res://resources/expedition/units/raider.tres" id="20"]
+[ext_resource type="Resource" path="res://resources/expedition/units/stalker.tres" id="21"]
+[ext_resource type="Resource" path="res://resources/expedition/units/acolyte.tres" id="22"]
+[ext_resource type="Resource" path="res://resources/expedition/activities/dungeon.tres" id="23"]
+[ext_resource type="Resource" path="res://resources/expedition/activities/rest.tres" id="24"]
+[ext_resource type="Resource" path="res://resources/expedition/activities/chest.tres" id="25"]
+[ext_resource type="Resource" path="res://resources/expedition/activities/event.tres" id="26"]
+[ext_resource type="Resource" path="res://resources/expedition/activities/patrol.tres" id="27"]
+[ext_resource type="Resource" path="res://resources/expedition/activities/recruit.tres" id="28"]
+[ext_resource type="Resource" path="res://resources/expedition/activities/merchant.tres" id="29"]
+[ext_resource type="Resource" path="res://resources/expedition/equipment/weapon.tres" id="30"]
+[ext_resource type="Resource" path="res://resources/expedition/equipment/armor.tres" id="31"]
+[ext_resource type="Resource" path="res://resources/expedition/equipment/charm.tres" id="32"]
+[ext_resource type="Resource" path="res://resources/expedition/affixes/hardy.tres" id="33"]
+[ext_resource type="Resource" path="res://resources/expedition/affixes/sharp.tres" id="34"]
+[ext_resource type="Resource" path="res://resources/expedition/affixes/swift.tres" id="35"]
+[ext_resource type="Resource" path="res://resources/expedition/sets/thorn_2.tres" id="36"]
+[ext_resource type="Resource" path="res://resources/expedition/sets/thorn_3.tres" id="37"]
+[ext_resource type="Resource" path="res://resources/expedition/sets/storm_2.tres" id="38"]
+[ext_resource type="Resource" path="res://resources/expedition/sets/storm_3.tres" id="39"]
+[ext_resource type="Resource" path="res://resources/expedition/sets/ember_2.tres" id="40"]
+[ext_resource type="Resource" path="res://resources/expedition/sets/ember_3.tres" id="41"]
+[ext_resource type="Resource" path="res://resources/expedition/skills/guard.tres" id="42"]
+[ext_resource type="Resource" path="res://resources/expedition/skills/burst.tres" id="43"]
+[ext_resource type="Resource" path="res://resources/expedition/skills/fire.tres" id="44"]
+[ext_resource type="Resource" path="res://resources/expedition/skills/mend.tres" id="45"]
+[ext_resource type="Resource" path="res://resources/expedition/skills/mark_shot.tres" id="46"]
+[ext_resource type="Resource" path="res://resources/expedition/skills/protect.tres" id="47"]
+[ext_resource type="Resource" path="res://resources/expedition/events/supplies.tres" id="48"]
+[ext_resource type="Resource" path="res://resources/expedition/events/medic.tres" id="49"]
+[ext_resource type="Resource" path="res://resources/expedition/events/shrine.tres" id="50"]
+[ext_resource type="Resource" path="res://resources/expedition/events/forge.tres" id="51"]
+[ext_resource type="Resource" path="res://resources/expedition/events/notes.tres" id="52"]
+[ext_resource type="Resource" path="res://resources/expedition/events/pilgrim.tres" id="53"]
+
+[resource]
+script = ExtResource("1")
+rules_version = "gdd-v1-demo-1"
+rules = {"region_ap": 6, "exploration_regions_per_run": 3, "optional_activities": 3, "party_max": 3, "start_gold": 15, "level_cap": 4, "rest_heal_pct": 50, "merchant_heal_pct": 80, "merchant_heal_gold": 25, "merchant_gear_gold": 30, "chest_gold": 15, "patrol_gold": 12, "repeat_hp_step_pct": 15, "repeat_atk_step_pct": 10, "repeat_step_cap": 2, "fine_stat_mult": 1.15, "boss_fine_chance_pct": 30, "burn_damage_per_stack": 7, "burn_stack_cap": 3, "burn_ticks": 3, "mark_armor_reduction": 4, "mark_target_actions": 3, "shield_max_hp_pct": 50, "enrage_start_round": 9, "enrage_atk_step_pct": 15, "battle_round_cap": 30, "regen_heal": 6, "fury_atk_pct": 15, "fury_armor": -2, "resolve_armor": 3, "resolve_speed": -2, "priest_heal_threshold_pct": 70, "hero_skill_slots": 1, "hero_passive_slots": 1}
+regions = Array[Resource]([ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9"), ExtResource("10")])
+units = Array[Resource]([ExtResource("11"), ExtResource("12"), ExtResource("13"), ExtResource("14"), ExtResource("15"), ExtResource("16"), ExtResource("17"), ExtResource("18"), ExtResource("19"), ExtResource("20"), ExtResource("21"), ExtResource("22")])
+activities = Array[Resource]([ExtResource("23"), ExtResource("24"), ExtResource("25"), ExtResource("26"), ExtResource("27"), ExtResource("28"), ExtResource("29")])
+equipment = Array[Resource]([ExtResource("30"), ExtResource("31"), ExtResource("32")])
+affixes = Array[Resource]([ExtResource("33"), ExtResource("34"), ExtResource("35")])
+sets = Array[Resource]([ExtResource("36"), ExtResource("37"), ExtResource("38"), ExtResource("39"), ExtResource("40"), ExtResource("41")])
+skills = Array[Resource]([ExtResource("42"), ExtResource("43"), ExtResource("44"), ExtResource("45"), ExtResource("46"), ExtResource("47")])
+events = Array[Resource]([ExtResource("48"), ExtResource("49"), ExtResource("50"), ExtResource("51"), ExtResource("52"), ExtResource("53")])

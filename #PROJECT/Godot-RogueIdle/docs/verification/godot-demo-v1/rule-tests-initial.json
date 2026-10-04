@@ -1,0 +1,136 @@
+[
+  {
+    "tool": "session_activate",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"status\":\"ok\",\"active_session_id\":\"cat-idle@65d1\",\"matched\":\"hint\",\"matched_name\":\"cat-idle\"}"
+        }
+      ],
+      "structuredContent": {
+        "status": "ok",
+        "active_session_id": "cat-idle@65d1",
+        "matched": "hint",
+        "matched_name": "cat-idle"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "script_create",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"cleanup\":{\"rm\":[\"res://tests/test_expedition_rules.gd\",\"res://tests/test_expedition_rules.gd.uid\"]},\"committed\":true,\"diagnostics\":[],\"diagnostics_detail\":\"none\",\"diagnostics_scope\":\"this_file\",\"diagnostics_status\":\"checked\",\"import_pending\":false,\"import_settle\":\"settled\",\"import_settled\":true,\"path\":\"res://tests/test_expedition_rules.gd\",\"reason\":\"File system operations cannot be undone via editor undo\",\"size\":6202,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "cleanup": {
+          "rm": [
+            "res://tests/test_expedition_rules.gd",
+            "res://tests/test_expedition_rules.gd.uid"
+          ]
+        },
+        "committed": true,
+        "diagnostics": [],
+        "diagnostics_detail": "none",
+        "diagnostics_scope": "this_file",
+        "diagnostics_status": "checked",
+        "import_pending": false,
+        "import_settle": "settled",
+        "import_settled": true,
+        "path": "res://tests/test_expedition_rules.gd",
+        "reason": "File system operations cannot be undone via editor undo",
+        "size": 6202,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "test_run",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"duration_ms\":148,\"edited_scene\":\"res://scenes/Battle.tscn\",\"failed\":0,\"passed\":8,\"results\":[{\"assertion_count\":4,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_battle_is_deterministic_and_burn_bypasses_shield\"},{\"assertion_count\":20,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_budget_no_double_claim_and_regional_growth\"},{\"assertion_count\":5,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_equipping_max_health_does_not_heal\"},{\"assertion_count\":8,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_event_invalid_branch_keeps_paid_entry_and_fallback\"},{\"assertion_count\":7,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_every_map_route_has_three_regions\"},{\"assertion_count\":7,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_recruit_respects_hero_after_formation_swap\"},{\"assertion_count\":5,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_save_load_and_corruption_falls_back\"},{\"assertion_count\":8,\"message\":\"\",\"passed\":true,\"suite\":\"expedition_rules\",\"test\":\"test_seed_fog_and_no_recursive_reveal\"}],\"skipped\":0,\"suite_count\":1,\"suites_run\":[\"expedition_rules\"],\"total\":8,\"new_errors_since_last_call\":1,\"new_errors_hint\":\"1 new GDScript error since your last call. Inspect with logs_read(source='editor', include_details=true) and/or logs_read(source='game', include_details=true).\"}"
+        }
+      ],
+      "structuredContent": {
+        "duration_ms": 148,
+        "edited_scene": "res://scenes/Battle.tscn",
+        "failed": 0,
+        "passed": 8,
+        "results": [
+          {
+            "assertion_count": 4,
+            "message": "",
+            "passed": true,
+            "suite": "expedition_rules",
+            "test": "test_battle_is_deterministic_and_burn_bypasses_shield"
+          },
+          {
+            "assertion_count": 20,
+            "message": "",
+            "passed": true,
+            "suite": "expedition_rules",
+            "test": "test_budget_no_double_claim_and_regional_growth"
+          },
+          {
+            "assertion_count": 5,
+            "message": "",
+            "passed": true,
+            "suite": "expedition_rules",
+            "test": "test_equipping_max_health_does_not_heal"
+          },
+          {
+            "assertion_count": 8,
+            "message": "",
+            "passed": true,
+            "suite": "expedition_rules",
+            "test": "test_event_invalid_branch_keeps_paid_entry_and_fallback"
+          },
+          {
+            "assertion_count": 7,
+            "message": "",
+            "passed": true,
+            "suite": "expedition_rules",
+            "test": "test_every_map_route_has_three_regions"
+          },
+          {
+            "assertion_count": 7,
+            "message": "",
+            "passed": true,
+            "suite": "expedition_rules",
+            "test": "test_recruit_respects_hero_after_formation_swap"
+          },
+          {
+            "assertion_count": 5,
+            "message": "",
+            "passed": true,
+            "suite": "expedition_rules",
+            "test": "test_save_load_and_corruption_falls_back"
+          },
+          {
+            "assertion_count": 8,
+            "message": "",
+            "passed": true,
+            "suite": "expedition_rules",
+            "test": "test_seed_fog_and_no_recursive_reveal"
+          }
+        ],
+        "skipped": 0,
+        "suite_count": 1,
+        "suites_run": [
+          "expedition_rules"
+        ],
+        "total": 8,
+        "new_errors_since_last_call": 1,
+        "new_errors_hint": "1 new GDScript error since your last call. Inspect with logs_read(source='editor', include_details=true) and/or logs_read(source='game', include_details=true)."
+      },
+      "isError": false
+    }
+  }
+]

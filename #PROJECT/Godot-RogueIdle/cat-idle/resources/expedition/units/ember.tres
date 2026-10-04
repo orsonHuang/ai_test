@@ -1,0 +1,17 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogUnit.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "ember"
+display_name = "余烬祭司"
+side = "enemy"
+kind = "boss"
+hp = 260
+atk = 20
+armor = 3
+speed = 11
+hp_per_level = 0
+atk_per_level = 0
+armor_every_levels = 0

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" format=3]
+
+[ext_resource type="Script" path="res://scripts/expedition/data/FogUnit.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = "thorn"
+display_name = "荆棘守卫"
+side = "enemy"
+kind = "boss"
+hp = 240
+atk = 21
+armor = 4
+speed = 10
+hp_per_level = 0
+atk_per_level = 0
+armor_every_levels = 0
