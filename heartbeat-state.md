@@ -1,5 +1,7 @@
 # HEARTBEAT · 心跳状态
 
+- 2026-10-05 授权后微信加载修复收尾：memory→NOW同步。Codex旧授权任务success；Loading依赖顺序修复、完整重建和4/20MiB门禁通过（19765180/2950415字节）。微信实际主页/相册/缓存重启/无error通过，微信服务器接受预览19739157字节并生成QR。截图工具timeout限制已记录，修复前图不能当验收成功；真实安卓/iOS待扫码。原生Loading设计/Storage保留，三屏浏览器/正式依赖失败重试/300关/类型检查通过。仅提交本轮修复/证据/状态，不包含用户填报图片，不push。下轮不再重复请求Codex授权，旧pending记录已覆盖。
+
 - 2026-10-05 微信包修复收尾：memory→NOW同步；完整构建自动钩子与4/20MiB审核通过，19764814字节总包，2950049首包。保留Loading原生设计，三屏浏览器/正式模块加载重试/300关/TypeScript/绑定检查通过。wechatide Codex授权task auth_636bcc70698942024e1d496bc4a057c1df87af8f26b88f76仍pending，下一轮必须先查旧任务，不重发；模拟器与真机未验收，记录在validation/wechat-package-fix/acceptance.json。仅提交本轮加载与包体修复，不包含用户填报截图，不push。
 
 - 2026-10-05 微信预览诊断收尾：memory→NOW 同步；只读检查 7688 系统代理与 vpn07Core，提供排查步骤，未改代理配置、未宣称预览恢复。

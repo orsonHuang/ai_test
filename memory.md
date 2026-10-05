@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-05 微信授权后续验收：旧Codex授权任务已success，0.3.9版本一致且无需token。实际微信复现Loading卡70%，错误Please load bundle album first；LoadingPage改为递归注册Bundle.deps后加载MVP，含缓存/共享依赖/循环去重和失败重试。完整重建19,765,180字节总包、2,950,415首包；微信服务器手机预览实际接受19,739,157字节，QR在Nite-Nite/validation/wechat-package-fix/wechat-preview.png。实际运行进入主页，关闭每日登录后点击相册，6故事及91/91可见纹理就绪，缓存再启动主页正常，error筛选为空。截图接口修复后waitForAutomatorReady timeout，仅保留修复前故障图，不能当成功截图；引擎状态/画布操作证据见acceptance和wechat-simulator/cached-restart。三屏浏览器、正式加载依赖回归、300关、类型检查通过；原生新Loading设计保留，未清Storage。安卓/iOS真实手机仍待扫码，预览不等于体验版/正式发布；本轮提交局部修复和状态，不push。覆盖下方授权pending与模拟器待验旧记录。
+
 - 2026-10-05 晚安小屋微信包超限修复：保留用户新增原生Loading场景及进度/重试，导出PNG256色/JPEG75质量压缩、原稿与字体未改；整包29,107,697→19,764,814字节（18.85MiB），首包2,950,049（2.81MiB），主/相册正确分包。新增nite-wechat-release扩展及“晚安小屋→构建微信验收包”，自动后处理/压缩/4与20MiB审核；Cocos旧Node不兼容sharp，改用外部Node20。最终完整构建、实际发布模块加载重试、300关首步提示、三屏浏览器、类型/组件引用通过。模拟器/真机未通过验收，wechatide Codex授权待用户确认，taskId auth_636bcc70698942024e1d496bc4a057c1df87af8f26b88f76，旧任务pending不可重发；恢复先查polling_task_result，再检查工具状态并读日志/截图。包在Nite-Nite/cocosProject/Nite-Nite/build/wechatgame，验收记录validation/wechat-package-fix/acceptance.json；不包括用户填报截图，不上传正式版/push。
 
 - 2026-10-05 微信预览代理诊断：用户报 ECONNREFUSED 127.0.0.1:7688；只读检查证实 Windows 系统代理启用并指向该地址，目前 vpn07Core 已监听此端口。报错时本机代理连接被拒绝，当前监听不代表预览已恢复。建议先重试，持续失败在微信工具代理设置选择不使用代理并重启；未修改系统或工具设置。
