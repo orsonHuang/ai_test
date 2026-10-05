@@ -1,5 +1,7 @@
 # HEARTBEAT · 心跳状态
 
+- 2026-10-05 微信包修复收尾：memory→NOW同步；完整构建自动钩子与4/20MiB审核通过，19764814字节总包，2950049首包。保留Loading原生设计，三屏浏览器/正式模块加载重试/300关/TypeScript/绑定检查通过。wechatide Codex授权task auth_636bcc70698942024e1d496bc4a057c1df87af8f26b88f76仍pending，下一轮必须先查旧任务，不重发；模拟器与真机未验收，记录在validation/wechat-package-fix/acceptance.json。仅提交本轮加载与包体修复，不包含用户填报截图，不push。
+
 - 2026-10-05 微信预览诊断收尾：memory→NOW 同步；只读检查 7688 系统代理与 vpn07Core，提供排查步骤，未改代理配置、未宣称预览恢复。
 
 - 2026-10-05 标题调整收尾：memory→NOW 已同步；新奈奈手写落款与下移副标题已保存至 Cocos 原生场景，三尺寸截图在 Nite-Nite/validation/home-title-nainai，类型检查通过。本轮仅本地提交，未微信构建或 push。

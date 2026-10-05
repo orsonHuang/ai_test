@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-05 晚安小屋微信包超限修复：保留用户新增原生Loading场景及进度/重试，导出PNG256色/JPEG75质量压缩、原稿与字体未改；整包29,107,697→19,764,814字节（18.85MiB），首包2,950,049（2.81MiB），主/相册正确分包。新增nite-wechat-release扩展及“晚安小屋→构建微信验收包”，自动后处理/压缩/4与20MiB审核；Cocos旧Node不兼容sharp，改用外部Node20。最终完整构建、实际发布模块加载重试、300关首步提示、三屏浏览器、类型/组件引用通过。模拟器/真机未通过验收，wechatide Codex授权待用户确认，taskId auth_636bcc70698942024e1d496bc4a057c1df87af8f26b88f76，旧任务pending不可重发；恢复先查polling_task_result，再检查工具状态并读日志/截图。包在Nite-Nite/cocosProject/Nite-Nite/build/wechatgame，验收记录validation/wechat-package-fix/acceptance.json；不包括用户填报截图，不上传正式版/push。
+
 - 2026-10-05 微信预览代理诊断：用户报 ECONNREFUSED 127.0.0.1:7688；只读检查证实 Windows 系统代理启用并指向该地址，目前 vpn07Core 已监听此端口。报错时本机代理连接被拒绝，当前监听不代表预览已恢复。建议先重试，持续失败在微信工具代理设置选择不使用代理并重启；未修改系统或工具设置。
 
 - 2026-10-05 晚安小屋标题：按最新要求在“屋”右侧加入同笔触暖金竖排“奈奈”，副标题下移留白；透明素材 title_home_nainai.png 已通过 Cocos MCP 接入原生场景，运行时读取素材比例。360/390/430 浏览器检查及 TypeScript 通过，母图、提示词与截图已存项目；本轮未构建微信包、未 push。
