@@ -1,5 +1,7 @@
 # HEARTBEAT · 心跳状态
 
+- 2026-10-05 微信预览诊断收尾：memory→NOW 同步；只读检查 7688 系统代理与 vpn07Core，提供排查步骤，未改代理配置、未宣称预览恢复。
+
 - 2026-10-05 标题调整收尾：memory→NOW 已同步；新奈奈手写落款与下移副标题已保存至 Cocos 原生场景，三尺寸截图在 Nite-Nite/validation/home-title-nainai，类型检查通过。本轮仅本地提交，未微信构建或 push。
 
 - 2026-10-05 整个 ai_test 工作区备份：用户明确授权全空间提交与 push。外层快照 8f9945b、晚安小屋 b50c392、DiceMonster 5fe477e、个人主页 8724756 均已推送各自 origin/main；DiceMonster 按项目规定经 Maker 提交并构建成功。保留现有忽略规则，不包含被忽略的本机配置和缓存。晚安小屋是独立仓库，外层本地 exclude 排除它，恢复时需单独 clone。此次为保存现有工作，不代表所有项目重新验收或正式发布。
