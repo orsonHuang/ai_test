@@ -1,5 +1,7 @@
 # NOW · 当前状态锚点
 
+- 2026-10-08 相册九项视觉修订已保存并通过三屏测试；最新实际预览Nite-Nite/validation/album-refinement-20261008/final-390.png。标题、书签、叶子、相纸与已入住折角已调整，底部仅相册主页预留80px+安全区，尚未接入该位置广告。详情维持阅读高度。未重建微信包/未push。
+
 - 2026-10-08 晚安相册及详情已实装，可在Cocos预览打开晚安相册验收。三列封套、入住纪念阅读、同风格大图正文/合上已完成；三屏与交互回归通过，截图validation/album-scrapbook/album-final-390.png与reader-final-390.png。提交0165bde，微信包尚未重构建，未push。
 
 - 2026-10-07 新增横版推广图2张可用：安排入住／晚安故事，1280×720 JPG/72dpi；Nite-Nite/publishing/wechat/promo-pack-20261007/上传图片/09、10，原图及提示词保存完成。
