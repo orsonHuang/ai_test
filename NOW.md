@@ -1,5 +1,7 @@
 # NOW · 当前状态锚点
 
+- 2026-10-09 排行榜新效果图已生成并检查：月夜荣誉册，暖灯小屋/前三月亮奖章/自身行高亮。方案存Nite-Nite/references/ui/ranking-moonlit-20261009，待用户确认方向，尚未实装。
+
 - 2026-10-09 选择地区标题垂直居中已微调并重建微信包，预览截图在Nite-Nite/validation/region-title-center。
 
 - 2026-10-09 每日挑战/地区选择五项追加修改已完成，月牙/标题/蜡封改为固定比例。三屏验收及微信重建通过，最新截图validation/daily-proportions；未本轮模拟器/真机最终画面验收。
