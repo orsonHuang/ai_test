@@ -1,5 +1,7 @@
 # NOW · 当前状态锚点
 
+- 2026-10-09 每日挑战回看功能完成并重建微信包：完成后入口回看结果，棋盘右下角查看结果打开结算；三屏与零体力/奖励防重复验证通过。证据Nite-Nite/validation/daily-replay，实体机待查看。
+
 - 2026-10-09 排行榜新效果图已生成并检查：月夜荣誉册，暖灯小屋/前三月亮奖章/自身行高亮。方案存Nite-Nite/references/ui/ranking-moonlit-20261009，待用户确认方向，尚未实装。
 
 - 2026-10-09 选择地区标题垂直居中已微调并重建微信包，预览截图在Nite-Nite/validation/region-title-center。
