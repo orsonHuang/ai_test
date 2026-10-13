@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-14 晚安小屋6–20关只读体验审核完成：15关双搜索与公开推导通过，90条约定/8个设施子条件必要。重点为16/18的OR-XOR教学辨别不足、14的末尾集中解锁、10/15/20组末位置链重复。14主补互换、16两房设施、18三房设施的建议已内存复核且保留51/28/25分；未改正式关卡，原包SHA不变，真人待验。报告 #PROJECT/Nite-Nite/validation/strategy-review-6-20-20261013/design-review.md，完整逐关推导 reasoning.md；建议后续先14/16/18再20。
+
 - 2026-10-13 晚安小屋专用 skill：已学习 game-design-review 并融合项目规范v2.8，创建并安装 nite-nite-level-design（项目源 skills/nite-nite-level-design/，全局 ~/.codex/skills 同名目录）。附只读审查脚本；五关和归属/整层维修/冗余/空包测试、官方格式校验通过，正式包未改。生成效果和真人体验仍待实际使用验证，记录 validation/level-skill-20261013/。
 
 - 2026-10-13 晚安小屋体验版资料更新：旧保留提示由scope非true或deny/cancel提前退出，尚未云更新；现区分缺失scope与明确拒绝，原生合法回调可继续校验，已拒绝点更新直接wx.openSetting且无自有二次确认，返回授权后读保存，onShow不抢占原生回调。三屏模拟/八组核心/TS/实际微信导出300关和2283释义通过；包20707442字节，本地开发者工具刷新。未云部署/上传/push；手机需新版体验版验收，唯一手机分支未有日志。见Nite-Nite/validation/profile-retry-20261013与资料授权文档。 本地提交537efa7。
