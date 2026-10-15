@@ -2,6 +2,8 @@
 
 - 2026-10-15 游戏种子资料库讨论：用户明确希望提供游戏，由Codex Skill按统一规则拆解，保留现有玩法/体验/创意方向，并增加背包、竞技场、养成等分模块图文讲解；未来支持跨游戏按要求筛选优秀系统并收藏。本轮仅讨论，未创建Skill或修改网页。建议以系统案例为独立阅读/检索/收藏单元，关联游戏上下文、版本、图文证据；通用规范加模块专用模板，适用条件与代价共同评价。此方案细节待继续讨论，不能当已确认实施范围。
 
+- 2026-10-15 游戏种子资料库讨论：用户明确希望提供游戏，由Codex Skill按统一规则拆解，保留现有玩法/体验/创意方向，并增加背包、竞技场、养成等分模块图文讲解；未来支持跨游戏按要求筛选优秀系统并收藏。本轮仅讨论，未创建Skill或修改网页。建议以系统案例为独立阅读/检索/收藏单元，关联游戏上下文、版本、图文证据；通用规范加模块专用模板，适用条件与代价共同评价。此方案细节待继续讨论，不能当已确认实施范围。
+
 - 2026-10-15 晚安小屋微信构建与云部署完成：任务wechatgame-verified-1792074298186，主包3136437/总包20885908字节通过4/20MiB门禁；实际导出300关与提示回归通过。先备份线上niteCompetition，仅替换Puzzle.js、generated/Puzzle.js、catalog.json；300主线同步（192项较线上更新），57每日题及其他线上文件保留。cloud1-d1gcivtec7533f1c8部署Active，下载回读哈希一致，真实微信dailyStatus返回ok:true；模拟器刷新。项目6988aef，证据validation/directional-release-20261015/。未上传体验版/正式发布/push。
 
 - 2026-10-15 游戏种子 v0.1 已完成并私有发布：https://orson-game-seeds.decent-reed-7919.chatgpt.site 。项目 #PROJECT/game-seeds/，Sites appgprj_6ad0ddff91d88191a0534337c2f8e5ad，源提交20c7b78。原生静态网页：资料/TXT导入、本地关键词与模板挖掘、来源引用、收藏、验证状态笔记、Markdown/研究提示词导出、JSON合并恢复、多标签页防覆盖；6个虚构演示明确标记，尚无联网抓取/在线AI/云同步。核心和Edge1440/390/320流程验收通过，发布包game-seeds-v0.1-static.zip可放orson.games/game-ideas/，现有小站未改。Windows Sites helper需要进程级Git safe.directory精确项目路径、Git/bin PATH和TAR_OPTIONS=--force-local；不全局改配置，凭证仅内存stdin。
