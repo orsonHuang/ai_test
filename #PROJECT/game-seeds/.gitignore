@@ -1,0 +1,5 @@
+validation/
+*.tar.gz
+*.zip
+.openai/local/
+node_modules/

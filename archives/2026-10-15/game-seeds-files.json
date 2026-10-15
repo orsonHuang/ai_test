@@ -1,0 +1,13 @@
+[
+  ".gitignore",
+  ".openai/hosting.json",
+  "DEPLOY.md",
+  "README.md",
+  "dist/app.js",
+  "dist/engine.js",
+  "dist/favicon.svg",
+  "dist/index.html",
+  "dist/styles.css",
+  "tests/browser.cjs",
+  "tests/engine.cjs"
+]

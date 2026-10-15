@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-07T16:26:47.637Z",
+  "passed": true,
+  "scope": "Fake SDK contract tests; not live ad acceptance",
+  "bundle": null,
+  "checks": [
+    "missing configuration/platform/old SDK never creates an ad",
+    "only explicit completed close rewards once; show resolution alone is not a reward",
+    "early exit and absent completion flag earn nothing",
+    "load/show rejection and SDK errors settle and release retry",
+    "loading cancel/timeout cannot later open a stale video",
+    "opening timeout recovers; active playback is not cut off by a loading timer",
+    "old SDK instance cannot complete the next request",
+    "dispose and cleanup exceptions still settle; late callbacks ignored"
+  ]
+}

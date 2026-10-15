@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="游戏种子：整理资料线索，探索游戏创意，把想法变成可验证的原型。">
+  <meta name="theme-color" content="#f5f5ef">
+  <title>游戏种子 · Game Seeds</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./engine.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <aside class="sidebar">
+    <a class="brand" href="#discover" aria-label="游戏种子首页"><span class="brand-symbol" aria-hidden="true">✳</span><span>游戏种子<small>GAME SEEDS</small></span></a>
+    <div class="nav-caption">你的创意工作台</div>
+    <nav aria-label="主导航">
+      <a href="#discover" data-nav="discover"><span aria-hidden="true">◈</span>发现灵感<span class="nav-arrow">↗</span></a>
+      <a href="#mine" data-nav="mine"><span aria-hidden="true">✳</span>挖掘工作台</a>
+      <a href="#sources" data-nav="sources"><span aria-hidden="true">▤</span>我的资料<span id="source-count" class="nav-count">0</span></a>
+      <a href="#saved" data-nav="saved"><span aria-hidden="true">♡</span>收藏与验证<span id="saved-count" class="nav-count">0</span></a>
+    </nav>
+    <div class="sidebar-note"><span class="tiny-dot"></span> 给想法一点生长的空间<p>从一条观察开始，<br>找到值得动手的方向。</p></div>
+    <div class="sidebar-bottom"><button type="button" id="backup-button">↥ 导出备份</button><button type="button" id="restore-button">↧ 导入备份</button><div>v0.1 · 保存在此浏览器</div></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span>工作台 <span class="slash">/</span> <span id="breadcrumb">发现灵感</span></span><div class="topbar-right"><span class="local-indicator"><i></i>本地工作空间</span><button class="avatar" id="about-button" type="button" aria-label="查看第一版说明">?</button></div></header>
+    <div id="storage-warning" class="storage-warning" role="alert" hidden></div>
+    <main id="main">
+      <section id="view-discover" class="view">
+        <div class="hero"><div class="hero-copy"><div class="eyebrow">A LITTLE OBSERVATION. A NEW POSSIBILITY.</div><h1>好点子，<br>都有<span>迹可循。</span></h1><p>收集玩家的声音，拆开有趣的机制。<br>让零散的观察，长成下一款游戏。</p><button type="button" class="button primary" data-go="mine">开始挖掘 <span>↗</span></button><button type="button" class="text-button" id="demo-button">用示例试一试 →</button></div><div class="seed-art" aria-hidden="true"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><span class="art-label label-observe">一条观察</span><span class="art-label label-play">一个机制</span><div class="art-seed"><span></span><i></i><b></b></div><span class="art-label label-idea">下一颗游戏种子 ↗</span><span class="art-spark spark-one">✧</span><span class="art-spark spark-two">+</span></div></div>
+        <div class="section-heading"><div><div class="eyebrow">IDEA COLLECTION</div><h2>先从一个好奇开始</h2></div><p id="idea-summary"></p></div>
+        <div class="collection-toolbar"><div class="filter-chips" role="group" aria-label="创意来源"><button type="button" data-filter="all" aria-pressed="true">全部</button><button type="button" data-filter="mine" aria-pressed="false">我的挖掘</button><button type="button" data-filter="demo" aria-pressed="false">演示灵感</button></div><label class="search-box"><span aria-hidden="true">⌕</span><input id="idea-search" type="search" placeholder="搜索题材、机制或关键词" aria-label="搜索创意"></label></div>
+        <div id="idea-grid" class="idea-grid"></div>
+      </section>
+      <section id="view-mine" class="view" hidden>
+        <div class="page-heading"><div class="eyebrow">FROM SIGNALS TO IDEAS</div><h1>挖掘下一颗种子</h1><p>选好资料和创作边界，把线索变成可以动手验证的方向。</p></div>
+        <div class="mining-layout"><form id="mining-form" class="panel mining-form"><div class="step-heading"><span>01</span><h2>设定创作边界</h2></div>
+          <label>目标平台<select name="platform"><option>PC / Steam</option><option>手机 / 小游戏</option><option>网页游戏</option><option>桌游原型</option></select></label>
+          <div class="form-pair"><label>团队规模<select name="team"><option>1–2 人</option><option>3–5 人</option><option>6 人以上</option></select></label><label>原型验证预算<select name="budget"><option>1 周</option><option>2 周</option><option>1 个月</option></select></label></div>
+          <label>想探索的题材 <span class="optional">可选</span><input name="topic" maxlength="160" placeholder="例如：旧书店、太空、民俗、解谜"></label>
+          <label>挖掘方式<select name="method"><option value="all">综合探索 · 三种角度</option><option value="demand">需求切口 · 找到体验缺口</option><option value="transfer">机制迁移 · 换一个应用场景</option><option value="constraint">限制反转 · 用约束创造玩法</option></select></label>
+          <div class="step-heading second-step"><span>02</span><h2>选择资料范围</h2></div>
+          <label>使用哪些资料<select id="corpus" name="corpus"><option value="personal">我的资料</option><option value="demo">演示资料 · 虚构示例</option></select></label><div id="corpus-note" class="form-note"></div>
+          <button type="submit" class="button primary full">整理线索，生成方向 <span>↗</span></button><p class="method-note">本版使用关键词和设计模板。命中只表示主题相关，生成结果均为待验证构想。</p>
+        </form><div class="mining-results"><div class="step-heading"><span>03</span><h2>从线索到候选</h2></div><div id="mining-output" aria-live="polite"><div class="mining-empty"><div class="empty-glyph" aria-hidden="true">✳</div><h3>创意，从一条具体观察开始。</h3><p>导入玩家反馈、试玩笔记或现实观察。<br>我们会整理相关主题，并生成候选方向。</p><button type="button" class="button secondary" data-go="sources">先添加资料 →</button></div><div class="process-list"><div><span>01</span><b>留下原始声音</b><small>资料与链接可回查</small></div><div><span>02</span><b>尝试不同角度</b><small>需求 · 迁移 · 限制</small></div><div><span>03</span><b>设计一个小实验</b><small>让试玩回答问题</small></div></div></div></div></div>
+      </section>
+      <section id="view-sources" class="view" hidden>
+        <div class="page-heading heading-with-action"><div><div class="eyebrow">YOUR RESEARCH SHELF</div><h1>把观察留在这里</h1><p>一句玩家反馈、一段试玩记录，或一个生活中的发现。</p></div><button type="button" class="button primary" id="add-source-button">＋ 添加资料</button></div>
+        <div class="source-intro"><span aria-hidden="true">↗</span><div><b>先收集，再判断。</b><p>只填链接不会自动抓取，请同时粘贴原文或你的观察。真实反馈与个人推断尽量分开记录。</p></div><button type="button" class="text-button" id="import-text-button">导入 TXT 文件 →</button></div>
+        <div id="source-list" class="source-list"></div>
+        <div class="section-heading"><div><div class="eyebrow">START EXPLORING</div><h2>去哪里寻找线索</h2></div><span class="muted">外部资料入口</span></div>
+        <div class="resource-grid"><a href="https://store.steampowered.com/" target="_blank" rel="noopener noreferrer"><b>Steam <span>↗</span></b><p>对照好评与差评，观察玩家为什么留下或离开。</p><small>玩家反馈</small></a><a href="https://itch.io/jams" target="_blank" rel="noopener noreferrer"><b>itch.io Game Jams <span>↗</span></b><p>从短小实验中发现规则、限制与新鲜的组合。</p><small>实验玩法</small></a><a href="https://www.taptap.cn/" target="_blank" rel="noopener noreferrer"><b>TapTap <span>↗</span></b><p>收集中文玩家对操作、节奏和使用场景的描述。</p><small>中文社区</small></a><a href="https://gdcvault.com/free/g/?media=va" target="_blank" rel="noopener noreferrer"><b>GDC Vault <span>↗</span></b><p>看看开发者做过哪些取舍，哪些设计值得验证。</p><small>开发者复盘</small></a></div>
+      </section>
+      <section id="view-saved" class="view" hidden><div class="page-heading heading-with-action"><div><div class="eyebrow">MAKE ROOM FOR THE GOOD ONES</div><h1>让值得的想法继续生长</h1><p>留下感兴趣的方向，用原型和记录不断修正判断。</p></div><label class="status-filter">验证状态<select id="status-filter"><option value="all">全部状态</option><option>待研究</option><option>做原型</option><option>已验证</option><option>暂搁置</option></select></label></div><div id="saved-grid" class="idea-grid"></div></section>
+      <footer class="main-footer"><span>游戏种子 / GAME SEEDS</span><span>小小的观察，也能开出新的可能。</span></footer>
+    </main>
+  </div>
+  <dialog id="source-dialog" class="source-dialog"><form id="source-form"><header class="dialog-header"><div><div class="eyebrow">COLLECT A SIGNAL</div><h2 id="source-dialog-title">添加一条资料</h2></div><button type="button" class="icon-button" data-close="source-dialog" aria-label="关闭资料窗口">×</button></header><input type="hidden" name="id"><label>资料标题<input name="title" maxlength="120" required placeholder="例如：某款游戏关于单局时长的反馈"></label><div class="form-pair"><label>资料类型<select name="type"><option>玩家反馈</option><option>试玩笔记</option><option>访谈观察</option><option>现实观察</option><option>开发者复盘</option><option>个人笔记</option></select></label><label>线索主题<select name="topic" id="source-topic"><option value="auto">自动识别</option></select></label></div><label>来源链接 <span class="optional">可选</span><input name="url" type="url" maxlength="2000" placeholder="https://…"></label><label>原文或观察<textarea name="content" rows="7" maxlength="12000" minlength="8" required placeholder="粘贴原始反馈，或描述谁在什么场景下，遇到了什么问题。至少 8 个字。"></textarea></label><div id="source-error" class="form-error" role="alert"></div><footer class="dialog-footer"><span class="muted">仅保存在你的浏览器</span><button type="submit" class="button primary">保存资料</button></footer></form></dialog>
+  <dialog id="idea-dialog" class="idea-dialog"><div id="idea-detail"></div></dialog>
+  <dialog id="about-dialog" class="about-dialog"><header class="dialog-header"><h2>游戏种子 · 第一版</h2><button type="button" class="icon-button" data-close="about-dialog" aria-label="关闭说明">×</button></header><p>这是一个把观察变成可验证创意的个人工作台。</p><ul><li>可以导入资料、整理线索、生成候选、收藏、记录验证结果和导出。</li><li>演示资料是虚构示例，不代表真实市场反馈。</li><li>挖掘使用本地关键词和设计模板，尚未接入在线 AI 或自动抓取。</li><li>数据保存在当前浏览器，清除网站数据会丢失记录。请用「导出备份」保留副本。</li></ul><button type="button" class="button secondary" data-close="about-dialog">开始探索</button></dialog>
+  <input id="restore-input" type="file" accept=".json,application/json" hidden><input id="text-input" type="file" accept=".txt,text/plain" hidden>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><div class="storage-warning">请启用 JavaScript 后使用游戏种子。</div></noscript>
+</body>
+</html>
