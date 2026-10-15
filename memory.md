@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-15 游戏种子 v0.1 已完成并私有发布：https://orson-game-seeds.decent-reed-7919.chatgpt.site 。项目 #PROJECT/game-seeds/，Sites appgprj_6ad0ddff91d88191a0534337c2f8e5ad，源提交20c7b78。原生静态网页：资料/TXT导入、本地关键词与模板挖掘、来源引用、收藏、验证状态笔记、Markdown/研究提示词导出、JSON合并恢复、多标签页防覆盖；6个虚构演示明确标记，尚无联网抓取/在线AI/云同步。核心和Edge1440/390/320流程验收通过，发布包game-seeds-v0.1-static.zip可放orson.games/game-ideas/，现有小站未改。Windows Sites helper需要进程级Git safe.directory精确项目路径、Git/bin PATH和TAR_OPTIONS=--force-local；不全局改配置，凭证仅内存stdin。
+
 - 2026-10-15 晚安小屋新增方向范围人数residentDirectionCount：左右同层、上下同列，含紧邻不含本人，空房/维修房不截断；紧邻单方向显示有人/没人，四周仍计数。工坊、主语归属、双求解、公开推理/提示、本地云端及规范2.9同步。22770判定+276域可靠性、300关唯一/公开推导、提示回归、工坊隔离保存和360×640/390×844实际Cocos通过。旧题/daily/catalog未改；8关因文案短各降1分但档位不变。Cocos资源/工坊已刷新；未微信构建/云部署/上传/push。5b4b506只提交自身增量，前置未提交改动保留；完整工作树增量见validation/directional-count-20261015/own-changes.patch；真人待验。
 
 - 2026-10-15 晚安小屋资料更新恢复验证：用户已声明隐私用途且微信返回资料/凭证；第二处为头像thirdwx.qlogo.cn不在downloadFile合法域名。用户已添加，重开工程仍旧缓存，最终在详情→项目配置→域名信息刷新并重编译后实际头像昵称显示，用户手动更新确认“显示已更新，正常了”。运行时本地资料authorized=true、有头像、非默认名；28/5体力、6印章与第6夜保持。此前Escape停电脑操作，本轮经自动审批拒绝后用户明确再授权才继续。8f0321a记录恢复，原ae7578f客户端诊断保留，无需再改代码/云部署/上传；手机体验版退出重进后待复测。真实截图忽略入库，证据validation/profile-native-20261015/recovery.json。

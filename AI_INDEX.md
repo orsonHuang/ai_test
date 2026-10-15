@@ -1,4 +1,6 @@
 # AI_INDEX · 文件路由表
+
+- 游戏创意挖掘工具「游戏种子」：`#PROJECT/game-seeds/README.md`（工作规则、使用与验证）、`DEPLOY.md`（现有小站部署）；静态网页入口 `dist/index.html`，Sites私有发布身份在 `.openai/hosting.json`。
 > **用法**：AI 每轮对话前按本文路由加载文件，避免盲目全读或遗漏关键文件。> **维护**：文件增减时同步更新本表。Orson 无需手动维护。
 ---
 
