@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-16 主页游戏种子版式修订：用户明确为独立模块，与02笔记同格式；已从notes移出，新增平级03/Game Seeds及游戏种子标题，复用section-head和全局留白，恢复notes底部间距。顶部链接保留；三宽度排版及公网hash/独立DOM/入口真实跳转验证通过。仅index部署，旧版备份home-before-module-20261016.html，新hash6589befe71a27cc7485c4012eddda70802c97658f58873903259e32931b3f1d9。
+
 - 2026-10-16 用户截图指定主页两处加入口：顶部关于我前加游戏种子，笔记列表下加游戏种子/探索案例库横行，均/game-ideas/。核实本地线上旧hash一致后修改index，1200/390/320排版检查、线上全文件hash和两个链接真实跳转通过。旧首页备份服务器/root/game-seeds-releases/home-before-entry-20261016.html，新hash e59eaa2c05bde7ddb71cd828cfbe554118d3882f23fed1c524bb2b33f458ff07；只更新主页，无后端/Nginx变动。PowerShell将末尾CRLF送远程sh导致最后校验文件名带CR，部署已成功，单独重验确认；以后通过stdin远程shell需规范LF或用文件上传执行。
 
 - 2026-10-16 游戏资料库已部署腾讯云 https://orson.games/game-ideas/ ：用户明确授权，现有SSH密钥连接可用；确认Nginx root后仅新增game-ideas目录，主页/Nginx指纹不变。v0.2含27系统/42文档/27公开原创SVG、本地Mermaid、游戏/系统/商业特征/证据筛选、全文搜索、系统收藏笔记和独立JSON备份；6微信待核默认排除，P未实现说明保留。原创意工作台及存储不变。发布game-ideas-20261016T090325Z，36文件HTTPS全量哈希一致；线上42文档/全部流程图/收藏恢复/1440-390-320检查通过，旧工作台本地回归通过。公开包不含5研究截图；Sites旧域名未更新。证据game-seeds/validation，部署归档服务器/root/game-seeds-releases；本地v0.2ZIP。已请求打开线上页面（queued），用户可直接验收，尚未记录用户验收通过。
