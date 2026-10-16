@@ -7,7 +7,7 @@ const out=path.resolve(__dirname,'../validation');fs.mkdirSync(out,{recursive:tr
   const browser=await chromium.launch({channel:'msedge',headless:true});
   const context=await browser.newContext({viewport:{width:1440,height:1100},acceptDownloads:true});
   const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto('http://127.0.0.1:8789/');
+  await page.goto('http://127.0.0.1:8789/#discover');
   assert.equal(await page.locator('#idea-grid .idea-card').count(),6);
   await page.screenshot({path:path.join(out,'desktop.png'),fullPage:true});
   await page.locator('[data-nav="mine"]').click();
@@ -76,7 +76,7 @@ const out=path.resolve(__dirname,'../validation');fs.mkdirSync(out,{recursive:tr
   assert.deepEqual(errors,[]);
   await context.close();
   const restoreContext=await browser.newContext();const restored=await restoreContext.newPage();
-  await restored.goto('http://127.0.0.1:8789/');await restored.locator('#restore-input').setInputFiles(backupPath);
+  await restored.goto('http://127.0.0.1:8789/#discover');await restored.locator('#restore-input').setInputFiles(backupPath);
   await restored.waitForFunction(()=>document.getElementById('toast').textContent.includes('已合并'));
   await restored.locator('[data-nav="saved"]').click();assert.equal(await restored.locator('#saved-grid .idea-card').count(),1);
   await restored.locator('[data-nav="sources"]').click();assert.equal(await restored.locator('#source-list .source-item').count(),1);
@@ -86,7 +86,7 @@ const out=path.resolve(__dirname,'../validation');fs.mkdirSync(out,{recursive:tr
   await restored.locator('#restore-input').setInputFiles({name:'seed-backup.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(exampleBackup))});
   await restored.waitForFunction(()=>JSON.parse(localStorage.getItem('game-seeds-v1')).ideas.find(x=>x.id==='seed-short').favorite);
   assert.equal(await restored.evaluate(()=>JSON.parse(localStorage.getItem('game-seeds-v1')).ideas.find(x=>x.id==='seed-short').notes),'从备份恢复的示例笔记');
-  const otherTab=await restoreContext.newPage();await otherTab.goto('http://127.0.0.1:8789/');
+  const otherTab=await restoreContext.newPage();await otherTab.goto('http://127.0.0.1:8789/#discover');
   await otherTab.locator('[data-favorite="seed-information"]').click();
   const otherSaved=await otherTab.evaluate(()=>localStorage.getItem('game-seeds-v1'));
   await restored.locator('[data-nav="discover"]').click();await restored.locator('[data-favorite="seed-chores"]').click();

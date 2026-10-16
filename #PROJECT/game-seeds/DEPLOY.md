@@ -1,4 +1,29 @@
-# 部署游戏种子 v0.1
+# 部署游戏种子 v0.2
+
+## 当前线上交付（2026-10-16）
+
+- 线上入口：<https://orson.games/game-ideas/>，默认系统案例库；旧创意工作台通过导航继续使用。
+- 发布号：`game-ideas-20261016T090325Z`。36文件/3,449,640字节：27原创SVG、42文档入口、27系统与离线Mermaid渲染。
+- 发布目录：`/var/www/orson-huang-homepage/game-ideas/`。发布前目录不存在，暂存包逐文件SHA256通过后移动到目标目录；Nginx和原主页未改。
+- 服务器发布归档：`/root/game-seeds-releases/game-ideas-20261016T090325Z.tar.gz`；本地可移交ZIP为`game-seeds-v0.2-static.zip`。只发布dist内容，不含资料库研究截图、服务器凭证、测试用户数据和Sites身份。
+- 证据：`validation/online-integrity.json`记录公网36文件全部SHA256匹配、无末尾斜线跳转、主页和awakening均200；`validation/library-acceptance.json`记录真实HTTPS下42文档及全部流程图/筛选/收藏/备份/1440、390、320宽度通过。原创意工作台流程验收见`validation/acceptance.json`。
+- 根首页SHA256保持`a080846e6a41b55316d90a2032b42ce8d13326f35ec2a8df736edf624acd22f8`；Nginx站点配置保持`937c04753eab247b52fa455506affe4b1b51175b331ed5b7ed46bc52a350d75e`。
+
+## 后续更新内容
+
+1. 用拆解Skill维护`#Game-TearDown`原文、game.json、来源与媒体台账并验证，重建catalog/public-media。
+2. 本项目执行`npm ci`（仅首次或依赖改变），再执行`npm run build:library`。内容构建只复制公开图片允许清单，原始HTML转义，引用截图仅显示来源提示。
+3. 启动本机HTTP服务后运行`node tests/engine.cjs`、`node tests/browser.cjs`、`node tests/library.cjs`；通过后`python scripts/package-release.py`生成发布归档与校验清单。
+4. 后续替换发布需先备份现有game-ideas目录，再暂存、验哈希和切换。`deploy-first-release.sh`只用于本次首次部署，目标已存在时会主动停止，不能直接用于覆盖更新。
+5. `python scripts/verify-release.py`验证公网文件与归档manifest一致；`BASE_URL=https://orson.games/game-ideas/`可运行资料库浏览器验收。
+
+服务器不需要安装Node或数据库。若需回退本次首次发布，可经确认将整个game-ideas目录移到同站点根目录外的备份位置；不能替换或清空整个站点根目录。后续发布保留上一版目录供回滚。
+
+## 系统收藏说明
+
+系统收藏使用独立的`game-seeds-library-v1`存储键，按稳定systemId关联笔记；列表提供“导出系统收藏/导入系统收藏”。导入合并，相同ID保留当前笔记。原创意备份使用`game-seeds-v1`，两个入口分别导入导出，互不覆盖。清除网站数据会删除本机收藏，资料库公开内容仍可访问。
+
+以下为v0.1历史说明，当前发布请使用完整v0.2 ZIP或dist全部文件，不再使用旧五文件包。
 
 ## 本地使用
 

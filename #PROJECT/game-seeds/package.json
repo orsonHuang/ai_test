@@ -1,0 +1,9 @@
+{
+  "private": true,
+  "scripts": {"build:library":"node scripts/build-library.mjs","test":"node tests/engine.cjs","test:library":"node tests/library.cjs"},
+  "devDependencies": {
+    "esbuild": "^0.25.11",
+    "marked": "^16.4.2",
+    "mermaid": "^11.12.2"
+  }
+}
