@@ -1,0 +1,188 @@
+{
+  "gameId": "blue-planet-app",
+  "overview": "reader/游戏分析.md",
+  "systems": [
+    {
+      "id": "blue-planet-combat",
+      "path": "reader/召唤合成与战斗.md",
+      "group": "核心玩法与战斗",
+      "summary": "随机结果如何变成有代价的合成与强化选择",
+      "cover": "reader-assets/combat.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-levels",
+      "path": "reader/关卡与赛季规则.md",
+      "group": "核心玩法与战斗",
+      "summary": "用关卡条件检验不同能力，区分机制门槛与数值门槛",
+      "cover": "reader-assets/levels.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-heroes",
+      "path": "reader/英雄与永久成长.md",
+      "group": "局外养成与获取",
+      "summary": "等级之外，功能节点如何改变角色与阵容的用法",
+      "cover": "reader-assets/heroes.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-equipment",
+      "path": "reader/装备图腾与洗炼.md",
+      "group": "局外养成与获取",
+      "summary": "条件词条的触发时机，比单一面板大小更值得比较",
+      "cover": "reader-assets/equipment.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-recruitment",
+      "path": "reader/招募与重复转化.md",
+      "group": "局外养成与获取",
+      "summary": "把玩法资源连接到角色目标，区分获得与可用",
+      "cover": "reader-assets/recruitment.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-arena",
+      "path": "reader/竞技场.md",
+      "group": "多人玩法",
+      "summary": "清怪速度如何转化为对手压力与发育优势",
+      "cover": "reader-assets/arena.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-coop",
+      "path": "reader/合作准备与挑战.md",
+      "group": "多人玩法",
+      "summary": "通过准备状态，将成员配置与开战权限连起来",
+      "cover": "reader-assets/coop.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-territory",
+      "path": "reader/领地资源与收集.md",
+      "group": "资源与社交",
+      "summary": "不同资源入口如何安排挑战、积累与领取的节奏",
+      "cover": "reader-assets/territory.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-social",
+      "path": "reader/社交公会与排行榜.md",
+      "group": "资源与社交",
+      "summary": "共同目标、贡献和榜单分别给成长提供什么意义",
+      "cover": "reader-assets/social.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "blue-planet-liveops",
+      "path": "reader/商业化与运营减负.md",
+      "group": "运营与商业化",
+      "summary": "付费价值、配置条件和重复操作之间的关系",
+      "cover": "reader-assets/liveops.svg",
+      "coverPublication": "original"
+    }
+  ],
+  "ui": {
+    "combat": {
+      "title": "召唤合成与战斗 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 战况｜波次与防线",
+        "② 战场｜关键敌人与反馈",
+        "③ 阵列｜身份、星级、关系",
+        "④ 决策｜召唤成本与强化"
+      ]
+    },
+    "levels": {
+      "title": "关卡与赛季规则 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 关卡｜挑战目标",
+        "② 规则｜本关改变什么",
+        "③ 条件｜可用能力与消耗",
+        "④ 进入｜条件满足后挑战"
+      ]
+    },
+    "heroes": {
+      "title": "英雄与永久成长 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 英雄｜当前等级与能力",
+        "② 节点｜现在与下一阶段",
+        "③ 消耗｜持有、缺口、来源",
+        "④ 培养｜结果与方案关联"
+      ]
+    },
+    "equipment": {
+      "title": "装备图腾与洗炼 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 装备｜部位与当前方案",
+        "② 词条｜对象、条件、收益",
+        "③ 对比｜保留与变化",
+        "④ 消耗｜所需资源与确认"
+      ]
+    },
+    "recruitment": {
+      "title": "招募与重复转化 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 目标｜本期内容与期限",
+        "② 规则｜结果范围与概率说明",
+        "③ 资源｜当前拥有与消耗",
+        "④ 结果｜新增、重复与去向"
+      ]
+    },
+    "arena": {
+      "title": "竞技场 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 对手｜挑战方式与信息",
+        "② 配置｜进攻 / 防守方案",
+        "③ 资源｜参与成本与收益",
+        "④ 结果｜胜负、变化、下一步"
+      ]
+    },
+    "coop": {
+      "title": "合作准备与挑战 · 信息线框",
+      "basis": "依据公告配图简化的信息层级；不是原界面复刻",
+      "blocks": [
+        "① 关卡条件｜本层增益与威胁",
+        "② 挑战对象｜首领展示",
+        "③ 成员｜队长、队员与状态",
+        "④ 开战｜未准备提示 / 方案"
+      ]
+    },
+    "territory": {
+      "title": "领地资源与收集 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 目标｜当前需要什么资源",
+        "② 入口｜矿场 / 派遣 / 食堂",
+        "③ 状态｜积累中 / 可领取",
+        "④ 去向｜查看用途与下一目标"
+      ]
+    },
+    "social": {
+      "title": "社交公会与排行榜 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 共同目标｜参与条件与进度",
+        "② 我的贡献｜行动与收益",
+        "③ 关系｜好友、成员、邀请",
+        "④ 比较｜维度、范围、时间"
+      ]
+    },
+    "liveops": {
+      "title": "商业化与运营减负 · 信息线框",
+      "basis": "补充设计示意；尚未核实完整原作界面",
+      "blocks": [
+        "① 权益｜获得什么与适用范围",
+        "② 周期｜生效、领取、到期",
+        "③ 成本｜价格与次数限制",
+        "④ 结果｜资源与权益生效"
+      ]
+    }
+  }
+}

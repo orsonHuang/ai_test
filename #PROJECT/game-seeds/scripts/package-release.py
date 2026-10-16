@@ -6,7 +6,8 @@ dist=root/'dist'
 release='game-ideas-'+datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
 files=sorted(p for p in dist.rglob('*') if p.is_file())
 assert all(p.suffix in {'.html','.js','.css','.svg'} for p in files)
-assert len(list((dist/'media').glob('*.svg')))==27
+allowed=json.loads((root/'../../#Game-TearDown/public-media.json').resolve().read_text(encoding='utf-8'))['media']
+assert len(list((dist/'media').glob('*.svg')))==len(allowed)
 manifest={p.relative_to(dist).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
 out=root/'validation';out.mkdir(exist_ok=True)
 (out/'release.json').write_text(json.dumps({'release':release,'files':manifest},indent=2),encoding='utf-8')

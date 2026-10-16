@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-16 蔚蓝分析样稿重写并上线：用户不接受内部目录/P缩写主导的正文，要求作者视角产品介绍、亮点段落、核心循环、前中后期节奏、商业化、系统与数值框架；先只重做永远的蔚蓝星球App验收，再决定铺开。三篇知乎正文已读，金山文档目录/开篇可读但后续导航不稳定，未声称完整学习其UI细则。内容源新增reader/11篇、reader.json、10原创封面；旧systems开发规格保留折叠附录。网页五组10模块地图可真实跳转，每页UI线框，四重点专用图；内部P/接口不出现在默认正文。参考与原作仍分开，未实机、未编造概率/收入；未更新全局Skill或其他游戏文章。发布game-ideas-20261016T142557Z，46文件HTTPS哈希一致、样稿线上10跳转/图解/附录/收藏/窄屏通过，42文档整体及旧工作台本地回归通过，31其他文档正文和全部ID不变。上一版/var/www/game-ideas-20261016T142557Z-previous；主页hash6589befe保持。入口https://orson.games/game-ideas/#library/blue-planet-app，用户待验收。
+
 - 2026-10-16 主页游戏种子版式修订：用户明确为独立模块，与02笔记同格式；已从notes移出，新增平级03/Game Seeds及游戏种子标题，复用section-head和全局留白，恢复notes底部间距。顶部链接保留；三宽度排版及公网hash/独立DOM/入口真实跳转验证通过。仅index部署，旧版备份home-before-module-20261016.html，新hash6589befe71a27cc7485c4012eddda70802c97658f58873903259e32931b3f1d9。
 
 - 2026-10-16 用户截图指定主页两处加入口：顶部关于我前加游戏种子，笔记列表下加游戏种子/探索案例库横行，均/game-ideas/。核实本地线上旧hash一致后修改index，1200/390/320排版检查、线上全文件hash和两个链接真实跳转通过。旧首页备份服务器/root/game-seeds-releases/home-before-entry-20261016.html，新hash e59eaa2c05bde7ddb71cd828cfbe554118d3882f23fed1c524bb2b33f458ff07；只更新主页，无后端/Nginx变动。PowerShell将末尾CRLF送远程sh导致最后校验文件名带CR，部署已成功，单独重验确认；以后通过stdin远程shell需规范LF或用文件上传执行。

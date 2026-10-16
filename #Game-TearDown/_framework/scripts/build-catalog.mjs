@@ -26,6 +26,17 @@ for(const dir of dirs){
     }
   }
 }
+// Append reader media after legacy media so existing public image paths stay stable.
+for(const dir of dirs){
+  const folder=path.resolve(root,dir),file=path.join(folder,'reader.json');if(!fs.existsSync(file))continue;
+  const reader=JSON.parse(fs.readFileSync(file,'utf8'));
+  for(const s of reader.systems){
+    if(!catalog.systems.some(x=>x.id===s.id&&x.gameId===reader.gameId))throw new Error(`Unknown reader system ${s.id}`);
+    for(const p of [s.path,s.cover]){const full=path.resolve(folder,p);if(!full.startsWith(folder+path.sep)||!fs.existsSync(full))throw new Error(`Invalid reader file ${p}`);}
+    if(!['original','authorized'].includes(s.coverPublication))throw new Error(`Reader media is not public: ${s.id}`);
+    const relative=`${dir}/${s.cover}`;media.set(relative,{path:relative,kind:'original-diagram',publication:s.coverPublication});
+  }
+}
 for(const s of catalog.systems)for(const id of s.related||[])if(!ids.has(id))throw new Error(`Unknown related ID ${id}`);
 for(const [file,data] of [['catalog.json',catalog],['public-media.json',{schemaVersion:1,scope:'Media allowlist only; not a deployable package. Research-only images are excluded.',media:[...media.values()]}]]){
   const dest=path.join(root,file);if(fs.existsSync(dest))fs.readFileSync(dest,'utf8');

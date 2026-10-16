@@ -1,6 +1,14 @@
 # 部署游戏种子 v0.2
 
-## 当前线上交付（2026-10-16）
+## 最新样稿更新（2026-10-16）
+
+- 发布 `game-ideas-20261016T142557Z`，46文件、3,562,144字节。新增永远的蔚蓝星球整游分析与10篇系统正文、地图、UI线框及10张原创关系封面；其余游戏正文保持。
+- 使用 `deploy-update-release.sh` 校验暂存文件后切换，仅替换 game-ideas 目录；上一版本保留在 `/var/www/game-ideas-20261016T142557Z-previous`。归档和同名 sha256 清单位于 `/root/game-seeds-releases/`。
+- 首页 SHA256 保持 `6589befe71a27cc7485c4012eddda70802c97658f58873903259e32931b3f1d9`，未修改 Nginx。公开包不含来源研究截图和金山文档内容。
+- 更新内容时保留游戏目录下 reader.json、reader/、reader-assets/。build-catalog 会在旧图清单后追加明确标记原创/已授权的阅读封面；build:library 采用公开文章并保留参考附录。
+- 样稿验收：`node tests/reader-sample.cjs`，`BASE_URL` 支持线上地址；检查十次真实地图跳转、每页图解、附录流程图、收藏持久化与320/390像素无横向溢出。
+
+## 首次线上交付（2026-10-16）
 
 - 线上入口：<https://orson.games/game-ideas/>，默认系统案例库；旧创意工作台通过导航继续使用。
 - 发布号：`game-ideas-20261016T090325Z`。36文件/3,449,640字节：27原创SVG、42文档入口、27系统与离线Mermaid渲染。
