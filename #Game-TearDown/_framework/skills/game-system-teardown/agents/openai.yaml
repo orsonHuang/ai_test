@@ -1,0 +1,4 @@
+interface:
+  display_name: "游戏系统拆解"
+  short_description: "按版本与证据拆解游戏，产出系统图文案例及策划、开发、美术阅读导航"
+  default_prompt: "使用 $game-system-teardown 拆解我指定的游戏与平台，先确认必要范围，再生成系统地图、图文案例及三岗位阅读入口。"

@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-10-16T08:08:14.706Z",
+  "games": [
+    "暖雪-Steam",
+    "永远的蔚蓝星球-App",
+    "英雄没有闪-微信小游戏"
+  ],
+  "systems": 27,
+  "errors": [],
+  "warnings": [],
+  "scope": "Structural validation only; does not verify source truth, professional quality or original game behavior."
+}

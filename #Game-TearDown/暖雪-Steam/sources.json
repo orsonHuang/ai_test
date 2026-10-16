@@ -1,0 +1,89 @@
+[
+  {
+    "id": "WS-S01",
+    "title": "暖雪 Steam 官方商店",
+    "url": "https://store.steampowered.com/app/1296830/?l=schinese",
+    "author": "BadMudStudio / bilibili",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "Steam",
+    "scope": "本体产品说明，DLC 在商店独立列出",
+    "read": "正文已读",
+    "supports": [
+      "近战与飞剑",
+      "宗派与神兵联动",
+      "圣物四效果",
+      "红色灵魂与永久天赋",
+      "记忆碎片"
+    ],
+    "limitations": "非实测；不证明当前全部数值、UI 或实现；发行日字段与中文说明存在时区差异，本批不研究日期"
+  },
+  {
+    "id": "WS-S02",
+    "title": "全图鉴+攻略：雪中漫步指南",
+    "url": "https://steamcommunity.com/sharedfiles/filedetails/?id=2749004660&l=schinese",
+    "author": "Youngs / Vandinore7",
+    "publishedAt": "2022-02-12",
+    "updatedAt": "2022-02-20",
+    "accessedAt": "2026-10-16",
+    "platform": "Steam",
+    "scope": "2022 本体历史样本",
+    "read": "相关正文已读",
+    "supports": [
+      "四槽圣物例子",
+      "通用与宗派秘籍",
+      "神兵联动",
+      "章节休整与局内消费"
+    ],
+    "limitations": "玩家原始研究；不是当前构建；页面有移除/不兼容提示但正文可访问，不依赖其可长期在线；不迁入存档修改建议"
+  },
+  {
+    "id": "WS-S03",
+    "title": "白灰全职业通过心得",
+    "url": "https://steamcommunity.com/app/1296830/discussions/0/4507545977830811695/",
+    "author": "君白执上",
+    "publishedAt": "2022-03-14",
+    "accessedAt": "2026-10-16",
+    "platform": "Steam",
+    "scope": "玩家个人本体构筑经验",
+    "read": "正文已读",
+    "supports": [
+      "近战/飞剑取向不同",
+      "装备与动作协同的实际例子"
+    ],
+    "limitations": "强度排名、时长为个人经验，不推广为当前最优或平均表现"
+  },
+  {
+    "id": "WS-S04",
+    "title": "Chalmers 暖雪评测",
+    "url": "https://steamcommunity.com/id/chalmers_ming/recommended/1296830",
+    "author": "Chalmers",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "Steam",
+    "scope": "本体历史评测",
+    "read": "正文已读",
+    "supports": [
+      "房间、奖励路线与首领前休整",
+      "界面可读性问题的玩家反馈线索"
+    ],
+    "limitations": "天赋资源和物品数量表述存在混淆；不采用其天赋资源结论，日期/当前适用性未确认"
+  },
+  {
+    "id": "WS-S05",
+    "title": "Steam商店展示截图",
+    "url": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1296830/ss_844631fd4d955243538e2847cadf15ebb6c59e3a.1920x1080.jpg?t=1789107220",
+    "author": "Steam商店发布者",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "Steam商店",
+    "scope": "图片未标构建号",
+    "read": "原图已核读",
+    "asset": "assets/steam-store-reference.jpg",
+    "publication": "reference-only",
+    "supports": [
+      "该帧HUD布局与场景视觉层级"
+    ],
+    "limitations": "不证明当前本体所有界面；非本人实机截图"
+  }
+]

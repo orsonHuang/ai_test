@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "scope": "Media allowlist only; not a deployable package. Research-only images are excluded.",
+  "media": [
+    {
+      "path": "暖雪-Steam/assets/combat.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "暖雪-Steam/assets/build.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "暖雪-Steam/assets/relics.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "暖雪-Steam/assets/weapons.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "暖雪-Steam/assets/progression.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "暖雪-Steam/assets/levels.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "暖雪-Steam/assets/economy.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "暖雪-Steam/assets/narrative.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/combat.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/heroes.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/equipment.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/levels.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/arena.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/coop.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/territory.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/social.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/recruitment.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/assets/liveops.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/combat.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/inventory.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/progression.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/build.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/companions.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/dark-energy.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/challenges.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/offline.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "英雄没有闪-微信小游戏/assets/liveops.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    }
+  ]
+}

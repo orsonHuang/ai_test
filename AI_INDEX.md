@@ -1,5 +1,7 @@
 # AI_INDEX · 文件路由表
 
+- 游戏拆解内容生产/系统专业文档：`#Game-TearDown/README.md` → `_framework/README.md`（规范、已安装game-system-teardown Skill、验收）→ `_framework/三岗位阅读总索引.md`。首批暖雪Steam本体8模块、永远的蔚蓝星球App10模块、英雄没有闪微信目标9模块；F原作与P可开发参考分开，6个微信案例适用性待核。`catalog.json`用于后续网页交接，现网页未接入。
+
 - 游戏创意挖掘工具「游戏种子」：`#PROJECT/game-seeds/README.md`（工作规则、使用与验证）、`DEPLOY.md`（现有小站部署）；静态网页入口 `dist/index.html`，Sites私有发布身份在 `.openai/hosting.json`。
 > **用法**：AI 每轮对话前按本文路由加载文件，避免盲目全读或遗漏关键文件。> **维护**：文件增减时同步更新本表。Orson 无需手动维护。
 ---

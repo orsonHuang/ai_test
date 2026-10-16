@@ -1,0 +1,1508 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-16",
+  "publicationStatus": "local-review",
+  "games": [
+    {
+      "id": "warm-snow-steam-base",
+      "title": "暖雪 · Steam本体",
+      "platform": "Steam",
+      "build": null,
+      "asOf": "2026-10-16",
+      "scope": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测",
+      "playModes": [
+        "solo"
+      ],
+      "businessModels": [
+        "premium"
+      ],
+      "operationModels": [
+        "complete"
+      ],
+      "indexPath": "暖雪-Steam/README.md",
+      "manifestPath": "暖雪-Steam/game.json"
+    },
+    {
+      "id": "blue-planet-app",
+      "title": "永远的蔚蓝星球 · 手机App",
+      "platform": "App",
+      "build": null,
+      "asOf": "2026-10-16",
+      "scope": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。",
+      "playModes": [
+        "solo",
+        "coop",
+        "pvp"
+      ],
+      "businessModels": [
+        "iap"
+      ],
+      "operationModels": [
+        "live-service",
+        "seasonal"
+      ],
+      "indexPath": "永远的蔚蓝星球-App/README.md",
+      "manifestPath": "永远的蔚蓝星球-App/game.json"
+    },
+    {
+      "id": "hero-no-dodge-wechat",
+      "title": "英雄没有闪 · 微信小游戏",
+      "platform": "WeChat Mini Game",
+      "build": null,
+      "asOf": "2026-10-16",
+      "scope": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。共用早期攻略不确认微信适用性，presence unknown的案例默认不进入已证实系统筛选。",
+      "playModes": [
+        "solo"
+      ],
+      "businessModels": [],
+      "operationModels": [
+        "live-service"
+      ],
+      "indexPath": "英雄没有闪-微信小游戏/README.md",
+      "manifestPath": "英雄没有闪-微信小游戏/game.json"
+    }
+  ],
+  "systems": [
+    {
+      "id": "warm-snow-combat",
+      "title": "战斗",
+      "type": "combat",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "暖雪-Steam/systems/战斗.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "近战飞剑协同"
+      ],
+      "facts": [
+        {
+          "id": "WS-F03",
+          "claim": "近战、飞剑与圣物加成共同承接战斗",
+          "sources": [
+            "WS-S01",
+            "WS-S03"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-combat-diagram",
+          "path": "暖雪-Steam/assets/combat.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01",
+            "WS-S03"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented",
+      "gameId": "warm-snow-steam-base",
+      "platform": "Steam",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测"
+    },
+    {
+      "id": "warm-snow-build",
+      "title": "宗派与秘籍",
+      "type": "build",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "暖雪-Steam/systems/宗派与秘籍.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "宗派方向",
+        "局内构筑"
+      ],
+      "facts": [
+        {
+          "id": "WS-F04",
+          "claim": "官方介绍宗派与装备联动",
+          "sources": [
+            "WS-S01"
+          ]
+        },
+        {
+          "id": "WS-F05",
+          "claim": "历史指南记录通用与宗门秘籍",
+          "sources": [
+            "WS-S02"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-build-diagram",
+          "path": "暖雪-Steam/assets/build.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented",
+      "gameId": "warm-snow-steam-base",
+      "platform": "Steam",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测"
+    },
+    {
+      "id": "warm-snow-relics",
+      "title": "圣物装配",
+      "type": "equipment",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "暖雪-Steam/systems/圣物装配.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "同物异槽",
+        "四槽装配"
+      ],
+      "facts": [
+        {
+          "id": "WS-F01",
+          "claim": "圣物按四个槽位呈现不同效果",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ]
+        },
+        {
+          "id": "WS-F02",
+          "claim": "北风花历史效果关联不同战斗事件",
+          "sources": [
+            "WS-S02"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-relics-diagram",
+          "path": "暖雪-Steam/assets/relics.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented",
+      "gameId": "warm-snow-steam-base",
+      "platform": "Steam",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测"
+    },
+    {
+      "id": "warm-snow-weapons",
+      "title": "神兵词条",
+      "type": "equipment",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "暖雪-Steam/systems/神兵词条.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "条件联动"
+      ],
+      "facts": [
+        {
+          "id": "WS-F06",
+          "claim": "神兵与宗派、圣物等条件联动",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-weapons-diagram",
+          "path": "暖雪-Steam/assets/weapons.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented",
+      "gameId": "warm-snow-steam-base",
+      "platform": "Steam",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测"
+    },
+    {
+      "id": "warm-snow-progression",
+      "title": "永久成长",
+      "type": "progression",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "暖雪-Steam/systems/永久成长.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "永久天赋"
+      ],
+      "facts": [
+        {
+          "id": "WS-F07",
+          "claim": "红色灵魂可投入天赋树永久加强能力",
+          "sources": [
+            "WS-S01"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-progression-diagram",
+          "path": "暖雪-Steam/assets/progression.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented",
+      "gameId": "warm-snow-steam-base",
+      "platform": "Steam",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测"
+    },
+    {
+      "id": "warm-snow-levels",
+      "title": "章节与首领",
+      "type": "level",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "暖雪-Steam/systems/章节与首领.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "房间选择",
+        "首领检验"
+      ],
+      "facts": [
+        {
+          "id": "WS-F08",
+          "claim": "历史本体记录房间、奖励路线、首领与休整",
+          "sources": [
+            "WS-S02",
+            "WS-S04"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-levels-diagram",
+          "path": "暖雪-Steam/assets/levels.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S02",
+            "WS-S04"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented",
+      "gameId": "warm-snow-steam-base",
+      "platform": "Steam",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测"
+    },
+    {
+      "id": "warm-snow-economy",
+      "title": "商店与休整",
+      "type": "economy",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "暖雪-Steam/systems/商店与休整.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "局内资源",
+        "重铸与洗炼"
+      ],
+      "facts": [
+        {
+          "id": "WS-F09",
+          "claim": "历史休整提供多种局内消费方向",
+          "sources": [
+            "WS-S02"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-economy-diagram",
+          "path": "暖雪-Steam/assets/economy.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S02"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented",
+      "gameId": "warm-snow-steam-base",
+      "platform": "Steam",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测"
+    },
+    {
+      "id": "warm-snow-narrative",
+      "title": "叙事收集",
+      "type": "narrative",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "暖雪-Steam/systems/叙事收集.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "碎片叙事"
+      ],
+      "facts": [
+        {
+          "id": "WS-F10",
+          "claim": "记忆碎片用于逐步揭示故事",
+          "sources": [
+            "WS-S01"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-narrative-diagram",
+          "path": "暖雪-Steam/assets/narrative.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented",
+      "gameId": "warm-snow-steam-base",
+      "platform": "Steam",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测"
+    },
+    {
+      "id": "blue-planet-combat",
+      "title": "召唤合成与战斗",
+      "type": "combat",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "永远的蔚蓝星球-App/systems/召唤合成与战斗.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App公开资料",
+      "tags": [
+        "二合一",
+        "随机召唤"
+      ],
+      "facts": [
+        {
+          "id": "BP-F03",
+          "claim": "官方描述召唤、合成、强化随机性",
+          "sources": [
+            "BP-S01"
+          ],
+          "scope": "App公开资料"
+        },
+        {
+          "id": "BP-F04",
+          "claim": "玩家档案描述复制与成长节点",
+          "sources": [
+            "BP-S08"
+          ],
+          "scope": "App公开资料"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-combat-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/combat.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "blue-planet-heroes",
+        "blue-planet-equipment",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-heroes",
+      "title": "英雄与永久成长",
+      "type": "progression",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "永远的蔚蓝星球-App/systems/英雄与永久成长.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App玩家档案",
+      "tags": [
+        "功能性成长节点"
+      ],
+      "facts": [
+        {
+          "id": "BP-F05",
+          "claim": "英雄成长节点可改变局内功能",
+          "sources": [
+            "BP-S08"
+          ],
+          "scope": "App玩家档案"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-heroes-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/heroes.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-equipment",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-equipment",
+      "title": "装备图腾与洗炼",
+      "type": "equipment",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "永远的蔚蓝星球-App/systems/装备图腾与洗炼.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App历史攻略与公告",
+      "tags": [
+        "条件词条",
+        "分解回收"
+      ],
+      "facts": [
+        {
+          "id": "BP-F06",
+          "claim": "历史靴子图腾条件词条样本",
+          "sources": [
+            "BP-S06"
+          ],
+          "scope": "App历史攻略与公告"
+        },
+        {
+          "id": "BP-F07",
+          "claim": "官方曾调整装备分解资源产出",
+          "sources": [
+            "BP-S09"
+          ],
+          "scope": "App历史攻略与公告"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-equipment-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/equipment.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "blue-planet-equipment-source-image",
+          "path": "永远的蔚蓝星球-App/assets/totem-boots-20251229.jpg",
+          "kind": "original-screenshot",
+          "caption": "官方刊载原图，已核读；不等于自行实机验证",
+          "sources": [
+            "BP-S06"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-heroes",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-levels",
+      "title": "关卡与赛季规则",
+      "type": "level",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "永远的蔚蓝星球-App/systems/关卡与赛季规则.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App赛季资料",
+      "tags": [
+        "关卡规则变体"
+      ],
+      "facts": [
+        {
+          "id": "BP-F10",
+          "claim": "S1关卡机制差异的玩家攻略",
+          "sources": [
+            "BP-S07"
+          ],
+          "scope": "App赛季资料"
+        },
+        {
+          "id": "BP-F11",
+          "claim": "官方区分减负已做与计划项",
+          "sources": [
+            "BP-S10"
+          ],
+          "scope": "App赛季资料"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-levels-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/levels.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-heroes",
+        "blue-planet-equipment",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-arena",
+      "title": "竞技场",
+      "type": "arena",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "永远的蔚蓝星球-App/systems/竞技场.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App历史攻防公告",
+      "tags": [
+        "防守AI",
+        "击杀施压"
+      ],
+      "facts": [
+        {
+          "id": "BP-F08",
+          "claim": "历史公告支持防守AI与击杀转移",
+          "sources": [
+            "BP-S03",
+            "BP-S09"
+          ],
+          "scope": "App历史攻防公告"
+        },
+        {
+          "id": "BP-F09",
+          "claim": "App扫荡券周清理及不足购买入口",
+          "sources": [
+            "BP-S02"
+          ],
+          "scope": "App历史攻防公告"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-arena-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/arena.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-heroes",
+        "blue-planet-equipment",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-coop",
+      "title": "合作准备与挑战",
+      "type": "coop",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "永远的蔚蓝星球-App/systems/合作准备与挑战.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "明确App正式服",
+      "tags": [
+        "队员准备",
+        "队长发起"
+      ],
+      "facts": [
+        {
+          "id": "BP-F01",
+          "claim": "App公告新增队员准备与队长发起",
+          "sources": [
+            "BP-S02"
+          ],
+          "scope": "明确App正式服"
+        },
+        {
+          "id": "BP-F02",
+          "claim": "历史合作聊天、奖励预览与狂暴调整",
+          "sources": [
+            "BP-S03"
+          ],
+          "scope": "明确App正式服"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-coop-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/coop.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "blue-planet-coop-source-image",
+          "path": "永远的蔚蓝星球-App/assets/coop-leader-20260305.jpg",
+          "kind": "original-screenshot",
+          "caption": "官方刊载原图，已核读；不等于自行实机验证",
+          "sources": [
+            "BP-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-heroes",
+        "blue-planet-equipment",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-territory",
+      "title": "领地资源与收集",
+      "type": "economy",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "永远的蔚蓝星球-App/systems/领地资源与收集.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App历史玩家攻略",
+      "tags": [
+        "时间产出",
+        "派遣"
+      ],
+      "facts": [
+        {
+          "id": "BP-F12",
+          "claim": "历史领地攻略列矿场派遣食堂图鉴",
+          "sources": [
+            "BP-S05"
+          ],
+          "scope": "App历史玩家攻略"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-territory-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/territory.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-heroes",
+        "blue-planet-equipment",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-social",
+      "title": "社交公会与排行榜",
+      "type": "social",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "永远的蔚蓝星球-App/systems/社交公会与排行榜.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App历史公告",
+      "tags": [
+        "公会首领",
+        "多维榜单"
+      ],
+      "facts": [
+        {
+          "id": "BP-F13",
+          "claim": "历史公会Boss与好友功能更新",
+          "sources": [
+            "BP-S03",
+            "BP-S09"
+          ],
+          "scope": "App历史公告"
+        },
+        {
+          "id": "BP-F14",
+          "claim": "历史资料列多维榜单",
+          "sources": [
+            "BP-S05"
+          ],
+          "scope": "App历史公告"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-social-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/social.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-heroes",
+        "blue-planet-equipment",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-recruitment",
+      "title": "招募与重复转化",
+      "type": "progression",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "永远的蔚蓝星球-App/systems/招募与重复转化.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App历史券奖励线索",
+      "tags": [
+        "玩法奖励招募券"
+      ],
+      "facts": [
+        {
+          "id": "BP-F15",
+          "claim": "竞技场历史奖励含招募券",
+          "sources": [
+            "BP-S04"
+          ],
+          "scope": "App历史券奖励线索"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-recruitment-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/recruitment.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-heroes",
+        "blue-planet-equipment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "blue-planet-liveops",
+      "title": "商业化与运营减负",
+      "type": "liveops",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "永远的蔚蓝星球-App/systems/商业化与运营减负.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "App历史公告与计划",
+      "tags": [
+        "数值性皮肤",
+        "运营减负计划"
+      ],
+      "facts": [
+        {
+          "id": "BP-F16",
+          "claim": "历史公告存在数值性皮肤与合作特权",
+          "sources": [
+            "BP-S09"
+          ],
+          "scope": "App历史公告与计划"
+        },
+        {
+          "id": "BP-F17",
+          "claim": "减负计划不是已上线证明",
+          "sources": [
+            "BP-S10"
+          ],
+          "scope": "App历史公告与计划"
+        }
+      ],
+      "media": [
+        {
+          "id": "blue-planet-liveops-reference-diagram",
+          "path": "永远的蔚蓝星球-App/assets/liveops.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "blue-planet-combat",
+        "blue-planet-heroes",
+        "blue-planet-equipment",
+        "blue-planet-recruitment"
+      ],
+      "gameId": "blue-planet-app",
+      "platform": "App",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
+    },
+    {
+      "id": "hero-no-dodge-combat",
+      "title": "刷宝战斗与混沌石",
+      "type": "combat",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "英雄没有闪-微信小游戏/systems/刷宝战斗与混沌石.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "historical-wechat",
+      "tags": [
+        "放置刷宝"
+      ],
+      "facts": [
+        {
+          "id": "HN-F01",
+          "claim": "微信首发报道描述放置刷宝与构筑",
+          "sources": [
+            "HN-S05"
+          ],
+          "scope": "historical-wechat"
+        },
+        {
+          "id": "HN-F02",
+          "claim": "共用早期图稿描述混沌石刷宝循环，微信适用待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-combat-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/combat.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-combat-official-reference",
+          "path": "英雄没有闪-微信小游戏/assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ],
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。共用早期攻略不确认微信适用性，presence unknown的案例默认不进入已证实系统筛选。"
+    },
+    {
+      "id": "hero-no-dodge-inventory",
+      "title": "装备处理与背包",
+      "type": "inventory",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "deep",
+      "path": "英雄没有闪-微信小游戏/systems/装备处理与背包.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F03",
+          "claim": "共用图稿装备分解产结晶，微信背包细则待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-inventory-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/inventory.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-inventory-official-reference",
+          "path": "英雄没有闪-微信小游戏/assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ],
+      "attributes": {
+        "capacityModel": null,
+        "locking": null,
+        "batchDismantle": null,
+        "paidExpansion": null
+      },
+      "referenceAttributes": {
+        "capacityModel": "instance-count",
+        "locking": true,
+        "batchDismantle": true,
+        "paidExpansion": false
+      },
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": false,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "共用旧资料，微信适用未核实"
+    },
+    {
+      "id": "hero-no-dodge-progression",
+      "title": "祝福等级与头衔",
+      "type": "progression",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "deep",
+      "path": "英雄没有闪-微信小游戏/systems/祝福等级与头衔.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F04",
+          "claim": "共用图稿祝福与头衔成长，微信细则待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-progression-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/progression.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-progression-official-reference",
+          "path": "英雄没有闪-微信小游戏/assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ],
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": false,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "共用旧资料，微信适用未核实"
+    },
+    {
+      "id": "hero-no-dodge-build",
+      "title": "技能符文与构筑",
+      "type": "build",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "英雄没有闪-微信小游戏/systems/技能符文与构筑.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "historical-wechat",
+      "tags": [
+        "技能符文构筑"
+      ],
+      "facts": [
+        {
+          "id": "HN-F05",
+          "claim": "微信首发报道提到技能符文构筑",
+          "sources": [
+            "HN-S05",
+            "HN-S02"
+          ],
+          "scope": "historical-wechat"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-build-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/build.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-build-official-reference",
+          "path": "英雄没有闪-微信小游戏/assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ],
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。共用早期攻略不确认微信适用性，presence unknown的案例默认不进入已证实系统筛选。"
+    },
+    {
+      "id": "hero-no-dodge-companions",
+      "title": "侍从招募与主协战",
+      "type": "progression",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "overview",
+      "path": "英雄没有闪-微信小游戏/systems/侍从招募与主协战.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F06",
+          "claim": "共用图稿侍从主协战，微信适用待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-companions-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/companions.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-companions-official-reference",
+          "path": "英雄没有闪-微信小游戏/assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-dark-energy"
+      ],
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": false,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "共用旧资料，微信适用未核实"
+    },
+    {
+      "id": "hero-no-dodge-dark-energy",
+      "title": "暗能与套装",
+      "type": "equipment",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "英雄没有闪-微信小游戏/systems/暗能与套装.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "historical-wechat",
+      "tags": [
+        "后期暗能成长"
+      ],
+      "facts": [
+        {
+          "id": "HN-F07",
+          "claim": "微信首发报道提到后期暗能成长",
+          "sources": [
+            "HN-S05"
+          ],
+          "scope": "historical-wechat"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-dark-energy-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/dark-energy.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions"
+      ],
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。共用早期攻略不确认微信适用性，presence unknown的案例默认不进入已证实系统筛选。"
+    },
+    {
+      "id": "hero-no-dodge-challenges",
+      "title": "主线日常与挖矿",
+      "type": "level",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "overview",
+      "path": "英雄没有闪-微信小游戏/systems/主线日常与挖矿.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F08",
+          "claim": "共用官方图稿列多类日常资源玩法",
+          "sources": [
+            "HN-S02",
+            "HN-S03"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-challenges-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/challenges.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-challenges-official-reference",
+          "path": "英雄没有闪-微信小游戏/assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ],
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": false,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "共用旧资料，微信适用未核实"
+    },
+    {
+      "id": "hero-no-dodge-offline",
+      "title": "离线收益与回流",
+      "type": "economy",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "overview",
+      "path": "英雄没有闪-微信小游戏/systems/离线收益与回流.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F09",
+          "claim": "共用产品介绍承诺离线收益，微信细则待核",
+          "sources": [
+            "HN-S04"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-offline-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/offline.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ],
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": false,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "共用旧资料，微信适用未核实"
+    },
+    {
+      "id": "hero-no-dodge-liveops",
+      "title": "运营活动与社交边界",
+      "type": "liveops",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "overview",
+      "path": "英雄没有闪-微信小游戏/systems/运营活动与社交边界.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F10",
+          "claim": "共用攻略提及活动公会，微信具体机制待核",
+          "sources": [
+            "HN-S03",
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-liveops-reference-diagram",
+          "path": "英雄没有闪-微信小游戏/assets/liveops.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-liveops-official-reference",
+          "path": "英雄没有闪-微信小游戏/assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ],
+      "gameId": "hero-no-dodge-wechat",
+      "platform": "WeChat Mini Game",
+      "asOf": "2026-10-16",
+      "defaultDiscoverable": false,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "共用旧资料，微信适用未核实"
+    }
+  ]
+}

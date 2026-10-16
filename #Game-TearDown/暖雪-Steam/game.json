@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 1,
+  "id": "warm-snow-steam-base",
+  "title": "暖雪 · Steam本体",
+  "platform": "Steam",
+  "region": "简体中文",
+  "build": null,
+  "asOf": "2026-10-16",
+  "scope": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测",
+  "excluded": [
+    "烬梦",
+    "终业",
+    "手游"
+  ],
+  "playModes": [
+    "solo"
+  ],
+  "businessModels": [
+    "premium"
+  ],
+  "operationModels": [
+    "complete"
+  ],
+  "evidenceStatus": "researched",
+  "unknowns": [
+    "当前构建号",
+    "背包容量和装配完整交互",
+    "当前数值与完整解锁表"
+  ],
+  "systems": [
+    {
+      "id": "warm-snow-combat",
+      "title": "战斗",
+      "type": "combat",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "systems/战斗.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "近战飞剑协同"
+      ],
+      "facts": [
+        {
+          "id": "WS-F03",
+          "claim": "近战、飞剑与圣物加成共同承接战斗",
+          "sources": [
+            "WS-S01",
+            "WS-S03"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-combat-diagram",
+          "path": "assets/combat.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01",
+            "WS-S03"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented"
+    },
+    {
+      "id": "warm-snow-build",
+      "title": "宗派与秘籍",
+      "type": "build",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "systems/宗派与秘籍.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "宗派方向",
+        "局内构筑"
+      ],
+      "facts": [
+        {
+          "id": "WS-F04",
+          "claim": "官方介绍宗派与装备联动",
+          "sources": [
+            "WS-S01"
+          ]
+        },
+        {
+          "id": "WS-F05",
+          "claim": "历史指南记录通用与宗门秘籍",
+          "sources": [
+            "WS-S02"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-build-diagram",
+          "path": "assets/build.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented"
+    },
+    {
+      "id": "warm-snow-relics",
+      "title": "圣物装配",
+      "type": "equipment",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "systems/圣物装配.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "同物异槽",
+        "四槽装配"
+      ],
+      "facts": [
+        {
+          "id": "WS-F01",
+          "claim": "圣物按四个槽位呈现不同效果",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ]
+        },
+        {
+          "id": "WS-F02",
+          "claim": "北风花历史效果关联不同战斗事件",
+          "sources": [
+            "WS-S02"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-relics-diagram",
+          "path": "assets/relics.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented"
+    },
+    {
+      "id": "warm-snow-weapons",
+      "title": "神兵词条",
+      "type": "equipment",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/神兵词条.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "条件联动"
+      ],
+      "facts": [
+        {
+          "id": "WS-F06",
+          "claim": "神兵与宗派、圣物等条件联动",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-weapons-diagram",
+          "path": "assets/weapons.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01",
+            "WS-S02"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented"
+    },
+    {
+      "id": "warm-snow-progression",
+      "title": "永久成长",
+      "type": "progression",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/永久成长.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "永久天赋"
+      ],
+      "facts": [
+        {
+          "id": "WS-F07",
+          "claim": "红色灵魂可投入天赋树永久加强能力",
+          "sources": [
+            "WS-S01"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-progression-diagram",
+          "path": "assets/progression.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented"
+    },
+    {
+      "id": "warm-snow-levels",
+      "title": "章节与首领",
+      "type": "level",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/章节与首领.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "房间选择",
+        "首领检验"
+      ],
+      "facts": [
+        {
+          "id": "WS-F08",
+          "claim": "历史本体记录房间、奖励路线、首领与休整",
+          "sources": [
+            "WS-S02",
+            "WS-S04"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-levels-diagram",
+          "path": "assets/levels.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S02",
+            "WS-S04"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented"
+    },
+    {
+      "id": "warm-snow-economy",
+      "title": "商店与休整",
+      "type": "economy",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/商店与休整.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "局内资源",
+        "重铸与洗炼"
+      ],
+      "facts": [
+        {
+          "id": "WS-F09",
+          "claim": "历史休整提供多种局内消费方向",
+          "sources": [
+            "WS-S02"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-economy-diagram",
+          "path": "assets/economy.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S02"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented"
+    },
+    {
+      "id": "warm-snow-narrative",
+      "title": "叙事收集",
+      "type": "narrative",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/叙事收集.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "tags": [
+        "碎片叙事"
+      ],
+      "facts": [
+        {
+          "id": "WS-F10",
+          "claim": "记忆碎片用于逐步揭示故事",
+          "sources": [
+            "WS-S01"
+          ]
+        }
+      ],
+      "media": [
+        {
+          "id": "warm-snow-narrative-diagram",
+          "path": "assets/narrative.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，具体依据与局限见正文",
+          "sources": [
+            "WS-S01"
+          ],
+          "publication": "original"
+        }
+      ],
+      "related": [],
+      "referenceStatus": "specified-slice-unimplemented"
+    }
+  ]
+}

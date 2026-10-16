@@ -1,0 +1,487 @@
+{
+  "schemaVersion": 1,
+  "id": "hero-no-dodge-wechat",
+  "title": "英雄没有闪 · 微信小游戏",
+  "platform": "WeChat Mini Game",
+  "region": "中国大陆简体中文",
+  "build": null,
+  "asOf": "2026-10-16",
+  "scope": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。共用早期攻略不确认微信适用性，presence unknown的案例默认不进入已证实系统筛选。",
+  "excluded": [
+    "其他平台细则",
+    "未验证当前概率",
+    "完整支付渠道实现"
+  ],
+  "playModes": [
+    "solo"
+  ],
+  "businessModels": [],
+  "operationModels": [
+    "live-service"
+  ],
+  "evidenceStatus": "researched",
+  "unknowns": [
+    "当前构建与服务器阶段",
+    "未公开数值与概率",
+    "完整当前系统数量",
+    "微信广告及内购商品细则",
+    "多端机制一致性"
+  ],
+  "systems": [
+    {
+      "id": "hero-no-dodge-combat",
+      "title": "刷宝战斗与混沌石",
+      "type": "combat",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "systems/刷宝战斗与混沌石.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "historical-wechat",
+      "tags": [
+        "放置刷宝"
+      ],
+      "facts": [
+        {
+          "id": "HN-F01",
+          "claim": "微信首发报道描述放置刷宝与构筑",
+          "sources": [
+            "HN-S05"
+          ],
+          "scope": "historical-wechat"
+        },
+        {
+          "id": "HN-F02",
+          "claim": "共用早期图稿描述混沌石刷宝循环，微信适用待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-combat-reference-diagram",
+          "path": "assets/combat.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-combat-official-reference",
+          "path": "assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ]
+    },
+    {
+      "id": "hero-no-dodge-inventory",
+      "title": "装备处理与背包",
+      "type": "inventory",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "deep",
+      "path": "systems/装备处理与背包.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F03",
+          "claim": "共用图稿装备分解产结晶，微信背包细则待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-inventory-reference-diagram",
+          "path": "assets/inventory.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-inventory-official-reference",
+          "path": "assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ],
+      "attributes": {
+        "capacityModel": null,
+        "locking": null,
+        "batchDismantle": null,
+        "paidExpansion": null
+      },
+      "referenceAttributes": {
+        "capacityModel": "instance-count",
+        "locking": true,
+        "batchDismantle": true,
+        "paidExpansion": false
+      }
+    },
+    {
+      "id": "hero-no-dodge-progression",
+      "title": "祝福等级与头衔",
+      "type": "progression",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "deep",
+      "path": "systems/祝福等级与头衔.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F04",
+          "claim": "共用图稿祝福与头衔成长，微信细则待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-progression-reference-diagram",
+          "path": "assets/progression.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-progression-official-reference",
+          "path": "assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ]
+    },
+    {
+      "id": "hero-no-dodge-build",
+      "title": "技能符文与构筑",
+      "type": "build",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "systems/技能符文与构筑.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "historical-wechat",
+      "tags": [
+        "技能符文构筑"
+      ],
+      "facts": [
+        {
+          "id": "HN-F05",
+          "claim": "微信首发报道提到技能符文构筑",
+          "sources": [
+            "HN-S05",
+            "HN-S02"
+          ],
+          "scope": "historical-wechat"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-build-reference-diagram",
+          "path": "assets/build.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-build-official-reference",
+          "path": "assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ]
+    },
+    {
+      "id": "hero-no-dodge-companions",
+      "title": "侍从招募与主协战",
+      "type": "progression",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/侍从招募与主协战.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F06",
+          "claim": "共用图稿侍从主协战，微信适用待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-companions-reference-diagram",
+          "path": "assets/companions.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-companions-official-reference",
+          "path": "assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-dark-energy"
+      ]
+    },
+    {
+      "id": "hero-no-dodge-dark-energy",
+      "title": "暗能与套装",
+      "type": "equipment",
+      "presence": "present",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/暗能与套装.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "historical-wechat",
+      "tags": [
+        "后期暗能成长"
+      ],
+      "facts": [
+        {
+          "id": "HN-F07",
+          "claim": "微信首发报道提到后期暗能成长",
+          "sources": [
+            "HN-S05"
+          ],
+          "scope": "historical-wechat"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-dark-energy-reference-diagram",
+          "path": "assets/dark-energy.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions"
+      ]
+    },
+    {
+      "id": "hero-no-dodge-challenges",
+      "title": "主线日常与挖矿",
+      "type": "level",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/主线日常与挖矿.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F08",
+          "claim": "共用官方图稿列多类日常资源玩法",
+          "sources": [
+            "HN-S02",
+            "HN-S03"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-challenges-reference-diagram",
+          "path": "assets/challenges.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-challenges-official-reference",
+          "path": "assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ]
+    },
+    {
+      "id": "hero-no-dodge-offline",
+      "title": "离线收益与回流",
+      "type": "economy",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/离线收益与回流.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F09",
+          "claim": "共用产品介绍承诺离线收益，微信细则待核",
+          "sources": [
+            "HN-S04"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-offline-reference-diagram",
+          "path": "assets/offline.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ]
+    },
+    {
+      "id": "hero-no-dodge-liveops",
+      "title": "运营活动与社交边界",
+      "type": "liveops",
+      "presence": "unknown",
+      "status": "researched",
+      "depth": "overview",
+      "path": "systems/运营活动与社交边界.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "platformApplicability": "shared-unverified",
+      "tags": [],
+      "facts": [
+        {
+          "id": "HN-F10",
+          "claim": "共用攻略提及活动公会，微信具体机制待核",
+          "sources": [
+            "HN-S03",
+            "HN-S02"
+          ],
+          "scope": "shared-unverified"
+        }
+      ],
+      "media": [
+        {
+          "id": "hero-no-dodge-liveops-reference-diagram",
+          "path": "assets/liveops.svg",
+          "kind": "original-diagram",
+          "caption": "P参考实现总览；原作F及U边界见正文",
+          "sources": [],
+          "publication": "original"
+        },
+        {
+          "id": "hero-no-dodge-liveops-official-reference",
+          "path": "assets/official-overview-20250212.png",
+          "kind": "official-promo",
+          "caption": "2025-02-12共用官方攻略长图，微信适用性待核",
+          "sources": [
+            "HN-S02"
+          ],
+          "publication": "reference-only"
+        }
+      ],
+      "related": [
+        "hero-no-dodge-combat",
+        "hero-no-dodge-progression",
+        "hero-no-dodge-companions",
+        "hero-no-dodge-dark-energy"
+      ]
+    }
+  ]
+}

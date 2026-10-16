@@ -1,0 +1,109 @@
+[
+  {
+    "id": "HN-S01",
+    "title": "英雄没有闪官方网站",
+    "url": "https://www.37.com/yxmys/",
+    "author": "三七互娱／发行官网",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "多端共用官网",
+    "scope": "产品介绍与官方攻略入口",
+    "read": "官网HTML与公开文章API已读",
+    "supports": [
+      "官方攻略来源身份"
+    ],
+    "limitations": "不能仅凭官网推定微信与App所有机制相同"
+  },
+  {
+    "id": "HN-S02",
+    "title": "一图流速览游戏内容",
+    "url": "https://www.37.com/yxmys/article.html?cate=gonglue&id=37",
+    "author": "英雄没有闪官网",
+    "publishedAt": "2025-02-12",
+    "accessedAt": "2026-10-16",
+    "platform": "未明确，早期共用攻略",
+    "scope": "基础系统图解",
+    "read": "通过官网公开API读取正文；原图已按原始尺寸核读",
+    "asset": "assets/official-overview-20250212.png",
+    "imageUrl": "https://img2.37wanimg.com/2025/0212/173933383511491.png",
+    "publication": "reference-only",
+    "supports": [
+      "混沌石/刷装",
+      "祝福与分解",
+      "头衔与等级上限",
+      "技能分类",
+      "侍从主副战",
+      "日常挑战地图"
+    ],
+    "limitations": "微信上线前图稿；原图概率只适用于图中祝福等级，微信现行规则未核实"
+  },
+  {
+    "id": "HN-S03",
+    "title": "新手上路保姆级攻略",
+    "url": "https://www.37.com/yxmys/article.html?cate=gonglue&id=36",
+    "author": "英雄没有闪官网",
+    "publishedAt": "2025-02-12",
+    "accessedAt": "2026-10-16",
+    "platform": "未明确，早期共用攻略",
+    "scope": "前七天发展路线",
+    "read": "公开API正文与完整原图已核读",
+    "asset": "assets/official-beginner-20250212.png",
+    "imageUrl": "https://img2.37wanimg.com/2025/0212/173933355444968.png",
+    "publication": "reference-only",
+    "supports": [
+      "分阶段解锁与成长路线",
+      "技能/套装匹配",
+      "公会活动的线索"
+    ],
+    "limitations": "推荐路线不是必须流程；微信适用性待补证"
+  },
+  {
+    "id": "HN-S04",
+    "title": "爱谱雷产品介绍",
+    "url": "https://www.iplay11g.com/gamecon-meiyoushan.html",
+    "author": "爱谱雷",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "手游共用介绍",
+    "scope": "产品定位",
+    "read": "正文已读",
+    "supports": [
+      "放置刷宝",
+      "技能符文构筑",
+      "离线收益的产品承诺"
+    ],
+    "limitations": "不证明微信当前五职业、数值或收益上限"
+  },
+  {
+    "id": "HN-S05",
+    "title": "GameLook：英雄没有闪小游戏分析",
+    "url": "https://finance.sina.com.cn/stock/relnews/cn/2025-04-10/doc-inesrwyy3327215.shtml",
+    "author": "GameLook，新浪刊载",
+    "publishedAt": "2025-04-10",
+    "accessedAt": "2026-10-16",
+    "platform": "文章明确讨论微信小游戏发布",
+    "scope": "2025 微信首发时期",
+    "read": "新浪桌面版直达正文已复核；配图未作为规则证据",
+    "supports": [
+      "小游戏存在",
+      "开箱与技能符文构筑结合",
+      "后期暗能成长线索"
+    ],
+    "limitations": "媒体分析不是当前微信实测；不采用文中估算流水或将其作为系统有效性证据"
+  },
+  {
+    "id": "HN-S06",
+    "title": "微信小游戏周榜及新游体验",
+    "url": "https://news.17173.com/content/04102025/172109527.shtml",
+    "author": "17173",
+    "publishedAt": "2025-04-10",
+    "accessedAt": "2026-10-16",
+    "platform": "微信小游戏",
+    "scope": "首发时期玩法描述",
+    "read": "搜索线索已读，直达多次失败；未作为本批事实唯一依据",
+    "supports": [
+      "混沌石消费与刷装循环的微信线索"
+    ],
+    "limitations": "待核实原始作者与截图，暂不作当前规则依据"
+  }
+]

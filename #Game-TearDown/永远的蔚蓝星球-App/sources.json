@@ -1,0 +1,166 @@
+[
+  {
+    "id": "BP-S01",
+    "title": "TapTap 官方 App 页面",
+    "url": "https://www.taptap.cn/app/713683",
+    "author": "创悦游戏",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "App",
+    "scope": "商店登记 3.0.7 (66)，2026-09-29 更新",
+    "read": "正文已读",
+    "supports": [
+      "随机召唤、合成、局内强化",
+      "合作与竞技",
+      "竖屏塔防定位"
+    ],
+    "limitations": "3分钟一局为宣传；Android登记不证明iOS或热更号"
+  },
+  {
+    "id": "BP-S02",
+    "title": "合作准备功能、竞技场减负优化上线",
+    "url": "https://www.taptap.cn/moment/778714788971675862",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2026-03-05",
+    "accessedAt": "2026-10-16",
+    "platform": "App正式服",
+    "scope": "公告明确 APP 端包正式服，3月6日更新",
+    "read": "正文与相关原图已核读",
+    "supports": [
+      "队员准备与队长发起",
+      "竞技扫荡券周清空"
+    ],
+    "limitations": "快速战斗在此公告为近期计划，不能当时已上线；当前状态须后续核对"
+  },
+  {
+    "id": "BP-S03",
+    "title": "火灵域更新公告",
+    "url": "https://www.taptap.cn/moment/681511296339807133",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2025-06-10",
+    "accessedAt": "2026-10-16",
+    "platform": "App论坛官方公告",
+    "scope": "2025 历史变更",
+    "read": "正文已读",
+    "supports": [
+      "竞技场防守阵容与AI",
+      "合作狂暴、聊天和奖励预览",
+      "公会Boss次数与奖励调整"
+    ],
+    "limitations": "不代表当前配置；不推断所有竞技模式同步属性"
+  },
+  {
+    "id": "BP-S04",
+    "title": "萌新竞技场攻略",
+    "url": "https://www.taptap.cn/moment/694655628546670613",
+    "author": "妄疼疼投稿／蔚蓝球球排版",
+    "publishedAt": "2025-07-16",
+    "accessedAt": "2026-10-16",
+    "platform": "App论坛",
+    "scope": "玩家历史攻略",
+    "read": "正文已读",
+    "supports": [
+      "击杀向对方施压",
+      "段位与兑换资源",
+      "模式影响阵容和图腾选择"
+    ],
+    "limitations": "官方明确不代表官方观点；奖励数字与更早攻略不同，不拼接成当前数值"
+  },
+  {
+    "id": "BP-S05",
+    "title": "领地资源盘点",
+    "url": "https://www.taptap.cn/moment/676741667339897316",
+    "author": "财子投稿／蔚蓝球球排版",
+    "publishedAt": "2025-05-28",
+    "accessedAt": "2026-10-16",
+    "platform": "App论坛",
+    "scope": "2025 初期系统地图",
+    "read": "正文已读",
+    "supports": [
+      "矿场、合作、矿鼠之家、食堂、图鉴与榜单",
+      "资源系统之间的关系"
+    ],
+    "limitations": "实时竞技等措辞与后续防守AI公告需分版本；解锁等级和奖励不默认当前"
+  },
+  {
+    "id": "BP-S06",
+    "title": "靴子部位图腾攻略",
+    "url": "https://www.taptap.cn/moment/754639971863759829",
+    "author": "路醒醒投稿／蔚蓝球球排版",
+    "publishedAt": "2025-12-29",
+    "accessedAt": "2026-10-16",
+    "platform": "App论坛",
+    "scope": "绝世品阶靴子词条样本",
+    "read": "正文与相关原图已核读",
+    "supports": [
+      "触发条件与职业/场景适配"
+    ],
+    "limitations": "T级排序为玩家建议；不能推广为全图腾排名"
+  },
+  {
+    "id": "BP-S07",
+    "title": "S1单人战役第8-10关",
+    "url": "https://www.taptap.cn/moment/859430567714753123",
+    "author": "吃个土豆投稿／蔚蓝球球排版",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "App官方社区",
+    "scope": "S1关卡攻略，页面相对日期未用于确定绝对日期",
+    "read": "正文已读",
+    "supports": [
+      "关卡复活机制与职业击杀要求",
+      "召唤限制与格子资源",
+      "机关时机"
+    ],
+    "limitations": "玩家策略与精确配置不是官方验证；不代表基础主线全部关卡"
+  },
+  {
+    "id": "BP-S08",
+    "title": "洛姬英雄档案",
+    "url": "https://www.taptap.cn/moment/859896537528926567",
+    "author": "吃个土豆投稿／蔚蓝球球排版",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "App官方社区",
+    "scope": "英雄档案及成长节点",
+    "read": "正文已读",
+    "supports": [
+      "复制与升星的辅助机制",
+      "成长节点改变局内功能",
+      "皮肤可能改变机制效率"
+    ],
+    "limitations": "英雄强度与养成建议为玩家观点；当前服是否开放需另核对"
+  },
+  {
+    "id": "BP-S09",
+    "title": "竞技场、合作模式优化与皮肤上新",
+    "url": "https://www.taptap.cn/moment/685667018652778832",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2025-06-21",
+    "accessedAt": "2026-10-16",
+    "platform": "App官方社区",
+    "scope": "2025 历史公告",
+    "read": "直达页面正文已复核",
+    "supports": [
+      "击杀怪物转移",
+      "数值性皮肤",
+      "分解产出调整"
+    ],
+    "limitations": "历史配置，不代表当前所有服务器规则"
+  },
+  {
+    "id": "BP-S10",
+    "title": "S1减负优化更新计划",
+    "url": "https://www.taptap.cn/moment/844263068358673457",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": null,
+    "accessedAt": "2026-10-16",
+    "platform": "App正式服",
+    "scope": "明确含未来计划",
+    "read": "直达页面正文已复核",
+    "supports": [
+      "重复玩法减负目标与计划"
+    ],
+    "limitations": "计划上线不等于已上线"
+  }
+]
