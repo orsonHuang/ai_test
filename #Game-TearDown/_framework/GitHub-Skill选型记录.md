@@ -43,3 +43,29 @@ GitHub API 当日显示：gameSkills 1 star、morbeo 0、overture 2、skills-sas
 - [skealeye/ClaudeSkills · gdd](https://github.com/skealeye/ClaudeSkills/blob/master/skills/gdd/SKILL.md)：阅读其入口、研究及文档目录组织部分，可参考整游索引连接独立章节。完整工作流还包含新建仓库、自动推送、Obsidian 和多代理写作，不适合本次现有资料库的排版修订，未采用整套流程。
 
 此轮按 main/master 当日内容查阅，未固定新候选 commit，也未整包安装或执行仓库代码。采用的是一般排版与文档组织方法，用户指定的“顺序用数字、并列用中点”和作者文风优先。实际效果以蔚蓝星球 11 篇正文、桌面/手机页面及导航测试验收。
+
+## 游戏分析专项筛选 · 2026-10-17
+
+用户要求进一步找专业游戏分析 Skill，区分单机与商业化游戏，并覆盖海内外。以下为原文审读与适配判断，未安装新候选、未执行候选代码、未以真实案例验证其质量。
+
+| 候选 | 核查版本 / 许可 | 适用价值 | 限制与建议 |
+|---|---|---|---|
+| [GameDesignOS / game-experience-analyzer](https://github.com/DY-2026/GameDesignOS/tree/ada4bf9e60c2c90a4c84866e4bfd191e3767d164/game-experience-analyzer) | ada4bf9；MIT | 首选。入口区分整游、机制、单机、商业化、长线运营；单机参考检查主路径、节奏、自主选择与挑战反馈；证据支持截图/录屏定位 | 公开入口为1.3.0 candidate。功能范围很宽，模板字段较多；应吸收方法到现有作者文章，不把诊断字段堆到读者面前。固定机会窗口、置信度阈值不作为通用实证规律 |
+| [Steam Market Research](https://github.com/Abaudat/steam-market-research-skill/blob/c1c877ec562d59bfbbf86e4c6e192129d44d375b/SKILL.md) | c1c877e；MIT | Steam同类样本、标签、商店描述、定价与市场定位，包含表现不佳样本 | 聚焦Steam商业可行性，不承担系统拆解。默认美国/英语数据；评论量乘系数估算收入、当前价代历史成交价、固定净收入比例与“品类美术决定90%”都不宜直接采用 |
+| [Unreleased Game Research](https://github.com/RayMEI-XiaoGaoShou/Unreleased_Game_Research_SKILL/blob/ead3c0ad614a38cad6ce10d730f22e93e8c461bc/unreleased-game-research/SKILL.md) | ead3c0a；API未识别许可，未认定可复制 | 未上线游戏的官方情报、B站/YouTube评论、TapTap评价、创作者评测分层，可参考跨平台声音对照 | 偏宣发与测试反馈，不能替代实机拆解；需要处理评论样本偏差。原文多轮索要Cookie/API凭证并绑定转录服务，不直接采用其采集流程 |
+| [game-economy / game-monetization](https://github.com/tinh2/skills-hub-registry/tree/d38affbf56da216841e2b9e4032a4b978c2062fd/analysis) | d38affb；API未识别仓库许可 | 资源产消、付费内容、广告、通行证检查项 | 主要读取源码和配置做审计，和外部竞品拆解不同。固定70–90%产消比、抽取次数阈值等不能套所有品类；地区规定须另查现行官方依据。只作问题清单参考 |
+
+核查范围：GameDesignOS入口、单机参考、分析模式和品类路由；Steam入口；Unreleased入口与采集/输出关键段；registry经济与商业化入口。GitHub API当日四仓库均未归档，分别425/0/1/20星；星数仅是活动线索，不代表专业认证或拆解效果。
+
+### 建议给现有 Skill 增加的分析分支
+
+此处为选型建议，不表示本轮已经修改已安装 Skill 或重写全部案例。
+
+- 共用底座：产品/平台/版本、玩家动作与决策、核心循环、系统地图、数值关系、图文依据和迁移条件。
+- 单机/完整体验：学习—挑战—探索—峰值的流程变化、关卡与叙事、失败成本、通关/重玩动机、本体与DLC边界。
+- 长线商业化：首日/日周/赛季目标、资源产消、成长卡点、付费改变的能力或效率、免费与付费路径、活动/社交/回流与时间负担。
+- 地区层独立叠加：按发行市场与区服分类，开发商国籍另记。中国大陆、港澳台、日本、韩国、北美、欧洲等按资料细分；平台再分App、小游戏、PC与主机。
+- 同款跨区服对照：版本日期、内容进度、礼包价格/币种、广告、角色获取、活动时间与语言分别核对。不能混用国服规则、海外价格和不同时间窗口的市场数据。
+- 数据口径：每项注明国家/地区、商店/渠道、时间区间、币种、官方/平台计数/第三方估算。评论数、下载、流水、收入和活跃不同口径不能直接拼接；仅凭英语评论也不能推断用户国籍。
+
+推荐组合：现有 game-system-teardown 负责资料库与网页契约，吸收 GameDesignOS 的分析方法；Steam 研究作为市场专项，商业化问题清单和海内外对照作为按需分支。先在蔚蓝App与暖雪Steam样稿验证，不为了海内外覆盖编造同款海外版本。
