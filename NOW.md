@@ -1,5 +1,7 @@
 # NOW · 当前状态锚点
 
+- 2026-10-17 双样稿已上线待验收（覆盖下方“仅研究”状态）：蔚蓝 https://orson.games/game-ideas/?v=20261017-134059#library/blue-planet-app ，阴阳师 https://orson.games/game-ideas/?v=20261017-134059#library/onmyoji-cn-app 。Skill四参考已融入安装，蔚蓝合作和阴阳师御魂可操作；57公网hash、三屏原型/地图/收藏/返回定位通过。下一步等用户确认作者文风、系统深度、美术与图解效果，再决定推广；没有将机器测试当用户内容验收通过。
+
 - 2026-10-17 美术/流程图/原型Skill选型完成：推荐吸收create-game-assets的观察维度、diagramming的图型与可读性、cc-designer的HTML原型、game-ui-ux的游戏交互检查。详情见Game-TearDown框架GitHub选型记录；本轮仅研究，尚未安装/融入/改网页。建议下一步用蔚蓝合作系统验证图文与可点击原型，再推广。
 
 - 2026-10-17 缓存修复已上线，可用 https://orson.games/game-ideas/?v=20261017-103029#library/blue-planet-app 重新载入；7资源hash版本化，46HTTPS文件与导航检查通过。游戏分析Skill候选已选：优先GameDesignOS体验分析，Steam专项补市场，其他作采集/问题清单参考；建议独立按单机/长线商业化及发行地区/平台分支，详情在GitHub-Skill选型记录，尚未安装或实战验证新候选。

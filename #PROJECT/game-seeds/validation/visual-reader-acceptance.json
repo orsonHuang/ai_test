@@ -1,0 +1,21 @@
+{
+  "base": "https://orson.games/game-ideas/",
+  "at": "2026-10-17T13:42:00.536Z",
+  "passed": true,
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "checks": [
+    "30 real map clicks and origin restores",
+    "10 Onmyoji system UI figures",
+    "coop readiness invalidation, membership, insufficient tickets, failure without cost, single start and reset",
+    "souls constraints, preview, apply and reset",
+    "new favorites persist",
+    "reference appendix",
+    "no overflow or console/network errors"
+  ],
+  "errors": [],
+  "failures": []
+}

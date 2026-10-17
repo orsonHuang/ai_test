@@ -1,0 +1,206 @@
+[
+  {
+    "id": "YYS-S01",
+    "title": "TapTap官方商店",
+    "url": "https://www.taptap.cn/app/12492",
+    "author": "官方商店",
+    "publishedAt": null,
+    "accessedAt": "2026-10-17",
+    "scope": "国服Android登记与平台计数",
+    "limitations": "不等于服务器热更、全平台下载或收入",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S02",
+    "title": "中国区App Store",
+    "url": "https://apps.apple.com/cn/app/id895670960",
+    "author": "网易移动游戏",
+    "publishedAt": null,
+    "accessedAt": "2026-10-17",
+    "scope": "iOS产品说明、免费内购与商店评分",
+    "limitations": "不是实测体验；不与Android版本混写",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S03",
+    "title": "最基础的纯萌新向攻略",
+    "url": "https://www.taptap.cn/moment/15220000474270426",
+    "author": "鸭梨",
+    "publishedAt": "2021-12-31",
+    "accessedAt": "2026-10-17",
+    "scope": "历史基础机制；战斗和养成截图已逐图核读",
+    "limitations": "含未经核对的御魂数值；不采用招财等具体系数，不作为2026当前完整规则",
+    "read": "正文已读",
+    "platform": "国服App",
+    "visualEvidence": [
+      {
+        "url": "https://img2-tc.tapimg.com/bbcode/images/bc8a68a21e3017593a2b9317f318e1e2.jpg/_tap_ugc.jpg",
+        "observed": "横屏战场、右侧行动队列、底部鬼火与技能设置，伤害字叠在敌方区域",
+        "publication": "research-only"
+      },
+      {
+        "url": "https://img2-tc.tapimg.com/bbcode/images/5514bd53b46686891428e717df481f89.jpg/_tap_ugc.jpg",
+        "observed": "左侧材料列表、中部角色及成长前后、右侧升级升星转换、底部确认",
+        "publication": "research-only"
+      }
+    ]
+  },
+  {
+    "id": "YYS-S04",
+    "title": "粗略写了点新人攻略",
+    "url": "https://www.taptap.cn/moment/445963482421002278",
+    "author": "一只萌新",
+    "publishedAt": "2024-06-25",
+    "accessedAt": "2026-10-17",
+    "scope": "历史资源路线与师徒协战",
+    "limitations": "推荐与评价属于玩家；奖励、效率不视为当前配置",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S05",
+    "title": "国服正式服维护公告2018.04.27",
+    "url": "https://www.taptap.cn/moment/15217123987030075",
+    "author": "公告历史刊载",
+    "publishedAt": "2018-04-27",
+    "accessedAt": "2026-10-17",
+    "scope": "首领御魂引入与组合设计历史",
+    "limitations": "不是当前所有御魂规则",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S06",
+    "title": "萌新向主观斗技介绍",
+    "url": "https://www.taptap.cn/moment/608709233134799212",
+    "author": "白鹿",
+    "publishedAt": "2024-11-21",
+    "accessedAt": "2026-10-17",
+    "scope": "鬼金羊版本玩家对局分析",
+    "limitations": "只采用决策结构，不沿用强度排行、配速和当前环境结论",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S07",
+    "title": "8月27日维护更新公告",
+    "url": "https://bbs.4399.cn/thread-view-tid-50384879",
+    "author": "4399官方公告栏目刊载",
+    "publishedAt": "2025-08-27",
+    "accessedAt": "2026-10-17",
+    "scope": "指定活动、角色获取、新手系统与限时资源",
+    "limitations": "渠道公告存档；不视为所有时期通用规则",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S08",
+    "title": "万千刹那新区集结",
+    "url": "https://www.taptap.cn/moment/852285475547776231?group_id=71",
+    "author": "阴阳师官方账号",
+    "publishedAt": "2026-09-26",
+    "accessedAt": "2026-10-17",
+    "scope": "指定新区与周年福利",
+    "limitations": "不是所有服务器常驻奖励",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S09",
+    "title": "十月花合战官方信息",
+    "url": "https://www.taptap.cn/app/12492/topic?page=4&type=official",
+    "author": "阴阳师官方账号",
+    "publishedAt": "2026-09-29",
+    "accessedAt": "2026-10-17",
+    "scope": "2026十月奖励、等级与花札资格",
+    "limitations": "列表页会翻页，保留日期与内容身份；当前完整价格表未核",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S10",
+    "title": "曜之阁纳珍礼",
+    "url": "https://www.taptap.cn/moment/843879539892293296",
+    "author": "阴阳师手游扫地工",
+    "publishedAt": "2026-09-01",
+    "accessedAt": "2026-10-17",
+    "scope": "充值活动与场景、名片、翻牌背景、配乐",
+    "limitations": "仅当期公告；未核完整充值门槛",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S11",
+    "title": "萌神诞世记",
+    "url": "https://www.taptap.cn/moment/858824843267672342?group_id=71",
+    "author": "阴阳师官方账号",
+    "publishedAt": "2026-10-12",
+    "accessedAt": "2026-10-17",
+    "scope": "10月14日开启的活动资源与装扮",
+    "limitations": "规则以当期为限；概率未核",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S12",
+    "title": "糖果奇妙夜预告",
+    "url": "https://www.taptap.cn/moment/859180565801207277?group_id=71",
+    "author": "阴阳师官方账号",
+    "publishedAt": "2026-10-13",
+    "accessedAt": "2026-10-17",
+    "scope": "10月21日开始的未来活动",
+    "limitations": "研究日尚未开始，不写成已实测",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S13",
+    "title": "浅谈御魂系列二",
+    "url": "https://www.taptap.cn/moment/257945364034748643",
+    "author": "彻",
+    "publishedAt": "2022-03-31",
+    "accessedAt": "2026-10-17",
+    "scope": "御魂效果与耗火环境的关系",
+    "limitations": "不沿用旧阵容推荐和全部系数",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S14",
+    "title": "阴阳师新手攻略简述",
+    "url": "https://www.taptap.cn/moment/15210316736497577",
+    "author": "玩家攻略",
+    "publishedAt": null,
+    "accessedAt": "2026-10-17",
+    "scope": "历史御魂位置、套装与强化结构",
+    "limitations": "旧文含简化或不严谨表述；不全量照抄",
+    "read": "正文已读",
+    "platform": "国服App"
+  },
+  {
+    "id": "YYS-S15",
+    "title": "日本服官方攻略入口",
+    "url": "https://www.onmyojigame.jp/strategy/novice/index.html",
+    "author": "日本服官方",
+    "publishedAt": null,
+    "accessedAt": "2026-10-17",
+    "scope": "确认日本语言运营入口",
+    "limitations": "不据此确认国服规则或海外当前商业表现",
+    "read": "正文已读",
+    "platform": "海外独立范围"
+  },
+  {
+    "id": "YYS-S16",
+    "title": "繁体中文缘结神公告",
+    "url": "https://www.onmyojigame.com/zh/news/official/2020/03/18/25278_869851.html",
+    "author": "繁体中文官网",
+    "publishedAt": "2020-03-18",
+    "accessedAt": "2026-10-17",
+    "scope": "海外语言版历史活动存在",
+    "limitations": "不合并国服时间价格概率",
+    "read": "正文已读",
+    "platform": "海外独立范围"
+  }
+]

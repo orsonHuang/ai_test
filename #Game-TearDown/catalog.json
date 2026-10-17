@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-10-16",
+  "asOf": "2026-10-17",
   "publicationStatus": "local-review",
   "games": [
     {
@@ -27,7 +27,7 @@
       "title": "永远的蔚蓝星球 · 手机App",
       "platform": "App",
       "build": null,
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "scope": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。",
       "playModes": [
         "solo",
@@ -60,6 +60,28 @@
       ],
       "indexPath": "英雄没有闪-微信小游戏/README.md",
       "manifestPath": "英雄没有闪-微信小游戏/game.json"
+    },
+    {
+      "id": "onmyoji-cn-app",
+      "title": "阴阳师 · 国服手机App",
+      "platform": "App",
+      "region": "中国大陆",
+      "build": null,
+      "asOf": "2026-10-17",
+      "scope": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "playModes": [
+        "solo",
+        "coop",
+        "pvp"
+      ],
+      "businessModels": [
+        "iap"
+      ],
+      "operationModels": [
+        "live-service"
+      ],
+      "indexPath": "阴阳师-国服App/README.md",
+      "manifestPath": "阴阳师-国服App/game.json"
     }
   ],
   "systems": [
@@ -725,9 +747,9 @@
       "status": "researched",
       "depth": "deep",
       "path": "永远的蔚蓝星球-App/systems/合作准备与挑战.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "frontend-demo",
       "platformApplicability": "明确App正式服",
       "tags": [
         "队员准备",
@@ -779,7 +801,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -1503,6 +1525,466 @@
       "defaultDiscoverable": false,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "共用旧资料，微信适用未核实"
+    },
+    {
+      "id": "onmyoji-combat",
+      "title": "行动条与鬼火战斗",
+      "type": "combat",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "阴阳师-国服App/systems/行动条与鬼火战斗.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "行动顺序",
+        "鬼火预算",
+        "动作反馈"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-combat",
+          "claim": "历史玩家记录展示行动条、鬼火与自动技能选择",
+          "sources": [
+            "YYS-S03"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-combat-diagram",
+          "path": "阴阳师-国服App/assets/combat.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S03"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-heroes",
+      "title": "式神与阴阳师养成",
+      "type": "progression",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "阴阳师-国服App/systems/式神与阴阳师养成.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "培养目标",
+        "功能节点",
+        "队伍验证"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-heroes",
+          "claim": "历史操作记录包含升级、升星、技能与阴阳术",
+          "sources": [
+            "YYS-S03"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-heroes-diagram",
+          "path": "阴阳师-国服App/assets/heroes.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S03"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-souls",
+      "title": "御魂构筑与整理",
+      "type": "equipment",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "阴阳师-国服App/systems/御魂构筑与整理.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "frontend-demo",
+      "tags": [
+        "职责条件",
+        "候选配装",
+        "整体约束"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-souls",
+          "claim": "历史公告介绍首领御魂与组合效果",
+          "sources": [
+            "YYS-S05"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-souls-diagram",
+          "path": "阴阳师-国服App/assets/souls.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S05"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-summon",
+      "title": "召唤与角色获取",
+      "type": "build",
+      "presence": "present",
+      "status": "researched",
+      "depth": "standard",
+      "path": "阴阳师-国服App/systems/召唤与角色获取.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "获取目标",
+        "卡池规则",
+        "结果用途"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-summon",
+          "claim": "维护公告区分限时召唤与专属资源",
+          "sources": [
+            "YYS-S07"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-summon-diagram",
+          "path": "阴阳师-国服App/assets/summon.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S07"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-pve",
+      "title": "PVE挑战与资源路线",
+      "type": "level",
+      "presence": "present",
+      "status": "researched",
+      "depth": "standard",
+      "path": "阴阳师-国服App/systems/PVE挑战与资源路线.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "目标缺口",
+        "模式挑战",
+        "收益投入"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-pve",
+          "claim": "玩家记录包含御魂、秘闻和组队资源路线",
+          "sources": [
+            "YYS-S04"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-pve-diagram",
+          "path": "阴阳师-国服App/assets/pve.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S04"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-pvp",
+      "title": "斗技与阵容应对",
+      "type": "arena",
+      "presence": "present",
+      "status": "researched",
+      "depth": "standard",
+      "path": "阴阳师-国服App/systems/斗技与阵容应对.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "战前应对",
+        "战中选择",
+        "对局复盘"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-pvp",
+          "claim": "2024玩家分析讨论翻牌和阵容应对",
+          "sources": [
+            "YYS-S06"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-pvp-diagram",
+          "path": "阴阳师-国服App/assets/pvp.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S06"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-social",
+      "title": "阴阳寮与师徒协作",
+      "type": "social",
+      "presence": "present",
+      "status": "researched",
+      "depth": "standard",
+      "path": "阴阳师-国服App/systems/阴阳寮与师徒协作.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "找到同伴",
+        "分工参与",
+        "关系延续"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-social",
+          "claim": "玩家记录展示师徒与协战入口",
+          "sources": [
+            "YYS-S04"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-social-diagram",
+          "path": "阴阳师-国服App/assets/social.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S04"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-economy",
+      "title": "资源与商店",
+      "type": "economy",
+      "presence": "present",
+      "status": "researched",
+      "depth": "standard",
+      "path": "阴阳师-国服App/systems/资源与商店.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "来源与期限",
+        "选择投入",
+        "成长回流"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-economy",
+          "claim": "公告包含玩法资源、兑换及限时礼包",
+          "sources": [
+            "YYS-S07"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-economy-diagram",
+          "path": "阴阳师-国服App/assets/economy.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S07"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-liveops",
+      "title": "活动与商业化",
+      "type": "liveops",
+      "presence": "present",
+      "status": "researched",
+      "depth": "standard",
+      "path": "阴阳师-国服App/systems/活动与商业化.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "当期目标",
+        "参与或付费",
+        "奖励条件"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-liveops",
+          "claim": "曜之阁公告将充值条件关联到展示外观",
+          "sources": [
+            "YYS-S10"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-liveops-diagram",
+          "path": "阴阳师-国服App/assets/liveops.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S10"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
+    },
+    {
+      "id": "onmyoji-story",
+      "title": "角色叙事与外观",
+      "type": "narrative",
+      "presence": "present",
+      "status": "researched",
+      "depth": "standard",
+      "path": "阴阳师-国服App/systems/角色叙事与外观.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-slice-unimplemented",
+      "tags": [
+        "认识角色",
+        "使用与培养",
+        "收藏与表达"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-story",
+          "claim": "官方介绍包含式神故事、配音与视觉表现",
+          "sources": [
+            "YYS-S02"
+          ],
+          "scope": "公开资料或历史样本，见正文"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-story-diagram",
+          "path": "阴阳师-国服App/assets/story.svg",
+          "kind": "original-diagram",
+          "caption": "原创机制示意，非原作截图",
+          "publication": "original",
+          "sources": [
+            "YYS-S02"
+          ]
+        }
+      ],
+      "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-17",
+      "defaultDiscoverable": true,
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
+      "referenceFilterNamespace": "referenceAttributes"
     }
   ]
 }

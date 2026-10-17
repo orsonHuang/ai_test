@@ -1,5 +1,7 @@
 # AI_INDEX · 文件路由表
 
+- 图文与交互样稿（2026-10-17）：`#Game-TearDown/阴阳师-国服App/README.md` → reader/游戏分析.md与十系统；蔚蓝合作/阴阳师御魂有前端演示。Skill四份新增参考已安装，样稿待用户内容验收。
+
 - 蔚蓝App作者视角样稿：`#Game-TearDown/永远的蔚蓝星球-App/reader/游戏分析.md` → `reader.json`（公开文章/地图/UI配置）；旧systems作为开发附录；2026-10-17 排版与导航规则已融入Skill，其他游戏正文待后续铺开。线上 `https://orson.games/game-ideas/#library/blue-planet-app`。
 
 - 游戏拆解内容生产/系统专业文档：`#Game-TearDown/README.md` → `_framework/README.md`（规范、已安装game-system-teardown Skill、验收）→ `_framework/三岗位阅读总索引.md`。首批暖雪Steam本体8模块、永远的蔚蓝星球App10模块、英雄没有闪微信目标9模块；F原作与P可开发参考分开，6个微信案例适用性待核。`catalog.json`已接入 https://orson.games/game-ideas/ ，更新/发布步骤见`#PROJECT/game-seeds/DEPLOY.md`。

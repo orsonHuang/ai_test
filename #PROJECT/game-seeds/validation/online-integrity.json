@@ -1,0 +1,305 @@
+{
+  "release": "game-ideas-20261017T134059Z",
+  "passed": true,
+  "files": [
+    {
+      "file": "app.js",
+      "sha256": "ee2f3b33aa882947f44c3cef4eb25deea609c438903e1f0f9fcab3f4b44fd5ae",
+      "status": 200
+    },
+    {
+      "file": "engine.js",
+      "sha256": "71ba76624030327b8d26762daad140d5d8f7b59884a5f7dface616a1f32c9e85",
+      "status": 200
+    },
+    {
+      "file": "favicon.svg",
+      "sha256": "0caca19403bb8cfc89ab850e53f9152a3950850083d9c202e7b1df76f9888248",
+      "status": 200
+    },
+    {
+      "file": "index.html",
+      "sha256": "0fab7a796d35ab48828622922a72c72bc1a558695631f19560dcd42ea2a2c788",
+      "status": 200
+    },
+    {
+      "file": "library-data.js",
+      "sha256": "18c9b7125d4a2a617fd501a1f52998e7b32f7cc1478adca23f9cb1f6799965ee",
+      "status": 200
+    },
+    {
+      "file": "library.css",
+      "sha256": "6c8ad6e7fe2bab2af14bdf4fc4eb10780ad0dd430c354b1d90a5de060c04d515",
+      "status": 200
+    },
+    {
+      "file": "library.js",
+      "sha256": "1460c6ef80d47267738e1f33a0fe1c86b1049fb22632983aa21f53eadeb705be",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-0.svg",
+      "sha256": "ba25de7f59ec2ce948f843eb4a4d40cf73e5b60d619a0dd355146fdcc03011ca",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-1.svg",
+      "sha256": "b75f1dc206f3cb562e8a3dfc91b58b81c5ce90e594a67e83d801ddb04bc99147",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-10.svg",
+      "sha256": "baec477ac50a4fc4d8ae014ee886e6ca0cf381e8ac5cff4c720b21246ac16a5f",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-11.svg",
+      "sha256": "9287ad9c81a78050ea026ad4be84732d8cc6859daf5b65cadc24eb15f7b00063",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-12.svg",
+      "sha256": "79bbbdbe25390e194c854310bc6b052de994ebde75a347c94667710994c7fad2",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-13.svg",
+      "sha256": "eb9e7ac20d4cc9565d2a76d8098275ffb936ffdc403990eacfb26d945618def0",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-14.svg",
+      "sha256": "542c2f3bd70813fd27b60e6c6ce3966149bfade091ced7b0d797e7910390ea16",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-15.svg",
+      "sha256": "641387d270527095347e97cdd23651665bdef3cbd3971223f511aa70b153c964",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-16.svg",
+      "sha256": "b16544101b04d1b56710577d0681d0b738b9cdd1b90ec8143583bc950bdf4701",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-17.svg",
+      "sha256": "93f20c5ca6ef4929220a680ca18bc03d7088bfe0ca1bf78fb3cb1a975a3e0284",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-18.svg",
+      "sha256": "2dfa61beba5a01a9700e0f103aa1e30e3ed02efce9cbba63be69d7ff3200e599",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-19.svg",
+      "sha256": "32276d778bdcaf9983a0fa5d4dbdcb9d7a6869d94c8bb6ea7fe5cdcc7658341a",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-2.svg",
+      "sha256": "8679655ac08cf24582e636f5cd7268f1649388935de2f0fd895f9715045555ed",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-20.svg",
+      "sha256": "cab159381c94ac5845be53c656c6d6cb0b23c2eeae0695f2e9b852a411d33b28",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-21.svg",
+      "sha256": "9de3433179e4ab4a983b7e27da146032d8cf265eba673955ea7d2f0f35ea8ecc",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-22.svg",
+      "sha256": "ce4e3d6a7cd13ba2a6503746ca1f06f416eb7c28a70ddbc59f9d6d3036894782",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-23.svg",
+      "sha256": "f9be22d5769adcfe72dfa060b57486d0a19b8c6ef18c4eeffe25ddfb97d16f07",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-24.svg",
+      "sha256": "377fb2441b322fab84e7b150bdd178d08728b5605eecaaa2cdb3b006bd5925c2",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-25.svg",
+      "sha256": "0855137b04d160ff86046c06f6492dbe2cfddddee1201cfd17e31dea9106f2fe",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-26.svg",
+      "sha256": "63daa1990a5334d3a1867fa9aca13ad6615e75ccb555f2f3607d8a7301a59c79",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-27.svg",
+      "sha256": "e437c69f6c962b4d33eccdde078f5ecd5498493c2a080eb65c34db2ba104d1b2",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-28.svg",
+      "sha256": "43d925fd8e5f8367cf8fdbe41257a347894c0ad981882f5ec8b33126ce6b116d",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-29.svg",
+      "sha256": "17b4b0f562db6c514793294c1a6af2a4dd497ed6b83261f9cc1e7b7461d691db",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-3.svg",
+      "sha256": "dae4063938d1fabae6e17c2b95e9d47d6360cb63e841d75c25a17a9733d28c7a",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-30.svg",
+      "sha256": "f35146589a46a104644090ebf18ab0278332d04b2092cc6f1fa0a281bb16a713",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-31.svg",
+      "sha256": "481fc42922968327c7bbbaa10516309f1453c7b392f1107118308222adcb5769",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-32.svg",
+      "sha256": "6f0c3b5a9e61ed729c7c86b802deb2621a6cf0891e94b130c6a77627ce8448a3",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-33.svg",
+      "sha256": "d8e1d2c9e337b8d192f362ec0c66451c5e5e57be9a2a9cc1ebd92a4205916146",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-34.svg",
+      "sha256": "e2d9765a2601ca9688b01e16f4ac734f4801ff4747315d21818e11a02ad6857a",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-35.svg",
+      "sha256": "2848458caf13e7cfde0edc57a199ef717758acc66b7816e6195c7eb70a4fc4b7",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-36.svg",
+      "sha256": "ff155fa3c356d4fcaabed618838d87aeac84cb7acd44643c15f22e1d73da410f",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-37.svg",
+      "sha256": "6c89fd61daad1b031fca5adc0aa54b59d1ebdf7bd54eb910484ccfc988ca3d62",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-38.svg",
+      "sha256": "be76b3888fd59c7ec4cfa26c4b3c942befee102e7631b764f05663c924ec1ccd",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-39.svg",
+      "sha256": "a03a580ca36da3304377c635d4735aaebfa83c86d5d7d60d643de1a4ddc43120",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-4.svg",
+      "sha256": "78939b3cdd459833bbdccd56cee0c48d46ac050d5513985fd95f8128efc26de5",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-40.svg",
+      "sha256": "3b264868b64a54b17f65acd384435f30b3cc8f413a6814be44b93941d0b41279",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-41.svg",
+      "sha256": "3e117b641eb5e67a2aa4569eecd1681c822ba4b6a3c9cca44df3f02edc38312c",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-42.svg",
+      "sha256": "c7315cecf3d768f684cf0df6cb5dfa0f009960d6287b37bea7721cd92afabb9f",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-43.svg",
+      "sha256": "e28833aa236dbb194388b588204622dcef027c03a68150f1d2063695515f90d9",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-44.svg",
+      "sha256": "81201ec0217e2191f69bc7fc2ef21f20070f393f382bc91f944da02153e5e71b",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-45.svg",
+      "sha256": "2c39e173447bab4b269f8bc52eaafbc06846a7cc7a049c2bffa63c000802b18b",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-46.svg",
+      "sha256": "6bdd4358712f7ee309d2be1a0710ac5241079413a5a501a342bfa1e29597daf2",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-47.svg",
+      "sha256": "2ed4593f8a1e2b478f93a12962442d96f3abf8ba1591de10f74db0f09a02eb1c",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-5.svg",
+      "sha256": "ccc82ceb55ff803c51f683b960250c357d059a060a8200adefa250796307255a",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-6.svg",
+      "sha256": "bb82e2eff9d2d901a1cfeb829e0d841daa098dea2e27edbc1df07065e8df3c3d",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-7.svg",
+      "sha256": "546c936f4011875e162d5dad5ca4423a952fb2354e43a33c3c5acc1e819569e9",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-8.svg",
+      "sha256": "c4a0c366a97efd07b511703032c1c6a5b63bfb1e92e172dd6f831c58468a4767",
+      "status": 200
+    },
+    {
+      "file": "media/diagram-9.svg",
+      "sha256": "e31ca47a46eeeb50d96a57816a93de96bf5531642bde86a3b451bc2f985b260b",
+      "status": 200
+    },
+    {
+      "file": "mermaid.js",
+      "sha256": "2a6fbb3c69c1b88bba2693b076f9c5bdddc3f827983a4f070a4fbe64ae1e3211",
+      "status": 200
+    },
+    {
+      "file": "styles.css",
+      "sha256": "9d9762fdb59d7e7f197b34b42d129c254a1460e0b911e187e3fca874106bde4d",
+      "status": 200
+    }
+  ],
+  "routes": {
+    "https://orson.games/game-ideas": {
+      "status": 200,
+      "finalUrl": "https://orson.games/game-ideas/"
+    },
+    "https://orson.games/": {
+      "status": 200,
+      "finalUrl": "https://orson.games/"
+    },
+    "https://orson.games/awakening": {
+      "status": 200,
+      "finalUrl": "https://orson.games/awakening"
+    }
+  }
+}

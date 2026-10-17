@@ -1,0 +1,188 @@
+{
+  "gameId": "onmyoji-cn-app",
+  "overview": "reader/游戏分析.md",
+  "systems": [
+    {
+      "id": "onmyoji-combat",
+      "path": "reader/行动条与鬼火战斗.md",
+      "group": "核心玩法与战斗",
+      "summary": "按顺序兑现团队能力，理解共享资源与执行条件",
+      "cover": "assets/combat.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-heroes",
+      "path": "reader/式神与阴阳师养成.md",
+      "group": "养成与构筑",
+      "summary": "区分获得角色、功能达标与实际可用",
+      "cover": "assets/heroes.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-souls",
+      "path": "reader/御魂构筑与整理.md",
+      "group": "养成与构筑",
+      "summary": "把单件属性放回套装和队伍条件中比较",
+      "cover": "assets/souls.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-summon",
+      "path": "reader/召唤与角色获取.md",
+      "group": "获取与资源",
+      "summary": "卡池范围、资源适用和获得后的使用成本",
+      "cover": "assets/summon.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-pve",
+      "path": "reader/PVE挑战与资源路线.md",
+      "group": "核心玩法与战斗",
+      "summary": "首次通过与重复获取需要不同的设计支持",
+      "cover": "assets/pve.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-pvp",
+      "path": "reader/斗技与阵容应对.md",
+      "group": "竞争与协作",
+      "summary": "对手选择如何改变阵容和临场判断",
+      "cover": "assets/pvp.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-social",
+      "path": "reader/阴阳寮与师徒协作.md",
+      "group": "竞争与协作",
+      "summary": "共同目标、资源互助与协调成本",
+      "cover": "assets/social.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-economy",
+      "path": "reader/资源与商店.md",
+      "group": "获取与资源",
+      "summary": "从目标缺口追踪来源、消耗和时间限制",
+      "cover": "assets/economy.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-liveops",
+      "path": "reader/活动与商业化.md",
+      "group": "运营与表达",
+      "summary": "分清进度、资格、外观和活动期限",
+      "cover": "assets/liveops.svg",
+      "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-story",
+      "path": "reader/角色叙事与外观.md",
+      "group": "运营与表达",
+      "summary": "人物内容与战斗阅读如何分工",
+      "cover": "assets/story.svg",
+      "coverPublication": "original"
+    }
+  ],
+  "ui": {
+    "yy-combat": {
+      "title": "行动条与鬼火战斗 · 信息结构",
+      "basis": "依据2021年玩家截图简化重绘，已核读原图；不代表当前布局。",
+      "blocks": [
+        "① 战场：单位、目标和结果",
+        "② 右侧：行动顺序",
+        "③ 底部：鬼火与进度",
+        "④ 技能 / 自动设置"
+      ]
+    },
+    "yy-growth": {
+      "title": "式神与阴阳师养成 · 信息结构",
+      "basis": "依据2021年玩家截图简化重绘，已核读原图；不代表当前布局。",
+      "blocks": [
+        "① 左侧：材料筛选与列表",
+        "② 中部：目标角色与前后变化",
+        "③ 右侧：成长方式",
+        "④ 底部：消耗与确认"
+      ]
+    },
+    "yy-souls": {
+      "title": "御魂构筑与整理 · 信息结构",
+      "basis": "补充设计线框，用于说明信息关系；非原作界面。",
+      "blocks": [
+        "① 职责与必要条件",
+        "② 六个位置与候选",
+        "③ 当前 / 候选整体面板",
+        "④ 条件检查与应用"
+      ]
+    },
+    "yy-summon": {
+      "title": "召唤与角色获取 · 信息结构",
+      "basis": "补充设计线框，用于说明信息关系；非原作界面。",
+      "blocks": [
+        "① 卡池与有效期",
+        "② 概率、累计与适用范围",
+        "③ 当前资源 / 消耗",
+        "④ 结果与培养入口"
+      ]
+    },
+    "yy-pve": {
+      "title": "PVE挑战与资源路线 · 信息结构",
+      "basis": "补充设计线框，用于说明信息关系；非原作界面。",
+      "blocks": [
+        "① 目标产出与条件",
+        "② 队伍配置",
+        "③ 消耗与开始",
+        "④ 结果与资源用途"
+      ]
+    },
+    "yy-pvp": {
+      "title": "斗技与阵容应对 · 信息结构",
+      "basis": "补充设计线框，用于说明信息关系；非原作界面。",
+      "blocks": [
+        "① 模式与已公开信息",
+        "② 我的可选角色",
+        "③ 对手选择 / 剩余机会",
+        "④ 确认与对局反馈"
+      ]
+    },
+    "yy-social": {
+      "title": "阴阳寮与师徒协作 · 信息结构",
+      "basis": "补充设计线框，用于说明信息关系；非原作界面。",
+      "blocks": [
+        "① 群体目标 / 参与条件",
+        "② 成员与职责",
+        "③ 我的贡献 / 可用帮助",
+        "④ 申请、参与与退出"
+      ]
+    },
+    "yy-economy": {
+      "title": "资源与商店 · 信息结构",
+      "basis": "补充设计线框，用于说明信息关系；非原作界面。",
+      "blocks": [
+        "① 当前目标与差额",
+        "② 资源来源 / 有效期",
+        "③ 商品数量与兑换代价",
+        "④ 确认、结果与使用入口"
+      ]
+    },
+    "yy-liveops": {
+      "title": "活动与商业化 · 信息结构",
+      "basis": "补充设计线框，用于说明信息关系；非原作界面。",
+      "blocks": [
+        "① 主题 / 参与及领取时间",
+        "② 当前进度与目标",
+        "③ 免费奖励 / 额外资格",
+        "④ 领取条件与规则入口"
+      ]
+    },
+    "yy-story": {
+      "title": "角色叙事与外观 · 信息结构",
+      "basis": "补充设计线框，用于说明信息关系；非原作界面。",
+      "blocks": [
+        "① 角色 / 事件与进度",
+        "② 故事或外观展示",
+        "③ 适用范围与获取条件",
+        "④ 回顾、应用与返回"
+      ]
+    }
+  }
+}

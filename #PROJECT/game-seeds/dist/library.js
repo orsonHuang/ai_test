@@ -61,6 +61,57 @@
   window.addEventListener('pagehide',rememberPosition);
   history.scrollRestoration='manual';
 
+  function mountDemo(root){
+    const kind=root.dataset.demo;
+    const initial=()=>kind==='coop'?{member:true,ready:false,challenge:0,config:0,tickets:2,phase:'room',fail:false,message:'先让队员准备，再由队长发起挑战。'}:{selected:0,current:0,message:'比较候选方案，检查两项队伍条件。'};
+    let state=initial();
+    const button=(action,label,disabled=false)=>`<button type="button" data-demo-action="${action}" ${disabled?'disabled':''}>${label}</button>`;
+    const candidates=[{name:'A · 当前基础方案',attack:3000,speed:125,crit:100},{name:'B · 攻击更高，出手过早',attack:3400,speed:135,crit:100},{name:'C · 攻击更高，暴击不足',attack:3300,speed:122,crit:85},{name:'D · 兼顾两个必要条件',attack:3200,speed:128,crit:95}];
+    function draw(){
+      let body='';
+      if(kind==='coop'){
+        const busy=state.phase!=='room',canStart=state.member&&state.ready&&state.tickets>=1&&!busy;
+        const reason=busy?'已进入挑战，完成演示后再调整':!state.member?'等待队员加入':!state.ready?'队员尚未准备':state.tickets<1?'挑战券不足：需要 1 张':'双方条件满足，可以发起挑战';
+        body=`<div class="demo-scene"><div class="demo-challenge"><small>① 共同挑战目标</small><strong>${state.challenge?'控制考验':'首领挑战'}</strong><span>演示挑战券 ${state.tickets} · 本次消耗 1</span></div><div class="demo-members"><div><small>② 队长</small><b>当前方案 ${state.config?'乙':'甲'}</b><span>拥有发起权限</span></div><div><small>③ 队员</small><b>${!state.member?'尚未加入':state.ready?'✓ 已准备':'待准备'}</b><span>确认当前挑战与配置</span></div></div><p class="demo-reason">${reason}</p>${button('start','队长：发起挑战',!canStart)}${state.phase==='battle'?button('finish','完成本次演示挑战'):''}</div><div class="demo-controls"><h4>操作两个角色，观察状态变化</h4>${button('ready',state.ready?'队员：取消准备':'队员：确认准备',!state.member||busy)}${button('config','更换队伍方案',busy)}${button('challenge','队长：更换挑战',busy)}${button('member',state.member?'队员：离开房间':'队员：加入房间',busy)}${button('tickets',state.tickets?'模拟挑战券不足':'恢复演示挑战券',busy)}<label class="demo-check"><input type="checkbox" data-demo-fail ${state.fail?'checked':''} ${busy?'disabled':''}> 模拟下次开始校验失败</label><p>修改方案或挑战会撤销准备。失败不扣券；成功只扣一次。此处模拟状态，无网络或真实奖励。</p></div>`;
+      }else{
+        const x=candidates[state.selected],current=candidates[state.current],order=x.speed<130,crit=x.crit>=90;
+        body=`<div class="demo-scene"><small>① 队伍目标 · 自设条件</small><h4>辅助速度 130，必须先于输出行动</h4><p>输出暴击至少 90%。这里只检查两个条件，不评价完整阵容强度。</p><label>② 选择候选<select data-demo-candidate>${candidates.map((c,i)=>`<option value="${i}" ${state.selected===i?'selected':''}>${c.name}</option>`).join('')}</select></label><div class="demo-stat-grid">${[['攻击',x.attack,x.attack-current.attack],['速度',x.speed,x.speed-current.speed],['暴击',x.crit+'%',x.crit-current.crit]].map(([name,val,delta])=>`<div><small>${name}</small><b>${val}</b><span>较当前 ${delta>0?'+':''}${delta}${name==='暴击'?'个百分点':''}</span></div>`).join('')}</div></div><div class="demo-controls"><h4>③ 整体条件检查</h4><p class="demo-condition ${order?'pass':'fail'}">${order?'✓':'×'} 出手顺序：${order?'辅助先行动':'输出抢在辅助之前'}</p><p class="demo-condition ${crit?'pass':'fail'}">${crit?'✓':'×'} 暴击条件：${crit?'达到演示目标':'未达到 90%'}</p>${button('apply','④ 应用候选方案',!order||!crit)}<p>当前应用：<strong data-current-candidate>${current.name}</strong></p><p>数据、阈值与筛选界面均为补充设计；不连接原游戏账号，不模拟掉落或强化。</p></div>`;
+      }
+      root.innerHTML=`<header class="demo-header"><div><span>可点击原型 · 补充设计</span><h3>${kind==='coop'?'准备，是对当前配置的确认':'单件提升，也要满足队伍条件'}</h3></div>${button('reset','重置演示')}</header><div class="demo-layout">${body}</div><p class="demo-message" role="status" aria-live="polite">${e(state.message)}</p>`;
+    }
+    root.addEventListener('click',event=>{const target=event.target.closest('[data-demo-action]');if(!target||target.disabled)return;const action=target.dataset.demoAction;
+      if(action==='reset')state=initial();
+      else if(kind==='coop'){
+        if(action==='finish'){state.phase='room';state.ready=false;state.message='演示挑战结束，回到房间；重新准备后可以再次开始。没有发放真实奖励。';}
+        else if(state.phase!=='room')return;
+        else if(action==='ready'&&state.member){state.ready=!state.ready;state.message=state.ready?'队员已确认当前挑战与方案。':'队员取消准备，队长暂不能开始。';}
+        else if(action==='config'||action==='challenge'){state[action==='config'?'config':'challenge']^=1;state.ready=false;state.message='条件已改变，旧准备失效；请队员重新确认。';}
+        else if(action==='member'){state.member=!state.member;state.ready=false;state.message=state.member?'队员已加入，需要重新准备。':'队员离开，挑战入口关闭。';}
+        else if(action==='tickets'){state.tickets=state.tickets?0:2;state.message=state.tickets?'演示挑战券恢复为 2 张。':'挑战券不足，不消耗任何资源。';}
+        else if(action==='start'&&state.member&&state.ready&&state.tickets>=1){if(state.fail){state.fail=false;state.ready=false;state.message='模拟校验失败：保留挑战券，回到未准备状态，请重新确认。';}else{state.tickets--;state.phase='battle';state.message='条件校验通过：扣除 1 张演示券，进入挑战。开始按钮已锁定。';}}
+      }else if(action==='apply'){const x=candidates[state.selected];if(x.speed>=130||x.crit<90)return;state.current=state.selected;state.message='候选已应用。可以继续比较，或重置恢复初始方案。';}
+      draw();root.querySelector(`[data-demo-action="${action}"]`)?.focus({preventScroll:true});
+    });
+    root.addEventListener('change',event=>{if(event.target.matches('[data-demo-fail]'))state.fail=event.target.checked;if(event.target.matches('[data-demo-candidate]')){const i=Number(event.target.value);if(!Number.isInteger(i)||!candidates[i])return;state.selected=i;state.message='已更新预览；当前应用方案尚未改变。';draw();root.querySelector('[data-demo-candidate]').focus({preventScroll:true});}});
+    draw();
+  }
+  function diagramControls(container){
+    for(const diagram of container.querySelectorAll('.mermaid')){
+      if(diagram.dataset.zoomReady||!diagram.querySelector('svg'))continue;
+      diagram.dataset.zoomReady='true';
+      const button=document.createElement('button');button.type='button';button.className='diagram-expand';button.textContent='放大查看流程图 ↗';diagram.before(button);
+      button.addEventListener('click',()=>{
+        const svg=diagram.querySelector('svg').cloneNode(true),box=svg.viewBox.baseVal;
+        const width=Math.max(600,box.width||900),height=box.width?width*box.height/box.width:700;
+        svg.setAttribute('width',width);svg.setAttribute('height',height);svg.style.maxWidth='none';
+        const url=URL.createObjectURL(new Blob([new XMLSerializer().serializeToString(svg)],{type:'image/svg+xml'}));
+        const dialog=document.createElement('dialog');dialog.className='diagram-dialog';dialog.setAttribute('aria-label','放大流程图');
+        dialog.innerHTML='<header><b>流程图 · 可横向与纵向滚动</b><button type="button">关闭 ×</button></header><div class="diagram-viewport"></div>';
+        const img=document.createElement('img');img.src=url;img.alt='放大的流程图，图中内容对应正文规则';img.style.width=width+'px';img.style.height=height+'px';dialog.querySelector('.diagram-viewport').append(img);
+        dialog.querySelector('button').onclick=()=>dialog.close();dialog.addEventListener('close',()=>{URL.revokeObjectURL(url);dialog.remove();button.focus({preventScroll:true});},{once:true});document.body.append(dialog);dialog.showModal();
+      });
+    }
+  }
   function route(){
     const savedPosition=beginVisit();delete $('#view-library').dataset.readyRoute;
     const id=location.hash.startsWith('#library/')?location.hash.slice(9):'',doc=D.docs[id];renderToken++;
@@ -68,7 +119,8 @@
     if(!id){list();restorePosition(savedPosition,renderToken);return;}
     if(!doc){$('#library-detail').innerHTML='<a href="#library">← 返回案例库</a><h1>这个案例暂时不存在</h1>';return;}
     const s=D.systems.find(s=>s.id===id),g=game(s?.gameId||doc.gameId);
-    $('#library-detail').innerHTML=`<header class="reader-masthead"><p>${s?'系统拆解':'游戏拆解'}</p><div class="reader-game-title">${e(g?.title||doc.title)}</div>${s?`<a href="#library/${g.id}">查看整游分析与系统地图 ↗</a>`:''}</header>${doc.readerEdition?'<div class="reader-edition">游戏分析样稿 · 手机 App · 资料核读 2026-10-16<span>原作依据随文引用；作者分析与补充设计分别说明。</span></div>':`<div class="evidence-note"><b>阅读标记：F 原作事实 · I 分析推断 · P 补充参考设计 · U 未核实</b><p>${e(s?.evidenceWarning||g?.scope||'跨模块参考文档')}。P 参考规格尚未实现和进行玩法测试。</p></div>`}<div class="reader-layout"><aside class="reader-toc"><nav class="reader-return" aria-label="阅读导航"><a href="${e(parentLink(doc))}" data-reader-back>← 返回上一层</a><a href="#library" data-reader-home title="游戏种子主页">返回主页</a></nav><details class="reader-contents" open><summary>本文目录</summary><nav id="case-toc"></nav></details></aside><article class="case-document" id="case-document">${doc.html}</article></div>${doc.referenceHtml?`<details class="dev-reference" data-reference-id="${id}"><summary>开发参考附录 · 补充方案，非原作规则</summary><p>展开查看此前整理的可开发参考规格。演示参数、接口与异常策略均属补充设计，尚未实现或进行玩法测试。</p><div class="reference-content case-document"></div></details>`:''}${s?`<section class="case-notes panel"><h2>我的用途与笔记</h2><label for="case-note">收藏后可记录借鉴目标、取舍与待验证问题</label><textarea id="case-note" rows="4" maxlength="20000" placeholder="例如：借鉴批量分解前的保护规则，用于我的刷宝游戏。">${e(favorites[id]?.note||'')}</textarea><button class="button secondary" id="save-case-note" data-id="${id}">保存笔记并收藏</button><span id="case-note-status" role="status"></span></section>`:''}`;
+    $('#library-detail').innerHTML=`<header class="reader-masthead"><p>${s?'系统拆解':'游戏拆解'}</p><div class="reader-game-title">${e(g?.title||doc.title)}</div>${s?`<a href="#library/${g.id}">查看整游分析与系统地图 ↗</a>`:''}</header>${doc.readerEdition?`<div class="reader-edition">游戏分析样稿 · ${e(g?.platform||'资料分析')} · 资料核读 ${e(g?.asOf||D.asOf)}<span>原作依据随文引用；作者分析与补充设计分别说明。</span></div>`:`<div class="evidence-note"><b>阅读标记：F 原作事实 · I 分析推断 · P 补充参考设计 · U 未核实</b><p>${e(s?.evidenceWarning||g?.scope||'跨模块参考文档')}。P 参考规格尚未实现和进行玩法测试。</p></div>`}<div class="reader-layout"><aside class="reader-toc"><nav class="reader-return" aria-label="阅读导航"><a href="${e(parentLink(doc))}" data-reader-back>← 返回上一层</a><a href="#library" data-reader-home title="游戏种子主页">返回主页</a></nav><details class="reader-contents" open><summary>本文目录</summary><nav id="case-toc"></nav></details></aside><article class="case-document" id="case-document">${doc.html}</article></div>${doc.referenceHtml?`<details class="dev-reference" data-reference-id="${id}"><summary>开发参考附录 · 补充方案，非原作规则</summary><p>${s?.referenceStatus==='frontend-demo'?'本页交互样稿仅实现标明的前端状态演示；完整战斗、服务器及事务用例尚未实现。':'展开查看有限范围的可开发参考规格，尚未实现或进行玩法测试。'}所有演示参数、接口与异常策略均属补充设计。</p><div class="reference-content case-document"></div></details>`:''}${s?`<section class="case-notes panel"><h2>我的用途与笔记</h2><label for="case-note">收藏后可记录借鉴目标、取舍与待验证问题</label><textarea id="case-note" rows="4" maxlength="20000" placeholder="例如：借鉴批量分解前的保护规则，用于我的刷宝游戏。">${e(favorites[id]?.note||'')}</textarea><button class="button secondary" id="save-case-note" data-id="${id}">保存笔记并收藏</button><span id="case-note-status" role="status"></span></section>`:''}`;
+    document.querySelectorAll('#case-document [data-demo]').forEach(mountDemo);
     const title=$('#case-document h1');if(title){const header=document.createElement('header');header.className='system-title';title.before(header);header.append(title);if(s)header.insertAdjacentHTML('beforeend',`<button class="button secondary" data-case-save="${id}" aria-pressed="${!!favorites[id]}">${favorites[id]?'♥ 已收藏':'♡ 收藏系统'}</button>`);}
     if(innerWidth<=1100)$('.reader-contents').open=false;
     const appendix=$('.dev-reference');if(appendix)appendix.addEventListener('toggle',()=>{if(appendix.open&&!appendix.dataset.loaded){appendix.dataset.loaded='true';appendix.querySelector('.reference-content').innerHTML=doc.referenceHtml;const nodes=[...appendix.querySelectorAll('.mermaid')];if(nodes.length)window.LibraryMermaid?.run({nodes}).catch(()=>{$('#library-warning').textContent='附录流程图暂未渲染，可阅读规则文字。';});}});
@@ -76,7 +128,7 @@
     for(const extra of document.querySelectorAll('#library-detail>.dev-reference,#library-detail>.case-notes'))$('#case-document').append(extra);
     const token=renderToken,diagrams=[...$('#case-document').querySelectorAll('.mermaid')];
     const ready=diagrams.length&&window.LibraryMermaid?window.LibraryMermaid.run({nodes:diagrams}).catch(()=>{if(token===renderToken)$('#library-warning').textContent='部分流程图暂未渲染，可阅读图中规则文本及机制示意图。';}):Promise.resolve();
-    Promise.all([ready,document.fonts.ready,...[...$('#case-document').querySelectorAll('img')].map(img=>img.decode().catch(()=>{}))]).then(()=>restorePosition(savedPosition,token));
+    Promise.all([ready,document.fonts.ready,...[...$('#case-document').querySelectorAll('img')].filter(img=>img.loading!=='lazy'||!img.hasAttribute('width')).map(img=>img.decode().catch(()=>{}))]).then(()=>{if(token!==renderToken)return;diagramControls($('#case-document'));restorePosition(savedPosition,token);});
   }
   $('#game-filter').insertAdjacentHTML('beforeend',D.games.map(g=>`<option value="${g.id}">${e(g.title)}</option>`).join(''));
   $('#system-filter').insertAdjacentHTML('beforeend',Object.entries(types).map(([id,t])=>`<option value="${id}">${t}</option>`).join(''));
