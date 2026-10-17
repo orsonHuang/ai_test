@@ -1,5 +1,7 @@
 # NOW · 当前状态锚点
 
+- 2026-10-17 美术/流程图/原型Skill选型完成：推荐吸收create-game-assets的观察维度、diagramming的图型与可读性、cc-designer的HTML原型、game-ui-ux的游戏交互检查。详情见Game-TearDown框架GitHub选型记录；本轮仅研究，尚未安装/融入/改网页。建议下一步用蔚蓝合作系统验证图文与可点击原型，再推广。
+
 - 2026-10-17 缓存修复已上线，可用 https://orson.games/game-ideas/?v=20261017-103029#library/blue-planet-app 重新载入；7资源hash版本化，46HTTPS文件与导航检查通过。游戏分析Skill候选已选：优先GameDesignOS体验分析，Steam专项补市场，其他作采集/问题清单参考；建议独立按单机/长线商业化及发行地区/平台分支，详情在GitHub-Skill选型记录，尚未安装或实战验证新候选。
 
 - 2026-10-17 蔚蓝样稿阅读优化已上线：https://orson.games/game-ideas/#library/blue-planet-app 。正文段间距、顺序数字/并列中点、简洁措辞、游戏大标题与标题旁收藏完成；目录上方双返回保持可见，上一层恢复来源阅读位置，主页回案例库。三屏线上导航与46文件hash通过，Skill已更新安装。可以重点验收地图→系统→上一层的位置恢复及段落；其他游戏尚未批量改写。

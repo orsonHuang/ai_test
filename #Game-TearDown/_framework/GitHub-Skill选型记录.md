@@ -69,3 +69,27 @@ GitHub API 当日显示：gameSkills 1 star、morbeo 0、overture 2、skills-sas
 - 数据口径：每项注明国家/地区、商店/渠道、时间区间、币种、官方/平台计数/第三方估算。评论数、下载、流水、收入和活跃不同口径不能直接拼接；仅凭英语评论也不能推断用户国籍。
 
 推荐组合：现有 game-system-teardown 负责资料库与网页契约，吸收 GameDesignOS 的分析方法；Steam 研究作为市场专项，商业化问题清单和海内外对照作为按需分支。先在蔚蓝App与暖雪Steam样稿验证，不为了海内外覆盖编造同款海外版本。
+
+## 美术、流程图与原型专项 · 2026-10-17
+
+本轮为候选审读与适配建议，未安装外部 Skill、运行其代码、修改已安装 Skill 或发布网页。以下按当日 main 分支阅读，尚未固定提交；不能将文字审读视作产出效果验证。
+
+| 方向与来源 | 建议吸收 | 适配边界 |
+|---|---|---|
+| [create-game-assets](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/create-game-assets/SKILL.md) 及其 [art-direction](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/create-game-assets/references/art-direction.md) | 用形状、轮廓、明暗、颜色职责、材质、镜头、动效和原生尺寸可读性描述美术；放回实际战斗背景判断 | 原 Skill 主要生产新资产。我们将这些维度转为截图分析问题；生成图不得作为原作证据。仅有静态宣传图时，不断言战斗特效与运动可读性 |
+| [diagramming](https://github.com/arjunprabhulal/agent-skills/blob/main/skills/docs/diagramming/SKILL.md) | 按问题选流程、状态、时序等图型；一图一问题，同层级节点、箭头说明、异常分支、渲染检查、文字摘要 | 适合现有 Mermaid。约九节点仅作拆图提示，不设硬性上限；不照搬后台架构术语、所有图必须异常分支或禁止主题颜色等绝对要求 |
+| [cc-designer](https://github.com/Openclaw-Metis/cc-designer/blob/main/SKILL.md) 及 [prototypes](https://github.com/Openclaw-Metis/cc-designer/blob/main/references/prototypes.md) | 可在浏览器打开的 HTML 原型，区分静态布局与真实关键交互，明确模拟范围，浏览器检查 | 不默认套营销页、操作系统外壳、React/Babel CDN 和多版本交付。沿用本站样式与本地依赖；原型只实现需要验证的流程。wireframes.md 本次未成功读取，不声称完整审读 |
+| [game-ui-ux](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/game-ui-ux/SKILL.md) | 屏幕/弹窗层级、返回路径、安全区、文字缩放、手柄焦点与输入设备切换，按地区检查文案长度 | 原文偏引擎实现，当前吸收可观察的交互检查项。不能由界面表现反推原作使用事件总线或特定代码架构；触屏游戏不强制补出原作手柄支持 |
+| [wireframe-annotated](https://github.com/nexu-io/open-design/blob/main/plugins/_official/examples/wireframe-annotated/SKILL.md) | 线框区域编号与说明一一对应，说明放界面外侧，灰度结构保持清晰 | 原模板限定桌面营销页，借鉴标注方法，不能直接套进游戏界面 |
+
+上述 diagramming 和 cc-designer 入口声明 MIT；本轮没有逐仓库核完其余许可，不复制第三方模板源码。只独立组织一般方法；如后续要安装或复用代码，再固定版本并核许可证与执行脚本。
+
+### 建议纳入生产端的图文契约
+
+1. 美术表现：先给原作截图及定位，再用编号说明观察到的视觉选择、服务的玩家判断及代价。减少“精美、丰富、沉浸”等无依据评价；截图来源、版本与时间随图记录。
+2. 系统图：总览图用于模块跳转；流程图解释操作与判断；状态图解释条件和切换；合作等多角色交互可用泳道或时序。按需选图，不给每个系统机械补齐所有图型。手机窄屏应可读、可放大，不能只验证语法通过。
+3. UI 说明：原作截图、依据截图重绘的线框、补充设计三种身份明确标注。控件编号与“功能／触发条件／反馈／跳转”对应，保持正文、图和原型用词一致。
+4. 交互原型：先做关键路径和必要的锁定、资源不足、取消、返回等状态；每个按钮要有可解释反馈。证据不足的行为放在补充设计中，不伪装成原作流程。
+5. 游戏差异：单机重点看战斗辨识、探索引导、叙事镜头、暂停和背包；长线商业化按实际内容看成长反馈、奖励层级、活动入口、商店和付费路径。海内外先按实际版本、语言和输入设备检查，不把地区刻板印象写成设计规律。
+
+建议继续由 game-system-teardown 统一调用，新增美术分析、图表、UI原型三个按需参考模块，避免多个大 Skill 同时争夺文风和输出格式。首个验证对象可用蔚蓝合作系统：原作界面编号讲解、准备/开战状态图、可点击的补充设计原型；效果通过再推广。
