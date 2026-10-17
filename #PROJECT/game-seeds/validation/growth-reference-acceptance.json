@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "checks": 419,
+  "at": "2026-10-17T16:28:56.142Z",
+  "scope": "Pure reference calculations only; no database, account server, combat or full-client validation"
+}

@@ -1,5 +1,5 @@
 {
-  "release": "game-ideas-20261017T134059Z",
+  "release": "game-ideas-20261017T163525Z",
   "passed": true,
   "files": [
     {
@@ -19,22 +19,22 @@
     },
     {
       "file": "index.html",
-      "sha256": "0fab7a796d35ab48828622922a72c72bc1a558695631f19560dcd42ea2a2c788",
+      "sha256": "80b9036dbcaae00e5105b7fb435b153d31bccc88cfe43de7448277014674df04",
       "status": 200
     },
     {
       "file": "library-data.js",
-      "sha256": "18c9b7125d4a2a617fd501a1f52998e7b32f7cc1478adca23f9cb1f6799965ee",
+      "sha256": "545cbcbee60b8f16e6c69a7ef09460410f771e2cb16a2869c4bd608ab2171f0b",
       "status": 200
     },
     {
       "file": "library.css",
-      "sha256": "6c8ad6e7fe2bab2af14bdf4fc4eb10780ad0dd430c354b1d90a5de060c04d515",
+      "sha256": "53b8f895a6ec6cf9f10a2d4e906b35ce5d3b0ac053d227a5f94968cd1ef66333",
       "status": 200
     },
     {
       "file": "library.js",
-      "sha256": "1460c6ef80d47267738e1f33a0fe1c86b1049fb22632983aa21f53eadeb705be",
+      "sha256": "0121b6af789c90eb4aaa9e8257b43c1104ea2760f6e489e3682eafd624ce7e9e",
       "status": 200
     },
     {
@@ -278,8 +278,58 @@
       "status": 200
     },
     {
+      "file": "media/reference-48.png",
+      "sha256": "a996c2c3ebab92eb2a7e435b9a97369eb88bdad1253d1e3339097affb587e503",
+      "status": 200
+    },
+    {
+      "file": "media/reference-49.png",
+      "sha256": "fa1c08bd88cf683561d2f89364a354ff24d7d65c9a3d875a69691146c36440d9",
+      "status": 200
+    },
+    {
+      "file": "media/reference-50.png",
+      "sha256": "9c115491ba947eb148f985164bc7ce59835f9a82b7e8db3c71b89d5fb3a3cc8f",
+      "status": 200
+    },
+    {
+      "file": "media/reference-51.png",
+      "sha256": "75708a2b55f714082f71c2377fc594541e94ec7f55f12dc8d34f0390620ae078",
+      "status": 200
+    },
+    {
+      "file": "media/reference-52.png",
+      "sha256": "1df05e7e4fc55e028bb37843a74c218d5511127d11ddd0472d1094beb0f6a09b",
+      "status": 200
+    },
+    {
+      "file": "media/reference-53.png",
+      "sha256": "2b33c3ab62586c24a4bf5ee7f406e24f6ac6ee8c6c1ad713bb31fc924f2c0aa0",
+      "status": 200
+    },
+    {
+      "file": "media/reference-54.png",
+      "sha256": "21867acfc65ce67ad1cf3454d9a45355c064076956a41ec4f8f923e0d039bd83",
+      "status": 200
+    },
+    {
       "file": "mermaid.js",
       "sha256": "2a6fbb3c69c1b88bba2693b076f9c5bdddc3f827983a4f070a4fbe64ae1e3211",
+      "status": 200
+    },
+    {
+      "file": "reference/growth-calculator.mjs",
+      "sha256": "90c669725d07b3dc7c0ccd0607fb65b69df34cafe2b97b98d915f8ac8819f924",
+      "status": 200
+    },
+    {
+      "file": "reference/growth-config.json",
+      "sha256": "39f623d09283063918319a5dce9ab704a4fe60ff766d80029c6d8a155aa5653a",
+      "status": 200
+    },
+    {
+      "file": "reference/growth-levels.csv",
+      "sha256": "ab9f8b523e39555222407e565ffb17b789fb30f91649d98189c74bfd83df09c8",
       "status": 200
     },
     {

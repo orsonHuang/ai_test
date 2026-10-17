@@ -14,7 +14,7 @@
       "id": "onmyoji-heroes",
       "path": "reader/式神与阴阳师养成.md",
       "group": "养成与构筑",
-      "summary": "区分获得角色、功能达标与实际可用",
+      "summary": "分别拆解式神和阴阳师成长：材料、消耗、曲线、御灵与开发配置",
       "cover": "assets/heroes.svg",
       "coverPublication": "original"
     },
@@ -184,5 +184,77 @@
         "④ 回顾、应用与返回"
       ]
     }
-  }
+  },
+  "referenceMedia": [
+    {
+      "path": "reader-assets/battle-reference.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "reader-assets/orb-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "reader-assets/turn-order-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "reader-assets/growth-reference.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "reader-assets/growth-result-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "reader-assets/growth-tabs-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "reader-assets/yuling-reference.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://m.18183.com/yys/201610/725188.html",
+      "sourceAuthor": "18183 / 小k",
+      "sourceDate": "2016-10-30",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    }
+  ]
 }

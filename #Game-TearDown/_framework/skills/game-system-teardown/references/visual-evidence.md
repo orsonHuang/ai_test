@@ -18,4 +18,6 @@
 
 在实际正文宽度与手机宽度查看；图中文字需要可读，必要时允许独立放大。原作图片缺失时不靠占位图宣称完成 UI 观察。
 
+本库图文要求：先用原游戏全景建立上下文；讲鬼火、材料、确认区等小概念时，截取对应像素区域并紧邻说明，注明来源与历史日期，保留原图水印。不要用生成图代替事实截图，不在文字里要求读者到整张图自行找小图标。局部图按信息量显示，避免窄条强行撑成全屏；使用本地图片白名单并记录引用用途，不能把公开可访问错误标成已获得转载授权。有限引用原画面、原创机制图和参考原型分别标注。
+
 方法参考：[create-game-assets / art-direction](https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/create-game-assets/references/art-direction.md)。吸收观察维度，未采用新资产生产的审批流程或复制模板。

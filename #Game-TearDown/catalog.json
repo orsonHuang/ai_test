@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "asOf": "2026-10-17",
+  "asOf": "2026-10-18",
   "publicationStatus": "local-review",
   "games": [
     {
@@ -67,7 +67,7 @@
       "platform": "App",
       "region": "中国大陆",
       "build": null,
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "scope": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "playModes": [
         "solo",
@@ -1534,7 +1534,7 @@
       "status": "researched",
       "depth": "deep",
       "path": "阴阳师-国服App/systems/行动条与鬼火战斗.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "tags": [
@@ -1567,7 +1567,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1580,9 +1580,9 @@
       "status": "researched",
       "depth": "deep",
       "path": "阴阳师-国服App/systems/式神与阴阳师养成.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "calculation-tested-service-unimplemented",
       "tags": [
         "培养目标",
         "功能节点",
@@ -1593,7 +1593,12 @@
           "id": "YYS-F-heroes",
           "claim": "历史操作记录包含升级、升星、技能与阴阳术",
           "sources": [
-            "YYS-S03"
+            "YYS-S03",
+            "YYS-S17",
+            "YYS-S18",
+            "YYS-S19",
+            "YYS-S20",
+            "YYS-S21"
           ],
           "scope": "公开资料或历史样本，见正文"
         }
@@ -1613,7 +1618,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1659,7 +1664,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1705,7 +1710,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1751,7 +1756,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1797,7 +1802,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1843,7 +1848,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1889,7 +1894,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1935,7 +1940,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"
@@ -1981,7 +1986,7 @@
       "related": [],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
-      "asOf": "2026-10-17",
+      "asOf": "2026-10-18",
       "defaultDiscoverable": true,
       "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
       "referenceFilterNamespace": "referenceAttributes"

@@ -14,8 +14,8 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8789/',out=path.resolve(__dir
   for(const href of links){
    await go('onmyoji-cn-app');const a=page.locator(`.system-map a[href="${href}"]`);await a.scrollIntoViewIfNeeded();
    const before=await page.evaluate(()=>scrollY);await a.click();await page.waitForFunction(()=>document.querySelector('#view-library').dataset.readyRoute===location.hash);
-   assert.equal(new URL(page.url()).hash,href);assert.equal(await page.locator('.ui-analysis').count(),1);
-   assert.match(await page.locator('.reader-edition').innerText(),/2026-10-17/);
+   assert.equal(new URL(page.url()).hash,href);assert.equal(await page.locator(href==='#library/onmyoji-heroes'?'.reference-download':'.ui-analysis').count(),1);
+   assert((await page.locator('.reader-edition').innerText()).includes(await page.evaluate(()=>GameLibrary.games.find(g=>g.id==='onmyoji-cn-app').asOf)));
    assert(!/roomRevision|R1 \||P参考/.test(await page.locator('#case-document').innerText()));
    assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),href+' overflow '+width);
    await page.locator('[data-reader-back]').click();await page.waitForFunction(()=>document.querySelector('#view-library').dataset.readyRoute===location.hash);

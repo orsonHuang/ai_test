@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "base": "https://orson.games/game-ideas/",
+  "at": "2026-10-17T16:36:54.094Z",
+  "widths": [
+    1440,
+    390,
+    320
+  ],
+  "checks": [
+    "7 source regions load",
+    "source/date/crop captions",
+    "small crops remain readable",
+    "both growth branches and costs",
+    "180 CSV rows",
+    "3 actual download endpoints and browser download",
+    "reference appendix",
+    "no overflow or page/network errors"
+  ],
+  "errors": [],
+  "failures": []
+}

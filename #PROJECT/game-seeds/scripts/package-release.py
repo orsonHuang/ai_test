@@ -16,9 +16,9 @@ assert count==7, f'Expected 7 entry scripts/styles, found {count}'
 if html!=entry.read_text(encoding='utf-8'):
     entry.write_text(html,encoding='utf-8')
 files=sorted(p for p in dist.rglob('*') if p.is_file())
-assert all(p.suffix in {'.html','.js','.css','.svg'} for p in files)
+assert all(p.suffix in {'.html','.js','.css','.svg','.png'} or (p.parent==dist/'reference' and p.name in {'growth-config.json','growth-levels.csv','growth-calculator.mjs'}) for p in files)
 allowed=json.loads((root/'../../#Game-TearDown/public-media.json').resolve().read_text(encoding='utf-8'))['media']
-assert len(list((dist/'media').glob('*.svg')))==len(allowed)
+assert len(list((dist/'media').glob('*')))==len(allowed)
 manifest={p.relative_to(dist).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
 out=root/'validation';out.mkdir(exist_ok=True)
 (out/'release.json').write_text(json.dumps({'release':release,'files':manifest},indent=2),encoding='utf-8')

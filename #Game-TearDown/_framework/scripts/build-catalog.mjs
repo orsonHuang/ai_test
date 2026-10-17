@@ -3,7 +3,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
-const dirs=process.argv.slice(2);
+const dryRun=process.argv.includes('--check'),dirs=process.argv.slice(2).filter(x=>x!=='--check');
 if(!dirs.length) throw new Error('Pass explicit game directories; do not silently migrate legacy cases.');
 const catalog={schemaVersion:1,asOf:'2026-10-16',publicationStatus:'local-review',games:[],systems:[]};
 const media=new Map(); const ids=new Set();
@@ -38,8 +38,13 @@ for(const dir of dirs){
   }
 }
 for(const s of catalog.systems)for(const id of s.related||[])if(!ids.has(id))throw new Error(`Unknown related ID ${id}`);
+// Keep explicitly reviewed reference images and stable image positions across rebuilds.
+for(const dir of dirs){const file=path.join(root,dir,'reader.json');if(!fs.existsSync(file))continue;const r=JSON.parse(fs.readFileSync(file,'utf8'));for(const m of r.referenceMedia||[]){if(m.publication!=='editorial-reference'||m.kind!=='source-screenshot'||!/^https:\/\//.test(m.sourceUrl)||!m.sourceDate||!m.sourceAuthor)throw Error('Incomplete reference image');const relative=dir+'/'+m.path,full=path.resolve(root,relative);if(!full.startsWith(root+path.sep)||!fs.existsSync(full))throw Error('Missing reference image');media.set(relative,{...m,path:relative});}}
+const oldMediaFile=path.join(root,'public-media.json');
+if(fs.existsSync(oldMediaFile)){const ordered=new Map();for(const m of JSON.parse(fs.readFileSync(oldMediaFile,'utf8')).media){if(media.has(m.path)){ordered.set(m.path,media.get(m.path));media.delete(m.path);}else if(fs.existsSync(path.resolve(root,m.path))&&['original','authorized'].includes(m.publication)){ordered.set(m.path,m);}}for(const [key,value] of media)ordered.set(key,value);media.clear();for(const [key,value] of ordered)media.set(key,value);}
+catalog.asOf=catalog.games.map(g=>g.asOf).sort().at(-1);
 for(const [file,data] of [['catalog.json',catalog],['public-media.json',{schemaVersion:1,scope:'Media allowlist only; not a deployable package. Research-only images are excluded.',media:[...media.values()]}]]){
   const dest=path.join(root,file);if(fs.existsSync(dest))fs.readFileSync(dest,'utf8');
-  fs.writeFileSync(dest,JSON.stringify(data,null,2)+'\n');
+  if(!dryRun)fs.writeFileSync(dest,JSON.stringify(data,null,2)+'\n');
 }
 console.log(JSON.stringify({games:catalog.games.length,systems:catalog.systems.length,defaultDiscoverable:catalog.systems.filter(s=>s.defaultDiscoverable).length,referenceOnlyCases:catalog.systems.filter(s=>!s.defaultDiscoverable).length,publicMedia:media.size}));

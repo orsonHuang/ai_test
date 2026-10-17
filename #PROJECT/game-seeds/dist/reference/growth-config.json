@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "designStatus": "supplemental-reference-not-original-game-values",
+  "revision": 2,
+  "date": "2026-10-18",
+  "bankCapacity": 1000000,
+  "curves": {
+    "hero": {"coefficient": 100, "maxLevel": 40},
+    "fodder": {"coefficient": 50, "maxLevel": 40},
+    "account": {"coefficient": 200, "maxLevel": 60},
+    "guardian": {"coefficient": 150, "maxLevel": 40}
+  },
+  "starCaps": {"2":20,"3":25,"4":30,"5":35,"6":40},
+  "starRecipes": {"2":{"count":2,"coins":20000},"3":{"count":3,"coins":30000},"4":{"count":4,"coins":40000},"5":{"count":5,"coins":50000}},
+  "heroXpCoinsDivisor": 10,
+  "items": {"xp_small":{"xp":1000},"xp_large":{"xp":10000},"skill_daruma":{"skillPoints":1},"transfer_ticket":{"uses":1}},
+  "soulXp": {"1":500,"2":750,"3":1000,"4":1250,"5":1500,"6":1750},
+  "skillUpgradeCoins": 10000,
+  "skillMaxLevel": 5,
+  "awakeningRecipes": {
+    "A":{"wind_low":16,"water_low":16,"wind_mid":8,"water_mid":8},
+    "B":{"wind_mid":16,"fire_mid":16,"wind_high":8,"fire_high":8}
+  },
+  "heroTemplates": {
+    "reference_attacker":{"curve":"hero","base":{"attack":100,"hp":1000,"defense":50,"speed":100},"growth":{"attack":10,"hp":100,"defense":5},"awakening":"A","skills":["strike","attack_buff","shield"]},
+    "reference_support":{"curve":"hero","base":{"attack":80,"hp":1200,"defense":60,"speed":100},"growth":{"attack":8,"hp":120,"defense":6},"awakening":"B","skills":["strike","shield","dispel"]},
+    "reference_fodder":{"curve":"fodder","base":{"attack":50,"hp":500,"defense":25,"speed":100},"growth":{"attack":5,"hp":50,"defense":2},"awakening":null,"skills":["strike"]}
+  },
+  "starMultipliersBp":{"2":10000,"3":11000,"4":12000,"5":13000,"6":14000},
+  "awakeningBonus":{"attackBp":1000,"hpBp":1000,"defenseBp":1000,"speedFlat":5},
+  "mainCharacters": {
+    "seimei":{"unlockFlag":null,"guardian":"dragon"},
+    "kagura":{"unlockFlag":"story-03","guardian":"fox"},
+    "hiromasa":{"unlockFlag":"story-07","guardian":"panther"},
+    "yaobikuni":{"unlockFlag":"story-15","guardian":"peacock"}
+  },
+  "mainSkills":["strike","attack_buff","shield","dispel"],
+  "activeSlots":2,
+  "guardianMilestones":[5,10,15,20,25,30,35,40],
+  "skills": {
+    "strike":{"target":"one_enemy","cooldown":0,"levels":[10000,11000,12000,13000,14000],"unit":"attack_damage_bp"},
+    "attack_buff":{"target":"all_allies","cooldown":3,"duration":2,"levels":[1000,1250,1500,1750,2000],"unit":"attack_bonus_bp"},
+    "shield":{"target":"all_allies","cooldown":3,"duration":2,"levels":[1000,1250,1500,1750,2000],"unit":"caster_max_hp_bp"},
+    "dispel":{"target":"one_ally","cooldown":3,"levels":[1,1,2,2,3],"unit":"removable_debuff_count"}
+  }
+}

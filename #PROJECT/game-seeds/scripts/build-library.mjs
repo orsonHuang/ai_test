@@ -6,7 +6,8 @@ import {build} from 'esbuild';
 const project=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const root=path.resolve(project,'../../#Game-TearDown'), out=path.join(project,'dist');
 const catalog=JSON.parse(fs.readFileSync(path.join(root,'catalog.json'),'utf8'));
-const allowed=new Set(JSON.parse(fs.readFileSync(path.join(root,'public-media.json'),'utf8')).media.map(m=>m.path));
+const mediaList=JSON.parse(fs.readFileSync(path.join(root,'public-media.json'),'utf8')).media;
+const mediaInfo=new Map(mediaList.map(m=>[m.path,m])),allowed=new Set(mediaInfo.keys());
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const files=[];
 // Reader files replace public prose, while legacy specifications keep their stable routes.
@@ -34,7 +35,16 @@ for(const g of catalog.games){
 }
 for(const [id,file] of overrides)ids.set(file,id);
 const mediaPaths=new Map(),mediaDimensions=new Map();fs.mkdirSync(path.join(out,'media'),{recursive:true});
-for(const [i,p] of [...allowed].entries()){const dest='media/diagram-'+i+'.svg';const svg=fs.readFileSync(path.join(root,p),'utf8');const box=svg.match(/viewBox="[\d.-]+ [\d.-]+ ([\d.]+) ([\d.]+)"/);if(box)mediaDimensions.set(p,{width:Number(box[1]),height:Number(box[2])});fs.copyFileSync(path.join(root,p),path.join(out,dest));mediaPaths.set(p,dest);}
+for(const [i,p] of [...allowed].entries()){
+  const ext=path.extname(p);if(!['.svg','.png'].includes(ext))throw Error('Unsupported public media '+p);
+  const dest='media/'+(ext==='.svg'?'diagram-':'reference-')+i+ext,buffer=fs.readFileSync(path.join(root,p));
+  if(ext==='.svg'){const box=buffer.toString('utf8').match(/viewBox="[\d.-]+ [\d.-]+ ([\d.]+) ([\d.]+)"/);if(box)mediaDimensions.set(p,{width:Number(box[1]),height:Number(box[2])});}
+  else {if(buffer.subarray(0,8).toString('hex')!=='89504e470d0a1a0a')throw Error('Invalid PNG');mediaDimensions.set(p,{width:buffer.readUInt32BE(16),height:buffer.readUInt32BE(20)});}
+  fs.copyFileSync(path.join(root,p),path.join(out,dest));mediaPaths.set(p,dest);
+}
+const referenceDownloads=['growth-config.json','growth-levels.csv','growth-calculator.mjs'];
+fs.mkdirSync(path.join(out,'reference'),{recursive:true});
+for(const name of referenceDownloads)fs.copyFileSync(path.join(root,'阴阳师-国服App/reference',name),path.join(out,'reference',name));
 function systemMap(id){
   const r=readers.get(id);if(!r)throw Error('Unknown system map '+id);
   return `<div class="system-map" aria-label="可点击的系统地图">${[...new Set(r.systems.map(s=>s.group))].map(group=>`<section class="map-group"><h3>${esc(group)}</h3><div>${r.systems.filter(s=>s.group===group).map(s=>`<a href="#library/${s.id}"><b>${esc(catalog.systems.find(x=>x.id===s.id).title)} <span aria-hidden="true">↗</span></b><span>${esc(s.summary)}</span></a>`).join('')}</div></section>`).join('')}</div>`;
@@ -58,8 +68,8 @@ function render(file,gid){
   const renderer={
     html({text}){return esc(text);},
     link({href,tokens}){const label=this.parser.parseInline(tokens);if(/^https?:\/\//i.test(href))return `<a href="${esc(href)}" target="_blank" rel="noopener noreferrer">${label} ↗</a>`;const id=ids.get(resolve(href));return id?`<a href="#library/${id}">${label}</a>`:`<span>${label}</span>`;},
-    image({href,text}){const key=resolve(href),dest=mediaPaths.get(key),size=mediaDimensions.get(key);return dest?`<figure><a href="./${dest}" target="_blank" rel="noopener"><img loading="lazy" ${size?`width="${size.width}" height="${size.height}"`:''} src="./${dest}" alt="${esc(text)}"></a><figcaption>${esc(text)} · 原创示意图，点击放大</figcaption></figure>`:`<p class="research-image">研究引用图：${esc(text)}。公开版请通过本篇来源链接查看原图。</p>`;},
-    code({text,lang}){if(lang==='system-map')return systemMap(text.trim());if(lang==='ui-analysis')return uiAnalysis(gid,text.trim());if(lang==='interactive-demo'){const key=text.trim();if(!['coop','souls'].includes(key))throw Error('Unknown demo '+key);return `<section class="interactive-demo" data-demo="${key}" aria-label="可操作的补充设计原型"><p>正在准备交互样稿…</p></section>`;}return lang==='mermaid'?`<pre class="mermaid">${esc(text)}</pre>`:`<pre><code>${esc(text)}</code></pre>`;},
+    image({href,text}){const key=resolve(href),dest=mediaPaths.get(key),size=mediaDimensions.get(key),info=mediaInfo.get(key);const reference=info?.kind==='source-screenshot';const credit=reference?`历史游戏截图${info.detail?' · 局部截取':''} · ${esc(info.sourceDate)} · <a href="${esc(info.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(info.sourceAuthor)} / 来源 ↗</a>`:'原创示意图';return dest?`<figure class="${reference?'reference-figure':''} ${info?.detail?'reference-detail':''}" ${reference&&size?`style="--reference-width:${size.width}px"`:''}><a href="./${dest}" target="_blank" rel="noopener"><img loading="lazy" ${size?`width="${size.width}" height="${size.height}"`:''} src="./${dest}" alt="${esc(text)}"></a><figcaption>${esc(text)}<br>${credit} · 点击放大</figcaption></figure>`:`<p class="research-image">研究引用图：${esc(text)}。公开版请通过本篇来源链接查看原图。</p>`;},
+    code({text,lang}){if(lang==='reference-download'){if(text.trim()!=='growth')throw Error('Unknown reference download');return `<aside class="reference-download"><b>可下载的补充设计 · 非原作配置</b><p>把配置与计算器放在同一目录，用 Node.js 导入计算器即可复算；CSV可用表格软件查看。</p>${referenceDownloads.map((name,i)=>`<a download href="./reference/${name}">${['完整配置 JSON','逐级经验表 CSV','计算器源码 MJS'][i]}</a>`).join('')}</aside>`;}if(lang==='system-map')return systemMap(text.trim());if(lang==='ui-analysis')return uiAnalysis(gid,text.trim());if(lang==='interactive-demo'){const key=text.trim();if(!['coop','souls'].includes(key))throw Error('Unknown demo '+key);return `<section class="interactive-demo" data-demo="${key}" aria-label="可操作的补充设计原型"><p>正在准备交互样稿…</p></section>`;}return lang==='mermaid'?`<pre class="mermaid">${esc(text)}</pre>`:`<pre><code>${esc(text)}</code></pre>`;},
     table(token){return `<div class="table-scroll">${marked.Renderer.prototype.table.call(this,token)}</div>`;}
   };
   // Instance-local renderer prevents path handling from leaking between documents.

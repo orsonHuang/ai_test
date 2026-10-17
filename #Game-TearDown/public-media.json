@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Media allowlist only; not a deployable package. Research-only images are excluded.",
+  "scope": "Explicit allowlist: original diagrams and attributed limited screenshots used for analysis; editorial-reference is not a claim of ownership or licensing.",
   "media": [
     {
       "path": "暖雪-Steam/assets/combat.svg",
@@ -241,6 +241,76 @@
       "path": "永远的蔚蓝星球-App/reader-assets/coop-layout.svg",
       "kind": "original-diagram",
       "publication": "original"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/battle-reference.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/orb-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/turn-order-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/growth-reference.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/growth-result-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/growth-tabs-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
+      "sourceAuthor": "TapTap / 鸭梨",
+      "sourceDate": "2021-12-31",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/yuling-reference.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://m.18183.com/yys/201610/725188.html",
+      "sourceAuthor": "18183 / 小k",
+      "sourceDate": "2016-10-30",
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
     }
   ]
 }

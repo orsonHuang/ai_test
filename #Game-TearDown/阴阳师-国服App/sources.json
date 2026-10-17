@@ -38,12 +38,14 @@
       {
         "url": "https://img2-tc.tapimg.com/bbcode/images/bc8a68a21e3017593a2b9317f318e1e2.jpg/_tap_ugc.jpg",
         "observed": "横屏战场、右侧行动队列、底部鬼火与技能设置，伤害字叠在敌方区域",
-        "publication": "research-only"
+        "publication": "editorial-reference",
+        "usage": "有限历史截图及局部截取，来源随图注明"
       },
       {
         "url": "https://img2-tc.tapimg.com/bbcode/images/5514bd53b46686891428e717df481f89.jpg/_tap_ugc.jpg",
         "observed": "左侧材料列表、中部角色及成长前后、右侧升级升星转换、底部确认",
-        "publication": "research-only"
+        "publication": "editorial-reference",
+        "usage": "有限历史截图及局部截取，来源随图注明"
       }
     ]
   },
@@ -202,5 +204,71 @@
     "limitations": "不合并国服时间价格概率",
     "read": "正文已读",
     "platform": "海外独立范围"
+  },
+  {
+    "id": "YYS-S17",
+    "title": "阴阳师御灵升级误区",
+    "url": "https://m.18183.com/yys/201610/725188.html",
+    "author": "18183 / 小k",
+    "publishedAt": "2016-10-30",
+    "accessedAt": "2026-10-18",
+    "read": "正文已读",
+    "scope": "御灵界面与属性成长；旧账号数值不是成长系数",
+    "limitations": "历史资料，未进行当前实机核验"
+  },
+  {
+    "id": "YYS-S18",
+    "title": "六星式神消耗计算（历史论坛转载）",
+    "url": "https://shouyou.gamersky.com/gl/201610/822532.shtml",
+    "author": "霸气的皇阿玛、酒公子 / 游民转载",
+    "publishedAt": "2016-10-19",
+    "accessedAt": "2026-10-18",
+    "read": "正文已读",
+    "scope": "仅引升星金币逐项费用，不沿用文章争议总账；非现行价格",
+    "limitations": "历史资料，未进行当前实机核验"
+  },
+  {
+    "id": "YYS-S19",
+    "title": "经验手札与暴食鬼",
+    "url": "https://www.taptap.cn/moment/141580112968550257",
+    "author": "TapTap历史新手解答",
+    "publishedAt": "2021-05-12",
+    "accessedAt": "2026-10-18",
+    "read": "正文已读",
+    "scope": "经验池功能历史记录；不证明2026开关条件",
+    "limitations": "历史资料，未进行当前实机核验"
+  },
+  {
+    "id": "YYS-S20",
+    "title": "御灵副本攻略技巧",
+    "url": "https://news.17173.com/z/yys/content/08022019/164849461.shtml",
+    "author": "大舌头解说欢乐Tree / 17173转载",
+    "publishedAt": "2019-08-02",
+    "accessedAt": "2026-10-18",
+    "read": "正文已读",
+    "scope": "四基础主角、御灵40级与技能成长历史描述",
+    "limitations": "历史资料，未进行当前实机核验"
+  },
+  {
+    "id": "YYS-S21",
+    "title": "契灵伙伴入住手帐",
+    "url": "https://www.taptap.cn/moment/410488205989643650",
+    "author": "阴阳师手游扫地工",
+    "publishedAt": "2023-05-24",
+    "accessedAt": "2026-10-18",
+    "read": "正文已读",
+    "scope": "官方契灵存在与外观介绍，不证明全量养成数值",
+    "limitations": "历史资料，未进行当前实机核验"
+  },
+  {
+    "id": "YYS-S22",
+    "title": "御灵升级指南",
+    "url": "https://news.4399.com/yyssy/xinde/m/704269.html",
+    "author": "4399 / 砍间",
+    "publishedAt": "2016-12-01",
+    "accessedAt": "2026-10-18",
+    "read": "正文已读",
+    "scope": "历史主角与御灵等级关系",
+    "limitations": "非2026实机；不沿用玩法推荐与所有数值"
   }
 ]

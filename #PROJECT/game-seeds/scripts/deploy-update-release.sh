@@ -19,7 +19,7 @@ before_home=$(sha256sum "$root/index.html")
 # Reject unexpected archive members before extracting the locally built package.
 tar -tzf "$archive" | while IFS= read -r name; do
   case "$name" in /*|*..*|*\\*) echo 'Unsafe archive path'; exit 1;; esac
-  case "$name" in *.html|*.js|*.css|favicon.svg|media/*.svg) ;; *) echo 'Unexpected archive member'; exit 1;; esac
+  case "$name" in *.html|*.js|*.css|favicon.svg|media/*.svg|media/*.png|reference/growth-config.json|reference/growth-levels.csv|reference/growth-calculator.mjs) ;; *) echo 'Unexpected archive member'; exit 1;; esac
 done
 mkdir "$stage"
 tar -xzf "$archive" -C "$stage" --no-same-owner
