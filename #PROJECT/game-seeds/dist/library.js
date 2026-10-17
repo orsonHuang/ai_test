@@ -16,16 +16,67 @@
     $('#system-count').textContent=`${found.length} 个案例 · ${Object.keys(favorites).length} 个收藏`;
     $('#system-grid').innerHTML=found.length?found.map(card).join(''):'<div class="empty-state"><h3>当前条件下没有案例</h3><p>背包案例的微信适用性仍待核实，可将证据范围切换为「全部，含待核实」。</p><button class="button secondary" id="clear-system-filters">重置筛选</button></div>';
   }
+  // Keep an entry per visit, so returning to the same article restores that visit.
+  const NAV_KEY='game-seeds-reader-navigation-v1';
+  let visits={};try{const stored=JSON.parse(sessionStorage.getItem(NAV_KEY)||'{}');if(stored&&typeof stored==='object'&&!Array.isArray(stored))visits=stored;}catch{}
+  let activeVisit=null,pendingParent=null,returnVisit=null;
+  const newVisit=()=>Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+  function persistVisits(){try{sessionStorage.setItem(NAV_KEY,JSON.stringify(visits));}catch{}}
+  function rememberPosition(){
+    if(!activeVisit||activeVisit.hash!==(location.hash||'#library'))return;
+    const anchors=activeVisit.hash.startsWith('#library/')?[...document.querySelectorAll('#case-document h2,#case-document h3,.system-map a')]:[];
+    const anchor=anchors.filter(n=>n.getBoundingClientRect().top<=100).at(-1);
+    activeVisit.y=scrollY;activeVisit.toc=$('#case-toc')?.scrollTop||0;
+    activeVisit.anchor=anchor?(anchor.getAttribute('href')||anchor.id):null;
+    activeVisit.offset=anchor?.getBoundingClientRect().top||0;
+    visits[activeVisit.key]=activeVisit;persistVisits();
+  }
+  function beginVisit(){
+    const hash=location.hash||'#library',key=returnVisit||(!pendingParent&&history.state?.readerVisit);
+    const saved=key&&visits[key]?.hash===hash?visits[key]:null;
+    activeVisit=saved||{key:newVisit(),hash,parent:pendingParent,y:0,toc:0};
+    pendingParent=null;returnVisit=null;visits[activeVisit.key]=activeVisit;
+    history.replaceState({...history.state,readerVisit:activeVisit.key},'');persistVisits();
+    return saved?{...saved}:null;
+  }
+  function restorePosition(saved,token){
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      if(token!==renderToken)return;
+      let y=saved?.y||0;
+      if(saved?.anchor){const node=[...document.querySelectorAll('#case-document h2,#case-document h3,.system-map a')].find(n=>(n.getAttribute('href')||n.id)===saved.anchor);if(node)y=scrollY+node.getBoundingClientRect().top-saved.offset;}
+      window.scrollTo({top:y,behavior:'instant'});if($('#case-toc'))$('#case-toc').scrollTop=saved?.toc||0;$('#view-library').dataset.readyRoute=location.hash||'#library';
+    }));
+  }
+  function parentLink(doc){const parent=visits[activeVisit?.parent];return parent?.hash||((doc&&doc.gameId!==location.hash.slice(9))?'#library/'+doc.gameId:'#library');}
+  document.addEventListener('click',event=>{
+    const a=event.target.closest('a');if(!a||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||a.target==='_blank')return;
+    const hash=a.getAttribute('href');if(!hash?.startsWith('#library'))return;
+    rememberPosition();if(hash===(location.hash||'#library'))return;
+    if(a.hasAttribute('data-reader-back')){returnVisit=activeVisit?.parent||null;pendingParent=null;}
+    else if(a.hasAttribute('data-reader-home')){pendingParent=null;returnVisit=null;}
+    else pendingParent=activeVisit?.key||null;
+  },true);
+  let scrollFrame=0;
+  window.addEventListener('scroll',()=>{cancelAnimationFrame(scrollFrame);scrollFrame=requestAnimationFrame(rememberPosition);},{passive:true});
+  window.addEventListener('pagehide',rememberPosition);
+  history.scrollRestoration='manual';
+
   function route(){
+    const savedPosition=beginVisit();delete $('#view-library').dataset.readyRoute;
     const id=location.hash.startsWith('#library/')?location.hash.slice(9):'',doc=D.docs[id];renderToken++;
     $('#library-list').hidden=!!id;$('#library-detail').hidden=!id;
-    if(!id){list();return;}
+    if(!id){list();restorePosition(savedPosition,renderToken);return;}
     if(!doc){$('#library-detail').innerHTML='<a href="#library">← 返回案例库</a><h1>这个案例暂时不存在</h1>';return;}
     const s=D.systems.find(s=>s.id===id),g=game(s?.gameId||doc.gameId);
-    $('#library-detail').innerHTML=`<div class="reader-bar"><a href="#library">← 返回案例库</a>${g?`<a href="#library/${g.id}">${e(g.title)} · 整游分析</a>`:''}${s?`<button class="button secondary" data-case-save="${id}" aria-pressed="${!!favorites[id]}">${favorites[id]?'♥ 已收藏':'♡ 收藏系统'}</button>`:''}</div>${doc.readerEdition?'<div class="reader-edition">游戏分析样稿 · 手机 App · 资料核读 2026-10-16<span>原作依据随文引用；作者分析与补充设计分别说明。</span></div>':`<div class="evidence-note"><b>阅读标记：F 原作事实 · I 分析推断 · P 补充参考设计 · U 未核实</b><p>${e(s?.evidenceWarning||g?.scope||'跨模块参考文档')}。P 参考规格尚未实现和进行玩法测试。</p></div>`}<div class="reader-layout"><aside class="reader-toc"><b>本文目录</b><nav id="case-toc"></nav></aside><article class="case-document" id="case-document">${doc.html}</article></div>${doc.referenceHtml?`<details class="dev-reference" data-reference-id="${id}"><summary>开发参考附录 · 补充方案，非原作规则</summary><p>展开查看此前整理的可开发参考规格。演示参数、接口与异常策略均属补充设计，尚未实现或进行玩法测试。</p><div class="reference-content case-document"></div></details>`:''}${s?`<section class="case-notes panel"><h2>我的用途与笔记</h2><label for="case-note">收藏后可记录借鉴目标、取舍与待验证问题</label><textarea id="case-note" rows="4" maxlength="20000" placeholder="例如：借鉴批量分解前的保护规则，用于我的刷宝游戏。">${e(favorites[id]?.note||'')}</textarea><button class="button secondary" id="save-case-note" data-id="${id}">保存笔记并收藏</button><span id="case-note-status" role="status"></span></section>`:''}`;
+    $('#library-detail').innerHTML=`<header class="reader-masthead"><p>${s?'系统拆解':'游戏拆解'}</p><div class="reader-game-title">${e(g?.title||doc.title)}</div>${s?`<a href="#library/${g.id}">查看整游分析与系统地图 ↗</a>`:''}</header>${doc.readerEdition?'<div class="reader-edition">游戏分析样稿 · 手机 App · 资料核读 2026-10-16<span>原作依据随文引用；作者分析与补充设计分别说明。</span></div>':`<div class="evidence-note"><b>阅读标记：F 原作事实 · I 分析推断 · P 补充参考设计 · U 未核实</b><p>${e(s?.evidenceWarning||g?.scope||'跨模块参考文档')}。P 参考规格尚未实现和进行玩法测试。</p></div>`}<div class="reader-layout"><aside class="reader-toc"><nav class="reader-return" aria-label="阅读导航"><a href="${e(parentLink(doc))}" data-reader-back>← 返回上一层</a><a href="#library" data-reader-home title="游戏种子主页">返回主页</a></nav><details class="reader-contents" open><summary>本文目录</summary><nav id="case-toc"></nav></details></aside><article class="case-document" id="case-document">${doc.html}</article></div>${doc.referenceHtml?`<details class="dev-reference" data-reference-id="${id}"><summary>开发参考附录 · 补充方案，非原作规则</summary><p>展开查看此前整理的可开发参考规格。演示参数、接口与异常策略均属补充设计，尚未实现或进行玩法测试。</p><div class="reference-content case-document"></div></details>`:''}${s?`<section class="case-notes panel"><h2>我的用途与笔记</h2><label for="case-note">收藏后可记录借鉴目标、取舍与待验证问题</label><textarea id="case-note" rows="4" maxlength="20000" placeholder="例如：借鉴批量分解前的保护规则，用于我的刷宝游戏。">${e(favorites[id]?.note||'')}</textarea><button class="button secondary" id="save-case-note" data-id="${id}">保存笔记并收藏</button><span id="case-note-status" role="status"></span></section>`:''}`;
+    const title=$('#case-document h1');if(title){const header=document.createElement('header');header.className='system-title';title.before(header);header.append(title);if(s)header.insertAdjacentHTML('beforeend',`<button class="button secondary" data-case-save="${id}" aria-pressed="${!!favorites[id]}">${favorites[id]?'♥ 已收藏':'♡ 收藏系统'}</button>`);}
+    if(innerWidth<=1100)$('.reader-contents').open=false;
     const appendix=$('.dev-reference');if(appendix)appendix.addEventListener('toggle',()=>{if(appendix.open&&!appendix.dataset.loaded){appendix.dataset.loaded='true';appendix.querySelector('.reference-content').innerHTML=doc.referenceHtml;const nodes=[...appendix.querySelectorAll('.mermaid')];if(nodes.length)window.LibraryMermaid?.run({nodes}).catch(()=>{$('#library-warning').textContent='附录流程图暂未渲染，可阅读规则文字。';});}});
     const headings=[...$('#case-document').querySelectorAll('h2,h3')];headings.forEach((h,i)=>{h.id='section-'+i;});$('#case-toc').innerHTML=headings.map((h,i)=>`<button type="button" data-scroll-section="section-${i}" class="${h.tagName==='H3'?'subheading':''}">${e(h.textContent)}</button>`).join('');
-    const token=renderToken;const diagrams=[...$('#case-document').querySelectorAll('.mermaid')];if(diagrams.length&&window.LibraryMermaid){window.LibraryMermaid.run({nodes:diagrams}).catch(()=>{if(token===renderToken)$('#library-warning').textContent='部分流程图暂未渲染，可阅读图中规则文本及机制示意图。';});}
+    for(const extra of document.querySelectorAll('#library-detail>.dev-reference,#library-detail>.case-notes'))$('#case-document').append(extra);
+    const token=renderToken,diagrams=[...$('#case-document').querySelectorAll('.mermaid')];
+    const ready=diagrams.length&&window.LibraryMermaid?window.LibraryMermaid.run({nodes:diagrams}).catch(()=>{if(token===renderToken)$('#library-warning').textContent='部分流程图暂未渲染，可阅读图中规则文本及机制示意图。';}):Promise.resolve();
+    Promise.all([ready,document.fonts.ready,...[...$('#case-document').querySelectorAll('img')].map(img=>img.decode().catch(()=>{}))]).then(()=>restorePosition(savedPosition,token));
   }
   $('#game-filter').insertAdjacentHTML('beforeend',D.games.map(g=>`<option value="${g.id}">${e(g.title)}</option>`).join(''));
   $('#system-filter').insertAdjacentHTML('beforeend',Object.entries(types).map(([id,t])=>`<option value="${id}">${t}</option>`).join(''));

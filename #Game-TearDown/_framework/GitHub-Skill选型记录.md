@@ -34,3 +34,12 @@ GitHub API 当日显示：gameSkills 1 star、morbeo 0、overture 2、skills-sas
 ## 能力验证方法
 
 不能用 star 或 YAML 校验替代效果测试。以三款指定游戏实际生产，检查：是否错把 DLC 当本体、App 当小游戏；是否编造隐含参数；是否能给出模块级流程、数据与异常；图文是否支撑正文；开发、美术是否能明确还缺哪些决策。最终验收记录在框架进度中更新。
+
+## 阅读排版补充 · 2026-10-17
+
+按用户要求再次检索 GitHub 并读取候选原文：
+
+- [rhino-labs/skills · typography](https://github.com/rhino-labs/skills/blob/main/typography/SKILL.md)：正文优先，控制行宽、段落留白、标题层次，使用语义化列表。这些方法适合当前长文页面，融入本地独立编写的 reader-writing.md；英文行高、字符数与字体偏好没有直接照搬到中文。
+- [skealeye/ClaudeSkills · gdd](https://github.com/skealeye/ClaudeSkills/blob/master/skills/gdd/SKILL.md)：阅读其入口、研究及文档目录组织部分，可参考整游索引连接独立章节。完整工作流还包含新建仓库、自动推送、Obsidian 和多代理写作，不适合本次现有资料库的排版修订，未采用整套流程。
+
+此轮按 main/master 当日内容查阅，未固定新候选 commit，也未整包安装或执行仓库代码。采用的是一般排版与文档组织方法，用户指定的“顺序用数字、并列用中点”和作者文风优先。实际效果以蔚蓝星球 11 篇正文、桌面/手机页面及导航测试验收。
