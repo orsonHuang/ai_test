@@ -8,12 +8,12 @@
   <title>游戏种子 · Game Seeds</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css?v=9d9762fdb59d7e7f">
-  <link rel="stylesheet" href="./library.css?v=53b8f895a6ec6cf9">
+  <link rel="stylesheet" href="./library.css?v=a36e87cd6890c157">
   <script src="./engine.js?v=71ba76624030327b" defer></script>
-  <script src="./app.js?v=ee2f3b33aa882947" defer></script>
-  <script src="./library-data.js?v=545cbcbee60b8f16" defer></script>
+  <script src="./app.js?v=1d052996142324ec" defer></script>
+  <script src="./library-data.js?v=0c2ab672ac1f1e54" defer></script>
   <script src="./mermaid.js?v=2a6fbb3c69c1b88b" defer></script>
-  <script src="./library.js?v=0121b6af789c90eb" defer></script>
+  <script src="./library.js?v=92a4d61141c154ae" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳到主要内容</a>
@@ -21,6 +21,7 @@
     <a class="brand" href="#library" aria-label="游戏种子首页"><span class="brand-symbol" aria-hidden="true">✳</span><span>游戏种子<small>GAME SEEDS</small></span></a>
     <div class="nav-caption">你的创意工作台</div>
     <nav aria-label="主导航">
+      <a href="#games" data-nav="games"><span aria-hidden="true">▤</span>游戏拆解库</a>
       <a href="#library" data-nav="library"><span aria-hidden="true">▦</span>系统案例库</a>
       <a href="#discover" data-nav="discover"><span aria-hidden="true">◈</span>发现灵感<span class="nav-arrow">↗</span></a>
       <a href="#mine" data-nav="mine"><span aria-hidden="true">✳</span>挖掘工作台</a>
@@ -36,9 +37,15 @@
     <main id="main">
       <section id="view-library" class="view" hidden>
         <div id="library-warning" class="library-warning" role="status"></div>
+        <div id="game-library" hidden>
+          <header class="library-hero"><div class="eyebrow">GAME TEARDOWNS / 游戏拆解库</div><h1>从一款游戏，<br>读懂一套设计。</h1><p>按玩法、平台与表现方式，找到你想研究的游戏。</p></header>
+          <div class="section-heading"><h2>寻找游戏拆解案</h2><p id="game-count" aria-live="polite"></p></div>
+          <div class="game-discovery-filters"><label>搜索游戏或标签<input id="game-search" type="search" placeholder="试试：暖雪、Roguelike、Steam 单机…"></label><div id="game-facets"></div></div>
+          <div class="game-filter-actions"><p>不同分类可组合筛选；同一分类可多选。</p><button id="reset-game-filters" class="text-button" type="button">清空筛选</button></div>
+          <div id="game-grid" class="game-grid"></div>
+        </div>
         <div id="library-list">
           <header class="library-hero"><div class="eyebrow">GAME SYSTEM ATLAS / 游戏设计资料库</div><h1>拆开好机制，<br>找到你的下一步。</h1><p>从游戏全景到系统细节，理解规则、设计取舍与可借鉴的方案。</p><div class="library-stats"><span><b>4</b> 款游戏</span><span><b>37</b> 个系统案例</span><span><b>55</b> 张图解与参考图</span></div></header>
-          <div id="game-summaries" class="game-summaries"></div>
           <div class="section-heading"><div><div class="eyebrow">EXPLORE THE MECHANICS</div><h2>按你的设计问题寻找系统</h2></div><p id="system-count" aria-live="polite"></p></div>
           <div class="library-filters"><label class="wide">关键词<input id="system-search" type="search" placeholder="搜索背包、资源循环、锁定、准备确认…"></label><label>游戏与版本<select id="game-filter"><option value="">全部游戏</option></select></label><label>系统类型<select id="system-filter"><option value="">全部系统</option></select></label><label>游玩与商业特征<select id="mode-filter"><option value="">全部特征</option><option value="solo">单人体验</option><option value="coop">多人合作</option><option value="pvp">多人竞争</option><option value="premium">买断</option><option value="iap">内购</option><option value="live-service">持续运营</option></select></label><label>证据范围<select id="evidence-filter"><option value="present">资料支持系统存在</option><option value="all">全部，含待核实</option><option value="unknown">仅适用待核实</option></select></label></div>
           <div class="library-actions"><label class="check-label"><input id="only-saved" type="checkbox">只看我的系统收藏</label><div><button id="export-cases" class="text-button">导出系统收藏</button><button id="import-cases" class="text-button">导入系统收藏</button></div></div>

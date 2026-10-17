@@ -194,7 +194,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "战斗界面"
     },
     {
       "path": "reader-assets/orb-detail.png",
@@ -204,7 +205,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "鬼火与行动进度"
     },
     {
       "path": "reader-assets/turn-order-detail.png",
@@ -214,7 +216,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "行动队列"
     },
     {
       "path": "reader-assets/growth-reference.png",
@@ -224,7 +227,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "式神育成界面"
     },
     {
       "path": "reader-assets/growth-result-detail.png",
@@ -234,7 +238,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "育成属性预览"
     },
     {
       "path": "reader-assets/growth-tabs-detail.png",
@@ -244,7 +249,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "育成方式切换"
     },
     {
       "path": "reader-assets/yuling-reference.png",
@@ -254,7 +260,8 @@
       "sourceUrl": "https://m.18183.com/yys/201610/725188.html",
       "sourceAuthor": "18183 / 小k",
       "sourceDate": "2016-10-30",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "御灵强化界面"
     }
   ]
 }

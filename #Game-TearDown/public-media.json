@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "scope": "Explicit allowlist: original diagrams and attributed limited screenshots used for analysis; editorial-reference is not a claim of ownership or licensing.",
+  "scope": "Media allowlist only; not a deployable package. Research-only images are excluded.",
   "media": [
     {
       "path": "暖雪-Steam/assets/combat.svg",
@@ -250,7 +250,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "战斗界面"
     },
     {
       "path": "阴阳师-国服App/reader-assets/orb-detail.png",
@@ -260,7 +261,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "鬼火与行动进度"
     },
     {
       "path": "阴阳师-国服App/reader-assets/turn-order-detail.png",
@@ -270,7 +272,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "行动队列"
     },
     {
       "path": "阴阳师-国服App/reader-assets/growth-reference.png",
@@ -280,7 +283,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "式神育成界面"
     },
     {
       "path": "阴阳师-国服App/reader-assets/growth-result-detail.png",
@@ -290,7 +294,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "育成属性预览"
     },
     {
       "path": "阴阳师-国服App/reader-assets/growth-tabs-detail.png",
@@ -300,7 +305,8 @@
       "sourceUrl": "https://www.taptap.cn/moment/15220000474270426",
       "sourceAuthor": "TapTap / 鸭梨",
       "sourceDate": "2021-12-31",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "育成方式切换"
     },
     {
       "path": "阴阳师-国服App/reader-assets/yuling-reference.png",
@@ -310,7 +316,8 @@
       "sourceUrl": "https://m.18183.com/yys/201610/725188.html",
       "sourceAuthor": "18183 / 小k",
       "sourceDate": "2016-10-30",
-      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘"
+      "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
+      "captionTitle": "御灵强化界面"
     }
   ]
 }

@@ -7,6 +7,37 @@
       "id": "warm-snow-steam-base",
       "title": "暖雪 · Steam本体",
       "platform": "Steam",
+      "region": "简体中文",
+      "discovery": {
+        "summary": "近战与飞剑配合，通过圣物、神兵和秘籍构筑，反复挑战章节与首领。",
+        "facets": {
+          "genre": [
+            "动作",
+            "Roguelike"
+          ],
+          "platform": [
+            "Steam"
+          ],
+          "presentation": [
+            "俯视角",
+            "2.5D"
+          ],
+          "art": [
+            "暗黑国风"
+          ],
+          "experience": [
+            "Steam单机",
+            "买断"
+          ],
+          "origin": [
+            "国产"
+          ]
+        },
+        "basis": "用户指定标签；Steam本体范围，2.5D为资料库表现分类，不代表引擎技术。",
+        "sources": [
+          "https://store.steampowered.com/app/1296830/"
+        ]
+      },
       "build": null,
       "asOf": "2026-10-16",
       "scope": "Steam本体公开资料与2022历史样本，不含DLC；当前构建未实测",
@@ -26,6 +57,40 @@
       "id": "blue-planet-app",
       "title": "永远的蔚蓝星球 · 手机App",
       "platform": "App",
+      "region": "中国大陆简体中文",
+      "discovery": {
+        "summary": "随机召唤与合成组织防线，连接局内强化、局外养成，以及合作和竞技。",
+        "facets": {
+          "genre": [
+            "塔防",
+            "合成",
+            "轻度Roguelike"
+          ],
+          "platform": [
+            "手机App"
+          ],
+          "presentation": [
+            "竖屏"
+          ],
+          "art": [
+            "Q版卡通"
+          ],
+          "experience": [
+            "内购",
+            "持续运营",
+            "多人合作",
+            "多人竞争"
+          ],
+          "origin": [
+            "国产"
+          ]
+        },
+        "basis": "既有整游分析与官方产品介绍，平台限定手机App。",
+        "sources": [
+          "https://www.wlxq.cn/",
+          "https://www.taptap.cn/app/713683/all-info"
+        ]
+      },
       "build": null,
       "asOf": "2026-10-17",
       "scope": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。",
@@ -48,6 +113,38 @@
       "id": "hero-no-dodge-wechat",
       "title": "英雄没有闪 · 微信小游戏",
       "platform": "WeChat Mini Game",
+      "region": "中国大陆简体中文",
+      "discovery": {
+        "summary": "围绕放置刷宝、装备处理与技能搭配展开；部分系统的微信端规则仍待核实。",
+        "facets": {
+          "genre": [
+            "放置",
+            "刷宝",
+            "RPG"
+          ],
+          "platform": [
+            "微信小游戏"
+          ],
+          "presentation": [
+            "横版",
+            "竖屏"
+          ],
+          "art": [
+            "Q版奇幻"
+          ],
+          "experience": [
+            "持续运营"
+          ],
+          "origin": [
+            "国产"
+          ]
+        },
+        "basis": "开发商产品定位及既有微信研究范围；不据App商品推断微信商业化规则。",
+        "sources": [
+          "https://www.iplay11g.com/gamecon-meiyoushan.html",
+          "https://www.37.com/yxmys/"
+        ]
+      },
       "build": null,
       "asOf": "2026-10-16",
       "scope": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。共用早期攻略不确认微信适用性，presence unknown的案例默认不进入已证实系统筛选。",
@@ -66,6 +163,39 @@
       "title": "阴阳师 · 国服手机App",
       "platform": "App",
       "region": "中国大陆",
+      "discovery": {
+        "summary": "角色收集与回合制战斗，围绕行动条、鬼火、式神养成和御魂配装构建队伍。",
+        "facets": {
+          "genre": [
+            "回合制",
+            "角色收集",
+            "RPG"
+          ],
+          "platform": [
+            "手机App"
+          ],
+          "presentation": [
+            "横屏"
+          ],
+          "art": [
+            "和风"
+          ],
+          "experience": [
+            "内购",
+            "持续运营",
+            "多人合作",
+            "多人竞争"
+          ],
+          "origin": [
+            "国产"
+          ]
+        },
+        "basis": "既有国服整游分析、网易产品及历史界面；产地与题材、发行地区分别记录。",
+        "sources": [
+          "https://www.taptap.cn/app/12492",
+          "https://yys.163.com/"
+        ]
+      },
       "build": null,
       "asOf": "2026-10-18",
       "scope": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
@@ -507,7 +637,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -554,7 +684,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -620,7 +750,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -676,7 +806,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -734,7 +864,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -850,7 +980,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -908,7 +1038,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -955,7 +1085,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -1012,7 +1142,7 @@
       ],
       "gameId": "blue-planet-app",
       "platform": "App",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-17",
       "defaultDiscoverable": true,
       "referenceFilterNamespace": "referenceAttributes",
       "evidenceWarning": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。"
@@ -1569,8 +1699,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-heroes",
@@ -1620,8 +1750,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-souls",
@@ -1666,8 +1796,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-summon",
@@ -1712,8 +1842,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-pve",
@@ -1758,8 +1888,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-pvp",
@@ -1804,8 +1934,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-social",
@@ -1850,8 +1980,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-economy",
@@ -1896,8 +2026,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-liveops",
@@ -1942,8 +2072,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     },
     {
       "id": "onmyoji-story",
@@ -1988,8 +2118,8 @@
       "platform": "App",
       "asOf": "2026-10-18",
       "defaultDiscoverable": true,
-      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。",
-      "referenceFilterNamespace": "referenceAttributes"
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
     }
   ]
 }

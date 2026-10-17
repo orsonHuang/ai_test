@@ -351,5 +351,35 @@
       "related": [],
       "referenceStatus": "specified-slice-unimplemented"
     }
-  ]
+  ],
+  "discovery": {
+    "summary": "近战与飞剑配合，通过圣物、神兵和秘籍构筑，反复挑战章节与首领。",
+    "facets": {
+      "genre": [
+        "动作",
+        "Roguelike"
+      ],
+      "platform": [
+        "Steam"
+      ],
+      "presentation": [
+        "俯视角",
+        "2.5D"
+      ],
+      "art": [
+        "暗黑国风"
+      ],
+      "experience": [
+        "Steam单机",
+        "买断"
+      ],
+      "origin": [
+        "国产"
+      ]
+    },
+    "basis": "用户指定标签；Steam本体范围，2.5D为资料库表现分类，不代表引擎技术。",
+    "sources": [
+      "https://store.steampowered.com/app/1296830/"
+    ]
+  }
 }

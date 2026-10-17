@@ -70,10 +70,10 @@
   function refresh() { renderCollection(); renderSources(); renderMining(); }
   function route() {
     const next=location.hash.slice(1).split('/')[0];
-    page=['library','discover','mine','sources','saved'].includes(next)?next:'library';
-    $$('.view').forEach(view=>view.hidden=view.id!=='view-'+page);
+    page=['games','library','discover','mine','sources','saved'].includes(next)?next:'library';
+    $$('.view').forEach(view=>view.hidden=view.id!=='view-'+(page==='games'?'library':page));
     $$('[data-nav]').forEach(nav=>{ nav.classList.toggle('active',nav.dataset.nav===page); if(nav.dataset.nav===page)nav.setAttribute('aria-current','page');else nav.removeAttribute('aria-current'); });
-    $('#breadcrumb').textContent={library:'系统案例库',discover:'发现灵感',mine:'挖掘工作台',sources:'我的资料',saved:'收藏与验证'}[page];
+    $('#breadcrumb').textContent={games:'游戏拆解库',library:'系统案例库',discover:'发现灵感',mine:'挖掘工作台',sources:'我的资料',saved:'收藏与验证'}[page];
     if (page==='mine') updateCorpusNote();
     window.scrollTo({top:0,behavior:'instant'});
   }

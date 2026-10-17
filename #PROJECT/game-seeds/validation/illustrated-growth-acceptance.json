@@ -1,7 +1,7 @@
 {
   "passed": true,
-  "base": "https://orson.games/game-ideas/",
-  "at": "2026-10-17T16:36:54.094Z",
+  "base": "http://127.0.0.1:8789/",
+  "at": "2026-10-17T17:14:20.505Z",
   "widths": [
     1440,
     390,
@@ -9,7 +9,7 @@
   ],
   "checks": [
     "7 source regions load",
-    "source/date/crop captions",
+    "short captions and source button with provenance tooltip",
     "small crops remain readable",
     "both growth branches and costs",
     "180 CSV rows",

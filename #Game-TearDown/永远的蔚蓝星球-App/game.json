@@ -532,5 +532,38 @@
         "blue-planet-recruitment"
       ]
     }
-  ]
+  ],
+  "discovery": {
+    "summary": "随机召唤与合成组织防线，连接局内强化、局外养成，以及合作和竞技。",
+    "facets": {
+      "genre": [
+        "塔防",
+        "合成",
+        "轻度Roguelike"
+      ],
+      "platform": [
+        "手机App"
+      ],
+      "presentation": [
+        "竖屏"
+      ],
+      "art": [
+        "Q版卡通"
+      ],
+      "experience": [
+        "内购",
+        "持续运营",
+        "多人合作",
+        "多人竞争"
+      ],
+      "origin": [
+        "国产"
+      ]
+    },
+    "basis": "既有整游分析与官方产品介绍，平台限定手机App。",
+    "sources": [
+      "https://www.wlxq.cn/",
+      "https://www.taptap.cn/app/713683/all-info"
+    ]
+  }
 }

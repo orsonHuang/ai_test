@@ -1,0 +1,31 @@
+{
+  "base": "https://orson.games/game-ideas/",
+  "passed": true,
+  "at": "2026-10-17T17:18:56.155Z",
+  "results": [
+    {
+      "width": 1440,
+      "passed": true
+    },
+    {
+      "width": 390,
+      "passed": true
+    },
+    {
+      "width": 320,
+      "passed": true
+    }
+  ],
+  "checks": [
+    "four tagged games",
+    "search tokens and case-insensitive matching",
+    "same-axis OR / cross-axis AND",
+    "empty and reset",
+    "list / game / system return, reload, native history",
+    "bottom reading boundary and page end",
+    "collapsed mobile reading hint",
+    "title and source only",
+    "legacy system library and favorites intact"
+  ],
+  "errors": []
+}

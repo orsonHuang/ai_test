@@ -483,5 +483,36 @@
         "hero-no-dodge-dark-energy"
       ]
     }
-  ]
+  ],
+  "discovery": {
+    "summary": "围绕放置刷宝、装备处理与技能搭配展开；部分系统的微信端规则仍待核实。",
+    "facets": {
+      "genre": [
+        "放置",
+        "刷宝",
+        "RPG"
+      ],
+      "platform": [
+        "微信小游戏"
+      ],
+      "presentation": [
+        "横版",
+        "竖屏"
+      ],
+      "art": [
+        "Q版奇幻"
+      ],
+      "experience": [
+        "持续运营"
+      ],
+      "origin": [
+        "国产"
+      ]
+    },
+    "basis": "开发商产品定位及既有微信研究范围；不据App商品推断微信商业化规则。",
+    "sources": [
+      "https://www.iplay11g.com/gamecon-meiyoushan.html",
+      "https://www.37.com/yxmys/"
+    ]
+  }
 }

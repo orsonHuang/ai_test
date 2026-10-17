@@ -424,5 +424,38 @@
       ],
       "related": []
     }
-  ]
+  ],
+  "discovery": {
+    "summary": "角色收集与回合制战斗，围绕行动条、鬼火、式神养成和御魂配装构建队伍。",
+    "facets": {
+      "genre": [
+        "回合制",
+        "角色收集",
+        "RPG"
+      ],
+      "platform": [
+        "手机App"
+      ],
+      "presentation": [
+        "横屏"
+      ],
+      "art": [
+        "和风"
+      ],
+      "experience": [
+        "内购",
+        "持续运营",
+        "多人合作",
+        "多人竞争"
+      ],
+      "origin": [
+        "国产"
+      ]
+    },
+    "basis": "既有国服整游分析、网易产品及历史界面；产地与题材、发行地区分别记录。",
+    "sources": [
+      "https://www.taptap.cn/app/12492",
+      "https://yys.163.com/"
+    ]
+  }
 }

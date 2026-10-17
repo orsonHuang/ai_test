@@ -11,7 +11,7 @@ for(const dir of dirs){
   const folder=path.resolve(root,dir);
   if(!folder.startsWith(root+path.sep)) throw new Error('Game directory outside library');
   const g=JSON.parse(fs.readFileSync(path.join(folder,'game.json'),'utf8'));
-  catalog.games.push({id:g.id,title:g.title,platform:g.platform,build:g.build,asOf:g.asOf,scope:g.scope,playModes:g.playModes,businessModels:g.businessModels,operationModels:g.operationModels,indexPath:`${dir}/README.md`,manifestPath:`${dir}/game.json`});
+  catalog.games.push({id:g.id,title:g.title,platform:g.platform,region:g.region,discovery:g.discovery,build:g.build,asOf:g.asOf,scope:g.scope,playModes:g.playModes,businessModels:g.businessModels,operationModels:g.operationModels,indexPath:`${dir}/README.md`,manifestPath:`${dir}/game.json`});
   for(const s of g.systems){
     if(ids.has(s.id)) throw new Error(`Duplicate system ID: ${s.id}`);ids.add(s.id);
     const full=path.resolve(folder,s.path);

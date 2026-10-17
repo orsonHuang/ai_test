@@ -16,6 +16,46 @@
     $('#system-count').textContent=`${found.length} 个案例 · ${Object.keys(favorites).length} 个收藏`;
     $('#system-grid').innerHTML=found.length?found.map(card).join(''):'<div class="empty-state"><h3>当前条件下没有案例</h3><p>背包案例的微信适用性仍待核实，可将证据范围切换为「全部，含待核实」。</p><button class="button secondary" id="clear-system-filters">重置筛选</button></div>';
   }
+  const facets={genre:'玩法类型',platform:'平台',presentation:'视角与画面',art:'美术风格',experience:'游玩与经营',origin:'产地'};
+  let gameQuery='',gameFilters={};
+  const gameTags=g=>Object.values(g.discovery?.facets||{}).flat();
+  function gameList(){
+    const words=gameQuery.toLowerCase().split(/\s+/).filter(Boolean);
+    const found=D.games.filter(g=>{
+      const haystack=[g.title,g.platform,g.discovery?.summary,...gameTags(g)].join(' ').toLowerCase();
+      return words.every(w=>haystack.includes(w))&&Object.entries(gameFilters).every(([key,values])=>!values.length||values.some(v=>g.discovery?.facets[key]?.includes(v)));
+    });
+    $('#game-search').value=gameQuery;
+    $('#game-count').textContent=`${found.length} / ${D.games.length} 款游戏`;
+    $('#game-facets').innerHTML=Object.entries(facets).map(([key,label])=>{
+      const options=[...new Set(D.games.flatMap(g=>g.discovery?.facets[key]||[]))];
+      if(key==='origin'&&!options.includes('海外'))options.push('海外');
+      return `<div class="game-facet" role="group" aria-label="${label}"><b>${label}</b><div>${options.map(value=>`<button type="button" data-game-facet="${key}" data-value="${e(value)}" aria-pressed="${!!gameFilters[key]?.includes(value)}">${e(value)}</button>`).join('')}</div></div>`;
+    }).join('');
+    $('#game-grid').innerHTML=found.length?found.map(g=>`<article class="game-card"><div class="game-card-platform">${e(g.platform==='App'?'手机 App':g.platform==='WeChat Mini Game'?'微信小游戏':g.platform)}</div><h2><a href="#library/${g.id}">${e(g.title.split(' · ')[0])}<span aria-hidden="true">↗</span></a></h2><p>${e(g.discovery?.summary||g.scope)}</p><div class="case-tags">${gameTags(g).map(t=>`<span>${e(t)}</span>`).join('')}</div><footer><span>${D.systems.filter(s=>s.gameId===g.id).length} 个系统模块</span><a href="#library/${g.id}">阅读拆解与系统地图 →</a></footer></article>`).join(''):'<div class="empty-state"><h3>暂时没有符合条件的拆解案</h3><p>可以减少筛选条件，或换一个关键词。</p><button type="button" class="button secondary" data-reset-games>清空筛选</button></div>';
+  }
+  $('#game-search').addEventListener('input',event=>{gameQuery=event.target.value;gameList();rememberPosition();});
+  $('#game-library').addEventListener('click',event=>{
+    const b=event.target.closest('button');if(!b)return;
+    if(b.dataset.gameFacet){const key=b.dataset.gameFacet,value=b.dataset.value,values=gameFilters[key]||[];gameFilters[key]=values.includes(value)?values.filter(v=>v!==value):[...values,value];gameList();[...document.querySelectorAll('[data-game-facet]')].find(n=>n.dataset.gameFacet===key&&n.dataset.value===value)?.focus({preventScroll:true});}
+    if(b.id==='reset-game-filters'||b.hasAttribute('data-reset-games')){gameQuery='';gameFilters={};gameList();$('#game-search').focus({preventScroll:true});}
+    rememberPosition();
+  });
+  let readingHeadings=[],readingObserver=null;
+  function updateReadingPosition(reveal=false){
+    if(!location.hash.startsWith('#library/')||!readingHeadings.length)return;
+    const line=innerHeight-48;
+    const current=readingHeadings.filter(h=>h.getBoundingClientRect().top<=line).at(-1)||readingHeadings[0];
+    const index=readingHeadings.indexOf(current),parent=current.tagName==='H3'?readingHeadings.slice(0,index).findLast(h=>h.tagName==='H2'):null;
+    let active;
+    for(const b of document.querySelectorAll('#case-toc button')){
+      const selected=b.dataset.scrollSection===current.id;
+      b.classList.toggle('current-section',selected);b.classList.toggle('current-parent',!!parent&&b.dataset.scrollSection===parent.id);
+      if(selected){b.setAttribute('aria-current','location');active=b;}else b.removeAttribute('aria-current');
+    }
+    const hint=$('#reading-position');if(hint){hint.textContent='读到：'+current.textContent;hint.title='按屏幕底部可见内容定位 · '+current.textContent;}
+    if(reveal&&active&&$('.reader-contents')?.open){const toc=$('#case-toc'),a=active.getBoundingClientRect(),b=toc.getBoundingClientRect();if(a.top<b.top||a.bottom>b.bottom)toc.scrollTop+=a.top-b.top-toc.clientHeight/2+a.height/2;}
+  }
   // Keep an entry per visit, so returning to the same article restores that visit.
   const NAV_KEY='game-seeds-reader-navigation-v1';
   let visits={};try{const stored=JSON.parse(sessionStorage.getItem(NAV_KEY)||'{}');if(stored&&typeof stored==='object'&&!Array.isArray(stored))visits=stored;}catch{}
@@ -27,6 +67,7 @@
     const anchors=activeVisit.hash.startsWith('#library/')?[...document.querySelectorAll('#case-document h2,#case-document h3,.system-map a')]:[];
     const anchor=anchors.filter(n=>n.getBoundingClientRect().top<=100).at(-1);
     activeVisit.y=scrollY;activeVisit.toc=$('#case-toc')?.scrollTop||0;
+    if(activeVisit.hash==='#games')activeVisit.gameSearch={query:gameQuery,filters:structuredClone(gameFilters)};
     activeVisit.anchor=anchor?(anchor.getAttribute('href')||anchor.id):null;
     activeVisit.offset=anchor?.getBoundingClientRect().top||0;
     visits[activeVisit.key]=activeVisit;persistVisits();
@@ -44,20 +85,21 @@
       if(token!==renderToken)return;
       let y=saved?.y||0;
       if(saved?.anchor){const node=[...document.querySelectorAll('#case-document h2,#case-document h3,.system-map a')].find(n=>(n.getAttribute('href')||n.id)===saved.anchor);if(node)y=scrollY+node.getBoundingClientRect().top-saved.offset;}
-      window.scrollTo({top:y,behavior:'instant'});if($('#case-toc'))$('#case-toc').scrollTop=saved?.toc||0;$('#view-library').dataset.readyRoute=location.hash||'#library';
+      window.scrollTo({top:y,behavior:'instant'});if($('#case-toc'))$('#case-toc').scrollTop=saved?.toc||0;updateReadingPosition();$('#view-library').dataset.readyRoute=location.hash||'#library';
     }));
   }
-  function parentLink(doc){const parent=visits[activeVisit?.parent];return parent?.hash||((doc&&doc.gameId!==location.hash.slice(9))?'#library/'+doc.gameId:'#library');}
+  function parentLink(doc){const parent=visits[activeVisit?.parent];return parent?.hash||((doc&&doc.gameId!==location.hash.slice(9))?'#library/'+doc.gameId:'#games');}
   document.addEventListener('click',event=>{
     const a=event.target.closest('a');if(!a||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||a.target==='_blank')return;
-    const hash=a.getAttribute('href');if(!hash?.startsWith('#library'))return;
+    const hash=a.getAttribute('href');if(!hash?.startsWith('#library')&&hash!=='#games')return;
     rememberPosition();if(hash===(location.hash||'#library'))return;
     if(a.hasAttribute('data-reader-back')){returnVisit=activeVisit?.parent||null;pendingParent=null;}
     else if(a.hasAttribute('data-reader-home')){pendingParent=null;returnVisit=null;}
     else pendingParent=activeVisit?.key||null;
   },true);
   let scrollFrame=0;
-  window.addEventListener('scroll',()=>{cancelAnimationFrame(scrollFrame);scrollFrame=requestAnimationFrame(rememberPosition);},{passive:true});
+  window.addEventListener('scroll',()=>{cancelAnimationFrame(scrollFrame);scrollFrame=requestAnimationFrame(()=>{updateReadingPosition(true);rememberPosition();});},{passive:true});
+  window.addEventListener('resize',()=>updateReadingPosition(true));
   window.addEventListener('pagehide',rememberPosition);
   history.scrollRestoration='manual';
 
@@ -113,9 +155,15 @@
     }
   }
   function route(){
+    readingHeadings=[];readingObserver?.disconnect();readingObserver=null;renderToken++;
+    if($('#view-library').hidden){activeVisit=null;pendingParent=null;returnVisit=null;return;}
     const savedPosition=beginVisit();delete $('#view-library').dataset.readyRoute;
-    const id=location.hash.startsWith('#library/')?location.hash.slice(9):'',doc=D.docs[id];renderToken++;
-    $('#library-list').hidden=!!id;$('#library-detail').hidden=!id;
+    const id=location.hash.startsWith('#library/')?location.hash.slice(9):'',doc=D.docs[id],games=location.hash==='#games';
+    const nav=games||D.games.some(g=>g.id===id)?'games':'library';
+    for(const a of document.querySelectorAll('[data-nav]')){a.classList.toggle('active',a.dataset.nav===nav);if(a.dataset.nav===nav)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');}
+    $('#breadcrumb').textContent=nav==='games'?'游戏拆解库':'系统案例库';
+    $('#game-library').hidden=!games;$('#library-list').hidden=!!id||games;$('#library-detail').hidden=!id;
+    if(games){if(savedPosition?.gameSearch){gameQuery=savedPosition.gameSearch.query;gameFilters=structuredClone(savedPosition.gameSearch.filters);}gameList();restorePosition(savedPosition,renderToken);return;}
     if(!id){list();restorePosition(savedPosition,renderToken);return;}
     if(!doc){$('#library-detail').innerHTML='<a href="#library">← 返回案例库</a><h1>这个案例暂时不存在</h1>';return;}
     const s=D.systems.find(s=>s.id===id),g=game(s?.gameId||doc.gameId);
@@ -124,19 +172,21 @@
     const title=$('#case-document h1');if(title){const header=document.createElement('header');header.className='system-title';title.before(header);header.append(title);if(s)header.insertAdjacentHTML('beforeend',`<button class="button secondary" data-case-save="${id}" aria-pressed="${!!favorites[id]}">${favorites[id]?'♥ 已收藏':'♡ 收藏系统'}</button>`);}
     if(innerWidth<=1100)$('.reader-contents').open=false;
     const appendix=$('.dev-reference');if(appendix)appendix.addEventListener('toggle',()=>{if(appendix.open&&!appendix.dataset.loaded){appendix.dataset.loaded='true';appendix.querySelector('.reference-content').innerHTML=doc.referenceHtml;const nodes=[...appendix.querySelectorAll('.mermaid')];if(nodes.length)window.LibraryMermaid?.run({nodes}).catch(()=>{$('#library-warning').textContent='附录流程图暂未渲染，可阅读规则文字。';});}});
-    const headings=[...$('#case-document').querySelectorAll('h2,h3')];headings.forEach((h,i)=>{h.id='section-'+i;});$('#case-toc').innerHTML=headings.map((h,i)=>`<button type="button" data-scroll-section="section-${i}" class="${h.tagName==='H3'?'subheading':''}">${e(h.textContent)}</button>`).join('');
     for(const extra of document.querySelectorAll('#library-detail>.dev-reference,#library-detail>.case-notes'))$('#case-document').append(extra);
+    readingHeadings=[...$('#case-document').querySelectorAll('h2,h3,.dev-reference>summary')];readingHeadings.forEach((h,i)=>{h.id='section-'+i;});$('#case-toc').innerHTML=readingHeadings.map((h,i)=>`<button type="button" data-scroll-section="section-${i}" class="${h.tagName==='H3'?'subheading':''}">${e(h.textContent)}</button>`).join('');
+    $('.reader-contents summary').insertAdjacentHTML('beforeend','<span id="reading-position"></span>');
+    $('.reader-contents').addEventListener('toggle',()=>updateReadingPosition(true));
+    readingObserver=new ResizeObserver(()=>updateReadingPosition());readingObserver.observe($('#case-document'));
     const token=renderToken,diagrams=[...$('#case-document').querySelectorAll('.mermaid')];
     const ready=diagrams.length&&window.LibraryMermaid?window.LibraryMermaid.run({nodes:diagrams}).catch(()=>{if(token===renderToken)$('#library-warning').textContent='部分流程图暂未渲染，可阅读图中规则文本及机制示意图。';}):Promise.resolve();
     Promise.all([ready,document.fonts.ready,...[...$('#case-document').querySelectorAll('img')].filter(img=>img.loading!=='lazy'||!img.hasAttribute('width')).map(img=>img.decode().catch(()=>{}))]).then(()=>{if(token!==renderToken)return;diagramControls($('#case-document'));restorePosition(savedPosition,token);});
   }
   $('#game-filter').insertAdjacentHTML('beforeend',D.games.map(g=>`<option value="${g.id}">${e(g.title)}</option>`).join(''));
   $('#system-filter').insertAdjacentHTML('beforeend',Object.entries(types).map(([id,t])=>`<option value="${id}">${t}</option>`).join(''));
-  $('#game-summaries').innerHTML=D.games.map(g=>`<a href="#library/${g.id}" class="game-summary"><small>${e(g.platform)}</small><b>${e(g.title.split(' · ')[0])}</b><span>${D.systems.filter(s=>s.gameId===g.id).length} 个模块 · 整游分析与地图 ↗</span></a>`).join('');
   $('#system-search').addEventListener('input',list);for(const id of ['game-filter','system-filter','mode-filter','evidence-filter','only-saved'])$('#'+id).addEventListener('change',list);
   $('#view-library').addEventListener('click',event=>{const b=event.target.closest('button');if(!b)return;
     if(b.dataset.caseSave){const id=b.dataset.caseSave;if(save(id,favorites[id]?null:{note:''})){list();if(location.hash.startsWith('#library/')){b.textContent=favorites[id]?'♥ 已收藏':'♡ 收藏系统';b.setAttribute('aria-pressed',String(!!favorites[id]));}}}
-    if(b.dataset.scrollSection)document.getElementById(b.dataset.scrollSection).scrollIntoView({block:'start'});
+    if(b.dataset.scrollSection){if(innerWidth<=1100)$('.reader-contents').open=false;requestAnimationFrame(()=>{document.getElementById(b.dataset.scrollSection)?.scrollIntoView({block:'start'});updateReadingPosition(true);});}
     if(b.id==='save-case-note'){if(save(b.dataset.id,{note:$('#case-note').value})){$('#case-note-status').textContent='已保存在此浏览器';const f=$('#library-detail [data-case-save]');f.textContent='♥ 已收藏';f.setAttribute('aria-pressed','true');}}
     if(b.id==='clear-system-filters'){for(const id of ['game-filter','system-filter','mode-filter'])$('#'+id).value='';$('#evidence-filter').value='all';$('#system-search').value='';$('#only-saved').checked=false;list();}
   });
