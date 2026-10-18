@@ -34,21 +34,20 @@ const ready=page=>page.waitForFunction(()=>document.querySelector('#view-library
   await page.waitForFunction(id=>document.querySelector('#case-toc [aria-current]')?.dataset.scrollSection!==id,id);
   await heading.evaluate(h=>scrollTo(0,scrollY+h.getBoundingClientRect().top-(innerHeight-48-12)));
   await page.waitForFunction(id=>document.querySelector('#case-toc [aria-current]')?.dataset.scrollSection===id,id);
-  assert.equal(await page.locator('#case-toc [aria-current]').count(),1);assert((await page.locator('#reading-position').innerText()).includes(await heading.innerText()));
-  assert(await page.locator('#reading-position').isVisible());
+  assert.equal(await page.locator('#case-toc [aria-current]').count(),1);assert.equal(await page.locator('#reading-position').count(),0);
   await page.screenshot({path:path.join(out,`reading-position-${width}.png`)});
   await go('#library/onmyoji-heroes');
   for(const figure of await page.locator('.reference-figure').all()){
    assert.equal(await figure.locator('figcaption br').count(),0);assert.equal(await figure.locator('figcaption a').innerText(),'来源 ↗');assert((await figure.locator('figcaption span').innerText()).length<15);assert.match(await figure.locator('.image-source').getAttribute('title'),/历史截图/);
   }
   const photo=page.locator('.reference-figure').first();await photo.scrollIntoViewIfNeeded();await photo.locator('img').evaluate(i=>i.decode());await page.screenshot({path:path.join(out,`caption-${width}.png`)});
-  await page.evaluate(()=>scrollTo(0,document.body.scrollHeight));await page.waitForFunction(()=>document.querySelector('#reading-position').textContent.includes('我的用途与笔记'));
+  await page.evaluate(()=>scrollTo(0,document.body.scrollHeight));await page.waitForFunction(()=>document.querySelector('#case-toc [aria-current]')?.textContent.includes('我的用途与笔记'));
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-  await page.locator('[data-reader-home]').click();await ready(page);assert.equal(await page.locator('#game-summaries').count(),0);assert.equal(await page.locator('.system-card').count(),31);
+  await page.locator('[data-reader-home]').click();await ready(page);assert.equal(await page.locator('#game-summaries').count(),0);assert.equal(new URL(page.url()).hash,'#games');assert(await page.locator('#game-library').isVisible());await go('#library');assert.equal(await page.locator('.system-card').count(),32);
   await go('#games');await page.locator('#reset-game-filters').click();await facet('platform','手机App').click();await page.locator('.game-card h2 a').last().click();await ready(page);
   await page.locator('[data-nav=games]').click();await ready(page);await facet('platform','Steam').click();assert.equal(await page.locator('.game-card').count(),3);
   await page.goBack();await ready(page);await page.locator('[data-reader-back]').click();await ready(page);assert.equal(await page.locator('.game-card').count(),2,'independent list visits retain their own filters');
   results.push({width,passed:true});await context.close();
  }
- assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'game-discovery-acceptance.json'),JSON.stringify({base,passed:true,at:new Date().toISOString(),results,checks:['four tagged games','search tokens and case-insensitive matching','same-axis OR / cross-axis AND','empty and reset','list / game / system return, reload, native history','bottom reading boundary and page end','collapsed mobile reading hint','title and source only','legacy system library and favorites intact'],errors},null,2));console.log('Game discovery passed: filtering, history, reading position, compact captions; 1440/390/320.');
+ assert.deepEqual(errors,[]);fs.writeFileSync(path.join(out,'game-discovery-acceptance.json'),JSON.stringify({base,passed:true,at:new Date().toISOString(),results,checks:['four tagged games','search tokens and case-insensitive matching','same-axis OR / cross-axis AND','empty and reset','list / game / system return, reload, native history','bottom reading boundary and page end','highlight only without reading declaration','title and source only','legacy system library and favorites intact'],errors},null,2));console.log('Game discovery passed: filtering, history, reading position, compact captions; 1440/390/320.');
 }finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

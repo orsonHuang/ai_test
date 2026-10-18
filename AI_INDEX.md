@@ -1,5 +1,7 @@
 # AI_INDEX · 文件路由表
 
+- 阴阳师整游扩展（2026-10-18）：`#Game-TearDown/阴阳师-国服App/reader/游戏分析.md` → 11系统；契灵独立，养成已验收版本保持。全库38系统57文档；网页默认`#games`，目录仅高亮。新增测试`#PROJECT/game-seeds/tests/onmyoji-full.cjs`。
+
 - 图文与交互样稿（2026-10-17）：`#Game-TearDown/阴阳师-国服App/README.md` → reader/游戏分析.md与十系统；蔚蓝合作/阴阳师御魂有前端演示。Skill四份新增参考已安装，样稿待用户内容验收。
 
 - 蔚蓝App作者视角样稿：`#Game-TearDown/永远的蔚蓝星球-App/reader/游戏分析.md` → `reader.json`（公开文章/地图/UI配置）；旧systems作为开发附录；2026-10-17 排版与导航规则已融入Skill，其他游戏正文待后续铺开。线上 `https://orson.games/game-ideas/#library/blue-planet-app`。

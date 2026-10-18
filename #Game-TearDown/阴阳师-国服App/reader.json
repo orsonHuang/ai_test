@@ -81,6 +81,14 @@
       "summary": "人物内容与战斗阅读如何分工",
       "cover": "assets/story.svg",
       "coverPublication": "original"
+    },
+    {
+      "id": "onmyoji-contract",
+      "path": "reader/契灵与术印.md",
+      "group": "养成与构筑",
+      "summary": "分开探查、结契、术印与培养，解释主角扩展和资源回流",
+      "cover": "assets/contract.svg",
+      "coverPublication": "original"
     }
   ],
   "ui": {
@@ -183,6 +191,16 @@
         "③ 适用范围与获取条件",
         "④ 回顾、应用与返回"
       ]
+    },
+    "yy-contract": {
+      "title": "契灵与术印 · 信息结构",
+      "basis": "补充设计线框，非原作当前界面。",
+      "blocks": [
+        "① 探查：区域、踪迹、费用与倒计时",
+        "② 契灵：星级、等级、术印和锁定",
+        "③ 培养：材料、前后差值与消耗",
+        "④ 应用：主角、模式与预设引用"
+      ]
     }
   },
   "referenceMedia": [
@@ -262,6 +280,39 @@
       "sourceDate": "2016-10-30",
       "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
       "captionTitle": "御灵强化界面"
+    },
+    {
+      "path": "reader-assets/contract-explore.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://u.360.cn/news/article/362965/",
+      "sourceAuthor": "360游戏 / 上线情报配图",
+      "sourceDate": "2023-05-26",
+      "scope": "已核读历史宣传中的游戏界面；非2026实机；保留原画面，不生成或改绘",
+      "captionTitle": "契灵之境"
+    },
+    {
+      "path": "reader-assets/contract-cost-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://u.360.cn/news/article/362965/",
+      "sourceAuthor": "360游戏 / 上线情报配图",
+      "sourceDate": "2023-05-26",
+      "scope": "已核读历史宣传中的游戏界面；非2026实机；保留原画面，不生成或改绘",
+      "captionTitle": "探查消耗"
+    },
+    {
+      "path": "reader-assets/contract-performance.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://u.360.cn/news/article/362965/",
+      "sourceAuthor": "360游戏 / 上线情报配图",
+      "sourceDate": "2023-05-26",
+      "scope": "已核读历史宣传中的游戏界面；非2026实机；保留原画面，不生成或改绘",
+      "captionTitle": "契灵技能表现"
     }
   ]
 }

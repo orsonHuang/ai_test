@@ -1,7 +1,7 @@
 {
   "base": "https://orson.games/game-ideas/",
   "passed": true,
-  "at": "2026-10-17T17:18:56.155Z",
+  "at": "2026-10-18T06:11:49.891Z",
   "results": [
     {
       "width": 1440,
@@ -23,7 +23,7 @@
     "empty and reset",
     "list / game / system return, reload, native history",
     "bottom reading boundary and page end",
-    "collapsed mobile reading hint",
+    "highlight only without reading declaration",
     "title and source only",
     "legacy system library and favorites intact"
   ],

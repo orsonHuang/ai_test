@@ -1,8 +1,8 @@
 {
   "base": "http://127.0.0.1:8789/",
   "passed": true,
-  "at": "2026-10-17T17:14:23.834Z",
-  "documents": 56,
+  "at": "2026-10-18T06:05:30.893Z",
+  "documents": 57,
   "diagramCount": [
     [
       "warm-snow-steam-base",
@@ -162,7 +162,7 @@
     ],
     [
       "onmyoji-cn-app",
-      1
+      2
     ],
     [
       "onmyoji-role-development",
@@ -182,7 +182,11 @@
     ],
     [
       "onmyoji-summon",
-      0
+      1
+    ],
+    [
+      "onmyoji-contract",
+      1
     ],
     [
       "onmyoji-heroes",
@@ -190,15 +194,15 @@
     ],
     [
       "onmyoji-souls",
-      1
+      2
     ],
     [
       "onmyoji-pvp",
-      1
+      2
     ],
     [
       "onmyoji-liveops",
-      1
+      2
     ],
     [
       "onmyoji-combat",
@@ -230,7 +234,7 @@
     ]
   ],
   "checks": [
-    "31 default / 37 total",
+    "32 default / 38 total",
     "unknown exclusion",
     "type / commercial filters",
     "full-text search",

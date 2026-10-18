@@ -318,6 +318,44 @@
       "sourceDate": "2016-10-30",
       "scope": "历史界面，有限配图分析；非当前实机，版权归原权利人；保留水印，无生成改绘",
       "captionTitle": "御灵强化界面"
+    },
+    {
+      "path": "阴阳师-国服App/assets/contract.svg",
+      "kind": "original-diagram",
+      "publication": "original"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/contract-explore.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://u.360.cn/news/article/362965/",
+      "sourceAuthor": "360游戏 / 上线情报配图",
+      "sourceDate": "2023-05-26",
+      "scope": "已核读历史宣传中的游戏界面；非2026实机；保留原画面，不生成或改绘",
+      "captionTitle": "契灵之境"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/contract-cost-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://u.360.cn/news/article/362965/",
+      "sourceAuthor": "360游戏 / 上线情报配图",
+      "sourceDate": "2023-05-26",
+      "scope": "已核读历史宣传中的游戏界面；非2026实机；保留原画面，不生成或改绘",
+      "captionTitle": "探查消耗"
+    },
+    {
+      "path": "阴阳师-国服App/reader-assets/contract-performance.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://u.360.cn/news/article/362965/",
+      "sourceAuthor": "360游戏 / 上线情报配图",
+      "sourceDate": "2023-05-26",
+      "scope": "已核读历史宣传中的游戏界面；非2026实机；保留原画面，不生成或改绘",
+      "captionTitle": "契灵技能表现"
     }
   ]
 }

@@ -1,10 +1,10 @@
 {
-  "release": "game-ideas-20261017T171732Z",
+  "release": "game-ideas-20261018T061008Z",
   "passed": true,
   "files": [
     {
       "file": "app.js",
-      "sha256": "1d052996142324ecb1f70ddcae53e164da89d98b90f699beaec99e583ac0fe7a",
+      "sha256": "442203bc51e894f728840c032ea032d6d2279caf2d239dcb1ae26f8093e3d81c",
       "status": 200
     },
     {
@@ -19,22 +19,22 @@
     },
     {
       "file": "index.html",
-      "sha256": "138d31a95a6c5828fe06118471caccaf9d3f22caa622b8716a084ba910e1375f",
+      "sha256": "549da93e25170250fb3cac41759016b1f1477651d56dc5d9c02dd52ca89a3352",
       "status": 200
     },
     {
       "file": "library-data.js",
-      "sha256": "0c2ab672ac1f1e54b3ec7d2a09dc531cba4b7ea14d3101d70cc89d027aa0c3b3",
+      "sha256": "342b6d5d2814e4a8c4ecde904c88298cd4891d6677653ecbdd73c17b4232eac3",
       "status": 200
     },
     {
       "file": "library.css",
-      "sha256": "a36e87cd6890c15766ed575957ab7541f40fb53bfcbdab876a9d351a66472a89",
+      "sha256": "024fd24e9aeef4794be542e5664afbf854192ea334b8cd5c57bcb6cea2a3cf9a",
       "status": 200
     },
     {
       "file": "library.js",
-      "sha256": "92a4d61141c154aee49fdb16b139951d9a6a3e031db674a3c277585c48aca605",
+      "sha256": "0dfdc6690bcfda83be6e31b5a81daa9c01c9787ab55414d9248156e51e4009fc",
       "status": 200
     },
     {
@@ -258,6 +258,11 @@
       "status": 200
     },
     {
+      "file": "media/diagram-55.svg",
+      "sha256": "7b463919c9a95cfbb1ac54e9c0f7dbca153da153866e460370ff6f6a5363ffec",
+      "status": 200
+    },
+    {
       "file": "media/diagram-6.svg",
       "sha256": "bb82e2eff9d2d901a1cfeb829e0d841daa098dea2e27edbc1df07065e8df3c3d",
       "status": 200
@@ -310,6 +315,21 @@
     {
       "file": "media/reference-54.png",
       "sha256": "21867acfc65ce67ad1cf3454d9a45355c064076956a41ec4f8f923e0d039bd83",
+      "status": 200
+    },
+    {
+      "file": "media/reference-56.png",
+      "sha256": "d6f55a8e6deec42337677ac4de03c09d80a5fdc7102e47e4fd984d6b331fab46",
+      "status": 200
+    },
+    {
+      "file": "media/reference-57.png",
+      "sha256": "bb7304fd7c971d42ea73dbf1a448589cb635ecc830349473561d2a2ad1202f19",
+      "status": 200
+    },
+    {
+      "file": "media/reference-58.png",
+      "sha256": "81432b64a7554398cd40a730fd07fe7340aeaccfc1c44e0aa14996409c100164",
       "status": 200
     },
     {

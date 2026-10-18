@@ -1,7 +1,7 @@
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'C:/Users/1/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
 const base=process.env.BASE_URL||'http://127.0.0.1:8789/',out=path.resolve(__dirname,'../validation');
-const ready=p=>p.waitForFunction(()=>document.querySelector('#view-library').dataset.readyRoute===(location.hash||'#library'));
+const ready=p=>p.waitForFunction(()=>document.querySelector('#view-library').dataset.readyRoute===(location.hash||'#games'));
 (async()=>{const browser=await chromium.launch({channel:'msedge',headless:true});try{
  const errors=[],results=[];
  for(const width of [1440,390,320]){
@@ -41,15 +41,15 @@ const ready=p=>p.waitForFunction(()=>document.querySelector('#view-library').dat
   await page.locator(target).click();await ready(page);await page.goBack();await ready(page);
   assert(Math.abs(await page.evaluate(()=>scrollY)-before)<5,'browser back '+width);
   await page.goForward();await ready(page);assert.equal(new URL(page.url()).hash,'#library/blue-planet-coop');
-  await page.locator('[data-reader-home]').click();await ready(page);assert.equal(new URL(page.url()).hash,'#library');
-  assert.equal(await page.locator('#library-list').isVisible(),true);assert.equal(await page.evaluate(()=>scrollY),0);
+  await page.locator('[data-reader-home]').click();await ready(page);assert.equal(new URL(page.url()).hash,'#games');
+  assert.equal(await page.locator('#game-library').isVisible(),true);assert.equal(await page.evaluate(()=>scrollY),0);
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   results.push({width,restoredY:before,passed:true});await context.close();
  }
  const page=await browser.newPage();await page.goto(base+'#library/blue-planet-combat');await ready(page);
  assert.equal(await page.locator('[data-reader-back]').getAttribute('href'),'#library/blue-planet-app');
  await page.locator('[data-reader-back]').click();await ready(page);assert.equal(new URL(page.url()).hash,'#library/blue-planet-app');
- await page.locator('[data-reader-home]').click();await ready(page);await page.selectOption('#game-filter','blue-planet-app');
+ await page.locator('[data-reader-home]').click();await ready(page);await page.locator('[data-nav=library]').click();await ready(page);await page.selectOption('#game-filter','blue-planet-app');
  const listTarget=page.locator('.system-card h3 a[href="#library/blue-planet-coop"]');await listTarget.evaluate(n=>scrollTo(0,scrollY+n.getBoundingClientRect().top-250));const listY=await page.evaluate(()=>scrollY);
  await listTarget.click();await ready(page);await page.locator('[data-reader-back]').click();await ready(page);
  assert.equal(new URL(page.url()).hash,'#library');assert.equal(await page.inputValue('#game-filter'),'blue-planet-app');assert(Math.abs(await page.evaluate(()=>scrollY)-listY)<5,'restore filtered list position');

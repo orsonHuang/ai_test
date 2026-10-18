@@ -9,7 +9,7 @@ const base=process.env.BASE_URL||'http://127.0.0.1:8789/',out=path.resolve(__dir
  for(const width of [1440,390,320]){
   await page.setViewportSize({width,height:1000});
   await go('onmyoji-cn-app');
-  assert.equal(await page.locator('.system-map a').count(),10);
+  assert.equal(await page.locator('.system-map a').count(),11);
   const links=await page.locator('.system-map a').evaluateAll(as=>as.map(a=>a.getAttribute('href')));
   for(const href of links){
    await go('onmyoji-cn-app');const a=page.locator(`.system-map a[href="${href}"]`);await a.scrollIntoViewIfNeeded();

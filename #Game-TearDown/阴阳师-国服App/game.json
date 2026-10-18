@@ -27,9 +27,9 @@
       "status": "researched",
       "depth": "deep",
       "path": "systems/行动条与鬼火战斗.md",
-      "revision": 2,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "行动顺序",
         "鬼火预算",
@@ -112,9 +112,9 @@
       "status": "researched",
       "depth": "deep",
       "path": "systems/御魂构筑与整理.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "frontend-demo",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "职责条件",
         "候选配装",
@@ -152,9 +152,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "systems/召唤与角色获取.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "获取目标",
         "卡池规则",
@@ -192,9 +192,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "systems/PVE挑战与资源路线.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "目标缺口",
         "模式挑战",
@@ -232,9 +232,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "systems/斗技与阵容应对.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "战前应对",
         "战中选择",
@@ -272,9 +272,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "systems/阴阳寮与师徒协作.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "找到同伴",
         "分工参与",
@@ -312,9 +312,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "systems/资源与商店.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "来源与期限",
         "选择投入",
@@ -352,9 +352,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "systems/活动与商业化.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "当期目标",
         "参与或付费",
@@ -392,9 +392,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "systems/角色叙事与外观.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "认识角色",
         "使用与培养",
@@ -423,6 +423,51 @@
         }
       ],
       "related": []
+    },
+    {
+      "id": "onmyoji-contract",
+      "title": "契灵与术印",
+      "type": "progression",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "systems/契灵与术印.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-module-unimplemented",
+      "tags": [
+        "主角扩展",
+        "术印",
+        "结契",
+        "PVE"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-contract",
+          "claim": "2023上线介绍包含探查、式盘结契、培养、术印与怪物战斗适用",
+          "sources": [
+            "YYS-S23"
+          ],
+          "scope": "2023历史上线样本，非当前全量规则"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-contract-diagram",
+          "path": "assets/contract.svg",
+          "kind": "original-diagram",
+          "caption": "契灵获取与应用关系示意",
+          "publication": "original",
+          "sources": [
+            "YYS-S23"
+          ]
+        }
+      ],
+      "related": [
+        "onmyoji-heroes",
+        "onmyoji-pve",
+        "onmyoji-economy"
+      ]
     }
   ],
   "discovery": {

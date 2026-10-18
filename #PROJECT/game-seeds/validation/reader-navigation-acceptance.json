@@ -1,6 +1,6 @@
 {
   "base": "http://127.0.0.1:8789/",
-  "at": "2026-10-17T17:13:10.359Z",
+  "at": "2026-10-18T06:05:34.686Z",
   "results": [
     {
       "width": 1440,
@@ -9,12 +9,12 @@
     },
     {
       "width": 390,
-      "restoredY": 8296,
+      "restoredY": 8275,
       "passed": true
     },
     {
       "width": 320,
-      "restoredY": 9437,
+      "restoredY": 9416,
       "passed": true
     }
   ],

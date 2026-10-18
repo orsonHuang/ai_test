@@ -1,5 +1,11 @@
 # 部署游戏种子 v0.2
 
+## 阴阳师整游扩展（北京时间2026-10-18）
+
+- 发布 `game-ideas-20261018T061008Z`：71公开文件、7,261,071字节，HTTPS逐文件SHA256一致；备份 `/var/www/game-ideas-20261018T061008Z-previous`，主站首页保持。
+- 默认入口 `https://orson.games/game-ideas/` → `#games`；目录只保留高亮；阴阳师整游11系统详页及契灵图文已上线。已验收养成页和下载配置未改。
+- 验收入口：https://orson.games/game-ideas/?v=20261018-full#library/onmyoji-cn-app 。`tests/onmyoji-full.cjs`覆盖全部11路由与附录、图片、内部引用、材料表算术和1440/390/320无溢出；线上专项与71文件校验通过。
+
 ## 游戏拆解库与阅读提示（北京时间2026-10-18）
 
 - 发布 `game-ideas-20261017T171732Z`，67文件、5,512,566字节；备份 `/var/www/game-ideas-20261017T171732Z-previous`，主站首页指纹保持。

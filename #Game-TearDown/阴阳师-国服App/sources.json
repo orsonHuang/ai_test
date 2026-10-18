@@ -270,5 +270,27 @@
     "read": "正文已读",
     "scope": "历史主角与御灵等级关系",
     "limitations": "非2026实机；不沿用玩法推荐与所有数值"
+  },
+  {
+    "id": "YYS-S23",
+    "title": "全新契灵玩法来袭",
+    "url": "https://u.360.cn/news/article/362965/",
+    "author": "360游戏 / 上线情报转载，署名佚名",
+    "publishedAt": "2023-05-26",
+    "accessedAt": "2026-10-18",
+    "read": "全文与两张配图已核读",
+    "scope": "历史入口、探查、式盘、培养、术印、怪物战斗适用与商店；不证明当前首领规则",
+    "limitations": "体验服先行介绍；不是2026客户端全量实测"
+  },
+  {
+    "id": "YYS-S24",
+    "title": "御魂",
+    "url": "https://onmyoji.fandom.com/zh/wiki/御魂",
+    "author": "Onmyoji Wiki社群",
+    "publishedAt": null,
+    "accessedAt": "2026-10-18",
+    "read": "检索返回的位置、等级、属性正文摘录已读；直接打开受限",
+    "scope": "六位置候选和0—15强化节点；未沿用未核实概率与费用",
+    "limitations": "社区资料，未进行当前客户端核对"
   }
 ]

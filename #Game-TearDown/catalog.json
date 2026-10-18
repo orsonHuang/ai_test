@@ -1664,9 +1664,9 @@
       "status": "researched",
       "depth": "deep",
       "path": "阴阳师-国服App/systems/行动条与鬼火战斗.md",
-      "revision": 2,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "行动顺序",
         "鬼火预算",
@@ -1761,9 +1761,9 @@
       "status": "researched",
       "depth": "deep",
       "path": "阴阳师-国服App/systems/御魂构筑与整理.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "frontend-demo",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "职责条件",
         "候选配装",
@@ -1807,9 +1807,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "阴阳师-国服App/systems/召唤与角色获取.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "获取目标",
         "卡池规则",
@@ -1853,9 +1853,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "阴阳师-国服App/systems/PVE挑战与资源路线.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "目标缺口",
         "模式挑战",
@@ -1899,9 +1899,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "阴阳师-国服App/systems/斗技与阵容应对.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "战前应对",
         "战中选择",
@@ -1945,9 +1945,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "阴阳师-国服App/systems/阴阳寮与师徒协作.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "找到同伴",
         "分工参与",
@@ -1991,9 +1991,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "阴阳师-国服App/systems/资源与商店.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "来源与期限",
         "选择投入",
@@ -2037,9 +2037,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "阴阳师-国服App/systems/活动与商业化.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "当期目标",
         "参与或付费",
@@ -2083,9 +2083,9 @@
       "status": "researched",
       "depth": "standard",
       "path": "阴阳师-国服App/systems/角色叙事与外观.md",
-      "revision": 1,
+      "revision": 3,
       "specStatus": "reviewable",
-      "referenceStatus": "specified-slice-unimplemented",
+      "referenceStatus": "specified-module-unimplemented",
       "tags": [
         "认识角色",
         "使用与培养",
@@ -2114,6 +2114,57 @@
         }
       ],
       "related": [],
+      "gameId": "onmyoji-cn-app",
+      "platform": "App",
+      "asOf": "2026-10-18",
+      "defaultDiscoverable": true,
+      "referenceFilterNamespace": "referenceAttributes",
+      "evidenceWarning": "国服公开资料与历史界面样本；非当前实机。Android商店登记2.8.87(260928)，不代表服务器热更。补充设计独立标注。"
+    },
+    {
+      "id": "onmyoji-contract",
+      "title": "契灵与术印",
+      "type": "progression",
+      "presence": "present",
+      "status": "researched",
+      "depth": "deep",
+      "path": "阴阳师-国服App/systems/契灵与术印.md",
+      "revision": 1,
+      "specStatus": "reviewable",
+      "referenceStatus": "specified-module-unimplemented",
+      "tags": [
+        "主角扩展",
+        "术印",
+        "结契",
+        "PVE"
+      ],
+      "facts": [
+        {
+          "id": "YYS-F-contract",
+          "claim": "2023上线介绍包含探查、式盘结契、培养、术印与怪物战斗适用",
+          "sources": [
+            "YYS-S23"
+          ],
+          "scope": "2023历史上线样本，非当前全量规则"
+        }
+      ],
+      "media": [
+        {
+          "id": "onmyoji-contract-diagram",
+          "path": "阴阳师-国服App/assets/contract.svg",
+          "kind": "original-diagram",
+          "caption": "契灵获取与应用关系示意",
+          "publication": "original",
+          "sources": [
+            "YYS-S23"
+          ]
+        }
+      ],
+      "related": [
+        "onmyoji-heroes",
+        "onmyoji-pve",
+        "onmyoji-economy"
+      ],
       "gameId": "onmyoji-cn-app",
       "platform": "App",
       "asOf": "2026-10-18",
