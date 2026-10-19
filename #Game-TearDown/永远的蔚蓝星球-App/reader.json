@@ -14,7 +14,7 @@
       "id": "blue-planet-levels",
       "path": "reader/关卡与赛季规则.md",
       "group": "核心玩法与战斗",
-      "summary": "用关卡条件检验不同能力，区分机制门槛与数值门槛",
+      "summary": "主线与S1战役、神器技能树、重置和追赶边界",
       "cover": "reader-assets/levels.svg",
       "coverPublication": "original"
     },
@@ -22,7 +22,7 @@
       "id": "blue-planet-heroes",
       "path": "reader/英雄与永久成长.md",
       "group": "局外养成与获取",
-      "summary": "等级之外，功能节点如何改变角色与阵容的用法",
+      "summary": "英雄与国王双线成长：天赋、披风、技能孔位和材料成本",
       "cover": "reader-assets/heroes.svg",
       "coverPublication": "original"
     },
@@ -30,7 +30,7 @@
       "id": "blue-planet-equipment",
       "path": "reader/装备图腾与洗炼.md",
       "group": "局外养成与获取",
-      "summary": "条件词条的触发时机，比单一面板大小更值得比较",
+      "summary": "六部位、强化、图腾与洗炼，区分晶石和炼器石",
       "cover": "reader-assets/equipment.svg",
       "coverPublication": "original"
     },
@@ -38,7 +38,7 @@
       "id": "blue-planet-recruitment",
       "path": "reader/招募与重复转化.md",
       "group": "局外养成与获取",
-      "summary": "把玩法资源连接到角色目标，区分获得与可用",
+      "summary": "获取资格、招募入口、周兑换与重复结果的证据边界",
       "cover": "reader-assets/recruitment.svg",
       "coverPublication": "original"
     },
@@ -54,7 +54,7 @@
       "id": "blue-planet-coop",
       "path": "reader/合作准备与挑战.md",
       "group": "多人玩法",
-      "summary": "通过准备状态，将成员配置与开战权限连起来",
+      "summary": "普通合作与赛季计分，原界面、局部图与准备原型",
       "cover": "reader-assets/coop.svg",
       "coverPublication": "original"
     },
@@ -62,7 +62,7 @@
       "id": "blue-planet-territory",
       "path": "reader/领地资源与收集.md",
       "group": "资源与社交",
-      "summary": "不同资源入口如何安排挑战、积累与领取的节奏",
+      "summary": "矿场、矿鼠、食堂与图鉴，资源去向和历史规则表",
       "cover": "reader-assets/territory.svg",
       "coverPublication": "original"
     },
@@ -70,7 +70,7 @@
       "id": "blue-planet-social",
       "path": "reader/社交公会与排行榜.md",
       "group": "资源与社交",
-      "summary": "共同目标、贡献和榜单分别给成长提供什么意义",
+      "summary": "好友、公会首领与赛季公会，个人贡献与团体结算",
       "cover": "reader-assets/social.svg",
       "coverPublication": "original"
     },
@@ -78,7 +78,7 @@
       "id": "blue-planet-liveops",
       "path": "reader/商业化与运营减负.md",
       "group": "运营与商业化",
-      "summary": "付费价值、配置条件和重复操作之间的关系",
+      "summary": "配置成本、功能性外观、效率权益与运营减负",
       "cover": "reader-assets/liveops.svg",
       "coverPublication": "original"
     }
@@ -105,13 +105,13 @@
       ]
     },
     "heroes": {
-      "title": "英雄与永久成长 · 信息线框",
+      "title": "英雄与国王成长 · 信息线框",
       "basis": "补充设计示意；尚未核实完整原作界面",
       "blocks": [
-        "① 英雄｜当前等级与能力",
-        "② 节点｜现在与下一阶段",
-        "③ 消耗｜持有、缺口、来源",
-        "④ 培养｜结果与方案关联"
+        "① 对象｜英雄 / 国王天赋",
+        "② 节点｜属性与行为变化",
+        "③ 费用｜持有 / 需要 / 缺口",
+        "④ 方案｜本局生效范围"
       ]
     },
     "equipment": {
@@ -184,5 +184,214 @@
         "④ 结果｜资源与权益生效"
       ]
     }
-  }
+  },
+  "referenceMedia": [
+    {
+      "path": "reader-assets/king-overview.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/682325002019669229",
+      "sourceAuthor": "文和；蔚蓝球球整理",
+      "sourceDate": "2025-06-12",
+      "scope": "攻略中的历史界面，非当前账号截图",
+      "captionTitle": "国王养成入口 · 2025年6月",
+      "sourceFile": "assets/king-overview.png",
+      "originalSize": [
+        1080,
+        786
+      ],
+      "crop": null
+    },
+    {
+      "path": "reader-assets/king-talents.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/682325002019669229",
+      "sourceAuthor": "文和；蔚蓝球球整理",
+      "sourceDate": "2025-06-12",
+      "scope": "普通与特殊天赋并置样本",
+      "captionTitle": "武器双天赋树 · 历史界面",
+      "sourceFile": "assets/king-talents.png",
+      "originalSize": [
+        597,
+        468
+      ],
+      "crop": null
+    },
+    {
+      "path": "reader-assets/king-cost-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/682325002019669229",
+      "sourceAuthor": "文和；蔚蓝球球整理",
+      "sourceDate": "2025-06-12",
+      "scope": "左侧节点局部；节点等级未显示，不外推逐级曲线",
+      "captionTitle": "天赋激活：材料与金币",
+      "sourceFile": "assets/king-talents.png",
+      "originalSize": [
+        597,
+        468
+      ],
+      "crop": [
+        15,
+        85,
+        180,
+        279
+      ]
+    },
+    {
+      "path": "reader-assets/cloak-panel.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/682325002019669229",
+      "sourceAuthor": "文和；蔚蓝球球整理",
+      "sourceDate": "2025-06-12",
+      "scope": "原文局部图，仅说明本图等级进度",
+      "captionTitle": "魔法披风：等级与经验",
+      "sourceFile": "assets/cloak-panel.png",
+      "originalSize": [
+        455,
+        195
+      ],
+      "crop": null
+    },
+    {
+      "path": "reader-assets/arena-board.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/694655628546670613",
+      "sourceAuthor": "妄疼疼；蔚蓝球球整理",
+      "sourceDate": "2025-07-16",
+      "scope": "攻略截取的阵列，不是完整战斗HUD",
+      "captionTitle": "竞技场阵列 · 攻略局部",
+      "sourceFile": "assets/arena-board.png",
+      "originalSize": [
+        1080,
+        332
+      ],
+      "crop": null
+    },
+    {
+      "path": "reader-assets/rat-mine.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/676741667339897316",
+      "sourceAuthor": "财子；蔚蓝球球整理",
+      "sourceDate": "2025-05-28",
+      "scope": "历史攻略中的矿鼠界面",
+      "captionTitle": "矿鼠之家与串门大厅",
+      "sourceFile": "assets/rat-mine.png",
+      "originalSize": [
+        1080,
+        686
+      ],
+      "crop": null
+    },
+    {
+      "path": "reader-assets/crystal-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/676741667339897316",
+      "sourceAuthor": "财子；蔚蓝球球整理",
+      "sourceDate": "2025-05-28",
+      "scope": "保留左侧矿鼠、计时与晶石提示，不作为所有矿脉产量",
+      "captionTitle": "晶石产出提示 · 局部",
+      "sourceFile": "assets/rat-mine.png",
+      "originalSize": [
+        1080,
+        686
+      ],
+      "crop": [
+        0,
+        445,
+        430,
+        686
+      ]
+    },
+    {
+      "path": "reader-assets/coop-leader.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/778714788971675862",
+      "sourceAuthor": "蔚蓝球球／官方",
+      "sourceDate": "2026-03-05",
+      "scope": "App公告原图",
+      "captionTitle": "彩虹副本 · 队长准备界面",
+      "sourceFile": "assets/coop-leader-20260305.jpg",
+      "originalSize": [
+        1080,
+        2400
+      ],
+      "crop": null
+    },
+    {
+      "path": "reader-assets/coop-ready-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/778714788971675862",
+      "sourceAuthor": "蔚蓝球球／官方",
+      "sourceDate": "2026-03-05",
+      "scope": "底部开始按钮及方案局部",
+      "captionTitle": "未准备提示与挑战入口",
+      "sourceFile": "assets/coop-leader-20260305.jpg",
+      "originalSize": [
+        1080,
+        2400
+      ],
+      "crop": [
+        265,
+        1770,
+        1000,
+        2080
+      ]
+    },
+    {
+      "path": "reader-assets/coop-rules-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/778714788971675862",
+      "sourceAuthor": "蔚蓝球球／官方",
+      "sourceDate": "2026-03-05",
+      "scope": "本张彩虹5层条件，不能推广到全副本",
+      "captionTitle": "本层职业增益与怪物回血",
+      "sourceFile": "assets/coop-leader-20260305.jpg",
+      "originalSize": [
+        1080,
+        2400
+      ],
+      "crop": [
+        190,
+        405,
+        900,
+        665
+      ]
+    },
+    {
+      "path": "reader-assets/totem-crit-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/754639971863759829",
+      "sourceAuthor": "路醒醒；蔚蓝球球整理",
+      "sourceDate": "2025-12-29",
+      "scope": "原文词条局部，非全品质参数",
+      "captionTitle": "暴击率图腾 · 历史词条",
+      "sourceFile": "assets/totem-boots-20251229.jpg",
+      "originalSize": [
+        462,
+        45
+      ],
+      "crop": null
+    }
+  ]
 }

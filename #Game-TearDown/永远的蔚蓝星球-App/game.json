@@ -5,8 +5,8 @@
   "platform": "App",
   "region": "中国大陆简体中文",
   "build": null,
-  "asOf": "2026-10-17",
-  "scope": "公开资料及历史样本；无当前构建实机验证。P为明确范围的可开发参考切片，非原作源码还原。商店登记Android 3.0.7(66)，不代表已核验热更或iOS。",
+  "asOf": "2026-10-19",
+  "scope": "中国大陆手机App，公开资料与历史截图研究；含S1指定区服及预告边界。原作未知与可开发参考v2分开，无当前完整账号实机验证。",
   "excluded": [
     "其他平台细则",
     "未验证当前概率",
@@ -39,7 +39,7 @@
       "status": "researched",
       "depth": "deep",
       "path": "systems/召唤合成与战斗.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App公开资料",
@@ -83,13 +83,13 @@
     },
     {
       "id": "blue-planet-heroes",
-      "title": "英雄与永久成长",
+      "title": "英雄与国王成长",
       "type": "progression",
       "presence": "present",
       "status": "researched",
-      "depth": "overview",
+      "depth": "deep",
       "path": "systems/英雄与永久成长.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App玩家档案",
@@ -104,6 +104,14 @@
             "BP-S08"
           ],
           "scope": "App玩家档案"
+        },
+        {
+          "id": "BP-F21",
+          "claim": "国王武器双天赋与披风资源关系有历史攻略和截图",
+          "sources": [
+            "BP-S11"
+          ],
+          "scope": "按来源日期与区服，仅已描述范围"
         }
       ],
       "media": [
@@ -128,9 +136,9 @@
       "type": "equipment",
       "presence": "present",
       "status": "researched",
-      "depth": "overview",
+      "depth": "deep",
       "path": "systems/装备图腾与洗炼.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App历史攻略与公告",
@@ -154,6 +162,14 @@
             "BP-S09"
           ],
           "scope": "App历史攻略与公告"
+        },
+        {
+          "id": "BP-F22",
+          "claim": "历史迭代曾移除升品并加入特效锁定，不能拼接早期规则",
+          "sources": [
+            "BP-S19"
+          ],
+          "scope": "按来源日期与区服，仅已描述范围"
         }
       ],
       "media": [
@@ -188,9 +204,9 @@
       "type": "level",
       "presence": "present",
       "status": "researched",
-      "depth": "overview",
+      "depth": "deep",
       "path": "systems/关卡与赛季规则.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App赛季资料",
@@ -213,6 +229,14 @@
             "BP-S10"
           ],
           "scope": "App赛季资料"
+        },
+        {
+          "id": "BP-F23",
+          "claim": "S1战役、计分合作与神器重置有App公告",
+          "sources": [
+            "BP-S15"
+          ],
+          "scope": "按来源日期与区服，仅已描述范围"
         }
       ],
       "media": [
@@ -240,7 +264,7 @@
       "status": "researched",
       "depth": "deep",
       "path": "systems/竞技场.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App历史攻防公告",
@@ -292,7 +316,7 @@
       "status": "researched",
       "depth": "deep",
       "path": "systems/合作准备与挑战.md",
-      "revision": 2,
+      "revision": 3,
       "specStatus": "reviewable",
       "referenceStatus": "frontend-demo",
       "platformApplicability": "明确App正式服",
@@ -316,6 +340,14 @@
             "BP-S03"
           ],
           "scope": "明确App正式服"
+        },
+        {
+          "id": "BP-F25",
+          "claim": "赛季合作与普通通关型合作目标不同",
+          "sources": [
+            "BP-S18"
+          ],
+          "scope": "按来源日期与区服，仅已描述范围"
         }
       ],
       "media": [
@@ -351,9 +383,9 @@
       "type": "economy",
       "presence": "present",
       "status": "researched",
-      "depth": "overview",
+      "depth": "deep",
       "path": "systems/领地资源与收集.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App历史玩家攻略",
@@ -394,9 +426,9 @@
       "type": "social",
       "presence": "present",
       "status": "researched",
-      "depth": "overview",
+      "depth": "deep",
       "path": "systems/社交公会与排行榜.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App历史公告",
@@ -421,6 +453,14 @@
             "BP-S05"
           ],
           "scope": "App历史公告"
+        },
+        {
+          "id": "BP-F27",
+          "claim": "S1公会积分与合作队长行为相关",
+          "sources": [
+            "BP-S15"
+          ],
+          "scope": "按来源日期与区服，仅已描述范围"
         }
       ],
       "media": [
@@ -442,13 +482,13 @@
     },
     {
       "id": "blue-planet-recruitment",
-      "title": "招募与重复转化",
+      "title": "招募与角色获取",
       "type": "progression",
       "presence": "present",
       "status": "researched",
-      "depth": "overview",
+      "depth": "deep",
       "path": "systems/招募与重复转化.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App历史券奖励线索",
@@ -463,6 +503,14 @@
             "BP-S04"
           ],
           "scope": "App历史券奖励线索"
+        },
+        {
+          "id": "BP-F28",
+          "claim": "获取资格受服务器与招募入口条件影响",
+          "sources": [
+            "BP-S14"
+          ],
+          "scope": "按来源日期与区服，仅已描述范围"
         }
       ],
       "media": [
@@ -487,9 +535,9 @@
       "type": "liveops",
       "presence": "present",
       "status": "researched",
-      "depth": "overview",
+      "depth": "deep",
       "path": "systems/商业化与运营减负.md",
-      "revision": 1,
+      "revision": 2,
       "specStatus": "reviewable",
       "referenceStatus": "specified-slice-unimplemented",
       "platformApplicability": "App历史公告与计划",
@@ -534,7 +582,7 @@
     }
   ],
   "discovery": {
-    "summary": "随机召唤与合成组织防线，连接局内强化、局外养成，以及合作和竞技。",
+    "summary": "随机合成塔防，拆解英雄与国王成长、装备资源、竞技合作及S1赛季神器。",
     "facets": {
       "genre": [
         "塔防",

@@ -5,7 +5,7 @@
     "url": "https://www.taptap.cn/app/713683",
     "author": "创悦游戏",
     "publishedAt": null,
-    "accessedAt": "2026-10-16",
+    "accessedAt": "2026-10-19",
     "platform": "App",
     "scope": "商店登记 3.0.7 (66)，2026-09-29 更新",
     "read": "正文已读",
@@ -22,7 +22,7 @@
     "url": "https://www.taptap.cn/moment/778714788971675862",
     "author": "蔚蓝球球／官方",
     "publishedAt": "2026-03-05",
-    "accessedAt": "2026-10-16",
+    "accessedAt": "2026-10-19",
     "platform": "App正式服",
     "scope": "公告明确 APP 端包正式服，3月6日更新",
     "read": "正文与相关原图已核读",
@@ -38,7 +38,7 @@
     "url": "https://www.taptap.cn/moment/681511296339807133",
     "author": "蔚蓝球球／官方",
     "publishedAt": "2025-06-10",
-    "accessedAt": "2026-10-16",
+    "accessedAt": "2026-10-19",
     "platform": "App论坛官方公告",
     "scope": "2025 历史变更",
     "read": "正文已读",
@@ -55,7 +55,7 @@
     "url": "https://www.taptap.cn/moment/694655628546670613",
     "author": "妄疼疼投稿／蔚蓝球球排版",
     "publishedAt": "2025-07-16",
-    "accessedAt": "2026-10-16",
+    "accessedAt": "2026-10-19",
     "platform": "App论坛",
     "scope": "玩家历史攻略",
     "read": "正文已读",
@@ -72,7 +72,7 @@
     "url": "https://www.taptap.cn/moment/676741667339897316",
     "author": "财子投稿／蔚蓝球球排版",
     "publishedAt": "2025-05-28",
-    "accessedAt": "2026-10-16",
+    "accessedAt": "2026-10-19",
     "platform": "App论坛",
     "scope": "2025 初期系统地图",
     "read": "正文已读",
@@ -88,7 +88,7 @@
     "url": "https://www.taptap.cn/moment/754639971863759829",
     "author": "路醒醒投稿／蔚蓝球球排版",
     "publishedAt": "2025-12-29",
-    "accessedAt": "2026-10-16",
+    "accessedAt": "2026-10-19",
     "platform": "App论坛",
     "scope": "绝世品阶靴子词条样本",
     "read": "正文与相关原图已核读",
@@ -112,7 +112,7 @@
       "召唤限制与格子资源",
       "机关时机"
     ],
-    "limitations": "玩家策略与精确配置不是官方验证；不代表基础主线全部关卡"
+    "limitations": "玩家策略与精确配置不是官方验证；不代表基础主线全部关卡；2026-10-19网页读取失败，沿用2026-10-16核读记录。"
   },
   {
     "id": "BP-S08",
@@ -129,7 +129,7 @@
       "成长节点改变局内功能",
       "皮肤可能改变机制效率"
     ],
-    "limitations": "英雄强度与养成建议为玩家观点；当前服是否开放需另核对"
+    "limitations": "英雄强度与养成建议为玩家观点；当前服是否开放需另核对；2026-10-19网页读取失败，沿用2026-10-16核读记录。"
   },
   {
     "id": "BP-S09",
@@ -137,7 +137,7 @@
     "url": "https://www.taptap.cn/moment/685667018652778832",
     "author": "蔚蓝球球／官方",
     "publishedAt": "2025-06-21",
-    "accessedAt": "2026-10-16",
+    "accessedAt": "2026-10-19",
     "platform": "App官方社区",
     "scope": "2025 历史公告",
     "read": "直达页面正文已复核",
@@ -154,7 +154,7 @@
     "url": "https://www.taptap.cn/moment/844263068358673457",
     "author": "蔚蓝球球／官方",
     "publishedAt": null,
-    "accessedAt": "2026-10-16",
+    "accessedAt": "2026-10-19",
     "platform": "App正式服",
     "scope": "明确含未来计划",
     "read": "直达页面正文已复核",
@@ -162,5 +162,156 @@
       "重复玩法减负目标与计划"
     ],
     "limitations": "计划上线不等于已上线"
+  },
+  {
+    "id": "BP-S11",
+    "title": "国王系统专项攻略",
+    "url": "https://www.taptap.cn/moment/682325002019669229",
+    "author": "文和／官方整理",
+    "publishedAt": "2025-06-12",
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "历史玩家攻略；不代表当前全等级成本",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "武器双天赋",
+      "披风与材料",
+      "装备入口历史截图"
+    ],
+    "limitations": "历史玩家攻略；不代表当前全等级成本"
+  },
+  {
+    "id": "BP-S12",
+    "title": "App国王时装第4孔位",
+    "url": "https://www.taptap.cn/moment/757642898178050495",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": null,
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "页面01/06未显示年份；明确APP端包全部区服，作为历史公告，不猜当前开放状态",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "开服184天与祝福圣杯",
+      "功能性外观与配置"
+    ],
+    "limitations": "页面01/06未显示年份；明确APP端包全部区服，作为历史公告，不猜当前开放状态"
+  },
+  {
+    "id": "BP-S13",
+    "title": "首发活动及招募商店周兑换",
+    "url": "https://www.taptap.cn/moment/676570310949996421",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2025-05-27",
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "上线前历史公告；当前价格及兑换币待核",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "周限购",
+      "折扣与价格阶梯"
+    ],
+    "limitations": "上线前历史公告；当前价格及兑换币待核"
+  },
+  {
+    "id": "BP-S14",
+    "title": "剑仙与获取资格调整",
+    "url": "https://www.taptap.cn/moment/713730740449184709",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2025-09-10",
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "正文含0906及0909研发日志；不是当前概率公示",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "开服与招募等级门槛",
+      "先锋服与正式服区分",
+      "成长节点预览"
+    ],
+    "limitations": "正文含0906及0909研发日志；不是当前概率公示"
+  },
+  {
+    "id": "BP-S15",
+    "title": "S1 App更新与赛季规则",
+    "url": "https://www.taptap.cn/moment/843595257361730767?group_id=803344",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2026-08-31",
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "原页08/31，年份依据S1同系列2026活动期限；公告指定区服，不覆盖小游戏",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "战役难度与首通",
+      "共战计分",
+      "神器重置",
+      "公会与追赶"
+    ],
+    "limitations": "原页08/31，年份依据S1同系列2026活动期限；公告指定区服，不覆盖小游戏"
+  },
+  {
+    "id": "BP-S16",
+    "title": "神器技能树预告",
+    "url": "https://www.wlxq.cn/article/417/",
+    "author": "球球／官方网站",
+    "publishedAt": "2026-08-26",
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "测试环境预告；上线部分由S1更新交叉支持，不当当前实测",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "同层互斥",
+      "前置技能",
+      "免费重置"
+    ],
+    "limitations": "测试环境预告；上线部分由S1更新交叉支持，不当当前实测"
+  },
+  {
+    "id": "BP-S17",
+    "title": "赛季战役机制预告",
+    "url": "https://www.taptap.cn/moment/841069082835944939",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2026-08-24",
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "预告样本，不是现行全关卡配置",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "换位",
+      "复活源头",
+      "击杀成长"
+    ],
+    "limitations": "预告样本，不是现行全关卡配置"
+  },
+  {
+    "id": "BP-S18",
+    "title": "赛季合作玩法预告",
+    "url": "https://www.taptap.cn/moment/841420547534359475",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2026-08-25",
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "预告，实际上线范围以S1 App更新为准",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "双人计分",
+      "首领及场地变化"
+    ],
+    "limitations": "预告，实际上线范围以S1 App更新为准"
+  },
+  {
+    "id": "BP-S19",
+    "title": "装备与合作历史迭代",
+    "url": "https://www.taptap.cn/moment/671814364314994839",
+    "author": "蔚蓝球球／官方",
+    "publishedAt": "2025-05-14",
+    "accessedAt": "2026-10-19",
+    "platform": "App研究资料；适用范围见scope",
+    "scope": "早于App上线，作为演进背景，不直接断言当前App细则",
+    "read": "正文已核读；配图仅登记并检查的选定图片",
+    "supports": [
+      "移除装备升品",
+      "特效锁定",
+      "合作阶段奖励"
+    ],
+    "limitations": "早于App上线，作为演进背景，不直接断言当前App细则"
   }
 ]

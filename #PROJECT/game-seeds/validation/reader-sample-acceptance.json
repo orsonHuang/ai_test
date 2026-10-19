@@ -1,0 +1,15 @@
+{
+  "base": "http://127.0.0.1:8789/",
+  "at": "2026-10-19T03:20:10.074Z",
+  "passed": true,
+  "systems": 10,
+  "checks": [
+    "10 real map clicks",
+    "10 analysis UI figures",
+    "reader prose without internal spec jargon",
+    "lazy reference appendix and diagrams",
+    "favorite note persistence",
+    "all sample pages at 320 and 390 pixels"
+  ],
+  "errors": []
+}

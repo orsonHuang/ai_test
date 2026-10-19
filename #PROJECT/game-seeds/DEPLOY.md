@@ -1,5 +1,12 @@
 # 部署游戏种子 v0.2
 
+## 蔚蓝星球全文修订（北京时间2026-10-19）
+
+- 发布game-ideas-20261019T032208Z，82公开文件、12,395,747字节；服务器及公网逐文件SHA256一致。
+- 备份/var/www/game-ideas-20261019T032208Z-previous；只更新game-ideas，主站首页不变。
+- 线上tests/blue-full.cjs覆盖整游和10系统、11原图、64费用表、流程图、链接与1440/390/320；本地library、reader-sample、reader-navigation通过。
+- 验收 https://orson.games/game-ideas/?v=20261019-blue#library/blue-planet-app 。默认游戏库、目录高亮、收藏、双返回保持；参考玩法服务与当前原作全流程未实现/实测。
+
 ## 阴阳师整游扩展（北京时间2026-10-18）
 
 - 发布 `game-ideas-20261018T061008Z`：71公开文件、7,261,071字节，HTTPS逐文件SHA256一致；备份 `/var/www/game-ideas-20261018T061008Z-previous`，主站首页保持。

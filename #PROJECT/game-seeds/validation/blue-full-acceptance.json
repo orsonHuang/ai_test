@@ -1,0 +1,62 @@
+{
+  "base": "https://orson.games/game-ideas/",
+  "at": "2026-10-19T03:24:22.584Z",
+  "passed": true,
+  "checks": [
+    "10 stable system routes",
+    "11 reference media with provenance",
+    "64 full growth/talent table rows checked",
+    "all diagrams rendered",
+    "all reader images decoded",
+    "all links resolve",
+    "1440/390/320 no overflow"
+  ],
+  "report": [
+    {
+      "route": "#library/blue-planet-app",
+      "images": 2
+    },
+    {
+      "route": "#library/blue-planet-combat",
+      "images": 2
+    },
+    {
+      "route": "#library/blue-planet-levels",
+      "images": 1
+    },
+    {
+      "route": "#library/blue-planet-heroes",
+      "images": 4
+    },
+    {
+      "route": "#library/blue-planet-equipment",
+      "images": 2
+    },
+    {
+      "route": "#library/blue-planet-recruitment",
+      "images": 1
+    },
+    {
+      "route": "#library/blue-planet-arena",
+      "images": 1
+    },
+    {
+      "route": "#library/blue-planet-coop",
+      "images": 5
+    },
+    {
+      "route": "#library/blue-planet-territory",
+      "images": 3
+    },
+    {
+      "route": "#library/blue-planet-social",
+      "images": 1
+    },
+    {
+      "route": "#library/blue-planet-liveops",
+      "images": 1
+    }
+  ],
+  "errors": [],
+  "failed": []
+}

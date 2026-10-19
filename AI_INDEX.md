@@ -1,5 +1,7 @@
 # AI_INDEX · 文件路由表
 
+- 蔚蓝星球全面修订（2026-10-19）：整游＋10系统、11原图局部、64参考费用行；S1神器/赛季合作与国王成长补齐。入口`#Game-TearDown/永远的蔚蓝星球-App/reader/游戏分析.md`，验收`_framework/validation/蔚蓝整游优化-2026-10-19.md`。82文件发布032208Z，线上图文三屏通过，用户待验收。
+
 - 阴阳师整游扩展（2026-10-18）：`#Game-TearDown/阴阳师-国服App/reader/游戏分析.md` → 11系统；契灵独立，养成已验收版本保持。全库38系统57文档；网页默认`#games`，目录仅高亮。新增测试`#PROJECT/game-seeds/tests/onmyoji-full.cjs`。
 
 - 图文与交互样稿（2026-10-17）：`#Game-TearDown/阴阳师-国服App/README.md` → reader/游戏分析.md与十系统；蔚蓝合作/阴阳师御魂有前端演示。Skill四份新增参考已安装，样稿待用户内容验收。

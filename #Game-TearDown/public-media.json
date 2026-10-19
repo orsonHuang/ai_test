@@ -356,6 +356,213 @@
       "sourceDate": "2023-05-26",
       "scope": "已核读历史宣传中的游戏界面；非2026实机；保留原画面，不生成或改绘",
       "captionTitle": "契灵技能表现"
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/king-overview.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/682325002019669229",
+      "sourceAuthor": "文和；蔚蓝球球整理",
+      "sourceDate": "2025-06-12",
+      "scope": "攻略中的历史界面，非当前账号截图",
+      "captionTitle": "国王养成入口 · 2025年6月",
+      "sourceFile": "assets/king-overview.png",
+      "originalSize": [
+        1080,
+        786
+      ],
+      "crop": null
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/king-talents.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/682325002019669229",
+      "sourceAuthor": "文和；蔚蓝球球整理",
+      "sourceDate": "2025-06-12",
+      "scope": "普通与特殊天赋并置样本",
+      "captionTitle": "武器双天赋树 · 历史界面",
+      "sourceFile": "assets/king-talents.png",
+      "originalSize": [
+        597,
+        468
+      ],
+      "crop": null
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/king-cost-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/682325002019669229",
+      "sourceAuthor": "文和；蔚蓝球球整理",
+      "sourceDate": "2025-06-12",
+      "scope": "左侧节点局部；节点等级未显示，不外推逐级曲线",
+      "captionTitle": "天赋激活：材料与金币",
+      "sourceFile": "assets/king-talents.png",
+      "originalSize": [
+        597,
+        468
+      ],
+      "crop": [
+        15,
+        85,
+        180,
+        279
+      ]
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/cloak-panel.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/682325002019669229",
+      "sourceAuthor": "文和；蔚蓝球球整理",
+      "sourceDate": "2025-06-12",
+      "scope": "原文局部图，仅说明本图等级进度",
+      "captionTitle": "魔法披风：等级与经验",
+      "sourceFile": "assets/cloak-panel.png",
+      "originalSize": [
+        455,
+        195
+      ],
+      "crop": null
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/arena-board.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/694655628546670613",
+      "sourceAuthor": "妄疼疼；蔚蓝球球整理",
+      "sourceDate": "2025-07-16",
+      "scope": "攻略截取的阵列，不是完整战斗HUD",
+      "captionTitle": "竞技场阵列 · 攻略局部",
+      "sourceFile": "assets/arena-board.png",
+      "originalSize": [
+        1080,
+        332
+      ],
+      "crop": null
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/rat-mine.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/676741667339897316",
+      "sourceAuthor": "财子；蔚蓝球球整理",
+      "sourceDate": "2025-05-28",
+      "scope": "历史攻略中的矿鼠界面",
+      "captionTitle": "矿鼠之家与串门大厅",
+      "sourceFile": "assets/rat-mine.png",
+      "originalSize": [
+        1080,
+        686
+      ],
+      "crop": null
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/crystal-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/676741667339897316",
+      "sourceAuthor": "财子；蔚蓝球球整理",
+      "sourceDate": "2025-05-28",
+      "scope": "保留左侧矿鼠、计时与晶石提示，不作为所有矿脉产量",
+      "captionTitle": "晶石产出提示 · 局部",
+      "sourceFile": "assets/rat-mine.png",
+      "originalSize": [
+        1080,
+        686
+      ],
+      "crop": [
+        0,
+        445,
+        430,
+        686
+      ]
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/coop-leader.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": false,
+      "sourceUrl": "https://www.taptap.cn/moment/778714788971675862",
+      "sourceAuthor": "蔚蓝球球／官方",
+      "sourceDate": "2026-03-05",
+      "scope": "App公告原图",
+      "captionTitle": "彩虹副本 · 队长准备界面",
+      "sourceFile": "assets/coop-leader-20260305.jpg",
+      "originalSize": [
+        1080,
+        2400
+      ],
+      "crop": null
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/coop-ready-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/778714788971675862",
+      "sourceAuthor": "蔚蓝球球／官方",
+      "sourceDate": "2026-03-05",
+      "scope": "底部开始按钮及方案局部",
+      "captionTitle": "未准备提示与挑战入口",
+      "sourceFile": "assets/coop-leader-20260305.jpg",
+      "originalSize": [
+        1080,
+        2400
+      ],
+      "crop": [
+        265,
+        1770,
+        1000,
+        2080
+      ]
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/coop-rules-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/778714788971675862",
+      "sourceAuthor": "蔚蓝球球／官方",
+      "sourceDate": "2026-03-05",
+      "scope": "本张彩虹5层条件，不能推广到全副本",
+      "captionTitle": "本层职业增益与怪物回血",
+      "sourceFile": "assets/coop-leader-20260305.jpg",
+      "originalSize": [
+        1080,
+        2400
+      ],
+      "crop": [
+        190,
+        405,
+        900,
+        665
+      ]
+    },
+    {
+      "path": "永远的蔚蓝星球-App/reader-assets/totem-crit-detail.png",
+      "kind": "source-screenshot",
+      "publication": "editorial-reference",
+      "detail": true,
+      "sourceUrl": "https://www.taptap.cn/moment/754639971863759829",
+      "sourceAuthor": "路醒醒；蔚蓝球球整理",
+      "sourceDate": "2025-12-29",
+      "scope": "原文词条局部，非全品质参数",
+      "captionTitle": "暴击率图腾 · 历史词条",
+      "sourceFile": "assets/totem-boots-20251229.jpg",
+      "originalSize": [
+        462,
+        45
+      ],
+      "crop": null
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "base": "http://127.0.0.1:8789/",
   "passed": true,
-  "at": "2026-10-18T06:05:30.893Z",
+  "at": "2026-10-19T03:21:30.093Z",
   "documents": 57,
   "diagramCount": [
     [
@@ -70,7 +70,7 @@
     ],
     [
       "blue-planet-levels",
-      1
+      2
     ],
     [
       "blue-planet-combat",
@@ -94,11 +94,11 @@
     ],
     [
       "blue-planet-arena",
-      1
+      2
     ],
     [
       "blue-planet-heroes",
-      1
+      2
     ],
     [
       "blue-planet-equipment",
