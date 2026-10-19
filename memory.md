@@ -469,3 +469,5 @@
 - 用户要求免费开源、按 Godot 规范开发、场景节点可在引擎内继续可视化编辑。查 GitHub 与本地代码后建议优先验证 hi-godot/godot-ai；备选 NPGameDev/godot-mcp-toolkit。MCP 操作能力与项目工程规范分别约束。
 - cat-idle 已有 addons/godot_ai，plugin.cfg 为 2.9.0，project.godot 已启用并声明 4.7；源码确认节点增删改、场景实例化、owner、EditorUndoRedoManager 与场景保存。插件 MIT。尚未进行本轮 MCP 连通/引擎编辑验收，不得说已可调用。
 - 上游 README 当前为 v4，要求 Godot 4.7+，不能拿新版服务端配置直接套旧 2.9.0；后续先核对版本配套与迁移说明。本轮未安装/升级/替换插件或改游戏工程。
+
+- 2026-10-19 晚安小屋设施邻房文案：统一所有/明确方向/住户，92条覆盖；去重解释补充；其余句式建议未实施。项目提交7c8fa6f8，未构建、部署或push。
