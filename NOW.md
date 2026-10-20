@@ -1,5 +1,7 @@
 # NOW · 当前状态锚点
 
+- 2026-10-20 衣橱新版已完成并打开微信工程：wechat-uploads/Nite-Nite-20261020-wardrobe-redesign。双项切换、圆形性别、方形图标与横向列表，选中预览框/已穿戴✔独立；固定保存+“已保存”浮窗。三屏/原生/微信实际点击通过，整包20,912,320字节。截图validation/wardrobe-redesign-20261020/wechat-wardrobe.jpg，细节见docs/衣橱改版-20261020.md。未上传/手机验收；下一步用户视觉反馈。
+
 - 2026-10-20 简化背景和木牌字体统一已完成，替代下方仅概念状态。暖光/人物保留，背景与原生星点减密，补齐Bold缺失“扮”字、统一字号并禁缩字。三屏/原生/字形/完整构建/微信模拟器通过，新工程wechat-uploads/Nite-Nite-20261020-home-simplified已打开。实际图validation/home-simplified-20261020/wechat-home-final.jpg，总包20,897,812字节；未上传/手机验收。下一步用户体验反馈。
 
 - 2026-10-20 主页背景简化效果图待评审：references/ui/home-simplified-20261020/home-concept.png。减少密集花叶、光点和石面颗粒，保留暖光及角色。用户只要求先看图，本轮没有改游戏；确认后再做独立背景素材，沿用既有UI。
