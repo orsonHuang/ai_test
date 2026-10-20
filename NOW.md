@@ -1,5 +1,7 @@
 # NOW · 当前状态锚点
 
+- 2026-10-20 13住户满册皮肤效果图完成待评审：Nite-Nite/references/ui/resident-theme-skins-20261020/README.md含四组总览＋小兔男女/帽衣拆分；每住户六故事→一套帽衣，既有购买规则保持。仅概念，未接入发放或微信包；建议确认方向后小兔竖切样板，再量产。
+
 - 2026-10-20 衣橱反馈修订已完成：浅选中底片、人物居中且不越框、去装饰、粗性别符号发光/透明度，帽子与衣服双排小卡，透明帽子右下禁用标记。三屏/原生/微信实际点击通过；最新打开工程wechat-uploads/Nite-Nite-20261020-wardrobe-refine，截图validation/wardrobe-refine-20261020/wechat-wardrobe.jpg。总20,951,610字节（余19,910）；未上传/手机验收。下一步用户审图与体验反馈。
 
 - 2026-10-20 衣橱新版已完成并打开微信工程：wechat-uploads/Nite-Nite-20261020-wardrobe-redesign。双项切换、圆形性别、方形图标与横向列表，选中预览框/已穿戴✔独立；固定保存+“已保存”浮窗。三屏/原生/微信实际点击通过，整包20,912,320字节。截图validation/wardrobe-redesign-20261020/wechat-wardrobe.jpg，细节见docs/衣橱改版-20261020.md。未上传/手机验收；下一步用户视觉反馈。
