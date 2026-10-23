@@ -1,5 +1,7 @@
 # AI_INDEX · 文件路由表
 
+- 游戏团队项目情报台 Game Pulse（2026-10-23，暂定名）：`#PROJECT/Game-Pulse/README.md` → `docs/产品与架构方案.md`。SVN 更新精选／文档差异／时间线、竞品行业与 AI 工作流；当前仅架构，批准外部 AI API 可用，真实 SVN 接入待后续样本。
+
 - 蔚蓝星球全面修订（2026-10-19）：整游＋10系统、11原图局部、64参考费用行；S1神器/赛季合作与国王成长补齐。入口`#Game-TearDown/永远的蔚蓝星球-App/reader/游戏分析.md`，验收`_framework/validation/蔚蓝整游优化-2026-10-19.md`。82文件发布032208Z，线上图文三屏通过，用户待验收。
 
 - 阴阳师整游扩展（2026-10-18）：`#Game-TearDown/阴阳师-国服App/reader/游戏分析.md` → 11系统；契灵独立，养成已验收版本保持。全库38系统57文档；网页默认`#games`，目录仅高亮。新增测试`#PROJECT/game-seeds/tests/onmyoji-full.cjs`。
