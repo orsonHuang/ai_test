@@ -1,5 +1,7 @@
 # NOW · 当前状态锚点
 
+- 2026-10-23 奈奈扫码弹窗已与骰子统一尺寸、布局和文案结构，已发布主页；项目6d6c52c。桌面/手机及复制回归通过，失败时仍可手动复制，无码图改绘。入口https://orson.games/?v=nana-unified-20261023#games，无待答问题。
+
 - 2026-10-23 主页更新完成并正式发布：奈奈正式版扫码／复制微信链接，作品顺序奈奈→骰子魔法师→未命名文档。项目orson-huang-homepage本地bc8414d；桌面手机网页检查通过，实际微信扫码待体验，旧首页备份可恢复。入口https://orson.games/?v=nana-20261023#games；无待审批，未推Git远端。
 
 - 2026-10-23 Game Pulse 原型完成：新目录 `#PROJECT/Game-Pulse-Prototype`，独立源码91d975a，私有站 https://game-pulse-prototype-orson.decent-reed-7919.chatgpt.site 已发布v1；精选／时间线／更新详情＋筛选收藏确认可交互，9条模拟更新，桌面／手机与状态持久化检查通过。需ChatGPT登录访问，SVN后续接；证据在docs/验收记录.md。下一步按用户观感修改原型。
