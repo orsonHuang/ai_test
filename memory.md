@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-24 晚安相册空背景修复完成：微信发布构建将 MonthlyAlbumView.trimArt 的 `[...Map]` 编译成 `[].concat(Map)`，引起 undefined.decRef，打断打开流程。改为 Array.from(entries)，实际导出回归纳入 build-loading；可用 NITE_WECHAT_OUTPUT_NAME 独立构建。旧包负例复现，新包类型／完整构建／导出五项／微信三轮打开重开、双向页签和子页返回通过，印章与收藏不变，日志空。已打开独立工程 Nite-Nite/cocosProject/Nite-Nite/build/wechatgame-album-visible-20261024，总20,335,606字节；默认wechatgame属并行任务，不能误认为新包。IDE截图有缓存主页问题，最终通过EVENT_AFTER_DRAW真实画布截图核验。中文记录docs/月度回忆纪念卡-20261021/相册空背景修复-20261024.md，证据validation/album-visible-20261024。仅本地存档；保留共享MVP.scene、性能／美术等其他任务修改，未push／微信上传，手机待验。昨晚额度审核中断已续完。
+
 - 2026-10-23 主页扫码弹窗统一后续：用户要求奈奈参考骰子，项目6d6c52c已本地提交并发布index。两者二维码框220×224且contain保比例，外框/按钮/间距相同，奈奈短说明+短手机提示，复制反馈原位替换，失败才展开链接。两页1200/390/320实际尺寸相同，线上桌面/手机/复制/哈希通过；备份/root/homepage-releases/nana-unified-20261023/index-before.html，Git未push。
 
 - 2026-10-23 个人主页奈奈正式版入口已上线 https://orson.games/ ，项目 `#PROJECT/orson-huang-homepage` 本地提交 `bc8414d`。用户原图存 Asses/nana-wechat-qr.png，SHA256与附件一致；精确微信链接 `#小程序://晚安小屋/1woSQDcDzvzQNCr` 提供复制与失败手动选择，作品排序奈奈→骰子魔法师→未命名文档。预览和分身资料同步。正式只发布index与二维码，保留游戏种子；旧首页备份/root/homepage-releases/nana-20261023-2318/index-before.html。两页1200/390/320及线上1200/390、弹窗/剪贴板/邮箱/骰子回归通过，HTTP和哈希一致，无JS错误；实际手机微信扫码待用户体验。README记录和runtime截图齐全，未推Git远端。
