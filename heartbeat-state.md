@@ -1,5 +1,7 @@
 # HEARTBEAT · 心跳状态
 
+- 2026-10-23 奈奈主页正式入口收尾：orson-huang-homepage本地bc8414d，index与原始二维码已发布到现有腾讯服务器，三游戏排序和微信复制按请求完成。两页三尺寸及线上桌面/手机、剪贴板/失败备用/关闭与旧入口检查通过，二维码原图哈希一致；实际微信扫码未验。README／memory→NOW→heartbeat已更新，根只提交三记录；服务器备份位置见项目README，Git未push，无待回答问题。
+
 - 2026-10-23 Game Pulse 原型收尾：独立新项目Game-Pulse-Prototype源码91d975a已推至私有Sites；v1部署appgdep_6adb726a8be881919b7d23d1f948f8b5 succeeded，页面入口需ChatGPT登录。三页、模拟数据、筛选／搜索／收藏／确认／差异、桌面与390手机检查通过，截图齐全。memory→NOW→heartbeat依序更新，AI_INDEX加入口；根仅归档4索引记录，不提交嵌套项目为gitlink、不混入其他工作。所有文档与更新为模拟，未接SVN和模型。无待答问题；本地预览服务收尾停止，使用线上私有链接。
 
 - 2026-10-23 Game Pulse 架构收尾：新项目索引与 12 节方案已落盘，AIHOT 官方页面／开源架构已核对；用户确认架构先行与批准 API 可用。memory→NOW→heartbeat 顺序同步，AI_INDEX 加入口。仅文档交付，未接 SVN／运行采集／发布网页／调用收费模型／对团队发送消息。后续按样本启动 M0，当前没有待回答问题。

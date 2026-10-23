@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-23 个人主页奈奈正式版入口已上线 https://orson.games/ ，项目 `#PROJECT/orson-huang-homepage` 本地提交 `bc8414d`。用户原图存 Asses/nana-wechat-qr.png，SHA256与附件一致；精确微信链接 `#小程序://晚安小屋/1woSQDcDzvzQNCr` 提供复制与失败手动选择，作品排序奈奈→骰子魔法师→未命名文档。预览和分身资料同步。正式只发布index与二维码，保留游戏种子；旧首页备份/root/homepage-releases/nana-20261023-2318/index-before.html。两页1200/390/320及线上1200/390、弹窗/剪贴板/邮箱/骰子回归通过，HTTP和哈希一致，无JS错误；实际手机微信扫码待用户体验。README记录和runtime截图齐全，未推Git远端。
+
 - 2026-10-23 Game Pulse 交互原型已完成并私有发布，用户明确要求在 #PROJECT 新建项目目录；实际为 `#PROJECT/Game-Pulse-Prototype/README.md`，独立 Git／Sites 仓库，源码提交 `91d975a31af9e359b01d60efdc5e447072fb1c5f`。网址 https://game-pulse-prototype-orson.decent-reed-7919.chatgpt.site ，Sites project_id `appgprj_6adb6eab75c08191beb4e577560f8f1f`，v1 已 succeeded。虚构星屿计划 9 条更新：精选、时间线、详情三页，搜索／系统日期类型成员筛选／正逆序／收藏／已读／确认／重置、详情三标签与对比。浏览器交互、刷新持久化、390×844 手机与无横向页面溢出、JS语法和HTTP200通过，console error空；截图与记录在 docs/。源包在 #AI-NOTEBOOK/game-pulse-prototype-release/game-pulse.tar.gz。所有数据为模拟，SVN／AI／团队账号未接；收藏确认只本机。私有线上入口需ChatGPT登录；原型服务默认4186，收尾停止。Sites出现Transport closed但后台实际成功，先查list_sites／list_site_versions恢复，未重复创建或发布。架构保留 Game-Pulse 原目录。
 
 - 2026-10-23 新项目 Game Pulse（暂定名）完成架构提案，入口 `#PROJECT/Game-Pulse/README.md`，正文 `docs/产品与架构方案.md`。用户要 SVN 更新精选／内容／时间线，并扩展竞品、游戏行业、AI 游戏开发方法与团队协作；随后明确“暂时没有路径，先完成架构”，允许公司批准的外部 AI API。建议独立内网平台，AIHOT API/RSS 作外部来源；原件留内网，必要片段走批准 API。设计包括只读服务端增量、文档结构差异、证据与推断分离、路径权限、系统专题、工作流卡及 M0–M3 验收。未接 SVN、未实现网页或部署，当前 PATH 未见 svn 不等于未安装。团队集成候选钉钉／TAPD／金山文档；未发消息、未安装、未上传。下一步待真实样本后做纵向验证，不把技术栈建议当已确认实施。
