@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-24 故事赠送云端已接通（旧blocked记录已解除）：项目6ac5fb29继e8096052完成正式部署。五集合用户截图ADMINONLY，niteCompetition Active／15秒；真实QA发现document.set写锁冲突，新增仅事务冲突整笔有限退避重试，并取消已结算链接／状态重复写账户。4隔离领取者真实CloudBase争领只有1成功，原子扣1加1、重复不增发、末篇保护、不产微光、一次迁入等8项通过；12QA记录清零，集合最终accounts1/migrations1、其他memory集合0。开发账号一次迁入保留6印章和6篇各1，默认实际相册打开后registered=true/pending=false/credits0，普通live未主动迁入；分享图实际Canvas显示当前故事门前集合。正式函数最终任务confirmation_cloud_fn_deploy_fb6ac78f-eba2-4611-967c-0df5d5da61c2成功，QA修复任务62dfa917-d67d-4cb4-aceb-9e19a0c6aa0d成功，无待确认。开发工具注入日志递归栈溢出导致部分CLI回调超时，刷新后核心验收成功；最终console缓存仍有旧注入错误，未称零错误。niteMemorySetup仅owner手动QA，无游戏依赖，旧助手源码保留；独立包临时桥接已撤，当前默认新素材未覆盖。手机双账号分享/冷暖启动仍待体验版实测，本轮无微信客户端上传/发布、无push、无好友消息。详见项目赠送实施文档及validation/memory-gifts-20261024。
+
 - 2026-10-24 故事分享目标已标blocked：连续第3轮真实查询niteMemorySetup仍ResourceNotFound.Function；此前微信部署确认未答、无法继续云端写入。上一轮仅复核相同阻塞，没有实现进展；本轮达到门槛后update_goal返回blocked，未标完成。需要用户在微信工具完成部署确认，之后恢复目标并按实施文档继续；代码e8096052、分享图和验证证据保留，真实玩家资产与默认包未改。
 
 - 2026-10-24 赠送目标续查（同一云确认阻塞第2轮）：读取实际独立包project.config确认appid=wx4146c2b75b7fcd18；cloud_fn_info返回niteMemorySetup ResourceNotFound.Function，listCollections仍只有原7集合、无5个memory集合。微信已登录；不是凭证或源码故障。复读当前分享图、领取幂等、事务入口，未发现能替代云部署的已授权完成路径；未重试待确认写操作、未变更真实数据。上一目标轮完成代码和归档属进展，本轮是云外部状态复核，非已确认活进程等待。目标保持active，仍待用户完成微信平台确认；下一轮同阻塞且无可做工作达到3轮时标blocked，不标complete。
