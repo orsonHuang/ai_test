@@ -1,5 +1,7 @@
 # MEMORY · 活跃工作集
 
+- 2026-10-24 相册关闭重开追查：用户实际默认build/wechatgame仍是旧aadbe包，trimArt仍concat(Map)，书本退场Y=-1558后重开异常不归位；上轮独立包验收不能代替用户默认窗口。此次新源码构建因并行服装网格JSON增大超20MiB失败，未绕过。使用10:46已通过审核且含修复的wechatgame-experience-20261024稳定包，逐文件核验后同步默认目录，1236哈希一致，20,335,606字节；失败导出保留build/wechatgame-reopen-overbudget-backup-20261024。默认窗口关闭释放文件锁后重开，实际函数Array.from与书本归位、三轮直接重开和画布通过，错误日志空；此前六组UI也完成，首次资产比较遇到正式23印章→独立开发2印章启动切换，稳定账号后复验2→2与收藏不变。当前留默认窗口月度页；无上传push、手机待验。证据validation/album-reopen-20261024，中文说明README顶部。生成的字体压缩实验仅留validation，正式压缩脚本恢复原样，不混入并行任务。
+
 - 2026-10-24 晚安相册空背景修复完成：微信发布构建将 MonthlyAlbumView.trimArt 的 `[...Map]` 编译成 `[].concat(Map)`，引起 undefined.decRef，打断打开流程。改为 Array.from(entries)，实际导出回归纳入 build-loading；可用 NITE_WECHAT_OUTPUT_NAME 独立构建。旧包负例复现，新包类型／完整构建／导出五项／微信三轮打开重开、双向页签和子页返回通过，印章与收藏不变，日志空。已打开独立工程 Nite-Nite/cocosProject/Nite-Nite/build/wechatgame-album-visible-20261024，总20,335,606字节；默认wechatgame属并行任务，不能误认为新包。IDE截图有缓存主页问题，最终通过EVENT_AFTER_DRAW真实画布截图核验。中文记录docs/月度回忆纪念卡-20261021/相册空背景修复-20261024.md，证据validation/album-visible-20261024。仅本地存档；保留共享MVP.scene、性能／美术等其他任务修改，未push／微信上传，手机待验。昨晚额度审核中断已续完。
 
 - 2026-10-23 主页扫码弹窗统一后续：用户要求奈奈参考骰子，项目6d6c52c已本地提交并发布index。两者二维码框220×224且contain保比例，外框/按钮/间距相同，奈奈短说明+短手机提示，复制反馈原位替换，失败才展开链接。两页1200/390/320实际尺寸相同，线上桌面/手机/复制/哈希通过；备份/root/homepage-releases/nana-unified-20261023/index-before.html，Git未push。
