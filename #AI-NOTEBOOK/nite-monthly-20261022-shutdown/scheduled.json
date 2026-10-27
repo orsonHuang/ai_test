@@ -1,0 +1,10 @@
+{
+  "processId": 27004,
+  "delaySeconds": 90,
+  "command": "shutdown.exe /s /t 0",
+  "normalShutdown": true,
+  "workspaceCommit": "0277a05",
+  "implementationCommit": "cf199b5a",
+  "forced": false,
+  "scheduledAt": "2026-10-22T01:12:56.9106750+08:00"
+}

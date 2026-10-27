@@ -37,3 +37,13 @@ Thumbs.db
 # Office temp lock files
 ~$*
 ._*
+
+# Recoverable dependency caches and private local diagnostics
+/#AI-NOTEBOOK/album-reopen-20261024/python-deps/
+/tmp/nite-skill-validation-deps/
+/tmp/proxy-*.json
+**/project.private.config.json
+
+# Independent repositories without remotes: complete histories archived as bundles
+/#PROJECT/Game-Pulse-Prototype/
+/#PROJECT/game-seeds/

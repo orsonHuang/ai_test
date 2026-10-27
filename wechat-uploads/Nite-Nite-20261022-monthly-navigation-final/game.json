@@ -1,0 +1,32 @@
+{
+  "deviceOrientation": "portrait",
+  "networkTimeout": {
+    "request": 5000,
+    "connectSocket": 5000,
+    "uploadFile": 5000,
+    "downloadFile": 500000
+  },
+  "subpackages": [
+    {
+      "name": "album",
+      "root": "subpackages/album/"
+    },
+    {
+      "name": "monthly",
+      "root": "subpackages/monthly/"
+    },
+    {
+      "name": "resident-skins",
+      "root": "subpackages/resident-skins/"
+    },
+    {
+      "name": "secondary-ui",
+      "root": "subpackages/secondary-ui/"
+    },
+    {
+      "name": "main",
+      "root": "subpackages/main/"
+    }
+  ],
+  "openDataContext": "openDataContext"
+}
