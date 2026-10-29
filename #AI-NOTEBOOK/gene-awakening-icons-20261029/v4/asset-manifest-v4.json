@@ -1,0 +1,70 @@
+{
+  "version": 4,
+  "status": "图标设计稿，待用户视觉确认",
+  "direction": "回到用户选中的抽象基因双链风格，采用其第一种方案：左图原生、右图觉醒，补充变异。",
+  "types": [
+    {
+      "name": "原生",
+      "symbol": "完整单组基因双链",
+      "file": "native-awakened-reference.png",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "width": 887,
+        "height": 887
+      }
+    },
+    {
+      "name": "觉醒",
+      "symbol": "激活双链、基因核与闪电",
+      "file": "native-awakened-reference.png",
+      "frame": {
+        "x": 887,
+        "y": 0,
+        "width": 887,
+        "height": 887
+      }
+    },
+    {
+      "name": "变异",
+      "symbol": "两组完整基因双链交织，继承闪电标记，表示双血脉融合",
+      "file": "mutated-dual-bloodline-v4.png",
+      "width": 1254,
+      "height": 1254
+    }
+  ],
+  "independentEvolutionRanks": {
+    "values": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "file": "evolution-ranks.png",
+    "grid": {
+      "columns": 2,
+      "rows": 2,
+      "cellWidth": 627,
+      "cellHeight": 627
+    },
+    "order": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "validCombinations": 12,
+  "reviewBoard": null,
+  "reviewBoardStatus": "附加对照图生成未返回，已停止等待；本包交付已完成的透明素材。",
+  "verification": [
+    "新增变异PNG为32位RGBA且抽样确认透明背景",
+    "变异具有两组完整基因主体",
+    "既有选中双图与四阶级素材按原文件复制，类型映射采用本版名称"
+  ],
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": "generation-prompts-v4.json"
+  },
+  "note": "所有图标按可见轮廓统一尺寸；原生/觉醒为一张两格图集，变异是独立PNG。展示稿不等于实机验收。"
+}
