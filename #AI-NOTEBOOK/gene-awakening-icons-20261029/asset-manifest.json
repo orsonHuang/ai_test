@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "status": "视觉设计首版，未接入游戏引擎",
+  "concept": "基因双链 × 共振阶纹",
+  "axes": {
+    "type": [
+      "原生",
+      "异变"
+    ],
+    "awakeningLevel": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "independent": true,
+    "combinations": 8
+  },
+  "lore": "新的星球能量波动影响人类基因，唤醒基因力量时有概率发生觉醒或进化；变异类型与唤醒等级分别显示。",
+  "presentation": {
+    "file": "design-board-v1.png",
+    "width": 1536,
+    "height": 1024,
+    "inset": "示意性UI落位，基于用户截图生成，非实机截图"
+  },
+  "sheets": [
+    {
+      "file": "gene-types-v1.png",
+      "width": 1774,
+      "height": 887,
+      "alpha": true,
+      "grid": {
+        "columns": 2,
+        "rows": 1,
+        "cellWidth": 887,
+        "cellHeight": 887
+      },
+      "order": [
+        "原生",
+        "异变"
+      ],
+      "design": [
+        "完整基因双链",
+        "裂变双链、能量核与闪电分叉"
+      ]
+    },
+    {
+      "file": "awakening-levels-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "grid": {
+        "columns": 2,
+        "rows": 2,
+        "cellWidth": 627,
+        "cellHeight": 627
+      },
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "design": [
+        "空心菱形核",
+        "一道上向共振纹",
+        "两道上向共振纹",
+        "三道上向共振纹"
+      ]
+    }
+  ],
+  "placement": {
+    "container": "截图左下血脉栏",
+    "order": "类型图标 + 类型名 | 等级图标 + 等级数",
+    "suggestedVisibleSizePx": {
+      "type": 32,
+      "level": 24
+    },
+    "note": "字号和32/24px为设计建议，未进行游戏内实际渲染验收。图集透明留白不等于图标可见尺寸。"
+  },
+  "verification": [
+    "人工检查两种类型和四级等级轮廓",
+    "确认阶纹数量1/2/3及0级独立空心核",
+    "PNG通道抽样确认两套图集存在真实透明像素",
+    "示意图检查异变0级与原生3级组合"
+  ],
+  "sourceReference": {
+    "label": "PRTS Design 明日方舟精英化图标参考",
+    "url": "https://mooncellwiki.github.io/prts-design/arknights/elite"
+  },
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": "generation-prompts.json"
+  }
+}

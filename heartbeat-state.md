@@ -428,3 +428,5 @@ last_heartbeat_result: OK
 - 2026-10-04 MCP 选型咨询：memory→NOW已同步，GitHub/官方文档/本地插件源码检查完成。推荐先验证已有 Godot AI 2.9.0，区分上游 v4 与本地版本、插件配置与真实连通。未改插件或游戏工程，未触碰新出现的 rogue-idle-gd 目录。全局记录已有混合改动，本轮记录继续保留未提交，避免把其他工作带入咨询提交。上一轮 HTML MVP 实际提交为 d87c7e1。
 
 - 2026-10-19 设施邻房文案收尾：项目7c8fa6f8；memory→NOW同步，关卡数据与规则未改，未微信构建/部署/push。
+
+- 2026-10-29 基因唤醒图标收尾：memory→NOW已同步。内置imagegen制作总览与类型/等级两套透明图集，级数及alpha核对完成；保存于#AI-NOTEBOOK/gene-awakening-icons-20261029，未改游戏工程。
