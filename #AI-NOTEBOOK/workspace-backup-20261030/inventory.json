@@ -1,0 +1,60 @@
+[
+  {
+    "dir": "#PROJECT/Nite-Nite",
+    "head": "4e1a3dcc014bfdc6aa76d49c844c9e554d3b7c49",
+    "branch": "main",
+    "remotes": [
+      "origin"
+    ],
+    "dirty": 1206
+  },
+  {
+    "dir": "#PROJECT/Next-Move",
+    "head": "e845be9dfff5a0658966265bab529bf434b33785",
+    "branch": "main",
+    "remotes": [],
+    "dirty": 0
+  },
+  {
+    "dir": "#PROJECT/Game-Pulse-Prototype",
+    "head": "91d975a31af9e359b01d60efdc5e447072fb1c5f",
+    "branch": "main",
+    "remotes": [],
+    "dirty": 0
+  },
+  {
+    "dir": "#PROJECT/game-seeds",
+    "head": "dd4affd5feae42b872bcfce028c568925537c319",
+    "branch": "main",
+    "remotes": [],
+    "dirty": 0
+  },
+  {
+    "dir": "#PROJECT/orson-huang-homepage",
+    "head": "6d6c52c5b20698e34e7dd7ffda74e8c662c0b1fc",
+    "branch": "main",
+    "remotes": [
+      "origin",
+      "server"
+    ],
+    "dirty": 0
+  },
+  {
+    "dir": "#PROJECT/DiceMonster/DiceMonsterTT",
+    "head": "102904c2ce79ff8486cb0cef1d22ce27ed8b8aec",
+    "branch": "main",
+    "remotes": [
+      "origin"
+    ],
+    "dirty": 0
+  },
+  {
+    "dir": ".",
+    "head": "dd4957850757ceaf60691b3bf51b6fbba569dec8",
+    "branch": "main",
+    "remotes": [
+      "origin"
+    ],
+    "dirty": 6
+  }
+]

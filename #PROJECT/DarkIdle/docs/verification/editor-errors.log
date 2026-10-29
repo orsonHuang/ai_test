@@ -8,3 +8,66 @@ Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpect
 Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
 Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
 Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+ERROR: WASAPI: GetBufferSize error
+   at: thread_func (drivers/wasapi/audio_driver_wasapi.cpp:778)
+WARNING: WASAPI: Current output_device invalidated, closing output_device
+   at: thread_func (drivers/wasapi/audio_driver_wasapi.cpp:849)
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+ERROR: Failed loading resource: res://assets/v2/ground.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] open_scene (res://addons/godot_ai/handlers/scene_handler.gd:193)
+       [1] _call_handler (res://addons/godot_ai/dispatcher.gd:193)
+       [2] _dispatch (res://addons/godot_ai/dispatcher.gd:150)
+       [3] tick (res://addons/godot_ai/dispatcher.gd:122)
+       [4] _process (res://addons/godot_ai/connection.gd:108)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/v2/icons.png" has no resource loaders (unrecognized file extension).
+   at: GDScript::reload (res://scripts/tactical_view.gd:5)
+   GDScript backtrace (most recent call first):
+       [0] open_scene (res://addons/godot_ai/handlers/scene_handler.gd:193)
+       [1] _call_handler (res://addons/godot_ai/dispatcher.gd:193)
+       [2] _dispatch (res://addons/godot_ai/dispatcher.gd:150)
+       [3] tick (res://addons/godot_ai/dispatcher.gd:122)
+       [4] _process (res://addons/godot_ai/connection.gd:108)
+ERROR: Failed to load script "res://scripts/tactical_view.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] open_scene (res://addons/godot_ai/handlers/scene_handler.gd:193)
+       [1] _call_handler (res://addons/godot_ai/dispatcher.gd:193)
+       [2] _dispatch (res://addons/godot_ai/dispatcher.gd:150)
+       [3] tick (res://addons/godot_ai/dispatcher.gd:122)
+       [4] _process (res://addons/godot_ai/connection.gd:108)
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+ERROR: WASAPI: GetBufferSize error
+   at: thread_func (drivers/wasapi/audio_driver_wasapi.cpp:778)
+WARNING: WASAPI: Current output_device invalidated, closing output_device
+   at: thread_func (drivers/wasapi/audio_driver_wasapi.cpp:849)
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+ERROR: Task 'update_script_paths_documentation' already exists.
+   at: add_task (editor/gui/progress_dialog.cpp:200)
+   GDScript backtrace (most recent call first):
+       [0] _save_current_scene (res://addons/godot_ai/handlers/scene_handler.gd:330)
+       [1] save_scene (res://addons/godot_ai/handlers/scene_handler.gd:271)
+       [2] _call_handler (res://addons/godot_ai/dispatcher.gd:193)
+       [3] _dispatch (res://addons/godot_ai/dispatcher.gd:150)
+       [4] tick (res://addons/godot_ai/dispatcher.gd:122)
+       [5] _process (res://addons/godot_ai/connection.gd:108)
+ERROR: Condition "!tasks.has(p_task)" is true.
+   at: end_task (editor/gui/progress_dialog.cpp:254)
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+ERROR: Task 'update_script_paths_documentation' already exists.
+   at: add_task (editor/gui/progress_dialog.cpp:200)
+   GDScript backtrace (most recent call first):
+       [0] _save_current_scene (res://addons/godot_ai/handlers/scene_handler.gd:330)
+       [1] save_scene (res://addons/godot_ai/handlers/scene_handler.gd:271)
+       [2] _call_handler (res://addons/godot_ai/dispatcher.gd:193)
+       [3] _dispatch (res://addons/godot_ai/dispatcher.gd:150)
+       [4] tick (res://addons/godot_ai/dispatcher.gd:122)
+       [5] _process (res://addons/godot_ai/connection.gd:108)
+ERROR: Condition "!tasks.has(p_task)" is true.
+   at: end_task (editor/gui/progress_dialog.cpp:254)
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
+Unicode parsing error, some characters were replaced with � (U+FFFD): Unexpected NUL character
