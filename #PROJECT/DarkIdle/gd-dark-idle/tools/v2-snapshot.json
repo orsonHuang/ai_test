@@ -1,0 +1,5 @@
+[
+  {"name":"editor_screenshot","arguments":{"source":"game","max_resolution":0}},
+  {"name":"editor_manage","arguments":{"op":"game_eval","params":{"code":"var s = get_tree().current_scene\nreturn {\"plan\":s.plan,\"passives\":s.passives,\"running\":s.running,\"state\":s.shown_state}"}}},
+  {"name":"logs_read","arguments":{"source":"game","count":50,"include_details":true}}
+]

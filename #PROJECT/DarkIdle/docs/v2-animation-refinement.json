@@ -1,0 +1,46 @@
+{
+  "tool": "built-in image_gen",
+  "reason": "Re-layout to isolate poses in regular cells, avoiding sprite clipping.",
+  "jobs": [
+    {
+      "key": "v2-mage-grid",
+      "args": {
+        "referenced_image_paths": [
+          "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/assets/v2/mage.png"
+        ],
+        "transparent_background": true,
+        "prompt": "Use case: precise-object-edit. Re-layout these exact FOUR attack animation poses into a SQUARE sprite sheet with exactly TWO columns and TWO rows. Top left idle, top right anticipation, bottom left attack, bottom right recovery. Maintain the same character identity and four distinct poses from input, direction unchanged. Critical production constraints: EACH pose entirely contained in its own square quadrant; ALL poses at SAME SCALE, same foot baseline at 85% of its quadrant height; a large transparent EMPTY border of at least 12% inside all four edges of EVERY quadrant, including a WIDE completely transparent vertical and horizontal gutter. Shrink all four poses together enough that the longest extended limb/staff fits comfortably inside its quadrant. Nothing may reach across the quadrant edge. Same black charcoal cut-paper texture with red cloth. No duplication or new poses, no text, no grid, no labels, no shadows, genuine alpha transparency."
+      }
+    },
+    {
+      "key": "v2-soot-grid",
+      "args": {
+        "referenced_image_paths": [
+          "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/assets/v2/soot.png"
+        ],
+        "transparent_background": true,
+        "prompt": "Use case: precise-object-edit. Re-layout these exact FOUR attack animation poses into a SQUARE sprite sheet with exactly TWO columns and TWO rows. Top left idle, top right anticipation, bottom left attack, bottom right recovery. Maintain the same character identity and four distinct poses from input, direction unchanged. Critical production constraints: EACH pose entirely contained in its own square quadrant; ALL poses at SAME SCALE, same foot baseline at 85% of its quadrant height; a large transparent EMPTY border of at least 12% inside all four edges of EVERY quadrant, including a WIDE completely transparent vertical and horizontal gutter. Shrink all four poses together enough that the longest extended limb/staff fits comfortably inside its quadrant. Nothing may reach across the quadrant edge. Same black charcoal cut-paper texture with red cloth. No duplication or new poses, no text, no grid, no labels, no shadows, genuine alpha transparency."
+      }
+    },
+    {
+      "key": "v2-antler-grid",
+      "args": {
+        "referenced_image_paths": [
+          "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/assets/v2/antler.png"
+        ],
+        "transparent_background": true,
+        "prompt": "Use case: precise-object-edit. Re-layout these exact FOUR attack animation poses into a SQUARE sprite sheet with exactly TWO columns and TWO rows. Top left idle, top right anticipation, bottom left attack, bottom right recovery. Maintain the same character identity and four distinct poses from input, direction unchanged. Critical production constraints: EACH pose entirely contained in its own square quadrant; ALL poses at SAME SCALE, same foot baseline at 85% of its quadrant height; a large transparent EMPTY border of at least 12% inside all four edges of EVERY quadrant, including a WIDE completely transparent vertical and horizontal gutter. Shrink all four poses together enough that the longest extended limb/staff fits comfortably inside its quadrant. Nothing may reach across the quadrant edge. Same black charcoal cut-paper texture with red cloth. No duplication or new poses, no text, no grid, no labels, no shadows, genuine alpha transparency."
+      }
+    },
+    {
+      "key": "v2-straw-grid",
+      "args": {
+        "referenced_image_paths": [
+          "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/assets/v2/straw.png"
+        ],
+        "transparent_background": true,
+        "prompt": "Use case: precise-object-edit. Re-layout these exact FOUR attack animation poses into a SQUARE sprite sheet with exactly TWO columns and TWO rows. Top left idle, top right anticipation, bottom left attack, bottom right recovery. Maintain the same character identity and four distinct poses from input, direction unchanged. Critical production constraints: EACH pose entirely contained in its own square quadrant; ALL poses at SAME SCALE, same foot baseline at 85% of its quadrant height; a large transparent EMPTY border of at least 12% inside all four edges of EVERY quadrant, including a WIDE completely transparent vertical and horizontal gutter. Shrink all four poses together enough that the longest extended limb/staff fits comfortably inside its quadrant. Nothing may reach across the quadrant edge. Same black charcoal cut-paper texture with red cloth. No duplication or new poses, no text, no grid, no labels, no shadows, genuine alpha transparency."
+      }
+    }
+  ]
+}

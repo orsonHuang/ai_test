@@ -1,0 +1,7 @@
+[
+  {"name":"project_manage","arguments":{"op":"stop"}},
+  {"name":"filesystem_manage","arguments":{"op":"scan"}},
+  {"name":"scene_open","arguments":{"path":"res://scenes/tactical_main.tscn","force_reload":true}},
+  {"name":"scene_save","arguments":{}},
+  {"name":"project_run","arguments":{}}
+]

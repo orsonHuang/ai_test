@@ -1,0 +1,108 @@
+[gd_resource type="Theme" format=3 uid="uid://co36nffh4y6xd"]
+
+[sub_resource type="StyleBoxFlat" id="Red"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.48, 0.12, 0.07, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.4, 0.18, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="Box"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.14, 0.12, 0.1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.43, 0.34, 0.23, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="Hover"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.22, 0.18, 0.13, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.62, 0.27, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="Selected"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.29, 0.2, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.72, 0.32, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="SystemFont" id="Font"]
+font_names = PackedStringArray("Microsoft YaHei", "Noto Sans CJK SC")
+
+[resource]
+default_font = SubResource("Font")
+default_font_size = 18
+ActionButton/base_type = &"Button"
+ActionButton/styles/normal = SubResource("Red")
+Button/colors/font_color = Color(0.95, 0.86, 0.7, 1)
+Button/colors/font_disabled_color = Color(0.58, 0.51, 0.4, 1)
+Button/colors/font_focus_color = Color(0.95, 0.86, 0.7, 1)
+Button/colors/font_hover_color = Color(0.95, 0.86, 0.7, 1)
+Button/colors/font_pressed_color = Color(0.95, 0.86, 0.7, 1)
+Button/styles/disabled = SubResource("Box")
+Button/styles/focus = SubResource("Hover")
+Button/styles/hover = SubResource("Hover")
+Button/styles/normal = SubResource("Box")
+Button/styles/pressed = SubResource("Selected")
+CheckBox/colors/font_color = Color(0.95, 0.86, 0.7, 1)
+CheckBox/colors/font_disabled_color = Color(0.58, 0.51, 0.4, 1)
+CheckBox/colors/font_focus_color = Color(0.95, 0.86, 0.7, 1)
+CheckBox/colors/font_hover_color = Color(0.95, 0.86, 0.7, 1)
+CheckBox/colors/font_pressed_color = Color(0.95, 0.86, 0.7, 1)
+CheckButton/colors/font_color = Color(0.95, 0.86, 0.7, 1)
+CheckButton/colors/font_disabled_color = Color(0.58, 0.51, 0.4, 1)
+CheckButton/colors/font_focus_color = Color(0.95, 0.86, 0.7, 1)
+CheckButton/colors/font_hover_color = Color(0.95, 0.86, 0.7, 1)
+CheckButton/colors/font_pressed_color = Color(0.95, 0.86, 0.7, 1)
+Label/colors/font_color = Color(0.95, 0.86, 0.7, 1)
+Label/colors/font_disabled_color = Color(0.58, 0.51, 0.4, 1)
+Label/colors/font_focus_color = Color(0.95, 0.86, 0.7, 1)
+Label/colors/font_hover_color = Color(0.95, 0.86, 0.7, 1)
+Label/colors/font_pressed_color = Color(0.95, 0.86, 0.7, 1)
+OptionButton/colors/font_color = Color(0.95, 0.86, 0.7, 1)
+OptionButton/colors/font_disabled_color = Color(0.58, 0.51, 0.4, 1)
+OptionButton/colors/font_focus_color = Color(0.95, 0.86, 0.7, 1)
+OptionButton/colors/font_hover_color = Color(0.95, 0.86, 0.7, 1)
+OptionButton/colors/font_pressed_color = Color(0.95, 0.86, 0.7, 1)
+OptionButton/styles/disabled = SubResource("Box")
+OptionButton/styles/focus = SubResource("Hover")
+OptionButton/styles/hover = SubResource("Hover")
+OptionButton/styles/normal = SubResource("Box")
+OptionButton/styles/pressed = SubResource("Selected")
+Panel/styles/panel = SubResource("Box")
+PopupMenu/colors/font_color = Color(0.95, 0.86, 0.7, 1)
+PopupMenu/colors/font_disabled_color = Color(0.58, 0.51, 0.4, 1)
+PopupMenu/colors/font_focus_color = Color(0.95, 0.86, 0.7, 1)
+PopupMenu/colors/font_hover_color = Color(0.95, 0.86, 0.7, 1)
+PopupMenu/colors/font_pressed_color = Color(0.95, 0.86, 0.7, 1)
+PopupMenu/styles/panel = SubResource("Box")

@@ -1,0 +1,64 @@
+[
+  {
+    "tool": "editor_state",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"current_scene\":\"res://scenes/tactical_main.tscn\",\"game_capture_ready\":true,\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":144390,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":20000,\"run_started_msec\":39061914,\"run_token\":13,\"session_active\":true,\"status\":\"live\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":true,\"is_playing\":true,\"project_name\":\"GD_DarkIdle\",\"readiness\":\"playing\",\"session_active\":true}"
+        }
+      ],
+      "structuredContent": {
+        "current_scene": "res://scenes/tactical_main.tscn",
+        "game_capture_ready": true,
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 144390,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 20000,
+          "run_started_msec": 39061914,
+          "run_token": 13,
+          "session_active": true,
+          "status": "live"
+        },
+        "godot_version": "4.7.2-stable (steam)",
+        "helper_live": true,
+        "is_playing": true,
+        "project_name": "GD_DarkIdle",
+        "readiness": "playing",
+        "session_active": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "logs_read",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\":\"editor\",\"lines\":[],\"total_count\":0,\"returned_count\":0,\"offset\":0,\"limit\":35,\"has_more\":false,\"run_id\":\"\",\"is_running\":false,\"dropped_count\":0,\"stale_run_id\":false,\"next_cursor\":0,\"appended_total\":0}"
+        }
+      ],
+      "structuredContent": {
+        "source": "editor",
+        "lines": [],
+        "total_count": 0,
+        "returned_count": 0,
+        "offset": 0,
+        "limit": 35,
+        "has_more": false,
+        "run_id": "",
+        "is_running": false,
+        "dropped_count": 0,
+        "stale_run_id": false,
+        "next_cursor": 0,
+        "appended_total": 0
+      },
+      "isError": false
+    }
+  }
+]

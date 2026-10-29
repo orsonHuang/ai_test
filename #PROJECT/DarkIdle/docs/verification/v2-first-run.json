@@ -1,0 +1,141 @@
+[
+  {
+    "tool": "editor_state",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"current_scene\":\"res://scenes/main.tscn\",\"game_capture_ready\":true,\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":34735201,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":20000,\"run_started_msec\":2952490,\"run_token\":9,\"session_active\":true,\"status\":\"live\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":true,\"is_playing\":false,\"project_name\":\"GD_DarkIdle\",\"readiness\":\"ready\",\"session_active\":true}"
+        }
+      ],
+      "structuredContent": {
+        "current_scene": "res://scenes/main.tscn",
+        "game_capture_ready": true,
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 34735201,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 20000,
+          "run_started_msec": 2952490,
+          "run_token": 9,
+          "session_active": true,
+          "status": "live"
+        },
+        "godot_version": "4.7.2-stable (steam)",
+        "helper_live": true,
+        "is_playing": false,
+        "project_name": "GD_DarkIdle",
+        "readiness": "ready",
+        "session_active": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"reason\":\"Project was not running; no action taken\",\"stopped\":true,\"undoable\":false,\"was_running\":false}"
+        }
+      ],
+      "structuredContent": {
+        "reason": "Project was not running; no action taken",
+        "stopped": true,
+        "undoable": false,
+        "was_running": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "filesystem_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"global_class_count\":43,\"global_classes_registered_delta\":0,\"reason\":\"Filesystem scan is an editor operation\",\"scan_completed\":true,\"scan_settle\":\"settled\",\"undoable\":false,\"was_already_scanning\":false}"
+        }
+      ],
+      "structuredContent": {
+        "global_class_count": 43,
+        "global_classes_registered_delta": 0,
+        "reason": "Filesystem scan is an editor operation",
+        "scan_completed": true,
+        "scan_settle": "settled",
+        "undoable": false,
+        "was_already_scanning": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"application/run/main_scene\",\"old_value\":\"res://scenes/main.tscn\",\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"String\",\"undoable\":false,\"value\":\"res://scenes/tactical_main.tscn\"}"
+        }
+      ],
+      "structuredContent": {
+        "key": "application/run/main_scene",
+        "old_value": "res://scenes/main.tscn",
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "String",
+        "undoable": false,
+        "value": "res://scenes/tactical_main.tscn"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":true,\"path\":\"res://scenes/tactical_main.tscn\",\"previous_scene_path\":\"res://scenes/main.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"timeout\",\"switched\":false,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": true,
+        "path": "res://scenes/tactical_main.tscn",
+        "previous_scene_path": "res://scenes/main.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "timeout",
+        "switched": false,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "EDITOR_NOT_READY: Editor is importing resources — try again shortly [editor_state=importing, retryable=True, hint=Editor is importing assets. Wait briefly and retry — readiness will update via the response envelope.]"
+        }
+      ],
+      "structuredContent": {
+        "error": {
+          "code": "EDITOR_NOT_READY",
+          "message": "Editor is importing resources — try again shortly",
+          "data": {
+            "editor_state": "importing",
+            "retryable": true,
+            "hint": "Editor is importing assets. Wait briefly and retry — readiness will update via the response envelope."
+          }
+        }
+      },
+      "isError": true
+    }
+  }
+]

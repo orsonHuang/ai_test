@@ -1,0 +1,1140 @@
+[gd_scene format=3 uid="uid://bo3jt60velor1"]
+
+[ext_resource type="Theme" uid="uid://co36nffh4y6xd" path="res://resources/tactical_theme.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://dggys8tob3ie5" path="res://assets/v2/ground.png" id="2"]
+[ext_resource type="Script" uid="uid://d2ipbox1p78x8" path="res://scripts/tactical_view.gd" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/tactical_unit.tscn" id="4"]
+[ext_resource type="Script" uid="uid://ded7tlsai6htv" path="res://scripts/tactical_fx.gd" id="5"]
+[ext_resource type="Script" uid="uid://bhj5k0pb4hr0h" path="res://scripts/action_track.gd" id="6"]
+
+[node name="DarkIdle" type="Control" unique_id=357700534]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("3")
+
+[node name="Paper" type="ColorRect" parent="." unique_id=658796511]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+mouse_filter = 2
+color = Color(0.075, 0.065, 0.055, 1)
+
+[node name="Header" type="Label" parent="." unique_id=1918965147]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 8.0
+offset_right = 828.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 28
+text = "DARK IDLE   /   烬火试炼"
+
+[node name="Round" type="Label" parent="." unique_id=1454576231]
+layout_mode = 0
+offset_left = 1300.0
+offset_top = 12.0
+offset_right = 1570.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 20
+text = "战前编排"
+horizontal_alignment = 2
+
+[node name="Track" type="Panel" parent="." unique_id=1528270791]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 62.0
+offset_right = 1572.0
+offset_bottom = 126.0
+script = ExtResource("6")
+
+[node name="Title" type="Label" parent="Track" unique_id=911857913]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 16.0
+offset_right = 114.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 17
+text = "行动轴"
+
+[node name="Line" type="ColorRect" parent="Track" unique_id=372048774]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 31.0
+offset_right = 1472.0
+offset_bottom = 34.0
+mouse_filter = 2
+color = Color(0.54, 0.39, 0.22, 1)
+
+[node name="End" type="Label" parent="Track" unique_id=622105807]
+layout_mode = 0
+offset_left = 1465.0
+offset_top = 10.0
+offset_right = 1530.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 16
+text = "出手"
+horizontal_alignment = 2
+
+[node name="Actor0" type="Button" parent="Track" unique_id=1401570775]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 10.0
+offset_right = 154.0
+offset_bottom = 54.0
+pivot_offset = Vector2(22, 22)
+
+[node name="Portrait" type="TextureRect" parent="Track/Actor0" unique_id=1700493685]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 40.0
+offset_bottom = 41.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Actor1" type="Button" parent="Track" unique_id=1695152730]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 10.0
+offset_right = 154.0
+offset_bottom = 54.0
+pivot_offset = Vector2(22, 22)
+
+[node name="Portrait" type="TextureRect" parent="Track/Actor1" unique_id=2091459434]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 40.0
+offset_bottom = 41.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Actor2" type="Button" parent="Track" unique_id=1937304728]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 10.0
+offset_right = 154.0
+offset_bottom = 54.0
+pivot_offset = Vector2(22, 22)
+
+[node name="Portrait" type="TextureRect" parent="Track/Actor2" unique_id=384182293]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 40.0
+offset_bottom = 41.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Actor3" type="Button" parent="Track" unique_id=837247176]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 10.0
+offset_right = 154.0
+offset_bottom = 54.0
+pivot_offset = Vector2(22, 22)
+
+[node name="Portrait" type="TextureRect" parent="Track/Actor3" unique_id=783257625]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 40.0
+offset_bottom = 41.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Battle" type="Control" parent="." unique_id=368719915]
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 138.0
+offset_right = 1572.0
+offset_bottom = 488.0
+
+[node name="Backdrop" type="TextureRect" parent="Battle" unique_id=441617660]
+layout_mode = 0
+offset_right = 1544.0
+offset_bottom = 350.0
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+
+[node name="Unit0" parent="Battle" unique_id=689484678 instance=ExtResource("4")]
+anchors_preset = 0
+offset_left = 110.0
+offset_right = 330.0
+offset_bottom = 340.0
+
+[node name="Unit1" parent="Battle" unique_id=1227619323 instance=ExtResource("4")]
+anchors_preset = 0
+offset_left = 610.0
+offset_right = 830.0
+offset_bottom = 340.0
+
+[node name="Unit2" parent="Battle" unique_id=550742002 instance=ExtResource("4")]
+anchors_preset = 0
+offset_left = 925.0
+offset_right = 1145.0
+offset_bottom = 340.0
+
+[node name="Unit3" parent="Battle" unique_id=1194231188 instance=ExtResource("4")]
+anchors_preset = 0
+offset_left = 1240.0
+offset_right = 1460.0
+offset_bottom = 340.0
+
+[node name="FX" type="Control" parent="Battle" unique_id=730425293]
+anchors_preset = 0
+offset_right = 1544.0
+offset_bottom = 350.0
+mouse_filter = 2
+script = ExtResource("5")
+
+[node name="Banner" type="Label" parent="Battle" unique_id=1805616222]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 100.0
+offset_right = 820.0
+offset_bottom = 180.0
+theme_override_colors/font_outline_color = Color(0.12, 0.07, 0.04, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="ActiveTitle" type="Label" parent="." unique_id=1809030044]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 503.0
+offset_right = 1028.0
+offset_bottom = 533.0
+theme_override_font_sizes/font_size = 21
+text = "行动序列 · 4 个装备槽"
+
+[node name="Slots" type="Control" parent="." unique_id=2133684997]
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 543.0
+offset_right = 1028.0
+offset_bottom = 705.0
+
+[node name="A0" type="Button" parent="Slots" unique_id=1185258322]
+layout_mode = 0
+offset_right = 232.0
+offset_bottom = 158.0
+
+[node name="Order" type="Label" parent="Slots/A0" unique_id=1150132770]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 114.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 14
+text = "行动 01"
+
+[node name="Icon" type="TextureRect" parent="Slots/A0" unique_id=713778946]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 37.0
+offset_right = 102.0
+offset_bottom = 117.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Slots/A0" unique_id=776798370]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 42.0
+offset_right = 220.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 21
+
+[node name="Cost" type="Label" parent="Slots/A0" unique_id=1310764245]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 78.0
+offset_right = 210.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 17
+
+[node name="Condition" type="Label" parent="Slots/A0" unique_id=560772908]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 123.0
+offset_right = 154.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 14
+text = "总是"
+
+[node name="Tune" type="Button" parent="Slots/A0" unique_id=664264927]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 7.0
+offset_right = 219.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 14
+text = "设置"
+
+[node name="Left" type="Button" parent="Slots/A0" unique_id=1653948406]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 122.0
+offset_right = 186.0
+offset_bottom = 148.0
+text = "‹"
+
+[node name="Right" type="Button" parent="Slots/A0" unique_id=605433337]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 122.0
+offset_right = 219.0
+offset_bottom = 148.0
+text = "›"
+
+[node name="A1" type="Button" parent="Slots" unique_id=3461836]
+layout_mode = 0
+offset_left = 246.0
+offset_right = 478.0
+offset_bottom = 158.0
+
+[node name="Order" type="Label" parent="Slots/A1" unique_id=1469286545]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 114.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 14
+text = "行动 02"
+
+[node name="Icon" type="TextureRect" parent="Slots/A1" unique_id=274111633]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 37.0
+offset_right = 102.0
+offset_bottom = 117.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Slots/A1" unique_id=1257931031]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 42.0
+offset_right = 220.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 21
+
+[node name="Cost" type="Label" parent="Slots/A1" unique_id=902049069]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 78.0
+offset_right = 210.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 17
+
+[node name="Condition" type="Label" parent="Slots/A1" unique_id=314511143]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 123.0
+offset_right = 154.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 14
+text = "总是"
+
+[node name="Tune" type="Button" parent="Slots/A1" unique_id=411786461]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 7.0
+offset_right = 219.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 14
+text = "设置"
+
+[node name="Left" type="Button" parent="Slots/A1" unique_id=1825973782]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 122.0
+offset_right = 186.0
+offset_bottom = 148.0
+text = "‹"
+
+[node name="Right" type="Button" parent="Slots/A1" unique_id=1281117353]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 122.0
+offset_right = 219.0
+offset_bottom = 148.0
+text = "›"
+
+[node name="A2" type="Button" parent="Slots" unique_id=1996991575]
+layout_mode = 0
+offset_left = 492.0
+offset_right = 724.0
+offset_bottom = 158.0
+
+[node name="Order" type="Label" parent="Slots/A2" unique_id=368531239]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 114.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 14
+text = "行动 03"
+
+[node name="Icon" type="TextureRect" parent="Slots/A2" unique_id=1296837357]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 37.0
+offset_right = 102.0
+offset_bottom = 117.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Slots/A2" unique_id=1769155774]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 42.0
+offset_right = 220.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 21
+
+[node name="Cost" type="Label" parent="Slots/A2" unique_id=928224305]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 78.0
+offset_right = 210.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 17
+
+[node name="Condition" type="Label" parent="Slots/A2" unique_id=1679933724]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 123.0
+offset_right = 154.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 14
+text = "总是"
+
+[node name="Tune" type="Button" parent="Slots/A2" unique_id=476208795]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 7.0
+offset_right = 219.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 14
+text = "设置"
+
+[node name="Left" type="Button" parent="Slots/A2" unique_id=1517009799]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 122.0
+offset_right = 186.0
+offset_bottom = 148.0
+text = "‹"
+
+[node name="Right" type="Button" parent="Slots/A2" unique_id=1625845889]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 122.0
+offset_right = 219.0
+offset_bottom = 148.0
+text = "›"
+
+[node name="A3" type="Button" parent="Slots" unique_id=1021741804]
+layout_mode = 0
+offset_left = 738.0
+offset_right = 970.0
+offset_bottom = 158.0
+
+[node name="Order" type="Label" parent="Slots/A3" unique_id=1994062827]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 114.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 14
+text = "行动 04"
+
+[node name="Icon" type="TextureRect" parent="Slots/A3" unique_id=983269730]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 37.0
+offset_right = 102.0
+offset_bottom = 117.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Slots/A3" unique_id=31543221]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 42.0
+offset_right = 220.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 21
+
+[node name="Cost" type="Label" parent="Slots/A3" unique_id=1756779016]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 78.0
+offset_right = 210.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 17
+
+[node name="Condition" type="Label" parent="Slots/A3" unique_id=1429648730]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 123.0
+offset_right = 154.0
+offset_bottom = 147.0
+theme_override_font_sizes/font_size = 14
+text = "总是"
+
+[node name="Tune" type="Button" parent="Slots/A3" unique_id=1924000840]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 7.0
+offset_right = 219.0
+offset_bottom = 32.0
+theme_override_font_sizes/font_size = 14
+text = "设置"
+
+[node name="Left" type="Button" parent="Slots/A3" unique_id=387176090]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 122.0
+offset_right = 186.0
+offset_bottom = 148.0
+text = "‹"
+
+[node name="Right" type="Button" parent="Slots/A3" unique_id=2141261812]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 122.0
+offset_right = 219.0
+offset_bottom = 148.0
+text = "›"
+
+[node name="PassiveTitle" type="Label" parent="." unique_id=1070459290]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 714.0
+offset_right = 528.0
+offset_bottom = 742.0
+theme_override_font_sizes/font_size = 20
+text = "反应装备 · 2 个装备槽"
+
+[node name="Reactions" type="Control" parent="." unique_id=1560885138]
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 750.0
+offset_right = 528.0
+offset_bottom = 826.0
+
+[node name="P0" type="Button" parent="Reactions" unique_id=1526983695]
+layout_mode = 0
+offset_right = 232.0
+offset_bottom = 76.0
+
+[node name="Icon" type="TextureRect" parent="Reactions/P0" unique_id=1257116591]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 68.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Reactions/P0" unique_id=83242535]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 10.0
+offset_right = 222.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 19
+
+[node name="Cost" type="Label" parent="Reactions/P0" unique_id=1767473073]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 39.0
+offset_right = 222.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 14
+
+[node name="Tune" type="Button" parent="Reactions/P0" unique_id=1080502205]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 5.0
+offset_right = 223.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 13
+text = "设"
+
+[node name="P1" type="Button" parent="Reactions" unique_id=363292750]
+layout_mode = 0
+offset_left = 246.0
+offset_right = 478.0
+offset_bottom = 76.0
+
+[node name="Icon" type="TextureRect" parent="Reactions/P1" unique_id=1143343053]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 68.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Reactions/P1" unique_id=2027437830]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 10.0
+offset_right = 222.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 19
+
+[node name="Cost" type="Label" parent="Reactions/P1" unique_id=638132091]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 39.0
+offset_right = 222.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 14
+
+[node name="Tune" type="Button" parent="Reactions/P1" unique_id=1036955173]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 5.0
+offset_right = 223.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 13
+text = "设"
+
+[node name="TargetHint" type="Label" parent="." unique_id=1521466350]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 748.0
+offset_right = 1025.0
+offset_bottom = 782.0
+theme_override_font_sizes/font_size = 18
+text = "优先目标：自动"
+
+[node name="Feedback" type="Label" parent="." unique_id=1109625804]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 782.0
+offset_right = 1025.0
+offset_bottom = 820.0
+theme_override_font_sizes/font_size = 16
+text = "点击技能槽装备；悬停查看详情"
+autowrap_mode = 2
+
+[node name="Details" type="Panel" parent="." unique_id=661476540]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 503.0
+offset_right = 1572.0
+offset_bottom = 826.0
+
+[node name="Icon" type="TextureRect" parent="Details" unique_id=448698706]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 92.0
+offset_bottom = 92.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Details" unique_id=1827125797]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 16.0
+offset_right = 500.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 23
+text = "战前准备"
+
+[node name="Cost" type="Label" parent="Details" unique_id=1878102004]
+layout_mode = 0
+offset_left = 110.0
+offset_top = 58.0
+offset_right = 500.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 17
+
+[node name="Text" type="RichTextLabel" parent="Details" unique_id=663393681]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 108.0
+offset_right = 506.0
+offset_bottom = 203.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.94, 0.85, 0.69, 1)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+
+[node name="Config" type="Control" parent="Details" unique_id=1562978894]
+visible = false
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 205.0
+offset_right = 506.0
+offset_bottom = 308.0
+
+[node name="Label" type="Label" parent="Details/Config" unique_id=344296723]
+layout_mode = 0
+offset_right = 470.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 14
+
+[node name="Condition" type="OptionButton" parent="Details/Config" unique_id=555018137]
+layout_mode = 0
+offset_top = 29.0
+offset_right = 237.0
+offset_bottom = 61.0
+
+[node name="Target" type="OptionButton" parent="Details/Config" unique_id=945339315]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 29.0
+offset_right = 490.0
+offset_bottom = 61.0
+
+[node name="Enabled" type="CheckBox" parent="Details/Config" unique_id=1334222683]
+layout_mode = 0
+offset_top = 67.0
+offset_right = 140.0
+offset_bottom = 97.0
+text = "启用规则"
+
+[node name="Preview" type="Button" parent="Details" unique_id=1110097027]
+visible = false
+layout_mode = 0
+offset_left = 328.0
+offset_top = 281.0
+offset_right = 505.0
+offset_bottom = 311.0
+theme_override_font_sizes/font_size = 16
+text = "试放预览"
+
+[node name="Library" type="Panel" parent="." unique_id=937063123]
+visible = false
+layout_mode = 0
+offset_left = 28.0
+offset_top = 503.0
+offset_right = 1028.0
+offset_bottom = 826.0
+
+[node name="Title" type="Label" parent="Library" unique_id=1346760600]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 738.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 23
+text = "选择技能"
+
+[node name="Close" type="Button" parent="Library" unique_id=362340159]
+layout_mode = 0
+offset_left = 935.0
+offset_top = 12.0
+offset_right = 981.0
+offset_bottom = 46.0
+text = "×"
+
+[node name="Choice0" type="Button" parent="Library" unique_id=1083403873]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 64.0
+offset_right = 144.0
+offset_bottom = 230.0
+
+[node name="Icon" type="TextureRect" parent="Library/Choice0" unique_id=1614622962]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 106.0
+offset_bottom = 98.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Library/Choice0" unique_id=797432646]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 105.0
+offset_right = 122.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Library/Choice0" unique_id=1156578114]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 137.0
+offset_right = 122.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="Choice1" type="Button" parent="Library" unique_id=212472543]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 64.0
+offset_right = 281.0
+offset_bottom = 230.0
+
+[node name="Icon" type="TextureRect" parent="Library/Choice1" unique_id=1133394742]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 106.0
+offset_bottom = 98.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Library/Choice1" unique_id=1546507859]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 105.0
+offset_right = 122.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Library/Choice1" unique_id=1780803975]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 137.0
+offset_right = 122.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="Choice2" type="Button" parent="Library" unique_id=62400215]
+layout_mode = 0
+offset_left = 292.0
+offset_top = 64.0
+offset_right = 418.0
+offset_bottom = 230.0
+
+[node name="Icon" type="TextureRect" parent="Library/Choice2" unique_id=1613447094]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 106.0
+offset_bottom = 98.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Library/Choice2" unique_id=1220510397]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 105.0
+offset_right = 122.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Library/Choice2" unique_id=124498330]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 137.0
+offset_right = 122.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="Choice3" type="Button" parent="Library" unique_id=1446959714]
+layout_mode = 0
+offset_left = 429.0
+offset_top = 64.0
+offset_right = 555.0
+offset_bottom = 230.0
+
+[node name="Icon" type="TextureRect" parent="Library/Choice3" unique_id=1287320639]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 106.0
+offset_bottom = 98.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Library/Choice3" unique_id=1281888600]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 105.0
+offset_right = 122.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Library/Choice3" unique_id=1193167601]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 137.0
+offset_right = 122.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="Choice4" type="Button" parent="Library" unique_id=1327917018]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 64.0
+offset_right = 692.0
+offset_bottom = 230.0
+
+[node name="Icon" type="TextureRect" parent="Library/Choice4" unique_id=2079617900]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 106.0
+offset_bottom = 98.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Library/Choice4" unique_id=1221061310]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 105.0
+offset_right = 122.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Library/Choice4" unique_id=473276355]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 137.0
+offset_right = 122.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="Choice5" type="Button" parent="Library" unique_id=1707189647]
+layout_mode = 0
+offset_left = 703.0
+offset_top = 64.0
+offset_right = 829.0
+offset_bottom = 230.0
+
+[node name="Icon" type="TextureRect" parent="Library/Choice5" unique_id=243434659]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 106.0
+offset_bottom = 98.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Library/Choice5" unique_id=1827637196]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 105.0
+offset_right = 122.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Library/Choice5" unique_id=1163223764]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 137.0
+offset_right = 122.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="Choice6" type="Button" parent="Library" unique_id=1309768325]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 64.0
+offset_right = 966.0
+offset_bottom = 230.0
+
+[node name="Icon" type="TextureRect" parent="Library/Choice6" unique_id=1903264401]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 12.0
+offset_right = 106.0
+offset_bottom = 98.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Library/Choice6" unique_id=1422127597]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 105.0
+offset_right = 122.0
+offset_bottom = 132.0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+
+[node name="Cost" type="Label" parent="Library/Choice6" unique_id=873018278]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 137.0
+offset_right = 122.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="Equip" type="Button" parent="Library" unique_id=1418725433]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 263.0
+offset_right = 208.0
+offset_bottom = 303.0
+theme_type_variation = &"ActionButton"
+text = "装备到当前槽"
+
+[node name="Remove" type="Button" parent="Library" unique_id=126510631]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 263.0
+offset_right = 347.0
+offset_bottom = 303.0
+text = "卸下"
+
+[node name="Hint" type="Label" parent="Library" unique_id=1227459300]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 264.0
+offset_right = 970.0
+offset_bottom = 304.0
+theme_override_font_sizes/font_size = 16
+text = "悬停查看效果 · 点击选择 · 试放预览"
+
+[node name="Settings" type="Panel" parent="." unique_id=557916335]
+visible = false
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 503.0
+offset_right = 1572.0
+offset_bottom = 826.0
+
+[node name="Title" type="Label" parent="Settings" unique_id=1545430832]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 468.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 23
+text = "设置"
+
+[node name="ClickTarget" type="CheckButton" parent="Settings" unique_id=1770728147]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 66.0
+offset_right = 496.0
+offset_bottom = 106.0
+text = "点击怪物设置优先目标"
+
+[node name="Motion" type="CheckButton" parent="Settings" unique_id=2069801997]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 118.0
+offset_right = 496.0
+offset_bottom = 158.0
+text = "减弱闪震"
+
+[node name="Sound" type="CheckButton" parent="Settings" unique_id=184559804]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 170.0
+offset_right = 496.0
+offset_bottom = 210.0
+text = "音效"
+
+[node name="ClearTarget" type="Button" parent="Settings" unique_id=72828215]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 230.0
+offset_right = 268.0
+offset_bottom = 266.0
+text = "清除优先目标"
+
+[node name="Close" type="Button" parent="Settings" unique_id=663381491]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 270.0
+offset_right = 504.0
+offset_bottom = 306.0
+text = "返回"
+
+[node name="Controls" type="HBoxContainer" parent="." unique_id=1035568536]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 846.0
+offset_right = 1572.0
+offset_bottom = 884.0
+theme_override_constants/separation = 10
+
+[node name="Preset" type="OptionButton" parent="Controls" unique_id=811734812]
+custom_minimum_size = Vector2(240, 38)
+layout_mode = 2
+
+[node name="Start" type="Button" parent="Controls" unique_id=532449184]
+custom_minimum_size = Vector2(166, 38)
+layout_mode = 2
+theme_type_variation = &"ActionButton"
+text = "开始战斗"
+
+[node name="Pause" type="Button" parent="Controls" unique_id=1119953874]
+custom_minimum_size = Vector2(90, 38)
+layout_mode = 2
+text = "暂停"
+
+[node name="Step" type="Button" parent="Controls" unique_id=1006591265]
+custom_minimum_size = Vector2(80, 38)
+layout_mode = 2
+text = "单步"
+
+[node name="Speed" type="OptionButton" parent="Controls" unique_id=1205601333]
+custom_minimum_size = Vector2(110, 38)
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="Controls" unique_id=2121225409]
+custom_minimum_size = Vector2(126, 38)
+layout_mode = 2
+text = "返回编排"
+
+[node name="Save" type="Button" parent="Controls" unique_id=826803281]
+custom_minimum_size = Vector2(126, 38)
+layout_mode = 2
+text = "保存战术"
+
+[node name="Settings" type="Button" parent="Controls" unique_id=717878579]
+custom_minimum_size = Vector2(100, 38)
+layout_mode = 2
+text = "设置"
+
+[node name="Playback" type="Timer" parent="." unique_id=548926448]
+wait_time = 0.4
+one_shot = true
+
+[node name="PreviewReset" type="Timer" parent="." unique_id=210121885]
+wait_time = 0.8
+one_shot = true
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=318333906]
+volume_db = -18.0

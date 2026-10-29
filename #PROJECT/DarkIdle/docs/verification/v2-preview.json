@@ -1,0 +1,3494 @@
+{
+  "checks": [
+    {
+      "name": "预览锁定装备与开战",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "预览结束完整恢复战前状态",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "炎爆击杀实际播放五层转移",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "预览后可继续装备",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "中断预览后仍可装备",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "炎盾预览播放真实受击且结束",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "calls": [
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Reset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":751.5,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            751.5,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Preset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":133.199996948242,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            133.199996948242,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Controls/Preset\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":28.0,\"y\":809.0},\"scale\":0.899999976158142,\"size\":{\"x\":240.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 28.0,
+              "y": 809.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 240.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"plan\":s.plan,\"passives\":s.passives,\"marked\":s.marked,\"state\":s.shown_state}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"marked\":-1.0,\"passives\":[{\"condition\":0.0,\"enabled\":true,\"id\":\"charge\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"shield\",\"target\":0.0}],\"plan\":[{\"condition\":0.0,\"enabled\":true,\"id\":\"wall\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"double\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"spread\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"burst\",\"target\":0.0}],\"state\":{\"actor\":-1.0,\"ap\":4.0,\"charge\":false,\"done\":[false,false,false,false],\"enemies\":[{\"ap\":1.0,\"burn\":0.0,\"hp\":95.0,\"max_hp\":95.0,\"rp\":0.0},{\"ap\":1.0,\"burn\":0.0,\"hp\":125.0,\"max_hp\":125.0,\"rp\":1.0},{\"ap\":1.0,\"burn\":0.0,\"hp\":155.0,\"max_hp\":155.0,\"rp\":0.0}],\"hp\":120.0,\"round\":0.0,\"rp\":3.0,\"timeline\":[0.84,0.61,0.38,0.16]}},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "marked": -1.0,
+            "passives": [
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "charge",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "shield",
+                "target": 0.0
+              }
+            ],
+            "plan": [
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "wall",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "double",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "spread",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "burst",
+                "target": 0.0
+              }
+            ],
+            "state": {
+              "actor": -1.0,
+              "ap": 4.0,
+              "charge": false,
+              "done": [
+                false,
+                false,
+                false,
+                false
+              ],
+              "enemies": [
+                {
+                  "ap": 1.0,
+                  "burn": 0.0,
+                  "hp": 95.0,
+                  "max_hp": 95.0,
+                  "rp": 0.0
+                },
+                {
+                  "ap": 1.0,
+                  "burn": 0.0,
+                  "hp": 125.0,
+                  "max_hp": 125.0,
+                  "rp": 1.0
+                },
+                {
+                  "ap": 1.0,
+                  "burn": 0.0,
+                  "hp": 155.0,
+                  "max_hp": 155.0,
+                  "rp": 0.0
+                }
+              ],
+              "hp": 120.0,
+              "round": 0.0,
+              "rp": 3.0,
+              "timeline": [
+                0.84,
+                0.61,
+                0.38,
+                0.16
+              ]
+            }
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Slots/A3\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":793.799987792969,\"y\":559.799987792969},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 793.799987792969,
+            "y": 559.799987792969
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            793.799987792969,
+            559.799987792969
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":793.799987792969,\"y\":559.799987792969},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 793.799987792969,
+            "y": 559.799987792969
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            793.799987792969,
+            559.799987792969
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":793.799987792969,\"y\":559.799987792969},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 793.799987792969,
+            "y": 559.799987792969
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            793.799987792969,
+            559.799987792969
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":793.799987792969,\"y\":559.799987792969},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 793.799987792969,
+            "y": 559.799987792969
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Choice5\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":714.599975585938,\"y\":585.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 714.599975585938,
+            "y": 585.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            714.599975585938,
+            585.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":714.599975585938,\"y\":585.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 714.599975585938,
+            "y": 585.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            714.599975585938,
+            585.0
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":714.599975585938,\"y\":585.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 714.599975585938,
+            "y": 585.0
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            714.599975585938,
+            585.0
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":714.599975585938,\"y\":585.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 714.599975585938,
+            "y": 585.0
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Details/Preview\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.previewing and s.get_node(\"Library/Equip\").disabled and s.get_node(\"Controls/Start\").disabled"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":0.0,\"kind\":\"ready\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 0.0,
+            "kind": "ready",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":1.0,\"kind\":\"cast\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 1.0,
+            "kind": "cast",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":1.0,\"kind\":\"cast\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 1.0,
+            "kind": "cast",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":1.0,\"kind\":\"cast\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 1.0,
+            "kind": "cast",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":3.0,\"kind\":\"hit\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 3.0,
+            "kind": "hit",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":4.0,\"kind\":\"detonate\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 4.0,
+            "kind": "detonate",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":5.0,\"kind\":\"blast\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 5.0,
+            "kind": "blast",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":5.0,\"kind\":\"blast\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 5.0,
+            "kind": "blast",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":6.0,\"kind\":\"death\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 6.0,
+            "kind": "death",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":7.0,\"kind\":\"transfer\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 7.0,
+            "kind": "transfer",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "screenshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+          },
+          {
+            "type": "saved_image",
+            "path": "D:\\_Files\\ai_test\\#PROJECT\\DarkIdle\\docs\\verification\\v2-burst-preview_content_1.png",
+            "mimeType": "image/png"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":9.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 9.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":9.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 9.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":9.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 9.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":9.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 9.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":9.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":false,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 9.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": false,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"plan\":s.plan,\"passives\":s.passives,\"marked\":s.marked,\"state\":s.shown_state}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"marked\":-1.0,\"passives\":[{\"condition\":0.0,\"enabled\":true,\"id\":\"charge\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"shield\",\"target\":0.0}],\"plan\":[{\"condition\":0.0,\"enabled\":true,\"id\":\"wall\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"double\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"spread\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"burst\",\"target\":0.0}],\"state\":{\"actor\":-1.0,\"ap\":4.0,\"charge\":false,\"done\":[false,false,false,false],\"enemies\":[{\"ap\":1.0,\"burn\":0.0,\"hp\":95.0,\"max_hp\":95.0,\"rp\":0.0},{\"ap\":1.0,\"burn\":0.0,\"hp\":125.0,\"max_hp\":125.0,\"rp\":1.0},{\"ap\":1.0,\"burn\":0.0,\"hp\":155.0,\"max_hp\":155.0,\"rp\":0.0}],\"hp\":120.0,\"round\":0.0,\"rp\":3.0,\"timeline\":[0.84,0.61,0.38,0.16]}},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "marked": -1.0,
+            "passives": [
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "charge",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "shield",
+                "target": 0.0
+              }
+            ],
+            "plan": [
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "wall",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "double",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "spread",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "burst",
+                "target": 0.0
+              }
+            ],
+            "state": {
+              "actor": -1.0,
+              "ap": 4.0,
+              "charge": false,
+              "done": [
+                false,
+                false,
+                false,
+                false
+              ],
+              "enemies": [
+                {
+                  "ap": 1.0,
+                  "burn": 0.0,
+                  "hp": 95.0,
+                  "max_hp": 95.0,
+                  "rp": 0.0
+                },
+                {
+                  "ap": 1.0,
+                  "burn": 0.0,
+                  "hp": 125.0,
+                  "max_hp": 125.0,
+                  "rp": 1.0
+                },
+                {
+                  "ap": 1.0,
+                  "burn": 0.0,
+                  "hp": 155.0,
+                  "max_hp": 155.0,
+                  "rp": 0.0
+                }
+              ],
+              "hp": 120.0,
+              "round": 0.0,
+              "rp": 3.0,
+              "timeline": [
+                0.84,
+                0.61,
+                0.38,
+                0.16
+              ]
+            }
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn not s.get_node(\"Library/Equip\").disabled and not s.get_node(\"Details/Preview\").disabled"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Details/Preview\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Reset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":751.5,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            751.5,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Slots/A0\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":129.599990844727,\"y\":559.799987792969},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 129.599990844727,
+            "y": 559.799987792969
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            129.599990844727,
+            559.799987792969
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":559.799987792969},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 559.799987792969
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            129.599990844727,
+            559.799987792969
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":559.799987792969},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 559.799987792969
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            129.599990844727,
+            559.799987792969
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":559.799987792969},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 559.799987792969
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Choice0\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":98.0999984741211,\"y\":585.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            98.0999984741211,
+            585.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            98.0999984741211,
+            585.0
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            98.0999984741211,
+            585.0
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Equip\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":126.899993896484,\"y\":707.399963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.plan[0].id==\"ignite\" and not s.previewing"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Preset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":133.199996948242,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            133.199996948242,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Controls/Preset\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":28.0,\"y\":809.0},\"scale\":0.899999976158142,\"size\":{\"x\":240.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 28.0,
+              "y": 809.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 240.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Reactions/P1\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":351.0,\"y\":709.199951171875},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 351.0,
+            "y": 709.199951171875
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            351.0,
+            709.199951171875
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":351.0,\"y\":709.199951171875},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 351.0,
+            "y": 709.199951171875
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            351.0,
+            709.199951171875
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":351.0,\"y\":709.199951171875},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 351.0,
+            "y": 709.199951171875
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            351.0,
+            709.199951171875
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":351.0,\"y\":709.199951171875},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 351.0,
+            "y": 709.199951171875
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Choice0\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":98.0999984741211,\"y\":585.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            98.0999984741211,
+            585.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            98.0999984741211,
+            585.0
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            98.0999984741211,
+            585.0
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Details/Preview\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1319.84997558594,
+            719.099975585938
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1319.84997558594,\"y\":719.099975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1319.84997558594,
+            "y": 719.099975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":0.0,\"kind\":\"ready\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 0.0,
+            "kind": "ready",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":1.0,\"kind\":\"turn\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 1.0,
+            "kind": "turn",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":1.0,\"kind\":\"turn\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 1.0,
+            "kind": "turn",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":1.0,\"kind\":\"turn\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 1.0,
+            "kind": "turn",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":2.0,\"kind\":\"enemy\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 2.0,
+            "kind": "enemy",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":2.0,\"kind\":\"enemy\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 2.0,
+            "kind": "enemy",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":0.0,\"cursor\":3.0,\"kind\":\"shield\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 0.0,
+            "cursor": 3.0,
+            "kind": "shield",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":4.0,\"kind\":\"burn\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 4.0,
+            "kind": "burn",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":5.0,\"kind\":\"hurt\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 5.0,
+            "kind": "hurt",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":1.0,\"cursor\":6.0,\"kind\":\"turn_end\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": 1.0,
+            "cursor": 6.0,
+            "kind": "turn_end",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":-1.0,\"cursor\":7.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": -1.0,
+            "cursor": 7.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":-1.0,\"cursor\":7.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": -1.0,
+            "cursor": 7.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":-1.0,\"cursor\":7.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":true,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": -1.0,
+            "cursor": 7.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": true,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"running\":s.running,\"previewing\":s.previewing,\"paused\":s.paused,\"cursor\":s.cursor,\"kind\":s.events[s.cursor].kind if s.cursor>=0 else \"ready\",\"actor\":s.events[s.cursor].actor if s.cursor>=0 else -1,\"result\":s.result_data,\"transfer_played\":s.fx.history.any(func(e):return e.text==\"余烬转移\" and e.actor==2)}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"actor\":-1.0,\"cursor\":7.0,\"kind\":\"preview_end\",\"paused\":false,\"previewing\":false,\"result\":{},\"running\":false,\"transfer_played\":false},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "actor": -1.0,
+            "cursor": 7.0,
+            "kind": "preview_end",
+            "paused": false,
+            "previewing": false,
+            "result": {},
+            "running": false,
+            "transfer_played": false
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn not s.previewing and s.events.any(func(e): return e.kind==\"hurt\" and e.amount==6)"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Close\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":887.399963378906,\"y\":478.799987792969},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 887.399963378906,
+            "y": 478.799987792969
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            887.399963378906,
+            478.799987792969
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":887.399963378906,\"y\":478.799987792969},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 887.399963378906,
+            "y": 478.799987792969
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            887.399963378906,
+            478.799987792969
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":887.399963378906,\"y\":478.799987792969},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 887.399963378906,
+            "y": 478.799987792969
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            887.399963378906,
+            478.799987792969
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":887.399963378906,\"y\":478.799987792969},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 887.399963378906,
+            "y": 478.799987792969
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Reset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":751.5,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            751.5,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    }
+  ]
+}

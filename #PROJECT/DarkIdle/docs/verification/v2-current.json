@@ -1,0 +1,182 @@
+[
+  {
+    "tool": "editor_state",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"current_scene\":\"res://scenes/tactical_main.tscn\",\"game_capture_ready\":true,\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":361292,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":20000,\"run_started_msec\":37943812,\"run_token\":10,\"session_active\":true,\"status\":\"live\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":true,\"is_playing\":true,\"project_name\":\"GD_DarkIdle\",\"readiness\":\"playing\",\"session_active\":true}"
+        }
+      ],
+      "structuredContent": {
+        "current_scene": "res://scenes/tactical_main.tscn",
+        "game_capture_ready": true,
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 361292,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 20000,
+          "run_started_msec": 37943812,
+          "run_token": 10,
+          "session_active": true,
+          "status": "live"
+        },
+        "godot_version": "4.7.2-stable (steam)",
+        "helper_live": true,
+        "is_playing": true,
+        "project_name": "GD_DarkIdle",
+        "readiness": "playing",
+        "session_active": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "logs_read",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\":\"editor\",\"lines\":[{\"details\":{\"children\":[{\"label\":\"<GDScript 错误>\",\"line\":45,\"path\":\"res://scripts/tactical_view.gd\",\"text\":\"INTEGER_DIVISION\"},{\"label\":\"<GDScript 源文件>\",\"line\":45,\"path\":\"res://scripts/tactical_view.gd\",\"text\":\"tactical_view.gd:45 @ GDScript::reload()\"}],\"debugger_tab\":\"Errors\",\"error_type_name\":\"warning\",\"frames\":[],\"message\":\"GDScript::reload: Integer division. Decimal part will be discarded.\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":45,\"path\":\"res://scripts/tactical_view.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":45,\"path\":\"res://scripts/tactical_view.gd\"},\"time\":\"0:00:02:252\"},\"function\":\"GDScript::reload\",\"level\":\"warn\",\"line\":45,\"path\":\"res://scripts/tactical_view.gd\",\"source\":\"editor\",\"text\":\"GDScript::reload: Integer division. Decimal part will be discarded.\"},{\"details\":{\"children\":[{\"label\":\"<GDScript 错误>\",\"line\":163,\"path\":\"res://scripts/tactical_view.gd\",\"text\":\"SHADOWED_VARIABLE_BASE_CLASS\"},{\"label\":\"<GDScript 源文件>\",\"line\":163,\"path\":\"res://scripts/tactical_view.gd\",\"text\":\"tactical_view.gd:163 @ GDScript::reload()\"}],\"debugger_tab\":\"Errors\",\"error_type_name\":\"warning\",\"frames\":[],\"message\":\"GDScript::reload: The local \\\"for\\\" iterator variable \\\"name\\\" is shadowing an already-declared property in the base class \\\"Node\\\".\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":163,\"path\":\"res://scripts/tactical_view.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":163,\"path\":\"res://scripts/tactical_view.gd\"},\"time\":\"0:00:02:252\"},\"function\":\"GDScript::reload\",\"level\":\"warn\",\"line\":163,\"path\":\"res://scripts/tactical_view.gd\",\"source\":\"editor\",\"text\":\"GDScript::reload: The local \\\"for\\\" iterator variable \\\"name\\\" is shadowing an already-declared property in the base class \\\"Node\\\".\"},{\"details\":{\"children\":[{\"label\":\"<GDScript 错误>\",\"line\":51,\"path\":\"res://scripts/tactical_fx.gd\",\"text\":\"INTEGER_DIVISION\"},{\"label\":\"<GDScript 源文件>\",\"line\":51,\"path\":\"res://scripts/tactical_fx.gd\",\"text\":\"tactical_fx.gd:51 @ GDScript::reload()\"}],\"debugger_tab\":\"Errors\",\"error_type_name\":\"warning\",\"frames\":[],\"message\":\"GDScript::reload: Integer division. Decimal part will be discarded.\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":51,\"path\":\"res://scripts/tactical_fx.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":51,\"path\":\"res://scripts/tactical_fx.gd\"},\"time\":\"0:00:02:276\"},\"function\":\"GDScript::reload\",\"level\":\"warn\",\"line\":51,\"path\":\"res://scripts/tactical_fx.gd\",\"source\":\"editor\",\"text\":\"GDScript::reload: Integer division. Decimal part will be discarded.\"}],\"total_count\":3,\"returned_count\":3,\"offset\":0,\"limit\":35,\"has_more\":false,\"run_id\":\"\",\"is_running\":false,\"dropped_count\":0,\"stale_run_id\":false,\"next_cursor\":0,\"appended_total\":0}"
+        }
+      ],
+      "structuredContent": {
+        "source": "editor",
+        "lines": [
+          {
+            "details": {
+              "children": [
+                {
+                  "label": "<GDScript 错误>",
+                  "line": 45,
+                  "path": "res://scripts/tactical_view.gd",
+                  "text": "INTEGER_DIVISION"
+                },
+                {
+                  "label": "<GDScript 源文件>",
+                  "line": 45,
+                  "path": "res://scripts/tactical_view.gd",
+                  "text": "tactical_view.gd:45 @ GDScript::reload()"
+                }
+              ],
+              "debugger_tab": "Errors",
+              "error_type_name": "warning",
+              "frames": [],
+              "message": "GDScript::reload: Integer division. Decimal part will be discarded.",
+              "resolved": {
+                "function": "GDScript::reload",
+                "line": 45,
+                "path": "res://scripts/tactical_view.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 45,
+                "path": "res://scripts/tactical_view.gd"
+              },
+              "time": "0:00:02:252"
+            },
+            "function": "GDScript::reload",
+            "level": "warn",
+            "line": 45,
+            "path": "res://scripts/tactical_view.gd",
+            "source": "editor",
+            "text": "GDScript::reload: Integer division. Decimal part will be discarded."
+          },
+          {
+            "details": {
+              "children": [
+                {
+                  "label": "<GDScript 错误>",
+                  "line": 163,
+                  "path": "res://scripts/tactical_view.gd",
+                  "text": "SHADOWED_VARIABLE_BASE_CLASS"
+                },
+                {
+                  "label": "<GDScript 源文件>",
+                  "line": 163,
+                  "path": "res://scripts/tactical_view.gd",
+                  "text": "tactical_view.gd:163 @ GDScript::reload()"
+                }
+              ],
+              "debugger_tab": "Errors",
+              "error_type_name": "warning",
+              "frames": [],
+              "message": "GDScript::reload: The local \"for\" iterator variable \"name\" is shadowing an already-declared property in the base class \"Node\".",
+              "resolved": {
+                "function": "GDScript::reload",
+                "line": 163,
+                "path": "res://scripts/tactical_view.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 163,
+                "path": "res://scripts/tactical_view.gd"
+              },
+              "time": "0:00:02:252"
+            },
+            "function": "GDScript::reload",
+            "level": "warn",
+            "line": 163,
+            "path": "res://scripts/tactical_view.gd",
+            "source": "editor",
+            "text": "GDScript::reload: The local \"for\" iterator variable \"name\" is shadowing an already-declared property in the base class \"Node\"."
+          },
+          {
+            "details": {
+              "children": [
+                {
+                  "label": "<GDScript 错误>",
+                  "line": 51,
+                  "path": "res://scripts/tactical_fx.gd",
+                  "text": "INTEGER_DIVISION"
+                },
+                {
+                  "label": "<GDScript 源文件>",
+                  "line": 51,
+                  "path": "res://scripts/tactical_fx.gd",
+                  "text": "tactical_fx.gd:51 @ GDScript::reload()"
+                }
+              ],
+              "debugger_tab": "Errors",
+              "error_type_name": "warning",
+              "frames": [],
+              "message": "GDScript::reload: Integer division. Decimal part will be discarded.",
+              "resolved": {
+                "function": "GDScript::reload",
+                "line": 51,
+                "path": "res://scripts/tactical_fx.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 51,
+                "path": "res://scripts/tactical_fx.gd"
+              },
+              "time": "0:00:02:276"
+            },
+            "function": "GDScript::reload",
+            "level": "warn",
+            "line": 51,
+            "path": "res://scripts/tactical_fx.gd",
+            "source": "editor",
+            "text": "GDScript::reload: Integer division. Decimal part will be discarded."
+          }
+        ],
+        "total_count": 3,
+        "returned_count": 3,
+        "offset": 0,
+        "limit": 35,
+        "has_more": false,
+        "run_id": "",
+        "is_running": false,
+        "dropped_count": 0,
+        "stale_run_id": false,
+        "next_cursor": 0,
+        "appended_total": 0
+      },
+      "isError": false
+    }
+  }
+]

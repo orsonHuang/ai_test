@@ -1,6 +1,6 @@
 # AI_INDEX · 文件路由表
 
-- DarkIdle 燃爆法师体验版（2026-10-29）：`#PROJECT/DarkIdle/README.md` → `docs/GDD.md` / `docs/执行文档.md`；Godot 工程 `gd-dark-idle/project.godot`，F5 运行。独立于 Godot-RogueIdle，一法师七主动三被动、三普攻敌人；真实 MCP 与原生操作已验收。
+- DarkIdle 战前策略v0.2（2026-10-30）：`#PROJECT/DarkIdle/README.md` → `docs/GDD-v2.md` / `docs/v2-改版与验收.md`；Godot 工程 `gd-dark-idle/project.godot`，F5运行`tactical_main.tscn`。4行动＋2反应槽、固定详情/试放、四角色攻击帧、行动轴、炎爆转移；AP用完结算后退出本轮，明确提示下一轮恢复。40规则＋47原生检查通过；独立于Godot-RogueIdle，尚未发行Steam。
 
 - Game Pulse 网页原型（2026-10-23）：`#PROJECT/Game-Pulse-Prototype/README.md` → `docs/验收记录.md`，静态入口dist/index.html，独立Git／Sites，私有网址 https://game-pulse-prototype-orson.decent-reed-7919.chatgpt.site 。精选、时间线、详情及筛选收藏确认，9条虚构更新；SVN未接。设计源在相邻Game-Pulse目录。
 

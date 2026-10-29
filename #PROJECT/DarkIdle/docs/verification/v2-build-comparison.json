@@ -1,0 +1,234 @@
+[
+  {
+    "build": "扩散燃爆",
+    "hp": 68.0,
+    "mark": -1.0,
+    "peak_burn": 7.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "扩散燃爆",
+    "hp": 68.0,
+    "mark": 0.0,
+    "peak_burn": 7.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "扩散燃爆",
+    "hp": 42.0,
+    "mark": 1.0,
+    "peak_burn": 7.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "扩散燃爆",
+    "hp": 44.0,
+    "mark": 2.0,
+    "peak_burn": 11.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "提前引爆",
+    "hp": 76.0,
+    "mark": -1.0,
+    "peak_burn": 9.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "提前引爆",
+    "hp": 76.0,
+    "mark": 0.0,
+    "peak_burn": 9.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "提前引爆",
+    "hp": 52.0,
+    "mark": 1.0,
+    "peak_burn": 9.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "提前引爆",
+    "hp": 44.0,
+    "mark": 2.0,
+    "peak_burn": 9.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "单点击杀",
+    "hp": 92.0,
+    "mark": -1.0,
+    "peak_burn": 9.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "单点击杀",
+    "hp": 92.0,
+    "mark": 0.0,
+    "peak_burn": 9.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "单点击杀",
+    "hp": 94.0,
+    "mark": 1.0,
+    "peak_burn": 9.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "单点击杀",
+    "hp": 78.0,
+    "mark": 2.0,
+    "peak_burn": 9.0,
+    "rounds": 3.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "全场焚烧",
+    "hp": 52.0,
+    "mark": -1.0,
+    "peak_burn": 5.0,
+    "rounds": 2.0,
+    "skips": [
+      "点燃 · AP 不足"
+    ],
+    "victory": true
+  },
+  {
+    "build": "全场焚烧",
+    "hp": 52.0,
+    "mark": 0.0,
+    "peak_burn": 5.0,
+    "rounds": 2.0,
+    "skips": [
+      "点燃 · AP 不足"
+    ],
+    "victory": true
+  },
+  {
+    "build": "全场焚烧",
+    "hp": 52.0,
+    "mark": 1.0,
+    "peak_burn": 5.0,
+    "rounds": 2.0,
+    "skips": [
+      "点燃 · AP 不足"
+    ],
+    "victory": true
+  },
+  {
+    "build": "全场焚烧",
+    "hp": 52.0,
+    "mark": 2.0,
+    "peak_burn": 5.0,
+    "rounds": 2.0,
+    "skips": [
+      "点燃 · AP 不足"
+    ],
+    "victory": true
+  },
+  {
+    "build": "回能防御",
+    "hp": 42.0,
+    "mark": -1.0,
+    "peak_burn": 4.0,
+    "rounds": 3.0,
+    "skips": [
+      "点燃 · AP 不足"
+    ],
+    "victory": true
+  },
+  {
+    "build": "回能防御",
+    "hp": 42.0,
+    "mark": 0.0,
+    "peak_burn": 4.0,
+    "rounds": 3.0,
+    "skips": [
+      "点燃 · AP 不足"
+    ],
+    "victory": true
+  },
+  {
+    "build": "回能防御",
+    "hp": 42.0,
+    "mark": 1.0,
+    "peak_burn": 4.0,
+    "rounds": 3.0,
+    "skips": [
+      "点燃 · AP 不足"
+    ],
+    "victory": true
+  },
+  {
+    "build": "回能防御",
+    "hp": 42.0,
+    "mark": 2.0,
+    "peak_burn": 4.0,
+    "rounds": 3.0,
+    "skips": [
+      "点燃 · AP 不足"
+    ],
+    "victory": true
+  },
+  {
+    "build": "无蓄能",
+    "hp": 68.0,
+    "mark": -1.0,
+    "peak_burn": 8.0,
+    "rounds": 4.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "无蓄能",
+    "hp": 68.0,
+    "mark": 0.0,
+    "peak_burn": 8.0,
+    "rounds": 4.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "无蓄能",
+    "hp": 62.0,
+    "mark": 1.0,
+    "peak_burn": 8.0,
+    "rounds": 4.0,
+    "skips": [],
+    "victory": true
+  },
+  {
+    "build": "无蓄能",
+    "hp": 50.0,
+    "mark": 2.0,
+    "peak_burn": 7.0,
+    "rounds": 4.0,
+    "skips": [],
+    "victory": true
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "tool": "editor_state",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"current_scene\":\"res://scenes/main.tscn\",\"game_capture_ready\":true,\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":34787487,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":20000,\"run_started_msec\":2952490,\"run_token\":9,\"session_active\":true,\"status\":\"live\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":true,\"is_playing\":false,\"project_name\":\"GD_DarkIdle\",\"readiness\":\"ready\",\"session_active\":true}"
+        }
+      ],
+      "structuredContent": {
+        "current_scene": "res://scenes/main.tscn",
+        "game_capture_ready": true,
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 34787487,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 20000,
+          "run_started_msec": 2952490,
+          "run_token": 9,
+          "session_active": true,
+          "status": "live"
+        },
+        "godot_version": "4.7.2-stable (steam)",
+        "helper_live": true,
+        "is_playing": false,
+        "project_name": "GD_DarkIdle",
+        "readiness": "ready",
+        "session_active": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "logs_read",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\":\"editor\",\"lines\":[{\"details\":{\"children\":[{\"label\":\"<GDScript 错误>\",\"line\":29,\"path\":\"res://scripts/battle_fx.gd\",\"text\":\"INTEGER_DIVISION\"},{\"label\":\"<GDScript 源文件>\",\"line\":29,\"path\":\"res://scripts/battle_fx.gd\",\"text\":\"battle_fx.gd:29 @ GDScript::reload()\"}],\"debugger_tab\":\"Errors\",\"error_type_name\":\"warning\",\"frames\":[],\"message\":\"GDScript::reload: Integer division. Decimal part will be discarded.\",\"resolved\":{\"function\":\"GDScript::reload\",\"line\":29,\"path\":\"res://scripts/battle_fx.gd\"},\"source\":{\"function\":\"GDScript::reload\",\"line\":29,\"path\":\"res://scripts/battle_fx.gd\"},\"time\":\"0:00:01:064\"},\"function\":\"GDScript::reload\",\"level\":\"warn\",\"line\":29,\"path\":\"res://scripts/battle_fx.gd\",\"source\":\"editor\",\"text\":\"GDScript::reload: Integer division. Decimal part will be discarded.\"},{\"details\":{\"children\":[{\"label\":\"<C++ 源文件>\",\"line\":0,\"path\":\"\",\"text\":\"drivers/wasapi/audio_driver_wasapi.cpp:778 @ thread_func()\"}],\"debugger_tab\":\"Errors\",\"error_type_name\":\"error\",\"frames\":[],\"message\":\"thread_func: WASAPI: GetBufferSize error\",\"resolved\":{\"function\":\"thread_func\",\"line\":0,\"path\":\"\"},\"source\":{\"function\":\"thread_func\",\"line\":0,\"path\":\"\"},\"time\":\"8:28:34:168\"},\"function\":\"thread_func\",\"level\":\"error\",\"line\":0,\"path\":\"\",\"source\":\"editor\",\"text\":\"thread_func: WASAPI: GetBufferSize error\"},{\"details\":{\"children\":[{\"label\":\"<C++ 源文件>\",\"line\":0,\"path\":\"\",\"text\":\"drivers/wasapi/audio_driver_wasapi.cpp:849 @ thread_func()\"}],\"debugger_tab\":\"Errors\",\"error_type_name\":\"warning\",\"frames\":[],\"message\":\"thread_func: WASAPI: Current output_device invalidated, closing output_device\",\"resolved\":{\"function\":\"thread_func\",\"line\":0,\"path\":\"\"},\"source\":{\"function\":\"thread_func\",\"line\":0,\"path\":\"\"},\"time\":\"8:28:34:168\"},\"function\":\"thread_func\",\"level\":\"warn\",\"line\":0,\"path\":\"\",\"source\":\"editor\",\"text\":\"thread_func: WASAPI: Current output_device invalidated, closing output_device\"}],\"total_count\":3,\"returned_count\":3,\"offset\":0,\"limit\":35,\"has_more\":false,\"run_id\":\"\",\"is_running\":false,\"dropped_count\":0,\"stale_run_id\":false,\"next_cursor\":0,\"appended_total\":0}"
+        }
+      ],
+      "structuredContent": {
+        "source": "editor",
+        "lines": [
+          {
+            "details": {
+              "children": [
+                {
+                  "label": "<GDScript 错误>",
+                  "line": 29,
+                  "path": "res://scripts/battle_fx.gd",
+                  "text": "INTEGER_DIVISION"
+                },
+                {
+                  "label": "<GDScript 源文件>",
+                  "line": 29,
+                  "path": "res://scripts/battle_fx.gd",
+                  "text": "battle_fx.gd:29 @ GDScript::reload()"
+                }
+              ],
+              "debugger_tab": "Errors",
+              "error_type_name": "warning",
+              "frames": [],
+              "message": "GDScript::reload: Integer division. Decimal part will be discarded.",
+              "resolved": {
+                "function": "GDScript::reload",
+                "line": 29,
+                "path": "res://scripts/battle_fx.gd"
+              },
+              "source": {
+                "function": "GDScript::reload",
+                "line": 29,
+                "path": "res://scripts/battle_fx.gd"
+              },
+              "time": "0:00:01:064"
+            },
+            "function": "GDScript::reload",
+            "level": "warn",
+            "line": 29,
+            "path": "res://scripts/battle_fx.gd",
+            "source": "editor",
+            "text": "GDScript::reload: Integer division. Decimal part will be discarded."
+          },
+          {
+            "details": {
+              "children": [
+                {
+                  "label": "<C++ 源文件>",
+                  "line": 0,
+                  "path": "",
+                  "text": "drivers/wasapi/audio_driver_wasapi.cpp:778 @ thread_func()"
+                }
+              ],
+              "debugger_tab": "Errors",
+              "error_type_name": "error",
+              "frames": [],
+              "message": "thread_func: WASAPI: GetBufferSize error",
+              "resolved": {
+                "function": "thread_func",
+                "line": 0,
+                "path": ""
+              },
+              "source": {
+                "function": "thread_func",
+                "line": 0,
+                "path": ""
+              },
+              "time": "8:28:34:168"
+            },
+            "function": "thread_func",
+            "level": "error",
+            "line": 0,
+            "path": "",
+            "source": "editor",
+            "text": "thread_func: WASAPI: GetBufferSize error"
+          },
+          {
+            "details": {
+              "children": [
+                {
+                  "label": "<C++ 源文件>",
+                  "line": 0,
+                  "path": "",
+                  "text": "drivers/wasapi/audio_driver_wasapi.cpp:849 @ thread_func()"
+                }
+              ],
+              "debugger_tab": "Errors",
+              "error_type_name": "warning",
+              "frames": [],
+              "message": "thread_func: WASAPI: Current output_device invalidated, closing output_device",
+              "resolved": {
+                "function": "thread_func",
+                "line": 0,
+                "path": ""
+              },
+              "source": {
+                "function": "thread_func",
+                "line": 0,
+                "path": ""
+              },
+              "time": "8:28:34:168"
+            },
+            "function": "thread_func",
+            "level": "warn",
+            "line": 0,
+            "path": "",
+            "source": "editor",
+            "text": "thread_func: WASAPI: Current output_device invalidated, closing output_device"
+          }
+        ],
+        "total_count": 3,
+        "returned_count": 3,
+        "offset": 0,
+        "limit": 35,
+        "has_more": false,
+        "run_id": "",
+        "is_running": false,
+        "dropped_count": 0,
+        "stale_run_id": false,
+        "next_cursor": 0,
+        "appended_total": 0
+      },
+      "isError": false
+    }
+  }
+]

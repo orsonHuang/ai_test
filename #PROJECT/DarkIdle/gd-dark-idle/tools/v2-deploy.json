@@ -1,0 +1,11 @@
+[
+  {"name":"editor_state","arguments":{}},
+  {"name":"project_manage","arguments":{"op":"stop"}},
+  {"name":"filesystem_manage","arguments":{"op":"scan"}},
+  {"name":"project_manage","arguments":{"op":"settings_set","params":{"key":"application/run/main_scene","value":"res://scenes/tactical_main.tscn"}}},
+  {"name":"scene_open","arguments":{"path":"res://scenes/tactical_main.tscn","force_reload":true}},
+  {"name":"scene_save","arguments":{}},
+  {"name":"scene_get_hierarchy","arguments":{"depth":2}},
+  {"name":"project_run","arguments":{}},
+  {"name":"logs_read","arguments":{"source":"game","count":50}}
+]

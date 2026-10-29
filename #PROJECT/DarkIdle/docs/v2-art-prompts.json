@@ -1,0 +1,59 @@
+{
+  "tool": "built-in image_gen",
+  "jobs": [
+    {
+      "key": "v2-ground",
+      "args": {
+        "transparent_background": false,
+        "prompt": "Use case: stylized-concept. Production game background only, dark Chinese folklore paper-cut woodblock theatre. Very wide panoramic 3:1 image. Aged ivory parchment sky, black crooked orchard silhouettes at far left and far right, distant pale layered ruined shrines and low mountains. A CONTINUOUS LEVEL WALKABLE EARTH PLATFORM runs horizontally across entire image at exactly 78% of image height, with a sharp black ground silhouette, roots, grass and a visible dark soil band beneath it to bottom edge. Plenty of empty unobstructed space above the ground for four side-view characters. Horizon and distant scenery significantly lighter than foreground characters will be. Sparse red leaves, charcoal ink, ivory and muted ochre. NO characters, UI, words, icons, moon dominating the scene, no irregular ground heights, no floating platforms. The ground top must be clearly recognizable and horizontal."
+      }
+    },
+    {
+      "key": "v2-icons",
+      "args": {
+        "transparent_background": true,
+        "prompt": "Use case: stylized-concept. A transparent game skill ICON ATLAS, exactly FIVE columns by THREE rows, 15 equal square cells in a clean regular grid, each icon centered with 18% padding and completely isolated. Every icon dark woodcut paper collage, flat angular shapes, charcoal outlines, vermilion orange for fire and teal blue for magic. NO text, frames, labels, letters, grid lines, or scenery. Row 1 left to right: 1 a single flame; 2 three flames in a horizontal wall; 3 twin flames with rising spark denoting doubling; 4 a central ember with three outward curling trails denoting spread; 5 a burning funerary pyre with two tall flames. Row 2: 6 a bursting fire orb with jagged rays; 7 a flaming meteor ring around three embers; 8 a shield made of flame; 9 a blue spiral droplet restoring mana; 10 a glowing charged fire crystal between two hands. Row 3: 11 three black thorn spikes lunging left; 12 three ivory claw slashes; 13 a black curved sickle; 14 a small burning coal for burn status; 15 an ivory/red targeting reticle. Cohesive high contrast silhouettes readable at 48x48, not tiny complex illustrations. Aspect ratio 5:3."
+      }
+    },
+    {
+      "key": "v2-mage",
+      "args": {
+        "transparent_background": true,
+        "referenced_image_paths": [
+          "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/assets/units.png"
+        ],
+        "prompt": "Use case: identity-preserve. Input image is a CHARACTER DESIGN reference atlas. Create a production animation sprite strip containing ONLY the FIRST character, the hooded fire mage facing RIGHT. Frame 1 neutral staff held diagonally; frame 2 raises staff behind head, leans slightly backward; frame 3 thrusts staff forward with bright SMALL fire flare at tip, forward lean; frame 4 retracts staff toward original upright pose, scarf settles. Exactly FOUR distinct full-body attack animation frames left-to-right in ONE horizontal row, equal square cells, 4:1 canvas. Preserve this character's identity, mask/cloak/body details and the reference's black charcoal paper-cut woodblock collage with small vermilion accents. Each frame fits completely inside its own cell, centered at same horizontal pivot, same overall size, FEET ON SAME BASELINE at 88% of cell height, ample transparent padding, at least 10% transparent gap between frames. Keep character direction fixed. No new characters, no ground/shadows, no UI/labels/grid/borders, no overlapping frames. Genuine transparent background. The four poses must have visibly different limb articulation, not just translated copies."
+      }
+    },
+    {
+      "key": "v2-soot",
+      "args": {
+        "transparent_background": true,
+        "referenced_image_paths": [
+          "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/assets/units.png"
+        ],
+        "prompt": "Use case: identity-preserve. Input image is a CHARACTER DESIGN reference atlas. Create a production animation sprite strip containing ONLY the SECOND character, round spiny soot beast facing LEFT. Frame 1 neutral crouch; frame 2 compresses body low, spikes tilt backward; frame 3 lunges its head LEFT with spikes extended, rear feet stretched; frame 4 recoils toward neutral stance. Exactly FOUR distinct full-body attack animation frames left-to-right in ONE horizontal row, equal square cells, 4:1 canvas. Preserve this character's identity, mask/cloak/body details and the reference's black charcoal paper-cut woodblock collage with small vermilion accents. Each frame fits completely inside its own cell, centered at same horizontal pivot, same overall size, FEET ON SAME BASELINE at 88% of cell height, ample transparent padding, at least 10% transparent gap between frames. Keep character direction fixed. No new characters, no ground/shadows, no UI/labels/grid/borders, no overlapping frames. Genuine transparent background. The four poses must have visibly different limb articulation, not just translated copies."
+      }
+    },
+    {
+      "key": "v2-antler",
+      "args": {
+        "transparent_background": true,
+        "referenced_image_paths": [
+          "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/assets/units.png"
+        ],
+        "prompt": "Use case: identity-preserve. Input image is a CHARACTER DESIGN reference atlas. Create a production animation sprite strip containing ONLY the THIRD character, antler masked forest sentinel facing LEFT. Frame 1 neutral stooped stance; frame 2 raises long claw behind shoulder; frame 3 slashes left with a wide extended arm and bent torso; frame 4 retracts claw toward body. Exactly FOUR distinct full-body attack animation frames left-to-right in ONE horizontal row, equal square cells, 4:1 canvas. Preserve this character's identity, mask/cloak/body details and the reference's black charcoal paper-cut woodblock collage with small vermilion accents. Each frame fits completely inside its own cell, centered at same horizontal pivot, same overall size, FEET ON SAME BASELINE at 88% of cell height, ample transparent padding, at least 10% transparent gap between frames. Keep character direction fixed. No new characters, no ground/shadows, no UI/labels/grid/borders, no overlapping frames. Genuine transparent background. The four poses must have visibly different limb articulation, not just translated copies."
+      }
+    },
+    {
+      "key": "v2-straw",
+      "args": {
+        "transparent_background": true,
+        "referenced_image_paths": [
+          "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/assets/units.png"
+        ],
+        "prompt": "Use case: identity-preserve. Input image is a CHARACTER DESIGN reference atlas. Create a production animation sprite strip containing ONLY the FOURTH character, straw hat scarecrow facing LEFT. Frame 1 neutral stance; frame 2 pulls both twig arms back and leans right; frame 3 sweeps both arms to the LEFT in a clear striking pose; frame 4 withdraws arms and straightens. Exactly FOUR distinct full-body attack animation frames left-to-right in ONE horizontal row, equal square cells, 4:1 canvas. Preserve this character's identity, mask/cloak/body details and the reference's black charcoal paper-cut woodblock collage with small vermilion accents. Each frame fits completely inside its own cell, centered at same horizontal pivot, same overall size, FEET ON SAME BASELINE at 88% of cell height, ample transparent padding, at least 10% transparent gap between frames. Keep character direction fixed. No new characters, no ground/shadows, no UI/labels/grid/borders, no overlapping frames. Genuine transparent background. The four poses must have visibly different limb articulation, not just translated copies."
+      }
+    }
+  ]
+}

@@ -1,0 +1,655 @@
+[
+  {
+    "tool": "editor_state",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"current_scene\":\"res://scenes/main.tscn\",\"game_capture_ready\":true,\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":34990600,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":20000,\"run_started_msec\":2952490,\"run_token\":9,\"session_active\":true,\"status\":\"live\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":true,\"is_playing\":false,\"project_name\":\"GD_DarkIdle\",\"readiness\":\"ready\",\"session_active\":true}"
+        }
+      ],
+      "structuredContent": {
+        "current_scene": "res://scenes/main.tscn",
+        "game_capture_ready": true,
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 34990600,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 20000,
+          "run_started_msec": 2952490,
+          "run_token": 9,
+          "session_active": true,
+          "status": "live"
+        },
+        "godot_version": "4.7.2-stable (steam)",
+        "helper_live": true,
+        "is_playing": false,
+        "project_name": "GD_DarkIdle",
+        "readiness": "ready",
+        "session_active": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"reason\":\"Project was not running; no action taken\",\"stopped\":true,\"undoable\":false,\"was_running\":false}"
+        }
+      ],
+      "structuredContent": {
+        "reason": "Project was not running; no action taken",
+        "stopped": true,
+        "undoable": false,
+        "was_running": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "filesystem_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"global_class_count\":43,\"global_classes_registered_delta\":0,\"reason\":\"Filesystem scan is an editor operation\",\"scan_completed\":true,\"scan_settle\":\"settled\",\"undoable\":false,\"was_already_scanning\":false}"
+        }
+      ],
+      "structuredContent": {
+        "global_class_count": 43,
+        "global_classes_registered_delta": 0,
+        "reason": "Filesystem scan is an editor operation",
+        "scan_completed": true,
+        "scan_settle": "settled",
+        "undoable": false,
+        "was_already_scanning": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"application/run/main_scene\",\"old_value\":\"res://scenes/tactical_main.tscn\",\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"String\",\"undoable\":false,\"value\":\"res://scenes/tactical_main.tscn\"}"
+        }
+      ],
+      "structuredContent": {
+        "key": "application/run/main_scene",
+        "old_value": "res://scenes/tactical_main.tscn",
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "String",
+        "undoable": false,
+        "value": "res://scenes/tactical_main.tscn"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":true,\"path\":\"res://scenes/tactical_main.tscn\",\"previous_scene_path\":\"res://scenes/main.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": true,
+        "path": "res://scenes/tactical_main.tscn",
+        "previous_scene_path": "res://scenes/main.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "settled",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/tactical_main.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/tactical_main.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_get_hierarchy",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"root\":\"\",\"nodes\":[{\"children_count\":18,\"name\":\"DarkIdle\",\"path\":\"/DarkIdle\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"Paper\",\"path\":\"/DarkIdle/Paper\",\"type\":\"ColorRect\"},{\"children_count\":0,\"name\":\"Header\",\"path\":\"/DarkIdle/Header\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"Round\",\"path\":\"/DarkIdle/Round\",\"type\":\"Label\"},{\"children_count\":7,\"name\":\"Track\",\"path\":\"/DarkIdle/Track\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"Title\",\"path\":\"/DarkIdle/Track/Title\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"Line\",\"path\":\"/DarkIdle/Track/Line\",\"type\":\"ColorRect\"},{\"children_count\":0,\"name\":\"End\",\"path\":\"/DarkIdle/Track/End\",\"type\":\"Label\"},{\"children_count\":1,\"name\":\"Actor0\",\"path\":\"/DarkIdle/Track/Actor0\",\"type\":\"Button\"},{\"children_count\":1,\"name\":\"Actor1\",\"path\":\"/DarkIdle/Track/Actor1\",\"type\":\"Button\"},{\"children_count\":1,\"name\":\"Actor2\",\"path\":\"/DarkIdle/Track/Actor2\",\"type\":\"Button\"},{\"children_count\":1,\"name\":\"Actor3\",\"path\":\"/DarkIdle/Track/Actor3\",\"type\":\"Button\"},{\"children_count\":7,\"name\":\"Battle\",\"path\":\"/DarkIdle/Battle\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"Backdrop\",\"path\":\"/DarkIdle/Battle/Backdrop\",\"type\":\"TextureRect\"},{\"children_count\":11,\"name\":\"Unit0\",\"path\":\"/DarkIdle/Battle/Unit0\",\"type\":\"Control\"},{\"children_count\":11,\"name\":\"Unit1\",\"path\":\"/DarkIdle/Battle/Unit1\",\"type\":\"Control\"},{\"children_count\":11,\"name\":\"Unit2\",\"path\":\"/DarkIdle/Battle/Unit2\",\"type\":\"Control\"},{\"children_count\":11,\"name\":\"Unit3\",\"path\":\"/DarkIdle/Battle/Unit3\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"FX\",\"path\":\"/DarkIdle/Battle/FX\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"Banner\",\"path\":\"/DarkIdle/Battle/Banner\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"ActiveTitle\",\"path\":\"/DarkIdle/ActiveTitle\",\"type\":\"Label\"},{\"children_count\":4,\"name\":\"Slots\",\"path\":\"/DarkIdle/Slots\",\"type\":\"Control\"},{\"children_count\":8,\"name\":\"A0\",\"path\":\"/DarkIdle/Slots/A0\",\"type\":\"Button\"},{\"children_count\":8,\"name\":\"A1\",\"path\":\"/DarkIdle/Slots/A1\",\"type\":\"Button\"},{\"children_count\":8,\"name\":\"A2\",\"path\":\"/DarkIdle/Slots/A2\",\"type\":\"Button\"},{\"children_count\":8,\"name\":\"A3\",\"path\":\"/DarkIdle/Slots/A3\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"PassiveTitle\",\"path\":\"/DarkIdle/PassiveTitle\",\"type\":\"Label\"},{\"children_count\":2,\"name\":\"Reactions\",\"path\":\"/DarkIdle/Reactions\",\"type\":\"Control\"},{\"children_count\":4,\"name\":\"P0\",\"path\":\"/DarkIdle/Reactions/P0\",\"type\":\"Button\"},{\"children_count\":4,\"name\":\"P1\",\"path\":\"/DarkIdle/Reactions/P1\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"TargetHint\",\"path\":\"/DarkIdle/TargetHint\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"Feedback\",\"path\":\"/DarkIdle/Feedback\",\"type\":\"Label\"},{\"children_count\":6,\"name\":\"Details\",\"path\":\"/DarkIdle/Details\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"Icon\",\"path\":\"/DarkIdle/Details/Icon\",\"type\":\"TextureRect\"},{\"children_count\":0,\"name\":\"Title\",\"path\":\"/DarkIdle/Details/Title\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"Cost\",\"path\":\"/DarkIdle/Details/Cost\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"Text\",\"path\":\"/DarkIdle/Details/Text\",\"type\":\"RichTextLabel\"},{\"children_count\":4,\"name\":\"Config\",\"path\":\"/DarkIdle/Details/Config\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"Preview\",\"path\":\"/DarkIdle/Details/Preview\",\"type\":\"Button\"},{\"children_count\":12,\"name\":\"Library\",\"path\":\"/DarkIdle/Library\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"Title\",\"path\":\"/DarkIdle/Library/Title\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"Close\",\"path\":\"/DarkIdle/Library/Close\",\"type\":\"Button\"},{\"children_count\":3,\"name\":\"Choice0\",\"path\":\"/DarkIdle/Library/Choice0\",\"type\":\"Button\"},{\"children_count\":3,\"name\":\"Choice1\",\"path\":\"/DarkIdle/Library/Choice1\",\"type\":\"Button\"},{\"children_count\":3,\"name\":\"Choice2\",\"path\":\"/DarkIdle/Library/Choice2\",\"type\":\"Button\"},{\"children_count\":3,\"name\":\"Choice3\",\"path\":\"/DarkIdle/Library/Choice3\",\"type\":\"Button\"},{\"children_count\":3,\"name\":\"Choice4\",\"path\":\"/DarkIdle/Library/Choice4\",\"type\":\"Button\"},{\"children_count\":3,\"name\":\"Choice5\",\"path\":\"/DarkIdle/Library/Choice5\",\"type\":\"Button\"},{\"children_count\":3,\"name\":\"Choice6\",\"path\":\"/DarkIdle/Library/Choice6\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Equip\",\"path\":\"/DarkIdle/Library/Equip\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Remove\",\"path\":\"/DarkIdle/Library/Remove\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Hint\",\"path\":\"/DarkIdle/Library/Hint\",\"type\":\"Label\"},{\"children_count\":6,\"name\":\"Settings\",\"path\":\"/DarkIdle/Settings\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"Title\",\"path\":\"/DarkIdle/Settings/Title\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"ClickTarget\",\"path\":\"/DarkIdle/Settings/ClickTarget\",\"type\":\"CheckButton\"},{\"children_count\":0,\"name\":\"Motion\",\"path\":\"/DarkIdle/Settings/Motion\",\"type\":\"CheckButton\"},{\"children_count\":0,\"name\":\"Sound\",\"path\":\"/DarkIdle/Settings/Sound\",\"type\":\"CheckButton\"},{\"children_count\":0,\"name\":\"ClearTarget\",\"path\":\"/DarkIdle/Settings/ClearTarget\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Close\",\"path\":\"/DarkIdle/Settings/Close\",\"type\":\"Button\"},{\"children_count\":8,\"name\":\"Controls\",\"path\":\"/DarkIdle/Controls\",\"type\":\"HBoxContainer\"},{\"children_count\":0,\"name\":\"Preset\",\"path\":\"/DarkIdle/Controls/Preset\",\"type\":\"OptionButton\"},{\"children_count\":0,\"name\":\"Start\",\"path\":\"/DarkIdle/Controls/Start\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Pause\",\"path\":\"/DarkIdle/Controls/Pause\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Step\",\"path\":\"/DarkIdle/Controls/Step\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Speed\",\"path\":\"/DarkIdle/Controls/Speed\",\"type\":\"OptionButton\"},{\"children_count\":0,\"name\":\"Reset\",\"path\":\"/DarkIdle/Controls/Reset\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Save\",\"path\":\"/DarkIdle/Controls/Save\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Settings\",\"path\":\"/DarkIdle/Controls/Settings\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Playback\",\"path\":\"/DarkIdle/Playback\",\"type\":\"Timer\"},{\"children_count\":0,\"name\":\"PreviewReset\",\"path\":\"/DarkIdle/PreviewReset\",\"type\":\"Timer\"},{\"children_count\":0,\"name\":\"SoundPlayer\",\"path\":\"/DarkIdle/SoundPlayer\",\"type\":\"AudioStreamPlayer\"}],\"total_count\":71,\"offset\":0,\"limit\":100,\"has_more\":false}"
+        }
+      ],
+      "structuredContent": {
+        "root": "",
+        "nodes": [
+          {
+            "children_count": 18,
+            "name": "DarkIdle",
+            "path": "/DarkIdle",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "Paper",
+            "path": "/DarkIdle/Paper",
+            "type": "ColorRect"
+          },
+          {
+            "children_count": 0,
+            "name": "Header",
+            "path": "/DarkIdle/Header",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "Round",
+            "path": "/DarkIdle/Round",
+            "type": "Label"
+          },
+          {
+            "children_count": 7,
+            "name": "Track",
+            "path": "/DarkIdle/Track",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "Title",
+            "path": "/DarkIdle/Track/Title",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "Line",
+            "path": "/DarkIdle/Track/Line",
+            "type": "ColorRect"
+          },
+          {
+            "children_count": 0,
+            "name": "End",
+            "path": "/DarkIdle/Track/End",
+            "type": "Label"
+          },
+          {
+            "children_count": 1,
+            "name": "Actor0",
+            "path": "/DarkIdle/Track/Actor0",
+            "type": "Button"
+          },
+          {
+            "children_count": 1,
+            "name": "Actor1",
+            "path": "/DarkIdle/Track/Actor1",
+            "type": "Button"
+          },
+          {
+            "children_count": 1,
+            "name": "Actor2",
+            "path": "/DarkIdle/Track/Actor2",
+            "type": "Button"
+          },
+          {
+            "children_count": 1,
+            "name": "Actor3",
+            "path": "/DarkIdle/Track/Actor3",
+            "type": "Button"
+          },
+          {
+            "children_count": 7,
+            "name": "Battle",
+            "path": "/DarkIdle/Battle",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "Backdrop",
+            "path": "/DarkIdle/Battle/Backdrop",
+            "type": "TextureRect"
+          },
+          {
+            "children_count": 11,
+            "name": "Unit0",
+            "path": "/DarkIdle/Battle/Unit0",
+            "type": "Control"
+          },
+          {
+            "children_count": 11,
+            "name": "Unit1",
+            "path": "/DarkIdle/Battle/Unit1",
+            "type": "Control"
+          },
+          {
+            "children_count": 11,
+            "name": "Unit2",
+            "path": "/DarkIdle/Battle/Unit2",
+            "type": "Control"
+          },
+          {
+            "children_count": 11,
+            "name": "Unit3",
+            "path": "/DarkIdle/Battle/Unit3",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "FX",
+            "path": "/DarkIdle/Battle/FX",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "Banner",
+            "path": "/DarkIdle/Battle/Banner",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "ActiveTitle",
+            "path": "/DarkIdle/ActiveTitle",
+            "type": "Label"
+          },
+          {
+            "children_count": 4,
+            "name": "Slots",
+            "path": "/DarkIdle/Slots",
+            "type": "Control"
+          },
+          {
+            "children_count": 8,
+            "name": "A0",
+            "path": "/DarkIdle/Slots/A0",
+            "type": "Button"
+          },
+          {
+            "children_count": 8,
+            "name": "A1",
+            "path": "/DarkIdle/Slots/A1",
+            "type": "Button"
+          },
+          {
+            "children_count": 8,
+            "name": "A2",
+            "path": "/DarkIdle/Slots/A2",
+            "type": "Button"
+          },
+          {
+            "children_count": 8,
+            "name": "A3",
+            "path": "/DarkIdle/Slots/A3",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "PassiveTitle",
+            "path": "/DarkIdle/PassiveTitle",
+            "type": "Label"
+          },
+          {
+            "children_count": 2,
+            "name": "Reactions",
+            "path": "/DarkIdle/Reactions",
+            "type": "Control"
+          },
+          {
+            "children_count": 4,
+            "name": "P0",
+            "path": "/DarkIdle/Reactions/P0",
+            "type": "Button"
+          },
+          {
+            "children_count": 4,
+            "name": "P1",
+            "path": "/DarkIdle/Reactions/P1",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "TargetHint",
+            "path": "/DarkIdle/TargetHint",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "Feedback",
+            "path": "/DarkIdle/Feedback",
+            "type": "Label"
+          },
+          {
+            "children_count": 6,
+            "name": "Details",
+            "path": "/DarkIdle/Details",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "Icon",
+            "path": "/DarkIdle/Details/Icon",
+            "type": "TextureRect"
+          },
+          {
+            "children_count": 0,
+            "name": "Title",
+            "path": "/DarkIdle/Details/Title",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "Cost",
+            "path": "/DarkIdle/Details/Cost",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "Text",
+            "path": "/DarkIdle/Details/Text",
+            "type": "RichTextLabel"
+          },
+          {
+            "children_count": 4,
+            "name": "Config",
+            "path": "/DarkIdle/Details/Config",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "Preview",
+            "path": "/DarkIdle/Details/Preview",
+            "type": "Button"
+          },
+          {
+            "children_count": 12,
+            "name": "Library",
+            "path": "/DarkIdle/Library",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "Title",
+            "path": "/DarkIdle/Library/Title",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "Close",
+            "path": "/DarkIdle/Library/Close",
+            "type": "Button"
+          },
+          {
+            "children_count": 3,
+            "name": "Choice0",
+            "path": "/DarkIdle/Library/Choice0",
+            "type": "Button"
+          },
+          {
+            "children_count": 3,
+            "name": "Choice1",
+            "path": "/DarkIdle/Library/Choice1",
+            "type": "Button"
+          },
+          {
+            "children_count": 3,
+            "name": "Choice2",
+            "path": "/DarkIdle/Library/Choice2",
+            "type": "Button"
+          },
+          {
+            "children_count": 3,
+            "name": "Choice3",
+            "path": "/DarkIdle/Library/Choice3",
+            "type": "Button"
+          },
+          {
+            "children_count": 3,
+            "name": "Choice4",
+            "path": "/DarkIdle/Library/Choice4",
+            "type": "Button"
+          },
+          {
+            "children_count": 3,
+            "name": "Choice5",
+            "path": "/DarkIdle/Library/Choice5",
+            "type": "Button"
+          },
+          {
+            "children_count": 3,
+            "name": "Choice6",
+            "path": "/DarkIdle/Library/Choice6",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Equip",
+            "path": "/DarkIdle/Library/Equip",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Remove",
+            "path": "/DarkIdle/Library/Remove",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Hint",
+            "path": "/DarkIdle/Library/Hint",
+            "type": "Label"
+          },
+          {
+            "children_count": 6,
+            "name": "Settings",
+            "path": "/DarkIdle/Settings",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "Title",
+            "path": "/DarkIdle/Settings/Title",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "ClickTarget",
+            "path": "/DarkIdle/Settings/ClickTarget",
+            "type": "CheckButton"
+          },
+          {
+            "children_count": 0,
+            "name": "Motion",
+            "path": "/DarkIdle/Settings/Motion",
+            "type": "CheckButton"
+          },
+          {
+            "children_count": 0,
+            "name": "Sound",
+            "path": "/DarkIdle/Settings/Sound",
+            "type": "CheckButton"
+          },
+          {
+            "children_count": 0,
+            "name": "ClearTarget",
+            "path": "/DarkIdle/Settings/ClearTarget",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Close",
+            "path": "/DarkIdle/Settings/Close",
+            "type": "Button"
+          },
+          {
+            "children_count": 8,
+            "name": "Controls",
+            "path": "/DarkIdle/Controls",
+            "type": "HBoxContainer"
+          },
+          {
+            "children_count": 0,
+            "name": "Preset",
+            "path": "/DarkIdle/Controls/Preset",
+            "type": "OptionButton"
+          },
+          {
+            "children_count": 0,
+            "name": "Start",
+            "path": "/DarkIdle/Controls/Start",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Pause",
+            "path": "/DarkIdle/Controls/Pause",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Step",
+            "path": "/DarkIdle/Controls/Step",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Speed",
+            "path": "/DarkIdle/Controls/Speed",
+            "type": "OptionButton"
+          },
+          {
+            "children_count": 0,
+            "name": "Reset",
+            "path": "/DarkIdle/Controls/Reset",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Save",
+            "path": "/DarkIdle/Controls/Save",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Settings",
+            "path": "/DarkIdle/Controls/Settings",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Playback",
+            "path": "/DarkIdle/Playback",
+            "type": "Timer"
+          },
+          {
+            "children_count": 0,
+            "name": "PreviewReset",
+            "path": "/DarkIdle/PreviewReset",
+            "type": "Timer"
+          },
+          {
+            "children_count": 0,
+            "name": "SoundPlayer",
+            "path": "/DarkIdle/SoundPlayer",
+            "type": "AudioStreamPlayer"
+          }
+        ],
+        "total_count": 71,
+        "offset": 0,
+        "limit": 100,
+        "has_more": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_run",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":2917,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":37943812,\"run_token\":10,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"main\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[],\"recent_errors_may_predate_run\":false,\"recent_errors_scope\":\"none\",\"recent_errors_truncated\":false,\"retained_errors\":[],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+        }
+      ],
+      "structuredContent": {
+        "autosave": true,
+        "current_run_errors": [],
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 2917,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 3000,
+          "run_started_msec": 37943812,
+          "run_token": 10,
+          "session_active": true,
+          "status": "live"
+        },
+        "helper_live": true,
+        "mode": "main",
+        "reason": "Game launched and the Godot AI game helper is live.",
+        "recent_errors": [],
+        "recent_errors_may_predate_run": false,
+        "recent_errors_scope": "none",
+        "recent_errors_truncated": false,
+        "retained_errors": [],
+        "scene": "",
+        "session_active": true,
+        "undoable": false,
+        "was_already_running": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "logs_read",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\":\"game\",\"lines\":[{\"level\":\"info\",\"run_id\":\"r37943813-10\",\"source\":\"game\",\"text\":\"[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\\n\"}],\"total_count\":1,\"returned_count\":1,\"offset\":0,\"limit\":50,\"has_more\":false,\"run_id\":\"r37943813-10\",\"is_running\":true,\"dropped_count\":0,\"stale_run_id\":false}"
+        }
+      ],
+      "structuredContent": {
+        "source": "game",
+        "lines": [
+          {
+            "level": "info",
+            "run_id": "r37943813-10",
+            "source": "game",
+            "text": "[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\n"
+          }
+        ],
+        "total_count": 1,
+        "returned_count": 1,
+        "offset": 0,
+        "limit": 50,
+        "has_more": false,
+        "run_id": "r37943813-10",
+        "is_running": true,
+        "dropped_count": 0,
+        "stale_run_id": false
+      },
+      "isError": false
+    }
+  }
+]

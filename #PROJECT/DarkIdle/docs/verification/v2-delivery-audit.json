@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "rules": {
+      "passed": 40,
+      "failed": 0
+    },
+    "ui": {
+      "passed": 22,
+      "failed": 0
+    },
+    "preview": {
+      "passed": 6,
+      "failed": 0
+    },
+    "combat": {
+      "passed": 13,
+      "failed": 0
+    },
+    "final": {
+      "passed": 6,
+      "failed": 0
+    }
+  },
+  "native_passed": 47,
+  "missing_document_links": [],
+  "source_sha256": {
+    "project.godot": "a3b7c09d6ae6bb127a90e4bdbdb99e96bf68a941767fa5169023905c45643799",
+    "scripts/tactical_fx.gd": "fa0c31e18b95dedfe6867e76110014f712a862421865d81f3c7c3d2505d67ed4",
+    "scripts/tactical_unit.gd": "99b713d477f2ad9cb5eb6e019801606072203bf5bfc86c049e99ced4874bad5e",
+    "scripts/tactical_view.gd": "ce609504231a41432b508c5e5538cab77605b57140c9b4677aa389010c6032b7",
+    "scripts/combat_rules.gd": "516f07bc70418f99782dd7b0c28616322fe2c0d4ad245fc5fdc3b30b7e3df28a",
+    "scripts/action_track.gd": "352b4d7fe01c75aaa0ba61f107d04016c1459778fc6fd090075800f80943c8a0",
+    "scripts/tactics_store.gd": "57770e45b8c2f439b9c734de9a4b3d61ca9c4fa088e20620dad0ea7dc6f4155d",
+    "scenes/tactical_main.tscn": "8885a48df738da7d3c6b46275f9e7b63bc8387e16efa6fee77933dcb4fe05497",
+    "scenes/tactical_unit.tscn": "976ab061b249b6f8b4f679e7169923be36643c4197468662824c01432528bf62",
+    "resources/antler_frames.tres": "91ff8a98039d1ce9dcb82be79d876ebc110519b6d276a11a5ce12744ee643233",
+    "resources/mage_frames.tres": "9ebd69059abfa3fe92881aedcbbc21a4dc94ea627c0b11a68385f9fa64adc254",
+    "resources/soot_frames.tres": "781c1f8c4886257403cdf6317abbe6f35d8fd8ee9fc77bb1ffb16797d3848502",
+    "resources/straw_frames.tres": "a49a172b8fa3a3aa6a137334dd2da072bdb40bf1ca1c9d23e7e1d9dc915f949d",
+    "resources/balance_v2.tres": "a8c4286ceda1a019a736e0193774aa12942dfac98a07e41839ccdaea7ea00cb8",
+    "resources/tactical_theme.tres": "0565d906bc17ac3900db29cd48eff09fd63150bfda4a511c7f464b74998bfcca",
+    "assets/v2/antler-grid.png": "9a870d8eefdd0f277ec58e39640677481a8b075188123b4563cd14b0b9eef994",
+    "assets/v2/mage-grid.png": "c3ddf489df4ad19260e9d2a7159a16d1b1dd9bddaa5149067d4cb3f049560416",
+    "assets/v2/soot-grid.png": "b22c4c92294c22aca91d0e056bd79e30ed560740ed11d261f9438daf1ca51633",
+    "assets/v2/straw-grid.png": "37ce20abd59e092255967a7ea97f5837217817f995d4d8c1bb5f22fd202dd921",
+    "assets/v2/ground.png": "7e420f036b068dde6282f7d5e6258174427a3e12fde832acd239801f8524e4dc",
+    "assets/v2/icons.png": "fd75dd15a0dd72c219d324110cf55d9966203c11f6560254f7b120bd7d5b1b16",
+    "assets/v2/animation_metrics.json": "2117d45f32f4de60632a41b168ce6e18d6115515ab98326d744b7036d09ca974"
+  }
+}

@@ -1,0 +1,4 @@
+[
+  {"name":"editor_state","arguments":{}},
+  {"name":"logs_read","arguments":{"source":"editor","count":35,"include_details":true}}
+]

@@ -1,0 +1,6916 @@
+{
+  "checks": [
+    {
+      "name": "固定四行动和二反应槽",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "点击槽打开装备库",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "候选悬停在右下显示炎爆效果",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "装备后出现对应规则设置",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "条件与目标实际写入装备槽",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "禁用该规则",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "顺序按钮移动整条规则",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "固定目标技能锁定目标选项",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "反应槽装备回能且显示固定时机",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "反应附加条件可调整",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "点击怪物建立优先标识",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "敌人被动意图和RP可查",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "敌人主动意图和AP可查",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "人物悬停统一详情面板",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "行动轴头像悬停统一详情面板",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "关闭点击选目标后仅查看",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "闪震和音效设置生效",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "保存后停止重开保持四加二规则及目标",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "重复反应交换装备槽而不浪费栏位",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "装备槽可卸下并保留四槽结构",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "超过AP预算明确提示",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "清除优先目标",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "calls": [
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Reset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":751.5,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            751.5,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Preset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":133.199996948242,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            133.199996948242,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Controls/Preset\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":28.0,\"y\":809.0},\"scale\":0.899999976158142,\"size\":{\"x\":240.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 28.0,
+              "y": 809.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 240.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"Slots\").get_child_count()==4 and s.get_node(\"Reactions\").get_child_count()==2"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Slots/A0\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":129.599990844727,\"y\":559.799987792969},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 129.599990844727,
+            "y": 559.799987792969
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            129.599990844727,
+            559.799987792969
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":559.799987792969},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 559.799987792969
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            129.599990844727,
+            559.799987792969
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":559.799987792969},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 559.799987792969
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            129.599990844727,
+            559.799987792969
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":559.799987792969},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 559.799987792969
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"Library\").visible and s.selected_slot==0"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Choice5\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":714.599975585938,\"y\":585.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 714.599975585938,
+            "y": 585.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            714.599975585938,
+            585.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":714.599975585938,\"y\":585.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 714.599975585938,
+            "y": 585.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"Details/Title\").text==\"炎爆\" and s.get_node(\"Details/Text\").text.contains(\"转移\") and s.get_node(\"Details/Cost\").text==\"1 AP\""
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "screenshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+          },
+          {
+            "type": "saved_image",
+            "path": "D:\\_Files\\ai_test\\#PROJECT\\DarkIdle\\docs\\verification\\v2-library_content_1.png",
+            "mimeType": "image/png"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Choice0\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":98.0999984741211,\"y\":585.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            98.0999984741211,
+            585.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            98.0999984741211,
+            585.0
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            98.0999984741211,
+            585.0
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Equip\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":126.899993896484,\"y\":707.399963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.plan[0].id==\"ignite\" and s.get_node(\"Details/Config\").visible"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Details/Config/Condition\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1066.04992675781,\"y\":677.700012207031},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1066.04992675781,
+            "y": 677.700012207031
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1066.04992675781,
+            677.700012207031
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":677.700012207031},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 677.700012207031
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1066.04992675781,
+            677.700012207031
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":677.700012207031},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 677.700012207031
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1066.04992675781,
+            677.700012207031
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":677.700012207031},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 677.700012207031
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Details/Config/Condition\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":4.0,\"position\":{\"x\":1066.0,\"y\":769.0},\"scale\":0.899999976158142,\"size\":{\"x\":237.0,\"y\":120.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 4.0,
+            "position": {
+              "x": 1066.0,
+              "y": 769.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 237.0,
+              "y": 120.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1066.049971759319,
+            732.5999805927275
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":732.599975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 732.599975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1066.049971759319,
+            732.5999805927275
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":732.599975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 732.599975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Details/Config/Target\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1291.5,\"y\":677.700012207031},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1291.5,
+            "y": 677.700012207031
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1291.5,
+            677.700012207031
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1291.5,\"y\":677.700012207031},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1291.5,
+            "y": 677.700012207031
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1291.5,
+            677.700012207031
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1291.5,\"y\":677.700012207031},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1291.5,
+            "y": 677.700012207031
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1291.5,
+            677.700012207031
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1291.5,\"y\":677.700012207031},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1291.5,
+            "y": 677.700012207031
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Details/Config/Target\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":4.0,\"position\":{\"x\":1314.0,\"y\":769.0},\"scale\":0.899999976158142,\"size\":{\"x\":242.0,\"y\":120.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 4.0,
+            "position": {
+              "x": 1314.0,
+              "y": 769.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 242.0,
+              "y": 120.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1291.4999657869337,
+            759.5999798774718
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1291.5,\"y\":759.599975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1291.5,
+            "y": 759.599975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1291.4999657869337,
+            759.5999798774718
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1291.5,\"y\":759.599975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1291.5,
+            "y": 759.599975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.plan[0].condition==1 and s.plan[0].target==2"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Details/Config/Enabled\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1022.39996337891,\"y\":711.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1022.39996337891,
+            "y": 711.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1022.39996337891,
+            711.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1022.39996337891,\"y\":711.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1022.39996337891,
+            "y": 711.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1022.39996337891,
+            711.0
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1022.39996337891,\"y\":711.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1022.39996337891,
+            "y": 711.0
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1022.39996337891,
+            711.0
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1022.39996337891,\"y\":711.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1022.39996337891,
+            "y": 711.0
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn not s.plan[0].enabled"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Details/Config/Enabled\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1022.39996337891,\"y\":711.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1022.39996337891,
+            "y": 711.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1022.39996337891,
+            711.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1022.39996337891,\"y\":711.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1022.39996337891,
+            "y": 711.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1022.39996337891,
+            711.0
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1022.39996337891,\"y\":711.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1022.39996337891,
+            "y": 711.0
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1022.39996337891,
+            711.0
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1022.39996337891,\"y\":711.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1022.39996337891,
+            "y": 711.0
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Slots/A0/Right\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":209.699996948242,\"y\":611.549987792969},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 209.699996948242,
+            "y": 611.549987792969
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            209.699996948242,
+            611.549987792969
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":209.699996948242,\"y\":611.549987792969},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 209.699996948242,
+            "y": 611.549987792969
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            209.699996948242,
+            611.549987792969
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":209.699996948242,\"y\":611.549987792969},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 209.699996948242,
+            "y": 611.549987792969
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            209.699996948242,
+            611.549987792969
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":209.699996948242,\"y\":611.549987792969},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 209.699996948242,
+            "y": 611.549987792969
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.plan[1].id==\"ignite\" and s.plan[1].condition==1 and s.plan[0].id==\"double\""
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Slots/A0/Tune\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":203.399993896484,\"y\":506.25},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 203.399993896484,
+            "y": 506.25
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            203.399993896484,
+            506.25
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":203.399993896484,\"y\":506.25},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 203.399993896484,
+            "y": 506.25
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            203.399993896484,
+            506.25
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":203.399993896484,\"y\":506.25},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 203.399993896484,
+            "y": 506.25
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            203.399993896484,
+            506.25
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":203.399993896484,\"y\":506.25},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 203.399993896484,
+            "y": 506.25
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"Details/Config/Target\").disabled and s.get_node(\"Details/Config/Target\").text==\"燃烧最多\""
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Reactions/P0\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":129.599990844727,\"y\":709.199951171875},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 129.599990844727,
+            "y": 709.199951171875
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            129.599990844727,
+            709.199951171875
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":709.199951171875},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 709.199951171875
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            129.599990844727,
+            709.199951171875
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":709.199951171875},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 709.199951171875
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            129.599990844727,
+            709.199951171875
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":709.199951171875},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 709.199951171875
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Choice1\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":221.399993896484,\"y\":585.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 221.399993896484,
+            "y": 585.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            221.399993896484,
+            585.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":221.399993896484,\"y\":585.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 221.399993896484,
+            "y": 585.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            221.399993896484,
+            585.0
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":221.399993896484,\"y\":585.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 221.399993896484,
+            "y": 585.0
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            221.399993896484,
+            585.0
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":221.399993896484,\"y\":585.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 221.399993896484,
+            "y": 585.0
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Equip\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":126.899993896484,\"y\":707.399963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.passives[0].id==\"mana\" and s.get_node(\"Details/Config/Target\").disabled and s.get_node(\"Reactions/P0/Cost\").text.contains(\"AP 不足\")"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Details/Config/Condition\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1066.04992675781,\"y\":677.700012207031},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1066.04992675781,
+            "y": 677.700012207031
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1066.04992675781,
+            677.700012207031
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":677.700012207031},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 677.700012207031
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1066.04992675781,
+            677.700012207031
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":677.700012207031},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 677.700012207031
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1066.04992675781,
+            677.700012207031
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":677.700012207031},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 677.700012207031
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Details/Config/Condition\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":1066.0,\"y\":769.0},\"scale\":0.899999976158142,\"size\":{\"x\":237.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 1066.0,
+              "y": 769.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 237.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1066.049971759319,
+            760.3499798576037
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":760.349975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 760.349975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1066.049971759319,
+            760.3499798576037
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1066.04992675781,\"y\":760.349975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1066.04992675781,
+            "y": 760.349975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.passives[0].condition==2"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Battle/Unit2/Inspect\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":956.699951171875,\"y\":269.100006103516},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 956.699951171875,
+            "y": 269.100006103516
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            956.699951171875,
+            269.100006103516
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":956.699951171875,\"y\":269.100006103516},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 956.699951171875,
+            "y": 269.100006103516
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            956.699951171875,
+            269.100006103516
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":956.699951171875,\"y\":269.100006103516},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 956.699951171875,
+            "y": 269.100006103516
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            956.699951171875,
+            269.100006103516
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":956.699951171875,\"y\":269.100006103516},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 956.699951171875,
+            "y": 269.100006103516
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.marked==1 and s.units[2].selected and s.units[2].get_node(\"Mark\").visible"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Battle/Unit2/Reaction\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":956.699951171875,\"y\":180.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 956.699951171875,
+            "y": 180.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            956.699951171875,
+            180.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":956.699951171875,\"y\":180.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 956.699951171875,
+            "y": 180.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"Details/Title\").text==\"枯木护身\" and s.get_node(\"Details/Cost\").text==\"1 RP\""
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "screenshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+          },
+          {
+            "type": "saved_image",
+            "path": "D:\\_Files\\ai_test\\#PROJECT\\DarkIdle\\docs\\verification\\v2-enemy-intent_content_1.png",
+            "mimeType": "image/png"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Battle/Unit3/Intent\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1240.19995117188,\"y\":145.800003051758},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1240.19995117188,
+            "y": 145.800003051758
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1240.19995117188,
+            145.800003051758
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1240.19995117188,\"y\":145.800003051758},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1240.19995117188,
+            "y": 145.800003051758
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"Details/Title\").text==\"横扫\" and s.get_node(\"Details/Cost\").text.contains(\"1 AP\")"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Battle/Unit0/Inspect\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":223.199996948242,\"y\":269.100006103516},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 223.199996948242,
+            "y": 269.100006103516
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            223.199996948242,
+            269.100006103516
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":223.199996948242,\"y\":269.100006103516},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 223.199996948242,
+            "y": 269.100006103516
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"Details/Title\").text==\"烬火法师\" and s.get_node(\"Details/Cost\").text.contains(\"RP\")"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Track/Actor1\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":848.700073242188,\"y\":84.5999984741211},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 848.700073242188,
+            "y": 84.5999984741211
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            848.700073242188,
+            84.5999984741211
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":848.700073242188,\"y\":84.5999984741211},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 848.700073242188,
+            "y": 84.5999984741211
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"Details/Title\").text==\"灰烬刺球\""
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Settings\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":984.599975585938,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            984.599975585938,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            984.599975585938,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            984.599975585938,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/ClickTarget\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1176.29992675781,\"y\":530.099975585938},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1176.29992675781,
+            "y": 530.099975585938
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1176.29992675781,
+            530.099975585938
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":530.099975585938},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 530.099975585938
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            530.099975585938
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":530.099975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 530.099975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            530.099975585938
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":530.099975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 530.099975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/Close\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Battle/Unit3/Inspect\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1240.19995117188,\"y\":269.100006103516},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1240.19995117188,
+            "y": 269.100006103516
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1240.19995117188,
+            269.100006103516
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1240.19995117188,\"y\":269.100006103516},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1240.19995117188,
+            "y": 269.100006103516
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1240.19995117188,
+            269.100006103516
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1240.19995117188,\"y\":269.100006103516},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1240.19995117188,
+            "y": 269.100006103516
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1240.19995117188,
+            269.100006103516
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1240.19995117188,\"y\":269.100006103516},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1240.19995117188,
+            "y": 269.100006103516
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.marked==1 and not s.click_target and s.get_node(\"Details/Title\").text==\"枯枝稻人\""
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Settings\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":984.599975585938,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            984.599975585938,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            984.599975585938,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            984.599975585938,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/ClickTarget\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1176.29992675781,\"y\":530.099975585938},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1176.29992675781,
+            "y": 530.099975585938
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1176.29992675781,
+            530.099975585938
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":530.099975585938},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 530.099975585938
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            530.099975585938
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":530.099975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 530.099975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            530.099975585938
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":530.099975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 530.099975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/Motion\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1176.29992675781,\"y\":576.899963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1176.29992675781,
+            "y": 576.899963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1176.29992675781,
+            576.899963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":576.899963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 576.899963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            576.899963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":576.899963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 576.899963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            576.899963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":576.899963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 576.899963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/Sound\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1176.29992675781,\"y\":623.700012207031},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1176.29992675781,
+            "y": 623.700012207031
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1176.29992675781,
+            623.700012207031
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":623.700012207031},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 623.700012207031
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            623.700012207031
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":623.700012207031},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 623.700012207031
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            623.700012207031
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":623.700012207031},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 623.700012207031
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.fx.reduced and not s.get_node(\"Settings/Sound\").button_pressed"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/Motion\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1176.29992675781,\"y\":576.899963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1176.29992675781,
+            "y": 576.899963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1176.29992675781,
+            576.899963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":576.899963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 576.899963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            576.899963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":576.899963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 576.899963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            576.899963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":576.899963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 576.899963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/Sound\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1176.29992675781,\"y\":623.700012207031},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1176.29992675781,
+            "y": 623.700012207031
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1176.29992675781,
+            623.700012207031
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":623.700012207031},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 623.700012207031
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            623.700012207031
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":623.700012207031},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 623.700012207031
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1176.29992675781,
+            623.700012207031
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1176.29992675781,\"y\":623.700012207031},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1176.29992675781,
+            "y": 623.700012207031
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/Close\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"plan\":s.plan,\"passives\":s.passives,\"marked\":s.marked,\"click_target\":s.click_target}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"click_target\":true,\"marked\":1.0,\"passives\":[{\"condition\":2.0,\"enabled\":true,\"id\":\"mana\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"shield\",\"target\":0.0}],\"plan\":[{\"condition\":0.0,\"enabled\":true,\"id\":\"double\",\"target\":0.0},{\"condition\":1.0,\"enabled\":true,\"id\":\"ignite\",\"target\":2.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"spread\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"burst\",\"target\":0.0}]},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "click_target": true,
+            "marked": 1.0,
+            "passives": [
+              {
+                "condition": 2.0,
+                "enabled": true,
+                "id": "mana",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "shield",
+                "target": 0.0
+              }
+            ],
+            "plan": [
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "double",
+                "target": 0.0
+              },
+              {
+                "condition": 1.0,
+                "enabled": true,
+                "id": "ignite",
+                "target": 2.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "spread",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "burst",
+                "target": 0.0
+              }
+            ]
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Save\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":873.899963378906,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            873.899963378906,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            873.899963378906,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            873.899963378906,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "project_manage",
+      "args": {
+        "op": "stop"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"readiness_after\":\"ready\",\"reason\":\"Play/stop is a runtime action\",\"stopped\":true,\"undoable\":false,\"was_running\":true}"
+          }
+        ],
+        "structuredContent": {
+          "readiness_after": "ready",
+          "reason": "Play/stop is a runtime action",
+          "stopped": true,
+          "undoable": false,
+          "was_running": true
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "project_run",
+      "args": {},
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":2107,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":39813192,\"run_token\":15,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"main\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[],\"recent_errors_may_predate_run\":false,\"recent_errors_scope\":\"none\",\"recent_errors_truncated\":false,\"retained_errors\":[],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+          }
+        ],
+        "structuredContent": {
+          "autosave": true,
+          "current_run_errors": [],
+          "game_status": {
+            "active": true,
+            "editor_log_cursor": 0,
+            "elapsed_msec": 2107,
+            "helper_expected": true,
+            "helper_live": true,
+            "ready": true,
+            "ready_wait_msec": 3000,
+            "run_started_msec": 39813192,
+            "run_token": 15,
+            "session_active": true,
+            "status": "live"
+          },
+          "helper_live": true,
+          "mode": "main",
+          "reason": "Game launched and the Godot AI game helper is live.",
+          "recent_errors": [],
+          "recent_errors_may_predate_run": false,
+          "recent_errors_scope": "none",
+          "recent_errors_truncated": false,
+          "retained_errors": [],
+          "scene": "",
+          "session_active": true,
+          "undoable": false,
+          "was_already_running": false
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn {\"plan\":s.plan,\"passives\":s.passives,\"marked\":s.marked,\"click_target\":s.click_target}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"click_target\":true,\"marked\":1.0,\"passives\":[{\"condition\":2.0,\"enabled\":true,\"id\":\"mana\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"shield\",\"target\":0.0}],\"plan\":[{\"condition\":0.0,\"enabled\":true,\"id\":\"double\",\"target\":0.0},{\"condition\":1.0,\"enabled\":true,\"id\":\"ignite\",\"target\":2.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"spread\",\"target\":0.0},{\"condition\":0.0,\"enabled\":true,\"id\":\"burst\",\"target\":0.0}]},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "click_target": true,
+            "marked": 1.0,
+            "passives": [
+              {
+                "condition": 2.0,
+                "enabled": true,
+                "id": "mana",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "shield",
+                "target": 0.0
+              }
+            ],
+            "plan": [
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "double",
+                "target": 0.0
+              },
+              {
+                "condition": 1.0,
+                "enabled": true,
+                "id": "ignite",
+                "target": 2.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "spread",
+                "target": 0.0
+              },
+              {
+                "condition": 0.0,
+                "enabled": true,
+                "id": "burst",
+                "target": 0.0
+              }
+            ]
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Preset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":133.199996948242,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            133.199996948242,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Controls/Preset\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":28.0,\"y\":809.0},\"scale\":0.899999976158142,\"size\":{\"x\":240.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 28.0,
+              "y": 809.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 240.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Reactions/P0\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":129.599990844727,\"y\":709.199951171875},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 129.599990844727,
+            "y": 709.199951171875
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            129.599990844727,
+            709.199951171875
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":709.199951171875},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 709.199951171875
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            129.599990844727,
+            709.199951171875
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":709.199951171875},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 709.199951171875
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            129.599990844727,
+            709.199951171875
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":129.599990844727,\"y\":709.199951171875},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 129.599990844727,
+            "y": 709.199951171875
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Choice0\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":98.0999984741211,\"y\":585.0},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            98.0999984741211,
+            585.0
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            98.0999984741211,
+            585.0
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            98.0999984741211,
+            585.0
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":98.0999984741211,\"y\":585.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 98.0999984741211,
+            "y": 585.0
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Equip\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":126.899993896484,\"y\":707.399963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            126.899993896484,
+            707.399963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":126.899993896484,\"y\":707.399963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 126.899993896484,
+            "y": 707.399963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.passives[0].id==\"shield\" and s.passives[1].id==\"charge\""
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Slots/A3\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":793.799987792969,\"y\":559.799987792969},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 793.799987792969,
+            "y": 559.799987792969
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            793.799987792969,
+            559.799987792969
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":793.799987792969,\"y\":559.799987792969},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 793.799987792969,
+            "y": 559.799987792969
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            793.799987792969,
+            559.799987792969
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":793.799987792969,\"y\":559.799987792969},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 793.799987792969,
+            "y": 559.799987792969
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            793.799987792969,
+            559.799987792969
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":793.799987792969,\"y\":559.799987792969},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 793.799987792969,
+            "y": 559.799987792969
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Library/Remove\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":281.25,\"y\":707.399963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 281.25,
+            "y": 707.399963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            281.25,
+            707.399963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":281.25,\"y\":707.399963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 281.25,
+            "y": 707.399963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            281.25,
+            707.399963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":281.25,\"y\":707.399963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 281.25,
+            "y": 707.399963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            281.25,
+            707.399963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":281.25,\"y\":707.399963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 281.25,
+            "y": 707.399963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.plan[3].id==\"\" and s.plan.size()==4 and s.get_node(\"Slots/A3/Name\").text==\"+ 装备\""
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Preset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":133.199996948242,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            133.199996948242,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Controls/Preset\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":28.0,\"y\":809.0},\"scale\":0.899999976158142,\"size\":{\"x\":240.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 28.0,
+              "y": 809.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 240.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            796.3499789039294
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":796.349975585938},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 796.349975585938
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            796.3499789039294
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":796.349975585938},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 796.349975585938
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_node(\"ActiveTitle\").text.contains(\"6 / 4 AP\") and s.get_node(\"ActiveTitle\").modulate.g<0.8"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Preset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":133.199996948242,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            133.199996948242,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Controls/Preset\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":28.0,\"y\":809.0},\"scale\":0.899999976158142,\"size\":{\"x\":240.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 28.0,
+              "y": 809.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 240.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Settings\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":984.599975585938,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            984.599975585938,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            984.599975585938,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            984.599975585938,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":984.599975585938,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 984.599975585938,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/ClearTarget\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1073.69995117188,\"y\":675.899963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1073.69995117188,
+            "y": 675.899963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1073.69995117188,
+            675.899963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1073.69995117188,\"y\":675.899963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1073.69995117188,
+            "y": 675.899963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1073.69995117188,
+            675.899963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1073.69995117188,\"y\":675.899963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1073.69995117188,
+            "y": 675.899963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1073.69995117188,
+            675.899963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1073.69995117188,\"y\":675.899963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1073.69995117188,
+            "y": 675.899963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Settings/Close\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            1320.29992675781,
+            711.899963378906
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":1320.29992675781,\"y\":711.899963378906},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 1320.29992675781,
+            "y": 711.899963378906
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Save\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":873.899963378906,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            873.899963378906,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            873.899963378906,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            873.899963378906,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.marked==-1 and not s.units[2].selected"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "screenshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+          },
+          {
+            "type": "saved_image",
+            "path": "D:\\_Files\\ai_test\\#PROJECT\\DarkIdle\\docs\\verification\\v2-ready_content_1.png",
+            "mimeType": "image/png"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ]
+}

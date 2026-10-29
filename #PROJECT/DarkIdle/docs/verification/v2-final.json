@@ -1,0 +1,1249 @@
+{
+  "checks": [
+    {
+      "name": "最终原生保存重开主场景",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "无旧状态条与详情弹窗",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "四单位脚底统一地面",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "指定行动位置立即映射到显示",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "悬停详情随燃烧状态变化",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "最终进程无脚本错误",
+      "passed": true,
+      "detail": {
+        "source": "game",
+        "lines": [
+          {
+            "level": "info",
+            "run_id": "r41082292-19",
+            "source": "game",
+            "text": "[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\n"
+          }
+        ],
+        "total_count": 1,
+        "returned_count": 1,
+        "offset": 0,
+        "limit": 100,
+        "has_more": false,
+        "run_id": "r41082292-19",
+        "is_running": true,
+        "dropped_count": 0,
+        "stale_run_id": false
+      }
+    }
+  ],
+  "calls": [
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Reset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":751.5,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            751.5,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Preset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":133.199996948242,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            133.199996948242,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996948242,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Controls/Preset\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":28.0,\"y\":809.0},\"scale\":0.899999976158142,\"size\":{\"x\":240.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 28.0,
+              "y": 809.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 240.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            133.199996471405,
+            741.7499803503354
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":133.199996948242,\"y\":741.75},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 133.199996948242,
+            "y": 741.75
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Speed\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":632.700012207031,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 632.700012207031,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            632.700012207031,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":632.700012207031,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 632.700012207031,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            632.700012207031,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":632.700012207031,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 632.700012207031,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            632.700012207031,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":632.700012207031,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 632.700012207031,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar p = s.get_node(\"Controls/Speed\").get_popup()\nreturn {\"visible\":p.visible,\"position\":p.position,\"size\":p.size,\"count\":p.item_count,\"scale\":s.get_viewport().get_final_transform().x.x}"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"count\":3.0,\"position\":{\"x\":644.0,\"y\":809.0},\"scale\":0.899999976158142,\"size\":{\"x\":118.0,\"y\":91.0},\"visible\":true},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "count": 3.0,
+            "position": {
+              "x": 644.0,
+              "y": 809.0
+            },
+            "scale": 0.899999976158142,
+            "size": {
+              "x": 118.0,
+              "y": 91.0
+            },
+            "visible": true
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            632.6999832391738,
+            741.7499803503354
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":632.700012207031,\"y\":741.75},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 632.700012207031,
+            "y": 741.75
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            632.6999832391738,
+            741.7499803503354
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":632.700012207031,\"y\":741.75},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 632.700012207031,
+            "y": 741.75
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Save\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":873.899963378906,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            873.899963378906,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            873.899963378906,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            873.899963378906,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":873.899963378906,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 873.899963378906,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "project_manage",
+      "args": {
+        "op": "stop"
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"readiness_after\":\"ready\",\"reason\":\"Play/stop is a runtime action\",\"stopped\":true,\"undoable\":false,\"was_running\":true}"
+          }
+        ],
+        "structuredContent": {
+          "readiness_after": "ready",
+          "reason": "Play/stop is a runtime action",
+          "stopped": true,
+          "undoable": false,
+          "was_running": true
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "scene_open",
+      "args": {
+        "path": "res://scenes/tactical_main.tscn",
+        "force_reload": true
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"force_reload\":true,\"path\":\"res://scenes/tactical_main.tscn\",\"previous_scene_path\":\"res://scenes/tactical_main.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":true,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+          }
+        ],
+        "structuredContent": {
+          "force_reload": true,
+          "path": "res://scenes/tactical_main.tscn",
+          "previous_scene_path": "res://scenes/tactical_main.tscn",
+          "reason": "Scene navigation cannot be undone via editor undo",
+          "reloaded_from_disk": true,
+          "settle": "settled",
+          "switched": true,
+          "undoable": false
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "scene_save",
+      "args": {},
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"path\":\"res://scenes/tactical_main.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+          }
+        ],
+        "structuredContent": {
+          "path": "res://scenes/tactical_main.tscn",
+          "reason": "File save cannot be undone via editor undo",
+          "undoable": false
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "project_run",
+      "args": {},
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":1947,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":41082291,\"run_token\":19,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"main\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[],\"recent_errors_may_predate_run\":false,\"recent_errors_scope\":\"none\",\"recent_errors_truncated\":false,\"retained_errors\":[],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+          }
+        ],
+        "structuredContent": {
+          "autosave": true,
+          "current_run_errors": [],
+          "game_status": {
+            "active": true,
+            "editor_log_cursor": 0,
+            "elapsed_msec": 1947,
+            "helper_expected": true,
+            "helper_live": true,
+            "ready": true,
+            "ready_wait_msec": 3000,
+            "run_started_msec": 41082291,
+            "run_token": 19,
+            "session_active": true,
+            "status": "live"
+          },
+          "helper_live": true,
+          "mode": "main",
+          "reason": "Game launched and the Godot AI game helper is live.",
+          "recent_errors": [],
+          "recent_errors_may_predate_run": false,
+          "recent_errors_scope": "none",
+          "recent_errors_truncated": false,
+          "retained_errors": [],
+          "scene": "",
+          "session_active": true,
+          "undoable": false,
+          "was_already_running": false
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.scene_file_path==\"res://scenes/tactical_main.tscn\" and s.plan.size()==4 and s.passives.size()==2 and not s.running"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn not s.has_node(\"Status\") and s.find_children(\"*\",\"AcceptDialog\",true,false).is_empty() and s.get_node(\"Details\").position==Vector2(1050,503)"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.units.all(func(u): return u.get_node(\"Art\").position.y==245)"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar state=s.shown_state.duplicate(true)\nstate.timeline[2]=0.35\ns.render_state(state)\nreturn is_equal_approx(s.get_node(\"Track/Actor2\").position.x,555.0)"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar state=s.shown_state.duplicate(true)\nstate.enemies[0].burn=2\ns.render_state(state)\nreturn true"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Battle/Unit1/Burn\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":673.200012207031,\"y\":345.599975585938},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 673.200012207031,
+            "y": 345.599975585938
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            673.200012207031,
+            345.599975585938
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":673.200012207031,\"y\":345.599975585938},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 673.200012207031,
+            "y": 345.599975585938
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nvar state=s.shown_state.duplicate(true)\nstate.enemies[0].burn=4\ns.render_state(state)\nreturn s.get_node(\"Details/Cost\").text==\"4 层\" and s.get_node(\"Details/Text\").text.contains(\"32\")"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "editor_manage",
+      "args": {
+        "op": "game_eval",
+        "params": {
+          "code": "var s = get_tree().current_scene\nreturn s.get_viewport().get_final_transform()*s.get_node(\"Controls/Reset\").get_global_rect().get_center()"
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"result\":{\"x\":751.5,\"y\":778.5},\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "result": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "motion",
+          "position": [
+            751.5,
+            778.5
+          ]
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"event\":\"motion\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "event": "motion",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": true
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": true,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "game_manage",
+      "args": {
+        "op": "input_mouse",
+        "params": {
+          "event": "button",
+          "position": [
+            751.5,
+            778.5
+          ],
+          "pressed": false
+        }
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":751.5,\"y\":778.5},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+          }
+        ],
+        "structuredContent": {
+          "button": "left",
+          "event": "button",
+          "op": "input_mouse",
+          "position": {
+            "x": 751.5,
+            "y": 778.5
+          },
+          "pressed": false,
+          "sent": true,
+          "source": "game"
+        },
+        "isError": false
+      }
+    },
+    {
+      "tool": "screenshot",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+          },
+          {
+            "type": "saved_image",
+            "path": "D:\\_Files\\ai_test\\#PROJECT\\DarkIdle\\docs\\verification\\v2-final-ready_content_1.png",
+            "mimeType": "image/png"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "tool": "logs_read",
+      "args": {
+        "source": "game",
+        "count": 100,
+        "include_details": true
+      },
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\"source\":\"game\",\"lines\":[{\"level\":\"info\",\"run_id\":\"r41082292-19\",\"source\":\"game\",\"text\":\"[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\\n\"}],\"total_count\":1,\"returned_count\":1,\"offset\":0,\"limit\":100,\"has_more\":false,\"run_id\":\"r41082292-19\",\"is_running\":true,\"dropped_count\":0,\"stale_run_id\":false}"
+          }
+        ],
+        "structuredContent": {
+          "source": "game",
+          "lines": [
+            {
+              "level": "info",
+              "run_id": "r41082292-19",
+              "source": "game",
+              "text": "[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\n"
+            }
+          ],
+          "total_count": 1,
+          "returned_count": 1,
+          "offset": 0,
+          "limit": 100,
+          "has_more": false,
+          "run_id": "r41082292-19",
+          "is_running": true,
+          "dropped_count": 0,
+          "stale_run_id": false
+        },
+        "isError": false
+      }
+    }
+  ]
+}
