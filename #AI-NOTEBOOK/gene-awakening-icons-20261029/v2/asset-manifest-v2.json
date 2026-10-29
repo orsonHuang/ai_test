@@ -1,0 +1,110 @@
+{
+  "version": 2,
+  "status": "视觉设计修订稿，未接入游戏引擎",
+  "supersedes": "V1的两类型、8组合及“唤醒等级”表述由本版更正；V1文件仅保留作历史",
+  "concept": "三类基因血脉 × 四档进化阶级",
+  "axes": {
+    "type": [
+      "原生",
+      "觉醒",
+      "变异"
+    ],
+    "evolutionRank": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "independent": true,
+    "iconCount": 7,
+    "combinations": 12
+  },
+  "semantics": {
+    "原生": "普通人类基因",
+    "觉醒": "人类基因觉醒了动物血脉",
+    "变异": "保留已觉醒的动物血脉，获得额外动物血脉能力"
+  },
+  "rules": [
+    "每次进化都有概率从原生发生觉醒",
+    "觉醒后进化有概率发生变异",
+    "可通过抽卡直接获得对应类型；原生、觉醒、变异都存在0–3阶",
+    "类型与进化阶级分别读取和显示；具体概率不由本图标设计定义"
+  ],
+  "presentation": {
+    "file": "design-board-v2.png",
+    "width": 1536,
+    "height": 1024,
+    "content": "三类型、四阶级、12组合矩阵、觉醒0阶与变异3阶的血脉栏示意"
+  },
+  "sheets": [
+    {
+      "file": "gene-types-v2.png",
+      "width": 2172,
+      "height": 724,
+      "alpha": true,
+      "grid": {
+        "columns": 3,
+        "rows": 1,
+        "cellWidth": 724,
+        "cellHeight": 724
+      },
+      "order": [
+        "原生",
+        "觉醒",
+        "变异"
+      ],
+      "symbol": [
+        "完整人类基因双链",
+        "基因双链顶端显出兽耳形态",
+        "保留兽耳双链并叠加外接血脉分支与基因核"
+      ]
+    },
+    {
+      "file": "evolution-ranks-v2.png",
+      "width": 1254,
+      "height": 1254,
+      "alpha": true,
+      "grid": {
+        "columns": 2,
+        "rows": 2,
+        "cellWidth": 627,
+        "cellHeight": 627
+      },
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "symbol": [
+        "空心基因核",
+        "一道共振纹",
+        "两道共振纹",
+        "三道共振纹"
+      ],
+      "reusedFrom": "../awakening-levels-v1.png",
+      "note": "图形沿用V1；显示名改为0/1/2/3阶，轴名改为进化阶级"
+    }
+  ],
+  "placement": {
+    "container": "血脉栏",
+    "order": "类型图标 + 类型名 | 进化图标 + 阶级数",
+    "suggestedVisibleSizePx": {
+      "type": 32,
+      "rank": 24
+    },
+    "note": "大小为设计建议；图集留白应先按格裁取，再按可见轮廓统一尺寸。未完成游戏实机小尺寸验收。"
+  },
+  "verification": [
+    "三种类型齐全且轮廓相互区分",
+    "变异保留觉醒兽形并新增血脉支路",
+    "进化标识含独立0阶及1/2/3道纹",
+    "12种组合均在总览中展示",
+    "血脉栏3道纹标签核对为3阶",
+    "两套PNG经抽样确认真实alpha透明通道"
+  ],
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": "generation-prompts-v2.json"
+  }
+}
