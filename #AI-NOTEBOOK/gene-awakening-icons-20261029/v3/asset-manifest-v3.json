@@ -1,0 +1,108 @@
+{
+  "version": 3,
+  "status": "类型图标视觉修订稿，待用户确认",
+  "reason": "用户更正：原生与觉醒、变异差距太小；变异即双血脉，应扩大轮廓区分而不是缩小差异。",
+  "axes": {
+    "type": [
+      "原生",
+      "觉醒",
+      "变异"
+    ],
+    "evolutionRank": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "independent": true,
+    "combinations": 12
+  },
+  "types": [
+    {
+      "id": "native",
+      "name": "原生",
+      "meaning": "人类基因",
+      "symbol": "纯DNA双链，无动物形态"
+    },
+    {
+      "id": "awakened",
+      "name": "觉醒",
+      "meaning": "单一动物血脉",
+      "symbol": "单个正面兽形与基因结构融合"
+    },
+    {
+      "id": "mutated",
+      "name": "变异",
+      "meaning": "双动物血脉融合",
+      "symbol": "两组同等重要的兽形基因朝向两侧，下部交织；双基因核"
+    }
+  ],
+  "assets": {
+    "board": "type-design-board-v3.png",
+    "typeSheet": {
+      "file": "gene-types-v3.png",
+      "width": 2172,
+      "height": 724,
+      "transparent": true,
+      "order": [
+        "原生",
+        "觉醒",
+        "变异"
+      ],
+      "splitMethod": "使用下列非等宽矩形，避免按三等分裁到变异左侧轮廓。x/y均为像素，右下边界不含。",
+      "frames": [
+        {
+          "type": "原生",
+          "x": 0,
+          "y": 0,
+          "width": 641,
+          "height": 724
+        },
+        {
+          "type": "觉醒",
+          "x": 641,
+          "y": 0,
+          "width": 755,
+          "height": 724
+        },
+        {
+          "type": "变异",
+          "x": 1396,
+          "y": 0,
+          "width": 776,
+          "height": 724
+        }
+      ]
+    },
+    "evolutionSheet": {
+      "file": "evolution-ranks.png",
+      "width": 1254,
+      "height": 1254,
+      "transparent": true,
+      "grid": {
+        "columns": 2,
+        "rows": 2,
+        "cellWidth": 627,
+        "cellHeight": 627
+      },
+      "order": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "source": "字节不变复用V2图集"
+    }
+  },
+  "verification": [
+    "人工检查三类轮廓明显不同",
+    "变异具有两组主体、双基因核和交织结构",
+    "PNG具有RGBA格式及真实alpha透明角点",
+    "按alpha列投影确认3个图形区域并给出独立裁切矩形"
+  ],
+  "limitations": "展示板的小图为示意，尚未在游戏中验证32px实际显示；不声称已接入游戏。",
+  "generation": {
+    "mode": "built-in image_gen",
+    "prompts": "generation-prompts-v3.json"
+  }
+}
