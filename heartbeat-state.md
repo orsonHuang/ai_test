@@ -1,5 +1,7 @@
 # HEARTBEAT · 心跳状态
 
+- 2026-10-29 DarkIdle规则确认：用户回复采用炎爆/炼狱即时引爆保留燃烧层数，回合末再次结算并清空；技能照常消耗AP。README与GDD已从暂定改为已确认，现有代码一致，无需重改或重跑测试；其余原型选择不因此自动定稿。
+
 - 2026-10-29 DarkIdle燃爆法师收尾：真实Godot MCP的scene保存/重开/运行和20原生操作通过，25规则（含100组战术）与8存档保护通过；GDD、执行文档、素材来源和运行截图在#PROJECT/DarkIdle/docs。当前留默认战前编排；memory→NOW→heartbeat已依序更新，本地范围提交 7ba0e30 已完成，仅含DarkIdle与AI_INDEX/三记录。已采用5分钟未答后的引爆保留层数方案，正式反击/多英雄/Steam发行不在当前实现内；无待答/待审批。当前游戏无错误，编辑器历史NUL警告保留并说明；未push，不混入其他聊天工作。
 
 - 2026-10-29 微信小游戏方法论与专用skill：基于Nite-Nite全流程及10/26–29云存档/正式版维护证据，新增完整复盘并安装 wechat-minigame-production 到 C:/Users/1/.codex/skills/。项目源 skills/wechat-minigame-production，方法论 docs/从零到一复用指南/05-完整复盘与下一作方法论.md；项目提交 ec84b73f。固化构建前后门禁、实际包指纹、云字段恢复/幂等/坏凭据隔离、玩家异常可退出与可恢复、客户端云端兼容。源码与安装官方校验、12组隔离脚本测试、11文件哈希一致、52链接通过，证据 validation/production-skill-20261029/。未修改游戏/部署/发布；新项目调用 $wechat-minigame-production 时按现有入口接门禁，当前未接入Nite构建。跨题材实际效果待新项目验证，无待答。
