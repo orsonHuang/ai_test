@@ -1,0 +1,69 @@
+{
+  "version": 5,
+  "status": "两套各3张独立1:1透明PNG",
+  "requestedTypes": [
+    {
+      "type": "原生",
+      "color": "灰",
+      "file": "native-gray.png"
+    },
+    {
+      "type": "觉醒",
+      "color": "草绿",
+      "file": "awakened-green.png"
+    },
+    {
+      "type": "变异",
+      "color": "青蓝",
+      "file": "mutated-blue.png"
+    }
+  ],
+  "editions": [
+    {
+      "folder": "original",
+      "label": "原形调色版",
+      "count": 3,
+      "changes": "依据用户选定轮廓，进行换色、独立导出与透明边缘处理。"
+    },
+    {
+      "folder": "polished",
+      "label": "外形美化版",
+      "count": 3,
+      "changes": "理顺双链曲线与交叉负空间，统一横档圆角；觉醒中心菱形更规整，闪电比例收紧；变异保留双组血脉及交织结构。"
+    }
+  ],
+  "canvas": {
+    "width": 1254,
+    "height": 1254,
+    "ratio": "1:1",
+    "format": "PNG RGBA",
+    "transparent": true,
+    "independentFiles": true
+  },
+  "paletteReference": {
+    "image": "C:/Users/1/AppData/Local/Temp/codex-clipboard-66cb557a-7ae7-4959-9663-4769099ac45d.png",
+    "observedColors": {
+      "portraitGrayBorder": "#B2B2B2",
+      "outfitGreen": "#9FBD4B",
+      "blueAbilityMarker": "#2A86A1"
+    },
+    "promptTargets": {
+      "native": "#929292",
+      "awakened": "#9FBD4B",
+      "mutated": "#2BA6CB"
+    },
+    "note": "依据参考图色系调整；PNG由图像模型生成，实际边缘和填色有细微色差，并非强制色板量化。"
+  },
+  "invariants": [
+    "原生为无闪电普通基因双链",
+    "觉醒为单组激活双链、菱形基因核和闪电",
+    "变异保留两组基因双链及一个闪电",
+    "类型与0–3进化阶级独立，本轮只制作类型素材"
+  ],
+  "qa": "asset-qa.json",
+  "generation": {
+    "tool": "built-in image_gen",
+    "prompts": "generation-prompts-v5.json"
+  },
+  "limitations": "尚未在实际游戏引擎中验收小尺寸显示。"
+}

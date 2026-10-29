@@ -1,0 +1,98 @@
+[
+  {
+    "file": "original/awakened-green.png",
+    "width": 1254,
+    "height": 1254,
+    "aspectRatio": "1:1",
+    "pixelFormat": "Format32bppArgb",
+    "transparentSamples": 131008,
+    "visibleSamples": 40721,
+    "approxVisibleBounds": [
+      189,
+      150,
+      1155,
+      1161
+    ],
+    "sha256": "AE939B30C8D063BD393E1D8D06144DC986A3C1777744C46C4DBEA48F0D48CF13"
+  },
+  {
+    "file": "original/mutated-blue.png",
+    "width": 1254,
+    "height": 1254,
+    "aspectRatio": "1:1",
+    "pixelFormat": "Format32bppArgb",
+    "transparentSamples": 135711,
+    "visibleSamples": 35276,
+    "approxVisibleBounds": [
+      186,
+      255,
+      1173,
+      1035
+    ],
+    "sha256": "A6AFE4AAD7B202ECBFB85AA69363A2EAE144968E96C4F16C9BAFF72F3C584FD5"
+  },
+  {
+    "file": "original/native-gray.png",
+    "width": 1254,
+    "height": 1254,
+    "aspectRatio": "1:1",
+    "pixelFormat": "Format32bppArgb",
+    "transparentSamples": 132374,
+    "visibleSamples": 40465,
+    "approxVisibleBounds": [
+      264,
+      198,
+      966,
+      1191
+    ],
+    "sha256": "5B4C5742E96E8F4A4439BB30A21D555BE9E67EC2DC4C5AFC3C95AB6B344BB9D4"
+  },
+  {
+    "file": "polished/awakened-green.png",
+    "width": 1254,
+    "height": 1254,
+    "aspectRatio": "1:1",
+    "pixelFormat": "Format32bppArgb",
+    "transparentSamples": 136674,
+    "visibleSamples": 34347,
+    "approxVisibleBounds": [
+      228,
+      198,
+      1107,
+      1140
+    ],
+    "sha256": "76F737DF3587A8428FD4699B6C846DBAF11BB25B1A19209D5A85F7F855B00977"
+  },
+  {
+    "file": "polished/mutated-blue.png",
+    "width": 1254,
+    "height": 1254,
+    "aspectRatio": "1:1",
+    "pixelFormat": "Format32bppArgb",
+    "transparentSamples": 137155,
+    "visibleSamples": 32845,
+    "approxVisibleBounds": [
+      189,
+      288,
+      1152,
+      1035
+    ],
+    "sha256": "6A8888045C493AEE3226B9CB60BA630677B07E7F1EE651216990707D116A4745"
+  },
+  {
+    "file": "polished/native-gray.png",
+    "width": 1254,
+    "height": 1254,
+    "aspectRatio": "1:1",
+    "pixelFormat": "Format32bppArgb",
+    "transparentSamples": 132585,
+    "visibleSamples": 40032,
+    "approxVisibleBounds": [
+      276,
+      162,
+      975,
+      1185
+    ],
+    "sha256": "93CB7D749729243960C701A91C87E0BF91EC4464F07EB8FBB9569F89DB81E041"
+  }
+]
