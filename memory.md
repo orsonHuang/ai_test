@@ -623,3 +623,8 @@
 - 使用game-design-doc完成同步暗选、速距力、距离/先手/斗气原型；项目#PROJECT/Next-Move。支持AI练习、6秒选招、本机双人，无远程联机。
 - 2540项规则检查和浏览器15手完整对局通过，手机视口与超时默认防守通过。离线单文件dist/play-offline.html可交付。
 - Sites私有部署成功：https://read-your-next-move-duel.decent-reed-7919.chatgpt.site；当前内置浏览器无法连接ChatGPT登录服务，线上交互未验证。后续以用户试玩反馈调整理解成本和平衡。
+
+## 2026-10-30 下一手v0.2设计与实现
+- 按用户目标补齐双投拆投、中打差合、打康/惩罚、后退诱空后的确定追击（12伤或6伤+2气）、两格退路/墙边虚损破防。先手与确定追击分离；远距挥空不能隔空连段。
+- game-design-doc产出#PROJECT/Next-Move/docs/GDD-v0.2.md，区分SF6读人差合人群适配假设与实时执行缺失；参考Capcom官方Drive架构，数值均原创。
+- dist/design-guide.html含六个图文案例及引擎生成13手完整对局，最新试玩dist/play-offline.html。12359项规则检查、100局终局测试、浏览器13手和390px验收通过。目标玩家趣味/长期平衡未实测；在线仍v0.1，本轮未发布。
