@@ -1,0 +1,74 @@
+[gd_scene format=3]
+
+[node name="Combatant" type="Control"]
+custom_minimum_size = Vector2(230, 292)
+mouse_filter = 2
+
+[node name="Art" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 5
+offset_top = 12
+offset_right = 225
+offset_bottom = 222
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+pivot_offset = Vector2(110, 200)
+
+[node name="Plate" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 0
+offset_top = 218
+offset_right = 230
+offset_bottom = 294
+color = Color(0.86,0.79,0.65,0.94)
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 0
+offset_top = 218
+offset_right = 230
+offset_bottom = 244
+text = "单位"
+horizontal_alignment = 1
+
+[node name="Health" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 20
+offset_top = 248
+offset_right = 210
+offset_bottom = 262
+show_percentage = false
+value = 100
+
+[node name="Numbers" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20
+offset_top = 264
+offset_right = 210
+offset_bottom = 290
+text = "100 / 100"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
+
+[node name="BurnPlate" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 0
+offset_top = 188
+offset_right = 230
+offset_bottom = 218
+visible = false
+color = Color(0.15,0.09,0.04,0.94)
+mouse_filter = 2
+
+[node name="Burn" type="Label" parent="."]
+layout_mode = 0
+offset_left = 0
+offset_top = 188
+offset_right = 230
+offset_bottom = 218
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1,0.69,0.31,1)

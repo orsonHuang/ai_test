@@ -1,0 +1,1 @@
+[{"name":"editor_screenshot","arguments":{"source":"game","max_resolution":0}},{"name":"logs_read","arguments":{"source":"game","count":30}},{"name":"game_manage","arguments":{"op":"get_ui_elements","params":{"root_path":"Controls"}}}]

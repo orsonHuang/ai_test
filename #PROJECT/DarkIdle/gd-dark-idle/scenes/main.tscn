@@ -1,0 +1,353 @@
+[gd_scene format=3 uid="uid://co3xxbi2ngyri"]
+
+[ext_resource type="Theme" uid="uid://de10mxgaqjfge" path="res://resources/paper_theme.tres" id="1"]
+[ext_resource type="Texture2D" uid="uid://cinpih1ta0qe5" path="res://assets/orchard.png" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/rule_row.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/combatant.tscn" id="4"]
+[ext_resource type="Script" uid="uid://bolg73r34lhae" path="res://scripts/battle_view.gd" id="5"]
+[ext_resource type="Script" uid="uid://ds18g3sbs8014" path="res://scripts/battle_fx.gd" id="6"]
+
+[node name="DarkIdle" type="Control" unique_id=1502592581]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1")
+script = ExtResource("5")
+
+[node name="Paper" type="ColorRect" parent="." unique_id=1473770123]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 900.0
+mouse_filter = 2
+color = Color(0.82, 0.75, 0.62, 1)
+
+[node name="Header" type="Label" parent="." unique_id=639286275]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 12.0
+offset_right = 948.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 32
+text = "DARK IDLE   /   燃爆法师"
+
+[node name="Subtitle" type="Label" parent="." unique_id=1652509407]
+layout_mode = 0
+offset_left = 1030.0
+offset_top = 20.0
+offset_right = 1570.0
+offset_bottom = 60.0
+text = "铺火 · 翻倍 · 扩散 · 核爆"
+horizontal_alignment = 2
+
+[node name="Battle" type="Control" parent="." unique_id=936850338]
+anchors_preset = 0
+offset_left = 28.0
+offset_top = 78.0
+offset_right = 1572.0
+offset_bottom = 398.0
+
+[node name="Backdrop" type="TextureRect" parent="Battle" unique_id=1337100894]
+layout_mode = 0
+offset_right = 1544.0
+offset_bottom = 320.0
+mouse_filter = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Mage" parent="Battle" unique_id=1693924251 instance=ExtResource("4")]
+anchors_preset = 0
+offset_left = 110.0
+offset_top = 22.0
+offset_right = 340.0
+offset_bottom = 314.0
+
+[node name="Enemy1" parent="Battle" unique_id=1023320932 instance=ExtResource("4")]
+anchors_preset = 0
+offset_left = 660.0
+offset_top = 22.0
+offset_right = 890.0
+offset_bottom = 314.0
+
+[node name="Enemy2" parent="Battle" unique_id=1123508139 instance=ExtResource("4")]
+anchors_preset = 0
+offset_left = 965.0
+offset_top = 22.0
+offset_right = 1195.0
+offset_bottom = 314.0
+
+[node name="Enemy3" parent="Battle" unique_id=454583337 instance=ExtResource("4")]
+anchors_preset = 0
+offset_left = 1250.0
+offset_top = 22.0
+offset_right = 1480.0
+offset_bottom = 314.0
+
+[node name="FX" type="Control" parent="Battle" unique_id=1540475658]
+anchors_preset = 0
+offset_right = 1544.0
+offset_bottom = 320.0
+mouse_filter = 2
+script = ExtResource("6")
+
+[node name="Banner" type="Label" parent="Battle" unique_id=1485083846]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 5.0
+offset_right = 1080.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0.97, 0.87, 0.68, 1)
+theme_override_colors/font_outline_color = Color(0.16, 0.09, 0.05, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 24
+text = "战前准备"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="." unique_id=697617538]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 408.0
+offset_right = 1572.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 21
+text = "AP 6    RP 3    燃烧：每层 8 伤害 · 回合末引爆清空"
+
+[node name="ActivePanel" type="Panel" parent="." unique_id=476903220]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 455.0
+offset_right = 1028.0
+offset_bottom = 805.0
+
+[node name="Title" type="Label" parent="ActivePanel" unique_id=1448546754]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 986.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 22
+text = "主动序列   /   每回合自上而下，各执行一次"
+
+[node name="Columns" type="Label" parent="ActivePanel" unique_id=857820031]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 44.0
+offset_right = 984.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 15
+text = "启用 / 序号     施放技能          费用      发动条件                                目标偏好                   排序 / 详情"
+
+[node name="Rows" type="VBoxContainer" parent="ActivePanel" unique_id=1701833671]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 74.0
+offset_right = 984.0
+offset_bottom = 340.0
+theme_override_constants/separation = 0
+
+[node name="Row0" parent="ActivePanel/Rows" unique_id=647170492 instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="Row1" parent="ActivePanel/Rows" unique_id=397171734 instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="Row2" parent="ActivePanel/Rows" unique_id=444877853 instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="Row3" parent="ActivePanel/Rows" unique_id=790937774 instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="Row4" parent="ActivePanel/Rows" unique_id=123326701 instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="Row5" parent="ActivePanel/Rows" unique_id=1101965970 instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="Row6" parent="ActivePanel/Rows" unique_id=945136813 instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="PassivePanel" type="Panel" parent="." unique_id=1980257162]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 455.0
+offset_right = 1572.0
+offset_bottom = 631.0
+
+[node name="Title" type="Label" parent="PassivePanel" unique_id=1207214853]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 504.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 22
+text = "被动反应   /   每次消耗 1 RP"
+
+[node name="P0" type="HBoxContainer" parent="PassivePanel" unique_id=607007077]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 48.0
+offset_right = 507.0
+offset_bottom = 86.0
+
+[node name="Enabled" type="CheckBox" parent="PassivePanel/P0" unique_id=1223110015]
+custom_minimum_size = Vector2(30, 34)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="PassivePanel/P0" unique_id=1558452670]
+custom_minimum_size = Vector2(196, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+
+[node name="Condition" type="OptionButton" parent="PassivePanel/P0" unique_id=807675801]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+
+[node name="Info" type="Button" parent="PassivePanel/P0" unique_id=1707577844]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+text = "?"
+
+[node name="P1" type="HBoxContainer" parent="PassivePanel" unique_id=1334083760]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 88.0
+offset_right = 507.0
+offset_bottom = 126.0
+
+[node name="Enabled" type="CheckBox" parent="PassivePanel/P1" unique_id=1234450163]
+custom_minimum_size = Vector2(30, 34)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="PassivePanel/P1" unique_id=1394903619]
+custom_minimum_size = Vector2(196, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+
+[node name="Condition" type="OptionButton" parent="PassivePanel/P1" unique_id=1175674668]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+
+[node name="Info" type="Button" parent="PassivePanel/P1" unique_id=280276630]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+text = "?"
+
+[node name="P2" type="HBoxContainer" parent="PassivePanel" unique_id=1417037264]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 128.0
+offset_right = 507.0
+offset_bottom = 166.0
+
+[node name="Enabled" type="CheckBox" parent="PassivePanel/P2" unique_id=914287386]
+custom_minimum_size = Vector2(30, 34)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="PassivePanel/P2" unique_id=1744372324]
+custom_minimum_size = Vector2(196, 34)
+layout_mode = 2
+theme_override_font_sizes/font_size = 17
+
+[node name="Condition" type="OptionButton" parent="PassivePanel/P2" unique_id=1826196585]
+custom_minimum_size = Vector2(180, 34)
+layout_mode = 2
+
+[node name="Info" type="Button" parent="PassivePanel/P2" unique_id=703736736]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+text = "?"
+
+[node name="LogPanel" type="Panel" parent="." unique_id=1829811189]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 645.0
+offset_right = 1572.0
+offset_bottom = 805.0
+
+[node name="Log" type="RichTextLabel" parent="LogPanel" unique_id=150191769]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = 509.0
+offset_bottom = 153.0
+theme_override_colors/default_color = Color(0.18, 0.13, 0.1, 1)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+scroll_following = true
+
+[node name="Controls" type="HBoxContainer" parent="." unique_id=452777982]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 825.0
+offset_right = 1572.0
+offset_bottom = 873.0
+theme_override_constants/separation = 10
+
+[node name="Preset" type="OptionButton" parent="Controls" unique_id=250530]
+custom_minimum_size = Vector2(218, 46)
+layout_mode = 2
+
+[node name="Start" type="Button" parent="Controls" unique_id=1647192649]
+custom_minimum_size = Vector2(158, 46)
+layout_mode = 2
+text = "开始战斗"
+
+[node name="Pause" type="Button" parent="Controls" unique_id=373279928]
+custom_minimum_size = Vector2(92, 46)
+layout_mode = 2
+text = "暂停"
+
+[node name="Step" type="Button" parent="Controls" unique_id=1028220523]
+custom_minimum_size = Vector2(108, 46)
+layout_mode = 2
+text = "单步"
+
+[node name="Speed" type="OptionButton" parent="Controls" unique_id=2022522109]
+custom_minimum_size = Vector2(100, 46)
+layout_mode = 2
+
+[node name="Reset" type="Button" parent="Controls" unique_id=1339211015]
+custom_minimum_size = Vector2(135, 46)
+layout_mode = 2
+text = "返回编排"
+
+[node name="Save" type="Button" parent="Controls" unique_id=778751171]
+custom_minimum_size = Vector2(125, 46)
+layout_mode = 2
+text = "保存战术"
+
+[node name="Motion" type="CheckButton" parent="Controls" unique_id=1787729777]
+custom_minimum_size = Vector2(140, 46)
+layout_mode = 2
+text = "减弱闪震"
+
+[node name="Sound" type="CheckButton" parent="Controls" unique_id=2041517788]
+custom_minimum_size = Vector2(115, 46)
+layout_mode = 2
+text = "音效"
+
+[node name="Help" type="Button" parent="Controls" unique_id=469757324]
+custom_minimum_size = Vector2(75, 46)
+layout_mode = 2
+text = "规则"
+
+[node name="Details" type="AcceptDialog" parent="." unique_id=1697867172]
+title = "法术说明"
+size = Vector2i(680, 400)
+
+[node name="Text" type="RichTextLabel" parent="Details" unique_id=326020029]
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 658.0
+offset_bottom = 324.0
+theme_override_colors/default_color = Color(0.95, 0.88, 0.74, 1)
+bbcode_enabled = true
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=74279662]
+volume_db = -16.0
+
+[node name="Playback" type="Timer" parent="." unique_id=1101540985]
+wait_time = 0.55

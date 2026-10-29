@@ -1,0 +1,5 @@
+[
+  {"name":"editor_manage","arguments":{"session_id":"gd-dark-idle@eac2","op":"game_eval","params":{"code":"return load(\"res://tests/battle_suite.gd\").new().run()"}}},
+  {"name":"editor_screenshot","arguments":{"session_id":"gd-dark-idle@eac2","source":"game","max_resolution":0}},
+  {"name":"logs_read","arguments":{"session_id":"gd-dark-idle@eac2","source":"game","count":30}}
+]

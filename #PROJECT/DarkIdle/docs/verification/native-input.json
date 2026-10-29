@@ -1,0 +1,121 @@
+[
+  {
+    "tool": "editor_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"result\":{\"center\":{\"x\":335.0,\"y\":849.0},\"cursor\":-1.0,\"running\":false,\"screen\":{\"x\":256.0,\"y\":825.0},\"transform\":{\"origin\":{\"x\":0.0,\"y\":0.0},\"x\":{\"x\":0.899999976158142,\"y\":0.0},\"y\":{\"x\":0.0,\"y\":0.899999976158142}},\"viewport\":{\"position\":{\"x\":0.0,\"y\":0.0},\"size\":{\"x\":1600.0,\"y\":900.0}}},\"source\":\"game\"}"
+        }
+      ],
+      "structuredContent": {
+        "result": {
+          "center": {
+            "x": 335.0,
+            "y": 849.0
+          },
+          "cursor": -1.0,
+          "running": false,
+          "screen": {
+            "x": 256.0,
+            "y": 825.0
+          },
+          "transform": {
+            "origin": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "x": {
+              "x": 0.899999976158142,
+              "y": 0.0
+            },
+            "y": {
+              "x": 0.0,
+              "y": 0.899999976158142
+            }
+          },
+          "viewport": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0
+            },
+            "size": {
+              "x": 1600.0,
+              "y": 900.0
+            }
+          }
+        },
+        "source": "game"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "game_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":301.0,\"y\":764.0},\"pressed\":true,\"sent\":true,\"source\":\"game\"}"
+        }
+      ],
+      "structuredContent": {
+        "button": "left",
+        "event": "button",
+        "op": "input_mouse",
+        "position": {
+          "x": 301.0,
+          "y": 764.0
+        },
+        "pressed": true,
+        "sent": true,
+        "source": "game"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "game_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"button\":\"left\",\"event\":\"button\",\"op\":\"input_mouse\",\"position\":{\"x\":301.0,\"y\":764.0},\"pressed\":false,\"sent\":true,\"source\":\"game\"}"
+        }
+      ],
+      "structuredContent": {
+        "button": "left",
+        "event": "button",
+        "op": "input_mouse",
+        "position": {
+          "x": 301.0,
+          "y": 764.0
+        },
+        "pressed": false,
+        "sent": true,
+        "source": "game"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "editor_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"result\":{\"cursor\":0.0,\"event_count\":61.0,\"running\":true},\"source\":\"game\"}"
+        }
+      ],
+      "structuredContent": {
+        "result": {
+          "cursor": 0.0,
+          "event_count": 61.0,
+          "running": true
+        },
+        "source": "game"
+      },
+      "isError": false
+    }
+  }
+]

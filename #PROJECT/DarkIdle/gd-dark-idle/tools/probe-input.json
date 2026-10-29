@@ -1,0 +1,6 @@
+[
+  {"name":"editor_manage","arguments":{"session_id":"gd-dark-idle@eac2","op":"game_eval","params":{"code":"var s = get_tree().current_scene\nvar b = s.get_node(\"Controls/Start\")\nreturn {\"running\":s.running,\"cursor\":s.cursor,\"center\":b.get_global_rect().get_center(),\"screen\":b.get_screen_position(),\"viewport\":s.get_viewport_rect(),\"transform\":s.get_viewport().get_final_transform()}"}}},
+  {"name":"game_manage","arguments":{"session_id":"gd-dark-idle@eac2","op":"input_mouse","params":{"event":"button","position":[301,764],"button":"left","pressed":true}}},
+  {"name":"game_manage","arguments":{"session_id":"gd-dark-idle@eac2","op":"input_mouse","params":{"event":"button","position":[301,764],"button":"left","pressed":false}}},
+  {"name":"editor_manage","arguments":{"session_id":"gd-dark-idle@eac2","op":"game_eval","params":{"code":"var s = get_tree().current_scene\nreturn {\"running\":s.running,\"cursor\":s.cursor,\"event_count\":s.events.size()}"}}}
+]

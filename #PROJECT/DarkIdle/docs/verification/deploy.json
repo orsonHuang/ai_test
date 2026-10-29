@@ -1,0 +1,585 @@
+[
+  {
+    "name": "editor_state",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"current_scene\":\"res://scenes/main.tscn\",\"game_capture_ready\":false,\"game_status\":{\"active\":false,\"editor_log_cursor\":0,\"elapsed_msec\":0,\"helper_expected\":true,\"helper_live\":false,\"ready\":false,\"ready_wait_msec\":20000,\"run_started_msec\":0,\"run_token\":0,\"session_active\":false,\"status\":\"stopped\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":false,\"is_playing\":false,\"project_name\":\"GD_DarkIdle\",\"readiness\":\"ready\",\"session_active\":false}"
+        }
+      ],
+      "structuredContent": {
+        "current_scene": "res://scenes/main.tscn",
+        "game_capture_ready": false,
+        "game_status": {
+          "active": false,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 0,
+          "helper_expected": true,
+          "helper_live": false,
+          "ready": false,
+          "ready_wait_msec": 20000,
+          "run_started_msec": 0,
+          "run_token": 0,
+          "session_active": false,
+          "status": "stopped"
+        },
+        "godot_version": "4.7.2-stable (steam)",
+        "helper_live": false,
+        "is_playing": false,
+        "project_name": "GD_DarkIdle",
+        "readiness": "ready",
+        "session_active": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "filesystem_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"global_class_count\":43,\"global_classes_registered_delta\":0,\"reason\":\"Filesystem scan is an editor operation\",\"scan_completed\":true,\"scan_settle\":\"settled\",\"undoable\":false,\"was_already_scanning\":false}"
+        }
+      ],
+      "structuredContent": {
+        "global_class_count": 43,
+        "global_classes_registered_delta": 0,
+        "reason": "Filesystem scan is an editor operation",
+        "scan_completed": true,
+        "scan_settle": "settled",
+        "undoable": false,
+        "was_already_scanning": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"application/run/main_scene\",\"old_value\":\"res://scenes/main.tscn\",\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"String\",\"undoable\":false,\"value\":\"res://scenes/main.tscn\"}"
+        }
+      ],
+      "structuredContent": {
+        "key": "application/run/main_scene",
+        "old_value": "res://scenes/main.tscn",
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "String",
+        "undoable": false,
+        "value": "res://scenes/main.tscn"
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/viewport_width\",\"old_value\":1600,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":1600}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/viewport_width",
+        "old_value": 1600,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 1600
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/viewport_height\",\"old_value\":900,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":900}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/viewport_height",
+        "old_value": 900,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 900
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/window_width_override\",\"old_value\":1440,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":1440}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/window_width_override",
+        "old_value": 1440,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 1440
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/size/window_height_override\",\"old_value\":810,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":810}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/size/window_height_override",
+        "old_value": 810,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 810
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/stretch/mode\",\"old_value\":\"canvas_items\",\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"String\",\"undoable\":false,\"value\":\"canvas_items\"}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/stretch/mode",
+        "old_value": "canvas_items",
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "String",
+        "undoable": false,
+        "value": "canvas_items"
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"display/window/stretch/aspect\",\"old_value\":\"keep\",\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"String\",\"undoable\":false,\"value\":\"keep\"}"
+        }
+      ],
+      "structuredContent": {
+        "key": "display/window/stretch/aspect",
+        "old_value": "keep",
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "String",
+        "undoable": false,
+        "value": "keep"
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"application/config/name\",\"old_value\":\"GD_DarkIdle\",\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"String\",\"undoable\":false,\"value\":\"GD_DarkIdle\"}"
+        }
+      ],
+      "structuredContent": {
+        "key": "application/config/name",
+        "old_value": "GD_DarkIdle",
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "String",
+        "undoable": false,
+        "value": "GD_DarkIdle"
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"key\":\"application/run/max_fps\",\"old_value\":60,\"reason\":\"ProjectSettings changes are saved to disk\",\"type\":\"int\",\"undoable\":false,\"value\":60}"
+        }
+      ],
+      "structuredContent": {
+        "key": "application/run/max_fps",
+        "old_value": 60,
+        "reason": "ProjectSettings changes are saved to disk",
+        "type": "int",
+        "undoable": false,
+        "value": 60
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":false,\"path\":\"res://scenes/main.tscn\",\"previous_scene_path\":\"res://scenes/main.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":false,\"settle\":\"already_current\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": false,
+        "path": "res://scenes/main.tscn",
+        "previous_scene_path": "res://scenes/main.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": false,
+        "settle": "already_current",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "script_attach",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"had_previous_script\":true,\"path\":\".\",\"script_path\":\"res://scripts/battle_view.gd\",\"undoable\":true}"
+        }
+      ],
+      "structuredContent": {
+        "had_previous_script": true,
+        "path": ".",
+        "script_path": "res://scripts/battle_view.gd",
+        "undoable": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/main.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/main.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "scene_get_hierarchy",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"root\":\"\",\"nodes\":[{\"children_count\":12,\"name\":\"DarkIdle\",\"path\":\"/DarkIdle\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"Paper\",\"path\":\"/DarkIdle/Paper\",\"type\":\"ColorRect\"},{\"children_count\":0,\"name\":\"Header\",\"path\":\"/DarkIdle/Header\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"Subtitle\",\"path\":\"/DarkIdle/Subtitle\",\"type\":\"Label\"},{\"children_count\":7,\"name\":\"Battle\",\"path\":\"/DarkIdle/Battle\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"Backdrop\",\"path\":\"/DarkIdle/Battle/Backdrop\",\"type\":\"TextureRect\"},{\"children_count\":5,\"name\":\"Mage\",\"path\":\"/DarkIdle/Battle/Mage\",\"type\":\"Control\"},{\"children_count\":5,\"name\":\"Enemy1\",\"path\":\"/DarkIdle/Battle/Enemy1\",\"type\":\"Control\"},{\"children_count\":5,\"name\":\"Enemy2\",\"path\":\"/DarkIdle/Battle/Enemy2\",\"type\":\"Control\"},{\"children_count\":5,\"name\":\"Enemy3\",\"path\":\"/DarkIdle/Battle/Enemy3\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"FX\",\"path\":\"/DarkIdle/Battle/FX\",\"type\":\"Control\"},{\"children_count\":0,\"name\":\"Banner\",\"path\":\"/DarkIdle/Battle/Banner\",\"type\":\"Label\"},{\"children_count\":0,\"name\":\"Status\",\"path\":\"/DarkIdle/Status\",\"type\":\"Label\"},{\"children_count\":2,\"name\":\"ActivePanel\",\"path\":\"/DarkIdle/ActivePanel\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"Title\",\"path\":\"/DarkIdle/ActivePanel/Title\",\"type\":\"Label\"},{\"children_count\":7,\"name\":\"Rows\",\"path\":\"/DarkIdle/ActivePanel/Rows\",\"type\":\"VBoxContainer\"},{\"children_count\":4,\"name\":\"PassivePanel\",\"path\":\"/DarkIdle/PassivePanel\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"Title\",\"path\":\"/DarkIdle/PassivePanel/Title\",\"type\":\"Label\"},{\"children_count\":4,\"name\":\"P0\",\"path\":\"/DarkIdle/PassivePanel/P0\",\"type\":\"HBoxContainer\"},{\"children_count\":4,\"name\":\"P1\",\"path\":\"/DarkIdle/PassivePanel/P1\",\"type\":\"HBoxContainer\"},{\"children_count\":4,\"name\":\"P2\",\"path\":\"/DarkIdle/PassivePanel/P2\",\"type\":\"HBoxContainer\"},{\"children_count\":1,\"name\":\"LogPanel\",\"path\":\"/DarkIdle/LogPanel\",\"type\":\"Panel\"},{\"children_count\":0,\"name\":\"Log\",\"path\":\"/DarkIdle/LogPanel/Log\",\"type\":\"RichTextLabel\"},{\"children_count\":10,\"name\":\"Controls\",\"path\":\"/DarkIdle/Controls\",\"type\":\"HBoxContainer\"},{\"children_count\":0,\"name\":\"Preset\",\"path\":\"/DarkIdle/Controls/Preset\",\"type\":\"OptionButton\"},{\"children_count\":0,\"name\":\"Start\",\"path\":\"/DarkIdle/Controls/Start\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Pause\",\"path\":\"/DarkIdle/Controls/Pause\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Step\",\"path\":\"/DarkIdle/Controls/Step\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Speed\",\"path\":\"/DarkIdle/Controls/Speed\",\"type\":\"OptionButton\"},{\"children_count\":0,\"name\":\"Reset\",\"path\":\"/DarkIdle/Controls/Reset\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Save\",\"path\":\"/DarkIdle/Controls/Save\",\"type\":\"Button\"},{\"children_count\":0,\"name\":\"Motion\",\"path\":\"/DarkIdle/Controls/Motion\",\"type\":\"CheckButton\"},{\"children_count\":0,\"name\":\"Sound\",\"path\":\"/DarkIdle/Controls/Sound\",\"type\":\"CheckButton\"},{\"children_count\":0,\"name\":\"Help\",\"path\":\"/DarkIdle/Controls/Help\",\"type\":\"Button\"},{\"children_count\":1,\"name\":\"Details\",\"path\":\"/DarkIdle/Details\",\"type\":\"AcceptDialog\"},{\"children_count\":0,\"name\":\"Text\",\"path\":\"/DarkIdle/Details/Text\",\"type\":\"RichTextLabel\"},{\"children_count\":0,\"name\":\"SoundPlayer\",\"path\":\"/DarkIdle/SoundPlayer\",\"type\":\"AudioStreamPlayer\"},{\"children_count\":0,\"name\":\"Playback\",\"path\":\"/DarkIdle/Playback\",\"type\":\"Timer\"}],\"total_count\":38,\"offset\":0,\"limit\":100,\"has_more\":false}"
+        }
+      ],
+      "structuredContent": {
+        "root": "",
+        "nodes": [
+          {
+            "children_count": 12,
+            "name": "DarkIdle",
+            "path": "/DarkIdle",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "Paper",
+            "path": "/DarkIdle/Paper",
+            "type": "ColorRect"
+          },
+          {
+            "children_count": 0,
+            "name": "Header",
+            "path": "/DarkIdle/Header",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "Subtitle",
+            "path": "/DarkIdle/Subtitle",
+            "type": "Label"
+          },
+          {
+            "children_count": 7,
+            "name": "Battle",
+            "path": "/DarkIdle/Battle",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "Backdrop",
+            "path": "/DarkIdle/Battle/Backdrop",
+            "type": "TextureRect"
+          },
+          {
+            "children_count": 5,
+            "name": "Mage",
+            "path": "/DarkIdle/Battle/Mage",
+            "type": "Control"
+          },
+          {
+            "children_count": 5,
+            "name": "Enemy1",
+            "path": "/DarkIdle/Battle/Enemy1",
+            "type": "Control"
+          },
+          {
+            "children_count": 5,
+            "name": "Enemy2",
+            "path": "/DarkIdle/Battle/Enemy2",
+            "type": "Control"
+          },
+          {
+            "children_count": 5,
+            "name": "Enemy3",
+            "path": "/DarkIdle/Battle/Enemy3",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "FX",
+            "path": "/DarkIdle/Battle/FX",
+            "type": "Control"
+          },
+          {
+            "children_count": 0,
+            "name": "Banner",
+            "path": "/DarkIdle/Battle/Banner",
+            "type": "Label"
+          },
+          {
+            "children_count": 0,
+            "name": "Status",
+            "path": "/DarkIdle/Status",
+            "type": "Label"
+          },
+          {
+            "children_count": 2,
+            "name": "ActivePanel",
+            "path": "/DarkIdle/ActivePanel",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "Title",
+            "path": "/DarkIdle/ActivePanel/Title",
+            "type": "Label"
+          },
+          {
+            "children_count": 7,
+            "name": "Rows",
+            "path": "/DarkIdle/ActivePanel/Rows",
+            "type": "VBoxContainer"
+          },
+          {
+            "children_count": 4,
+            "name": "PassivePanel",
+            "path": "/DarkIdle/PassivePanel",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "Title",
+            "path": "/DarkIdle/PassivePanel/Title",
+            "type": "Label"
+          },
+          {
+            "children_count": 4,
+            "name": "P0",
+            "path": "/DarkIdle/PassivePanel/P0",
+            "type": "HBoxContainer"
+          },
+          {
+            "children_count": 4,
+            "name": "P1",
+            "path": "/DarkIdle/PassivePanel/P1",
+            "type": "HBoxContainer"
+          },
+          {
+            "children_count": 4,
+            "name": "P2",
+            "path": "/DarkIdle/PassivePanel/P2",
+            "type": "HBoxContainer"
+          },
+          {
+            "children_count": 1,
+            "name": "LogPanel",
+            "path": "/DarkIdle/LogPanel",
+            "type": "Panel"
+          },
+          {
+            "children_count": 0,
+            "name": "Log",
+            "path": "/DarkIdle/LogPanel/Log",
+            "type": "RichTextLabel"
+          },
+          {
+            "children_count": 10,
+            "name": "Controls",
+            "path": "/DarkIdle/Controls",
+            "type": "HBoxContainer"
+          },
+          {
+            "children_count": 0,
+            "name": "Preset",
+            "path": "/DarkIdle/Controls/Preset",
+            "type": "OptionButton"
+          },
+          {
+            "children_count": 0,
+            "name": "Start",
+            "path": "/DarkIdle/Controls/Start",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Pause",
+            "path": "/DarkIdle/Controls/Pause",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Step",
+            "path": "/DarkIdle/Controls/Step",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Speed",
+            "path": "/DarkIdle/Controls/Speed",
+            "type": "OptionButton"
+          },
+          {
+            "children_count": 0,
+            "name": "Reset",
+            "path": "/DarkIdle/Controls/Reset",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Save",
+            "path": "/DarkIdle/Controls/Save",
+            "type": "Button"
+          },
+          {
+            "children_count": 0,
+            "name": "Motion",
+            "path": "/DarkIdle/Controls/Motion",
+            "type": "CheckButton"
+          },
+          {
+            "children_count": 0,
+            "name": "Sound",
+            "path": "/DarkIdle/Controls/Sound",
+            "type": "CheckButton"
+          },
+          {
+            "children_count": 0,
+            "name": "Help",
+            "path": "/DarkIdle/Controls/Help",
+            "type": "Button"
+          },
+          {
+            "children_count": 1,
+            "name": "Details",
+            "path": "/DarkIdle/Details",
+            "type": "AcceptDialog"
+          },
+          {
+            "children_count": 0,
+            "name": "Text",
+            "path": "/DarkIdle/Details/Text",
+            "type": "RichTextLabel"
+          },
+          {
+            "children_count": 0,
+            "name": "SoundPlayer",
+            "path": "/DarkIdle/SoundPlayer",
+            "type": "AudioStreamPlayer"
+          },
+          {
+            "children_count": 0,
+            "name": "Playback",
+            "path": "/DarkIdle/Playback",
+            "type": "Timer"
+          }
+        ],
+        "total_count": 38,
+        "offset": 0,
+        "limit": 100,
+        "has_more": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "name": "project_run",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":2486,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":1335387,\"run_token\":1,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"main\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[],\"recent_errors_may_predate_run\":false,\"recent_errors_scope\":\"none\",\"recent_errors_truncated\":false,\"retained_errors\":[],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+        }
+      ],
+      "structuredContent": {
+        "autosave": true,
+        "current_run_errors": [],
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 2486,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 3000,
+          "run_started_msec": 1335387,
+          "run_token": 1,
+          "session_active": true,
+          "status": "live"
+        },
+        "helper_live": true,
+        "mode": "main",
+        "reason": "Game launched and the Godot AI game helper is live.",
+        "recent_errors": [],
+        "recent_errors_may_predate_run": false,
+        "recent_errors_scope": "none",
+        "recent_errors_truncated": false,
+        "retained_errors": [],
+        "scene": "",
+        "session_active": true,
+        "undoable": false,
+        "was_already_running": false
+      },
+      "isError": false
+    }
+  }
+]

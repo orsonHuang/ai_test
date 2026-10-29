@@ -1,0 +1,4 @@
+[
+  {"name":"editor_manage","arguments":{"session_id":"gd-dark-idle@eac2","op":"game_eval","params":{"code":"var s = get_tree().current_scene\nvar p = s.get_node(\"ActivePanel/Rows/Row2/Target\").get_popup()\nreturn {\"rule\":s.plan[2],\"popup_visible\":p.visible,\"popup_position\":p.position,\"popup_size\":p.size,\"embed\":p.is_embedded(),\"setting\":ProjectSettings.get_setting(\"display/window/subwindows/embed_subwindows\"),\"focused\":p.get_focused_item()}"}}},
+  {"name":"editor_screenshot","arguments":{"session_id":"gd-dark-idle@eac2","source":"game","max_resolution":0}}
+]

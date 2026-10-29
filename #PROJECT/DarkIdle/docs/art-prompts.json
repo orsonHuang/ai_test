@@ -1,0 +1,13 @@
+{
+  "tool": "built-in image_gen",
+  "prompts": [
+    {
+      "key": "di-background",
+      "prompt": "Create a seamless-feeling wide 16:9 2D side-view game battle background for a dark paper-cut folklore game: aged warm ivory parchment, black and charcoal layered woodcut silhouettes of crooked ruins and leafless orchard, enormous pale moon left of center, sparse vermilion leaves, dusty ash haze, quiet haunted atmosphere. Three simple parallax-like depth layers, clear horizontal ground at bottom 20%, central middle area intentionally empty to accommodate characters. Crisp flat shapes with subtle carved hatching, strong composition, reusable indie game environment. NO characters, monsters, figures, UI, text, logos or health bars. Must be atmospheric but not busy, restrained contrast behind gameplay."
+    },
+    {
+      "key": "di-units",
+      "prompt": "Create a single transparent PNG sprite atlas for a 2D side-view dark paper-cut fantasy game. Exactly FOUR isolated full-body characters in one horizontal row, equal-sized nonoverlapping cells, ample transparent gaps. Every character feet aligned on the same baseline, each completely inside its cell with space above and below. Leftmost: a hooded FIRE MAGE facing RIGHT, charcoal angular robes, crimson scarf, simple ivory mask, holding crooked staff topped with small ember-orange flame. Second: small round spiny soot monster facing LEFT, two pale-orange eyes, short legs. Third: antler-masked thin dark forest sentinel facing LEFT, hunched cloak, simple bone mask, two claw hands. Fourth: ragged scarecrow with wide straw hat facing LEFT, long angular arms and twig legs, subtle crimson patches. All four same cohesive flat black paper-cut woodblock aesthetic, tiny ivory carved highlights, rust red accents, strong silhouettes, animation-friendly simple forms. No ground, shadows, scenery, UI, letters, labels, borders, grid, decorative elements. Genuinely transparent alpha background. Wide landscape atlas 4:1 if possible, evenly spaced."
+    }
+  ]
+}

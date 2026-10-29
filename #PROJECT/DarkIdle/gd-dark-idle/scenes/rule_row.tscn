@@ -1,0 +1,44 @@
+[gd_scene format=3]
+
+[node name="RuleRow" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 38)
+theme_override_constants/separation = 6
+
+[node name="Enabled" type="CheckBox" parent="."]
+custom_minimum_size = Vector2(34, 36)
+layout_mode = 2
+
+[node name="Order" type="Label" parent="."]
+custom_minimum_size = Vector2(24, 36)
+layout_mode = 2
+
+[node name="Skill" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(140, 36)
+layout_mode = 2
+
+[node name="Cost" type="Label" parent="."]
+custom_minimum_size = Vector2(64, 36)
+layout_mode = 2
+
+[node name="Condition" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(260, 36)
+layout_mode = 2
+
+[node name="Target" type="OptionButton" parent="."]
+custom_minimum_size = Vector2(200, 36)
+layout_mode = 2
+
+[node name="Up" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 36)
+layout_mode = 2
+text = "↑"
+
+[node name="Down" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 36)
+layout_mode = 2
+text = "↓"
+
+[node name="Info" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 36)
+layout_mode = 2
+text = "?"

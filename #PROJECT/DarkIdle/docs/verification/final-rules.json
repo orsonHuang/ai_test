@@ -1,0 +1,231 @@
+[
+  {
+    "tool": "editor_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"result\":{\"checks\":[{\"details\":null,\"name\":\"点燃：单体直伤 + 一层 / 1 AP\",\"passed\":true},{\"details\":null,\"name\":\"火墙：全体直伤 + 一层\",\"passed\":true},{\"details\":null,\"name\":\"爆燃：无视目标偏好，选择燃烧最多并翻倍\",\"passed\":true},{\"details\":null,\"name\":\"火星：复制叠加，保留源目标\",\"passed\":true},{\"details\":null,\"name\":\"火星：源目标被直伤击败仍按施法快照扩散\",\"passed\":true},{\"details\":null,\"name\":\"火葬：全体翻倍 / 零层仍为零 / 2 AP\",\"passed\":true},{\"details\":null,\"name\":\"炎爆：+2 后立即引爆 40，保留五层\",\"passed\":true},{\"details\":null,\"name\":\"回合末再次引爆 40 后清空\",\"passed\":true},{\"details\":null,\"name\":\"炼狱：全体 +1 再引爆 / 无额外直伤 / 保留 / 2 AP\",\"passed\":true},{\"details\":null,\"name\":\"蓄能：仅下一行动新增层数翻倍\",\"passed\":true},{\"details\":null,\"name\":\"蓄能与翻倍：原有三层 + 新增六层 = 九层\",\"passed\":true},{\"details\":null,\"name\":\"条件先过滤，再按目标偏好选取\",\"passed\":true},{\"details\":null,\"name\":\"生命门槛未到时跳过\",\"passed\":true},{\"details\":null,\"name\":\"阵亡目标不可选\",\"passed\":true},{\"details\":null,\"name\":\"炎盾：受击前消耗 RP，攻击者叠火\",\"passed\":true},{\"details\":null,\"name\":\"RP 不足时不触发炎盾\",\"passed\":true},{\"details\":null,\"name\":\"魔力恢复每轮最多一次，不产生资源循环\",\"passed\":true},{\"details\":null,\"name\":\"条件不满足不消耗 AP\",\"passed\":true},{\"details\":null,\"name\":\"炎盾先于伤害结算，12 减至 6\",\"passed\":true},{\"details\":null,\"name\":\"法师阵亡立即失败，不追加回合末伤害\",\"passed\":true},{\"details\":{\"amount\":0.0,\"kind\":\"result\",\"peak_burn\":13.0,\"skill\":\"\",\"slot\":-1.0,\"state\":{\"ap\":0.0,\"charge\":false,\"enemies\":[{\"burn\":0.0,\"hp\":0.0,\"max_hp\":95.0},{\"burn\":0.0,\"hp\":0.0,\"max_hp\":125.0},{\"burn\":0.0,\"hp\":0.0,\"max_hp\":155.0}],\"hp\":78.0,\"round\":1.0,\"rp\":0.0},\"target\":-2.0,\"text\":\"胜利 · 核爆完成\",\"total_damage\":375.0,\"victory\":true},\"name\":\"默认核爆连段：一回合胜利 / 剩余 78 HP\",\"passed\":true},{\"details\":null,\"name\":\"相同输入完整事件序列确定一致\",\"passed\":true},{\"details\":null,\"name\":\"无行动且无反应：可达失败结果\",\"passed\":true},{\"details\":null,\"name\":\"无进展战斗在第八回合结束\",\"passed\":true},{\"details\":null,\"name\":\"100 组固定种子战术：资源不为负、结算有限且有结果\",\"passed\":true}],\"failed\":0.0,\"passed\":25.0},\"source\":\"game\"}"
+        }
+      ],
+      "structuredContent": {
+        "result": {
+          "checks": [
+            {
+              "details": null,
+              "name": "点燃：单体直伤 + 一层 / 1 AP",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "火墙：全体直伤 + 一层",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "爆燃：无视目标偏好，选择燃烧最多并翻倍",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "火星：复制叠加，保留源目标",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "火星：源目标被直伤击败仍按施法快照扩散",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "火葬：全体翻倍 / 零层仍为零 / 2 AP",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "炎爆：+2 后立即引爆 40，保留五层",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "回合末再次引爆 40 后清空",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "炼狱：全体 +1 再引爆 / 无额外直伤 / 保留 / 2 AP",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "蓄能：仅下一行动新增层数翻倍",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "蓄能与翻倍：原有三层 + 新增六层 = 九层",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "条件先过滤，再按目标偏好选取",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "生命门槛未到时跳过",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "阵亡目标不可选",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "炎盾：受击前消耗 RP，攻击者叠火",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "RP 不足时不触发炎盾",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "魔力恢复每轮最多一次，不产生资源循环",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "条件不满足不消耗 AP",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "炎盾先于伤害结算，12 减至 6",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "法师阵亡立即失败，不追加回合末伤害",
+              "passed": true
+            },
+            {
+              "details": {
+                "amount": 0.0,
+                "kind": "result",
+                "peak_burn": 13.0,
+                "skill": "",
+                "slot": -1.0,
+                "state": {
+                  "ap": 0.0,
+                  "charge": false,
+                  "enemies": [
+                    {
+                      "burn": 0.0,
+                      "hp": 0.0,
+                      "max_hp": 95.0
+                    },
+                    {
+                      "burn": 0.0,
+                      "hp": 0.0,
+                      "max_hp": 125.0
+                    },
+                    {
+                      "burn": 0.0,
+                      "hp": 0.0,
+                      "max_hp": 155.0
+                    }
+                  ],
+                  "hp": 78.0,
+                  "round": 1.0,
+                  "rp": 0.0
+                },
+                "target": -2.0,
+                "text": "胜利 · 核爆完成",
+                "total_damage": 375.0,
+                "victory": true
+              },
+              "name": "默认核爆连段：一回合胜利 / 剩余 78 HP",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "相同输入完整事件序列确定一致",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "无行动且无反应：可达失败结果",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "无进展战斗在第八回合结束",
+              "passed": true
+            },
+            {
+              "details": null,
+              "name": "100 组固定种子战术：资源不为负、结算有限且有结果",
+              "passed": true
+            }
+          ],
+          "failed": 0.0,
+          "passed": 25.0
+        },
+        "source": "game"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "editor_screenshot",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+        },
+        {
+          "type": "saved_image",
+          "path": "D:\\_Files\\ai_test\\#PROJECT\\DarkIdle\\docs\\verification\\final-rules_1_content_1.png",
+          "mimeType": "image/png"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "tool": "logs_read",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\":\"game\",\"lines\":[{\"level\":\"info\",\"run_id\":\"r2790753-6\",\"source\":\"game\",\"text\":\"[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\\n\"}],\"total_count\":1,\"returned_count\":1,\"offset\":0,\"limit\":30,\"has_more\":false,\"run_id\":\"r2790753-6\",\"is_running\":true,\"dropped_count\":0,\"stale_run_id\":false}"
+        }
+      ],
+      "structuredContent": {
+        "source": "game",
+        "lines": [
+          {
+            "level": "info",
+            "run_id": "r2790753-6",
+            "source": "game",
+            "text": "[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\n"
+          }
+        ],
+        "total_count": 1,
+        "returned_count": 1,
+        "offset": 0,
+        "limit": 30,
+        "has_more": false,
+        "run_id": "r2790753-6",
+        "is_running": true,
+        "dropped_count": 0,
+        "stale_run_id": false
+      },
+      "isError": false
+    }
+  }
+]

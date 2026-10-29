@@ -1,0 +1,157 @@
+[
+  {
+    "tool": "editor_state",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"current_scene\":\"res://scenes/main.tscn\",\"game_capture_ready\":true,\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":498735,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":20000,\"run_started_msec\":1335387,\"run_token\":1,\"session_active\":true,\"status\":\"live\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":true,\"is_playing\":true,\"project_name\":\"GD_DarkIdle\",\"readiness\":\"playing\",\"session_active\":true}"
+        }
+      ],
+      "structuredContent": {
+        "current_scene": "res://scenes/main.tscn",
+        "game_capture_ready": true,
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 498735,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 20000,
+          "run_started_msec": 1335387,
+          "run_token": 1,
+          "session_active": true,
+          "status": "live"
+        },
+        "godot_version": "4.7.2-stable (steam)",
+        "helper_live": true,
+        "is_playing": true,
+        "project_name": "GD_DarkIdle",
+        "readiness": "playing",
+        "session_active": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"readiness_after\":\"ready\",\"reason\":\"Play/stop is a runtime action\",\"stopped\":true,\"undoable\":false,\"was_running\":true}"
+        }
+      ],
+      "structuredContent": {
+        "readiness_after": "ready",
+        "reason": "Play/stop is a runtime action",
+        "stopped": true,
+        "undoable": false,
+        "was_running": true
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "filesystem_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"global_class_count\":43,\"global_classes_registered_delta\":0,\"reason\":\"Filesystem scan is an editor operation\",\"scan_completed\":true,\"scan_settle\":\"settled\",\"undoable\":false,\"was_already_scanning\":false}"
+        }
+      ],
+      "structuredContent": {
+        "global_class_count": 43,
+        "global_classes_registered_delta": 0,
+        "reason": "Filesystem scan is an editor operation",
+        "scan_completed": true,
+        "scan_settle": "settled",
+        "undoable": false,
+        "was_already_scanning": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_open",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"force_reload\":true,\"path\":\"res://scenes/main.tscn\",\"previous_scene_path\":\"res://scenes/main.tscn\",\"reason\":\"Scene navigation cannot be undone via editor undo\",\"reloaded_from_disk\":true,\"settle\":\"settled\",\"switched\":true,\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "force_reload": true,
+        "path": "res://scenes/main.tscn",
+        "previous_scene_path": "res://scenes/main.tscn",
+        "reason": "Scene navigation cannot be undone via editor undo",
+        "reloaded_from_disk": true,
+        "settle": "settled",
+        "switched": true,
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "scene_save",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"path\":\"res://scenes/main.tscn\",\"reason\":\"File save cannot be undone via editor undo\",\"undoable\":false}"
+        }
+      ],
+      "structuredContent": {
+        "path": "res://scenes/main.tscn",
+        "reason": "File save cannot be undone via editor undo",
+        "undoable": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "project_run",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"autosave\":true,\"current_run_errors\":[],\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":1375,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":3000,\"run_started_msec\":1834625,\"run_token\":2,\"session_active\":true,\"status\":\"live\"},\"helper_live\":true,\"mode\":\"main\",\"reason\":\"Game launched and the Godot AI game helper is live.\",\"recent_errors\":[],\"recent_errors_may_predate_run\":false,\"recent_errors_scope\":\"none\",\"recent_errors_truncated\":false,\"retained_errors\":[],\"scene\":\"\",\"session_active\":true,\"undoable\":false,\"was_already_running\":false}"
+        }
+      ],
+      "structuredContent": {
+        "autosave": true,
+        "current_run_errors": [],
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 1375,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 3000,
+          "run_started_msec": 1834625,
+          "run_token": 2,
+          "session_active": true,
+          "status": "live"
+        },
+        "helper_live": true,
+        "mode": "main",
+        "reason": "Game launched and the Godot AI game helper is live.",
+        "recent_errors": [],
+        "recent_errors_may_predate_run": false,
+        "recent_errors_scope": "none",
+        "recent_errors_truncated": false,
+        "retained_errors": [],
+        "scene": "",
+        "session_active": true,
+        "undoable": false,
+        "was_already_running": false
+      },
+      "isError": false
+    }
+  }
+]

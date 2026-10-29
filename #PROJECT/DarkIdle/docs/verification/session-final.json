@@ -1,0 +1,71 @@
+[
+  {
+    "tool": "session_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"sessions\":[{\"session_id\":\"gd-dark-idle@eac2\",\"name\":\"gd-dark-idle\",\"godot_version\":\"4.7.2-stable (steam)\",\"project_path\":\"D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/\",\"plugin_version\":\"2.9.0\",\"server_version\":\"2.9.0\",\"protocol_version\":1,\"current_scene\":\"res://scenes/main.tscn\",\"play_state\":\"playing\",\"readiness\":\"playing\",\"editor_pid\":32920,\"server_launch_mode\":\"uvx\",\"connected_at\":\"2026-10-29T05:45:18.902110+00:00\",\"last_seen\":\"2026-10-29T06:24:10.680146+00:00\",\"is_active\":true}],\"count\":1}"
+        }
+      ],
+      "structuredContent": {
+        "sessions": [
+          {
+            "session_id": "gd-dark-idle@eac2",
+            "name": "gd-dark-idle",
+            "godot_version": "4.7.2-stable (steam)",
+            "project_path": "D:/_Files/ai_test/#PROJECT/DarkIdle/gd-dark-idle/",
+            "plugin_version": "2.9.0",
+            "server_version": "2.9.0",
+            "protocol_version": 1,
+            "current_scene": "res://scenes/main.tscn",
+            "play_state": "playing",
+            "readiness": "playing",
+            "editor_pid": 32920,
+            "server_launch_mode": "uvx",
+            "connected_at": "2026-10-29T05:45:18.902110+00:00",
+            "last_seen": "2026-10-29T06:24:10.680146+00:00",
+            "is_active": true
+          }
+        ],
+        "count": 1
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "editor_state",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"current_scene\":\"res://scenes/main.tscn\",\"game_capture_ready\":true,\"game_status\":{\"active\":true,\"editor_log_cursor\":0,\"elapsed_msec\":355886,\"helper_expected\":true,\"helper_live\":true,\"ready\":true,\"ready_wait_msec\":20000,\"run_started_msec\":2360174,\"run_token\":5,\"session_active\":true,\"status\":\"live\"},\"godot_version\":\"4.7.2-stable (steam)\",\"helper_live\":true,\"is_playing\":true,\"project_name\":\"GD_DarkIdle\",\"readiness\":\"playing\",\"session_active\":true}"
+        }
+      ],
+      "structuredContent": {
+        "current_scene": "res://scenes/main.tscn",
+        "game_capture_ready": true,
+        "game_status": {
+          "active": true,
+          "editor_log_cursor": 0,
+          "elapsed_msec": 355886,
+          "helper_expected": true,
+          "helper_live": true,
+          "ready": true,
+          "ready_wait_msec": 20000,
+          "run_started_msec": 2360174,
+          "run_token": 5,
+          "session_active": true,
+          "status": "live"
+        },
+        "godot_version": "4.7.2-stable (steam)",
+        "helper_live": true,
+        "is_playing": true,
+        "project_name": "GD_DarkIdle",
+        "readiness": "playing",
+        "session_active": true
+      },
+      "isError": false
+    }
+  }
+]

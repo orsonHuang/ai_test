@@ -1,0 +1,35 @@
+[gd_resource type="Theme" format=3 uid="uid://de10mxgaqjfge"]
+
+[sub_resource type="StyleBoxFlat" id="Box"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.88, 0.81, 0.67, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.32, 0.25, 0.19, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="SystemFont" id="Font"]
+font_names = PackedStringArray("Microsoft YaHei", "Noto Sans CJK SC")
+
+[resource]
+default_font = SubResource("Font")
+default_font_size = 18
+Button/colors/font_color = Color(0.16, 0.12, 0.1, 1)
+Button/colors/font_disabled_color = Color(0.37, 0.29, 0.22, 1)
+Button/styles/disabled = SubResource("Box")
+Button/styles/normal = SubResource("Box")
+CheckButton/colors/font_color = Color(0.16, 0.12, 0.1, 1)
+CheckButton/colors/font_hover_color = Color(0.16, 0.12, 0.1, 1)
+CheckButton/colors/font_pressed_color = Color(0.16, 0.12, 0.1, 1)
+Label/colors/font_color = Color(0.16, 0.12, 0.1, 1)
+OptionButton/colors/font_color = Color(0.16, 0.12, 0.1, 1)
+OptionButton/colors/font_disabled_color = Color(0.37, 0.29, 0.22, 1)
+OptionButton/styles/disabled = SubResource("Box")
+OptionButton/styles/normal = SubResource("Box")
+Panel/styles/panel = SubResource("Box")

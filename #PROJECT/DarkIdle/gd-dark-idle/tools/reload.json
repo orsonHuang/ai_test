@@ -1,0 +1,8 @@
+[
+  {"name":"editor_state","arguments":{"session_id":"gd-dark-idle@eac2"}},
+  {"name":"project_manage","arguments":{"session_id":"gd-dark-idle@eac2","op":"stop"}},
+  {"name":"filesystem_manage","arguments":{"session_id":"gd-dark-idle@eac2","op":"scan"}},
+  {"name":"scene_open","arguments":{"session_id":"gd-dark-idle@eac2","path":"res://scenes/main.tscn","force_reload":true}},
+  {"name":"scene_save","arguments":{"session_id":"gd-dark-idle@eac2"}},
+  {"name":"project_run","arguments":{"session_id":"gd-dark-idle@eac2"}}
+]

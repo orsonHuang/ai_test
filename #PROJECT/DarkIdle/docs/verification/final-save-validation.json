@@ -1,0 +1,125 @@
+[
+  {
+    "tool": "filesystem_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"global_class_count\":43,\"global_classes_registered_delta\":0,\"reason\":\"Filesystem scan is an editor operation\",\"scan_completed\":true,\"scan_settle\":\"settled\",\"undoable\":false,\"was_already_scanning\":false}"
+        }
+      ],
+      "structuredContent": {
+        "global_class_count": 43,
+        "global_classes_registered_delta": 0,
+        "reason": "Filesystem scan is an editor operation",
+        "scan_completed": true,
+        "scan_settle": "settled",
+        "undoable": false,
+        "was_already_scanning": false
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "editor_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"result\":{\"checks\":[{\"name\":\"破损 JSON\",\"passed\":true},{\"name\":\"string_condition\",\"passed\":true},{\"name\":\"fractional_condition\",\"passed\":true},{\"name\":\"invalid_target\",\"passed\":true},{\"name\":\"invalid_passive\",\"passed\":true},{\"name\":\"unknown_version\",\"passed\":true},{\"name\":\"missing_rows\",\"passed\":true},{\"name\":\"恢复原存档后加载一致\",\"passed\":true}],\"failed\":0.0,\"passed\":8.0},\"source\":\"game\"}"
+        }
+      ],
+      "structuredContent": {
+        "result": {
+          "checks": [
+            {
+              "name": "破损 JSON",
+              "passed": true
+            },
+            {
+              "name": "string_condition",
+              "passed": true
+            },
+            {
+              "name": "fractional_condition",
+              "passed": true
+            },
+            {
+              "name": "invalid_target",
+              "passed": true
+            },
+            {
+              "name": "invalid_passive",
+              "passed": true
+            },
+            {
+              "name": "unknown_version",
+              "passed": true
+            },
+            {
+              "name": "missing_rows",
+              "passed": true
+            },
+            {
+              "name": "恢复原存档后加载一致",
+              "passed": true
+            }
+          ],
+          "failed": 0.0,
+          "passed": 8.0
+        },
+        "source": "game"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "editor_screenshot",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+        },
+        {
+          "type": "saved_image",
+          "path": "D:\\_Files\\ai_test\\#PROJECT\\DarkIdle\\docs\\verification\\final-save-validation_2_content_1.png",
+          "mimeType": "image/png"
+        }
+      ],
+      "isError": false
+    }
+  },
+  {
+    "tool": "logs_read",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\":\"game\",\"lines\":[{\"level\":\"info\",\"run_id\":\"r2952491-9\",\"source\":\"game\",\"text\":\"[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\\n\"}],\"total_count\":1,\"returned_count\":1,\"offset\":0,\"limit\":100,\"has_more\":false,\"run_id\":\"r2952491-9\",\"is_running\":true,\"dropped_count\":0,\"stale_run_id\":false}"
+        }
+      ],
+      "structuredContent": {
+        "source": "game",
+        "lines": [
+          {
+            "level": "info",
+            "run_id": "r2952491-9",
+            "source": "game",
+            "text": "[godot_ai game_helper] registered mcp capture (debugger active=true, logger=true)\n"
+          }
+        ],
+        "total_count": 1,
+        "returned_count": 1,
+        "offset": 0,
+        "limit": 100,
+        "has_more": false,
+        "run_id": "r2952491-9",
+        "is_running": true,
+        "dropped_count": 0,
+        "stale_run_id": false
+      },
+      "isError": false
+    }
+  }
+]

@@ -1,0 +1,54 @@
+[
+  {
+    "tool": "editor_manage",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"result\":{\"embed\":true,\"focused\":-1.0,\"popup_position\":{\"x\":596.0,\"y\":643.0},\"popup_size\":{\"x\":200.0,\"y\":124.0},\"popup_visible\":false,\"rule\":{\"condition\":0.0,\"enabled\":true,\"id\":\"spread\",\"target\":0.0},\"setting\":true},\"source\":\"game\"}"
+        }
+      ],
+      "structuredContent": {
+        "result": {
+          "embed": true,
+          "focused": -1.0,
+          "popup_position": {
+            "x": 596.0,
+            "y": 643.0
+          },
+          "popup_size": {
+            "x": 200.0,
+            "y": 124.0
+          },
+          "popup_visible": false,
+          "rule": {
+            "condition": 0.0,
+            "enabled": true,
+            "id": "spread",
+            "target": 0.0
+          },
+          "setting": true
+        },
+        "source": "game"
+      },
+      "isError": false
+    }
+  },
+  {
+    "tool": "editor_screenshot",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"source\": \"game\", \"width\": 1440, \"height\": 810, \"original_width\": 1440, \"original_height\": 810, \"format\": \"png\"}"
+        },
+        {
+          "type": "saved_image",
+          "path": "D:\\_Files\\ai_test\\#PROJECT\\DarkIdle\\docs\\verification\\popup-investigation_1_content_1.png",
+          "mimeType": "image/png"
+        }
+      ],
+      "isError": false
+    }
+  }
+]
