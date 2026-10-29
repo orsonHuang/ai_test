@@ -618,3 +618,8 @@
 - 用户确认V4三造型，并要求原生灰、觉醒绿、变异蓝，参考角色图色系；先交原形换色3张1:1，再交外形美化3张1:1。
 - 已用内置imagegen完成6张独立1254×1254透明RGBA PNG：v5/original为原形调色版，v5/polished为曲线、交叉留白、菱形核与闪电比例微调版。目录 #AI-NOTEBOOK/gene-awakening-icons-20261029/v5，含两套独立ZIP及all-six-icons-v5.zip。
 - 六张方形尺寸、真透明通道、非空主体均已检查并记录SHA256；灰色稿另作透明边缘修复。PNG为模型输出，实际色值有微小差异；未引擎实机小尺寸验收。完整提示词与素材清单随包。
+
+## 2026-10-30 猜到你下一手网页版试玩
+- 使用game-design-doc完成同步暗选、速距力、距离/先手/斗气原型；项目#PROJECT/Next-Move。支持AI练习、6秒选招、本机双人，无远程联机。
+- 2540项规则检查和浏览器15手完整对局通过，手机视口与超时默认防守通过。离线单文件dist/play-offline.html可交付。
+- Sites私有部署成功：https://read-your-next-move-duel.decent-reed-7919.chatgpt.site；当前内置浏览器无法连接ChatGPT登录服务，线上交互未验证。后续以用户试玩反馈调整理解成本和平衡。

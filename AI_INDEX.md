@@ -98,3 +98,6 @@
 
 ### 晚安小屋（新项目）
 - Cocos 2D／微信小游戏／房间逻辑解谜：`#PROJECT/Nite-Nite/README.md`；玩法：`GDD/设计文档.md`；任务与验收：`执行文档.md`。相对路径均以该项目根目录为基准。
+
+### 猜到你下一手（网页试玩）
+- 同步暗选1v1/距离/先手/斗气：#PROJECT/Next-Move/README.md；离线试玩dist/play-offline.html；设计验收docs/设计与验收.md。项目为独立Git仓库。
